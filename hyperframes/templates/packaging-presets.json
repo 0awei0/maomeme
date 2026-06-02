@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "description": "HyperFrames 预制包装模板。Agent 只选择 preset id 和结构化参数，渲染器执行稳定模板，不让 Agent 自由写 HTML/FFmpeg。",
+  "presets": [
+    {
+      "id": "job-hunt-black-hole",
+      "title": "求职黑洞",
+      "triggers": ["简历", "求职", "岗位", "面试", "HR", "offer", "校招"],
+      "visuals": {
+        "title_bar": "top_compact",
+        "caption_style": "bold_white_black_stroke",
+        "bubble_style": "left_right_dialogue",
+        "sticker_pack": ["resume_stack", "read_no_reply", "job_requirement_plus"],
+        "accent_color": "#ffcc00"
+      },
+      "default_overlay_actions": [
+        {
+          "type": "throw_object",
+          "object": "resume_stack",
+          "text": "简历 x100",
+          "start": 0.55,
+          "duration": 1.15
+        },
+        {
+          "type": "stamp_reject",
+          "text": "已读不回",
+          "start": 0.9,
+          "duration": 0.9
+        }
+      ],
+      "recommended_transitions": ["cut", "flash", "zoom"]
+    },
+    {
+      "id": "meeting-involution",
+      "title": "会议内卷",
+      "triggers": ["会议", "加班", "复盘", "同步", "老板", "KPI", "PPT"],
+      "visuals": {
+        "title_bar": "calendar_strip",
+        "caption_style": "meeting_minutes",
+        "bubble_style": "work_chat_popup",
+        "sticker_pack": ["calendar_full", "boss_ping", "sync_again"],
+        "accent_color": "#35c2ff"
+      },
+      "default_overlay_actions": [
+        {
+          "type": "popup",
+          "text": "老板：在吗",
+          "start": 0.45,
+          "duration": 1.6
+        },
+        {
+          "type": "stamp_reject",
+          "text": "再同步一次",
+          "start": 0.85,
+          "duration": 1.0
+        }
+      ],
+      "recommended_transitions": ["cut", "zoom", "flash"]
+    },
+    {
+      "id": "exam-choice-anxiety",
+      "title": "三条路同时弹窗",
+      "triggers": ["考研", "考公", "上岸", "自习", "考试", "二战", "三战"],
+      "visuals": {
+        "title_bar": "exam_notice",
+        "caption_style": "chalkboard_bold",
+        "bubble_style": "left_right_dialogue",
+        "sticker_pack": ["choice_popup", "alarm_clock", "study_stack"],
+        "accent_color": "#38d878"
+      },
+      "default_overlay_actions": [
+        {
+          "type": "popup",
+          "text": "考研 / 考公 / 就业",
+          "start": 0.4,
+          "duration": 1.8
+        }
+      ],
+      "recommended_transitions": ["fade", "cut", "flash"]
+    },
+    {
+      "id": "rent-bill-pressure",
+      "title": "房租账单压力",
+      "triggers": ["租房", "房租", "押金", "中介", "合租", "搬家", "通勤"],
+      "visuals": {
+        "title_bar": "receipt_header",
+        "caption_style": "receipt_big_number",
+        "bubble_style": "soft_dialogue",
+        "sticker_pack": ["rent_bill", "deposit", "commute_timer"],
+        "accent_color": "#ff7a45"
+      },
+      "default_overlay_actions": [
+        {
+          "type": "popup",
+          "text": "房租 -50%",
+          "start": 0.5,
+          "duration": 1.4
+        },
+        {
+          "type": "impact_burst",
+          "text": "钱包空了",
+          "start": 0.9,
+          "duration": 1.0
+        }
+      ],
+      "recommended_transitions": ["cut", "fade", "zoom"]
+    },
+    {
+      "id": "family-budget-dialogue",
+      "title": "家庭预算桌",
+      "triggers": ["结婚", "彩礼", "买房", "房贷", "父母", "婚礼", "相亲"],
+      "visuals": {
+        "title_bar": "budget_sheet",
+        "caption_style": "warm_reality",
+        "bubble_style": "two_cats_negotiation",
+        "sticker_pack": ["calculator", "bill_stack", "talk_it_out"],
+        "accent_color": "#f2b35d"
+      },
+      "default_overlay_actions": [
+        {
+          "type": "popup",
+          "text": "先把话说清楚",
+          "start": 0.55,
+          "duration": 1.5
+        }
+      ],
+      "recommended_transitions": ["fade", "cut"]
+    }
+  ]
+}

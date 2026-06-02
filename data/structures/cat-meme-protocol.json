@@ -1,0 +1,30 @@
+{
+  "name": "cat-meme-viral-transfer-v0",
+  "description": "猫 meme 方向的爆款结构迁移协议。把样例视频拆成可复用结构槽位，再映射到猫动画、背景图、字幕包装和补全策略。",
+  "required_analysis": [
+    "script_structure",
+    "rhythm_structure",
+    "packaging_structure"
+  ],
+  "slot_schema": {
+    "id": "string",
+    "start": "number",
+    "end": "number",
+    "role": "hook | setup | escalation | twist | punchline | cta",
+    "intent": "该段要完成的观众心理动作",
+    "visual_need": "需要的画面类型或情绪",
+    "copy_need": "需要的字幕/旁白/屏幕文字",
+    "rhythm": "slow | medium | fast | beat_drop",
+    "packaging": ["subtitle", "title_bar", "sticker", "zoom", "cut", "freeze"],
+    "asset_match": {
+      "cat_motion": "assets/cat-motions/*.mp4",
+      "background": "assets/backgrounds/**/*.jpg",
+      "confidence": "0-1"
+    },
+    "gap": {
+      "status": "matched | missing | supplemented",
+      "reason": "缺什么素材或为什么能匹配",
+      "strategy": "reuse | crop_zoom | subtitle_card | structure_reorder | aigc"
+    }
+  }
+}

@@ -1,0 +1,309 @@
+{
+  "id": "workplace-involution",
+  "theme": "上班内卷，会议越来越多，下班后还要在线待命。",
+  "title": "打工猫的一天被会议吃掉",
+  "source_structure": {
+    "sample_status": "curated_minute_example"
+  },
+  "script": [
+    {
+      "type": "hook",
+      "text": "老板说简单聊两句",
+      "purpose": "猫的警报响了",
+      "duration": 6.5
+    },
+    {
+      "type": "setup",
+      "text": "9点周会 10点复盘",
+      "purpose": "电脑刚开，人已离线",
+      "duration": 7
+    },
+    {
+      "type": "escalation",
+      "text": "11点对齐对齐方式",
+      "purpose": "这会还能再会",
+      "duration": 7
+    },
+    {
+      "type": "escalation",
+      "text": "下午继续同步进展",
+      "purpose": "进展：还在同步",
+      "duration": 7.5
+    },
+    {
+      "type": "twist",
+      "text": "下班后一句在吗",
+      "purpose": "猫猫假装没网",
+      "duration": 7
+    },
+    {
+      "type": "proof",
+      "text": "PPT改到第18版",
+      "purpose": "标题还没定",
+      "duration": 7
+    },
+    {
+      "type": "punchline",
+      "text": "猫开始卖萌求放过",
+      "purpose": "老板：今天先这样",
+      "duration": 8
+    },
+    {
+      "type": "cta",
+      "text": "准点下班像中了大奖",
+      "purpose": "猫猫复活",
+      "duration": 7.5
+    }
+  ],
+  "timeline": [
+    {
+      "id": "01-hook",
+      "start": 0,
+      "end": 6.5,
+      "role": "hook",
+      "intent": "猫的警报响了",
+      "copy": "老板说简单聊两句",
+      "subtitle": "猫的警报响了",
+      "motion": {
+        "id": "16",
+        "file": "assets/cat-motions/16.mp4",
+        "description": "瞪圆眼的橘猫探头碎碎念，对面猫猫一脸生无可恋。"
+      },
+      "background": {
+        "id": "office/1",
+        "file": "assets/backgrounds/office/1.jpg",
+        "description": "动画风格开放办公室，窗外城市景观明亮，工位排列整齐。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "large_caption",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "02-setup",
+      "start": 6.5,
+      "end": 13.5,
+      "role": "setup",
+      "intent": "电脑刚开，人已离线",
+      "copy": "9点周会 10点复盘",
+      "subtitle": "电脑刚开，人已离线",
+      "motion": {
+        "id": "1",
+        "file": "assets/cat-motions/1.mp4",
+        "description": "穿蓝衣服的灰猫面无表情敲着笔记本电脑。"
+      },
+      "background": {
+        "id": "real_office/1",
+        "file": "assets/backgrounds/real_office/1.jpg",
+        "description": "真实办公桌面场景，显示器、花瓶和日常办公物品在画面中。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "03-escalation",
+      "start": 13.5,
+      "end": 20.5,
+      "role": "escalation",
+      "intent": "这会还能再会",
+      "copy": "11点对齐对齐方式",
+      "subtitle": "这会还能再会",
+      "motion": {
+        "id": "18",
+        "file": "assets/cat-motions/18.mp4",
+        "description": "眯眼猫咪缓缓上下晃动，一脸鄙夷不屑的拽模样"
+      },
+      "background": {
+        "id": "office/5",
+        "file": "assets/backgrounds/office/5.jpg",
+        "description": "电脑工作间，屏幕、书架和椅子构成繁忙创作空间。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "large_caption",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "04-escalation",
+      "start": 20.5,
+      "end": 28,
+      "role": "escalation",
+      "intent": "进展：还在同步",
+      "copy": "下午继续同步进展",
+      "subtitle": "进展：还在同步",
+      "motion": {
+        "id": "9",
+        "file": "assets/cat-motions/9.mp4",
+        "description": "香蕉猫嚎啕大哭，两道眼泪喷得又长又远，十分滑稽。"
+      },
+      "background": {
+        "id": "window/1",
+        "file": "assets/backgrounds/window/1.jpg",
+        "description": "绿意窗边卧室，床铺和大窗被阳光照亮，氛围安静。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "large_caption",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "05-twist",
+      "start": 28,
+      "end": 35,
+      "role": "twist",
+      "intent": "猫猫假装没网",
+      "copy": "下班后一句在吗",
+      "subtitle": "猫猫假装没网",
+      "motion": {
+        "id": "10",
+        "file": "assets/cat-motions/10.mp4",
+        "description": "满脸委屈的小猫从侧边慢慢探出头偷看。"
+      },
+      "background": {
+        "id": "office/1",
+        "file": "assets/backgrounds/office/1.jpg",
+        "description": "动画风格开放办公室，窗外城市景观明亮，工位排列整齐。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "06-proof",
+      "start": 35,
+      "end": 42,
+      "role": "proof",
+      "intent": "标题还没定",
+      "copy": "PPT改到第18版",
+      "subtitle": "标题还没定",
+      "motion": {
+        "id": "1",
+        "file": "assets/cat-motions/1.mp4",
+        "description": "穿蓝衣服的灰猫面无表情敲着笔记本电脑。"
+      },
+      "background": {
+        "id": "real_office/1",
+        "file": "assets/backgrounds/real_office/1.jpg",
+        "description": "真实办公桌面场景，显示器、花瓶和日常办公物品在画面中。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "07-punchline",
+      "start": 42,
+      "end": 50,
+      "role": "punchline",
+      "intent": "老板：今天先这样",
+      "copy": "猫开始卖萌求放过",
+      "subtitle": "老板：今天先这样",
+      "motion": {
+        "id": "2",
+        "file": "assets/cat-motions/2.mp4",
+        "description": "呆萌小猫张着胳膊晃来晃去蹦跳，魔性又可爱。"
+      },
+      "background": {
+        "id": "office/5",
+        "file": "assets/backgrounds/office/5.jpg",
+        "description": "电脑工作间，屏幕、书架和椅子构成繁忙创作空间。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "08-cta",
+      "start": 50,
+      "end": 57.5,
+      "role": "cta",
+      "intent": "猫猫复活",
+      "copy": "准点下班像中了大奖",
+      "subtitle": "猫猫复活",
+      "motion": {
+        "id": "13",
+        "file": "assets/cat-motions/13.mp4",
+        "description": "灰猫直立着张开四肢，左右摇摆欢快地跳舞。"
+      },
+      "background": {
+        "id": "window/1",
+        "file": "assets/backgrounds/window/1.jpg",
+        "description": "绿意窗边卧室，床铺和大窗被阳光照亮，氛围安静。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "freeze_end"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    }
+  ],
+  "material_needs": {
+    "covered": [
+      "hook",
+      "setup",
+      "escalation",
+      "escalation",
+      "twist",
+      "proof",
+      "punchline",
+      "cta"
+    ],
+    "missing": [],
+    "supplement_strategy": []
+  },
+  "agent_notes": [
+    "一分钟示例脚本由文本素材库主题扩展，并按本地猫动作/背景校准。"
+  ]
+}

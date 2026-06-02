@@ -1,0 +1,309 @@
+{
+  "id": "exam-or-job",
+  "theme": "考研考公还是就业，毕业生每条路都很挤。",
+  "title": "毕业猫的三岔路口",
+  "source_structure": {
+    "sample_status": "curated_minute_example"
+  },
+  "script": [
+    {
+      "type": "hook",
+      "text": "毕业前最后一个夜晚",
+      "purpose": "三条路同时弹窗",
+      "duration": 6.5
+    },
+    {
+      "type": "setup",
+      "text": "左边考研 右边考公",
+      "purpose": "中间还要投简历",
+      "duration": 7.5
+    },
+    {
+      "type": "escalation",
+      "text": "每条路都在排队",
+      "purpose": "猫的脑袋开始转圈",
+      "duration": 7
+    },
+    {
+      "type": "escalation",
+      "text": "家族群发来上岸攻略",
+      "purpose": "猫猫压力拉满",
+      "duration": 7.5
+    },
+    {
+      "type": "twist",
+      "text": "同学已经签约了",
+      "purpose": "猫开始沉默",
+      "duration": 7
+    },
+    {
+      "type": "proof",
+      "text": "选择本身比考试还难",
+      "purpose": "这题没有标准答案",
+      "duration": 7
+    },
+    {
+      "type": "punchline",
+      "text": "猫先把闹钟关了",
+      "purpose": "明天再做重大决定",
+      "duration": 7.5
+    },
+    {
+      "type": "cta",
+      "text": "先活过今天",
+      "purpose": "猫猫也算上岸",
+      "duration": 7
+    }
+  ],
+  "timeline": [
+    {
+      "id": "01-hook",
+      "start": 0,
+      "end": 6.5,
+      "role": "hook",
+      "intent": "三条路同时弹窗",
+      "copy": "毕业前最后一个夜晚",
+      "subtitle": "三条路同时弹窗",
+      "motion": {
+        "id": "15",
+        "file": "assets/cat-motions/15.mp4",
+        "description": "瞪着大圆眼的黑猫微微晃头，神态震惊又呆萌。"
+      },
+      "background": {
+        "id": "school/1",
+        "file": "assets/backgrounds/school/1.jpg",
+        "description": "动画风格学校外景，教学楼、树木和蓝天组成校园背景。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "large_caption",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "02-setup",
+      "start": 6.5,
+      "end": 14,
+      "role": "setup",
+      "intent": "中间还要投简历",
+      "copy": "左边考研 右边考公",
+      "subtitle": "中间还要投简历",
+      "motion": {
+        "id": "16",
+        "file": "assets/cat-motions/16.mp4",
+        "description": "瞪圆眼的橘猫探头碎碎念，对面猫猫一脸生无可恋。"
+      },
+      "background": {
+        "id": "classroom/1",
+        "file": "assets/backgrounds/classroom/1.jpg",
+        "description": "学校走廊与教室门口，蓝白色调干净明亮。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "03-escalation",
+      "start": 14,
+      "end": 21,
+      "role": "escalation",
+      "intent": "猫的脑袋开始转圈",
+      "copy": "每条路都在排队",
+      "subtitle": "猫的脑袋开始转圈",
+      "motion": {
+        "id": "3",
+        "file": "assets/cat-motions/3.mp4",
+        "description": "套在香蕉里的小猫原地旋转，模样魔性又可爱。"
+      },
+      "background": {
+        "id": "real_school/1",
+        "file": "assets/backgrounds/real_school/1.jpg",
+        "description": "真实学校走廊，红色栏杆和室内通道延伸到远处。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "large_caption",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "04-escalation",
+      "start": 21,
+      "end": 28.5,
+      "role": "escalation",
+      "intent": "猫猫压力拉满",
+      "copy": "家族群发来上岸攻略",
+      "subtitle": "猫猫压力拉满",
+      "motion": {
+        "id": "9",
+        "file": "assets/cat-motions/9.mp4",
+        "description": "香蕉猫嚎啕大哭，两道眼泪喷得又长又远，十分滑稽。"
+      },
+      "background": {
+        "id": "window/1",
+        "file": "assets/backgrounds/window/1.jpg",
+        "description": "绿意窗边卧室，床铺和大窗被阳光照亮，氛围安静。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "large_caption",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "05-twist",
+      "start": 28.5,
+      "end": 35.5,
+      "role": "twist",
+      "intent": "猫开始沉默",
+      "copy": "同学已经签约了",
+      "subtitle": "猫开始沉默",
+      "motion": {
+        "id": "18",
+        "file": "assets/cat-motions/18.mp4",
+        "description": "眯眼猫咪缓缓上下晃动，一脸鄙夷不屑的拽模样"
+      },
+      "background": {
+        "id": "school/1",
+        "file": "assets/backgrounds/school/1.jpg",
+        "description": "动画风格学校外景，教学楼、树木和蓝天组成校园背景。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "06-proof",
+      "start": 35.5,
+      "end": 42.5,
+      "role": "proof",
+      "intent": "这题没有标准答案",
+      "copy": "选择本身比考试还难",
+      "subtitle": "这题没有标准答案",
+      "motion": {
+        "id": "26",
+        "file": "assets/cat-motions/26.mp4",
+        "description": "委屈猫猫头晃来晃去，抿着嘴一脸可怜兮兮。"
+      },
+      "background": {
+        "id": "classroom/1",
+        "file": "assets/backgrounds/classroom/1.jpg",
+        "description": "学校走廊与教室门口，蓝白色调干净明亮。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "07-punchline",
+      "start": 42.5,
+      "end": 50,
+      "role": "punchline",
+      "intent": "明天再做重大决定",
+      "copy": "猫先把闹钟关了",
+      "subtitle": "明天再做重大决定",
+      "motion": {
+        "id": "10",
+        "file": "assets/cat-motions/10.mp4",
+        "description": "满脸委屈的小猫从侧边慢慢探出头偷看。"
+      },
+      "background": {
+        "id": "real_school/1",
+        "file": "assets/backgrounds/real_school/1.jpg",
+        "description": "真实学校走廊，红色栏杆和室内通道延伸到远处。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "08-cta",
+      "start": 50,
+      "end": 57,
+      "role": "cta",
+      "intent": "猫猫也算上岸",
+      "copy": "先活过今天",
+      "subtitle": "猫猫也算上岸",
+      "motion": {
+        "id": "2",
+        "file": "assets/cat-motions/2.mp4",
+        "description": "呆萌小猫张着胳膊晃来晃去蹦跳，魔性又可爱。"
+      },
+      "background": {
+        "id": "window/1",
+        "file": "assets/backgrounds/window/1.jpg",
+        "description": "绿意窗边卧室，床铺和大窗被阳光照亮，氛围安静。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "freeze_end"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    }
+  ],
+  "material_needs": {
+    "covered": [
+      "hook",
+      "setup",
+      "escalation",
+      "escalation",
+      "twist",
+      "proof",
+      "punchline",
+      "cta"
+    ],
+    "missing": [],
+    "supplement_strategy": []
+  },
+  "agent_notes": [
+    "一分钟示例脚本由文本素材库主题扩展，并按本地猫动作/背景校准。"
+  ]
+}

@@ -1,0 +1,880 @@
+{
+  "generated_at": "2026-06-02T15:34:17.765Z",
+  "summary": {
+    "cat_motions": 26,
+    "backgrounds": 87
+  },
+  "cat_motions": [
+    {
+      "id": "1",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/1.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 9.9
+    },
+    {
+      "id": "2",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/2.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 13.4
+    },
+    {
+      "id": "3",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/3.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 6.4
+    },
+    {
+      "id": "4",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/4.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 12.4
+    },
+    {
+      "id": "5",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/5.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 8.3
+    },
+    {
+      "id": "6",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/6.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 2.1
+    },
+    {
+      "id": "7",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/7.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 11.4
+    },
+    {
+      "id": "8",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/8.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 7.5
+    },
+    {
+      "id": "9",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/9.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 3.3
+    },
+    {
+      "id": "10",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/10.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 9.2
+    },
+    {
+      "id": "11",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/11.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 6.6
+    },
+    {
+      "id": "12",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/12.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 5.7
+    },
+    {
+      "id": "13",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/13.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 12.9
+    },
+    {
+      "id": "14",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/14.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 7.6
+    },
+    {
+      "id": "15",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/15.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 10.4
+    },
+    {
+      "id": "16",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/16.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 23.8
+    },
+    {
+      "id": "17",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/17.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 9.8
+    },
+    {
+      "id": "18",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/18.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 8.8
+    },
+    {
+      "id": "19",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/19.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 12.3
+    },
+    {
+      "id": "20",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/20.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 20
+    },
+    {
+      "id": "21",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/21.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 4.9
+    },
+    {
+      "id": "22",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/22.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 5.8
+    },
+    {
+      "id": "23",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/23.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 2.9
+    },
+    {
+      "id": "24",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/24.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 8.4
+    },
+    {
+      "id": "25",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/25.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 4.9
+    },
+    {
+      "id": "26",
+      "type": "cat_motion",
+      "file": "assets/cat-motions/26.mp4",
+      "description": "",
+      "width": 960,
+      "height": 544,
+      "fps": "30/1",
+      "duration": 6.733333
+    }
+  ],
+  "backgrounds": [
+    {
+      "id": "ancient_style/1",
+      "type": "background",
+      "scene": "ancient_style",
+      "file": "assets/backgrounds/ancient_style/1.jpg",
+      "description": "动画古风庭院正门，红墙、石板路和对称树木，画面开阔。关键词：古风、官府门口、考试上岸隐喻、穿越梗。适合考公/上岸的荒诞类比。"
+    },
+    {
+      "id": "ancient_style/2",
+      "type": "background",
+      "scene": "ancient_style",
+      "file": "assets/backgrounds/ancient_style/2.jpg",
+      "description": "动画古风院落入口，门楼、围墙和树木简洁干净。关键词：古代衙门、门槛、规矩、等待通报。适合把现代规则包装成古风门槛梗。"
+    },
+    {
+      "id": "ancient_style/3",
+      "type": "background",
+      "scene": "ancient_style",
+      "file": "assets/backgrounds/ancient_style/3.jpg",
+      "description": "传统中式室内，木桌、屏风、花草和阳光，空间安静。关键词：古风书房、备考、家里谈条件、慢节奏。适合考研/考公古风反讽。"
+    },
+    {
+      "id": "ancient_style/4",
+      "type": "background",
+      "scene": "ancient_style",
+      "file": "assets/backgrounds/ancient_style/4.jpg",
+      "description": "古风街市夜景，楼阁灯笼和人流氛围热闹。关键词：夜市、摆摊、古代街市、烟火气。适合烤肠摊/地摊的古风梗替代。"
+    },
+    {
+      "id": "ancient_style/5",
+      "type": "background",
+      "scene": "ancient_style",
+      "file": "assets/backgrounds/ancient_style/5.jpg",
+      "description": "古风城镇街道，木质楼阁、蓝天和开阔道路。关键词：古代街道、出门闯荡、招工告示、反差转场。"
+    },
+    {
+      "id": "building_interior/1",
+      "type": "background",
+      "scene": "building_interior",
+      "file": "assets/backgrounds/building_interior/1.jpg",
+      "description": "明亮室内楼梯间，木地板、白墙、窗边绿植。关键词：出租屋楼道、回家路上、租房压力、独居。适合租房/房租/下班回家场景。"
+    },
+    {
+      "id": "building_interior/2",
+      "type": "background",
+      "scene": "building_interior",
+      "file": "assets/backgrounds/building_interior/2.jpg",
+      "description": "温馨餐厅或小客厅，木桌椅、窗户和家具齐全。关键词：家庭饭桌、账单、父母沟通、生活成本。适合彩礼/买房/家庭现实对话。"
+    },
+    {
+      "id": "building_interior/3",
+      "type": "background",
+      "scene": "building_interior",
+      "file": "assets/backgrounds/building_interior/3.jpg",
+      "description": "昏暗储物间，货架和纸箱堆放，空间封闭压抑。关键词：杂物间、仓库、压力、被生活塞满。适合压力升级、低谷段。"
+    },
+    {
+      "id": "building_interior/4",
+      "type": "background",
+      "scene": "building_interior",
+      "file": "assets/backgrounds/building_interior/4.jpg",
+      "description": "粉色餐厅卡座，餐具饮品摆在桌面，轻松但有消费场景。关键词：相亲、约会、奶茶、消费账单。适合婚恋/约会成本梗。"
+    },
+    {
+      "id": "building_interior/5",
+      "type": "background",
+      "scene": "building_interior",
+      "file": "assets/backgrounds/building_interior/5.jpg",
+      "description": "日式榻榻米室内走廊，木质结构和暖光安静。关键词：家里、休息、喘口气、温暖结尾。"
+    },
+    {
+      "id": "city/1",
+      "type": "background",
+      "scene": "city",
+      "file": "assets/backgrounds/city/1.jpg",
+      "description": "动画夜晚城市街道，店铺灯光和路口安静。关键词：夜归、加班后、城市孤独、求职路上。适合打工/租房/通勤低落段。"
+    },
+    {
+      "id": "city/2",
+      "type": "background",
+      "scene": "city",
+      "file": "assets/backgrounds/city/2.jpg",
+      "description": "夕阳商业街路口，斑马线和两侧店铺清楚。关键词：下班路口、选择岔路、城市生活、现实转场。"
+    },
+    {
+      "id": "city/3",
+      "type": "background",
+      "scene": "city",
+      "file": "assets/backgrounds/city/3.jpg",
+      "description": "晴天城市街区，路口、招牌、高楼明亮。关键词：求职路上、面试楼下、普通城市。适合泛城市现实主题。"
+    },
+    {
+      "id": "city/4",
+      "type": "background",
+      "scene": "city",
+      "file": "assets/backgrounds/city/4.jpg",
+      "description": "夜色高架与密集建筑，霓虹和科幻感强。关键词：城市压力、内卷、系统感、焦虑升级。"
+    },
+    {
+      "id": "city/5",
+      "type": "background",
+      "scene": "city",
+      "file": "assets/backgrounds/city/5.jpg",
+      "description": "绿树环绕的小桥与梦幻城市公园，色彩柔和。关键词：喘口气、公园、结尾缓和、情绪回落。"
+    },
+    {
+      "id": "classroom/1",
+      "type": "background",
+      "scene": "classroom",
+      "file": "assets/backgrounds/classroom/1.jpg",
+      "description": "动画学校走廊与教室门口，蓝白色调明亮。关键词：上课前、考试前、老师突然通知、校园走廊。"
+    },
+    {
+      "id": "classroom/2",
+      "type": "background",
+      "scene": "classroom",
+      "file": "assets/backgrounds/classroom/2.jpg",
+      "description": "教室黑板一角，墙上有“天天向上”标语。关键词：黑板、通知、考试、作业、班会。适合字幕居中叠加。"
+    },
+    {
+      "id": "classroom/3",
+      "type": "background",
+      "scene": "classroom",
+      "file": "assets/backgrounds/classroom/3.jpg",
+      "description": "阳光空教室，课桌椅整齐排列，氛围安静。关键词：自习、考研、考公、论文、空教室焦虑。"
+    },
+    {
+      "id": "classroom/4",
+      "type": "background",
+      "scene": "classroom",
+      "file": "assets/backgrounds/classroom/4.jpg",
+      "description": "傍晚教室，夕阳照在课桌上。关键词：晚自习、备考到天黑、青春焦虑、温暖收束。"
+    },
+    {
+      "id": "classroom/5",
+      "type": "background",
+      "scene": "classroom",
+      "file": "assets/backgrounds/classroom/5.jpg",
+      "description": "明亮卡通教室，绿黑板、课桌、窗外景色清楚。关键词：课堂、同学对话、作业突袭。"
+    },
+    {
+      "id": "courtyard/1",
+      "type": "background",
+      "scene": "courtyard",
+      "file": "assets/backgrounds/courtyard/1.jpg",
+      "description": "乡村小院入口，大树、土路、低矮房屋。关键词：回老家、父母催问、县城生活、现实对比。"
+    },
+    {
+      "id": "courtyard/2",
+      "type": "background",
+      "scene": "courtyard",
+      "file": "assets/backgrounds/courtyard/2.jpg",
+      "description": "住宅旁窄巷小路，墙边绿植，日常生活感强。关键词：小区巷子、回家、租房附近。"
+    },
+    {
+      "id": "courtyard/3",
+      "type": "background",
+      "scene": "courtyard",
+      "file": "assets/backgrounds/courtyard/3.jpg",
+      "description": "草地独栋小屋与开阔天空，安静远景。关键词：理想生活、躺平想象、反差幻想。"
+    },
+    {
+      "id": "courtyard/4",
+      "type": "background",
+      "scene": "courtyard",
+      "file": "assets/backgrounds/courtyard/4.jpg",
+      "description": "村落小路与石墙民居，树荫温和。关键词：老家、亲戚对话、回避大城市压力。"
+    },
+    {
+      "id": "courtyard/5",
+      "type": "background",
+      "scene": "courtyard",
+      "file": "assets/backgrounds/courtyard/5.jpg",
+      "description": "传统院落门口，屋檐、灯笼和盆栽有生活感。关键词：家门口、父母沟通、现实账本。"
+    },
+    {
+      "id": "office/1",
+      "type": "background",
+      "scene": "office",
+      "file": "assets/backgrounds/office/1.jpg",
+      "description": "动画开放办公室，窗外城市、工位整齐。关键词：工位、白领、日报、周会、普通上班。适合 setup。"
+    },
+    {
+      "id": "office/2",
+      "type": "background",
+      "scene": "office",
+      "file": "assets/backgrounds/office/2.jpg",
+      "description": "夕阳办公室，桌椅和植物暖色氛围。关键词：加班到傍晚、下班前又开会、疲惫。"
+    },
+    {
+      "id": "office/3",
+      "type": "background",
+      "scene": "office",
+      "file": "assets/backgrounds/office/3.jpg",
+      "description": "高空视野办公室，大窗和办公桌开阔。关键词：大厂、面试、看起来光鲜、现实落差。"
+    },
+    {
+      "id": "office/4",
+      "type": "background",
+      "scene": "office",
+      "file": "assets/backgrounds/office/4.jpg",
+      "description": "杂乱办公桌，书本文件堆放很多。关键词：忙乱、deadline、简历/材料堆、内卷。适合 pressure。"
+    },
+    {
+      "id": "office/5",
+      "type": "background",
+      "scene": "office",
+      "file": "assets/backgrounds/office/5.jpg",
+      "description": "电脑工作间，屏幕、书架和椅子，创作/程序员氛围。关键词：写代码、剪视频、熬夜、远程办公。"
+    },
+    {
+      "id": "outdoor/1",
+      "type": "background",
+      "scene": "outdoor",
+      "file": "assets/backgrounds/outdoor/1.jpg",
+      "description": "阳光木屋草地，栅栏和远山开阔。关键词：假期幻想、逃离城市、理想生活。"
+    },
+    {
+      "id": "outdoor/2",
+      "type": "background",
+      "scene": "outdoor",
+      "file": "assets/backgrounds/outdoor/2.jpg",
+      "description": "山脚泥土空地和木屋，远山蓝天。关键词：返乡、露营、自由但荒凉。"
+    },
+    {
+      "id": "outdoor/3",
+      "type": "background",
+      "scene": "outdoor",
+      "file": "assets/backgrounds/outdoor/3.jpg",
+      "description": "庭院花园小路，草坪、树木和矮墙。关键词：散步、喘口气、生活缝隙。"
+    },
+    {
+      "id": "outdoor/4",
+      "type": "background",
+      "scene": "outdoor",
+      "file": "assets/backgrounds/outdoor/4.jpg",
+      "description": "乡间小路穿过花草木屋，山林层次丰富。关键词：离开城市、回老家、慢生活。"
+    },
+    {
+      "id": "outdoor/5",
+      "type": "background",
+      "scene": "outdoor",
+      "file": "assets/backgrounds/outdoor/5.jpg",
+      "description": "金色麦田与蓝天白云，户外远景。关键词：丰收幻想、躺平、反差转场。"
+    },
+    {
+      "id": "real_car_interior/1",
+      "type": "background",
+      "scene": "real_car_interior",
+      "file": "assets/backgrounds/real_car_interior/1.jpg",
+      "description": "真实商务车内部，座椅和车厢通道宽敞。关键词：商务车、通勤、出差、网约车。"
+    },
+    {
+      "id": "real_car_interior/2",
+      "type": "background",
+      "scene": "real_car_interior",
+      "file": "assets/backgrounds/real_car_interior/2.jpg",
+      "description": "真实车厢夜景，座椅整齐，暖色灯光。关键词：夜间通勤、末班车、加班回家。"
+    },
+    {
+      "id": "real_car_interior/3",
+      "type": "background",
+      "scene": "real_car_interior",
+      "file": "assets/backgrounds/real_car_interior/3.jpg",
+      "description": "打开车门的汽车前排内饰，靠近车辆侧面。关键词：上车、出发、堵车、迟到。"
+    },
+    {
+      "id": "real_car_interior/4",
+      "type": "background",
+      "scene": "real_car_interior",
+      "file": "assets/backgrounds/real_car_interior/4.jpg",
+      "description": "真实汽车后排皮质座椅和车窗。关键词：打车、拼车、车内对话、通勤疲惫。"
+    },
+    {
+      "id": "real_car_interior/5",
+      "type": "background",
+      "scene": "real_car_interior",
+      "file": "assets/backgrounds/real_car_interior/5.jpg",
+      "description": "汽车后排白色座椅、天窗和侧窗，光线明亮。关键词：车内、路上、短暂休息。"
+    },
+    {
+      "id": "real_city/1",
+      "type": "background",
+      "scene": "real_city",
+      "file": "assets/backgrounds/real_city/1.jpg",
+      "description": "真实城市建筑外景，路边车辆和现代楼体。关键词：公司楼下、面试地点、城市日常。"
+    },
+    {
+      "id": "real_city/2",
+      "type": "background",
+      "scene": "real_city",
+      "file": "assets/backgrounds/real_city/2.jpg",
+      "description": "真实街角楼房，蓝天绿树，普通城市街区。关键词：小区门口、找工作路上、日常现实。"
+    },
+    {
+      "id": "real_city/3",
+      "type": "background",
+      "scene": "real_city",
+      "file": "assets/backgrounds/real_city/3.jpg",
+      "description": "真实道路斑马线与远处山景，像城市郊区路口。关键词：通勤路口、选择方向、等车。"
+    },
+    {
+      "id": "real_city/4",
+      "type": "background",
+      "scene": "real_city",
+      "file": "assets/backgrounds/real_city/4.jpg",
+      "description": "真实林荫道路，两侧树木形成通道。关键词：回家路、散步、冷静一下。"
+    },
+    {
+      "id": "real_city/5",
+      "type": "background",
+      "scene": "real_city",
+      "file": "assets/backgrounds/real_city/5.jpg",
+      "description": "真实店铺橱窗或水果陈列，靠近玻璃窗。关键词：小店、消费、生活成本、街边店。"
+    },
+    {
+      "id": "real_office/1",
+      "type": "background",
+      "scene": "real_office",
+      "file": "assets/backgrounds/real_office/1.jpg",
+      "description": "真实办公桌面，显示器、花瓶和日常办公物品。关键词：工位、电脑、投简历、改 PPT、打工。"
+    },
+    {
+      "id": "real_office/2",
+      "type": "background",
+      "scene": "real_office",
+      "file": "assets/backgrounds/real_office/2.jpg",
+      "description": "现代办公桌椅与黑色书柜，空间整洁。关键词：面试办公室、HR 对话、领导谈话。"
+    },
+    {
+      "id": "real_office/3",
+      "type": "background",
+      "scene": "real_office",
+      "file": "assets/backgrounds/real_office/3.jpg",
+      "description": "真实明亮会议室，白色座椅围绕长桌。关键词：会议、复盘、同步、老板、内卷。优先用于上班内卷。"
+    },
+    {
+      "id": "real_office/4",
+      "type": "background",
+      "scene": "real_office",
+      "file": "assets/backgrounds/real_office/4.jpg",
+      "description": "现代办公室前台，白色接待台和玻璃隔断。关键词：公司前台、面试等待、入职、被拒。"
+    },
+    {
+      "id": "real_office/5",
+      "type": "background",
+      "scene": "real_office",
+      "file": "assets/backgrounds/real_office/5.jpg",
+      "description": "真实办公室一角，桌椅杂物较多，生活化工作氛围。关键词：小公司、工位杂乱、现实落差。"
+    },
+    {
+      "id": "real_school/1",
+      "type": "background",
+      "scene": "real_school",
+      "file": "assets/backgrounds/real_school/1.jpg",
+      "description": "真实学校走廊，红色栏杆和室内通道延伸。关键词：教学楼走廊、查成绩、考试前。"
+    },
+    {
+      "id": "real_school/2",
+      "type": "background",
+      "scene": "real_school",
+      "file": "assets/backgrounds/real_school/2.jpg",
+      "description": "真实校园道路与教学楼，绿树和操场边界清晰。关键词：校园路、毕业季、找工作、考研。"
+    },
+    {
+      "id": "real_school/3",
+      "type": "background",
+      "scene": "real_school",
+      "file": "assets/backgrounds/real_school/3.jpg",
+      "description": "真实校园绿地小路，树木与教学楼。关键词：校园日常、同学对话、毕业迷茫。"
+    },
+    {
+      "id": "real_school/4",
+      "type": "background",
+      "scene": "real_school",
+      "file": "assets/backgrounds/real_school/4.jpg",
+      "description": "真实校园建筑入口或走廊，阳光明亮。关键词：教学楼门口、报名、面试集合。"
+    },
+    {
+      "id": "real_school/5",
+      "type": "background",
+      "scene": "real_school",
+      "file": "assets/backgrounds/real_school/5.jpg",
+      "description": "真实学校建筑侧面与走廊，白墙窗户整齐。关键词：学校侧门、课间、考前等待。"
+    },
+    {
+      "id": "real_transit_station/1",
+      "type": "background",
+      "scene": "real_transit_station",
+      "file": "assets/backgrounds/real_transit_station/1.jpg",
+      "description": "真实高铁/地铁站台，轨道顶棚和站台边线清晰。关键词：高铁站、通勤、回家、赶路。"
+    },
+    {
+      "id": "real_transit_station/2",
+      "type": "background",
+      "scene": "real_transit_station",
+      "file": "assets/backgrounds/real_transit_station/2.jpg",
+      "description": "地铁站台实景，屏蔽门和列车停靠。关键词：地铁、早高峰、通勤焦虑、上班路上。"
+    },
+    {
+      "id": "real_transit_station/3",
+      "type": "background",
+      "scene": "real_transit_station",
+      "file": "assets/backgrounds/real_transit_station/3.jpg",
+      "description": "车站窗边候车区，外部路灯和空旷视野。关键词：等车、出发前、人生中转。"
+    },
+    {
+      "id": "real_transit_station/4",
+      "type": "background",
+      "scene": "real_transit_station",
+      "file": "assets/backgrounds/real_transit_station/4.jpg",
+      "description": "公交或地铁车厢内部，蓝色座椅和车窗。关键词：车厢、通勤、下班路上、低头刷消息。"
+    },
+    {
+      "id": "real_transit_station/5",
+      "type": "background",
+      "scene": "real_transit_station",
+      "file": "assets/backgrounds/real_transit_station/5.jpg",
+      "description": "公交车车厢通道，扶手座椅和电子屏。关键词：公交、末班车、打工人回家。"
+    },
+    {
+      "id": "school/1",
+      "type": "background",
+      "scene": "school",
+      "file": "assets/backgrounds/school/1.jpg",
+      "description": "动画学校外景，教学楼、树木和蓝天。关键词：校园、毕业、考研考公、青春现实。"
+    },
+    {
+      "id": "school/2",
+      "type": "background",
+      "scene": "school",
+      "file": "assets/backgrounds/school/2.jpg",
+      "description": "现代校园走廊/中庭，玻璃建筑和阳光明亮。关键词：校园走廊、上课、同学对话。"
+    },
+    {
+      "id": "school/3",
+      "type": "background",
+      "scene": "school",
+      "file": "assets/backgrounds/school/3.jpg",
+      "description": "校园道路旁教学楼，树木和停放车辆。关键词：校门附近、毕业找工作、招聘会外场。"
+    },
+    {
+      "id": "school/4",
+      "type": "background",
+      "scene": "school",
+      "file": "assets/backgrounds/school/4.jpg",
+      "description": "校园庭院与教学楼，长椅、树影和花树安静。关键词：校园聊天、焦虑缓和、结尾喘口气。"
+    },
+    {
+      "id": "street/1",
+      "type": "background",
+      "scene": "street",
+      "file": "assets/backgrounds/street/1.jpg",
+      "description": "雨夜高楼街景，路灯和斑马线冷清。关键词：夜归、加班后、失落、城市压力。"
+    },
+    {
+      "id": "street/2",
+      "type": "background",
+      "scene": "street",
+      "file": "assets/backgrounds/street/2.jpg",
+      "description": "晴天城市道路，高楼和绿化带，卡通都市背景。关键词：城市街道、求职路上、通勤。"
+    },
+    {
+      "id": "street/3",
+      "type": "background",
+      "scene": "street",
+      "file": "assets/backgrounds/street/3.jpg",
+      "description": "公交站/车站站台，长椅和建筑立面清晰。关键词：等公交、通勤、迟到、末班车。"
+    },
+    {
+      "id": "street/4",
+      "type": "background",
+      "scene": "street",
+      "file": "assets/backgrounds/street/4.jpg",
+      "description": "城市道路旁高楼与树木，画面明亮简洁。关键词：公司附近、街边、出门面试。"
+    },
+    {
+      "id": "street/5",
+      "type": "background",
+      "scene": "street",
+      "file": "assets/backgrounds/street/5.jpg",
+      "description": "宽阔马路与城市天际线，一辆车行驶。关键词：堵车、打车、路上、赶时间。"
+    },
+    {
+      "id": "street/indoor/1",
+      "type": "background",
+      "scene": "street/indoor",
+      "file": "assets/backgrounds/street/indoor/1.jpg",
+      "description": "温暖阁楼书房，木梯、书架和窗边光线。关键词：自习、远程办公、租房书桌、深夜学习。"
+    },
+    {
+      "id": "street/indoor/2",
+      "type": "background",
+      "scene": "street/indoor",
+      "file": "assets/backgrounds/street/indoor/2.jpg",
+      "description": "蓝色玻璃室内空间，书架桌椅和大窗通透。关键词：图书馆、自习室、办公共享空间。"
+    },
+    {
+      "id": "street/indoor/3",
+      "type": "background",
+      "scene": "street/indoor",
+      "file": "assets/backgrounds/street/indoor/3.jpg",
+      "description": "夕阳室内工作区，桌椅与窗边剪影。关键词：晚自习、加班、一个人熬。"
+    },
+    {
+      "id": "street/indoor/4",
+      "type": "background",
+      "scene": "street/indoor",
+      "file": "assets/backgrounds/street/indoor/4.jpg",
+      "description": "夜晚现代室内，蓝紫灯光和桌椅，带猫影元素。关键词：深夜办公、赛博内卷、情绪升级。"
+    },
+    {
+      "id": "street/indoor/5",
+      "type": "background",
+      "scene": "street/indoor",
+      "file": "assets/backgrounds/street/indoor/5.jpg",
+      "description": "复古书房与大窗，书架植物和暖光。关键词：备考、写简历、温暖收束。"
+    },
+    {
+      "id": "window/1",
+      "type": "background",
+      "scene": "window",
+      "file": "assets/backgrounds/window/1.jpg",
+      "description": "绿意窗边卧室，床铺和大窗阳光明亮。关键词：出租屋、早上醒来、焦虑刷手机、喘口气。"
+    },
+    {
+      "id": "window/2",
+      "type": "background",
+      "scene": "window",
+      "file": "assets/backgrounds/window/2.jpg",
+      "description": "旧房间窗边床铺，窗外树林，室内光线柔和。关键词：旧出租屋、低谷、独处。"
+    },
+    {
+      "id": "window/3",
+      "type": "background",
+      "scene": "window",
+      "file": "assets/backgrounds/window/3.jpg",
+      "description": "带窗帘卧室角落，阳光、绿植和床铺清晰。关键词：租房、居家、下班后。"
+    },
+    {
+      "id": "window/4",
+      "type": "background",
+      "scene": "window",
+      "file": "assets/backgrounds/window/4.jpg",
+      "description": "大窗旁床铺与绿植，室内偏旧但自然感强。关键词：休息、躺平、明天再说。"
+    },
+    {
+      "id": "generated/preset-exam-study-room/1780413328.png",
+      "type": "background",
+      "scene": "generated/preset-exam-study-room",
+      "file": "assets/generated/backgrounds/preset-exam-study-room/1780413328.png",
+      "description": "Seedream 生成的考研考公自习室背景，书本、台灯和密集座位，适合备考、查成绩、上岸焦虑、同学互助。"
+    },
+    {
+      "id": "generated/preset-family-budget-table/1780413080.png",
+      "type": "background",
+      "scene": "generated/preset-family-budget-table",
+      "file": "assets/generated/backgrounds/preset-family-budget-table/1780413080.png",
+      "description": "Seedream 生成的家庭预算饭桌背景，账本、计算器和餐具，适合彩礼、买房、房贷、父母沟通和现实账单对话。"
+    },
+    {
+      "id": "generated/preset-job-fair-waiting-area/1780413290.png",
+      "type": "background",
+      "scene": "generated/preset-job-fair-waiting-area",
+      "file": "assets/generated/backgrounds/preset-job-fair-waiting-area/1780413290.png",
+      "description": "Seedream 生成的校园招聘会/面试等待区背景，简历夹、招聘展架和等候区氛围明显，无可读文字，适合求职、HR 对话、岗位要求离谱。关键词：招聘会、面试等待区、简历、HR、校招。"
+    },
+    {
+      "id": "generated/preset-meeting-room-involution/1780412964.png",
+      "type": "background",
+      "scene": "generated/preset-meeting-room-involution",
+      "file": "assets/generated/backgrounds/preset-meeting-room-involution/1780412964.png",
+      "description": "Seedream 生成的真实会议室内卷背景，长桌、白板、投影和咖啡杯，适合会议、复盘、同步、老板在吗、隐形加班。"
+    },
+    {
+      "id": "generated/preset-rental-bill-room/1780413047.png",
+      "type": "background",
+      "scene": "generated/preset-rental-bill-room",
+      "file": "assets/generated/backgrounds/preset-rental-bill-room/1780413047.png",
+      "description": "Seedream 生成的小出租屋账单背景，床边桌、账单、行李箱和简易衣架，适合房租、押金、合租、搬家压力。"
+    },
+    {
+      "id": "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-escalation-岗位/1780404825.png",
+      "type": "background",
+      "scene": "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-escalation-岗位",
+      "file": "assets/generated/backgrounds/大学生工作难找-最后去学校门口卖烤肠也要内卷-escalation-岗位/1780404825.png",
+      "description": "Seedream 生成的烤肠摊位内卷背景，街边摊、烤肠机器和城市夜色，适合“岗位要求离谱，摆摊也要卷配置”的 escalation。关键词：烤肠摊、小吃摊、竞争、夜市、内卷。"
+    },
+    {
+      "id": "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-hook-打开招聘软件那一/1780404735.png",
+      "type": "background",
+      "scene": "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-hook-打开招聘软件那一",
+      "file": "assets/generated/backgrounds/大学生工作难找-最后去学校门口卖烤肠也要内卷-hook-打开招聘软件那一/1780404735.png",
+      "description": "Seedream 生成的真实校门口/城市街边小吃摊背景，包含烤肠摊车、烤肠机器和摊位灯光，适合“打开招聘软件后想到摆摊也很卷”的 hook。关键词：烤肠摊、校门口、夜市、摆摊、求职替代方案。"
+    },
+    {
+      "id": "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-punchline-猫先把/1780404871.png",
+      "type": "background",
+      "scene": "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-punchline-猫先把",
+      "file": "assets/generated/backgrounds/大学生工作难找-最后去学校门口卖烤肠也要内卷-punchline-猫先把/1780404871.png",
+      "description": "Seedream 生成的校门口烤肠摊收束背景，摊车居中、底部留空，适合“先把规则翻译成人话/再换策略”的 punchline，不把摆摊写成万能解决。关键词：校门口、烤肠、现实收束、换策略。"
+    },
+    {
+      "id": "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-setup-投了100份简/1780404787.png",
+      "type": "background",
+      "scene": "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-setup-投了100份简",
+      "file": "assets/generated/backgrounds/大学生工作难找-最后去学校门口卖烤肠也要内卷-setup-投了100份简/1780404787.png",
+      "description": "Seedream 生成的真实街边烤肠摊背景，摊车和价目牌氛围明显但无可读文字，适合投简历失败后转向小吃摊的 setup 段。关键词：烤肠、摆摊、街边摊、大学生就业。"
+    }
+  ]
+}

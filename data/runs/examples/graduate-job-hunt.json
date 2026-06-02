@@ -1,0 +1,309 @@
+{
+  "id": "graduate-job-hunt",
+  "theme": "大学生工作难找，投简历像进黑洞，岗位要求越来越离谱。",
+  "title": "大学生找工作像闯关",
+  "source_structure": {
+    "sample_status": "curated_minute_example"
+  },
+  "script": [
+    {
+      "type": "hook",
+      "text": "打开招聘软件那一秒",
+      "purpose": "岗位很多，我一个也不敢点",
+      "duration": 6.5
+    },
+    {
+      "type": "setup",
+      "text": "投了100份简历",
+      "purpose": "已读不回 x100",
+      "duration": 7
+    },
+    {
+      "type": "escalation",
+      "text": "实习生要三年经验",
+      "purpose": "猫猫开始怀疑时间线",
+      "duration": 7.5
+    },
+    {
+      "type": "escalation",
+      "text": "面试排到下周",
+      "purpose": "排队像抢演唱会票",
+      "duration": 7
+    },
+    {
+      "type": "twist",
+      "text": "终于收到回复",
+      "purpose": "谢谢参与，下次再来",
+      "duration": 7.5
+    },
+    {
+      "type": "proof",
+      "text": "同学说他也一样",
+      "purpose": "原来不是我一只猫",
+      "duration": 7
+    },
+    {
+      "type": "punchline",
+      "text": "猫去应聘公司门口的猫",
+      "purpose": "至少包吃包住",
+      "duration": 8
+    },
+    {
+      "type": "cta",
+      "text": "明天继续投",
+      "purpose": "猫猫先充个电",
+      "duration": 7.5
+    }
+  ],
+  "timeline": [
+    {
+      "id": "01-hook",
+      "start": 0,
+      "end": 6.5,
+      "role": "hook",
+      "intent": "岗位很多，我一个也不敢点",
+      "copy": "打开招聘软件那一秒",
+      "subtitle": "岗位很多，我一个也不敢点",
+      "motion": {
+        "id": "16",
+        "file": "assets/cat-motions/16.mp4",
+        "description": "瞪圆眼的橘猫探头碎碎念，对面猫猫一脸生无可恋。"
+      },
+      "background": {
+        "id": "real_school/1",
+        "file": "assets/backgrounds/real_school/1.jpg",
+        "description": "真实学校走廊，红色栏杆和室内通道延伸到远处。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "large_caption",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "02-setup",
+      "start": 6.5,
+      "end": 13.5,
+      "role": "setup",
+      "intent": "已读不回 x100",
+      "copy": "投了100份简历",
+      "subtitle": "已读不回 x100",
+      "motion": {
+        "id": "1",
+        "file": "assets/cat-motions/1.mp4",
+        "description": "穿蓝衣服的灰猫面无表情敲着笔记本电脑。"
+      },
+      "background": {
+        "id": "office/1",
+        "file": "assets/backgrounds/office/1.jpg",
+        "description": "动画风格开放办公室，窗外城市景观明亮，工位排列整齐。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "03-escalation",
+      "start": 13.5,
+      "end": 21,
+      "role": "escalation",
+      "intent": "猫猫开始怀疑时间线",
+      "copy": "实习生要三年经验",
+      "subtitle": "猫猫开始怀疑时间线",
+      "motion": {
+        "id": "15",
+        "file": "assets/cat-motions/15.mp4",
+        "description": "瞪着大圆眼的黑猫微微晃头，神态震惊又呆萌。"
+      },
+      "background": {
+        "id": "real_office/1",
+        "file": "assets/backgrounds/real_office/1.jpg",
+        "description": "真实办公桌面场景，显示器、花瓶和日常办公物品在画面中。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "large_caption",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "04-escalation",
+      "start": 21,
+      "end": 28,
+      "role": "escalation",
+      "intent": "排队像抢演唱会票",
+      "copy": "面试排到下周",
+      "subtitle": "排队像抢演唱会票",
+      "motion": {
+        "id": "26",
+        "file": "assets/cat-motions/26.mp4",
+        "description": "委屈猫猫头晃来晃去，抿着嘴一脸可怜兮兮。"
+      },
+      "background": {
+        "id": "city/1",
+        "file": "assets/backgrounds/city/1.jpg",
+        "description": "夜晚的日式城市街道，路口和店铺灯光亮起，氛围安静。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "large_caption",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "05-twist",
+      "start": 28,
+      "end": 35.5,
+      "role": "twist",
+      "intent": "谢谢参与，下次再来",
+      "copy": "终于收到回复",
+      "subtitle": "谢谢参与，下次再来",
+      "motion": {
+        "id": "9",
+        "file": "assets/cat-motions/9.mp4",
+        "description": "香蕉猫嚎啕大哭，两道眼泪喷得又长又远，十分滑稽。"
+      },
+      "background": {
+        "id": "real_school/1",
+        "file": "assets/backgrounds/real_school/1.jpg",
+        "description": "真实学校走廊，红色栏杆和室内通道延伸到远处。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "06-proof",
+      "start": 35.5,
+      "end": 42.5,
+      "role": "proof",
+      "intent": "原来不是我一只猫",
+      "copy": "同学说他也一样",
+      "subtitle": "原来不是我一只猫",
+      "motion": {
+        "id": "16",
+        "file": "assets/cat-motions/16.mp4",
+        "description": "瞪圆眼的橘猫探头碎碎念，对面猫猫一脸生无可恋。"
+      },
+      "background": {
+        "id": "office/1",
+        "file": "assets/backgrounds/office/1.jpg",
+        "description": "动画风格开放办公室，窗外城市景观明亮，工位排列整齐。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "07-punchline",
+      "start": 42.5,
+      "end": 50.5,
+      "role": "punchline",
+      "intent": "至少包吃包住",
+      "copy": "猫去应聘公司门口的猫",
+      "subtitle": "至少包吃包住",
+      "motion": {
+        "id": "2",
+        "file": "assets/cat-motions/2.mp4",
+        "description": "呆萌小猫张着胳膊晃来晃去蹦跳，魔性又可爱。"
+      },
+      "background": {
+        "id": "real_office/1",
+        "file": "assets/backgrounds/real_office/1.jpg",
+        "description": "真实办公桌面场景，显示器、花瓶和日常办公物品在画面中。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    },
+    {
+      "id": "08-cta",
+      "start": 50.5,
+      "end": 58,
+      "role": "cta",
+      "intent": "猫猫先充个电",
+      "copy": "明天继续投",
+      "subtitle": "猫猫先充个电",
+      "motion": {
+        "id": "13",
+        "file": "assets/cat-motions/13.mp4",
+        "description": "灰猫直立着张开四肢，左右摇摆欢快地跳舞。"
+      },
+      "background": {
+        "id": "city/1",
+        "file": "assets/backgrounds/city/1.jpg",
+        "description": "夜晚的日式城市街道，路口和店铺灯光亮起，氛围安静。"
+      },
+      "gap": {
+        "status": "matched",
+        "strategy": "direct_match",
+        "reason": "示例脚本按素材动作和背景人工校准。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "freeze_end"
+      ],
+      "source_pattern": "一分钟社会现实猫 meme 示例"
+    }
+  ],
+  "material_needs": {
+    "covered": [
+      "hook",
+      "setup",
+      "escalation",
+      "escalation",
+      "twist",
+      "proof",
+      "punchline",
+      "cta"
+    ],
+    "missing": [],
+    "supplement_strategy": []
+  },
+  "agent_notes": [
+    "一分钟示例脚本由文本素材库主题扩展，并按本地猫动作/背景校准。"
+  ]
+}

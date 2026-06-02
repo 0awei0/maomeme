@@ -1,0 +1,27 @@
+{
+  "name": "maomeme-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5173",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "index:assets": "node ../scripts/index-assets.mjs",
+    "demo:plan": "node ../scripts/generate-demo-plan.mjs",
+    "demo:render": "node ../scripts/render-demo-video.mjs",
+    "demo:audit": "node ../scripts/audit-plan.mjs",
+    "demo": "npm run index:assets && npm run backend:plan -- '一只打工猫周一早上打开电脑，发现会议从 9 点排到晚上，最后靠装可爱逃过加班。' --no-doubao > /tmp/maomeme-plan.json && npm run demo:audit && npm run demo:render",
+    "examples": "npm run index:assets && node ../scripts/generate-example-videos.mjs",
+    "backend:plan": "cd ../backend && conda run -n cv python scripts/generate_plan.py"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "vite": "^7.0.0",
+    "typescript": "^5.8.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "lucide-react": "^0.468.0"
+  },
+  "devDependencies": {}
+}

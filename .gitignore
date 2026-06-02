@@ -1,0 +1,28 @@
+.DS_Store
+.playwright-cli/
+.vscode/
+frontend/node_modules/
+frontend/dist/
+
+# Python
+__pycache__/
+*.py[cod]
+backend/.venv/
+.pytest_cache/
+
+# Secrets
+.env
+backend/.env
+
+# Generated media and runtime outputs
+output/
+backend/outputs/
+backend/uploads/
+assets/archives/
+assets/generated/backgrounds/seedream-smoke/
+data/runs/*.json
+
+# HyperFrames generated artifacts
+hyperframes/node_modules/
+hyperframes/build/
+hyperframes/dist/

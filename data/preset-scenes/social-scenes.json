@@ -1,0 +1,338 @@
+{
+  "version": "2026-06-02",
+  "description": "MaoMeme 预制社会现实场景库。给 Agent 做背景匹配、Seedream 补图 prompt 和编导补素材参考。",
+  "scenes": [
+    {
+      "id": "job_fair_waiting_area",
+      "title": "校园招聘会/面试等待区",
+      "triggers": [
+        "找工作",
+        "就业",
+        "校招",
+        "招聘会",
+        "投简历",
+        "面试",
+        "HR",
+        "offer"
+      ],
+      "keywords": [
+        "real_office",
+        "office",
+        "real_school",
+        "招聘会",
+        "面试等待区",
+        "公司前台",
+        "简历",
+        "HR",
+        "办公楼"
+      ],
+      "recommended_backgrounds": [
+        "generated/preset-job-fair-waiting-area/1780413290.png",
+        "real_office/4",
+        "real_office/2",
+        "real_school/2",
+        "office/4"
+      ],
+      "seedream_prompt": "写实竖屏短视频背景，校园招聘会或公司面试等待区，桌上有简历夹、招聘展架但无可读文字，空间真实明亮，画面下方保持自然地面或桌面无遮挡，不要绿色幕布或纯色块，方便后期叠加抠像猫。",
+      "use_cases": [
+        "毕业求职",
+        "简历已读不回",
+        "HR 对话",
+        "岗位要求离谱"
+      ]
+    },
+    {
+      "id": "resume_black_hole_office",
+      "title": "投简历黑洞工位",
+      "triggers": [
+        "简历",
+        "岗位",
+        "求职",
+        "招聘软件",
+        "已读不回"
+      ],
+      "keywords": [
+        "real_office",
+        "office",
+        "电脑",
+        "工位",
+        "简历",
+        "招聘软件",
+        "办公桌"
+      ],
+      "recommended_backgrounds": [
+        "generated/preset-job-fair-waiting-area/1780413290.png",
+        "real_office/1",
+        "office/5",
+        "office/4",
+        "generated/seedream-smoke/1"
+      ],
+      "seedream_prompt": "写实办公室工位背景，电脑屏幕前堆着简历纸张和便利贴，无可读文字，表现投简历像黑洞的荒诞现实感，画面下方保持自然地面或桌面无遮挡，不要绿色幕布或纯色块，方便后期叠加猫动画。",
+      "use_cases": [
+        "投递简历",
+        "改简历",
+        "岗位筛选",
+        "求职压力"
+      ]
+    },
+    {
+      "id": "street_food_stall_school_gate",
+      "title": "校门口烤肠摊/夜市小吃摊",
+      "triggers": [
+        "烤肠",
+        "香肠",
+        "摆摊",
+        "小吃摊",
+        "夜市",
+        "校门口",
+        "餐车",
+        "地摊"
+      ],
+      "keywords": [
+        "street_food_stall",
+        "烤肠摊",
+        "小吃摊",
+        "夜市摊位",
+        "餐车",
+        "街边摊",
+        "real_city",
+        "street",
+        "generated"
+      ],
+      "recommended_backgrounds": [
+        "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-hook-打开招聘软件那一/1780404735",
+        "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-setup-投了100份简/1780404787",
+        "ancient_style/4"
+      ],
+      "seedream_prompt": "写实竖屏猫 meme 背景，真实校门口或夜市街边烤肠摊，有烤肠机、摊车、小灯串、价目牌但不要可读文字，画面下方保持自然地面或桌面无遮挡，不要绿色幕布或纯色块，方便后期叠加抠像猫。",
+      "use_cases": [
+        "摆摊也内卷",
+        "求职替代方案反讽",
+        "城市烟火气"
+      ]
+    },
+    {
+      "id": "meeting_room_involution",
+      "title": "会议室内卷/同步复盘",
+      "triggers": [
+        "上班",
+        "会议",
+        "复盘",
+        "同步",
+        "老板",
+        "KPI",
+        "加班",
+        "PPT"
+      ],
+      "keywords": [
+        "real_office",
+        "office",
+        "会议室",
+        "长桌",
+        "复盘",
+        "同步",
+        "老板",
+        "工位"
+      ],
+      "recommended_backgrounds": [
+        "generated/preset-meeting-room-involution/1780412964.png",
+        "real_office/3",
+        "office/1",
+        "office/2",
+        "real_office/5"
+      ],
+      "seedream_prompt": "写实会议室背景，长桌、投影幕、椅子、白板和咖啡杯，氛围像开不完的同步会，无人物主体，无可读文字，画面下方保持自然地面或桌面无遮挡，不要绿色幕布或纯色块，方便后期叠加猫。",
+      "use_cases": [
+        "开会太多",
+        "隐形加班",
+        "老板在吗",
+        "PPT 内卷"
+      ]
+    },
+    {
+      "id": "late_night_desk_overtime",
+      "title": "深夜工位/熬夜电脑桌",
+      "triggers": [
+        "加班",
+        "熬夜",
+        "在线待命",
+        "改方案",
+        "写代码",
+        "剪视频",
+        "PPT"
+      ],
+      "keywords": [
+        "office",
+        "street/indoor",
+        "window",
+        "电脑",
+        "深夜",
+        "工作区",
+        "出租屋书桌"
+      ],
+      "recommended_backgrounds": [
+        "generated/preset-meeting-room-involution/1780412964.png",
+        "office/5",
+        "street/indoor/3",
+        "street/indoor/4",
+        "window/2"
+      ],
+      "seedream_prompt": "写实深夜电脑桌背景，笔记本、台灯、咖啡杯、便签和凌乱文件，无可读文字，窗外是夜色，画面下方保持自然地面或桌面无遮挡，不要绿色幕布或纯色块，方便后期叠加猫动画。",
+      "use_cases": [
+        "加班到深夜",
+        "改 PPT",
+        "写论文",
+        "独自焦虑"
+      ]
+    },
+    {
+      "id": "exam_study_room",
+      "title": "考研考公自习室/图书馆",
+      "triggers": [
+        "考研",
+        "考公",
+        "上岸",
+        "自习",
+        "备考",
+        "二战",
+        "三战",
+        "考试"
+      ],
+      "keywords": [
+        "classroom",
+        "real_school",
+        "school",
+        "street/indoor",
+        "图书馆",
+        "自习室",
+        "课桌",
+        "黑板"
+      ],
+      "recommended_backgrounds": [
+        "generated/preset-exam-study-room/1780413328.png",
+        "classroom/3",
+        "classroom/4",
+        "street/indoor/2",
+        "real_school/1"
+      ],
+      "seedream_prompt": "写实高校图书馆或考研自习室背景，桌面有书本、台灯、水杯和便签，无可读文字，座位安静密集，画面下方保持自然地面或桌面无遮挡，不要绿色幕布或纯色块，方便后期叠加抠像猫。",
+      "use_cases": [
+        "考研考公焦虑",
+        "查成绩",
+        "选择困难",
+        "同学互助"
+      ]
+    },
+    {
+      "id": "rental_bill_room",
+      "title": "出租屋账单/房租压力",
+      "triggers": [
+        "租房",
+        "房租",
+        "押金",
+        "合租",
+        "搬家",
+        "中介",
+        "工资",
+        "通勤"
+      ],
+      "keywords": [
+        "building_interior",
+        "window",
+        "city",
+        "出租屋",
+        "账单",
+        "床铺",
+        "小房间",
+        "楼道"
+      ],
+      "recommended_backgrounds": [
+        "generated/preset-rental-bill-room/1780413047.png",
+        "window/2",
+        "window/3",
+        "building_interior/1",
+        "building_interior/3"
+      ],
+      "seedream_prompt": "写实小出租屋背景，床边小桌、账单纸、行李箱和简易衣架，无可读文字，空间真实稍拥挤，画面下方保持自然地面或桌面无遮挡，不要绿色幕布或纯色块，方便后期叠加猫动画。",
+      "use_cases": [
+        "房租先扣工资",
+        "合租矛盾",
+        "搬家压力",
+        "押金中介费"
+      ]
+    },
+    {
+      "id": "family_budget_table",
+      "title": "家庭饭桌/现实账本",
+      "triggers": [
+        "结婚",
+        "彩礼",
+        "买房",
+        "房贷",
+        "父母",
+        "相亲",
+        "婚礼",
+        "预算"
+      ],
+      "keywords": [
+        "building_interior",
+        "courtyard",
+        "window",
+        "家庭饭桌",
+        "账本",
+        "父母",
+        "预算表"
+      ],
+      "recommended_backgrounds": [
+        "generated/preset-family-budget-table/1780413080.png",
+        "building_interior/2",
+        "building_interior/4",
+        "courtyard/5",
+        "window/1"
+      ],
+      "seedream_prompt": "写实家庭餐桌背景，桌上有账本、计算器、水杯和晚饭碗筷，无可读文字，氛围现实但不压迫，画面下方保持自然桌面无遮挡，不要绿色幕布或纯色块，方便后期叠加两只猫对话。",
+      "use_cases": [
+        "彩礼买房压力",
+        "父母沟通",
+        "相亲账单",
+        "现实条件谈判"
+      ]
+    },
+    {
+      "id": "commute_station_crowd",
+      "title": "通勤站台/末班车",
+      "triggers": [
+        "通勤",
+        "地铁",
+        "公交",
+        "高铁",
+        "末班车",
+        "堵车",
+        "迟到",
+        "回家"
+      ],
+      "keywords": [
+        "real_transit_station",
+        "street",
+        "real_car_interior",
+        "地铁",
+        "公交",
+        "站台",
+        "通勤"
+      ],
+      "recommended_backgrounds": [
+        "real_transit_station/2",
+        "real_transit_station/4",
+        "street/3",
+        "real_car_interior/4"
+      ],
+      "seedream_prompt": "写实地铁或公交站台背景，扶手、站台边线和车厢门清晰，无可读文字，无人物主体，画面下方保持自然地面或桌面无遮挡，不要绿色幕布或纯色块，方便后期叠加抠像猫。",
+      "use_cases": [
+        "早高峰",
+        "加班回家",
+        "末班车",
+        "迟到焦虑"
+      ]
+    }
+  ]
+}
