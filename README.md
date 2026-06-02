@@ -79,6 +79,19 @@ cd frontend
 npm run index:assets
 ```
 
+## 素材上传策略
+
+当前仓库尽量直接上传可复现主流程所需素材：`assets/cat-motions/` 的猫动作 mp4、`assets/backgrounds/` 的背景图、`assets/generated/backgrounds/` 的预制 Seedream 背景，以及所有 `descriptions.json` 和 `data/assets-index.json`。
+
+如果后续素材太大导致 GitHub 上传不稳定，优先保证这些信息被提交：
+
+- 素材描述：猫动作、背景图和生成背景的 `descriptions.json`。
+- 素材路径：记录期望放置路径，例如 `assets/cat-motions/27.mp4` 或 `samples/viral/<name>.mp4`。
+- 素材用途：说明适合什么主题、情绪、动作、背景或分镜。
+- 可替代方案：如果原视频不上传，说明是否可用已有素材裁剪、Seedream 背景、字幕包装替代。
+
+图片素材通常体积可控，尽量上传。猫动作视频目前单个文件都在 GitHub 普通上传范围内，也已纳入版本库。`samples/viral/` 是爆款参考视频目录，不是主素材库；如果是未使用的原始参考视频或太大的完整视频，可以不提交，只在 `samples/viral/README.md` 或文档里写清楚本地路径和用途。
+
 ## 启动命令
 
 首次安装前端依赖：
