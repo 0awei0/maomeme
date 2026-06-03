@@ -12,19 +12,21 @@
 - 预制场景：`data/preset-scenes/social-scenes.json` 维护招聘会、会议室、自习室、出租屋、家庭预算桌、通勤站台等高频社会现实背景语义。
 - 渲染：默认使用 FFmpeg + Pillow 字幕图，保留猫动画原素材声音；猫素材可先预抠绿生成本地透明缓存，HyperFrames 作为后续 Agent 友好的 HTML 包装增强。
 - Agent 策略：编剧 Agent 默认走豆包异步流式生成候选；选择剧本后，ShotPlannerAgent 会对每个分镜并发调用白名单工具，决定猫素材、背景、裁剪、动态贴图、字幕包装和 HyperFrames preset，CriticAgent 最多修订 2 轮，AssemblerAgent 做全片去重和一致性检查。
-- 并行策略：候选剧本默认用一次协调式流式请求生成 3 个差异化方案，避免三路请求重复；批量非流式接口可按角度并发生成。分镜 Agent、素材工具、字幕/overlay 生成、视频片段渲染会并行执行，再按时间线顺序合成和展示。
+- 并行策略：候选剧本默认先显示本地预览草稿，再用 3 路 Ark 流式并发生成差异化方案并覆盖卡片。分镜 Agent、素材工具、字幕/overlay 生成、视频片段渲染会并行执行，再按时间线顺序合成和展示。
 
-正常前端请求默认走真实 Agent。只有显式传 `use_doubao=false`，或访问前端调试参数 `?agent=false`，才会走本地预设，主要用于测试。无 `ARK_API_KEY` 或真实 Agent 超时时会回退本地 fallback，保证演示闭环可跑；配置 `backend/.env` 后可走豆包。真实 `.env` 不要提交，也不要打印或复制其中内容。
+前端保留两套生成模式：`Agent 自主` 默认走真实 Ark Agent，负责剧本、分镜工具调用和 patch 精修；`Workflow 稳定` 走确定性本地流程，适合快速出片和兜底演示。也可以用 `?mode=workflow` 或旧参数 `?agent=false` 直接打开稳定模式。无 `ARK_API_KEY` 或真实 Agent 超时时会回退本地 fallback，保证演示闭环可跑；配置 `backend/.env` 后可走豆包。真实 `.env` 不要提交，也不要打印或复制其中内容。
 
-模型速度可以通过环境变量切换：`ARK_MODEL` 放正式/pro 模型，`ARK_LITE_MODEL` 放快测/lite 模型，测试时设置 `ARK_MODEL_MODE=lite` 即可；未配置 lite 时会自动继续使用 `ARK_MODEL`。目前 Ark SDK 和 OpenAI Agents SDK 都可以用 Ark API key/base URL 跑工具调用；本项目默认 `AGENT_RUNTIME=auto`，优先 Ark SDK，OpenAI Agents SDK 作为可切换后备。
+模型速度可以通过环境变量切换：`ARK_MODEL` 放正式/pro 模型，`ARK_LITE_MODEL` 放快测/lite 模型，测试时设置 `ARK_MODEL_MODE=lite` 即可；未配置 lite 时会自动继续使用 `ARK_MODEL`。真实 Agent runtime 已统一为 Ark SDK：`AGENT_RUNTIME=auto` 和 `AGENT_RUNTIME=ark` 都走 Ark，多轮工具调用、流式输出和分镜并发都在这条路径上；`AGENT_RUNTIME=workflow` 只用于本地固定流程兜底。
+
+当前性能判断：剧本候选慢主要来自模型首 token 和结构化输出，不是工具调用超时；分镜慢主要来自每镜头工具调用长尾。系统策略是候选阶段先快显预览草稿再流式覆盖，分镜阶段先用 workflow 秒级返回初版时间线，再让 Agent 并发 patch 精修；达到软超时的镜头保留快速初版，避免用户一直等最慢请求。
 
 ## 完整 Workflow
 
 1. 用户在前端输入主题，例如“大学生工作难找，投简历像进黑洞”，并选择短版、30 秒或 1 分钟。
 2. 前端调用 `/api/maomeme/candidates-stream`，默认走 Doubao Agent 流式生成；测试时可用 `?agent=false` 或 `use_doubao=false` 走本地预设。
 3. 后端读取 `data/text-materials/social-reality.json` 的现实议题、梗角度、分镜种子，同时读取 `data/assets-index.json` 的猫动画和背景描述。
-4. 编剧 Agent 通过一次协调式流式请求生成 3 个候选剧本；前端候选卡片会逐步展示标题、现实矛盾、字幕段落和素材匹配分。
-5. 用户选择一个候选后，前端调用 `/api/maomeme/select-stream`。导演 Agent 将剧本拆成 timeline；素材 Agent 会并行预匹配每个镜头的猫动画、背景、裁剪时长、双猫布局、转场和 overlay 动作，再按时间顺序流式返回。
+4. 编剧 Agent 先返回 3 个预览草稿卡片，再通过三路并发流式请求生成 3 个真实候选；前端候选卡片会逐步展示标题、现实矛盾、字幕段落和素材匹配分。
+5. 用户选择一个候选后，前端调用 `/api/maomeme/select-stream`。Workflow 会先秒级返回初版 timeline；Agent 模式下 ShotPlannerAgent 会再并发精修每个镜头的猫动画、背景、裁剪时长、双猫布局、转场和 overlay 动作，并用 `slot_patch` 流式更新。
 6. 如果缺少具体背景，例如“烤肠摊”“小吃摊”，分镜会记录 `background_prompt` 和补图状态；已有 Seedream 生成素材会优先复用，分镜阶段不等待慢速补图。
 7. 用户可用自然语言调用 `/api/maomeme/revise` 调整，例如“更讽刺一点”“结尾更温暖”“增加双猫对话”。
 8. 用户点击生成视频后，前端调用 `/api/maomeme/render-jobs`，后端创建异步渲染任务，前端轮询 `/api/maomeme/render-jobs/{job_id}`。
@@ -44,7 +46,7 @@
 | 文件 | 用途 | 类型 |
 | --- | --- | --- |
 | `backend/app/services/agent_tools.py` | 素材检索、裁剪规划、转场规划、overlay 规划、背景补图决策 | Agent 工具函数 |
-| `backend/app/services/agent_runtime.py` | Ark/OpenAI Agents SDK 可切换的多轮工具调用 runtime | Agent 编排 |
+| `backend/app/services/agent_runtime.py` | Ark SDK 多轮工具调用 runtime | Agent 编排 |
 | `scripts/index-assets.mjs` | 扫描猫动画和背景描述，生成 `data/assets-index.json` | 固定 workflow |
 | `scripts/clean-background-green-bands.py` | 裁掉生成背景图底部误出现的绿幕色块 | 固定素材清理 |
 | `scripts/preprocess-cat-green-screen.mjs` | 把猫绿幕 mp4 预处理成本地透明 mov 缓存 | 固定素材清理 |
@@ -53,7 +55,7 @@
 | `scripts/make-overlay-frames.py` | 生成飞物件、盖章、弹窗等 overlay 帧 | 渲染辅助脚本 |
 | `backend/scripts/smoke_test.py` | 后端 API smoke test | 手动测试 |
 | `backend/scripts/seedream_smoke.py` | Seedream 生图 smoke test | 手动测试 |
-| `backend/scripts/smoke_agent_runtimes.py` | 对比 Ark SDK 与 OpenAI Agents SDK 工具调用 | 手动测试 |
+| `backend/scripts/smoke_agent_runtimes.py` | Ark SDK lite/pro 工具调用 smoke test | 手动测试 |
 | `backend/scripts/generate_preset_backgrounds.py` | 用 Seedream 生成高频预制背景 | 手动素材补全 |
 | `backend/scripts/generate_plan.py` | 命令行生成 plan | 手动 demo |
 
@@ -62,10 +64,13 @@
 | 变量 | 默认 | 说明 |
 | --- | --- | --- |
 | `ARK_AGENT_CONCURRENCY` | `3` | 非流式批量候选的 Doubao 并发上限 |
-| `AGENT_RUNTIME` | `auto` | `auto` 优先 Ark SDK，`ark` 固定 Ark，`openai_agents` 固定 OpenAI Agents SDK，`workflow` 只走本地流程 |
-| `OPENAI_AGENTS_PROVIDER` | `auto` | OpenAI Agents SDK 的模型提供方，`auto` 可用 OpenAI key 或 Ark key，`ark` 强制用 Ark base URL |
+| `CANDIDATE_AGENT_TIMEOUT_SEC` | `180` | 候选剧本 Agent 网络保护超时；正常不应触发 |
+| `AGENT_RUNTIME` | `auto` | `auto`/`ark` 走 Ark SDK，`workflow`/`local`/`none` 只走本地固定流程 |
 | `SHOT_AGENT_CONCURRENCY` | `6` | 分镜 ShotPlannerAgent 并发上限 |
 | `SHOT_AGENT_MAX_REVISIONS` | `2` | CriticAgent 每个分镜最多修订轮数 |
+| `SHOT_AGENT_TIMEOUT_SEC` | `70` | 单镜头 ShotPlanner 工具调用硬保护超时，超时保留快速初版 |
+| `SHOT_AGENT_SOFT_TIMEOUT_SEC` | `28` | 分镜精修整体软超时；未返回镜头不阻塞最终 plan |
+| `CRITIC_AGENT_TIMEOUT_SEC` | `45` | 单镜头 CriticAgent 保护超时 |
 | `STORYBOARD_MATCH_CONCURRENCY` | `6` | 分镜素材预匹配并发上限 |
 | `RENDER_SEGMENT_CONCURRENCY` | `2` | 视频片段渲染并发上限 |
 
@@ -207,15 +212,15 @@ cd backend
 conda run -n cv python scripts/seedream_smoke.py
 ```
 
-Agent runtime 对比 smoke test，不会打印 API key，只输出是否配置、provider、耗时和是否拿到分镜 JSON：
+Ark Agent runtime smoke test，不会打印 API key，只输出是否配置、provider、耗时和是否拿到分镜 JSON：
 
 ```bash
 cd backend
-conda run -n cv python scripts/smoke_agent_runtimes.py --provider ark
-conda run -n cv python scripts/smoke_agent_runtimes.py --provider openai_agents --openai-provider ark
+conda run -n cv python scripts/smoke_agent_runtimes.py --model-mode pro
+conda run -n cv python scripts/smoke_agent_runtimes.py --model-mode lite
 ```
 
-当前本地测试结论：Ark SDK 和 OpenAI Agents SDK 通过 Ark base URL 都能完成工具调用；速度接近，Ark SDK 日志更干净，所以默认保留 Ark SDK。需要验证 OpenAI Agents SDK 时设置 `AGENT_RUNTIME=openai_agents`。
+当前本地测试结论：Ark SDK 的工具调用和流式输出最干净，已作为唯一真实 Agent runtime。固定 workflow 保留为无 key、超时或显式 `use_doubao=false` 时的兜底。
 
 lite/pro 单镜头工具调用实测：
 

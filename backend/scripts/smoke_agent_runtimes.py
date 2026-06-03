@@ -36,18 +36,11 @@ TEST_BEAT = {
 
 async def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--provider", choices=["ark", "openai_agents"], default="ark")
-    parser.add_argument("--openai-provider", choices=["auto", "ark", "openai"], default=None)
     parser.add_argument("--model-mode", choices=["pro", "lite"], default=None)
     parser.add_argument("--timeout", type=float, default=90.0)
     args = parser.parse_args()
 
-    if args.provider == "ark":
-        os.environ["AGENT_RUNTIME"] = "ark"
-    else:
-        os.environ["AGENT_RUNTIME"] = "openai_agents"
-        if args.openai_provider:
-            os.environ["OPENAI_AGENTS_PROVIDER"] = args.openai_provider
+    os.environ["AGENT_RUNTIME"] = "ark"
     if args.model_mode:
         os.environ["ARK_MODEL_MODE"] = args.model_mode
     get_settings.cache_clear()
@@ -55,19 +48,14 @@ async def main() -> None:
 
     configured = {
         "ark_key": bool(settings.ARK_API_KEY),
-        "openai_key": bool(settings.OPENAI_API_KEY),
         "agent_runtime": settings.AGENT_RUNTIME,
-        "openai_agents_provider": settings.OPENAI_AGENTS_PROVIDER,
         "model_mode": settings.ARK_MODEL_MODE,
         "model": "configured" if settings.chat_model() else "missing",
     }
     print(json.dumps({"configured": configured}, ensure_ascii=False))
 
-    if args.provider == "ark" and not settings.ARK_API_KEY:
+    if not settings.ARK_API_KEY:
         print(json.dumps({"status": "skipped", "reason": "ARK_API_KEY not configured"}, ensure_ascii=False))
-        return
-    if args.provider == "openai_agents" and not (settings.OPENAI_API_KEY or settings.ARK_API_KEY):
-        print(json.dumps({"status": "skipped", "reason": "no compatible API key configured"}, ensure_ascii=False))
         return
 
     index = load_assets()
@@ -76,7 +64,7 @@ async def main() -> None:
         async with asyncio.timeout(args.timeout):
             result = await run_shot_agent(theme=TEST_BEAT["theme"], beat=TEST_BEAT, index=index)
     except TimeoutError:
-        print(json.dumps({"status": "error", "provider": args.provider, "error": "timeout"}, ensure_ascii=False))
+        print(json.dumps({"status": "error", "provider": "ark", "error": "timeout"}, ensure_ascii=False))
         return
     elapsed = round(time.monotonic() - started, 2)
     slot = result.output.get("slot") if isinstance(result.output, dict) else None

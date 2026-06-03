@@ -144,27 +144,55 @@ async def stream_script_candidates(
         yield {"type": "final", "candidates": candidates, "provider_note": "local_fallback_no_ark"}
         return
 
-    yield {"type": "stage", "message": "正在组织剧本结构，约束冲突走向", "progress": 0.42}
+    yield {"type": "stage", "message": "编剧 Agent 三路并发生成候选", "progress": 0.42}
 
-    raw_result: dict[str, Any] | None = None
-    content_size = 0
-    async for event in stream_candidates_with_doubao_context(theme, assets_summary(index), text_context, mode, viral_reference_text=viral_reference_prompt(viral_refs)):
-        if event["type"] == "delta":
-            text = event.get("text", "")
-            content_size += len(text)
+    preview_candidates = build_script_candidates(
+        scripts=screenwriter_agent(theme, text_context, viral_refs),
+        theme=theme,
+        index=index,
+        text_context=text_context,
+        duration_mode=mode,
+        provider_note="agent_preview",
+        viral_refs=viral_refs,
+    )
+    for idx, candidate in enumerate(preview_candidates[:3], start=1):
+        yield {
+            "type": "draft_candidate",
+            "candidate": candidate,
+            "message": f"候选 {idx}/3 预览草稿已生成，等待真实 Agent 覆盖",
+            "progress": 0.43 + idx * 0.02,
+        }
+        await asyncio.sleep(0)
+
+    scripts: list[dict[str, Any]] = []
+    async for event in stream_doubao_candidate_scripts_parallel(theme, assets_summary(index), text_context, mode, viral_reference_prompt(viral_refs)):
+        if event["type"] == "script":
+            script = event["script"]
+            scripts.append(script)
+            draft = script_to_candidate(
+                script,
+                theme,
+                score_script(script, theme, index),
+                text_context,
+                int(event.get("position") or len(scripts)),
+                mode,
+            )
+            draft.notes.insert(0, "生成来源：doubao_agent_parallel")
+            for note in reversed(viral_reference_notes(viral_refs)):
+                draft.notes.insert(1, note)
             yield {
-                "type": "agent_delta",
-                "text": text,
-                "message": "Doubao Agent 正在协调生成 3 个差异化候选",
-                "progress": min(0.82, 0.28 + content_size / 1800),
+                "type": "candidate",
+                "candidate": draft,
+                "message": f"候选 {event.get('position') or len(scripts)}/3 已可选择",
+                "progress": event.get("progress", min(0.82, 0.48 + len(scripts) * 0.1)),
             }
-        elif event["type"] == "final":
-            raw_result = event.get("raw") if isinstance(event.get("raw"), dict) else None
+        else:
+            yield event
 
-    scripts = normalize_doubao_candidate_scripts(raw_result or {})
-    provider_note = "doubao_agent_stream"
+    scripts = dedupe_scripts(scripts)
+    provider_note = "doubao_agent_parallel"
     if not scripts:
-        provider_note = "doubao_stream_parse_failed_fallback"
+        provider_note = "doubao_parallel_parse_failed_fallback"
         scripts = screenwriter_agent(theme, text_context, viral_refs)
 
     candidates = build_script_candidates(
@@ -222,30 +250,63 @@ async def stream_doubao_candidate_scripts_parallel(
 ):
     settings = get_settings()
     semaphore = asyncio.Semaphore(settings.ARK_AGENT_CONCURRENCY)
+    queue: asyncio.Queue[dict[str, Any]] = asyncio.Queue()
 
-    async def run_angle(position: int, angle: str) -> dict[str, Any]:
+    async def run_angle(position: int, angle: str) -> None:
         async with semaphore:
-            raw = await generate_candidates_with_doubao_context(
-                theme=theme,
-                assets_summary=assets_text,
-                text_context=text_context,
-                duration_mode=duration_mode,
-                angle=angle,
-                viral_reference_text=viral_reference_text,
-            )
-        scripts = normalize_doubao_candidate_scripts(raw)
-        return {"position": position, "angle": angle, "scripts": scripts}
+            content_size = 0
+            try:
+                async with asyncio.timeout(settings.CANDIDATE_AGENT_TIMEOUT_SEC):
+                    async for event in stream_candidates_with_doubao_context(
+                        theme=theme,
+                        assets_summary=assets_text,
+                        text_context=text_context,
+                        duration_mode=duration_mode,
+                        angle=angle,
+                        viral_reference_text=viral_reference_text,
+                    ):
+                        if event.get("type") == "delta":
+                            text = str(event.get("text", ""))
+                            content_size += len(text)
+                            if text:
+                                await queue.put({
+                                    "type": "agent_delta",
+                                    "position": position,
+                                    "angle": angle,
+                                    "text": text,
+                                    "progress": min(0.74, 0.44 + content_size / 3600),
+                                })
+                        elif event.get("type") == "final":
+                            scripts = normalize_doubao_candidate_scripts(event.get("raw") if isinstance(event.get("raw"), dict) else {})
+                            await queue.put({"type": "script", "position": position, "angle": angle, "scripts": scripts})
+                            return
+            except TimeoutError:
+                await queue.put({"type": "timeout", "position": position, "angle": angle})
+                return
+            except Exception:
+                await queue.put({"type": "error", "position": position, "angle": angle})
+                return
+        await queue.put({"type": "script", "position": position, "angle": angle, "scripts": []})
 
     tasks = [asyncio.create_task(run_angle(index, angle)) for index, angle in enumerate(candidate_angles(theme, text_context), start=1)]
     completed = 0
-    for task in asyncio.as_completed(tasks):
-        try:
-            result = await task
-        except Exception:
+    while completed < len(tasks):
+        result = await queue.get()
+        if result["type"] == "agent_delta":
+            yield {
+                "type": "agent_delta",
+                "position": result.get("position"),
+                "angle": result.get("angle"),
+                "text": result.get("text", ""),
+                "message": f"候选 {result.get('position')}/3 正在流式生成",
+                "progress": result.get("progress", 0.54),
+            }
+            continue
+        if result["type"] in {"timeout", "error"}:
             completed += 1
             yield {
                 "type": "stage",
-                "message": f"第 {completed}/3 路编剧 Agent 未返回可用结果，继续等待其他方向",
+                "message": f"候选方向 {result.get('position')}/3 暂未返回可用结果，继续等待其他方向",
                 "progress": min(0.78, 0.48 + completed * 0.08),
             }
             continue
@@ -256,6 +317,7 @@ async def stream_doubao_candidate_scripts_parallel(
                 "type": "script",
                 "script": scripts[0],
                 "angle": result["angle"],
+                "position": result["position"],
                 "progress": min(0.82, 0.48 + completed * 0.1),
             }
         else:
@@ -264,6 +326,7 @@ async def stream_doubao_candidate_scripts_parallel(
                 "message": f"第 {completed}/3 路编剧 Agent 结果需要回退清洗",
                 "progress": min(0.78, 0.48 + completed * 0.08),
             }
+    await asyncio.gather(*tasks, return_exceptions=True)
 
 
 def dedupe_scripts(scripts: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -397,10 +460,12 @@ async def storyboard_stream_from_candidate(
             timeline.append(event["slot"])
         if event.get("type") == "slot_patch" and event.get("slot"):
             timeline = [event["slot"] if slot.get("id") == event["slot"].get("id") else slot for slot in timeline]
+            timeline = sort_timeline(timeline)
         if event.get("type") == "notes":
             notes.extend(event.get("notes", []))
         yield event
     source_structure = await source_task
+    timeline = sort_timeline(timeline)
     plan = MaoMemePlan(
         id=f"maomeme-{int(time.time())}",
         theme=theme,
@@ -1326,10 +1391,12 @@ def apply_viral_patterns_to_beats(
             "cats": source_shot.get("cats", ""),
             "audio": source_shot.get("audio", ""),
         }
-        for key, field in (("background", "scene_keywords"), ("cats", "emotion_keywords")):
-            text = str(source_shot.get(key, ""))
-            if text:
-                beat[field] = list(dict.fromkeys([*beat.get(field, []), text]))
+        cat_text = str(source_shot.get("cats", ""))
+        if cat_text:
+            beat["emotion_keywords"] = list(dict.fromkeys([*beat.get("emotion_keywords", []), cat_text]))
+        background_text = str(source_shot.get("background", ""))
+        if background_text and viral_background_fits_beat(background_text, beat):
+            beat["scene_keywords"] = list(dict.fromkeys([*beat.get("scene_keywords", []), background_text]))
 
 
 def layout_for_role(role: str, caption: str) -> str:
@@ -1338,6 +1405,57 @@ def layout_for_role(role: str, caption: str) -> str:
     if any(word in caption for word in ("老板", "同学", "HR", "面试官", "公司", "老师")):
         return "dialogue"
     return "single"
+
+
+def viral_background_fits_beat(background_text: str, beat: dict[str, Any]) -> bool:
+    """Use viral background notes only when they agree with this shot's local scene."""
+    text = f"{background_text} {beat.get('caption', '')} {beat.get('intent', '')}"
+    scene_keywords = " ".join(str(item) for item in beat.get("scene_keywords", []))
+    local_text = f"{beat.get('caption', '')} {beat.get('intent', '')} {scene_keywords}"
+    category = infer_theme_category(local_text)
+    if is_food_scene(background_text) and not is_food_scene(local_text):
+        return False
+    if is_food_scene(local_text):
+        return is_food_scene(background_text) or not background_text.strip()
+    if category == "career" and any(word in background_text for word in ("招聘", "面试", "办公室", "校招", "简历", "工位")):
+        return True
+    if category == "office" and any(word in background_text for word in ("办公室", "会议", "工位", "加班")):
+        return True
+    if category == "exam" and any(word in background_text for word in ("自习", "图书馆", "教室", "学校", "课桌")):
+        return True
+    if category == "rent" and any(word in background_text for word in ("出租屋", "房租", "账单", "通勤", "地铁")):
+        return True
+    return bool(set(tokenize_scene_text(background_text)) & set(tokenize_scene_text(text)))
+
+
+def tokenize_scene_text(text: str) -> list[str]:
+    keywords = [
+        "招聘", "面试", "办公室", "校招", "简历", "岗位", "会议", "工位", "加班",
+        "自习", "图书馆", "教室", "学校", "考研", "考公", "出租屋", "房租", "账单",
+        "通勤", "地铁", "烤肠", "香肠", "摆摊", "小吃摊", "夜市", "摊车", "街边摊",
+    ]
+    return [keyword for keyword in keywords if keyword in text]
+
+
+def is_food_scene(text: str) -> bool:
+    return any(
+        word in str(text)
+        for word in (
+            "烤肠",
+            "香肠",
+            "摆摊",
+            "小吃摊",
+            "夜市",
+            "摊位",
+            "摊车",
+            "街边摊",
+            "餐车",
+            "地摊",
+            "street_food",
+            "food_stall",
+            "stall",
+        )
+    )
 
 
 def dialogue_for_beat(role: str, caption: str, theme: str) -> list[dict[str, str]]:
@@ -1476,7 +1594,7 @@ async def casting_and_validator_agents_agentic(beats: list[dict[str, Any]], them
             notes.extend(event.get("notes", []))
     if not timeline:
         return casting_and_validator_agents(beats, theme, index)
-    return timeline, notes
+    return sort_timeline(timeline), notes
 
 
 async def casting_and_validator_agents_stream(
@@ -1488,6 +1606,7 @@ async def casting_and_validator_agents_stream(
     use_agent: bool = True,
 ):
     notes: list[str] = []
+    timeline: list[dict[str, Any]] = []
     previous_slot: dict[str, Any] | None = None
     used_motion_ids: set[str] = set()
     used_background_ids: set[str] = set()
@@ -1501,18 +1620,25 @@ async def casting_and_validator_agents_stream(
 
     semaphore = asyncio.Semaphore(settings.SHOT_AGENT_CONCURRENCY)
 
-    async def prebuild(beat: dict[str, Any]) -> tuple[dict[str, Any], list[str], str]:
+    async def workflow_quick(position: int, beat: dict[str, Any]) -> tuple[int, dict[str, Any], dict[str, Any], list[str]]:
+        slot, slot_notes = await asyncio.to_thread(build_timeline_slot, beat, theme, index, None, set(), set())
+        return position, beat, slot, slot_notes
+
+    async def agent_refine(position: int, beat: dict[str, Any], fallback_slot: dict[str, Any], fallback_notes: list[str]) -> tuple[int, dict[str, Any], dict[str, Any], list[str], str]:
         async with semaphore:
-            result = await run_shot_agent(
-                theme=theme,
-                beat=beat,
-                index=index,
-                previous_slot=None,
-                used_motion_ids=set(),
-                used_background_ids=set(),
-            )
+            try:
+                async with asyncio.timeout(settings.SHOT_AGENT_TIMEOUT_SEC):
+                    result = await run_shot_agent(
+                        theme=theme,
+                        beat=beat,
+                        index=index,
+                        previous_slot=None,
+                        used_motion_ids=set(),
+                        used_background_ids=set(),
+                    )
+            except TimeoutError:
+                return position, beat, fallback_slot, [f"{beat['role']} ShotPlannerAgent 超时，保留快速分镜。", *fallback_notes[:1]], "workflow_timeout"
             if result.ok and isinstance(result.output.get("slot"), dict):
-                fallback_slot, fallback_notes = await asyncio.to_thread(build_timeline_slot, beat, theme, index, None, set(), set())
                 slot = normalize_agent_slot(
                     raw_slot=result.output["slot"],
                     beat=beat,
@@ -1523,29 +1649,97 @@ async def casting_and_validator_agents_stream(
                     used_motion_ids=set(),
                     used_background_ids=set(),
                 )
+                if not slot.get("overlay_actions") and fallback_slot.get("overlay_actions"):
+                    slot["overlay_actions"] = fallback_slot["overlay_actions"]
+                if not slot.get("packaging") and fallback_slot.get("packaging"):
+                    slot["packaging"] = fallback_slot["packaging"]
                 agent_notes = [f"{beat['role']} ShotPlannerAgent 使用 {result.provider} 自主规划。"]
                 agent_notes.extend(str(item) for item in result.output.get("notes", [])[:2] if str(item).strip())
-                return slot, [*agent_notes, *fallback_notes[:1]], result.provider
-            slot, slot_notes = await asyncio.to_thread(build_timeline_slot, beat, theme, index, None, set(), set())
-            return slot, [f"{beat['role']} Agent runtime 回退 workflow：{result.error}", *slot_notes], "workflow"
+                return position, beat, slot, [*agent_notes, *fallback_notes[:1]], result.provider
+            return position, beat, fallback_slot, [f"{beat['role']} Agent runtime 回退 workflow：{result.error}", *fallback_notes[:1]], "workflow"
 
-    tasks = [asyncio.create_task(prebuild(beat)) for beat in beats]
     yield {
         "type": "stage",
-        "message": f"ShotPlannerAgent 并发优化 {len(tasks)} 个镜头",
+        "message": f"快速生成 {len(beats)} 个分镜初版",
         "progress": round(progress_start, 3),
     }
 
-    for index_num, beat in enumerate(beats):
-        while not tasks[index_num].done():
-            yield {
-                "type": "stage",
-                "message": f"正在优化镜头 {index_num + 1}/{total}：{beat['caption']}",
-                "progress": round(progress_start + progress_span * (index_num / total), 3),
-            }
-            await asyncio.sleep(0.7)
+    quick_items: list[tuple[int, dict[str, Any], dict[str, Any], list[str]] | None] = [None for _ in beats]
+    quick_tasks = [asyncio.create_task(workflow_quick(position, beat)) for position, beat in enumerate(beats)]
+    quick_completed = 0
+    for task in asyncio.as_completed(quick_tasks):
+        position, beat, slot, slot_notes = await task
+        quick_items[position] = (position, beat, slot, slot_notes)
+        quick_completed += 1
+        progress = progress_start + progress_span * 0.18 * (quick_completed / total)
+        yield {
+            "type": "slot",
+            "message": f"快速分镜 {position + 1}/{total} 已完成：{beat['caption']}",
+            "progress": round(progress, 3),
+            "slot": slot,
+        }
 
-        slot, slot_notes, provider = await tasks[index_num]
+    agent_tasks = [
+        asyncio.create_task(agent_refine(position, beat, slot, slot_notes))
+        for item in quick_items
+        if item is not None
+        for position, beat, slot, slot_notes in [item]
+    ]
+    yield {
+        "type": "stage",
+        "message": f"ShotPlannerAgent 正在并发精修 {len(agent_tasks)} 个镜头",
+        "progress": round(progress_start + progress_span * 0.2, 3),
+    }
+
+    prebuilt: list[tuple[int, dict[str, Any], dict[str, Any], list[str], str] | None] = [None for _ in beats]
+    completed = 0
+    pending_tasks = set(agent_tasks)
+    agent_started = time.monotonic()
+    while pending_tasks:
+        remaining = max(0.0, float(settings.SHOT_AGENT_SOFT_TIMEOUT_SEC) - (time.monotonic() - agent_started))
+        if remaining <= 0:
+            break
+        done, pending_tasks = await asyncio.wait(pending_tasks, timeout=remaining, return_when=asyncio.FIRST_COMPLETED)
+        if not done:
+            break
+        for task in done:
+            position, beat, slot, slot_notes, provider = await task
+            prebuilt[position] = (position, beat, slot, slot_notes, provider)
+            completed += 1
+            progress = progress_start + progress_span * (0.22 + 0.32 * (completed / total))
+            yield {
+                "type": "slot_patch",
+                "message": f"Agent 精修镜头 {position + 1}/{total} 已返回：{beat['caption']}",
+                "progress": round(progress, 3),
+                "slot": slot,
+            }
+    if pending_tasks:
+        for task in pending_tasks:
+            task.cancel()
+        await asyncio.gather(*pending_tasks, return_exceptions=True)
+        yield {
+            "type": "stage",
+            "message": f"Agent 精修达到软超时，{len(pending_tasks)} 个镜头保留快速分镜",
+            "progress": round(progress_start + progress_span * 0.55, 3),
+        }
+
+    yield {
+        "type": "stage",
+        "message": "正在按时间线统一去重、转场和质检",
+        "progress": round(progress_start + progress_span * 0.58, 3),
+    }
+
+    for index_num, item in enumerate(prebuilt):
+        if item is None:
+            quick_item = quick_items[index_num]
+            if quick_item is None:
+                beat = beats[index_num]
+                slot, slot_notes = await asyncio.to_thread(build_timeline_slot, beat, theme, index, previous_slot, used_motion_ids, used_background_ids)
+            else:
+                _, beat, slot, slot_notes = quick_item
+            provider = "workflow"
+        else:
+            _, beat, slot, slot_notes, provider = item
         if slot_needs_repick(slot, used_motion_ids, used_background_ids):
             slot, slot_notes = await asyncio.to_thread(
                 build_timeline_slot,
@@ -1562,7 +1756,7 @@ async def casting_and_validator_agents_stream(
 
         local_critic = local_shot_critic(theme, beat, slot, used_motion_ids, used_background_ids)
         critic_notes = [f"{beat['role']} 本地质检 {local_critic['score']:.2f}。"]
-        if local_critic["score"] < 0.72:
+        if provider != "workflow" and local_critic["score"] < 0.72:
             slot, remote_notes = await maybe_critic_revise_slot(
                 theme=theme,
                 beat=beat,
@@ -1579,14 +1773,15 @@ async def casting_and_validator_agents_stream(
         timeline.append(slot)
         previous_slot = slot
         remember_slot_assets(slot, used_motion_ids, used_background_ids)
-        progress = progress_start + progress_span * ((index_num + 1) / total)
+        progress = progress_start + progress_span * (0.62 + 0.3 * ((index_num + 1) / total))
         yield {
-            "type": "slot",
-            "message": f"已完成镜头 {index_num + 1}/{total}：{beat['caption']}",
+            "type": "slot_patch",
+            "message": f"质检完成镜头 {index_num + 1}/{total}：{beat['caption']}",
             "progress": round(progress, 3),
             "slot": slot,
         }
 
+    timeline = sort_timeline(timeline)
     patches, assembled_notes = await maybe_assemble_timeline(theme, timeline)
     for patch in patches:
         slot_id = str(patch.get("id", ""))
@@ -1828,14 +2023,19 @@ async def maybe_critic_revise_slot(
     notes: list[str] = []
     current = slot
     for revision in range(settings.SHOT_AGENT_MAX_REVISIONS):
-        result = await run_critic_agent(
-            theme=theme,
-            beat=beat,
-            slot=current,
-            index=index,
-            used_motion_ids=used_motion_ids,
-            used_background_ids=used_background_ids,
-        )
+        try:
+            async with asyncio.timeout(settings.CRITIC_AGENT_TIMEOUT_SEC):
+                result = await run_critic_agent(
+                    theme=theme,
+                    beat=beat,
+                    slot=current,
+                    index=index,
+                    used_motion_ids=used_motion_ids,
+                    used_background_ids=used_background_ids,
+                )
+        except TimeoutError:
+            notes.append(f"{beat['role']} CriticAgent 超时，保留本地质检结果。")
+            break
         if not result.ok:
             if revision == 0:
                 notes.append(f"{beat['role']} CriticAgent 跳过：{result.error}")
@@ -1843,6 +2043,8 @@ async def maybe_critic_revise_slot(
         critic = result.output.get("critic") if isinstance(result.output.get("critic"), dict) else {}
         score = float(critic.get("score") or 0)
         if isinstance(result.output.get("revised_slot"), dict):
+            before_overlay = list(current.get("overlay_actions") or [])
+            before_packaging = list(current.get("packaging") or [])
             current = normalize_agent_slot(
                 result.output["revised_slot"],
                 beat,
@@ -1853,6 +2055,10 @@ async def maybe_critic_revise_slot(
                 used_motion_ids,
                 used_background_ids,
             )
+            if before_overlay and not current.get("overlay_actions"):
+                current["overlay_actions"] = before_overlay
+            if before_packaging and not current.get("packaging"):
+                current["packaging"] = before_packaging
         notes.append(f"{beat['role']} CriticAgent 质检 {score:.2f}。")
         if bool(critic.get("passed", score >= 0.72)):
             break
@@ -1863,8 +2069,7 @@ async def maybe_assemble_timeline(theme: str, timeline: list[dict[str, Any]]) ->
     if len(timeline) < 2:
         return [], []
     local_patches, local_notes = local_assemble_timeline(timeline)
-    if not enabled_runtime_order() or not timeline_needs_remote_assembler(timeline):
-        return local_patches, local_notes
+    return local_patches, local_notes
     result = await run_assembler_agent(theme=theme, timeline=timeline)
     if not result.ok:
         return local_patches, [*local_notes, f"AssemblerAgent 跳过：{result.error}"]
@@ -1929,12 +2134,17 @@ def apply_slot_patch(slot: dict[str, Any], patch: dict[str, Any]) -> dict[str, A
             if key == "transition" and isinstance(patch[key], dict):
                 next_slot[key] = normalize_transition(patch[key])
             elif key == "overlay_actions" and isinstance(patch[key], list):
-                next_slot[key] = patch[key][:3]
+                if patch[key] or not next_slot.get("overlay_actions"):
+                    next_slot[key] = patch[key][:3]
             elif key in {"caption", "copy"}:
                 next_slot["caption"] = clean_caption(str(patch[key]))
             else:
                 next_slot[key] = patch[key]
     return next_slot
+
+
+def sort_timeline(timeline: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    return sorted(timeline, key=lambda slot: (float(slot.get("start") or 0), str(slot.get("id") or "")))
 
 
 def normalize_asset_ref(value: Any, asset_type: str, index: dict[str, Any]) -> dict[str, str] | None:
@@ -2287,23 +2497,25 @@ def choose_secondary_motion_for_beat(index: dict[str, Any], beat: dict[str, Any]
 
 def choose_background_for_beat(index: dict[str, Any], beat: dict[str, Any], theme: str, used_ids: set[str] | None = None) -> dict[str, Any]:
     used_ids = used_ids or set()
-    candidates = asset_search_tool(index, "background", beat["scene_keywords"] + [beat.get("caption", "")], limit=12)
-    candidates = include_exact_background_candidates(index, candidates, beat["scene_keywords"])
-    category = infer_theme_category(theme)
+    scene_keywords = safe_scene_keywords_for_beat(beat)
+    candidates = asset_search_tool(index, "background", scene_keywords + [beat.get("caption", "")], limit=12)
+    candidates = include_exact_background_candidates(index, candidates, scene_keywords)
+    category = local_beat_scene_category(beat, theme)
     scored: list[tuple[float, dict[str, Any]]] = []
     for asset in candidates:
-        score = asset_match_score(asset, beat["scene_keywords"])
+        score = asset_match_score(asset, scene_keywords)
         score += asset_match_score(asset, [beat.get("caption", ""), beat.get("intent", "")]) * 0.4
         score += themed_background_score(category, asset, beat)
         asset_id = str(asset.get("id", ""))
         asset_scene = str(asset.get("scene", ""))
-        for keyword in beat["scene_keywords"]:
+        for keyword in scene_keywords:
             if keyword and (keyword == asset_id or keyword == asset_scene):
                 score += 24.0 if "generated/preset-" in asset_id else 8.0
             elif keyword and (asset_id.startswith(keyword) or keyword.startswith(asset_id)):
                 score += 12.0 if "generated/preset-" in asset_id else 4.0
             if keyword and keyword in str(asset.get("file", "")):
                 score += 1.2
+        score += scene_guard_score(category, asset, beat)
         if beat["role"] in str(asset.get("file", "")):
             score += 2.0
         if beat["role"] in {"twist", "punchline"} and "generated" in str(asset.get("scene", "")):
@@ -2330,7 +2542,77 @@ def choose_background_for_beat(index: dict[str, Any], beat: dict[str, Any], them
         top_score = scored[0][0]
         pool = [asset for score, asset in scored if score >= top_score - 0.5][:4] or [scored[0][1]]
         return pool[selection_offset(beat) % len(pool)]
-    return pick_background(index, beat["scene_keywords"])
+    return pick_background(index, scene_keywords)
+
+
+def safe_scene_keywords_for_beat(beat: dict[str, Any]) -> list[str]:
+    local_text = f"{beat.get('caption', '')} {beat.get('intent', '')}"
+    local_category = infer_theme_category(local_text)
+    if is_food_scene(local_text):
+        local_category = "street_food"
+    if not local_category:
+        local_category = infer_theme_category(str(beat.get("theme", "")))
+    filtered: list[str] = []
+    filtered.extend(background_anchors_for_local_category(local_category, str(beat.get("caption", "")), str(beat.get("role", "")), str(beat.get("theme", ""))))
+    for keyword in beat.get("scene_keywords", []):
+        text = str(keyword).strip()
+        if not text:
+            continue
+        if scene_keyword_conflicts(text, local_category, local_text):
+            continue
+        filtered.append(text)
+    if not filtered:
+        filtered.extend(theme_background_anchors(str(beat.get("theme", "")), str(beat.get("caption", "")), str(beat.get("role", ""))))
+    return list(dict.fromkeys(filtered))
+
+
+def background_anchors_for_local_category(category: str, caption: str, role: str, theme: str) -> list[str]:
+    proxy_theme = {
+        "career": "求职 简历 面试 招聘 岗位",
+        "office": "上班 会议 加班 老板",
+        "exam": "考研 考公 自习 图书馆",
+        "rent": "租房 房租 押金 通勤",
+        "street_food": theme if is_food_scene(theme) else "烤肠 摆摊 小吃摊 夜市",
+    }.get(category, "")
+    return theme_background_anchors(proxy_theme, caption, role) if proxy_theme else []
+
+
+def local_beat_scene_category(beat: dict[str, Any], theme: str = "") -> str:
+    local_text = f"{beat.get('caption', '')} {beat.get('intent', '')}"
+    if is_food_scene(local_text):
+        return "street_food"
+    return infer_theme_category(local_text) or infer_theme_category(theme)
+
+
+def scene_keyword_conflicts(keyword: str, local_category: str, local_text: str) -> bool:
+    if is_food_scene(keyword) and local_category != "street_food":
+        return True
+    conflict_map = {
+        "career": ("出租屋", "房租", "押金", "考研", "考公", "自习", "图书馆", "烤肠", "小吃摊", "夜市"),
+        "office": ("出租屋", "房租", "押金", "考研", "考公", "自习", "图书馆", "烤肠", "小吃摊", "夜市"),
+        "exam": ("招聘", "面试", "HR", "会议室", "工位", "房租", "押金", "烤肠", "小吃摊", "夜市"),
+        "rent": ("招聘", "面试", "HR", "会议室", "考研", "考公", "自习", "图书馆", "烤肠", "小吃摊", "夜市"),
+        "street_food": ("招聘", "面试", "HR", "会议室", "自习", "图书馆", "出租屋"),
+    }
+    if local_category in conflict_map and any(word in keyword for word in conflict_map[local_category]):
+        return not any(word in local_text for word in ("转去", "想到", "改去", "摆摊", "烤肠", "夜市", "小吃摊"))
+    return False
+
+
+def scene_guard_score(category: str, asset: dict[str, Any], beat: dict[str, Any]) -> float:
+    text = f"{asset.get('id', '')} {asset.get('scene', '')} {asset.get('file', '')} {asset.get('description', '')}"
+    local_text = f"{beat.get('caption', '')} {beat.get('intent', '')}"
+    if is_food_scene(text) and not is_food_scene(local_text) and category != "street_food":
+        return -120.0
+    if category == "career" and any(word in text for word in ("烤肠", "小吃摊", "夜市", "出租屋", "自习室", "图书馆")):
+        return -80.0
+    if category == "office" and any(word in text for word in ("烤肠", "小吃摊", "夜市", "出租屋", "自习室", "图书馆")):
+        return -80.0
+    if category == "exam" and any(word in text for word in ("招聘", "面试", "会议室", "办公室", "烤肠", "小吃摊", "出租屋")):
+        return -80.0
+    if category == "rent" and any(word in text for word in ("招聘", "面试", "会议室", "办公室", "考研", "考公", "烤肠", "小吃摊")):
+        return -80.0
+    return 0.0
 
 
 def include_exact_background_candidates(
@@ -2477,8 +2759,7 @@ def themed_background_score(category: str, asset: dict[str, Any], beat: dict[str
 
 
 def needs_food_stall_background(beat: dict[str, Any]) -> bool:
-    text = f"{beat.get('caption', '')} {beat.get('intent', '')} {' '.join(str(item) for item in beat.get('scene_keywords', []))}"
-    return any(word in text for word in ("烤肠", "香肠", "摆摊", "小吃摊", "夜市", "街边摊", "餐车"))
+    return local_beat_scene_category(beat, str(beat.get("theme", ""))) == "street_food"
 
 
 def scene_keywords_for_beat(theme: str, caption: str, role: str, script_scenes: list[str]) -> list[str]:

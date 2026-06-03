@@ -247,6 +247,7 @@ def candidate_messages(
     }.get(duration_mode, "4个镜头，12秒左右")
     angle_hint = f"\n## 创作角度\n{angle}\n" if angle else ""
     count_hint = "必须给 1 个候选，且只输出 candidates 数组中的 1 项。" if angle else "必须给 3 个候选。"
+    compact_context = compact_text_context(text_context)
     return [
         {
             "role": "system",
@@ -268,13 +269,13 @@ def candidate_messages(
 {angle_hint}
 
 ## 社会现实文本素材
-{json.dumps(text_context, ensure_ascii=False, indent=2)}
+{json.dumps(compact_context, ensure_ascii=False)}
 
 ## 已验证爆款猫 meme 结构参考
-{viral_reference_text or "暂无。"}
+{shorten_text(viral_reference_text, 900) or "暂无。"}
 
-## 本地素材库摘要
-{assets_summary}
+## 素材能力提示
+本地有绿幕猫动作、双猫对话、电脑/手机/震惊/委屈/发呆等常见猫素材；也有办公室、教室、自习室、出租屋、夜市小摊、招聘会等背景。这里只写剧本，不要做具体素材 ID 决策，选中后会由分镜 Agent 单独匹配猫、背景和贴图。
 
 请输出 JSON：
 {{
@@ -296,11 +297,37 @@ def candidate_messages(
 - 每个候选都必须贴合主题，不要写“最后被猫解决”这类无逻辑结尾。
 - 必须借鉴上面的爆款结构参考：迁移它们的节奏、冲突推进、字幕包装、背景/猫动作类型，但不要照抄原视频台词或情节。
 - 结尾可以荒诞，但要合理：比如先缓一口气、换策略、互相抱团、识别规则问题。
+- 可以有脑洞跨场景，但必须有逻辑桥和具体画面；比如求职失败想到摆摊可以成立，但要写清“为什么想到、摆摊也有什么现实成本”，不要突然跳场。
 - 每条字幕不超过 18 个汉字，尽量用具体动作承载现实压力。
 - 如果主题是彩礼/买房/婚恋，重点是双方和家庭如何面对现实账单，不要写成单纯攻击某一方。
 - 分镜字幕短、具体、口语化。""",
         },
     ]
+
+
+def compact_text_context(text_context: dict) -> dict:
+    if not isinstance(text_context, dict):
+        return {}
+    beat_seed = text_context.get("beat_seed", {})
+    if isinstance(beat_seed, dict):
+        compact_beat_seed: Any = {str(key): str(value) for key, value in list(beat_seed.items())[:6]}
+    elif isinstance(beat_seed, list):
+        compact_beat_seed = [str(item) for item in beat_seed[:6]]
+    else:
+        compact_beat_seed = {}
+    return {
+        "title": text_context.get("title", ""),
+        "keywords": list(text_context.get("keywords", []) or [])[:8],
+        "facts": list(text_context.get("facts", []) or [])[:3],
+        "tensions": list(text_context.get("tensions", []) or [])[:4],
+        "meme_angles": list(text_context.get("meme_angles", []) or [])[:4],
+        "beat_seed": compact_beat_seed,
+    }
+
+
+def shorten_text(text: str, limit: int) -> str:
+    text = str(text or "").strip()
+    return text if len(text) <= limit else text[:limit] + "..."
 
 
 def parse_doubao_response(content: str) -> dict:

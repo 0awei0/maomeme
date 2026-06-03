@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import asyncio
 import json
-import os
 import re
 from dataclasses import dataclass
 from typing import Any, Awaitable, Callable
@@ -39,21 +38,7 @@ def enabled_runtime_order() -> list[str]:
     requested = settings.AGENT_RUNTIME
     if requested in {"workflow", "local", "none"}:
         return []
-    if requested == "ark":
-        return ["ark"]
-    if requested in {"openai", "openai_agents"}:
-        return ["openai_agents"]
-    return ["ark", "openai_agents"]
-
-
-def openai_agents_available() -> bool:
-    settings = get_settings()
-    provider = settings.OPENAI_AGENTS_PROVIDER
-    if provider == "openai":
-        return bool(settings.OPENAI_API_KEY)
-    if provider == "ark":
-        return ark_available()
-    return bool(settings.OPENAI_API_KEY or settings.ARK_API_KEY)
+    return ["ark"]
 
 
 async def run_shot_agent(
@@ -174,27 +159,15 @@ async def run_agent_with_fallbacks(
         if provider == "ark" and not ark_available():
             errors.append("ark_unconfigured")
             continue
-        if provider == "openai_agents" and not openai_agents_available():
-            errors.append("openai_unconfigured")
-            continue
         try:
-            if provider == "ark":
-                return await run_ark_tool_agent(
-                    name=name,
-                    instructions=instructions,
-                    user_prompt=user_prompt,
-                    tools=tools,
-                    handlers=handlers,
-                    max_turns=max_turns,
-                )
-            if provider == "openai_agents":
-                return await run_openai_agents_tool_agent(
-                    name=name,
-                    instructions=instructions,
-                    user_prompt=user_prompt,
-                    handlers=handlers,
-                    max_turns=max_turns,
-                )
+            return await run_ark_tool_agent(
+                name=name,
+                instructions=instructions,
+                user_prompt=user_prompt,
+                tools=tools,
+                handlers=handlers,
+                max_turns=max_turns,
+            )
         except Exception as exc:
             errors.append(f"{provider}:{safe_error(exc)}")
     return AgentRuntimeResult(ok=False, provider="workflow", output={}, events=[], error="; ".join(errors))
@@ -278,115 +251,6 @@ async def run_ark_tool_agent(
         await client.close()
 
 
-async def run_openai_agents_tool_agent(
-    *,
-    name: str,
-    instructions: str,
-    user_prompt: str,
-    handlers: dict[str, ToolHandler],
-    max_turns: int,
-) -> AgentRuntimeResult:
-    from agents import Agent, Runner, function_tool
-    from agents.models.openai_chatcompletions import OpenAIChatCompletionsModel
-    from openai import AsyncOpenAI
-
-    settings = get_settings()
-    provider = resolve_openai_agents_provider()
-    if provider == "ark":
-        client = AsyncOpenAI(api_key=settings.ARK_API_KEY, base_url=settings.ARK_BASE_URL)
-        model: Any = OpenAIChatCompletionsModel(
-            model=settings.chat_model(),
-            openai_client=client,
-            strict_feature_validation=False,
-        )
-    else:
-        client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
-        model = OpenAIChatCompletionsModel(
-            model=settings.OPENAI_AGENT_MODEL,
-            openai_client=client,
-            strict_feature_validation=False,
-        )
-    tools = make_openai_agent_tools(handlers, function_tool)
-    agent = Agent(
-        name=name,
-        instructions=instructions,
-        model=model,
-        tools=tools,
-    )
-    try:
-        result = await Runner.run(agent, user_prompt, max_turns=max_turns)
-        final_output = getattr(result, "final_output", None)
-        if isinstance(final_output, dict):
-            output = final_output
-        else:
-            output = parse_json_object(str(final_output or ""))
-        return AgentRuntimeResult(ok=bool(output), provider=f"openai_agents:{provider}", output=output or {}, events=[])
-    finally:
-        await client.close()
-
-
-def resolve_openai_agents_provider() -> str:
-    settings = get_settings()
-    provider = settings.OPENAI_AGENTS_PROVIDER
-    if provider == "openai" and settings.OPENAI_API_KEY:
-        return "openai"
-    if provider == "ark" and settings.ARK_API_KEY:
-        return "ark"
-    if settings.OPENAI_API_KEY:
-        return "openai"
-    if settings.ARK_API_KEY:
-        return "ark"
-    return "openai"
-
-
-def make_openai_agent_tools(handlers: dict[str, ToolHandler], function_tool: Callable[..., Any]) -> list[Any]:
-    tools: list[Any] = []
-
-    if "asset_search_tool" in handlers:
-        @function_tool(name_override="asset_search_tool", strict_mode=False)
-        async def asset_search_tool_openai(asset_type: str, keywords: list[str], limit: int = 5) -> str:
-            return json.dumps(await handlers["asset_search_tool"]({"asset_type": asset_type, "keywords": keywords, "limit": limit}), ensure_ascii=False)
-        tools.append(asset_search_tool_openai)
-
-    if "background_tool" in handlers:
-        @function_tool(name_override="background_tool", strict_mode=False)
-        async def background_tool_openai(scene_keywords: list[str], caption: str = "", intent: str = "") -> str:
-            return json.dumps(await handlers["background_tool"]({"scene_keywords": scene_keywords, "caption": caption, "intent": intent}), ensure_ascii=False)
-        tools.append(background_tool_openai)
-
-    if "cat_casting_tool" in handlers:
-        @function_tool(name_override="cat_casting_tool", strict_mode=False)
-        async def cat_casting_tool_openai(emotion_keywords: list[str], caption: str = "", intent: str = "", count: int = 1) -> str:
-            return json.dumps(await handlers["cat_casting_tool"]({"emotion_keywords": emotion_keywords, "caption": caption, "intent": intent, "count": count}), ensure_ascii=False)
-        tools.append(cat_casting_tool_openai)
-
-    if "clip_planner_tool" in handlers:
-        @function_tool(name_override="clip_planner_tool", strict_mode=False)
-        async def clip_planner_tool_openai(asset_type: str, asset_id: str, slot_duration: float) -> str:
-            return json.dumps(await handlers["clip_planner_tool"]({"asset_type": asset_type, "asset_id": asset_id, "slot_duration": slot_duration}), ensure_ascii=False)
-        tools.append(clip_planner_tool_openai)
-
-    if "overlay_design_tool" in handlers:
-        @function_tool(name_override="overlay_design_tool", strict_mode=False)
-        async def overlay_design_tool_openai(requested_actions_json: str = "[]") -> str:
-            return json.dumps(await handlers["overlay_design_tool"]({"requested_actions": parse_json_list(requested_actions_json)}), ensure_ascii=False)
-        tools.append(overlay_design_tool_openai)
-
-    if "hyperframe_packaging_tool" in handlers:
-        @function_tool(name_override="hyperframe_packaging_tool", strict_mode=False)
-        async def hyperframe_packaging_tool_openai(overlay_actions_json: str = "[]") -> str:
-            return json.dumps(await handlers["hyperframe_packaging_tool"]({"overlay_actions": parse_json_list(overlay_actions_json)}), ensure_ascii=False)
-        tools.append(hyperframe_packaging_tool_openai)
-
-    if "shot_critic_tool" in handlers:
-        @function_tool(name_override="shot_critic_tool", strict_mode=False)
-        async def shot_critic_tool_openai(slot_json: str) -> str:
-            return json.dumps(await handlers["shot_critic_tool"]({"slot": parse_json_object(slot_json)}), ensure_ascii=False)
-        tools.append(shot_critic_tool_openai)
-
-    return tools
-
-
 async def call_tool(handlers: dict[str, ToolHandler], tool_name: str, args: dict[str, Any]) -> dict[str, Any]:
     handler = handlers.get(tool_name)
     if not handler:
@@ -412,6 +276,23 @@ def tool_schemas() -> list[dict[str, Any]]:
                         "limit": {"type": "integer", "minimum": 1, "maximum": 8},
                     },
                     "required": ["asset_type", "keywords"],
+                },
+            },
+        },
+        {
+            "type": "function",
+            "function": {
+                "name": "shot_bundle_tool",
+                "description": "Fast path: plan cat casting, background, clips, overlays, HyperFrames packaging and critic in one tool call.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "emotion_keywords": {"type": "array", "items": {"type": "string"}},
+                        "scene_keywords": {"type": "array", "items": {"type": "string"}},
+                        "caption": {"type": "string"},
+                        "intent": {"type": "string"},
+                        "count": {"type": "integer", "minimum": 1, "maximum": 2},
+                    },
                 },
             },
         },
@@ -532,6 +413,68 @@ class ShotToolContext:
         self.used_background_ids = used_background_ids
 
     def handlers(self) -> dict[str, ToolHandler]:
+        async def bundle(args: dict[str, Any]) -> dict[str, Any]:
+            beat = {**self.beat, **limited_beat_args(args)}
+            count = int(args.get("count") or (2 if beat.get("layout") == "dialogue" else 1))
+            motions = cat_casting_tool(
+                self.index,
+                self.theme,
+                beat,
+                count=count,
+                avoid_ids=list(self.used_motion_ids),
+            )
+            background_result = background_tool(
+                self.index,
+                self.theme,
+                beat,
+                avoid_ids=list(self.used_background_ids),
+            )
+            motion = motions[0] if motions else {}
+            secondary = motions[1] if len(motions) > 1 and beat.get("layout") == "dialogue" else None
+            slot_duration = float(self.beat.get("end", 4) or 4) - float(self.beat.get("start", 0) or 0)
+            overlay_actions = overlay_design_tool(
+                self.theme,
+                beat,
+                motion=motion,
+                background=background_result.get("asset", {}),
+                requested_actions=args.get("requested_actions") if isinstance(args.get("requested_actions"), list) else [],
+            )
+            packaging = hyperframe_packaging_tool(self.theme, beat, overlay_actions=overlay_actions)
+            slot = {
+                "id": self.beat.get("id"),
+                "start": self.beat.get("start", 0),
+                "end": self.beat.get("end", slot_duration),
+                "role": self.beat.get("role", "setup"),
+                "intent": beat.get("intent") or self.beat.get("intent", ""),
+                "caption": beat.get("caption") or self.beat.get("caption", ""),
+                "motion": motion,
+                "motion_clip": clip_planner_by_id_tool(self.index, "motion", str(motion.get("id", "")), self.beat, slot_duration),
+                "secondary_motion": secondary,
+                "secondary_motion_clip": clip_planner_by_id_tool(self.index, "motion", str((secondary or {}).get("id", "")), self.beat, slot_duration) if secondary else None,
+                "background": background_result.get("asset", {}),
+                "background_source": background_result.get("background_source", "matched"),
+                "background_prompt": background_result.get("background_prompt", ""),
+                "transition": packaging.get("transition_hint", {"type": "cut", "duration": 0}),
+                "layout": self.beat.get("layout", "single"),
+                "dialogue": self.beat.get("dialogue", []),
+                "overlay_actions": overlay_actions,
+                "gap": {
+                    "status": "matched" if background_result.get("background_source") in {"matched", "generated"} else "generated_pending",
+                    "strategy": "agent_tool_bundle",
+                    "reason": background_result.get("reason", "工具已完成猫动作、背景和包装匹配。"),
+                },
+                "packaging": [packaging.get("packaging_preset", "default-cat-meme"), packaging.get("caption_style", "top_title")],
+                "source_pattern": "ShotPlannerAgent 工具包快路径",
+            }
+            critic = shot_critic_tool(
+                self.theme,
+                self.beat,
+                slot,
+                used_motion_ids=list(self.used_motion_ids),
+                used_background_ids=list(self.used_background_ids),
+            )
+            return {"status": "success", "slot": slot, "critic": critic, "packaging": packaging}
+
         async def search(args: dict[str, Any]) -> dict[str, Any]:
             result = asset_search_tool(
                 self.index,
@@ -600,6 +543,7 @@ class ShotToolContext:
             return {"status": "success", "critic": result}
 
         return {
+            "shot_bundle_tool": bundle,
             "asset_search_tool": search,
             "cat_casting_tool": cast,
             "background_tool": background,
@@ -650,12 +594,11 @@ def shot_planner_prompt(theme: str, beat: dict[str, Any], previous_slot: dict[st
 {json.dumps(sorted(context.used_background_ids), ensure_ascii=False)}
 
 必须执行：
-1. 调用 cat_casting_tool，按分镜情绪选择 1-2 个猫素材；对话镜头优先双猫。
-2. 调用 background_tool，选择具体背景；如果现有背景不够，允许生成/记录 Seedream prompt。
-3. 调用 clip_planner_tool，为主猫和第二只猫决定裁剪，目标使用 3-5 秒，hook 可 2-3 秒。
-4. 调用 overlay_design_tool，生成动态道具/弹窗/手机/账单/贴纸，贴图必须贴合这个分镜，不重复套模板。
-5. 调用 hyperframe_packaging_tool，确定包装 preset、字幕策略和转场提示。
-6. 调用 shot_critic_tool 自检，若 score < 0.72，请用工具结果修订后再输出。
+1. 优先调用 shot_bundle_tool，一次拿到猫素材、背景、裁剪、贴图、包装和质检。
+2. 如果 bundle 结果某一项明显不贴合，再补充调用单项工具修订。
+3. 对话镜头优先双猫；目标猫素材使用 3-5 秒，hook 可 2-3 秒。
+4. 动态贴图必须贴合这个分镜，不重复套模板。
+5. 若 critic score < 0.72，请用工具结果修订后再输出。
 
 输出格式必须是：
 {{
@@ -790,18 +733,6 @@ def parse_json_object(text: str) -> dict[str, Any]:
         except json.JSONDecodeError:
             return {}
     return {}
-
-
-def parse_json_list(text: Any) -> list[dict[str, Any]]:
-    if isinstance(text, list):
-        return [item for item in text if isinstance(item, dict)]
-    if not isinstance(text, str):
-        return []
-    try:
-        parsed = json.loads(text or "[]")
-        return [item for item in parsed if isinstance(item, dict)] if isinstance(parsed, list) else []
-    except json.JSONDecodeError:
-        return []
 
 
 def shrink_tool_result(result: dict[str, Any]) -> dict[str, Any]:

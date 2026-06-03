@@ -29,6 +29,7 @@ from ..services.maomeme_agent import (
 from ..services.doubao_client import ark_available
 from ..services.render_jobs import create_render_job, get_render_job
 from ..services.seedream_service import generate_background, seedream_available
+from ..core.config import get_settings
 
 router = APIRouter(prefix="/api/maomeme", tags=["maomeme"])
 
@@ -64,7 +65,7 @@ async def candidates(request: CandidateRequest):
         result = await generate_script_candidates(
             theme=request.theme,
             sample_video_path=request.sample_video_path,
-            use_doubao=request.use_doubao,
+            use_doubao=should_use_agent(request.use_doubao, request.generation_mode),
             duration_mode=request.duration_mode,
         )
         return JSONResponse({
@@ -93,11 +94,11 @@ async def candidates_stream(request: CandidateRequest):
 
             result = []
             try:
-                async with asyncio.timeout(90.0):
+                async with asyncio.timeout(max(90.0, float(get_settings().CANDIDATE_AGENT_TIMEOUT_SEC) + 20.0)):
                     async for event in stream_script_candidates(
                         theme=request.theme,
                         sample_video_path=request.sample_video_path,
-                        use_doubao=request.use_doubao,
+                        use_doubao=should_use_agent(request.use_doubao, request.generation_mode),
                         duration_mode=request.duration_mode,
                     ):
                         if event["type"] == "agent_delta":
@@ -114,6 +115,13 @@ async def candidates_stream(request: CandidateRequest):
                                 "type": "draft_candidate",
                                 "message": event.get("message", "草稿方向已生成"),
                                 "progress": event.get("progress", 0.5),
+                                "candidate": public_candidate_dump(event["candidate"]),
+                            })
+                        elif event["type"] == "candidate" and event.get("candidate"):
+                            yield sse({
+                                "type": "candidate",
+                                "message": event.get("message", "候选方向已生成"),
+                                "progress": event.get("progress", 0.6),
                                 "candidate": public_candidate_dump(event["candidate"]),
                             })
                         elif event["type"] == "final":
@@ -157,7 +165,7 @@ async def select_plan(request: SelectPlanRequest):
             theme=request.theme,
             candidate=request.candidate,
             sample_video_path=request.sample_video_path,
-            use_doubao=request.use_doubao,
+            use_doubao=should_use_agent(request.use_doubao, request.generation_mode),
             duration_mode=request.duration_mode,
         )
         return JSONResponse({"status": "success", "plan": result.model_dump(by_alias=True)})
@@ -173,7 +181,7 @@ async def select_plan_stream(request: SelectPlanRequest):
                 theme=request.theme,
                 candidate=request.candidate,
                 sample_video_path=request.sample_video_path,
-                use_doubao=request.use_doubao,
+                use_doubao=should_use_agent(request.use_doubao, request.generation_mode),
                 duration_mode=request.duration_mode,
             ):
                 yield sse(event)
@@ -208,7 +216,7 @@ async def revise(request: RevisePlanRequest):
             instruction=request.instruction,
             plan=request.plan,
             candidate=request.candidate,
-            use_doubao=request.use_doubao,
+            use_doubao=should_use_agent(request.use_doubao, request.generation_mode),
             duration_mode=request.duration_mode,
         )
         return JSONResponse({
@@ -262,6 +270,10 @@ async def render_job_status(job_id: str):
 
 def sse(payload: dict) -> str:
     return f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
+
+
+def should_use_agent(use_doubao: bool, generation_mode: str = "agent") -> bool:
+    return bool(use_doubao) and str(generation_mode or "agent").lower() not in {"workflow", "local", "deterministic", "false"}
 
 
 def public_candidate_dump(candidate: ScriptCandidate) -> dict:

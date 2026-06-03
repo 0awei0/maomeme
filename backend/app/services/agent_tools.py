@@ -80,19 +80,21 @@ def background_tool(
     avoid_ids: list[str] | None = None,
 ) -> dict[str, Any]:
     avoid = {str(item) for item in avoid_ids or [] if str(item)}
+    local_category = local_scene_category(theme, beat)
     keywords = list(dict.fromkeys([
         *[str(item) for item in beat.get("scene_keywords", [])],
         str(beat.get("caption", "")),
         str(beat.get("intent", "")),
     ]))
+    keywords = [keyword for keyword in keywords if keyword and not scene_keyword_conflicts(keyword, local_category)]
     candidates = asset_search_tool(index, "background", keywords, limit=16)
     if not candidates:
         candidates = index.get("backgrounds", [])[:16]
-    category = infer_theme_category(f"{theme} {beat.get('caption', '')} {beat.get('intent', '')}")
     scored: list[tuple[float, dict[str, Any]]] = []
     for asset in candidates:
         score = lightweight_asset_score(asset, keywords)
-        score += lightweight_category_background_bonus(category, asset)
+        score += lightweight_category_background_bonus(local_category, asset)
+        score += local_background_guard_score(local_category, asset, beat)
         if str(asset.get("id", "")) in avoid:
             score -= 1.2
         scored.append((score, asset))
@@ -262,15 +264,18 @@ def overlay_planner_tool(beat: dict[str, Any], motion: dict[str, Any], backgroun
 
 def overlay_category(theme: str, local_text: str, text: str) -> str:
     theme_category = infer_theme_category(theme)
-    if theme_category in {"street_food", "office", "exam", "rent"}:
-        if theme_category == "office" and is_workplace_context(f"{theme} {local_text}"):
+    theme_local = f"{theme} {local_text}"
+    if theme_category in {"street_food", "office", "exam", "rent", "career"}:
+        if theme_category == "office" and is_workplace_context(theme_local):
             return "office"
-        if theme_category == "street_food" and is_street_food_context(f"{theme} {local_text}"):
+        if theme_category == "street_food" and is_street_food_context(theme_local):
             return "street_food"
-        if theme_category == "exam" and is_exam_context(f"{theme} {local_text}"):
+        if theme_category == "exam" and is_exam_context(theme_local):
             return "exam"
-        if theme_category == "rent" and is_rent_context(f"{theme} {local_text}"):
+        if theme_category == "rent" and is_rent_context(theme_local):
             return "rent"
+        if theme_category == "career" and is_career_context(theme_local):
+            return "career"
     if is_street_food_context(text):
         return "street_food"
     if is_exam_context(text):
@@ -282,6 +287,43 @@ def overlay_category(theme: str, local_text: str, text: str) -> str:
     if is_career_context(text):
         return "career"
     return theme_category
+
+
+def local_scene_category(theme: str, beat: dict[str, Any]) -> str:
+    local_text = f"{beat.get('caption', '')} {beat.get('intent', '')}"
+    if is_street_food_context(local_text):
+        return "street_food"
+    category = infer_theme_category(local_text)
+    return category or infer_theme_category(theme)
+
+
+def scene_keyword_conflicts(keyword: str, category: str) -> bool:
+    text = str(keyword)
+    if is_street_food_context(text) and category != "street_food":
+        return True
+    conflicts = {
+        "career": ("出租屋", "房租", "押金", "考研", "考公", "自习", "图书馆", "烤肠", "小吃摊", "夜市"),
+        "office": ("出租屋", "房租", "押金", "考研", "考公", "自习", "图书馆", "烤肠", "小吃摊", "夜市"),
+        "exam": ("招聘", "面试", "HR", "会议室", "工位", "房租", "押金", "烤肠", "小吃摊", "夜市"),
+        "rent": ("招聘", "面试", "HR", "会议室", "考研", "考公", "自习", "图书馆", "烤肠", "小吃摊", "夜市"),
+        "street_food": ("招聘", "面试", "HR", "会议室", "自习", "图书馆", "出租屋"),
+    }.get(category, ())
+    return any(word in text for word in conflicts)
+
+
+def local_background_guard_score(category: str, asset: dict[str, Any], beat: dict[str, Any]) -> float:
+    text = f"{asset.get('id', '')} {asset.get('scene', '')} {asset.get('file', '')} {asset.get('description', '')}"
+    local_text = f"{beat.get('caption', '')} {beat.get('intent', '')}"
+    if is_street_food_context(text) and not is_street_food_context(local_text) and category != "street_food":
+        return -120.0
+    negative = {
+        "career": ("烤肠", "小吃摊", "夜市", "出租屋", "自习室", "图书馆"),
+        "office": ("烤肠", "小吃摊", "夜市", "出租屋", "自习室", "图书馆"),
+        "exam": ("招聘", "面试", "会议室", "办公室", "烤肠", "小吃摊", "出租屋"),
+        "rent": ("招聘", "面试", "会议室", "办公室", "考研", "考公", "烤肠", "小吃摊"),
+        "street_food": ("招聘", "面试", "会议室", "办公室", "自习室", "图书馆", "出租屋"),
+    }.get(category, ())
+    return -80.0 if any(word in text for word in negative) else 0.0
 
 
 def primary_overlay_for_context(category: str, role: str, caption: str, local_text: str, text: str) -> dict[str, Any] | None:
@@ -401,7 +443,7 @@ def throw_object_for_context(text: str, role: str, category: str = "") -> dict[s
         "street_food": ("price_tag" if any(word in text for word in ("降价", "买一送一", "特价", "卷")) else "sausage_skewer", "今日特价" if any(word in text for word in ("降价", "买一送一", "特价", "卷")) else "烤肠 x3"),
         "rent": ("bill_stack", "账单 -2400"),
         "exam": ("study_notes", "资料 x3"),
-        "office": ("meeting_invite", "会议+1"),
+        "office": office_throw_object(text, role),
         "career": career_throw_object(text, role),
     }
     if category in category_defaults:
@@ -422,7 +464,7 @@ def throw_object_for_context(text: str, role: str, category: str = "") -> dict[s
     if any(word in text for word in ("已读", "拒", "不回", "HR")):
         return throw_object_payload("reject_notice", "暂不合适")
     catalog: list[tuple[tuple[str, ...], str, str]] = [
-        (("房租", "租房", "押金", "中介", "账单"), "bill_stack", "账单 -2400"),
+        (("房租", "租房", "押金", "中介", "出租屋"), "bill_stack", "账单 -2400"),
         (("通勤", "地铁", "公交", "站台"), "metro_card", "通勤 2h"),
         (("考研", "考公", "上岸", "自习", "刷题", "申论", "资料"), "study_notes", "资料 x3"),
         (("考试", "准考证", "成绩"), "exam_ticket", "准考证"),
@@ -448,6 +490,18 @@ def career_throw_object(text: str, role: str) -> tuple[str, str]:
     return ("resume_stack", "简历 x3")
 
 
+def office_throw_object(text: str, role: str) -> tuple[str, str]:
+    if any(word in text for word in ("PPT", "汇报", "方案")):
+        return ("ppt_deck", "PPT x9")
+    if any(word in text for word in ("在吗", "待命", "在线", "下班")) or role in {"twist", "echo"}:
+        return ("meeting_invite", "老板：在吗")
+    if any(word in text for word in ("复盘", "同步")) or role in {"pressure", "escalation"}:
+        return ("meeting_invite", "再同步")
+    if any(word in text for word in ("周会", "早会")):
+        return ("meeting_invite", "9点周会")
+    return ("meeting_invite", "会议+1")
+
+
 def throw_object_payload(obj: str, label: str) -> dict[str, Any]:
     return {
         "type": "throw_object",
@@ -461,11 +515,11 @@ def throw_object_payload(obj: str, label: str) -> dict[str, Any]:
 
 
 def is_street_food_context(text: str) -> bool:
-    return any(word in text for word in ("烤肠", "香肠", "摆摊", "小吃摊", "夜市", "摊位", "摊车", "街边摊", "餐车", "冰粉"))
+    return any(word in text for word in ("烤肠", "香肠", "摆摊", "小吃摊", "夜市", "摊位", "摊车", "街边摊", "餐车", "冰粉", "street_food", "food_stall", "stall"))
 
 
 def is_rent_context(text: str) -> bool:
-    return any(word in text for word in ("租房", "房租", "押金", "合租", "中介", "通勤", "出租屋", "账单", "水电", "网费"))
+    return any(word in text for word in ("租房", "房租", "押金", "合租", "中介", "通勤", "出租屋", "水电", "网费"))
 
 
 def is_exam_context(text: str) -> bool:
@@ -951,7 +1005,7 @@ def object_for_theme(theme: str, beat: dict[str, Any]) -> str:
     text = f"{theme} {beat.get('caption', '')} {beat.get('intent', '')}"
     mapping = [
         (("烤肠", "香肠", "摊"), "sausage_skewer"),
-        (("房租", "押金", "账单", "租房"), "bill_stack"),
+        (("房租", "押金", "租房", "中介", "出租屋"), "bill_stack"),
         (("通勤", "地铁", "公交"), "metro_card"),
         (("考研", "考公", "自习", "资料"), "study_notes"),
         (("会议", "复盘", "同步", "老板"), "meeting_invite"),

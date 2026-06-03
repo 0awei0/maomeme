@@ -83,6 +83,7 @@ class CandidateRequest(BaseModel):
     theme: str
     sample_video_path: str | None = None
     use_doubao: bool = True
+    generation_mode: str = "agent"
     duration_mode: str = "short"
 
 
@@ -97,6 +98,7 @@ class SelectPlanRequest(BaseModel):
     candidate: ScriptCandidate
     sample_video_path: str | None = None
     use_doubao: bool = True
+    generation_mode: str = "agent"
     allow_ai_fill: bool = False
     duration_mode: str = "short"
 
@@ -107,6 +109,7 @@ class RevisePlanRequest(BaseModel):
     plan: MaoMemePlan | None = None
     candidate: ScriptCandidate | None = None
     use_doubao: bool = True
+    generation_mode: str = "agent"
     duration_mode: str = "short"
 
 
@@ -114,6 +117,7 @@ class SuggestRevisionRequest(BaseModel):
     theme: str
     plan: MaoMemePlan | None = None
     candidate: ScriptCandidate | None = None
+    generation_mode: str = "agent"
     duration_mode: str = "short"
 
 

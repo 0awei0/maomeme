@@ -54,7 +54,7 @@ The backend borrows ideas from `/Users/a1-6/Desktop/code/douyin/backend`, especi
 - Agents should decide creative structure and return structured JSON: script candidates, timeline slots, motion/background choices, clip ranges, transitions, dialogue, and overlay actions.
 - Agents should not directly read env files, execute arbitrary scripts, write FFmpeg commands, or generate free-form renderer code.
 - Dynamic Agent tools live as backend service functions, mainly `backend/app/services/agent_tools.py`.
-- Multi-round tool-call orchestration lives in `backend/app/services/agent_runtime.py`. Default `AGENT_RUNTIME=auto` tries Ark SDK first; OpenAI Agents SDK is available as `AGENT_RUNTIME=openai_agents` and can use Ark `ARK_API_KEY`/`ARK_BASE_URL` via `OPENAI_AGENTS_PROVIDER=ark`.
+- Multi-round tool-call orchestration lives in `backend/app/services/agent_runtime.py`. Default `AGENT_RUNTIME=auto` uses Ark SDK; `AGENT_RUNTIME=workflow`/`local`/`none` is the only non-Agent fixed workflow fallback.
 - Repo scripts under `scripts/` are fixed workflow executors:
   - `scripts/index-assets.mjs`: rebuilds `data/assets-index.json`.
   - `scripts/clean-background-green-bands.py`: crops obvious green-screen bands from background images.
@@ -67,15 +67,17 @@ The backend borrows ideas from `/Users/a1-6/Desktop/code/douyin/backend`, especi
 
 ## Parallelism
 
-- Use async Doubao clients for network Agent calls. The default frontend candidate stream uses one coordinated streaming request for 3 candidates to reduce duplicate ideas.
+- Use async Doubao clients for network Agent calls. The default frontend candidate stream first shows local preview cards, then runs three differentiated Ark streaming candidate calls concurrently and replaces the previews with real Agent results.
 - Non-stream batch candidate generation may run multiple angle prompts concurrently, bounded by `ARK_AGENT_CONCURRENCY`.
 - Storyboard/material matching may pre-match slots concurrently, bounded by `STORYBOARD_MATCH_CONCURRENCY`, then preserve timeline order for transitions and asset de-duplication.
+- ShotPlannerAgent should use `shot_bundle_tool` as the fast path for per-shot cat/background/clip/overlay/packaging/critic planning, then call single-purpose tools only when a field needs revision.
 - Rendering should keep segment-level parallelism via `RENDER_SEGMENT_CONCURRENCY`; within each segment, independent helpers such as caption PNG and overlay frames can run in parallel before FFmpeg composition.
 
 ## Agent Defaults
 
 - Normal frontend/API generation should default to the real Doubao Agent path.
-- Use deterministic local presets only when `use_doubao=false` is explicitly provided, when Doubao credentials are unavailable, or when the real Agent times out/errors and a clear fallback message is returned.
+- Keep two user-facing generation modes: `agent` for real Ark Agent optimization, and `workflow` for deterministic stable generation. Use deterministic local presets when `generation_mode=workflow`, when `use_doubao=false` is explicitly provided, when Doubao credentials are unavailable, or when the real Agent times out/errors and a clear fallback message is returned.
 - Candidate generation should use the async streaming Ark client (`AsyncArk` with `stream=True`) so the UI can show incremental Agent output instead of waiting for a single blocking response.
-- Per-shot planning should use real tool-calling when credentials are configured: ShotPlannerAgent calls asset/background/cat/clip/overlay/HyperFrames/critic tools and returns structured JSON; fixed workflow is fallback.
+- Per-shot planning should first stream a workflow quick draft, then use real tool-calling when credentials are configured: ShotPlannerAgent calls the bundled shot planning tool or individual asset/background/cat/clip/overlay/HyperFrames/critic tools and returns structured JSON patches; fixed workflow remains the stable fallback.
+- Do not let slow per-shot Agent calls block the user indefinitely. Respect `SHOT_AGENT_SOFT_TIMEOUT_SEC`: returned patches are applied, missing patches keep the quick workflow draft.
 - Do not hard-code model IDs for speed tests. Use `ARK_MODEL` for the formal/pro model and `ARK_LITE_MODEL` plus `ARK_MODEL_MODE=lite` for fast testing.

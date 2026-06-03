@@ -1,17 +1,18 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { AlertTriangle, CheckCircle2, Clapperboard, Download, Film, Loader2, Play, RefreshCw, Wand2 } from 'lucide-react';
 import './styles.css';
 
 const query = new URLSearchParams(window.location.search);
 const API_BASE = query.get('api') || import.meta.env.VITE_API_BASE || 'http://localhost:8000';
-const USE_AGENT = query.get('agent') !== 'false';
+const initialGenerationMode = query.get('agent') === 'false' ? 'workflow' : (query.get('mode') || 'agent');
 const defaultTheme = '大学生工作难找，投简历像进黑洞，岗位要求越来越离谱';
 
 function App() {
   const [theme, setTheme] = useState(defaultTheme);
   const [instruction, setInstruction] = useState('更讽刺一点，但结尾温暖一点');
   const [durationMode, setDurationMode] = useState('short');
+  const [generationMode, setGenerationMode] = useState(initialGenerationMode === 'workflow' ? 'workflow' : 'agent');
   const [candidates, setCandidates] = useState([]);
   const [selectedCandidate, setSelectedCandidate] = useState(null);
   const [plan, setPlan] = useState(null);
@@ -22,6 +23,7 @@ function App() {
   const [draftCandidates, setDraftCandidates] = useState([]);
   const [storyboardStatus, setStoryboardStatus] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
+  const candidateRunRef = useRef(0);
 
   const timeline = plan?.timeline || [];
   const videoUrl = job?.video_url ? `${API_BASE}${job.video_url}` : '';
@@ -46,6 +48,8 @@ function App() {
   }
 
   async function generateCandidates() {
+    const runId = candidateRunRef.current + 1;
+    candidateRunRef.current = runId;
     setLoading('candidates');
     setError('');
     setJob(null);
@@ -58,9 +62,10 @@ function App() {
       let rawAgentText = '';
       const data = await streamRequest('/api/maomeme/candidates-stream', {
         theme,
-        use_doubao: USE_AGENT,
+        ...modePayload(generationMode),
         duration_mode: durationMode
       }, (event) => {
+        if (candidateRunRef.current !== runId) return;
         if (event.type === 'agent_delta' && event.text) {
           rawAgentText += event.text;
           setDraftCandidates((items) => normalizeCandidateList(mergeDraftCandidates(items, extractCandidateDrafts(rawAgentText)), { fillPlaceholders: true }));
@@ -69,20 +74,23 @@ function App() {
           setDraftCandidates((items) => replaceCandidateByPosition(items, { ...event.candidate, streaming: true }));
         }
         if (event.type === 'candidate' && event.candidate) {
-          setCandidates((items) => normalizeCandidateList(upsertById(items, event.candidate)));
+          setCandidates((items) => replaceCandidateByPosition(items, { ...event.candidate, streaming: false }));
           setDraftCandidates((items) => replaceCandidateByPosition(items, { ...event.candidate, streaming: false }));
         }
       });
+      if (candidateRunRef.current !== runId) return;
       setCandidates(normalizeCandidateList(data.candidates || []));
       setSelectedCandidate(null);
       setPlan(null);
       loadSuggestions({ candidate: data.candidates?.[0] || null, plan: null });
     } catch (err) {
-      setError(err.message);
+      if (candidateRunRef.current === runId) setError(err.message);
     } finally {
-      setLoading('');
-      setDraftCandidates([]);
-      window.setTimeout(() => setStreamStatus(null), 900);
+      if (candidateRunRef.current === runId) {
+        setLoading('');
+        setDraftCandidates([]);
+        window.setTimeout(() => setStreamStatus(null), 900);
+      }
     }
   }
 
@@ -125,6 +133,7 @@ function App() {
   }
 
   async function selectCandidate(candidate) {
+    candidateRunRef.current += 1;
     setLoading(`select-${candidate.id}`);
     setError('');
     setJob(null);
@@ -134,7 +143,7 @@ function App() {
       const data = await streamRequest('/api/maomeme/select-stream', {
         theme,
         candidate,
-        use_doubao: USE_AGENT,
+        ...modePayload(generationMode),
         duration_mode: durationMode
       }, (event) => {
         setStoryboardStatus({ message: event.message || '分镜生成中', progress: event.progress || 0 });
@@ -144,13 +153,13 @@ function App() {
         if (event.type === 'slot' && event.slot) {
           setPlan((current) => ({
             ...(current || { id: 'streaming-plan', theme }),
-            timeline: upsertById(current?.timeline || [], normalizeSlot(event.slot))
+            timeline: upsertTimelineById(current?.timeline || [], normalizeSlot(event.slot))
           }));
         }
         if (event.type === 'slot_patch' && event.slot) {
           setPlan((current) => ({
             ...(current || { id: 'streaming-plan', theme }),
-            timeline: upsertById(current?.timeline || [], normalizeSlot(event.slot))
+            timeline: upsertTimelineById(current?.timeline || [], normalizeSlot(event.slot))
           }));
         }
       }, { updateMainStatus: false });
@@ -182,7 +191,7 @@ function App() {
         instruction,
         plan,
         candidate: candidateForRevision,
-        use_doubao: USE_AGENT,
+        ...modePayload(generationMode),
         duration_mode: durationMode
       });
       setSelectedCandidate(data.candidate);
@@ -208,6 +217,7 @@ function App() {
         theme,
         candidate,
         plan: activePlan,
+        generation_mode: generationMode,
         duration_mode: durationMode
       });
       setSuggestions(data.suggestions || []);
@@ -305,6 +315,18 @@ function App() {
                   className={durationMode === option.value ? 'active' : ''}
                   key={option.value}
                   onClick={() => setDurationMode(option.value)}
+                  type="button"
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+            <div className="segmented" aria-label="生成模式">
+              {generationModes.map((option) => (
+                <button
+                  className={generationMode === option.value ? 'active' : ''}
+                  key={option.value}
+                  onClick={() => setGenerationMode(option.value)}
                   type="button"
                 >
                   {option.label}
@@ -462,6 +484,18 @@ const durationOptions = [
   { value: 'minute', label: '1分钟' }
 ];
 
+const generationModes = [
+  { value: 'agent', label: 'Agent 自主' },
+  { value: 'workflow', label: 'Workflow 稳定' }
+];
+
+function modePayload(mode) {
+  return {
+    generation_mode: mode,
+    use_doubao: mode === 'agent'
+  };
+}
+
 function expectedDuration(script = []) {
   return Math.round(script.reduce((total, item) => total + Number(item.duration || 0), 0));
 }
@@ -506,8 +540,11 @@ function upsertById(items = [], item) {
   const id = item?.id;
   if (!id) return items;
   const exists = items.some((entry) => entry.id === id);
-  if (exists) return items.map((entry) => (entry.id === id ? item : entry));
-  return [...items, item];
+  return exists ? items.map((entry) => (entry.id === id ? item : entry)) : [...items, item];
+}
+
+function upsertTimelineById(items = [], item) {
+  return upsertById(items, item).sort((a, b) => Number(a.start || 0) - Number(b.start || 0));
 }
 
 function displayCandidates({ loading, candidates = [], draftCandidates = [] }) {
@@ -517,6 +554,11 @@ function displayCandidates({ loading, candidates = [], draftCandidates = [] }) {
       const index = candidatePosition(candidate);
       if (index >= 0 && index < 3) {
         merged[index] = candidate;
+      } else {
+        const emptyIndex = merged.findIndex((item) => item.streaming && String(item.id || '').startsWith('draft-'));
+        if (emptyIndex >= 0) {
+          merged[emptyIndex] = candidate;
+        }
       }
     }
     return normalizeCandidateList(merged, { fillPlaceholders: true });
@@ -567,6 +609,7 @@ function candidatePosition(candidate = {}) {
 function sanitizeCandidate(candidate = {}) {
   return {
     ...candidate,
+    streaming: Boolean(candidate.streaming),
     script: Array.isArray(candidate.script) ? candidate.script : [],
     notes: publicCandidateNotes(candidate.notes || [])
   };
