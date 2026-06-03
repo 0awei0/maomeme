@@ -11,12 +11,12 @@
 - 素材与文本库：`assets/` 放猫动画和背景图，`data/text-materials/` 放社会现实主题素材，`data/assets-index.json` 是素材索引。
 - 预制场景：`data/preset-scenes/social-scenes.json` 维护招聘会、会议室、自习室、出租屋、家庭预算桌、通勤站台等高频社会现实背景语义。
 - 渲染：默认使用 FFmpeg + Pillow 字幕图，保留猫动画原素材声音；猫素材可先预抠绿生成本地透明缓存，HyperFrames 作为后续 Agent 友好的 HTML 包装增强。
-- Agent 策略：编剧 Agent 默认走豆包异步流式生成候选，导演 Agent 拆分镜，素材导演 Agent 匹配猫动画/背景，质检 Agent 检查文案和素材是否冲突。
-- 并行策略：候选剧本默认用一次协调式流式请求生成 3 个差异化方案，避免三路请求重复；批量非流式接口可按角度并发生成。分镜素材预匹配、字幕/overlay 生成、视频片段渲染会并行执行，再按时间线顺序合成。
+- Agent 策略：编剧 Agent 默认走豆包异步流式生成候选；选择剧本后，ShotPlannerAgent 会对每个分镜并发调用白名单工具，决定猫素材、背景、裁剪、动态贴图、字幕包装和 HyperFrames preset，CriticAgent 最多修订 2 轮，AssemblerAgent 做全片去重和一致性检查。
+- 并行策略：候选剧本默认用一次协调式流式请求生成 3 个差异化方案，避免三路请求重复；批量非流式接口可按角度并发生成。分镜 Agent、素材工具、字幕/overlay 生成、视频片段渲染会并行执行，再按时间线顺序合成和展示。
 
 正常前端请求默认走真实 Agent。只有显式传 `use_doubao=false`，或访问前端调试参数 `?agent=false`，才会走本地预设，主要用于测试。无 `ARK_API_KEY` 或真实 Agent 超时时会回退本地 fallback，保证演示闭环可跑；配置 `backend/.env` 后可走豆包。真实 `.env` 不要提交，也不要打印或复制其中内容。
 
-模型速度可以通过环境变量切换：`ARK_MODEL` 放正式/pro 模型，`ARK_LITE_MODEL` 放快测/lite 模型，测试时设置 `ARK_MODEL_MODE=lite` 即可；未配置 lite 时会自动继续使用 `ARK_MODEL`。
+模型速度可以通过环境变量切换：`ARK_MODEL` 放正式/pro 模型，`ARK_LITE_MODEL` 放快测/lite 模型，测试时设置 `ARK_MODEL_MODE=lite` 即可；未配置 lite 时会自动继续使用 `ARK_MODEL`。目前 Ark SDK 和 OpenAI Agents SDK 都可以用 Ark API key/base URL 跑工具调用；本项目默认 `AGENT_RUNTIME=auto`，优先 Ark SDK，OpenAI Agents SDK 作为可切换后备。
 
 ## 完整 Workflow
 
@@ -35,7 +35,7 @@
 
 目前建议保留“Agent + 固定 workflow”的混合架构，而不是让 Agent 直接操控所有脚本。
 
-- Agent 负责创意决策：生成剧本、拆分镜、选择素材、决定猫素材裁剪、转场、双猫对话和 overlay 动作。
+- Agent 负责创意决策：生成剧本、拆分镜、选择素材、决定猫素材裁剪、转场、双猫对话、动态 overlay 和 HyperFrames 包装。
 - 固定 workflow 负责稳定执行：读取索引、校验计划、生成字幕图、生成 overlay 帧、调用 FFmpeg/HyperFrames 合成视频。
 - 这样做的好处是创意可变，渲染可控；Agent 输出结构化 JSON，渲染器只执行可验证字段，避免每次生成一段不可控代码。
 
@@ -44,6 +44,7 @@
 | 文件 | 用途 | 类型 |
 | --- | --- | --- |
 | `backend/app/services/agent_tools.py` | 素材检索、裁剪规划、转场规划、overlay 规划、背景补图决策 | Agent 工具函数 |
+| `backend/app/services/agent_runtime.py` | Ark/OpenAI Agents SDK 可切换的多轮工具调用 runtime | Agent 编排 |
 | `scripts/index-assets.mjs` | 扫描猫动画和背景描述，生成 `data/assets-index.json` | 固定 workflow |
 | `scripts/clean-background-green-bands.py` | 裁掉生成背景图底部误出现的绿幕色块 | 固定素材清理 |
 | `scripts/preprocess-cat-green-screen.mjs` | 把猫绿幕 mp4 预处理成本地透明 mov 缓存 | 固定素材清理 |
@@ -52,6 +53,7 @@
 | `scripts/make-overlay-frames.py` | 生成飞物件、盖章、弹窗等 overlay 帧 | 渲染辅助脚本 |
 | `backend/scripts/smoke_test.py` | 后端 API smoke test | 手动测试 |
 | `backend/scripts/seedream_smoke.py` | Seedream 生图 smoke test | 手动测试 |
+| `backend/scripts/smoke_agent_runtimes.py` | 对比 Ark SDK 与 OpenAI Agents SDK 工具调用 | 手动测试 |
 | `backend/scripts/generate_preset_backgrounds.py` | 用 Seedream 生成高频预制背景 | 手动素材补全 |
 | `backend/scripts/generate_plan.py` | 命令行生成 plan | 手动 demo |
 
@@ -60,6 +62,10 @@
 | 变量 | 默认 | 说明 |
 | --- | --- | --- |
 | `ARK_AGENT_CONCURRENCY` | `3` | 非流式批量候选的 Doubao 并发上限 |
+| `AGENT_RUNTIME` | `auto` | `auto` 优先 Ark SDK，`ark` 固定 Ark，`openai_agents` 固定 OpenAI Agents SDK，`workflow` 只走本地流程 |
+| `OPENAI_AGENTS_PROVIDER` | `auto` | OpenAI Agents SDK 的模型提供方，`auto` 可用 OpenAI key 或 Ark key，`ark` 强制用 Ark base URL |
+| `SHOT_AGENT_CONCURRENCY` | `6` | 分镜 ShotPlannerAgent 并发上限 |
+| `SHOT_AGENT_MAX_REVISIONS` | `2` | CriticAgent 每个分镜最多修订轮数 |
 | `STORYBOARD_MATCH_CONCURRENCY` | `6` | 分镜素材预匹配并发上限 |
 | `RENDER_SEGMENT_CONCURRENCY` | `2` | 视频片段渲染并发上限 |
 
@@ -200,6 +206,22 @@ Seedream 背景生成 smoke test，成功后会写入 `assets/generated/backgrou
 cd backend
 conda run -n cv python scripts/seedream_smoke.py
 ```
+
+Agent runtime 对比 smoke test，不会打印 API key，只输出是否配置、provider、耗时和是否拿到分镜 JSON：
+
+```bash
+cd backend
+conda run -n cv python scripts/smoke_agent_runtimes.py --provider ark
+conda run -n cv python scripts/smoke_agent_runtimes.py --provider openai_agents --openai-provider ark
+```
+
+当前本地测试结论：Ark SDK 和 OpenAI Agents SDK 通过 Ark base URL 都能完成工具调用；速度接近，Ark SDK 日志更干净，所以默认保留 Ark SDK。需要验证 OpenAI Agents SDK 时设置 `AGENT_RUNTIME=openai_agents`。
+
+lite/pro 单镜头工具调用实测：
+
+- `ARK_MODEL_MODE=pro`：约 56 秒，结构完整，overlay 2 个。
+- `ARK_MODEL_MODE=lite`：约 45 秒，结构完整，overlay 2 个。
+- 建议前端交互和日常调试默认用 lite；最终批量高质量生成或重要样片再切 pro。
 
 批量生成高频预制背景，成功后会写入 `assets/generated/backgrounds/preset-*` 并自动刷新索引：
 

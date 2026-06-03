@@ -160,12 +160,17 @@ def main() -> None:
     subtitle = args.subtitle.strip()
     dialogue = parse_dialogue(args.dialogue)
     if args.layout == "dialogue" and len(dialogue) >= 2:
+        compact_dialogue = args.show_subtitle.lower() == "false"
         label_font, label_lines = fit_wrapped_font(draw, title, args.width - 180, 1, 30, min_size=22)
         title_box = (90, 28, args.width - 90, 84)
         rounded_box(draw, title_box, (0, 0, 0, 118))
         draw_multiline_center(draw, label_lines, 54, args.width, label_font, (255, 255, 255, 245), stroke_width=3)
-        draw_bubble(draw, dialogue[0].get("text", ""), (48, 140, 418, 218), "left")
-        draw_bubble(draw, dialogue[1].get("text", ""), (542, 140, 912, 218), "right")
+        if compact_dialogue:
+            draw_bubble(draw, dialogue[0].get("text", ""), (42, 96, 420, 162), "left")
+            draw_bubble(draw, dialogue[1].get("text", ""), (540, 96, 918, 162), "right")
+        else:
+            draw_bubble(draw, dialogue[0].get("text", ""), (48, 140, 418, 218), "left")
+            draw_bubble(draw, dialogue[1].get("text", ""), (542, 140, 912, 218), "right")
     else:
         title_font, title_lines = fit_wrapped_font(draw, title, args.width - 120, 2, 44, min_size=26)
         title_box = (44, 24, args.width - 44, 122)

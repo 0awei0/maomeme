@@ -54,6 +54,7 @@ The backend borrows ideas from `/Users/a1-6/Desktop/code/douyin/backend`, especi
 - Agents should decide creative structure and return structured JSON: script candidates, timeline slots, motion/background choices, clip ranges, transitions, dialogue, and overlay actions.
 - Agents should not directly read env files, execute arbitrary scripts, write FFmpeg commands, or generate free-form renderer code.
 - Dynamic Agent tools live as backend service functions, mainly `backend/app/services/agent_tools.py`.
+- Multi-round tool-call orchestration lives in `backend/app/services/agent_runtime.py`. Default `AGENT_RUNTIME=auto` tries Ark SDK first; OpenAI Agents SDK is available as `AGENT_RUNTIME=openai_agents` and can use Ark `ARK_API_KEY`/`ARK_BASE_URL` via `OPENAI_AGENTS_PROVIDER=ark`.
 - Repo scripts under `scripts/` are fixed workflow executors:
   - `scripts/index-assets.mjs`: rebuilds `data/assets-index.json`.
   - `scripts/clean-background-green-bands.py`: crops obvious green-screen bands from background images.
@@ -76,4 +77,5 @@ The backend borrows ideas from `/Users/a1-6/Desktop/code/douyin/backend`, especi
 - Normal frontend/API generation should default to the real Doubao Agent path.
 - Use deterministic local presets only when `use_doubao=false` is explicitly provided, when Doubao credentials are unavailable, or when the real Agent times out/errors and a clear fallback message is returned.
 - Candidate generation should use the async streaming Ark client (`AsyncArk` with `stream=True`) so the UI can show incremental Agent output instead of waiting for a single blocking response.
+- Per-shot planning should use real tool-calling when credentials are configured: ShotPlannerAgent calls asset/background/cat/clip/overlay/HyperFrames/critic tools and returns structured JSON; fixed workflow is fallback.
 - Do not hard-code model IDs for speed tests. Use `ARK_MODEL` for the formal/pro model and `ARK_LITE_MODEL` plus `ARK_MODEL_MODE=lite` for fast testing.

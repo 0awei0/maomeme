@@ -137,13 +137,29 @@ def render_with_hyperframes(root: Path, plan_path: Path, output_path: Path) -> N
 async def animate_render_progress(status: RenderJobStatus, render_task: asyncio.Task, slot_count: int) -> None:
     started = time.monotonic()
     estimated_seconds = max(10.0, slot_count * 4.5)
+    settings = get_settings()
+    render_id = status.job_id
+    runtime_dir = settings.PUBLIC_OUTPUT_DIR / "runtime" / render_id
     while not render_task.done():
         elapsed = time.monotonic() - started
         eased = min(0.96, elapsed / estimated_seconds)
-        status.progress = max(status.progress, min(0.86, 0.35 + eased * 0.48))
+        file_progress = render_file_progress(runtime_dir, slot_count)
+        status.progress = max(status.progress, min(0.86, 0.35 + max(eased, file_progress) * 0.48))
         status.message = render_progress_message(status.progress)
         await asyncio.sleep(0.7)
     await render_task
+
+
+def render_file_progress(runtime_dir: Path, slot_count: int) -> float:
+    if slot_count <= 0 or not runtime_dir.exists():
+        return 0.0
+    segments = len(list((runtime_dir / "segments").glob("*.mp4"))) if (runtime_dir / "segments").exists() else 0
+    captions = len(list((runtime_dir / "captions").glob("*.png"))) if (runtime_dir / "captions").exists() else 0
+    overlays = sum(1 for _ in (runtime_dir / "overlays").glob("*/*.png")) if (runtime_dir / "overlays").exists() else 0
+    segment_ratio = min(1.0, segments / max(1, slot_count))
+    caption_ratio = min(1.0, captions / max(1, slot_count))
+    overlay_ratio = min(1.0, overlays / max(1, slot_count * 20))
+    return max(segment_ratio, caption_ratio * 0.45, overlay_ratio * 0.35)
 
 
 def render_progress_message(progress: float) -> str:

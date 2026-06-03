@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import asyncio
+import re
 import time
 from pathlib import Path
 from typing import Any
@@ -16,6 +17,12 @@ from .agent_tools import (
     overlay_planner_tool,
     transition_planner_tool,
 )
+from .agent_runtime import (
+    enabled_runtime_order,
+    run_assembler_agent,
+    run_critic_agent,
+    run_shot_agent,
+)
 from .asset_index import assets_summary, load_assets, pick_background, pick_motion, rank_assets, ref
 from .doubao_client import (
     ark_available,
@@ -25,6 +32,7 @@ from .doubao_client import (
 )
 from .text_materials import matching_preset_scenes, topic_for_agent
 from .viral_structure_library import (
+    infer_theme_category,
     viral_reference_notes,
     viral_reference_prompt,
     viral_references_for_theme,
@@ -326,10 +334,13 @@ async def plan_from_candidate(
     viral_refs = viral_references_for_theme(theme, text_context)
     script = candidate_to_script(candidate)
     mode = normalize_duration_mode(duration_mode)
-    script["beats"] = expand_beats_for_duration(script.get("beats", []), mode, theme, text_context)
+    script["beats"] = select_beats_for_mode(script.get("beats", []), mode, theme, text_context)
     beats = director_agent(script, theme, mode)
     apply_viral_patterns_to_beats(beats, candidate, viral_refs)
-    timeline, notes = casting_and_validator_agents(beats, theme, index)
+    if use_doubao and enabled_runtime_order():
+        timeline, notes = await casting_and_validator_agents_agentic(beats, theme, index)
+    else:
+        timeline, notes = casting_and_validator_agents(beats, theme, index)
     plan = MaoMemePlan(
         id=f"maomeme-{int(time.time())}",
         theme=theme,
@@ -366,7 +377,7 @@ async def storyboard_stream_from_candidate(
     viral_refs = viral_references_for_theme(theme, text_context)
     script = candidate_to_script(candidate)
     mode = normalize_duration_mode(duration_mode)
-    script["beats"] = expand_beats_for_duration(script.get("beats", []), mode, theme, text_context)
+    script["beats"] = select_beats_for_mode(script.get("beats", []), mode, theme, text_context)
     beats = director_agent(script, theme, mode)
     apply_viral_patterns_to_beats(beats, candidate, viral_refs)
     source_task = asyncio.create_task(_source_structure(sample_video_path, use_doubao, prefer_fast=sample_video_path is None))
@@ -381,9 +392,11 @@ async def storyboard_stream_from_candidate(
     }
     timeline: list[dict[str, Any]] = []
     notes: list[str] = []
-    async for event in casting_and_validator_agents_stream(beats, theme, index, progress_start=0.25, progress_span=0.62):
+    async for event in casting_and_validator_agents_stream(beats, theme, index, progress_start=0.25, progress_span=0.62, use_agent=use_doubao):
         if event.get("type") == "slot" and event.get("slot"):
             timeline.append(event["slot"])
+        if event.get("type") == "slot_patch" and event.get("slot"):
+            timeline = [event["slot"] if slot.get("id") == event["slot"].get("id") else slot for slot in timeline]
         if event.get("type") == "notes":
             notes.extend(event.get("notes", []))
         yield event
@@ -660,7 +673,7 @@ def expand_beats_for_duration(beats: list[Any], mode: str, theme: str, text_cont
     normalized = [(role, caption, intent) for role, caption, intent in beats]
     target = {"short": 4, "medium": 6, "minute": 8}[normalize_duration_mode(mode)]
     if len(normalized) >= target:
-        return normalized[:target]
+        return select_representative_beats(normalized, target)
 
     topic = text_context or {}
     tensions = topic.get("tensions") or []
@@ -680,6 +693,86 @@ def expand_beats_for_duration(beats: list[Any], mode: str, theme: str, text_cont
         insert_at = max(1, len(normalized) - 1)
         normalized.insert(insert_at, (role, clean_caption(caption), intent))
     return normalized[:target]
+
+
+def select_beats_for_mode(beats: list[Any], mode: str, theme: str, text_context: dict[str, Any] | None = None) -> list[tuple[str, str, str]]:
+    normalized = expand_beats_for_duration(beats, mode, theme, text_context)
+    target = {"short": 4, "medium": 6, "minute": 8}[normalize_duration_mode(mode)]
+    if len(normalized) > target:
+        return select_representative_beats(normalized, target)
+    return normalized
+
+
+def select_representative_beats(beats: list[tuple[str, str, str]], target: int) -> list[tuple[str, str, str]]:
+    if len(beats) <= target:
+        return beats
+    if target <= 4:
+        return select_short_arc(beats, target)
+    priority = [
+        {"hook", "opening", "start"},
+        {"setup"},
+        {"pressure", "proof", "escalation"},
+        {"twist"},
+        {"echo"},
+        {"punchline", "ending", "cta"},
+    ]
+    selected: list[tuple[str, str, str]] = []
+    used: set[int] = set()
+
+    def add_index(index: int) -> None:
+        if 0 <= index < len(beats) and index not in used and len(selected) < target:
+            selected.append(beats[index])
+            used.add(index)
+
+    for roles in priority:
+        if len(selected) >= target:
+            break
+        if roles & {"punchline", "ending", "cta"} and target <= 4:
+            continue
+        for index, beat in enumerate(beats):
+            if beat[0] in roles:
+                add_index(index)
+                break
+
+    if target <= 4:
+        add_index(next((idx for idx, beat in reversed(list(enumerate(beats))) if beat[0] in {"punchline", "ending", "cta"}), len(beats) - 1))
+    while len(selected) < target:
+        gap_index = round((len(beats) - 1) * len(selected) / max(1, target - 1))
+        add_index(gap_index)
+        if len(selected) < target and all(index in used for index in range(len(beats))):
+            break
+        for index in range(len(beats)):
+            if len(selected) >= target:
+                break
+            add_index(index)
+    selected.sort(key=lambda beat: beats.index(beat))
+    return selected[:target]
+
+
+def select_short_arc(beats: list[tuple[str, str, str]], target: int) -> list[tuple[str, str, str]]:
+    arc_roles = [
+        {"hook", "opening", "start"},
+        {"setup"},
+        {"pressure", "proof", "escalation", "twist"},
+        {"punchline", "ending", "cta"},
+    ]
+    selected: list[tuple[str, str, str]] = []
+    used: set[int] = set()
+    for roles in arc_roles[:target]:
+        for index, beat in enumerate(beats):
+            if index not in used and beat[0] in roles:
+                selected.append(beat)
+                used.add(index)
+                break
+    if len(selected) < target:
+        for index in [0, 1, len(beats) - 2, len(beats) - 1]:
+            if 0 <= index < len(beats) and index not in used:
+                selected.append(beats[index])
+                used.add(index)
+            if len(selected) >= target:
+                break
+    selected.sort(key=lambda beat: beats.index(beat))
+    return selected[:target]
 
 
 def sharpen_caption(text: str) -> str:
@@ -716,14 +809,18 @@ def first_text(items: list[Any]) -> str:
 
 
 def better_punchline_for_theme(theme: str) -> str:
-    if any(word in theme for word in ("工作", "岗位", "简历", "面试", "就业")):
-        return "猫先把规则看明白"
-    if any(word in theme for word in ("上班", "加班", "会议", "内卷", "KPI")):
-        return "猫把在吗设成免打扰"
+    if any(word in theme for word in ("烤肠", "香肠", "摆摊", "小吃摊", "夜市", "地摊")):
+        return "猫改卖情绪价值"
+    if any(word in theme for word in ("租房", "房租", "押金", "合租", "通勤", "中介")):
+        return "猫先把预算摊开谈"
     if any(word in theme for word in ("考研", "考公", "上岸", "考试")):
         return "猫决定先选一条路"
+    if any(word in theme for word in ("上班", "加班", "会议", "内卷", "KPI")):
+        return "猫把在吗设成免打扰"
     if any(word in theme for word in ("结婚", "彩礼", "买房", "房")):
         return "猫先学会好好谈条件"
+    if any(word in theme for word in ("工作", "岗位", "简历", "面试", "就业")):
+        return "猫先把规则看明白"
     return "猫先把今天过明白"
 
 
@@ -955,6 +1052,10 @@ def screenwriter_agent(
 
 
 def contextual_scripts(theme: str, topic: dict[str, Any]) -> list[dict[str, Any]]:
+    specific = specific_contextual_scripts(theme)
+    if specific:
+        return specific
+
     beat_seed = topic.get("beat_seed") or {}
     assets = topic.get("preferred_assets") or {}
     title = topic.get("title", "")
@@ -1011,6 +1112,139 @@ def contextual_scripts(theme: str, topic: dict[str, Any]) -> list[dict[str, Any]
     ]
 
 
+def specific_contextual_scripts(theme: str) -> list[dict[str, Any]]:
+    if any(word in theme for word in ("烤肠", "香肠", "摆摊", "小吃摊", "夜市", "地摊", "餐车")):
+        scene = ["street_food_stall", "烤肠摊", "夜市摊位", "小吃摊", "real_street"]
+        return [
+            {
+                "name": "校门口小摊也内卷版",
+                "beats": [
+                    ("hook", "校门口烤肠开张", "市井场景开场"),
+                    ("setup", "隔壁也挂买一送一", "摆摊内卷具体化"),
+                    ("pressure", "摊位费先排队扣钱", "现实成本压力"),
+                    ("twist", "顾客问能不能赊账", "荒诞反差"),
+                    ("punchline", "猫改卖情绪价值", "不把摆摊当万能解法"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["烤肠", "摆摊", "小吃摊", "夜市", "摊位费", "内卷"],
+                "emotion": ["震惊", "碎碎念", "委屈", "哭", "跳舞"],
+            },
+            {
+                "name": "烤肠摊成本账本版",
+                "beats": [
+                    ("hook", "第一根烤肠还没卖", "开场反差"),
+                    ("setup", "摊位费先来打招呼", "成本先到"),
+                    ("pressure", "隔壁又降一块钱", "竞争升级"),
+                    ("twist", "猫发现自己也在打工", "结构转折"),
+                    ("punchline", "今晚先卖给同学猫", "温和收束"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["烤肠", "摆摊", "摊位费", "夜市"],
+                "emotion": ["震惊", "电脑", "哭", "委屈", "可爱"],
+            },
+            {
+                "name": "夜市双猫对话版",
+                "beats": [
+                    ("hook", "小摊灯刚亮起来", "场景 hook"),
+                    ("setup", "左边烤肠右边冰粉", "具体摊位"),
+                    ("pressure", "大家都写今日特价", "内卷升级"),
+                    ("twist", "猫开始卖下班安慰", "反差梗"),
+                    ("punchline", "同学买的不是烤肠", "情绪价值收束"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["烤肠", "冰粉", "夜市", "小吃摊"],
+                "emotion": ["探头", "碎碎念", "委屈", "震惊", "跳舞"],
+            },
+        ]
+    if any(word in theme for word in ("租房", "房租", "押金", "合租", "通勤", "中介", "隔断间")):
+        scene = ["rental_room", "出租屋", "building_interior", "real_transit_station", "real_city"]
+        return [
+            {
+                "name": "工资到账就被房租截胡版",
+                "beats": [
+                    ("hook", "工资刚到账", "生活账单开场"),
+                    ("setup", "房租先扣走一半", "具体成本"),
+                    ("pressure", "押金中介通勤排队", "压力叠加"),
+                    ("twist", "猫发现省钱也要成本", "现实转折"),
+                    ("punchline", "猫先把预算摊开谈", "温和收束"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["租房", "房租", "押金", "通勤", "工资", "账单"],
+                "emotion": ["震惊", "电脑", "委屈", "哭", "可爱"],
+            },
+            {
+                "name": "合租账单谈判版",
+                "beats": [
+                    ("hook", "账单比猫先到家", "反差开场"),
+                    ("setup", "水电网费一起冒头", "账单具体化"),
+                    ("pressure", "通勤每天吞掉两小时", "时间成本"),
+                    ("twist", "室友也在算同一笔账", "群体共鸣"),
+                    ("punchline", "两只猫先定公共预算", "现实解决一小步"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["合租", "账单", "通勤", "预算"],
+                "emotion": ["探头", "冷漠", "委屈", "碎碎念", "可爱"],
+            },
+            {
+                "name": "离公司远一点便宜版",
+                "beats": [
+                    ("hook", "便宜房源在地图边缘", "空间反差"),
+                    ("setup", "房租少了通勤长了", "取舍具体化"),
+                    ("pressure", "早八地铁先把猫压扁", "现实压力"),
+                    ("twist", "省下的钱买了咖啡", "反差转折"),
+                    ("punchline", "猫决定先睡够再说", "轻收束"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["租房", "通勤", "地铁", "房租"],
+                "emotion": ["震惊", "开车", "哭", "冷漠", "跳舞"],
+            },
+        ]
+    if any(word in theme for word in ("考研", "考公", "上岸", "考试")):
+        scene = ["classroom", "real_school", "自习室", "图书馆", "school"]
+        return [
+            {
+                "name": "三条路同时弹窗版",
+                "beats": [
+                    ("hook", "毕业前最后一个夜晚", "选择压力开场"),
+                    ("setup", "考研考公都在招手", "三岔路具体化"),
+                    ("pressure", "每条路都排长队", "现实拥挤"),
+                    ("twist", "猫发现选择也要复习", "荒诞转折"),
+                    ("punchline", "猫今天先选一页", "合理收束"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["考研", "考公", "就业", "上岸", "自习"],
+                "emotion": ["震惊", "探头", "委屈", "哭", "可爱"],
+            },
+            {
+                "name": "自习室沉默版",
+                "beats": [
+                    ("hook", "自习室一排都沉默", "群体共鸣 hook"),
+                    ("setup", "左边刷题右边申论", "具体场景"),
+                    ("pressure", "家族群发来上岸攻略", "外部压力"),
+                    ("twist", "猫把三条路写成题", "结构转折"),
+                    ("punchline", "先做能做的一小题", "温和收束"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["考研", "考公", "自习", "家族群", "上岸"],
+                "emotion": ["冷漠", "电脑", "哭", "探头", "可爱"],
+            },
+            {
+                "name": "上岸祝福压力版",
+                "beats": [
+                    ("hook", "大家都说祝你上岸", "社交压力"),
+                    ("setup", "猫还没决定去哪条河", "反差铺垫"),
+                    ("pressure", "资料堆到挡住猫脸", "具象焦虑"),
+                    ("twist", "不是猫不努力", "识别结构问题"),
+                    ("punchline", "先别把自己淹了", "情绪照顾"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["上岸", "考研", "考公", "资料", "焦虑"],
+                "emotion": ["震惊", "委屈", "哭", "碎碎念", "可爱"],
+            },
+        ]
+    return []
+
+
 def context_notes(text_context: dict[str, Any]) -> list[str]:
     if not text_context:
         return []
@@ -1052,6 +1286,7 @@ def director_agent(script: dict[str, Any], theme: str, duration_mode: str = "sho
                 "start": start,
                 "end": end,
                 "role": role,
+                "theme": theme,
                 "intent": intent,
                 "caption": polish_caption(role, caption, theme),
                 "scene_keywords": scene_keywords_for_beat(theme, caption, role, script.get("scene", [])),
@@ -1109,7 +1344,29 @@ def dialogue_for_beat(role: str, caption: str, theme: str) -> list[dict[str, str
     if layout_for_role(role, caption) != "dialogue":
         return []
     text = f"{caption} {theme}"
-    if any(word in text for word in ("工作", "简历", "岗位", "面试")):
+    category = infer_theme_category(theme)
+    if category == "street_food":
+        pairs = {
+            "setup": ("猫：今天卖烤肠", "隔壁：我买一送一"),
+            "pressure": ("猫：摊位费先扣？", "旁边猫：煤气也要钱"),
+            "twist": ("猫：还能赊账吗", "同学：先赊情绪价值"),
+            "punchline": ("猫：烤肠不包上岸", "同学：但能先暖手"),
+        }
+    elif category == "rent":
+        pairs = {
+            "setup": ("猫：工资刚到账", "账单：我先来"),
+            "pressure": ("猫：房租押金通勤", "室友猫：都在排队"),
+            "twist": ("猫：远点会便宜吗", "中介：通勤会补刀"),
+            "punchline": ("猫：先摊开预算", "室友猫：再谈体面"),
+        }
+    elif category == "exam":
+        pairs = {
+            "setup": ("猫：考研还是考公", "同学猫：就业也在闪"),
+            "pressure": ("猫：每条路都挤", "同学猫：先别淹了"),
+            "twist": ("猫：选择也要复习", "同学猫：先做一页"),
+            "punchline": ("猫：今天先选一题", "同学猫：明天再上岸"),
+        }
+    elif any(word in text for word in ("工作", "简历", "岗位", "面试")):
         pairs = {
             "setup": ("猫：我投了100份", "HR：先要3年经验"),
             "pressure": ("猫：岗位好多", "同学：敢投的好少"),
@@ -1137,17 +1394,11 @@ def dialogue_for_beat(role: str, caption: str, theme: str) -> list[dict[str, str
 def overlay_actions_for_beat(beat: dict[str, Any]) -> list[dict[str, Any]]:
     role = beat["role"]
     caption = beat["caption"]
+    joined = f"{caption} {beat.get('intent', '')}"
     actions: list[dict[str, Any]] = []
-    if role == "setup" and any(word in caption for word in ("简历", "招聘", "岗位")):
-        actions.append({
-            "type": "throw_object",
-            "object": "resume_stack",
-            "from": "left_cat",
-            "to": "right_cat",
-            "start": 0.8,
-            "duration": 1.2,
-            "text": "简历 x100",
-        })
+    throw_action = throw_object_for_legacy_overlay(joined, role)
+    if throw_action:
+        actions.append(throw_action)
     if role in {"pressure", "escalation"}:
         actions.append({
             "type": "stamp_reject",
@@ -1172,12 +1423,38 @@ def overlay_actions_for_beat(beat: dict[str, Any]) -> list[dict[str, Any]]:
     return actions
 
 
+def throw_object_for_legacy_overlay(text: str, role: str) -> dict[str, Any] | None:
+    if role not in {"setup", "pressure", "proof", "twist", "escalation", "echo"}:
+        return None
+    mapping = [
+        (("烤肠", "摆摊", "摊位", "夜市"), "sausage_skewer", "烤肠 x3"),
+        (("房租", "押金", "租房", "中介", "账单"), "bill_stack", "账单 -2400"),
+        (("考研", "考公", "考试", "资料", "自习"), "study_notes", "资料 x3"),
+        (("会议", "复盘", "同步", "老板", "PPT"), "meeting_invite", "会议+1"),
+        (("要求", "经验", "门槛", "规则"), "requirement_scroll", "要求+1"),
+        (("简历", "招聘", "岗位", "面试"), "resume_stack", "简历 x100"),
+    ]
+    for triggers, obj, label in mapping:
+        if any(trigger in text for trigger in triggers):
+            return {
+                "type": "throw_object",
+                "object": obj,
+                "from": "left_cat",
+                "to": "right_cat",
+                "start": 0.8,
+                "duration": 1.2,
+                "text": label,
+            }
+    return None
+
+
 def casting_and_validator_agents(beats: list[dict[str, Any]], theme: str, index: dict[str, Any]) -> tuple[list[dict[str, Any]], list[str]]:
     notes = []
     timeline = []
     previous_slot: dict[str, Any] | None = None
     used_motion_ids: set[str] = set()
     used_background_ids: set[str] = set()
+    timeline: list[dict[str, Any]] = []
     for beat in beats:
         slot, slot_notes = build_timeline_slot(beat, theme, index, previous_slot, used_motion_ids, used_background_ids)
         notes.extend(slot_notes)
@@ -1187,7 +1464,148 @@ def casting_and_validator_agents(beats: list[dict[str, Any]], theme: str, index:
     return timeline, notes
 
 
+async def casting_and_validator_agents_agentic(beats: list[dict[str, Any]], theme: str, index: dict[str, Any]) -> tuple[list[dict[str, Any]], list[str]]:
+    timeline: list[dict[str, Any]] = []
+    notes: list[str] = []
+    async for event in casting_and_validator_agents_stream(beats, theme, index, use_agent=True):
+        if event.get("type") == "slot" and event.get("slot"):
+            timeline.append(event["slot"])
+        elif event.get("type") == "slot_patch" and event.get("slot"):
+            timeline = [event["slot"] if slot.get("id") == event["slot"].get("id") else slot for slot in timeline]
+        elif event.get("type") == "notes":
+            notes.extend(event.get("notes", []))
+    if not timeline:
+        return casting_and_validator_agents(beats, theme, index)
+    return timeline, notes
+
+
 async def casting_and_validator_agents_stream(
+    beats: list[dict[str, Any]],
+    theme: str,
+    index: dict[str, Any],
+    progress_start: float = 0.25,
+    progress_span: float = 0.6,
+    use_agent: bool = True,
+):
+    notes: list[str] = []
+    previous_slot: dict[str, Any] | None = None
+    used_motion_ids: set[str] = set()
+    used_background_ids: set[str] = set()
+    total = max(1, len(beats))
+    settings = get_settings()
+    runtime_order = enabled_runtime_order()
+    if not use_agent or not runtime_order:
+        async for event in workflow_casting_and_validator_agents_stream(beats, theme, index, progress_start, progress_span):
+            yield event
+        return
+
+    semaphore = asyncio.Semaphore(settings.SHOT_AGENT_CONCURRENCY)
+
+    async def prebuild(beat: dict[str, Any]) -> tuple[dict[str, Any], list[str], str]:
+        async with semaphore:
+            result = await run_shot_agent(
+                theme=theme,
+                beat=beat,
+                index=index,
+                previous_slot=None,
+                used_motion_ids=set(),
+                used_background_ids=set(),
+            )
+            if result.ok and isinstance(result.output.get("slot"), dict):
+                fallback_slot, fallback_notes = await asyncio.to_thread(build_timeline_slot, beat, theme, index, None, set(), set())
+                slot = normalize_agent_slot(
+                    raw_slot=result.output["slot"],
+                    beat=beat,
+                    theme=theme,
+                    index=index,
+                    fallback_slot=fallback_slot,
+                    previous_slot=None,
+                    used_motion_ids=set(),
+                    used_background_ids=set(),
+                )
+                agent_notes = [f"{beat['role']} ShotPlannerAgent 使用 {result.provider} 自主规划。"]
+                agent_notes.extend(str(item) for item in result.output.get("notes", [])[:2] if str(item).strip())
+                return slot, [*agent_notes, *fallback_notes[:1]], result.provider
+            slot, slot_notes = await asyncio.to_thread(build_timeline_slot, beat, theme, index, None, set(), set())
+            return slot, [f"{beat['role']} Agent runtime 回退 workflow：{result.error}", *slot_notes], "workflow"
+
+    tasks = [asyncio.create_task(prebuild(beat)) for beat in beats]
+    yield {
+        "type": "stage",
+        "message": f"ShotPlannerAgent 并发优化 {len(tasks)} 个镜头",
+        "progress": round(progress_start, 3),
+    }
+
+    for index_num, beat in enumerate(beats):
+        while not tasks[index_num].done():
+            yield {
+                "type": "stage",
+                "message": f"正在优化镜头 {index_num + 1}/{total}：{beat['caption']}",
+                "progress": round(progress_start + progress_span * (index_num / total), 3),
+            }
+            await asyncio.sleep(0.7)
+
+        slot, slot_notes, provider = await tasks[index_num]
+        if slot_needs_repick(slot, used_motion_ids, used_background_ids):
+            slot, slot_notes = await asyncio.to_thread(
+                build_timeline_slot,
+                beat,
+                theme,
+                index,
+                previous_slot,
+                used_motion_ids,
+                used_background_ids,
+            )
+        else:
+            background_changed = bool(previous_slot and previous_slot.get("background", {}).get("id") != slot.get("background", {}).get("id"))
+            slot["transition"] = transition_planner_tool(beat, previous_slot, background_changed)
+
+        local_critic = local_shot_critic(theme, beat, slot, used_motion_ids, used_background_ids)
+        critic_notes = [f"{beat['role']} 本地质检 {local_critic['score']:.2f}。"]
+        if local_critic["score"] < 0.72:
+            slot, remote_notes = await maybe_critic_revise_slot(
+                theme=theme,
+                beat=beat,
+                slot=slot,
+                index=index,
+                previous_slot=previous_slot,
+                used_motion_ids=used_motion_ids,
+                used_background_ids=used_background_ids,
+            )
+            critic_notes.extend(remote_notes)
+        slot_notes.extend(critic_notes)
+        slot["source_pattern"] = slot.get("source_pattern") or f"Agent 自主分镜：{provider}"
+        notes.extend(slot_notes)
+        timeline.append(slot)
+        previous_slot = slot
+        remember_slot_assets(slot, used_motion_ids, used_background_ids)
+        progress = progress_start + progress_span * ((index_num + 1) / total)
+        yield {
+            "type": "slot",
+            "message": f"已完成镜头 {index_num + 1}/{total}：{beat['caption']}",
+            "progress": round(progress, 3),
+            "slot": slot,
+        }
+
+    patches, assembled_notes = await maybe_assemble_timeline(theme, timeline)
+    for patch in patches:
+        slot_id = str(patch.get("id", ""))
+        for pos, slot in enumerate(timeline):
+            if slot.get("id") == slot_id:
+                timeline[pos] = apply_slot_patch(slot, patch)
+                yield {
+                    "type": "slot_patch",
+                    "message": f"全片统筹已微调镜头：{slot_id}",
+                    "progress": round(min(0.98, progress_start + progress_span + 0.04), 3),
+                    "slot": timeline[pos],
+                }
+                break
+    if assembled_notes:
+        notes.extend(assembled_notes)
+    yield {"type": "notes", "message": "Agent 分镜质检完成", "progress": round(progress_start + progress_span, 3), "notes": notes}
+
+
+async def workflow_casting_and_validator_agents_stream(
     beats: list[dict[str, Any]],
     theme: str,
     index: dict[str, Any],
@@ -1209,7 +1627,7 @@ async def casting_and_validator_agents_stream(
     tasks = [asyncio.create_task(prebuild(beat)) for beat in beats]
     yield {
         "type": "stage",
-        "message": f"并行预匹配 {len(tasks)} 个镜头素材",
+        "message": f"workflow 并行预匹配 {len(tasks)} 个镜头素材",
         "progress": round(progress_start, 3),
     }
 
@@ -1253,8 +1671,10 @@ def build_timeline_slot(
     used_motion_ids = used_motion_ids or set()
     used_background_ids = used_background_ids or set()
     motion = choose_motion_for_beat(index, beat, used_motion_ids)
-    secondary_motion = choose_secondary_motion_for_beat(index, beat, motion, used_motion_ids)
-    background = choose_background_for_beat(index, beat, used_background_ids)
+    motion_quality = motion_quality_flags(motion)
+    use_secondary_motion = beat["layout"] == "dialogue" and not motion_quality.get("natural_double")
+    secondary_motion = choose_secondary_motion_for_beat(index, beat, motion, used_motion_ids) if use_secondary_motion else {}
+    background = choose_background_for_beat(index, beat, theme, used_background_ids)
     motion_score = asset_match_score(motion, beat["emotion_keywords"])
     background_score = asset_match_score(background, beat["scene_keywords"])
     background, background_source, background_prompt, fill_note = background_fill_tool(theme, beat, background, background_score)
@@ -1274,21 +1694,424 @@ def build_timeline_slot(
         "intent": beat["intent"],
         "caption": beat["caption"],
         "motion": ref(motion),
+        "motion_quality": motion_quality,
         "motion_clip": clip_planner_tool(motion, beat, beat["end"] - beat["start"]),
-        "secondary_motion": ref(secondary_motion) if beat["layout"] == "dialogue" else None,
-        "secondary_motion_clip": clip_planner_tool(secondary_motion, beat, beat["end"] - beat["start"]) if beat["layout"] == "dialogue" else None,
+        "secondary_motion": ref(secondary_motion) if use_secondary_motion else None,
+        "secondary_motion_quality": motion_quality_flags(secondary_motion) if use_secondary_motion else {},
+        "secondary_motion_clip": clip_planner_tool(secondary_motion, beat, beat["end"] - beat["start"]) if use_secondary_motion else None,
         "background": ref(background),
         "background_source": background_source,
         "background_prompt": background_prompt if background_source in {"generated", "generated_pending"} else "",
         "transition": transition_planner_tool(beat, previous_slot, background_changed),
         "layout": beat["layout"],
         "dialogue": beat["dialogue"],
-        "overlay_actions": overlay_planner_tool(beat, motion, background),
+        "overlay_actions": overlay_planner_tool(beat, motion, background, theme),
         "gap": gap,
         "packaging": packaging_for_gap(beat["role"], gap),
         "source_pattern": pattern_for_beat(beat),
     }
     return slot, slot_notes
+
+
+def normalize_agent_slot(
+    raw_slot: dict[str, Any],
+    beat: dict[str, Any],
+    theme: str,
+    index: dict[str, Any],
+    fallback_slot: dict[str, Any],
+    previous_slot: dict[str, Any] | None,
+    used_motion_ids: set[str] | None,
+    used_background_ids: set[str] | None,
+) -> dict[str, Any]:
+    slot = json.loads(json.dumps(fallback_slot, ensure_ascii=False))
+    if not isinstance(raw_slot, dict):
+        return slot
+
+    slot.update({
+        "id": str(raw_slot.get("id") or beat["id"]),
+        "start": float(beat.get("start", raw_slot.get("start", slot["start"]))),
+        "end": float(beat.get("end", raw_slot.get("end", slot["end"]))),
+        "role": str(beat.get("role", raw_slot.get("role", slot["role"]))),
+        "intent": clean_agent_text(raw_slot.get("intent") or beat.get("intent") or slot.get("intent", ""), 60),
+        "caption": clean_caption(str(raw_slot.get("caption") or raw_slot.get("copy") or beat.get("caption") or slot.get("caption", ""))),
+        "layout": str(raw_slot.get("layout") or beat.get("layout") or slot.get("layout") or "single"),
+        "source_pattern": clean_agent_text(raw_slot.get("source_pattern") or "Agent 自主分镜", 120),
+    })
+
+    motion = normalize_asset_ref(raw_slot.get("motion"), "motion", index) or slot.get("motion") or {}
+    if str(motion.get("id", "")) in (used_motion_ids or set()) and len(used_motion_ids or set()) < 10:
+        motion = slot.get("motion") or motion
+    slot["motion"] = motion
+    slot["motion_quality"] = motion_quality_flags(asset_from_ref(index, "motion", motion) or motion)
+    slot["motion_clip"] = normalize_clip(raw_slot.get("motion_clip"), slot_duration(slot), slot.get("motion_clip"))
+
+    secondary = normalize_asset_ref(raw_slot.get("secondary_motion"), "motion", index)
+    if slot["layout"] == "dialogue" and secondary:
+        slot["secondary_motion"] = secondary
+        slot["secondary_motion_quality"] = motion_quality_flags(asset_from_ref(index, "motion", secondary) or secondary)
+        slot["secondary_motion_clip"] = normalize_clip(raw_slot.get("secondary_motion_clip"), slot_duration(slot), slot.get("secondary_motion_clip") or slot["motion_clip"])
+    elif slot["layout"] == "dialogue" and slot.get("secondary_motion"):
+        slot["secondary_motion_clip"] = normalize_clip(raw_slot.get("secondary_motion_clip"), slot_duration(slot), slot.get("secondary_motion_clip") or slot["motion_clip"])
+    else:
+        slot["secondary_motion"] = None
+        slot["secondary_motion_quality"] = {}
+        slot["secondary_motion_clip"] = None
+
+    background = normalize_asset_ref(raw_slot.get("background"), "background", index) or slot.get("background") or {}
+    if str(background.get("id", "")) in (used_background_ids or set()) and len(used_background_ids or set()) <= 2:
+        background = slot.get("background") or background
+    slot["background"] = background
+    background_source = str(raw_slot.get("background_source") or slot.get("background_source") or "matched")
+    slot["background_source"] = background_source if background_source in {"matched", "generated", "generated_pending"} else "matched"
+    slot["background_prompt"] = clean_agent_text(raw_slot.get("background_prompt") or slot.get("background_prompt") or "", 260)
+
+    transition = raw_slot.get("transition") if isinstance(raw_slot.get("transition"), dict) else {}
+    background_changed = bool(previous_slot and previous_slot.get("background", {}).get("id") != slot.get("background", {}).get("id"))
+    slot["transition"] = normalize_transition(transition or transition_planner_tool(beat, previous_slot, background_changed))
+    slot["dialogue"] = normalize_dialogue(raw_slot.get("dialogue"), beat, slot["layout"])
+    slot["overlay_actions"] = normalize_overlay_actions(raw_slot.get("overlay_actions") or slot.get("overlay_actions") or [], theme, beat)
+    slot["packaging"] = normalize_packaging(raw_slot.get("packaging") or slot.get("packaging") or [], slot)
+
+    gap = raw_slot.get("gap") if isinstance(raw_slot.get("gap"), dict) else slot.get("gap", {})
+    slot["gap"] = normalize_gap(gap, beat, slot)
+    return slot
+
+
+def local_shot_critic(
+    theme: str,
+    beat: dict[str, Any],
+    slot: dict[str, Any],
+    used_motion_ids: set[str],
+    used_background_ids: set[str],
+) -> dict[str, Any]:
+    score = 1.0
+    issues: list[str] = []
+    motion_text = f"{slot.get('motion', {}).get('id', '')} {slot.get('motion', {}).get('description', '')}"
+    background_text = f"{slot.get('background', {}).get('id', '')} {slot.get('background', {}).get('description', '')}"
+    if beat.get("emotion_keywords") and not any(str(keyword) in motion_text for keyword in beat.get("emotion_keywords", [])[:8]):
+        score -= 0.16
+        issues.append("motion_mismatch")
+    if beat.get("scene_keywords") and not any(str(keyword) in background_text for keyword in beat.get("scene_keywords", [])[:10]):
+        score -= 0.16
+        issues.append("background_mismatch")
+    if str(slot.get("motion", {}).get("id", "")) in used_motion_ids and len(used_motion_ids) < 10:
+        score -= 0.1
+        issues.append("motion_repeated")
+    if str(slot.get("background", {}).get("id", "")) in used_background_ids and len(used_background_ids) <= 2:
+        score -= 0.08
+        issues.append("background_repeated")
+    if slot.get("layout") == "dialogue" and len(slot.get("dialogue") or []) < 2:
+        score -= 0.12
+        issues.append("dialogue_missing")
+    if not slot.get("overlay_actions"):
+        score -= 0.1
+        issues.append("overlay_missing")
+    if "简历x100" in json.dumps(slot.get("overlay_actions", []), ensure_ascii=False) and "简历" not in f"{theme} {beat.get('caption', '')}":
+        score -= 0.18
+        issues.append("overlay_repetitive")
+    return {"score": round(max(0.0, min(1.0, score)), 3), "issues": issues}
+
+
+async def maybe_critic_revise_slot(
+    *,
+    theme: str,
+    beat: dict[str, Any],
+    slot: dict[str, Any],
+    index: dict[str, Any],
+    previous_slot: dict[str, Any] | None,
+    used_motion_ids: set[str],
+    used_background_ids: set[str],
+) -> tuple[dict[str, Any], list[str]]:
+    settings = get_settings()
+    if not enabled_runtime_order() or settings.SHOT_AGENT_MAX_REVISIONS <= 0:
+        return slot, []
+    notes: list[str] = []
+    current = slot
+    for revision in range(settings.SHOT_AGENT_MAX_REVISIONS):
+        result = await run_critic_agent(
+            theme=theme,
+            beat=beat,
+            slot=current,
+            index=index,
+            used_motion_ids=used_motion_ids,
+            used_background_ids=used_background_ids,
+        )
+        if not result.ok:
+            if revision == 0:
+                notes.append(f"{beat['role']} CriticAgent 跳过：{result.error}")
+            break
+        critic = result.output.get("critic") if isinstance(result.output.get("critic"), dict) else {}
+        score = float(critic.get("score") or 0)
+        if isinstance(result.output.get("revised_slot"), dict):
+            current = normalize_agent_slot(
+                result.output["revised_slot"],
+                beat,
+                theme,
+                index,
+                current,
+                previous_slot,
+                used_motion_ids,
+                used_background_ids,
+            )
+        notes.append(f"{beat['role']} CriticAgent 质检 {score:.2f}。")
+        if bool(critic.get("passed", score >= 0.72)):
+            break
+    return current, notes
+
+
+async def maybe_assemble_timeline(theme: str, timeline: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[str]]:
+    if len(timeline) < 2:
+        return [], []
+    local_patches, local_notes = local_assemble_timeline(timeline)
+    if not enabled_runtime_order() or not timeline_needs_remote_assembler(timeline):
+        return local_patches, local_notes
+    result = await run_assembler_agent(theme=theme, timeline=timeline)
+    if not result.ok:
+        return local_patches, [*local_notes, f"AssemblerAgent 跳过：{result.error}"]
+    patches = result.output.get("timeline_patch") if isinstance(result.output.get("timeline_patch"), list) else []
+    notes = [str(item) for item in result.output.get("notes", []) if str(item).strip()] if isinstance(result.output.get("notes"), list) else []
+    if patches:
+        notes.insert(0, f"AssemblerAgent 已微调 {len(patches)} 个镜头。")
+    return [*local_patches, *[patch for patch in patches if isinstance(patch, dict)]], [*local_notes, *notes]
+
+
+def local_assemble_timeline(timeline: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[str]]:
+    patches: list[dict[str, Any]] = []
+    notes: list[str] = []
+    overlay_counts: dict[str, int] = {}
+    previous_background = ""
+    for slot in timeline:
+        patch: dict[str, Any] = {"id": slot.get("id", "")}
+        actions: list[dict[str, Any]] = []
+        changed = False
+        for action in slot.get("overlay_actions") or []:
+            signature = f"{action.get('type')}|{action.get('text') or action.get('title') or action.get('object')}"
+            overlay_counts[signature] = overlay_counts.get(signature, 0) + 1
+            if overlay_counts[signature] <= 2:
+                actions.append(action)
+            else:
+                changed = True
+        if changed:
+            patch["overlay_actions"] = actions[:2]
+        background_id = str(slot.get("background", {}).get("id", ""))
+        if previous_background and previous_background != background_id and slot.get("transition", {}).get("type") == "cut":
+            patch["transition"] = {"type": "fade", "duration": 0.22}
+            changed = True
+        previous_background = background_id
+        if changed and patch.get("id"):
+            patches.append(patch)
+    if patches:
+        notes.append(f"本地全片统筹已去重/补转场 {len(patches)} 个镜头。")
+    return patches, notes
+
+
+def timeline_needs_remote_assembler(timeline: list[dict[str, Any]]) -> bool:
+    overlay_counts: dict[str, int] = {}
+    background_counts: dict[str, int] = {}
+    for slot in timeline:
+        background_id = str(slot.get("background", {}).get("id", ""))
+        if background_id:
+            background_counts[background_id] = background_counts.get(background_id, 0) + 1
+        for action in slot.get("overlay_actions") or []:
+            signature = f"{action.get('type')}|{action.get('text') or action.get('title') or action.get('object')}"
+            overlay_counts[signature] = overlay_counts.get(signature, 0) + 1
+    if any(count > 2 for count in overlay_counts.values()):
+        return True
+    if len(timeline) >= 6 and any(count >= max(4, len(timeline) - 1) for count in background_counts.values()):
+        return True
+    return False
+
+
+def apply_slot_patch(slot: dict[str, Any], patch: dict[str, Any]) -> dict[str, Any]:
+    next_slot = json.loads(json.dumps(slot, ensure_ascii=False))
+    for key in ("transition", "overlay_actions", "packaging", "dialogue", "caption", "copy"):
+        if key in patch:
+            if key == "transition" and isinstance(patch[key], dict):
+                next_slot[key] = normalize_transition(patch[key])
+            elif key == "overlay_actions" and isinstance(patch[key], list):
+                next_slot[key] = patch[key][:3]
+            elif key in {"caption", "copy"}:
+                next_slot["caption"] = clean_caption(str(patch[key]))
+            else:
+                next_slot[key] = patch[key]
+    return next_slot
+
+
+def normalize_asset_ref(value: Any, asset_type: str, index: dict[str, Any]) -> dict[str, str] | None:
+    if not isinstance(value, dict):
+        return None
+    asset_id = str(value.get("id") or "")
+    asset = asset_from_id(index, asset_type, asset_id)
+    if asset:
+        return ref(asset)
+    file = str(value.get("file") or "")
+    desc = str(value.get("description") or "")
+    if asset_id and file:
+        return {"id": asset_id, "file": file, "description": desc}
+    return None
+
+
+def asset_from_ref(index: dict[str, Any], asset_type: str, asset_ref: dict[str, Any]) -> dict[str, Any] | None:
+    return asset_from_id(index, asset_type, str(asset_ref.get("id", "")))
+
+
+def asset_from_id(index: dict[str, Any], asset_type: str, asset_id: str) -> dict[str, Any] | None:
+    if not asset_id:
+        return None
+    collection = index.get("cat_motions" if asset_type == "motion" else "backgrounds", [])
+    for asset in collection:
+        if str(asset.get("id", "")) == asset_id:
+            return asset
+    for asset in collection:
+        if asset_id in f"{asset.get('id', '')} {asset.get('file', '')}":
+            return asset
+    return None
+
+
+def normalize_clip(value: Any, duration: float, fallback: Any = None) -> dict[str, Any]:
+    source = value if isinstance(value, dict) else fallback if isinstance(fallback, dict) else {}
+    start = max(0.0, safe_float(source.get("start"), 0.0))
+    clip_duration = safe_float(source.get("duration"), min(4.0, duration))
+    if duration <= 3.0:
+        clip_duration = max(2.0, min(duration, clip_duration))
+    else:
+        clip_duration = max(3.0, min(5.0, clip_duration))
+    return {
+        "start": round(start, 2),
+        "duration": round(clip_duration, 2),
+        "speed": safe_float(source.get("speed"), None) if source.get("speed") is not None else None,
+        "loop": bool(source.get("loop", False)),
+    }
+
+
+def normalize_transition(value: Any) -> dict[str, Any]:
+    if not isinstance(value, dict):
+        value = {}
+    kind = str(value.get("type") or "cut")
+    if kind not in {"cut", "fade", "whip", "zoom", "flash"}:
+        kind = "cut"
+    duration = max(0.0, min(0.5, safe_float(value.get("duration"), 0.0)))
+    if kind == "cut":
+        duration = 0.0
+    return {"type": kind, "duration": round(duration, 2)}
+
+
+def normalize_dialogue(value: Any, beat: dict[str, Any], layout: str) -> list[dict[str, str]]:
+    if layout != "dialogue":
+        return []
+    if isinstance(value, list):
+        lines = []
+        for item in value[:2]:
+            if not isinstance(item, dict):
+                continue
+            text = clean_agent_text(item.get("text", ""), 18)
+            if text:
+                lines.append({"speaker": str(item.get("speaker") or ("left" if len(lines) == 0 else "right")), "text": text})
+        if len(lines) >= 2:
+            return lines
+    return beat.get("dialogue") or []
+
+
+def normalize_overlay_actions(actions: Any, theme: str, beat: dict[str, Any]) -> list[dict[str, Any]]:
+    if not isinstance(actions, list):
+        return []
+    normalized: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for action in actions:
+        if not isinstance(action, dict) or not action.get("type"):
+            continue
+        next_action = dict(action)
+        if next_action.get("type") == "thrown_prop":
+            next_action["type"] = "throw_object"
+        if next_action.get("type") == "primitive_card":
+            next_action["type"] = "job_requirement_card"
+        if next_action.get("type") == "chat_ui":
+            next_action["type"] = "chat_stack"
+        if next_action.get("type") == "phone_ui":
+            next_action["type"] = "phone_job_feed"
+        if next_action.get("type") == "stamp":
+            next_action["type"] = "stamp_reject"
+        kind = str(next_action.get("type"))
+        if kind not in {
+            "throw_object",
+            "stamp_reject",
+            "popup",
+            "impact_burst",
+            "phone_job_feed",
+            "job_requirement_card",
+            "work_chat_stack",
+            "chat_stack",
+            "choice_panel",
+            "study_card",
+            "bill_card",
+            "commute_card",
+            "stall_sign",
+            "generated_sticker",
+        }:
+            continue
+        next_action["start"] = round(max(0.0, min(5.0, safe_float(next_action.get("start"), 0.35))), 2)
+        next_action["duration"] = round(max(0.4, min(4.8, safe_float(next_action.get("duration"), 1.6))), 2)
+        for key in ("text", "title", "salary", "company", "object"):
+            if key in next_action:
+                next_action[key] = clean_agent_text(next_action[key], 18 if key != "object" else 32)
+        for key in ("items", "messages", "options", "tags"):
+            if isinstance(next_action.get(key), list):
+                next_action[key] = [clean_agent_text(item, 16) for item in next_action[key][:4] if clean_agent_text(item, 16)]
+        key = f"{kind}|{next_action.get('text') or next_action.get('title') or next_action.get('object')}"
+        if key in seen:
+            continue
+        seen.add(key)
+        normalized.append(next_action)
+    if not normalized:
+        return overlay_planner_tool(beat, {}, {}, theme)
+    return normalized[:3]
+
+
+def normalize_packaging(items: Any, slot: dict[str, Any]) -> list[str]:
+    values = [str(item) for item in items if str(item).strip()] if isinstance(items, list) else []
+    if slot.get("layout") == "dialogue":
+        values.append("dialogue_bubbles")
+    elif slot.get("overlay_actions"):
+        values.append("top_title")
+    else:
+        values.append("bottom_subtitle")
+    return list(dict.fromkeys(values))[:5]
+
+
+def normalize_gap(gap: dict[str, Any], beat: dict[str, Any], slot: dict[str, Any]) -> dict[str, str]:
+    status = str(gap.get("status") or "matched")
+    if status not in {"matched", "supplemented", "generated_pending"}:
+        status = "matched" if slot.get("background_source") in {"matched", "generated"} else "supplemented"
+    strategy = str(gap.get("strategy") or ("seedream_background" if slot.get("background_source") == "generated" else "direct_match"))
+    reason = clean_agent_text(gap.get("reason") or "Agent 已匹配猫动作、背景和包装。", 100)
+    return {"status": status, "strategy": strategy, "reason": reason}
+
+
+def slot_duration(slot: dict[str, Any]) -> float:
+    return max(1.0, safe_float(slot.get("end"), 0.0) - safe_float(slot.get("start"), 0.0))
+
+
+def safe_float(value: Any, fallback: float | None = 0.0) -> float:
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return float(fallback or 0.0)
+
+
+def clean_agent_text(value: Any, limit: int = 80) -> str:
+    text = re.sub(r"\s+", " ", str(value or "").strip())
+    text = re.sub(r"[{}<>`$]", "", text)
+    return text[:limit]
+
+
+def motion_quality_flags(asset: dict[str, Any]) -> dict[str, bool]:
+    desc = str(asset.get("description", ""))
+    return {
+        "needs_crop": any(word in desc for word in ("黑边", "白底", "需要裁切", "需裁切", "低清", "模糊")),
+        "low_quality": any(word in desc for word in ("低清", "模糊")),
+        "non_cat": any(word in desc for word in ("非猫素材", "小狗", "山羊")),
+        "natural_double": any(word in desc for word in ("天然双猫", "双猫对话画面")),
+    }
 
 
 def remember_slot_assets(slot: dict[str, Any], used_motion_ids: set[str], used_background_ids: set[str]) -> None:
@@ -1304,31 +2127,51 @@ def slot_needs_repick(slot: dict[str, Any], used_motion_ids: set[str], used_back
     secondary_id = str((slot.get("secondary_motion") or {}).get("id", ""))
     background_id = str(slot.get("background", {}).get("id", ""))
     return (
-        (motion_id and motion_id in used_motion_ids)
-        or (secondary_id and secondary_id in used_motion_ids)
-        or (background_id and background_id in used_background_ids)
+        (motion_id and motion_id in used_motion_ids and len(used_motion_ids) < 10)
+        or (secondary_id and secondary_id in used_motion_ids and len(used_motion_ids) < 10)
+        or (background_id and background_id in used_background_ids and len(used_background_ids) <= 2)
     )
 
 
 def choose_motion_for_beat(index: dict[str, Any], beat: dict[str, Any], used_ids: set[str] | None = None) -> dict[str, Any]:
     used_ids = used_ids or set()
-    candidates = asset_search_tool(index, "motion", beat["emotion_keywords"] + beat.get("must_keywords", []), limit=16)
+    ranked = asset_search_tool(index, "motion", beat["emotion_keywords"] + beat.get("must_keywords", []), limit=18)
+    all_assets = index.get("cat_motions", [])
+    candidates = list({str(asset.get("id", "")): asset for asset in [*ranked, *all_assets]}.values())
+    ranked_ids = {str(asset.get("id", "")): order for order, asset in enumerate(ranked)}
+    context = beat_context_text(beat)
+    category = infer_theme_category(context)
     scored: list[tuple[float, dict[str, Any]]] = []
     for asset in candidates:
         desc = str(asset.get("description", ""))
         score = asset_match_score(asset, beat["emotion_keywords"])
+        if str(asset.get("id", "")) in ranked_ids:
+            score += max(0.0, 2.5 - ranked_ids[str(asset.get("id", ""))] * 0.12)
         for keyword in beat.get("must_keywords", []):
             if keyword in desc:
                 score += 4.0
         for keyword in beat.get("forbidden_keywords", []):
             if keyword in desc:
                 score -= 8.0
-        if beat["role"] == "setup" and any(word in desc for word in ("电脑", "方向盘", "开车")):
+        if any(word in desc for word in ("非猫素材", "默认避用", "只用于夸张", "过激")):
+            score -= 12.0
+        if any(word in desc for word in ("黑边", "低清", "模糊", "白底", "需要裁切", "需裁切")):
+            score -= 2.5
+        if any(word in desc for word in ("近景", "强反应")) and beat["role"] in {"hook", "twist"}:
+            score += 1.2
+        score += role_motion_bonus(beat["role"], desc)
+        score += caption_motion_bonus(str(beat.get("caption", "")), desc)
+        score += category_motion_bonus(category, beat["role"], context, desc)
+        if beat.get("layout") == "dialogue" and any(word in desc for word in ("天然双猫", "双猫对话画面")):
+            score -= 2.0
+        if beat["role"] == "setup" and category in {"career", "office"} and any(word in desc for word in ("电脑", "笔记本")):
+            score += 2.0
+        if beat["role"] == "setup" and "通勤" in context and any(word in desc for word in ("方向盘", "开车")):
             score += 2.0
         if beat["role"] == "punchline" and any(word in desc for word in ("欢快", "跳舞", "蹦跳", "可爱")):
             score += 2.0
         if str(asset.get("id", "")) in used_ids:
-            score -= 1.8
+            score -= 6.0 if len(used_ids) < 10 else 2.0
         scored.append((score, asset))
     scored.sort(key=lambda item: (-item[0], str(item[1].get("id", ""))))
     viable = [(score, asset) for score, asset in scored if score > 0]
@@ -1339,32 +2182,119 @@ def choose_motion_for_beat(index: dict[str, Any], beat: dict[str, Any], used_ids
     return pick_motion(index, beat["emotion_keywords"], fallback_id=fallback_motion_id(beat["role"]))
 
 
+def beat_context_text(beat: dict[str, Any]) -> str:
+    dialogue = " ".join(str(item.get("text", "")) for item in beat.get("dialogue", []) if isinstance(item, dict))
+    return " ".join(
+        str(item)
+        for item in [
+            beat.get("theme", ""),
+            beat.get("caption", ""),
+            beat.get("intent", ""),
+            " ".join(str(keyword) for keyword in beat.get("scene_keywords", [])),
+            " ".join(str(keyword) for keyword in beat.get("theme_keywords", [])),
+            dialogue,
+        ]
+        if str(item).strip()
+    )
+
+
+def role_motion_bonus(role: str, desc: str) -> float:
+    mapping = {
+        "hook": ("震惊", "瞪眼", "惊叫", "强 hook", "突然"),
+        "setup": ("电脑", "探头", "冷漠", "碎碎念", "双猫"),
+        "pressure": ("委屈", "哭", "崩溃", "焦虑", "生无可恋", "强忍"),
+        "proof": ("探头", "双猫", "碎碎念", "同学", "委屈"),
+        "twist": ("回头", "吐槽", "破防", "错愕", "看穿", "强反应"),
+        "echo": ("双猫", "委屈", "旁边", "共鸣", "探头"),
+        "escalation": ("崩溃", "嚎啕", "疯狂", "压力爆表", "失控"),
+        "punchline": ("跳舞", "蹦跳", "摆烂", "庆祝", "免打扰", "喘口气", "过关"),
+        "cta": ("抱奶茶", "休息", "可爱", "温暖", "松一口气"),
+    }.get(role, ())
+    return sum(1.2 for keyword in mapping if keyword in desc)
+
+
+def caption_motion_bonus(caption: str, desc: str) -> float:
+    mapping = {
+        ("招聘", "简历", "岗位", "HR", "黑话", "规则"): ("电脑", "震惊", "吐槽", "看穿", "委屈"),
+        ("会议", "复盘", "同步", "老板", "在线待命"): ("电脑", "摆烂", "装听不见", "生无可恋", "免打扰"),
+        ("考研", "考公", "上岸", "自习", "资料"): ("探头", "委屈", "哭", "焦虑", "资料"),
+        ("租房", "房租", "押金", "账单", "通勤"): ("委屈", "可怜", "压抑", "冷漠", "通勤"),
+        ("烤肠", "摆摊", "摊位", "小吃摊", "赊账"): ("吐槽", "魔性", "委屈", "跳舞", "摆烂"),
+    }
+    score = 0.0
+    for triggers, keywords in mapping.items():
+        if any(trigger in caption for trigger in triggers):
+            score += sum(1.0 for keyword in keywords if keyword in desc)
+    return score
+
+
+def category_motion_bonus(category: str, role: str, text: str, desc: str) -> float:
+    positive = {
+        "career": ("电脑", "投简历", "震惊", "吐槽", "委屈", "看穿规则", "求职失败"),
+        "office": ("电脑", "冷漠", "摆烂", "装听不见", "免打扰", "生无可恋", "加班破防"),
+        "exam": ("探头", "委屈", "哭", "焦虑", "查成绩", "惊叫"),
+        "rent": ("委屈", "可怜", "压抑", "冷漠", "通勤", "喘口气"),
+        "street_food": ("吐槽", "魔性", "委屈", "跳舞", "摆烂", "可爱"),
+    }.get(category, ())
+    negative = {
+        "career": ("开车", "山羊", "小狗", "射击", "过激"),
+        "office": ("开车", "山羊", "小狗", "射击", "过激"),
+        "exam": ("开车", "山羊", "小狗", "射击", "过激", "免打扰"),
+        "rent": ("山羊", "小狗", "射击", "过激", "电脑", "笔记本"),
+        "street_food": ("开车", "射击", "过激", "电脑", "笔记本"),
+    }.get(category, ())
+    score = sum(1.1 for keyword in positive if keyword in desc)
+    score -= sum(2.5 for keyword in negative if keyword in desc)
+    if role in {"punchline", "cta"} and any(word in desc for word in ("欢快", "跳舞", "蹦跳", "喘口气", "休息")):
+        score += 1.8
+    if role in {"pressure", "proof", "escalation"} and any(word in desc for word in ("哭", "委屈", "崩溃", "焦虑", "生无可恋")):
+        score += 1.6
+    if any(word in text for word in ("通勤", "地铁", "公交")) and "开车" in desc:
+        score += 1.4
+    return score
+
+
 def choose_secondary_motion_for_beat(index: dict[str, Any], beat: dict[str, Any], primary: dict[str, Any], used_ids: set[str] | None = None) -> dict[str, Any]:
     if beat.get("layout") != "dialogue":
         return primary
     used_ids = used_ids or set()
     candidates = index.get("cat_motions", [])
+    context = beat_context_text(beat)
+    category = infer_theme_category(context)
     keywords = ["冷漠", "探头", "碎碎念", "可爱", "震惊", "电脑"]
+    if any(word in f"{beat.get('caption', '')} {beat.get('intent', '')}" for word in ("对话", "同学", "HR", "老板", "室友", "隔壁", "旁边")):
+        keywords = ["双猫", "对话", "吐槽", "探头", "碎碎念", "生无可恋", *keywords]
     best: tuple[float, dict[str, Any]] | None = None
     for asset in candidates:
         if str(asset.get("id")) == str(primary.get("id")):
             continue
+        desc = str(asset.get("description", ""))
         score = asset_match_score(asset, keywords)
+        score += category_motion_bonus(category, beat["role"], context, desc)
+        score += role_motion_bonus(beat["role"], desc) * 0.6
+        if any(word in desc for word in ("非猫素材", "默认避用", "过激", "小狗", "山羊", "射击")):
+            score -= 10.0
+        if any(word in desc for word in ("天然双猫", "双猫对话画面")):
+            score -= 4.0
+        if any(word in desc for word in ("黑边", "低清", "模糊", "白底", "需要裁切", "需裁切")):
+            score -= 1.5
         if str(asset.get("id", "")) in used_ids:
-            score -= 1.2
+            score -= 3.0
         if best is None or score > best[0]:
             best = (score, asset)
-    return best[1] if best else pick_motion(index, keywords, fallback_id="16")
+    return best[1] if best else pick_motion(index, keywords, fallback_id="10")
 
 
-def choose_background_for_beat(index: dict[str, Any], beat: dict[str, Any], used_ids: set[str] | None = None) -> dict[str, Any]:
+def choose_background_for_beat(index: dict[str, Any], beat: dict[str, Any], theme: str, used_ids: set[str] | None = None) -> dict[str, Any]:
     used_ids = used_ids or set()
     candidates = asset_search_tool(index, "background", beat["scene_keywords"] + [beat.get("caption", "")], limit=12)
     candidates = include_exact_background_candidates(index, candidates, beat["scene_keywords"])
+    category = infer_theme_category(theme)
     scored: list[tuple[float, dict[str, Any]]] = []
     for asset in candidates:
         score = asset_match_score(asset, beat["scene_keywords"])
         score += asset_match_score(asset, [beat.get("caption", ""), beat.get("intent", "")]) * 0.4
+        score += themed_background_score(category, asset, beat)
         asset_id = str(asset.get("id", ""))
         asset_scene = str(asset.get("scene", ""))
         for keyword in beat["scene_keywords"]:
@@ -1391,6 +2321,11 @@ def choose_background_for_beat(index: dict[str, Any], beat: dict[str, Any], used
             text = f"{asset.get('id', '')} {asset.get('scene', '')} {asset.get('file', '')} {asset.get('description', '')}"
             if "generated" in text and any(word in text for word in ("烤肠", "香肠", "小吃摊", "夜市", "餐车", "街边摊")):
                 return asset
+    themed = [item for item in scored if themed_background_score(category, item[1], beat) >= 8.0]
+    if themed:
+        top_score = themed[0][0]
+        pool = [asset for score, asset in themed if score >= top_score - 1.5][:3] or [themed[0][1]]
+        return pool[selection_offset(beat) % len(pool)]
     if scored:
         top_score = scored[0][0]
         pool = [asset for score, asset in scored if score >= top_score - 0.5][:4] or [scored[0][1]]
@@ -1408,11 +2343,137 @@ def include_exact_background_candidates(
     merged = list(candidates)
     seen = {str(asset.get("id", "")) for asset in merged}
     for keyword in keywords:
-        asset = by_id.get(str(keyword)) or by_scene.get(str(keyword))
+        asset = exact_background_asset(index, by_id, by_scene, str(keyword))
         if asset and str(asset.get("id", "")) not in seen:
             merged.append(asset)
             seen.add(str(asset.get("id", "")))
     return merged
+
+
+def exact_background_asset(
+    index: dict[str, Any],
+    by_id: dict[str, dict[str, Any]],
+    by_scene: dict[str, dict[str, Any]],
+    keyword: str,
+) -> dict[str, Any] | None:
+    if not keyword:
+        return None
+    variants = [keyword]
+    if keyword.startswith("generated/") and not keyword.lower().endswith((".png", ".jpg", ".jpeg", ".webp")):
+        variants.extend([f"{keyword}.png", f"{keyword}.jpg", f"{keyword}.jpeg"])
+    for variant in variants:
+        asset = by_id.get(variant) or by_scene.get(variant)
+        if asset:
+            return asset
+    for asset in index.get("backgrounds", []):
+        text = f"{asset.get('id', '')} {asset.get('file', '')}"
+        if any(text.endswith(variant) or variant in text for variant in variants):
+            return asset
+    return None
+
+
+def theme_background_anchors(theme: str, caption: str, role: str) -> list[str]:
+    category = infer_theme_category(theme)
+    if category == "street_food":
+        role_assets = {
+            "hook": "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-hook-打开招聘软件那一/1780404735.png",
+            "setup": "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-setup-投了100份简/1780404787.png",
+            "pressure": "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-escalation-岗位/1780404825.png",
+            "escalation": "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-escalation-岗位/1780404825.png",
+            "twist": "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-punchline-猫先把/1780404871.png",
+            "echo": "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-punchline-猫先把/1780404871.png",
+            "punchline": "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-punchline-猫先把/1780404871.png",
+        }
+        return [
+            role_assets.get(role, role_assets["hook"]),
+            "street_food_stall",
+            "烤肠摊",
+            "小吃摊",
+            "夜市摊位",
+            "街边摊",
+            "real_city",
+            "street",
+        ]
+    if category == "rent":
+        return [
+            "generated/preset-rental-bill-room/1780413047.png",
+            "rental_bill_room",
+            "出租屋",
+            "租房",
+            "房租",
+            "押金",
+            "账单",
+            "window",
+            "building_interior",
+            "real_transit_station" if any(word in f"{theme} {caption}" for word in ("通勤", "地铁", "公交")) else "window",
+        ]
+    if category == "exam":
+        return [
+            "generated/preset-exam-study-room/1780413328.png",
+            "exam_study_room",
+            "classroom",
+            "real_school",
+            "school",
+            "street/indoor",
+            "自习室",
+            "图书馆",
+            "课桌",
+        ]
+    if category == "office":
+        return [
+            "generated/preset-meeting-room-involution/1780412964.png",
+            "meeting_room_involution",
+            "real_office",
+            "office",
+            "会议室",
+            "工位",
+        ]
+    if category == "career":
+        return [
+            "generated/preset-job-fair-waiting-area/1780413290.png",
+            "job_fair_waiting_area",
+            "real_office",
+            "office",
+            "real_school",
+            "招聘会",
+            "面试等待区",
+            "简历",
+        ]
+    return []
+
+
+def themed_background_score(category: str, asset: dict[str, Any], beat: dict[str, Any]) -> float:
+    if not category:
+        return 0.0
+    text = f"{asset.get('id', '')} {asset.get('scene', '')} {asset.get('file', '')} {asset.get('description', '')}"
+    score = 0.0
+    positive = {
+        "street_food": ("烤肠", "香肠", "小吃摊", "夜市", "摊车", "街边摊", "street_food_stall"),
+        "rent": ("出租屋", "租房", "房租", "押金", "账单", "床铺", "行李箱", "building_interior", "window", "real_transit_station"),
+        "exam": ("考研", "考公", "自习", "图书馆", "教室", "classroom", "real_school", "school", "study"),
+        "office": ("会议", "加班", "复盘", "同步", "老板", "会议室", "real_office", "office"),
+        "career": ("招聘", "简历", "面试", "HR", "校招", "岗位", "job-fair", "real_office", "office"),
+    }.get(category, ())
+    negative = {
+        "street_food": ("招聘", "面试", "会议", "办公室", "自习", "图书馆", "出租屋"),
+        "rent": ("招聘", "面试", "会议", "考研", "考公", "自习", "办公室"),
+        "exam": ("招聘", "面试", "HR", "会议", "办公室", "房租", "押金", "烤肠", "小吃摊"),
+        "office": ("烤肠", "小吃摊", "出租屋", "考研", "考公"),
+        "career": ("烤肠", "小吃摊", "出租屋", "考研", "考公"),
+    }.get(category, ())
+    for keyword in positive:
+        if keyword in text:
+            score += 3.0
+    for keyword in negative:
+        if keyword in text:
+            score -= 4.0
+    if f"preset-{category}" in text or (category == "exam" and "preset-exam" in text) or (category == "rent" and "preset-rental" in text):
+        score += 8.0
+    if category == "street_food" and "generated/大学生工作难找-最后去学校门口卖烤肠" in text:
+        score += 10.0
+        if beat.get("role") in text:
+            score += 2.0
+    return score
 
 
 def needs_food_stall_background(beat: dict[str, Any]) -> bool:
@@ -1429,11 +2490,12 @@ def scene_keywords_for_beat(theme: str, caption: str, role: str, script_scenes: 
     if role in {"punchline", "cta"} and theme_has_specific_scene:
         local_needs_specific_scene = True
 
-    keywords = [
+    keywords = [*theme_background_anchors(theme, caption, role)]
+    keywords.extend(
         str(scene)
         for scene in script_scenes
         if str(scene) not in specific_scene_terms or local_needs_specific_scene
-    ]
+    )
     for preset in matching_preset_scenes(joined, limit=3):
         keywords.extend(str(item) for item in preset.get("keywords", [])[:8])
         keywords.extend(str(item) for item in preset.get("recommended_backgrounds", [])[:4])

@@ -17,6 +17,12 @@ class Settings:
         self.ARK_LITE_MODEL = os.environ.get("ARK_LITE_MODEL", "")
         self.ARK_MODEL_MODE = os.environ.get("ARK_MODEL_MODE", "pro").lower()
         self.ARK_AGENT_CONCURRENCY = self._int_env("ARK_AGENT_CONCURRENCY", 3, 1, 6)
+        self.AGENT_RUNTIME = os.environ.get("AGENT_RUNTIME", "auto").lower()
+        self.OPENAI_AGENTS_PROVIDER = os.environ.get("OPENAI_AGENTS_PROVIDER", "auto").lower()
+        self.OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+        self.OPENAI_AGENT_MODEL = os.environ.get("OPENAI_AGENT_MODEL", "gpt-4.1-mini")
+        self.SHOT_AGENT_CONCURRENCY = self._int_env("SHOT_AGENT_CONCURRENCY", 6, 1, 16)
+        self.SHOT_AGENT_MAX_REVISIONS = self._int_env("SHOT_AGENT_MAX_REVISIONS", 2, 0, 3)
         self.STORYBOARD_MATCH_CONCURRENCY = self._int_env("STORYBOARD_MATCH_CONCURRENCY", 6, 1, 12)
         self.SEEDREAM_MODEL = os.environ.get("SEEDREAM_MODEL", "doubao-seedream-5-0-260128")
         self.PROJECT_ROOT = PROJECT_ROOT

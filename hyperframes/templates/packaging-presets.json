@@ -3,6 +3,28 @@
   "description": "HyperFrames 预制包装模板。Agent 只选择 preset id 和结构化参数，渲染器执行稳定模板，不让 Agent 自由写 HTML/FFmpeg。",
   "presets": [
     {
+      "id": "street-food-stall-involution",
+      "title": "校门口小摊内卷",
+      "triggers": ["烤肠", "香肠", "摆摊", "小吃摊", "夜市", "校门口", "摊位", "冰粉"],
+      "visuals": {
+        "title_bar": "stall_lightbox",
+        "caption_style": "street_sign_bold",
+        "bubble_style": "left_right_dialogue",
+        "sticker_pack": ["stall_sign", "price_cut", "steam_puff"],
+        "accent_color": "#ffcc00"
+      },
+      "default_overlay_actions": [
+        {
+          "type": "stall_sign",
+          "title": "校门口小摊",
+          "items": ["烤肠 3元", "加料 +1", "今日也内卷"],
+          "start": 0.3,
+          "duration": 2.1
+        }
+      ],
+      "recommended_transitions": ["cut", "flash", "zoom"]
+    },
+    {
       "id": "job-hunt-black-hole",
       "title": "求职黑洞",
       "triggers": ["简历", "求职", "岗位", "面试", "HR", "offer", "校招"],
@@ -14,13 +36,6 @@
         "accent_color": "#ffcc00"
       },
       "default_overlay_actions": [
-        {
-          "type": "throw_object",
-          "object": "resume_stack",
-          "text": "简历 x100",
-          "start": 0.55,
-          "duration": 1.15
-        },
         {
           "type": "stamp_reject",
           "text": "已读不回",

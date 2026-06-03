@@ -147,6 +147,12 @@ function App() {
             timeline: upsertById(current?.timeline || [], normalizeSlot(event.slot))
           }));
         }
+        if (event.type === 'slot_patch' && event.slot) {
+          setPlan((current) => ({
+            ...(current || { id: 'streaming-plan', theme }),
+            timeline: upsertById(current?.timeline || [], normalizeSlot(event.slot))
+          }));
+        }
       }, { updateMainStatus: false });
       setSelectedCandidate(candidate);
       setPlan(data.plan);
@@ -470,7 +476,17 @@ function overlayLabel(action) {
     throw_object: '飞物件',
     stamp_reject: '盖章',
     popup: '弹窗',
-    impact_burst: '爆字'
+    impact_burst: '爆字',
+    phone_job_feed: '手机',
+    job_requirement_card: '岗位卡',
+    work_chat_stack: '工作群',
+    chat_stack: '聊天框',
+    choice_panel: '选择框',
+    study_card: '复习卡',
+    bill_card: '账单',
+    commute_card: '通勤卡',
+    stall_sign: '摊位牌',
+    generated_sticker: '贴纸'
   };
   return `${labels[action.type] || action.type}：${action.text || action.object || ''}`;
 }

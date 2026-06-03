@@ -39,8 +39,10 @@ class TimelineSlot(BaseModel):
     intent: str
     caption: str = Field(alias="copy")
     motion: AssetRef
+    motion_quality: dict[str, bool] = Field(default_factory=dict)
     motion_clip: MotionClipSpec = Field(default_factory=MotionClipSpec)
     secondary_motion: AssetRef | None = None
+    secondary_motion_quality: dict[str, bool] = Field(default_factory=dict)
     secondary_motion_clip: MotionClipSpec | None = None
     background: AssetRef
     background_source: str = "matched"

@@ -266,16 +266,18 @@ def viral_score(entry: dict[str, Any], query_terms: set[str], theme: str) -> flo
 def infer_theme_category(theme: str) -> str:
     if any(word in theme for word in ("烤肠", "香肠", "摆摊", "夜市", "小吃", "地摊", "餐车")):
         return "street_food"
-    if any(word in theme for word in ("工作", "简历", "岗位", "面试", "就业", "招聘", "offer")):
-        return "career"
-    if any(word in theme for word in ("上班", "老板", "加班", "会议", "KPI", "内卷")):
-        return "office"
+    if any(word in theme for word in ("租房", "房租", "押金", "合租", "通勤", "搬家", "中介", "隔断间")):
+        return "rent"
     if any(word in theme for word in ("考研", "考公", "上岸", "考试")):
         return "exam"
+    if any(word in theme for word in ("上班", "老板", "加班", "会议", "KPI", "内卷")):
+        return "office"
     if any(word in theme for word in ("结婚", "彩礼", "买房", "恋爱", "情侣")):
         return "relationship"
     if any(word in theme for word in ("父母", "妈妈", "爸爸", "家庭", "压岁钱", "亲戚")):
         return "family"
+    if any(word in theme for word in ("工作", "简历", "岗位", "面试", "就业", "招聘", "offer")):
+        return "career"
     if any(word in theme for word in ("大学", "宿舍", "食堂", "同学", "校园")):
         return "campus"
     return ""
@@ -287,7 +289,7 @@ def tokenize_theme(text: str) -> set[str]:
         "工作", "简历", "岗位", "面试", "就业", "上班", "老板", "会议", "加班", "内卷",
         "大学", "宿舍", "食堂", "同学", "校园", "考研", "考公", "考试", "焦虑",
         "烤肠", "香肠", "摆摊", "夜市", "小吃", "地摊", "餐车",
-        "结婚", "彩礼", "买房", "租房", "房贷", "恋爱", "情侣",
+        "结婚", "彩礼", "买房", "租房", "房租", "押金", "通勤", "房贷", "恋爱", "情侣",
         "父母", "妈妈", "爸爸", "家庭", "压岁钱", "亲戚",
     ]
     for word in common:
@@ -416,6 +418,15 @@ def themed_template_beats(reference: dict[str, Any], theme: str) -> list[tuple[s
             ("echo", "三条街都在卷淀粉肠", "扩大共鸣"),
             ("punchline", "猫改卖情绪价值", "荒诞但不万能"),
         ]
+    if category == "rent":
+        return [
+            ("hook", "工资刚到账", f"迁移自《{title}》的生活压力开场"),
+            ("setup", "房租先扣走一半", "把成本压力落到具体账单"),
+            ("pressure", "押金中介通勤排队", "多重支出叠加"),
+            ("twist", "猫发现家离公司更远", "反差转折"),
+            ("echo", "室友也在算账", "群体共鸣"),
+            ("punchline", "猫先把预算摊开谈", "现实但温和收束"),
+        ]
     return []
 
 
@@ -423,7 +434,31 @@ def adapt_caption_to_theme(caption: str, theme: str) -> str:
     caption = caption.strip()
     if not caption:
         return ""
-    if any(word in theme for word in ("工作", "简历", "岗位", "面试", "就业")):
+    if any(word in theme for word in ("烤肠", "香肠", "摆摊", "小吃", "夜市")):
+        replacements = {
+            "烤鸡腿": "烤肠",
+            "传单": "烤肠券",
+            "老板": "摊主",
+            "生活费": "摊位费",
+        }
+    elif any(word in theme for word in ("租房", "房租", "押金", "合租", "通勤", "中介")):
+        replacements = {
+            "老板": "中介",
+            "老师": "房东",
+            "压岁钱": "押金",
+            "传单": "租房合同",
+            "烤鸡腿": "房租",
+            "生活费": "房租",
+        }
+    elif any(word in theme for word in ("考研", "考公", "上岸", "考试")):
+        replacements = {
+            "老板": "考官",
+            "老师": "监考老师",
+            "压岁钱": "复习时间",
+            "传单": "资料",
+            "辣酱": "复习笔记",
+        }
+    elif any(word in theme for word in ("工作", "简历", "岗位", "面试", "就业")):
         replacements = {
             "老板": "HR",
             "老师": "面试官",
@@ -440,21 +475,6 @@ def adapt_caption_to_theme(caption: str, theme: str) -> str:
             "传单": "会议纪要",
             "辣酱": "下班时间",
             "烤鸡腿": "加班餐",
-        }
-    elif any(word in theme for word in ("考研", "考公", "上岸", "考试")):
-        replacements = {
-            "老板": "考官",
-            "老师": "监考老师",
-            "压岁钱": "复习时间",
-            "传单": "资料",
-            "辣酱": "复习笔记",
-        }
-    elif any(word in theme for word in ("烤肠", "香肠", "摆摊", "小吃", "夜市")):
-        replacements = {
-            "烤鸡腿": "烤肠",
-            "传单": "烤肠券",
-            "老板": "摊主",
-            "生活费": "摊位费",
         }
     else:
         replacements = {}

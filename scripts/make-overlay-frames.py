@@ -61,6 +61,65 @@ def draw_resume(draw: ImageDraw.ImageDraw, x: float, y: float, text: str, angle_
     draw_text_center(draw, (int(x + 60), int(y - 22 + math.sin(angle_hint) * 4)), text, load_font(22), (255, 255, 255, 255), stroke=3)
 
 
+def draw_flying_object(draw: ImageDraw.ImageDraw, x: float, y: float, action: dict, angle_hint: float) -> None:
+    kind = str(action.get("object", "resume_stack"))
+    text = str(action.get("text", ""))
+    if kind == "resume_stack":
+        draw_resume(draw, x, y, text or "简历", angle_hint)
+    elif kind == "bill_stack":
+        draw_small_card(draw, x, y, text or "账单", "BILL", (255, 248, 239, 240), (214, 112, 48, 230))
+    elif kind == "metro_card":
+        draw_small_card(draw, x, y, text or "通勤", "METRO", (232, 246, 255, 240), (52, 123, 190, 230))
+    elif kind == "study_notes":
+        draw_small_card(draw, x, y, text or "资料", "NOTE", (247, 255, 239, 240), (58, 160, 88, 230))
+    elif kind == "exam_ticket":
+        draw_small_card(draw, x, y, text or "准考证", "TICKET", (246, 246, 255, 240), (92, 87, 190, 230))
+    elif kind == "meeting_invite":
+        draw_small_card(draw, x, y, text or "会议+1", "CAL", (238, 248, 255, 240), (47, 129, 247, 230))
+    elif kind == "ppt_deck":
+        draw_small_card(draw, x, y, text or "PPT", "PPT", (245, 239, 255, 240), (126, 86, 210, 230))
+    elif kind == "requirement_scroll":
+        draw_small_card(draw, x, y, text or "要求+1", "REQ", (255, 253, 244, 240), (228, 70, 70, 230))
+    elif kind == "reject_notice":
+        draw_small_card(draw, x, y, text or "暂不合适", "NO", (255, 245, 245, 240), (210, 48, 48, 230))
+    elif kind == "price_tag":
+        draw_price_tag(draw, x, y, text or "特价")
+    elif kind == "sausage_skewer":
+        draw_sausage_skewer(draw, x, y, text or "烤肠")
+    else:
+        draw_small_card(draw, x, y, text or kind, "ITEM", (255, 255, 245, 240), (44, 64, 82, 220))
+
+
+def draw_small_card(
+    draw: ImageDraw.ImageDraw,
+    x: float,
+    y: float,
+    text: str,
+    label: str,
+    fill: tuple[int, int, int, int],
+    outline: tuple[int, int, int, int],
+) -> None:
+    box = (int(x), int(y), int(x + 128), int(y + 78))
+    draw.rounded_rectangle(box, radius=12, fill=fill, outline=outline, width=3)
+    draw.text((box[0] + 12, box[1] + 9), label, font=load_font(16), fill=outline)
+    draw.line((box[0] + 12, box[1] + 34, box[2] - 12, box[1] + 34), fill=outline, width=2)
+    draw_text_center(draw, (box[0] + 64, box[1] + 55), fit_text(text, 8), load_font(20), (38, 44, 52, 255), stroke=1)
+
+
+def draw_price_tag(draw: ImageDraw.ImageDraw, x: float, y: float, text: str) -> None:
+    points = [(x + 12, y), (x + 130, y + 10), (x + 118, y + 82), (x + 2, y + 72)]
+    draw.polygon(points, fill=(255, 232, 120, 242), outline=(156, 82, 24, 240))
+    draw.ellipse((x + 18, y + 16, x + 32, y + 30), fill=(156, 82, 24, 230))
+    draw_text_center(draw, (int(x + 68), int(y + 43)), fit_text(text, 7), load_font(22), (101, 52, 18, 255), stroke=1)
+
+
+def draw_sausage_skewer(draw: ImageDraw.ImageDraw, x: float, y: float, text: str) -> None:
+    draw.line((x + 12, y + 88, x + 142, y + 16), fill=(126, 72, 28, 255), width=7)
+    for offset in (0, 34, 68):
+        draw.rounded_rectangle((x + 20 + offset, y + 42 - offset * 0.45, x + 56 + offset, y + 70 - offset * 0.45), radius=14, fill=(205, 84, 36, 245), outline=(126, 44, 22, 220), width=2)
+    draw_text_center(draw, (int(x + 74), int(y + 5)), fit_text(text, 7), load_font(20), (255, 255, 255, 255), stroke=3)
+
+
 def draw_stamp(draw: ImageDraw.ImageDraw, progress: float, text: str) -> None:
     scale = 0.7 + 0.45 * min(progress * 2, 1)
     cx, cy = 690, 302
@@ -120,7 +179,7 @@ def draw_phone_job_feed(draw: ImageDraw.ImageDraw, progress: float, action: dict
 
 
 def draw_job_requirement_card(draw: ImageDraw.ImageDraw, progress: float, action: dict) -> None:
-    y = panel_progress_y(104, progress, 54)
+    y = panel_progress_y(196, progress, 44)
     box = (560, y, 902, y + 270)
     draw_card_shadow(draw, box, 20)
     draw.rounded_rectangle(box, radius=20, fill=(255, 253, 244, 245), outline=(35, 47, 61, 230), width=3)
@@ -151,7 +210,7 @@ def draw_message_stack(draw: ImageDraw.ImageDraw, progress: float, action: dict,
 
 
 def draw_choice_panel(draw: ImageDraw.ImageDraw, progress: float, action: dict) -> None:
-    y = panel_progress_y(96, progress, 48)
+    y = panel_progress_y(190, progress, 42)
     box = (560, y, 900, y + 264)
     draw_card_shadow(draw, box, 22)
     draw.rounded_rectangle(box, radius=22, fill=(247, 255, 248, 244), outline=(42, 157, 86, 240), width=4)
@@ -164,7 +223,7 @@ def draw_choice_panel(draw: ImageDraw.ImageDraw, progress: float, action: dict) 
 
 
 def draw_bill_card(draw: ImageDraw.ImageDraw, progress: float, action: dict) -> None:
-    y = panel_progress_y(102, progress, 48)
+    y = panel_progress_y(202, progress, 42)
     box = (576, y, 890, y + 256)
     draw_card_shadow(draw, box, 18)
     draw.rounded_rectangle(box, radius=18, fill=(255, 248, 239, 246), outline=(225, 118, 48, 245), width=3)
@@ -177,8 +236,38 @@ def draw_bill_card(draw: ImageDraw.ImageDraw, progress: float, action: dict) -> 
     draw.line((box[0] + 28, box[3] - 54, box[2] - 28, box[3] - 54), fill=(150, 92, 52, 80), width=2)
 
 
+def draw_commute_card(draw: ImageDraw.ImageDraw, progress: float, action: dict) -> None:
+    y = panel_progress_y(190, progress, 48)
+    box = (574, y, 898, y + 252)
+    draw_card_shadow(draw, box, 20)
+    draw.rounded_rectangle(box, radius=20, fill=(232, 246, 255, 246), outline=(52, 123, 190, 245), width=3)
+    draw.text((box[0] + 26, box[1] + 20), fit_text(action.get("title", "通勤账单"), 12), font=load_font(28), fill=(28, 78, 132, 255))
+    draw.rounded_rectangle((box[0] + 28, box[1] + 68, box[2] - 28, box[1] + 112), radius=18, fill=(255, 255, 255, 246))
+    draw_text_center(draw, ((box[0] + box[2]) // 2, box[1] + 90), "地铁 2h", load_font(25), (34, 83, 136, 255), stroke=1)
+    items = action.get("items") if isinstance(action.get("items"), list) else ["早八地铁", "单程 2h", "咖啡续命"]
+    for index, item in enumerate(items[:3]):
+        yy = box[1] + 134 + index * 34
+        draw.ellipse((box[0] + 32, yy + 5, box[0] + 46, yy + 19), fill=(52, 123, 190, 230))
+        draw.text((box[0] + 58, yy), fit_text(item, 11), font=load_font(20), fill=(31, 68, 107, 255))
+
+
+def draw_study_card(draw: ImageDraw.ImageDraw, progress: float, action: dict) -> None:
+    y = panel_progress_y(182, progress, 46)
+    box = (558, y, 900, y + 280)
+    draw_card_shadow(draw, box, 20)
+    draw.rounded_rectangle(box, radius=20, fill=(246, 255, 241, 246), outline=(53, 155, 86, 245), width=3)
+    draw.text((box[0] + 28, box[1] + 22), fit_text(action.get("title", "今日复习"), 12), font=load_font(29), fill=(29, 96, 50, 255))
+    items = action.get("items") if isinstance(action.get("items"), list) else ["刷题 x3", "倒计时", "选择题"]
+    for index, item in enumerate(items[:3]):
+        yy = box[1] + 78 + index * 52
+        card = (box[0] + 30, yy, box[2] - 30, yy + 40)
+        draw.rounded_rectangle(card, radius=14, fill=(255, 255, 255, 250), outline=(75, 176, 105, 150), width=2)
+        draw.text((card[0] + 18, card[1] + 8), fit_text(item, 13), font=load_font(21), fill=(31, 83, 50, 255))
+    draw_text_center(draw, ((box[0] + box[2]) // 2, box[3] - 34), "先做能做的一题", load_font(20), (29, 96, 50, 255), stroke=1)
+
+
 def draw_stall_sign(draw: ImageDraw.ImageDraw, progress: float, action: dict) -> None:
-    y = panel_progress_y(92, progress, 50)
+    y = panel_progress_y(224, progress, 38)
     box = (562, y, 904, y + 230)
     draw_card_shadow(draw, box, 18)
     draw.rounded_rectangle(box, radius=18, fill=(255, 244, 221, 248), outline=(184, 69, 32, 245), width=4)
@@ -202,7 +291,7 @@ def draw_action(draw: ImageDraw.ImageDraw, action: dict, local_t: float) -> None
         eased = ease_out(progress)
         x = 190 + (610 - 190) * eased
         y = 332 - math.sin(progress * math.pi) * 120
-        draw_resume(draw, x, y, text or "简历", progress * math.tau)
+        draw_flying_object(draw, x, y, action, progress * math.tau)
     elif kind == "stamp_reject":
         draw_stamp(draw, progress, text or "已读不回")
     elif kind == "popup":
@@ -221,8 +310,25 @@ def draw_action(draw: ImageDraw.ImageDraw, action: dict, local_t: float) -> None
         draw_choice_panel(draw, progress, action)
     elif kind == "bill_card":
         draw_bill_card(draw, progress, action)
+    elif kind == "commute_card":
+        draw_commute_card(draw, progress, action)
+    elif kind == "study_card":
+        draw_study_card(draw, progress, action)
     elif kind == "stall_sign":
         draw_stall_sign(draw, progress, action)
+    elif kind == "generated_sticker":
+        draw_generated_sticker(draw, progress, action)
+
+
+def draw_generated_sticker(draw: ImageDraw.ImageDraw, progress: float, action: dict) -> None:
+    label = fit_text(action.get("text", "贴纸"), 8)
+    eased = ease_out(progress)
+    cx = int(710 + math.sin(progress * math.pi * 1.4) * 14)
+    cy = int(166 + (1 - eased) * 34)
+    radius = int(58 + 8 * math.sin(progress * math.pi))
+    draw.ellipse((cx - radius, cy - radius, cx + radius, cy + radius), fill=(255, 244, 117, 238), outline=(42, 48, 55, 240), width=4)
+    draw.arc((cx - radius + 18, cy - radius + 18, cx + radius - 18, cy + radius - 18), 200, 340, fill=(42, 48, 55, 230), width=4)
+    draw_text_center(draw, (cx, cy), label, load_font(28), (37, 42, 49, 255), stroke=1)
 
 
 def main() -> None:

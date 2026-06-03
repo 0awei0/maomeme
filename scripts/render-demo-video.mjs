@@ -18,6 +18,9 @@ const captionDir = path.join(runtimeDir, 'captions');
 const overlayDir = path.join(runtimeDir, 'overlays');
 const segmentConcurrency = clampInt(process.env.RENDER_SEGMENT_CONCURRENCY, 1, Math.min(4, os.cpus().length || 2), 2);
 const ffmpegPreset = process.env.RENDER_FFMPEG_PRESET || 'veryfast';
+const segmentBedVolume = clamp(Number(process.env.RENDER_SEGMENT_BED_VOLUME ?? '0.18'), 0, 1);
+const actionAudioVolume = clamp(Number(process.env.RENDER_ACTION_AUDIO_VOLUME ?? '0.42'), 0, 1);
+const finalBedVolume = clamp(Number(process.env.RENDER_FINAL_BGM_VOLUME ?? '0.36'), 0, 1);
 const pythonRunner = resolvePythonRunner();
 let fallbackAudioSourcePromise;
 
@@ -29,12 +32,11 @@ async function renderSegment(slot, index) {
   const background = path.join(root, slot.background.file);
   const motionSource = await resolveMotionSource(slot.motion.file);
   const secondaryMotionSource = slot.secondary_motion?.file ? await resolveMotionSource(slot.secondary_motion.file) : motionSource;
-  const primaryAudio = await inspectAudio(motionSource.file, slot.motion_clip, duration);
+  const primaryAudio = await inspectAudio(motionSource.audioFile, slot.motion_clip, duration);
   const secondaryAudio = slot.secondary_motion?.file
-    ? await inspectAudio(secondaryMotionSource.file, slot.secondary_motion_clip || slot.motion_clip, duration)
+    ? await inspectAudio(secondaryMotionSource.audioFile, slot.secondary_motion_clip || slot.motion_clip, duration)
     : null;
-  const needsFallbackAudio = dialogueNeedsFallback(slot, primaryAudio, secondaryAudio);
-  const fallbackAudioSource = needsFallbackAudio ? await getFallbackAudioSource() : null;
+  const fallbackAudioSource = await getFallbackAudioSource();
   const caption = path.join(captionDir, `${String(index).padStart(2, '0')}-${slot.id}.png`);
   const overlayFrameDir = path.join(overlayDir, `${String(index).padStart(2, '0')}-${slot.id}`);
   const hasOverlay = Array.isArray(slot.overlay_actions) && slot.overlay_actions.length > 0;
@@ -43,9 +45,9 @@ async function renderSegment(slot, index) {
     hasOverlay ? makeOverlayFrames(slot, overlayFrameDir, duration) : Promise.resolve()
   ]);
   const dialogue = slot.layout === 'dialogue' && slot.secondary_motion?.file;
-  const leftCatFilter = keyedMotionFilter(1, 'leftcat', { flip: false, keyed: motionSource.keyed });
-  const rightCatFilter = keyedMotionFilter(2, 'rightcat', { flip: true, keyed: secondaryMotionSource.keyed });
-  const singleCatFilter = keyedMotionFilter(1, 'cat', { flip: false, keyed: motionSource.keyed });
+  const leftCatFilter = keyedMotionFilter(1, 'leftcat', { flip: false, keyed: motionSource.keyed, quality: slot.motion_quality });
+  const rightCatFilter = keyedMotionFilter(2, 'rightcat', { flip: true, keyed: secondaryMotionSource.keyed, quality: slot.secondary_motion_quality || slot.motion_quality });
+  const singleCatFilter = keyedMotionFilter(1, 'cat', { flip: false, keyed: motionSource.keyed, quality: slot.motion_quality });
   const baseFilter = dialogue
     ? [
       '[0:v]scale=960:544:force_original_aspect_ratio=increase,crop=960:544,setsar=1[bg]',
@@ -64,15 +66,22 @@ async function renderSegment(slot, index) {
       '[comp][cap]overlay=0:0:shortest=1[captioned]'
     ].join(';');
   const overlayInputIndex = dialogue ? 4 : 3;
+  const audioInputs = [];
+  if (primaryAudio.audible) {
+    audioInputs.push({ file: motionSource.audioFile, clip: slot.motion_clip, label: 'a1', volume: dialogue ? actionAudioVolume * 0.72 : actionAudioVolume });
+  } else if (dialogue && secondaryAudio?.audible) {
+    audioInputs.push({ file: secondaryMotionSource.audioFile, clip: slot.secondary_motion_clip || slot.motion_clip, label: 'a2', volume: actionAudioVolume * 0.6 });
+  }
   const preOutput = hasOverlay
     ? `${baseFilter};[${overlayInputIndex}:v]format=rgba[ov];[captioned][ov]overlay=0:0:shortest=1[vpre]`
     : `${baseFilter};[captioned]copy[vpre]`;
+  const audioStartIndex = overlayInputIndex + (hasOverlay ? 1 : 0);
+  const fallbackInputIndex = audioStartIndex + audioInputs.length;
   const audioFilter = buildAudioFilter({
-    dialogue,
     duration,
-    primaryAudible: primaryAudio.audible,
-    secondaryAudible: secondaryAudio?.audible ?? false,
-    fallbackInputIndex: needsFallbackAudio && fallbackAudioSource ? (hasOverlay ? overlayInputIndex + 1 : overlayInputIndex) : null,
+    audioInputs: audioInputs.map((track, offset) => ({ ...track, input: audioStartIndex + offset })),
+    fallbackInputIndex: fallbackAudioSource ? fallbackInputIndex : null,
+    bedVolume: segmentBedVolume,
   });
   const filter = `${preOutput};${transitionFilter(slot.transition, duration)}${audioFilter}`;
 
@@ -102,7 +111,14 @@ async function renderSegment(slot, index) {
       '-i', path.join(overlayFrameDir, '%04d.png')
     );
   }
-  if (needsFallbackAudio && fallbackAudioSource) {
+  for (const audioInput of audioInputs) {
+    inputs.push(
+      '-ss', String(Math.max(0, Number(audioInput.clip?.start || 0))),
+      '-t', String(duration),
+      '-i', audioInput.file
+    );
+  }
+  if (fallbackAudioSource) {
     inputs.push(
       '-stream_loop', '-1',
       '-t', String(duration),
@@ -142,23 +158,14 @@ function motionInputArgs(source, clipSpec = {}, slotDuration) {
   ];
 }
 
-function dialogueNeedsFallback(slot, primaryAudio, secondaryAudio) {
-  if (slot.layout === 'dialogue' && slot.secondary_motion?.file) {
-    return !primaryAudio.audible && !secondaryAudio?.audible;
-  }
-  return !primaryAudio.audible;
-}
-
-function buildAudioFilter({ dialogue, duration, primaryAudible, secondaryAudible, fallbackInputIndex }) {
-  const tracks = [];
-  if (primaryAudible) {
-    tracks.push({ input: 1, volume: dialogue ? 0.78 : 1.0, label: 'a1' });
-  }
-  if (dialogue && secondaryAudible) {
-    tracks.push({ input: 2, volume: 0.78, label: 'a2' });
-  }
+function buildAudioFilter({ duration, audioInputs = [], fallbackInputIndex, bedVolume = 0.18 }) {
+  const tracks = audioInputs.map((track, index) => ({
+    input: track.input,
+    volume: track.volume ?? 1.0,
+    label: track.label || `a${index + 1}`,
+  }));
   if (fallbackInputIndex !== null) {
-    tracks.push({ input: fallbackInputIndex, volume: 0.22, label: 'abed' });
+    tracks.push({ input: fallbackInputIndex, volume: bedVolume, label: 'abed' });
   }
   if (!tracks.length) {
     return `;anullsrc=channel_layout=stereo:sample_rate=44100,atrim=0:${duration},asetpts=PTS-STARTPTS[a]`;
@@ -217,6 +224,9 @@ async function getFallbackAudioSource() {
 
 async function findFallbackAudioSource() {
   const preferred = [
+    'data/viral-structures/baokuan-maomeme/bkmm-001-抖音202662-534438/audio.m4a',
+    'data/viral-structures/baokuan-maomeme/bkmm-036-抖音202663-775737/audio.m4a',
+    'data/viral-structures/baokuan-maomeme/bkmm-003-抖音202663-009401/audio.m4a',
     'assets/cat-motions/13.mp4',
     'assets/cat-motions/2.mp4',
     'assets/cat-motions/4.mp4',
@@ -240,8 +250,8 @@ async function resolveMotionSource(file) {
   const source = path.join(root, file);
   const id = path.basename(file, path.extname(file));
   const keyed = path.join(root, 'assets/processed/cat-motions-keyed', `${id}.mov`);
-  if (await exists(keyed)) return { file: keyed, keyed: true };
-  return { file: source, keyed: false };
+  if (await exists(keyed)) return { file: keyed, audioFile: source, audioInputIndex: 1, keyed: true };
+  return { file: source, audioFile: source, audioInputIndex: 1, keyed: false };
 }
 
 async function exists(file) {
@@ -255,10 +265,13 @@ async function exists(file) {
 
 function keyedMotionFilter(inputIndex, label, options = {}) {
   const flip = options.flip ? 'hflip,' : '';
+  const needsCrop = Boolean(options.quality?.needs_crop);
+  const crop = needsCrop ? 'crop=iw*0.62:ih*0.76:iw*0.19:ih*0.08,' : 'crop=iw*0.5:ih-36:iw*0.25:0,';
+  const scale = needsCrop ? 'scale=310:-1,' : 'scale=360:-1,';
   if (options.keyed) {
-    return `[${inputIndex}:v]${flip}scale=360:-1,format=rgba[${label}]`;
+    return `[${inputIndex}:v]${flip}${needsCrop ? crop : ''}${scale}format=rgba[${label}]`;
   }
-  return `[${inputIndex}:v]crop=iw*0.5:ih-36:iw*0.25:0,${flip}scale=360:-1,colorkey=0x00ff00:0.38:0.10,despill=green,format=rgba[${label}]`;
+  return `[${inputIndex}:v]${crop}${flip}${scale}colorkey=0x00ff00:0.38:0.10,despill=green,format=rgba[${label}]`;
 }
 
 function transitionFilter(transition = {}, duration) {
@@ -326,6 +339,8 @@ function applyHyperframeSlot(slot, hyperframeSlot) {
     overlay_actions: Array.isArray(hyperframeSlot.overlay_actions) ? hyperframeSlot.overlay_actions : slot.overlay_actions,
     packaging_preset: hyperframeSlot.packaging_preset || slot.packaging_preset,
     hyperframe_role: hyperframeSlot.hyperframe_role || slot.hyperframe_role,
+    motion_quality: hyperframeSlot.motion_quality || slot.motion_quality || {},
+    secondary_motion_quality: hyperframeSlot.secondary_motion_quality || slot.secondary_motion_quality || {},
   };
 }
 
@@ -388,7 +403,8 @@ async function main() {
   const output = args.output ? path.resolve(args.output) : path.join(outputDir, 'maomeme-demo.mp4');
   await fs.mkdir(path.dirname(output), { recursive: true });
   const totalDuration = slots.reduce((total, slot) => total + Math.max(1, Number(slot.end || 0) - Number(slot.start || 0)), 0);
-  await concatSegments(concatFile, output, totalDuration);
+  const finalBed = await getFallbackAudioSource();
+  await concatSegments(concatFile, output, totalDuration, finalBed);
 
   console.log(`Rendered demo video: ${path.relative(root, output)}`);
 }
@@ -403,7 +419,7 @@ function parseArgs(argv) {
   return parsed;
 }
 
-async function concatSegments(concatFile, output, totalDuration) {
+async function concatSegments(concatFile, output, totalDuration, finalBed = null) {
   const tempOutput = output.replace(/\.mp4$/i, '.concat-tmp.mp4');
   await execFileAsync('ffmpeg', [
     '-y',
@@ -424,11 +440,19 @@ async function concatSegments(concatFile, output, totalDuration) {
     '-y',
     '-i', tempOutput,
   ];
+  if (finalBed?.file) {
+    trimArgs.push('-stream_loop', '-1', '-t', String(totalDuration), '-i', finalBed.file);
+  }
   const hasFiniteDuration = Number.isFinite(totalDuration) && totalDuration > 0;
   if (hasFiniteDuration) {
+    const audioFilter = finalBed?.file
+      ? `[0:a]asetpts=PTS-STARTPTS,atrim=0:${totalDuration},volume=${Math.max(0, 1 - finalBedVolume * 0.5)}[seg_audio];[1:a]asetpts=PTS-STARTPTS,atrim=0:${totalDuration},volume=${finalBedVolume}[final_bed];[seg_audio][final_bed]amix=inputs=2:duration=first:normalize=0,aformat=channel_layouts=stereo:sample_rates=44100,atrim=0:${totalDuration},asetpts=PTS-STARTPTS[a]`
+      : `[0:a]asetpts=PTS-STARTPTS,atrim=0:${totalDuration},asetpts=PTS-STARTPTS[a]`;
     trimArgs.push(
+      '-t',
+      String(totalDuration),
       '-filter_complex',
-      `[0:v]setpts=PTS-STARTPTS,fps=30,tpad=stop_mode=clone:stop_duration=1,trim=0:${totalDuration},setpts=PTS-STARTPTS[v];[0:a]asetpts=PTS-STARTPTS,atrim=0:${totalDuration},apad=whole_dur=${totalDuration}[a]`,
+      `[0:v]setpts=PTS-STARTPTS,fps=30,tpad=stop_mode=clone:stop_duration=1,trim=0:${totalDuration},setpts=PTS-STARTPTS[v];${audioFilter}`,
       '-map',
       '[v]',
       '-map',
@@ -444,6 +468,7 @@ async function concatSegments(concatFile, output, totalDuration) {
     '-ar', '44100',
     '-ac', '2',
     '-pix_fmt', 'yuv420p',
+    '-shortest',
     '-movflags', '+faststart',
     output
   );
