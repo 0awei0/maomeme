@@ -1,0 +1,39 @@
+{
+  "video_id": "bkmm-036-抖音202663-775737",
+  "verdict": "pass",
+  "score": 89.0,
+  "summary": "整体拆解与视频高度匹配，核心剧情、场景、梗点、meme描述均准确，仅存在少量非核心细节遗漏",
+  "confirmed_points": [
+    "整体剧情围绕「男生的那些出厂设置」主题，分为空瓶子、摸树叶、固定吃饭、秒睡四个共性片段，与视频内容一致",
+    "分镜顺序、起承转合正确，各场景（ins风客厅、林荫人行道、家常小餐馆、卧室、抖音搜索引导页）描述贴合实际",
+    "主要猫meme的数量、动作、位置描述大部分符合视频内容",
+    "笑点、核心梗点均匹配视频的男生日常共性共鸣点",
+    "音频风格、字幕包装风格描述与视频实际一致"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "4",
+      "field": "script",
+      "observed": "15-18s先出现两个狗头meme互相谦让走前面的过渡内容，之后才进入双猫打赌摸树叶剧情",
+      "extracted": "仅描述双猫人行道对话、跳起来摸树叶，未提及前置狗头谦让内容",
+      "suggestion": "补充狗头meme互相谦让的过渡剧情描述"
+    },
+    {
+      "severity": "minor",
+      "shot_id": "5",
+      "field": "script",
+      "observed": "32-35s出现羊头meme从一月到一年反复点猪脚饭，被老板当成NPC的内容",
+      "extracted": "仅描述橘猫点单、老板狂喜，未提及羊头长期固定点单的内容",
+      "suggestion": "补充羊头长期固定点猪脚饭被老板视为NPC的相关剧情描述"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "76a3e660ead063fe824ca4e3d5183f0209d67823c2fcc89202b088f1043f7f58",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:36:50.030597+00:00",
+  "structure_sha256": "2f731c109b1f3b13c6c1d684777bb6f9e26463ddc635d43d5d00e6fdbca13a9a",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-036-抖音202663-775737/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

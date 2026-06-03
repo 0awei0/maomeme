@@ -1,0 +1,646 @@
+{
+  "id": "maomeme-1780459445",
+  "theme": "考研考公焦虑，毕业生每条路都很挤，选择本身就很难。",
+  "source_structure": {
+    "sample_status": "local_fallback",
+    "id": "0396ca0d",
+    "meta": {
+      "duration": 46.439909,
+      "resolution": "936x720",
+      "fps": 60.0,
+      "cover_frame": null
+    },
+    "script_count": 4,
+    "shot_count": 4,
+    "transferable_features": {
+      "hook_strategy": "2秒内用强表情或强字幕抓住注意力",
+      "narrative_pattern": "hook→冲突铺垫→情绪升级→反转收束",
+      "pacing_pattern": "短 hook，2-3 秒一切，中后段加速",
+      "spatial_pattern": "",
+      "subject_trajectory": "",
+      "composition_pattern": "",
+      "engagement_techniques": [
+        "反差",
+        "拟人",
+        "重复",
+        "情绪夸张"
+      ],
+      "suitable_categories": [
+        "猫meme",
+        "搞笑",
+        "打工人",
+        "校园生活"
+      ]
+    }
+  },
+  "script": [
+    {
+      "type": "hook",
+      "text": "书刚翻开就焦虑",
+      "purpose": "迁移自《2025年3月底猫meme考试》的考试/答题节奏",
+      "duration": 6.5
+    },
+    {
+      "type": "setup",
+      "text": "考研考公都在招手",
+      "purpose": "双线选择压力",
+      "duration": 7.0
+    },
+    {
+      "type": "pressure",
+      "text": "资料堆到挡住猫脸",
+      "purpose": "具象化焦虑",
+      "duration": 7.5
+    },
+    {
+      "type": "twist",
+      "text": "猫发现不是题少",
+      "purpose": "转向结构问题",
+      "duration": 7.0
+    },
+    {
+      "type": "echo",
+      "text": "自习室一排都沉默",
+      "purpose": "群体共鸣",
+      "duration": 7.5
+    },
+    {
+      "type": "pressure",
+      "text": "上岸变成祝福语 也变成压...",
+      "purpose": "把社会压力具体化",
+      "duration": 7.0
+    },
+    {
+      "type": "proof",
+      "text": "高校毕业生规模连续处在千...",
+      "purpose": "补充现实证据",
+      "duration": 8.0
+    },
+    {
+      "type": "punchline",
+      "text": "猫今天先选一页",
+      "purpose": "轻收束",
+      "duration": 7.5
+    }
+  ],
+  "timeline": [
+    {
+      "id": "01-hook",
+      "start": 0.0,
+      "end": 6.5,
+      "role": "hook",
+      "intent": "迁移自《2025年3月底猫meme考试》的考试/答题节奏",
+      "copy": "书刚翻开就焦虑",
+      "motion": {
+        "id": "15",
+        "file": "assets/cat-motions/15.mp4",
+        "description": ""
+      },
+      "motion_clip": {
+        "start": 0.0,
+        "duration": 3.0,
+        "speed": null,
+        "loop": false
+      },
+      "secondary_motion": null,
+      "secondary_motion_clip": null,
+      "background": {
+        "id": "generated/preset-exam-study-room/1780413328.png",
+        "file": "assets/generated/backgrounds/preset-exam-study-room/1780413328.png",
+        "description": "Seedream 生成的考研考公自习室背景，书本、台灯和密集座位，适合备考、查成绩、上岸焦虑、同学互助。"
+      },
+      "background_source": "matched",
+      "background_prompt": "",
+      "transition": {
+        "type": "cut",
+        "duration": 0.0
+      },
+      "layout": "single",
+      "dialogue": [],
+      "overlay_actions": [
+        {
+          "type": "stamp_reject",
+          "start": 0.7,
+          "duration": 1.0,
+          "text": "压力+1"
+        },
+        {
+          "type": "impact_burst",
+          "start": 0.55,
+          "duration": 1.1,
+          "text": "离谱"
+        }
+      ],
+      "gap": {
+        "status": "supplemented",
+        "strategy": "reuse_crop_zoom",
+        "reason": "背景贴合，但猫动作需要通过裁切/重复放大强化情绪。"
+      },
+      "packaging": [
+        "large_caption",
+        "zoom",
+        "quick_cut"
+      ],
+      "source_pattern": "爆款参考《2025年3月底猫meme考试》：setup / 考经典坏人猫meme认知"
+    },
+    {
+      "id": "02-setup",
+      "start": 6.5,
+      "end": 13.5,
+      "role": "setup",
+      "intent": "双线选择压力",
+      "copy": "考研考公都在招手",
+      "motion": {
+        "id": "1",
+        "file": "assets/cat-motions/1.mp4",
+        "description": ""
+      },
+      "motion_clip": {
+        "start": 3.59,
+        "duration": 5.0,
+        "speed": null,
+        "loop": false
+      },
+      "secondary_motion": {
+        "id": "2",
+        "file": "assets/cat-motions/2.mp4",
+        "description": ""
+      },
+      "secondary_motion_clip": {
+        "start": 6.12,
+        "duration": 5.0,
+        "speed": null,
+        "loop": false
+      },
+      "background": {
+        "id": "street/indoor/2",
+        "file": "assets/backgrounds/street/indoor/2.jpg",
+        "description": "蓝色玻璃室内空间，书架桌椅和大窗通透。关键词：图书馆、自习室、办公共享空间。"
+      },
+      "background_source": "matched",
+      "background_prompt": "",
+      "transition": {
+        "type": "fade",
+        "duration": 0.25
+      },
+      "layout": "dialogue",
+      "dialogue": [
+        {
+          "speaker": "left",
+          "text": "猫：这事不对劲"
+        },
+        {
+          "speaker": "right",
+          "text": "旁白猫：先别急"
+        }
+      ],
+      "overlay_actions": [
+        {
+          "type": "stamp_reject",
+          "start": 0.7,
+          "duration": 1.0,
+          "text": "压力+1"
+        }
+      ],
+      "gap": {
+        "status": "supplemented",
+        "strategy": "reuse_crop_zoom",
+        "reason": "背景贴合，但猫动作需要通过裁切/重复放大强化情绪。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "zoom",
+        "quick_cut"
+      ],
+      "source_pattern": "爆款参考《2025年3月底猫meme考试》：setup / 考香蕉猫哭声meme认知"
+    },
+    {
+      "id": "03-pressure",
+      "start": 13.5,
+      "end": 21.0,
+      "role": "pressure",
+      "intent": "具象化焦虑",
+      "copy": "资料堆到挡住猫脸",
+      "motion": {
+        "id": "1",
+        "file": "assets/cat-motions/1.mp4",
+        "description": ""
+      },
+      "motion_clip": {
+        "start": 4.49,
+        "duration": 4.0,
+        "speed": null,
+        "loop": false
+      },
+      "secondary_motion": {
+        "id": "3",
+        "file": "assets/cat-motions/3.mp4",
+        "description": ""
+      },
+      "secondary_motion_clip": {
+        "start": 0.4,
+        "duration": 4.0,
+        "speed": null,
+        "loop": false
+      },
+      "background": {
+        "id": "classroom/3",
+        "file": "assets/backgrounds/classroom/3.jpg",
+        "description": "阳光空教室，课桌椅整齐排列，氛围安静。关键词：自习、考研、考公、论文、空教室焦虑。"
+      },
+      "background_source": "matched",
+      "background_prompt": "",
+      "transition": {
+        "type": "zoom",
+        "duration": 0.22
+      },
+      "layout": "dialogue",
+      "dialogue": [
+        {
+          "speaker": "left",
+          "text": "猫：压力来了"
+        },
+        {
+          "speaker": "right",
+          "text": "旁边猫：我也一样"
+        }
+      ],
+      "overlay_actions": [
+        {
+          "type": "stamp_reject",
+          "start": 0.7,
+          "duration": 1.0,
+          "text": "压力+1"
+        }
+      ],
+      "gap": {
+        "status": "supplemented",
+        "strategy": "reuse_crop_zoom",
+        "reason": "背景贴合，但猫动作需要通过裁切/重复放大强化情绪。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "zoom",
+        "quick_cut"
+      ],
+      "source_pattern": "爆款参考《2025年3月底猫meme考试》：setup / 考说话猫meme认知"
+    },
+    {
+      "id": "04-twist",
+      "start": 21.0,
+      "end": 28.0,
+      "role": "twist",
+      "intent": "转向结构问题",
+      "copy": "猫发现不是题少",
+      "motion": {
+        "id": "15",
+        "file": "assets/cat-motions/15.mp4",
+        "description": ""
+      },
+      "motion_clip": {
+        "start": 4.3,
+        "duration": 4.0,
+        "speed": null,
+        "loop": false
+      },
+      "secondary_motion": {
+        "id": "4",
+        "file": "assets/cat-motions/4.mp4",
+        "description": ""
+      },
+      "secondary_motion_clip": {
+        "start": 7.81,
+        "duration": 4.0,
+        "speed": null,
+        "loop": false
+      },
+      "background": {
+        "id": "street/indoor/2",
+        "file": "assets/backgrounds/street/indoor/2.jpg",
+        "description": "蓝色玻璃室内空间，书架桌椅和大窗通透。关键词：图书馆、自习室、办公共享空间。"
+      },
+      "background_source": "matched",
+      "background_prompt": "",
+      "transition": {
+        "type": "flash",
+        "duration": 0.18
+      },
+      "layout": "dialogue",
+      "dialogue": [
+        {
+          "speaker": "left",
+          "text": "猫：还能这样？"
+        },
+        {
+          "speaker": "right",
+          "text": "旁边猫：现实就这样"
+        }
+      ],
+      "overlay_actions": [
+        {
+          "type": "popup",
+          "start": 0.45,
+          "duration": 1.8,
+          "text": "规则更新"
+        }
+      ],
+      "gap": {
+        "status": "supplemented",
+        "strategy": "reuse_crop_zoom",
+        "reason": "背景贴合，但猫动作需要通过裁切/重复放大强化情绪。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "zoom",
+        "quick_cut"
+      ],
+      "source_pattern": "爆款参考《2025年3月底猫meme考试》：escalation / 混狗选项混淆考生"
+    },
+    {
+      "id": "05-echo",
+      "start": 28.0,
+      "end": 35.5,
+      "role": "echo",
+      "intent": "群体共鸣",
+      "copy": "自习室一排都沉默",
+      "motion": {
+        "id": "9",
+        "file": "assets/cat-motions/9.mp4",
+        "description": ""
+      },
+      "motion_clip": {
+        "start": 0.0,
+        "duration": 5.0,
+        "speed": null,
+        "loop": true
+      },
+      "secondary_motion": null,
+      "secondary_motion_clip": null,
+      "background": {
+        "id": "street/indoor/2",
+        "file": "assets/backgrounds/street/indoor/2.jpg",
+        "description": "蓝色玻璃室内空间，书架桌椅和大窗通透。关键词：图书馆、自习室、办公共享空间。"
+      },
+      "background_source": "matched",
+      "background_prompt": "",
+      "transition": {
+        "type": "cut",
+        "duration": 0.0
+      },
+      "layout": "single",
+      "dialogue": [],
+      "overlay_actions": [
+        {
+          "type": "popup",
+          "start": 0.45,
+          "duration": 1.8,
+          "text": "规则更新"
+        }
+      ],
+      "gap": {
+        "status": "supplemented",
+        "strategy": "reuse_crop_zoom",
+        "reason": "背景贴合，但猫动作需要通过裁切/重复放大强化情绪。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "zoom",
+        "quick_cut"
+      ],
+      "source_pattern": "爆款参考《2025年3月底猫meme考试》：escalation / 听力题增加难度"
+    },
+    {
+      "id": "06-pressure",
+      "start": 35.5,
+      "end": 42.5,
+      "role": "pressure",
+      "intent": "把社会压力具体化",
+      "copy": "上岸变成祝福语 也变成压...",
+      "motion": {
+        "id": "1",
+        "file": "assets/cat-motions/1.mp4",
+        "description": ""
+      },
+      "motion_clip": {
+        "start": 0.25,
+        "duration": 4.0,
+        "speed": null,
+        "loop": false
+      },
+      "secondary_motion": {
+        "id": "5",
+        "file": "assets/cat-motions/5.mp4",
+        "description": ""
+      },
+      "secondary_motion_clip": {
+        "start": 3.02,
+        "duration": 4.0,
+        "speed": null,
+        "loop": false
+      },
+      "background": {
+        "id": "street/indoor/2",
+        "file": "assets/backgrounds/street/indoor/2.jpg",
+        "description": "蓝色玻璃室内空间，书架桌椅和大窗通透。关键词：图书馆、自习室、办公共享空间。"
+      },
+      "background_source": "matched",
+      "background_prompt": "",
+      "transition": {
+        "type": "zoom",
+        "duration": 0.22
+      },
+      "layout": "dialogue",
+      "dialogue": [
+        {
+          "speaker": "left",
+          "text": "猫：压力来了"
+        },
+        {
+          "speaker": "right",
+          "text": "旁边猫：我也一样"
+        }
+      ],
+      "overlay_actions": [
+        {
+          "type": "stamp_reject",
+          "start": 0.7,
+          "duration": 1.0,
+          "text": "压力+1"
+        }
+      ],
+      "gap": {
+        "status": "supplemented",
+        "strategy": "reuse_crop_zoom",
+        "reason": "背景贴合，但猫动作需要通过裁切/重复放大强化情绪。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "zoom",
+        "quick_cut"
+      ],
+      "source_pattern": "爆款参考《2025年3月底猫meme考试》：escalation / 考妲己猫经典音效"
+    },
+    {
+      "id": "07-proof",
+      "start": 42.5,
+      "end": 50.5,
+      "role": "proof",
+      "intent": "补充现实证据",
+      "copy": "高校毕业生规模连续处在千...",
+      "motion": {
+        "id": "16",
+        "file": "assets/cat-motions/16.mp4",
+        "description": ""
+      },
+      "motion_clip": {
+        "start": 0.98,
+        "duration": 5.0,
+        "speed": null,
+        "loop": false
+      },
+      "secondary_motion": null,
+      "secondary_motion_clip": null,
+      "background": {
+        "id": "street/indoor/2",
+        "file": "assets/backgrounds/street/indoor/2.jpg",
+        "description": "蓝色玻璃室内空间，书架桌椅和大窗通透。关键词：图书馆、自习室、办公共享空间。"
+      },
+      "background_source": "matched",
+      "background_prompt": "",
+      "transition": {
+        "type": "cut",
+        "duration": 0.0
+      },
+      "layout": "single",
+      "dialogue": [],
+      "overlay_actions": [
+        {
+          "type": "stamp_reject",
+          "start": 0.7,
+          "duration": 1.0,
+          "text": "压力+1"
+        }
+      ],
+      "gap": {
+        "status": "supplemented",
+        "strategy": "reuse_crop_zoom",
+        "reason": "背景贴合，但猫动作需要通过裁切/重复放大强化情绪。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "zoom",
+        "quick_cut"
+      ],
+      "source_pattern": "爆款参考《2025年3月底猫meme考试》：punchline / 考傻笑猫经典音效"
+    },
+    {
+      "id": "08-punchline",
+      "start": 50.5,
+      "end": 58.0,
+      "role": "punchline",
+      "intent": "轻收束",
+      "copy": "猫今天先选一页",
+      "motion": {
+        "id": "13",
+        "file": "assets/cat-motions/13.mp4",
+        "description": ""
+      },
+      "motion_clip": {
+        "start": 2.87,
+        "duration": 5.0,
+        "speed": null,
+        "loop": false
+      },
+      "secondary_motion": {
+        "id": "6",
+        "file": "assets/cat-motions/6.mp4",
+        "description": ""
+      },
+      "secondary_motion_clip": {
+        "start": 0.0,
+        "duration": 5.0,
+        "speed": null,
+        "loop": true
+      },
+      "background": {
+        "id": "classroom/4",
+        "file": "assets/backgrounds/classroom/4.jpg",
+        "description": "傍晚教室，夕阳照在课桌上。关键词：晚自习、备考到天黑、青春焦虑、温暖收束。"
+      },
+      "background_source": "matched",
+      "background_prompt": "",
+      "transition": {
+        "type": "flash",
+        "duration": 0.18
+      },
+      "layout": "dialogue",
+      "dialogue": [
+        {
+          "speaker": "left",
+          "text": "猫：先活过今天"
+        },
+        {
+          "speaker": "right",
+          "text": "旁边猫：明天再说"
+        }
+      ],
+      "overlay_actions": [
+        {
+          "type": "stamp_reject",
+          "start": 0.7,
+          "duration": 1.0,
+          "text": "压力+1"
+        },
+        {
+          "type": "impact_burst",
+          "start": 0.55,
+          "duration": 1.1,
+          "text": "离谱"
+        }
+      ],
+      "gap": {
+        "status": "supplemented",
+        "strategy": "reuse_crop_zoom",
+        "reason": "背景贴合，但猫动作需要通过裁切/重复放大强化情绪。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "zoom",
+        "freeze_end"
+      ],
+      "source_pattern": "爆款参考《2025年3月底猫meme考试》：punchline / 考傻笑猫经典音效"
+    }
+  ],
+  "material_needs": {
+    "covered": [],
+    "missing": [
+      "hook:背景贴合，但猫动作需要通过裁切/重复放大强化情绪。",
+      "setup:背景贴合，但猫动作需要通过裁切/重复放大强化情绪。",
+      "pressure:背景贴合，但猫动作需要通过裁切/重复放大强化情绪。",
+      "twist:背景贴合，但猫动作需要通过裁切/重复放大强化情绪。",
+      "echo:背景贴合，但猫动作需要通过裁切/重复放大强化情绪。",
+      "pressure:背景贴合，但猫动作需要通过裁切/重复放大强化情绪。",
+      "proof:背景贴合，但猫动作需要通过裁切/重复放大强化情绪。",
+      "punchline:背景贴合，但猫动作需要通过裁切/重复放大强化情绪。"
+    ],
+    "supplement_strategy": [
+      "reuse_crop_zoom"
+    ]
+  },
+  "agent_notes": [
+    "用户选择剧本：爆款迁移·2025年3月底猫meme考试",
+    "素材覆盖评分：12.0",
+    "目标时长模式：minute，预计 58.0s。",
+    "爆款结构参考：2025年3月底猫meme考试(bkmm-012-抖音202663-122472)；大学生最不能接受的事(bkmm-033-抖音202663-666778)；室友偷用光我半个月的老干妈辣酱(bkmm-002-抖音202663-000805)",
+    "文本素材库命中主题：考研考公还是就业。",
+    "剧本参考现实事实：高校毕业生规模连续处在千万级，毕业后的路径选择更拥挤。",
+    "hook 使用 reuse_crop_zoom：背景贴合，但猫动作需要通过裁切/重复放大强化情绪。",
+    "setup 使用 reuse_crop_zoom：背景贴合，但猫动作需要通过裁切/重复放大强化情绪。",
+    "pressure 使用 reuse_crop_zoom：背景贴合，但猫动作需要通过裁切/重复放大强化情绪。",
+    "twist 使用 reuse_crop_zoom：背景贴合，但猫动作需要通过裁切/重复放大强化情绪。",
+    "echo 使用 reuse_crop_zoom：背景贴合，但猫动作需要通过裁切/重复放大强化情绪。",
+    "pressure 使用 reuse_crop_zoom：背景贴合，但猫动作需要通过裁切/重复放大强化情绪。",
+    "proof 使用 reuse_crop_zoom：背景贴合，但猫动作需要通过裁切/重复放大强化情绪。",
+    "punchline 使用 reuse_crop_zoom：背景贴合，但猫动作需要通过裁切/重复放大强化情绪。"
+  ]
+}

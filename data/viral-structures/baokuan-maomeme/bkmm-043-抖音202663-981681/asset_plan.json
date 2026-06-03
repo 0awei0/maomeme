@@ -1,0 +1,88 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 2.0,
+      "beat": "setup",
+      "script": "我出门啦",
+      "joke_point": "铺垫整蛊场景",
+      "background": "简约出租屋客厅白墙木门",
+      "cats": "2只香蕉猫，大的右门边端碗贱笑，小的左走敲门",
+      "audio": "搞怪BGM，奶声配音，敲门声",
+      "subtitle": "顶部：教你如何整蛊朋友",
+      "seedream_prompt": "简约现代客厅白墙木门浅色地板",
+      "local_cat_asset_keywords": "香蕉猫 端碗 走路 贱笑",
+      "local_background_keywords": "居家客厅 木门"
+    },
+    {
+      "shot_id": 2,
+      "duration": 2.0,
+      "beat": "escalation",
+      "script": "（坏笑）",
+      "joke_point": "暗示整蛊动作",
+      "background": "半开木门露出后方房间",
+      "cats": "1只香蕉猫躲门后探头坏笑",
+      "audio": "搞怪BGM，开门音效",
+      "subtitle": "顶部：教你如何整蛊朋友",
+      "seedream_prompt": "半开的木门露出后方白墙房间",
+      "local_cat_asset_keywords": "香蕉猫 探头 坏笑",
+      "local_background_keywords": "半开木门 房间"
+    },
+    {
+      "shot_id": 3,
+      "duration": 2.0,
+      "beat": "twist",
+      "script": "？",
+      "joke_point": "反差点铺垫",
+      "background": "简约出租屋客厅白墙木门",
+      "cats": "1只香蕉猫站右门边端碗冒问号懵",
+      "audio": "搞怪BGM，疑惑音效",
+      "subtitle": "顶部：教你如何整蛊朋友",
+      "seedream_prompt": "简约白墙客厅木门右侧留空",
+      "local_cat_asset_keywords": "香蕉猫 问号 懵",
+      "local_background_keywords": "居家客厅 木门"
+    },
+    {
+      "shot_id": 4,
+      "duration": 2.0,
+      "beat": "punchline",
+      "script": "（又走出来）",
+      "joke_point": "无限循环笑点",
+      "background": "半开木门露出后方房间",
+      "cats": "1只香蕉猫从门里走出一脸懵",
+      "audio": "搞怪BGM，笑点鼓点",
+      "subtitle": "顶部：教你如何整蛊朋友",
+      "seedream_prompt": "半开的木门后方留白",
+      "local_cat_asset_keywords": "香蕉猫 走路 懵",
+      "local_background_keywords": "半开木门"
+    },
+    {
+      "shot_id": 5,
+      "duration": 1.0,
+      "beat": "ending",
+      "script": "（又走出去）",
+      "joke_point": "强化循环梗",
+      "background": "半开木门露出后方房间",
+      "cats": "1只香蕉猫向左走出画面",
+      "audio": "搞怪BGM",
+      "subtitle": "顶部：教你如何整蛊朋友",
+      "seedream_prompt": "半开的木门左侧留白",
+      "local_cat_asset_keywords": "香蕉猫 走路",
+      "local_background_keywords": "半开木门"
+    },
+    {
+      "shot_id": 6,
+      "duration": 2.4,
+      "beat": "cta",
+      "script": "搜索整蛊朋友进入循环怎么做到的",
+      "joke_point": "引流互动",
+      "background": "抖音深色搜索弹窗",
+      "cats": "无猫镜头/平台作者信息页",
+      "audio": "搞怪BGM淡出",
+      "subtitle": "居中搜索框文字",
+      "seedream_prompt": "深色背景抖音搜索弹窗界面",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "抖音搜索弹窗"
+    }
+  ]
+}

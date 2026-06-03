@@ -1,0 +1,22 @@
+{
+  "video_id": "bkmm-041-抖音202663-963163",
+  "verdict": "pass",
+  "score": 95.0,
+  "summary": "拆解与原视频整体高度一致，剧情、分镜、背景、猫素材、音频风格等核心内容均匹配，仅存在细微措辞差异",
+  "confirmed_points": [
+    "剧情主线（提议凑压岁钱轮流花、主角抢先享受、十年后轮到堂弟时众人全结婚不回）完全符合原视频",
+    "分镜顺序、时间节点、起承转合及反转点与原视频画面一致",
+    "背景描述（豪华江景别墅、苹果线下门店、奔驰4S店）准确贴近画面",
+    "猫素材描述（多只香蕉猫、主角猫、橘猫店员、橘猫爷爷等）匹配画面内容",
+    "BGM及音效风格、字幕包装风格的描述符合原视频呈现"
+  ],
+  "issues": [],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "74e78b3f8ed27f6223677c1b0c65f6084e6967bb722d7da062661ce1d6afeddb",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:36:42.617197+00:00",
+  "structure_sha256": "f612150292a237975feda437ea7c5d87a35faa79a83ba795c9b2c9fe3c281089",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-041-抖音202663-963163/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

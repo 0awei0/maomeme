@@ -1,0 +1,22 @@
+{
+  "video_id": "bkmm-029-抖音202663-574311",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "拆解整体与视频高度匹配，剧情、分镜、背景、猫素材、字幕包装描述均准确，仅音频内容无法通过画面确认",
+  "confirmed_points": [
+    "整体剧情符合：香蕉猫拎别家外卖被常光顾的餐馆老板撞见，双方社死到老板崩溃的搞笑场景设定准确",
+    "分镜顺序、时长、节奏节点与视频完全一致，7个镜头的起承转合、反转点匹配",
+    "背景描述准确：餐馆玻璃门外（有花篮、电动车、菜单灯箱）、餐馆门内（有桌椅、菜单海报）的细节均贴合画面",
+    "猫素材描述准确：各镜头的猫类型、动作、表情、对应角色（你/老板）都与画面一致",
+    "字幕包装描述准确：顶部黄色粗体标题、对话分蓝粉气泡、底部标角色名、搭配手部/流汗等emoji贴纸的设定符合视频"
+  ],
+  "issues": [],
+  "audio_confidence": "low",
+  "needs_human_review": false,
+  "_raw_content_sha256": "d3c5ca05dd0c7e0d6a9be7bf85c36263ac15c66b3b38c1bdfe7e4b23b293adb2",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:35:41.271209+00:00",
+  "structure_sha256": "c80a1ecbcb781dc117e8d3641a883a85de08d767d3e7511d43362b8eab3da0f8",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-029-抖音202663-574311/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

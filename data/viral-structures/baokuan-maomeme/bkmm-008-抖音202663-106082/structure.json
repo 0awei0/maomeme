@@ -1,0 +1,406 @@
+{
+  "video_summary": {
+    "title": "当儿时的我逻辑不符合逻辑",
+    "one_sentence": "儿时模仿爸妈称呼自称老子，实践后被混合双打的搞笑日常",
+    "primary_topic": "儿时迷惑逻辑搞笑吐槽",
+    "meme_type": "家庭向猫meme梗",
+    "overall_tone": "沙雕搞笑、共鸣感强"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "当儿时的我逻辑不符合逻辑",
+      "speaker": "旁白",
+      "tone": "正经",
+      "emotion": "平淡",
+      "function": "hook",
+      "confidence": 1
+    },
+    {
+      "start_time": 2,
+      "end_time": 4,
+      "text": "妈妈可以叫老妈",
+      "speaker": "橘猫",
+      "tone": "疑惑",
+      "emotion": "呆滞",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 4,
+      "end_time": 6,
+      "text": "爸爸可以叫老爸",
+      "speaker": "橘猫",
+      "tone": "疑惑",
+      "emotion": "呆滞",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 6,
+      "end_time": 8,
+      "text": "我是儿子，那不是可以叫老子？",
+      "speaker": "奶猫",
+      "tone": "得意",
+      "emotion": "嘚瑟",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 8,
+      "end_time": 11,
+      "text": "老子今天不想吃饭！",
+      "speaker": "我（橘猫）",
+      "tone": "嚣张",
+      "emotion": "拽",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 11,
+      "end_time": 13,
+      "text": "啊？/老子？",
+      "speaker": "爸妈（橘猫）",
+      "tone": "震惊",
+      "emotion": "错愕",
+      "function": "reaction",
+      "confidence": 1
+    },
+    {
+      "start_time": 13,
+      "end_time": 16,
+      "text": "对啊我是你们的老子",
+      "speaker": "我（狗）",
+      "tone": "欠揍",
+      "emotion": "得意",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 16,
+      "end_time": 19,
+      "text": "老婆现在可以动手没/动手吧",
+      "speaker": "爸妈（灰猫）",
+      "tone": "阴沉",
+      "emotion": "生气",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 19,
+      "end_time": 22,
+      "text": "A FEW MOMENTS LATER",
+      "speaker": "旁白",
+      "tone": "搞怪",
+      "emotion": "平淡",
+      "function": "transition",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "hook",
+      "script": "主题引入",
+      "joke_point": "引发童年迷惑行为共鸣",
+      "visual_description": "客厅前景橘猫呆滞脸",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2,
+      "end_time": 6,
+      "duration": 4,
+      "beat": "setup",
+      "script": "铺垫称呼逻辑",
+      "joke_point": "铺垫神逻辑前提",
+      "visual_description": "橘猫依次说老妈老爸的称呼",
+      "pacing_note": "中"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 6,
+      "end_time": 8,
+      "duration": 2,
+      "beat": "twist",
+      "script": "推导儿子=老子",
+      "joke_point": "迷惑神逻辑反转",
+      "visual_description": "奶猫张嘴嘚瑟说话",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 8,
+      "end_time": 11,
+      "duration": 3,
+      "beat": "escalation",
+      "script": "饭桌实践喊老子",
+      "joke_point": "把神逻辑用到现实",
+      "visual_description": "三猫坐饭桌，我嚣张说话",
+      "pacing_note": "中"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 11,
+      "end_time": 16,
+      "duration": 5,
+      "beat": "punchline",
+      "script": "爸妈震惊我还嘴欠",
+      "joke_point": "欠揍行为拉满",
+      "visual_description": "爸妈震惊脸，我变狗大笑",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 16,
+      "end_time": 19,
+      "duration": 3,
+      "beat": "punchline",
+      "script": "爸妈拿工具准备揍人",
+      "joke_point": "混合双打预警",
+      "visual_description": "爸妈变灰猫拿衣架皮带，我变黑猫害怕",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 19,
+      "end_time": 22,
+      "duration": 3,
+      "beat": "transition",
+      "script": "时间跳转",
+      "joke_point": "暗示挨揍过程",
+      "visual_description": "海绵宝宝经典转场",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 8,
+      "start_time": 22,
+      "end_time": 26,
+      "duration": 4,
+      "beat": "ending",
+      "script": "被揍完委屈",
+      "joke_point": "神逻辑的代价",
+      "visual_description": "我变肿脸奶猫委屈看爸妈",
+      "pacing_note": "慢"
+    }
+  ],
+  "cat_track": [
+    "单橘猫，居中前景，呆滞疑惑脸",
+    "单橘猫，居中前景，呆滞疑惑脸",
+    "单奶狸花，居中前景，张嘴得意脸",
+    "三橘猫横排，左右爸妈吃饭，右我拽脸",
+    "两橘猫（爸妈）震惊，右狗（我）大笑",
+    "两灰猫（爸妈）拿工具，右黑猫（我）害怕",
+    "",
+    "两灰猫（爸妈）冷脸，右奶猫（我）委屈"
+  ],
+  "background_track": [
+    "现代简约客厅，沙发电视百叶窗，明亮，无需生成",
+    "同上",
+    "同上",
+    "现代厨房餐厅，木桌放饭菜，明亮，无需生成",
+    "同上",
+    "同上",
+    "海绵宝宝红色转场背景，无需生成",
+    "同上餐厅背景，明亮"
+  ],
+  "audio_track": {
+    "bgm_style": "轻快搞怪沙雕短视频BGM",
+    "bgm_mood": "轻松搞笑",
+    "voice_style": "分角色反差配音，少年音欠揍，成年音低沉",
+    "voice_presence": "清晰突出，盖过BGM",
+    "sfx": [
+      "张嘴音效",
+      "震惊抽气音效",
+      "挨打闷响音效"
+    ],
+    "rhythm_sync": "每2秒卡点对应台词和猫表情切换"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "粗黑描边白色黑体字",
+    "subtitle_density": "低，每屏最多2句",
+    "emphasis_words": [
+      "老子"
+    ],
+    "bubble_or_dialogue_style": "无气泡，对应角色上方直接显示",
+    "stickers_or_overlays": [
+      "角色左下角黄色身份标签（妈/爸/我）"
+    ],
+    "transition_notes": [
+      "海绵宝宝经典“A FEW MOMENTS LATER”转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "儿时迷惑逻辑推导→现实应用→触发家长反应→挨揍收尾"
+    ],
+    "shot_templates": [
+      "单猫逻辑铺垫→多猫家庭场景互动→转场→结局反应"
+    ],
+    "cat_action_templates": [
+      "呆滞疑惑→得意嚣张→震惊→害怕→委屈"
+    ],
+    "background_templates": [
+      "现代简约家庭客厅/餐厅通用场景"
+    ],
+    "audio_templates": [
+      "轻快搞怪BGM+分角色反差配音"
+    ],
+    "suitable_topics": [
+      "儿时迷惑行为",
+      "家庭搞笑日常",
+      "神逻辑吐槽",
+      "亲子梗"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.0,
+        "beat": "hook",
+        "script": "当儿时的我逻辑不符合逻辑",
+        "joke_point": "引发童年共鸣",
+        "background": "现代简约明亮客厅",
+        "cats": "橘猫呆滞疑惑脸居中",
+        "audio": "搞怪BGM起，旁白配音",
+        "subtitle": "顶部粗黑边白字",
+        "seedream_prompt": "现代简约客厅 沙发 电视 明亮",
+        "local_cat_asset_keywords": "橘猫 呆滞 疑惑脸",
+        "local_background_keywords": "简约客厅 明亮"
+      },
+      {
+        "shot_id": 2,
+        "duration": 4.0,
+        "beat": "setup",
+        "script": "妈妈可以叫老妈/爸爸可以叫老爸",
+        "joke_point": "铺垫神逻辑前提",
+        "background": "同上客厅",
+        "cats": "橘猫疑惑脸居中",
+        "audio": "BGM继续，疑惑语气配音",
+        "subtitle": "画面中部白字",
+        "seedream_prompt": "现代简约客厅",
+        "local_cat_asset_keywords": "橘猫 疑惑脸",
+        "local_background_keywords": "简约客厅"
+      },
+      {
+        "shot_id": 3,
+        "duration": 2.0,
+        "beat": "twist",
+        "script": "我是儿子，那不是可以叫老子？",
+        "joke_point": "迷惑神逻辑反转",
+        "background": "同上客厅",
+        "cats": "奶狸花张嘴得意脸居中",
+        "audio": "得意语气配音，搞笑音效",
+        "subtitle": "画面中部白字",
+        "seedream_prompt": "现代简约客厅",
+        "local_cat_asset_keywords": "奶猫 张嘴 得意脸",
+        "local_background_keywords": "简约客厅"
+      },
+      {
+        "shot_id": 4,
+        "duration": 3.0,
+        "beat": "escalation",
+        "script": "老子今天不想吃饭！",
+        "joke_point": "神逻辑落地实践",
+        "background": "现代厨房餐厅放饭菜",
+        "cats": "三橘猫横排，左右爸妈吃饭，右我拽脸",
+        "audio": "嚣张语气配音",
+        "subtitle": "我头顶上方白字",
+        "seedream_prompt": "现代厨房 木餐桌 饭菜 明亮",
+        "local_cat_asset_keywords": "橘猫 吃饭 拽脸",
+        "local_background_keywords": "家庭餐厅 饭菜"
+      },
+      {
+        "shot_id": 5,
+        "duration": 5.0,
+        "beat": "punchline",
+        "script": "啊？/老子？/对啊我是你们的老子",
+        "joke_point": "欠揍行为拉满",
+        "background": "同上餐厅",
+        "cats": "两橘猫震惊脸，右狗大笑",
+        "audio": "震惊+欠揍配音，抽气音效",
+        "subtitle": "对应角色上方白字",
+        "seedream_prompt": "现代厨房餐厅",
+        "local_cat_asset_keywords": "橘猫 震惊脸 狗 大笑脸",
+        "local_background_keywords": "家庭餐厅"
+      },
+      {
+        "shot_id": 6,
+        "duration": 3.0,
+        "beat": "punchline",
+        "script": "老婆现在可以动手没/动手吧",
+        "joke_point": "混合双打预警",
+        "background": "同上餐厅",
+        "cats": "两灰猫拿衣架皮带，右黑猫害怕脸",
+        "audio": "阴沉语气配音",
+        "subtitle": "爸妈头顶上方白字",
+        "seedream_prompt": "现代厨房餐厅",
+        "local_cat_asset_keywords": "灰猫 生气脸 黑猫 害怕脸",
+        "local_background_keywords": "家庭餐厅"
+      },
+      {
+        "shot_id": 7,
+        "duration": 3.0,
+        "beat": "transition",
+        "script": "A FEW MOMENTS LATER",
+        "joke_point": "暗示挨揍过程",
+        "background": "海绵宝宝红色转场背景",
+        "cats": "无猫镜头/文字转场页",
+        "audio": "转场音效",
+        "subtitle": "中部白字",
+        "seedream_prompt": "海绵宝宝转场 红色背景",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "海绵宝宝 转场"
+      },
+      {
+        "shot_id": 8,
+        "duration": 4.0,
+        "beat": "ending",
+        "script": "收尾：神逻辑的挨揍代价",
+        "joke_point": "神逻辑的挨揍代价",
+        "background": "同上餐厅",
+        "cats": "两灰猫冷脸，右肿脸奶猫委屈",
+        "audio": "BGM减弱，收尾音效",
+        "subtitle": "无台词",
+        "seedream_prompt": "现代厨房餐厅",
+        "local_cat_asset_keywords": "灰猫 冷脸 奶猫 委屈肿脸",
+        "local_background_keywords": "家庭餐厅"
+      }
+    ]
+  },
+  "quality_notes": [
+    "梗点贴合大众童年共鸣",
+    "角色表情和台词匹配度高",
+    "节奏紧凑笑点密集",
+    "反转符合预期",
+    "normalized_storyboard_fields: filled 2 blank or inconsistent fields"
+  ],
+  "_raw_content_sha256": "2a969bd6eb949d6d879b83a6c893da60b073fb8d33458c3342a06c6a693a435f",
+  "video_id": "bkmm-008-抖音202663-106082",
+  "filename": "抖音202663-106082.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 26.146,
+    "size_bytes": 1527988,
+    "width": 960,
+    "height": 720,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "483c71f6ecdb900def6ea417ef41bbbefb9cec3e112cf8ea0c4903ddf1ee4a25"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 3.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-008-抖音202663-106082/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-008-抖音202663-106082/audio.m4a",
+    "analyzed_at": "2026-06-03T03:01:34.055688+00:00",
+    "normalized_at": "2026-06-03T03:19:12.594969+00:00"
+  }
+}

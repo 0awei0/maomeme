@@ -23,8 +23,8 @@ async function renderSegment(slot, index) {
   const duration = Math.max(1, slot.end - slot.start);
   const out = path.join(workDir, `${String(index).padStart(2, '0')}-${slot.id}.mp4`);
   const background = path.join(root, slot.background.file);
-  const motionSource = path.join(root, slot.motion.file);
-  const secondaryMotionSource = slot.secondary_motion?.file ? path.join(root, slot.secondary_motion.file) : motionSource;
+  const motionSource = await resolveMotionSource(slot.motion.file);
+  const secondaryMotionSource = slot.secondary_motion?.file ? await resolveMotionSource(slot.secondary_motion.file) : motionSource;
   const caption = path.join(captionDir, `${String(index).padStart(2, '0')}-${slot.id}.png`);
   const overlayFrameDir = path.join(overlayDir, `${String(index).padStart(2, '0')}-${slot.id}`);
   const hasOverlay = Array.isArray(slot.overlay_actions) && slot.overlay_actions.length > 0;
@@ -33,20 +33,23 @@ async function renderSegment(slot, index) {
     hasOverlay ? makeOverlayFrames(slot, overlayFrameDir, duration) : Promise.resolve()
   ]);
   const dialogue = slot.layout === 'dialogue' && slot.secondary_motion?.file;
+  const leftCatFilter = keyedMotionFilter(1, 'leftcat', { flip: false, keyed: motionSource.keyed });
+  const rightCatFilter = keyedMotionFilter(2, 'rightcat', { flip: true, keyed: secondaryMotionSource.keyed });
+  const singleCatFilter = keyedMotionFilter(1, 'cat', { flip: false, keyed: motionSource.keyed });
   const baseFilter = dialogue
     ? [
       '[0:v]scale=960:544:force_original_aspect_ratio=increase,crop=960:544,setsar=1[bg]',
-      '[1:v]crop=iw*0.5:ih:iw*0.25:0,scale=360:-1,colorkey=0x00ff00:0.32:0.08,format=rgba[leftcat]',
-      '[2:v]crop=iw*0.5:ih:iw*0.25:0,hflip,scale=360:-1,colorkey=0x00ff00:0.32:0.08,format=rgba[rightcat]',
-      '[bg][leftcat]overlay=62:H-h-14:shortest=1[leftcomp]',
-      '[leftcomp][rightcat]overlay=W-w-62:H-h-14:shortest=1[comp]',
+      leftCatFilter,
+      rightCatFilter,
+      '[bg][leftcat]overlay=62:H-h-54:shortest=1[leftcomp]',
+      '[leftcomp][rightcat]overlay=W-w-62:H-h-54:shortest=1[comp]',
       '[3:v]format=rgba[cap]',
       '[comp][cap]overlay=0:0:shortest=1[captioned]'
     ].join(';')
     : [
       '[0:v]scale=960:544:force_original_aspect_ratio=increase,crop=960:544,setsar=1[bg]',
-      '[1:v]crop=iw*0.5:ih:iw*0.25:0,scale=360:-1,colorkey=0x00ff00:0.32:0.08,format=rgba[cat]',
-      '[bg][cat]overlay=(W-w)/2:H-h-18:shortest=1[comp]',
+      singleCatFilter,
+      '[bg][cat]overlay=(W-w)/2:H-h-58:shortest=1[comp]',
       '[2:v]format=rgba[cap]',
       '[comp][cap]overlay=0:0:shortest=1[captioned]'
     ].join(';');
@@ -114,8 +117,33 @@ function motionInputArgs(source, clipSpec = {}, slotDuration) {
     '-stream_loop', '-1',
     '-ss', String(clipStart),
     '-t', String(Math.max(slotDuration, clipDuration)),
-    '-i', source,
+    '-i', source.file,
   ];
+}
+
+async function resolveMotionSource(file) {
+  const source = path.join(root, file);
+  const id = path.basename(file, path.extname(file));
+  const keyed = path.join(root, 'assets/processed/cat-motions-keyed', `${id}.mov`);
+  if (await exists(keyed)) return { file: keyed, keyed: true };
+  return { file: source, keyed: false };
+}
+
+async function exists(file) {
+  try {
+    await fs.access(file);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function keyedMotionFilter(inputIndex, label, options = {}) {
+  const flip = options.flip ? 'hflip,' : '';
+  if (options.keyed) {
+    return `[${inputIndex}:v]${flip}scale=360:-1,format=rgba[${label}]`;
+  }
+  return `[${inputIndex}:v]crop=iw*0.5:ih-36:iw*0.25:0,${flip}scale=360:-1,colorkey=0x00ff00:0.38:0.10,despill=green,format=rgba[${label}]`;
 }
 
 function transitionFilter(transition = {}, duration) {

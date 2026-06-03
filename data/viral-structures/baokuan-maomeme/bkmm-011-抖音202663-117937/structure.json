@@ -1,0 +1,342 @@
+{
+  "video_summary": {
+    "title": "当上课发现老师裤子坏了",
+    "one_sentence": "上课撞见班主任裤子崩开，全班从憋笑到破防的沙雕校园社死meme",
+    "primary_topic": "校园社死日常",
+    "meme_type": "猫meme情景整活",
+    "overall_tone": "沙雕搞怪、共鸣感强"
+  },
+  "script_track": [
+    {
+      "start_time": "0.0",
+      "end_time": "2.0",
+      "text": "班主任 裤子崩开了",
+      "speaker": "旁白",
+      "tone": "夸张",
+      "emotion": "惊讶",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": "2.0",
+      "end_time": "4.0",
+      "text": "我",
+      "speaker": "角色标注",
+      "tone": "正常",
+      "emotion": "憋笑",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": "4.0",
+      "end_time": "9.0",
+      "text": "你的同桌、后排同学都看到了",
+      "speaker": "旁白",
+      "tone": "搞怪",
+      "emotion": "幸灾乐祸",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": "9.0",
+      "end_time": "12.0",
+      "text": "别笑了 老师要转过来了",
+      "speaker": "同学",
+      "tone": "着急",
+      "emotion": "憋笑",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": "12.0",
+      "end_time": "19.0",
+      "text": "班主任转头",
+      "speaker": "旁白",
+      "tone": "紧张",
+      "emotion": "悬念",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": "19.0",
+      "end_time": "23.0",
+      "text": "努力憋笑中",
+      "speaker": "旁白",
+      "tone": "搞怪",
+      "emotion": "隐忍",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": "23.0",
+      "end_time": "28.0",
+      "text": "绷不住了",
+      "speaker": "旁白",
+      "tone": "狂喜",
+      "emotion": "爆笑",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": "28.0",
+      "end_time": "38.0",
+      "text": "课后想起刚才发生的事忍不住笑，最后被黑板擦哄睡",
+      "speaker": "旁白",
+      "tone": "沙雕",
+      "emotion": "搞怪",
+      "function": "ending+cta",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": "1",
+      "start_time": "0.0",
+      "end_time": "2.0",
+      "duration": 2,
+      "beat": "setup",
+      "script": "班主任裤子崩开",
+      "joke_point": "老师社死伏笔",
+      "visual_description": "讲台后香蕉人老师裤子裂开",
+      "pacing_note": "快切入题"
+    },
+    {
+      "shot_id": "2",
+      "start_time": "2.0",
+      "end_time": "4.0",
+      "duration": 2,
+      "beat": "setup",
+      "script": "我看到后捂嘴憋笑",
+      "joke_point": "学生视角代入",
+      "visual_description": "第一排粉cheems捂嘴憋笑",
+      "pacing_note": "快切反应"
+    },
+    {
+      "shot_id": "3",
+      "start_time": "4.0",
+      "end_time": "9.0",
+      "duration": 5,
+      "beat": "escalation",
+      "script": "全班同学都看到了",
+      "joke_point": "心照不宣的共识",
+      "visual_description": "依次切同桌、后排同学表情包",
+      "pacing_note": "逐个快切堆笑点"
+    },
+    {
+      "shot_id": "4",
+      "start_time": "9.0",
+      "end_time": "19.0",
+      "duration": 10,
+      "beat": "twist",
+      "script": "老师要转过来了",
+      "joke_point": "紧张感拉满",
+      "visual_description": "老师慢慢转头的慢镜头",
+      "pacing_note": "慢放拉悬念"
+    },
+    {
+      "shot_id": "5",
+      "start_time": "19.0",
+      "end_time": "28.0",
+      "duration": 9,
+      "beat": "punchline",
+      "script": "从憋笑到绷不住大笑",
+      "joke_point": "憋笑破防共鸣",
+      "visual_description": "cheems从憋笑到仰头大笑",
+      "pacing_note": "先慢后快情绪爆发"
+    },
+    {
+      "shot_id": "6",
+      "start_time": "28.0",
+      "end_time": "38.0",
+      "duration": 10,
+      "beat": "ending+cta",
+      "script": "课后想起刚才发生的事忍不住笑，最后被黑板擦哄睡",
+      "joke_point": "余韵拉满",
+      "visual_description": "走廊场景中粉cheems想起刚才的事大笑变形，随后黑板擦收尾并引导搜索",
+      "pacing_note": "轻松收尾引流"
+    }
+  ],
+  "cat_track": [
+    "shot1：无猫，香蕉人代老师",
+    "shot2：粉cheems居中捂嘴憋笑，左侧灰猫惊讶，右侧猴头表情包，后方有灰猫",
+    "shot3：橘猫张嘴提醒，另有红色人脸同桌、后排多个非猫表情包角色和同学反应",
+    "shot4：1只橘猫，张嘴提醒表情着急",
+    "shot5：1只粉cheems，居中从憋笑到仰头大笑",
+    "shot6：1只粉cheems，走廊晃大笑到变形，黑板擦哄睡收尾"
+  ],
+  "background_track": [
+    "shot1：中小学讲台，黑板+粉笔盒+书本，明亮教室，现有素材可找",
+    "shot2：大教室后排，多排课桌椅暖光，现有素材可找",
+    "shot3：同shot2教室场景",
+    "shot4：同shot2教室+讲台老师背影",
+    "shot5：同shot2教室场景",
+    "shot6：学校走廊，白墙玻璃窗地砖，阳光洒入，现有素材可找"
+  ],
+  "audio_track": {
+    "bgm_style": "抖音常用沙雕搞怪BGM",
+    "bgm_mood": "轻松搞笑，悬念段放慢、笑点段加快",
+    "voice_style": "夸张搞怪旁白+角色拟声",
+    "voice_presence": "旁白主导，加憋笑、大笑拟声",
+    "sfx": [
+      "憋笑气音",
+      "大笑声",
+      "黑板擦扔出音效"
+    ],
+    "rhythm_sync": "每个笑点卡BGM鼓点，转头慢放卡重音"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "黄底粗黑字，带星号标注角色",
+    "subtitle_density": "每镜头1-2行，单句不超10字",
+    "emphasis_words": [
+      "裤子崩开了",
+      "别笑了",
+      "绷不住了"
+    ],
+    "bubble_or_dialogue_style": "无气泡，文字在角色下方或底部",
+    "stickers_or_overlays": [
+      "顶部固定黄色标题条：当上课发现老师裤子坏了",
+      "末尾抖音搜索框贴纸"
+    ],
+    "transition_notes": [
+      "全片硬切，无花哨转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "公共场合撞见他人社死→全员心照不宣→当事人即将发现→集体憋笑→破防大笑→事后余韵"
+    ],
+    "shot_templates": [
+      "社死事件镜头→主角反应→周围人反应→悬念镜头→憋笑破防→事后收尾"
+    ],
+    "cat_action_templates": [
+      "cheems捂嘴憋笑→cheems着急提醒→cheems憋笑抖动→cheems仰头大笑"
+    ],
+    "background_templates": [
+      "教室讲台场景→教室后排场景→学校走廊场景"
+    ],
+    "audio_templates": [
+      "沙雕BGM+夸张旁白+笑点卡鼓点+憋笑/大笑音效"
+    ],
+    "suitable_topics": [
+      "校园社死",
+      "公共场合憋笑",
+      "打工人撞见老板社死",
+      "上课摸鱼系列"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": "1",
+        "duration": 2.0,
+        "beat": "setup",
+        "script": "班主任 裤子崩开了",
+        "joke_point": "老师社死伏笔，快速入题",
+        "background": "中小学讲台、黑板、粉笔盒",
+        "cats": "无",
+        "audio": "沙雕BGM开场，惊讶拟声音效",
+        "subtitle": "底部黄字标注*班主任 *裤子崩开了",
+        "seedream_prompt": "中小学教室讲台，配黑板粉笔盒",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "教室讲台 黑板"
+      },
+      {
+        "shot_id": "2",
+        "duration": 2.0,
+        "beat": "setup",
+        "script": "我看到后捂嘴憋笑",
+        "joke_point": "学生第一视角代入感强",
+        "background": "大教室后排，多排课桌椅",
+        "cats": "粉cheems居中捂嘴憋笑，左侧灰猫惊讶，右侧猴头表情包，后方还有一只灰猫",
+        "audio": "BGM继续，加憋笑气音",
+        "subtitle": "粉cheems下方标*我",
+        "seedream_prompt": "空大学教室，多排棕色课桌椅",
+        "local_cat_asset_keywords": "粉cheems 捂嘴 灰猫 惊讶",
+        "local_background_keywords": "教室后排 课桌椅"
+      },
+      {
+        "shot_id": "3",
+        "duration": 5.0,
+        "beat": "escalation",
+        "script": "全班同学都看到了",
+        "joke_point": "集体心照不宣的共鸣感",
+        "background": "同上述大教室场景",
+        "cats": "橘猫张嘴着急提醒，镜头中依次出现红色人脸同桌、后排多个非猫表情包角色和其他同学反应",
+        "audio": "BGM鼓点加快，切镜头卡鼓点",
+        "subtitle": "依次标*同桌 *后面的同学 *别笑了",
+        "seedream_prompt": "同上述空教室场景",
+        "local_cat_asset_keywords": "橘猫 张嘴 着急",
+        "local_background_keywords": "教室后排 课桌椅"
+      },
+      {
+        "shot_id": "4",
+        "duration": 10.0,
+        "beat": "twist",
+        "script": "老师慢慢转头",
+        "joke_point": "紧张悬念拉满，反差感铺垫",
+        "background": "教室讲台，老师背影",
+        "cats": "无",
+        "audio": "BGM放慢，加重低音制造悬念",
+        "subtitle": "讲台下方标*班主任",
+        "seedream_prompt": "教室讲台，老师背对着学生",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "教室讲台 老师背影"
+      },
+      {
+        "shot_id": "5",
+        "duration": 9.0,
+        "beat": "punchline",
+        "script": "从憋笑到绷不住大笑",
+        "joke_point": "憋笑破防的普遍共鸣",
+        "background": "同上述大教室场景",
+        "cats": "粉cheems居中，从憋笑到仰头大笑",
+        "audio": "BGM突然加快，加爆笑声",
+        "subtitle": "依次标*努力憋笑中 *绷不住了",
+        "seedream_prompt": "同上述空教室场景",
+        "local_cat_asset_keywords": "粉cheems 憋笑 大笑",
+        "local_background_keywords": "教室后排 课桌椅"
+      },
+      {
+        "shot_id": "6",
+        "duration": 10.0,
+        "beat": "ending+cta",
+        "script": "课后想起刚才发生的事忍不住笑，最后被黑板擦哄睡",
+        "joke_point": "余韵搞笑，引导搜索",
+        "background": "学校走廊，阳光洒入",
+        "cats": "粉cheems在走廊，大笑变形",
+        "audio": "BGM轻松收尾，加黑板擦音效",
+        "subtitle": "*想起刚才发生的 *被黑板擦哄睡了",
+        "seedream_prompt": "学校空走廊，阳光从窗户照入",
+        "local_cat_asset_keywords": "粉cheems 大笑 变形",
+        "local_background_keywords": "学校走廊 阳光"
+      }
+    ]
+  },
+  "quality_notes": [
+    "校园社死场景代入感强，笑点密集节奏松紧合适，憋笑梗普遍共鸣，引流cta自然",
+    "verification_repair: refined bkmm-011 cats and ending script from Doubao video verification"
+  ],
+  "_raw_content_sha256": "854bc4ec129d7ab1b92aaa5c457a4c7399b899ec7133a20877c9f099a4c0e8d9",
+  "video_id": "bkmm-011-抖音202663-117937",
+  "filename": "抖音202663-117937.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 38.22,
+    "size_bytes": 2420179,
+    "width": 960,
+    "height": 720,
+    "fps": 60,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "678ac8659803aeca46228a931d5538763957ef463d3b8239ba4716e036c95cb2"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-011-抖音202663-117937/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-011-抖音202663-117937/audio.m4a",
+    "analyzed_at": "2026-06-03T03:01:30.929566+00:00",
+    "normalized_at": "2026-06-03T03:41:40.414449+00:00"
+  }
+}

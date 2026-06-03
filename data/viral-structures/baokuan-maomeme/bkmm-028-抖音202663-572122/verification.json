@@ -1,0 +1,30 @@
+{
+  "video_id": "bkmm-028-抖音202663-572122",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "拆解整体与视频高度匹配，仅存在一处非核心的字幕、脚本多余描述小问题，核心信息全部准确",
+  "confirmed_points": [
+    "整体剧情逻辑、核心玩梗点符合视频内容：情侣猫斑马线腻歪遇大运卡车，上演浮夸狗血虐恋戏码，最终双双被撞的荒诞设定正确",
+    "分镜顺序、起承转合、反转节点与视频画面完全对应，时间节点划分准确",
+    "背景描述、猫素材的数量、位置、形态描述均贴合视频画面",
+    "BGM风格、字幕样式、特效贴纸的描述符合视频呈现"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "6",
+      "field": "script|subtitle",
+      "observed": "视频中第6个镜头（落叶躺平片段）无对应台词和字幕",
+      "extracted": "拆解中asset_plan.storyboard.shot6的script写为“收尾：两人分别被撞的离谱结局”，subtitle也标注了该内容",
+      "suggestion": "删除该句多余的script和subtitle描述，明确该镜头无台词字幕"
+    }
+  ],
+  "audio_confidence": "medium",
+  "needs_human_review": false,
+  "_raw_content_sha256": "ea5b045dc730a7ef324964c3adc6d9e43650a3ed320d17e72b06eb450b8d8e4c",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:35:37.243875+00:00",
+  "structure_sha256": "e657aa812b6e0b115a492cb63cbfb49e8fff447d7adf7f2c92d009c732830026",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-028-抖音202663-572122/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

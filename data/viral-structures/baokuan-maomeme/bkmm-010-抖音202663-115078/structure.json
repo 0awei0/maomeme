@@ -1,0 +1,246 @@
+{
+  "video_summary": {
+    "title": "没人见过我的真面目除了男友",
+    "one_sentence": "用蓝猫咬脚的疯癫状态对应女生在男友面前的真实样子，白猫冷漠脸对应男友的无语状态，玩情侣相处反差梗",
+    "primary_topic": "情侣日常反差",
+    "meme_type": "角色代入反差梗",
+    "overall_tone": "沙雕搞笑"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 3,
+      "text": "没人见过我的真面目",
+      "speaker": "旁白",
+      "tone": "傲娇",
+      "emotion": "得意",
+      "function": "hook",
+      "confidence": 1
+    },
+    {
+      "start_time": 3,
+      "end_time": 6,
+      "text": "*除了我的男友",
+      "speaker": "旁白",
+      "tone": "调侃",
+      "emotion": "戏谑",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 6,
+      "end_time": 12,
+      "text": "……",
+      "speaker": "男友",
+      "tone": "平淡",
+      "emotion": "无语",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 12,
+      "end_time": 13.8,
+      "text": "搜索蓝猫哈哈大笑咬脚原视频",
+      "speaker": "平台引导",
+      "tone": "中性",
+      "emotion": "无",
+      "function": "cta",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 3,
+      "duration": 3,
+      "beat": "hook",
+      "script": "没人见过我的真面目",
+      "joke_point": "立对外高冷完美人设",
+      "visual_description": "公主风卧室，左蓝猫右白猫并列",
+      "pacing_note": "快节奏切入"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 3,
+      "end_time": 6,
+      "duration": 3,
+      "beat": "setup",
+      "script": "除了我的男友",
+      "joke_point": "反转铺垫只有男友见过真实状态",
+      "visual_description": "蓝猫开始咬脚下袜子，白猫面无表情",
+      "pacing_note": "节奏稍缓留反应时间"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 6,
+      "end_time": 12,
+      "duration": 6,
+      "beat": "punchline",
+      "script": "男友：……",
+      "joke_point": "蓝猫疯癫咬脚和男友冷漠的强反差",
+      "visual_description": "蓝猫疯狂晃头咬脚，白猫始终面无表情",
+      "pacing_note": "动作和鼓点同步放大笑点"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 12,
+      "end_time": 13.8,
+      "duration": 1.8,
+      "beat": "cta",
+      "script": "搜索原视频引导",
+      "joke_point": "",
+      "visual_description": "抖音搜索引导页",
+      "pacing_note": "快速收尾引流"
+    }
+  ],
+  "cat_track": [
+    "双猫：左蓝猫（我）张嘴，右白猫（男友）面无表情",
+    "双猫：蓝猫开始咬袜子，白猫保持冷漠",
+    "双猫：蓝猫疯狂咬脚晃头表情疯癫，白猫冷漠",
+    "无猫"
+  ],
+  "background_track": [
+    "轻奢公主风卧室，暖光，软包床头，碎花床品，床头柜带台灯鲜花",
+    "同前",
+    "同前",
+    "抖音深色搜索引导页，带搜索框"
+  ],
+  "audio_track": {
+    "bgm_style": "快节奏搞怪魔性BGM",
+    "bgm_mood": "沙雕活泼",
+    "voice_style": "俏皮女生旁白+无感情气泡音",
+    "voice_presence": "旁白清晰靠前",
+    "sfx": [
+      "啃咬布料音效",
+      "魔性笑声"
+    ],
+    "rhythm_sync": "蓝猫咬脚动作和BGM鼓点完全同步"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "黄底黑粗体大号字体",
+    "subtitle_density": "低，每屏1-2行",
+    "emphasis_words": [
+      "没人见过我的真面目",
+      "除了我的男友"
+    ],
+    "bubble_or_dialogue_style": "白猫上方白色省略号气泡",
+    "stickers_or_overlays": [
+      "猫下方黄字标注角色：我、男友"
+    ],
+    "transition_notes": [
+      "结尾淡入抖音搜索引导页"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "立完美人设+亲近的人见过真实疯癫面的反差模板"
+    ],
+    "shot_templates": [
+      "双猫左右分饰两角，一动一静反差分镜"
+    ],
+    "cat_action_templates": [
+      "蓝猫疯狂咬脚晃头疯癫动作",
+      "白猫面无表情冷漠脸动作"
+    ],
+    "background_templates": [
+      "居家私密场景（卧室/客厅）模板"
+    ],
+    "audio_templates": [
+      "快节奏搞怪BGM+对应动作同步音效"
+    ],
+    "suitable_topics": [
+      "情侣日常反差",
+      "人前vs人后反差",
+      "闺蜜相处日常",
+      "社畜私下状态"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 3.0,
+        "beat": "hook",
+        "script": "没人见过我的真面目",
+        "joke_point": "立对外高冷完美人设",
+        "background": "公主风暖光卧室，软包床头碎花床",
+        "cats": "左蓝猫张嘴，右白猫面无表情",
+        "audio": "俏皮旁白，搞怪BGM起",
+        "subtitle": "顶部黄底黑字：没人见过我的真面目",
+        "seedream_prompt": "轻奢公主风卧室，暖光，软包床头碎花床品",
+        "local_cat_asset_keywords": "蓝猫张嘴meme，白猫冷漠脸meme",
+        "local_background_keywords": "公主风卧室 床 暖光"
+      },
+      {
+        "shot_id": 2,
+        "duration": 3.0,
+        "beat": "setup",
+        "script": "*除了我的男友",
+        "joke_point": "反转铺垫只有男友见过真实状态",
+        "background": "同前",
+        "cats": "蓝猫开始咬袜子，白猫面无表情",
+        "audio": "补刀旁白，啃咬音效入",
+        "subtitle": "顶部黄字：*除了我的男友",
+        "seedream_prompt": "轻奢公主风卧室，暖光，软包床头碎花床品",
+        "local_cat_asset_keywords": "蓝猫咬袜子meme，白猫冷漠脸meme",
+        "local_background_keywords": "公主风卧室 床 暖光"
+      },
+      {
+        "shot_id": 3,
+        "duration": 6.0,
+        "beat": "punchline",
+        "script": "男友：……",
+        "joke_point": "蓝猫疯癫和男友冷漠的强反差",
+        "background": "同前",
+        "cats": "蓝猫疯狂咬脚晃头，表情疯癫，白猫冷漠",
+        "audio": "啃咬音效持续，魔性笑声入",
+        "subtitle": "白猫上方省略号，下方标我、男友",
+        "seedream_prompt": "轻奢公主风卧室，暖光，软包床头碎花床品",
+        "local_cat_asset_keywords": "蓝猫咬脚晃头meme，白猫冷漠脸meme",
+        "local_background_keywords": "公主风卧室 床 暖光"
+      },
+      {
+        "shot_id": 4,
+        "duration": 1.8,
+        "beat": "cta",
+        "script": "搜索蓝猫咬脚原视频",
+        "joke_point": "结尾引流/作者页收束",
+        "background": "抖音深色搜索引导页",
+        "cats": "无猫镜头/平台作者信息页",
+        "audio": "BGM收",
+        "subtitle": "搜索框文字：蓝猫哈哈大笑咬脚原视频",
+        "seedream_prompt": "抖音搜索引导页，深色背景带搜索框",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "抖音搜索页 引导页"
+      }
+    ]
+  },
+  "quality_notes": [
+    "双猫反差表现力强，梗点贴近大众情侣日常，传播性高",
+    "normalized_storyboard_fields: filled 2 blank or inconsistent fields"
+  ],
+  "_raw_content_sha256": "ffb750267d82f865cbb8adeca6b7ba7f925ca5f223a29350dfc1f00e1899c665",
+  "video_id": "bkmm-010-抖音202663-115078",
+  "filename": "抖音202663-115078.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 13.862,
+    "size_bytes": 1076789,
+    "width": 720,
+    "height": 960,
+    "fps": 60.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "c544bcf5d9fa1d5e5f9b7a33af921f147a260946bb11fe272f2915cc8c09bc9b"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 3.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-010-抖音202663-115078/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-010-抖音202663-115078/audio.m4a",
+    "analyzed_at": "2026-06-03T03:01:15.954422+00:00",
+    "normalized_at": "2026-06-03T03:19:12.596043+00:00"
+  }
+}

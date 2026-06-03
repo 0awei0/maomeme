@@ -1,0 +1,170 @@
+{
+  "video_summary": {
+    "title": "没人见过我的真面目除了我女友",
+    "one_sentence": "双橘猫扮演情侣，玩对外完美对内放飞的亲密关系反差梗",
+    "primary_topic": "情侣日常反差梗",
+    "meme_type": "双猫角色扮演情感搞笑梗",
+    "overall_tone": "搞怪、甜宠、接地气"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 9,
+      "text": "没人见过我的真面目 *除了我的女友",
+      "speaker": "旁白",
+      "tone": "调侃搞怪",
+      "emotion": "俏皮",
+      "function": "hook+核心梗输出",
+      "confidence": 1
+    },
+    {
+      "start_time": 9,
+      "end_time": 11,
+      "text": "抖音搜索天门meme猫 来抖音发现更多创作者",
+      "speaker": "平台提示",
+      "tone": "官方中性",
+      "emotion": "平淡",
+      "function": "cta引流",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 9,
+      "duration": 9,
+      "beat": "hook+punchline",
+      "script": "没人见过我的真面目除了女友",
+      "joke_point": "对外完美对内放飞的亲密反差",
+      "visual_description": "卧室床景放两只橘猫大头贴，分别标注女友和我",
+      "pacing_note": "长时间停留让观众get表情梗"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 9,
+      "end_time": 11,
+      "duration": 2,
+      "beat": "cta",
+      "script": "引导关注账号",
+      "joke_point": "",
+      "visual_description": "抖音创作者引导页",
+      "pacing_note": "快速闪入收尾"
+    }
+  ],
+  "cat_track": [
+    "双橘猫：左猫呆萌睁眼饰女友，右猫歪脸眯眼张嘴饰我蹭对方",
+    "无猫素材"
+  ],
+  "background_track": [
+    "暖光公主风卧室，软包床头印花床单，带台灯花束，无需生成",
+    "深蓝色抖音账号引导页，无需生成"
+  ],
+  "audio_track": {
+    "bgm_style": "短平快搞怪流行BGM",
+    "bgm_mood": "欢快俏皮",
+    "voice_style": "无配音，纯字幕+音效",
+    "voice_presence": "无",
+    "sfx": [
+      "猫哼唧搞怪拟声",
+      "结尾收尾音效"
+    ],
+    "rhythm_sync": "右猫张嘴动作匹配拟声音效节拍"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "粗黑黄边大字，顶部黄条放主标题，猫下方标身份",
+    "subtitle_density": "极低，单镜头仅3行文字",
+    "emphasis_words": [
+      "真面目",
+      "女友"
+    ],
+    "bubble_or_dialogue_style": "无气泡，直接文字标注角色",
+    "stickers_or_overlays": [
+      "顶部黄色圆角标题条"
+    ],
+    "transition_notes": [
+      "结尾淡入抖音引导页"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "【没人见过我的X 除了我的X】反差句式"
+    ],
+    "shot_templates": [
+      "静态居家背景+双猫大头贴+上下文字固定排版"
+    ],
+    "cat_action_templates": [
+      "呆萌猫+崩坏蹭脸猫的情侣反差动作组合"
+    ],
+    "background_templates": [
+      "低制作成本真实居家场景+猫贴纸模板"
+    ],
+    "audio_templates": [
+      "搞怪短BGM+匹配猫表情的拟声音效"
+    ],
+    "suitable_topics": [
+      "情侣日常反差",
+      "社畜公私状态反差",
+      "好友真实相处状态"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 9.0,
+        "beat": "hook+punchline",
+        "script": "没人见过我的真面目 *除了我的女友",
+        "joke_point": "对外完美对内放飞的亲密关系反差",
+        "background": "暖光公主风卧室，软包床头印花床单",
+        "cats": "左橘猫呆萌睁眼饰女友，右橘猫崩脸蹭对方饰我",
+        "audio": "欢快搞怪BGM+猫哼唧拟声音效",
+        "subtitle": "顶部黄条大字+猫下方角色标注",
+        "seedream_prompt": "暖光欧式软包床头公主风卧室床景",
+        "local_cat_asset_keywords": "橘猫呆萌脸 橘猫崩坏歪脸",
+        "local_background_keywords": "公主风卧室床"
+      },
+      {
+        "shot_id": 2,
+        "duration": 2.0,
+        "beat": "cta",
+        "script": "抖音搜索天门meme猫看更多内容",
+        "joke_point": "结尾引流/作者页收束",
+        "background": "深蓝色抖音创作者引导页",
+        "cats": "无",
+        "audio": "收尾轻音效",
+        "subtitle": "白色账号引导文字",
+        "seedream_prompt": "深蓝色纯色背景抖音账号引导页",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "抖音引导页"
+      }
+    ]
+  },
+  "quality_notes": [
+    "双猫表情反差强烈，文案简短戳中情侣日常共鸣，制作成本极低易批量复刻",
+    "normalized_storyboard_fields: filled 1 blank or inconsistent fields"
+  ],
+  "_raw_content_sha256": "19d965e37e0c284267acf8ae6bf93968c8f6aad176a77b111aea392342c2f280",
+  "video_id": "bkmm-007-抖音202663-083115",
+  "filename": "抖音202663-083115.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 10.983,
+    "size_bytes": 633380,
+    "width": 720,
+    "height": 960,
+    "fps": 60.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "cbcbbb3e7ee7e19d0ebbe84c3133722bde8166dde603e3c81d9a3aa9d2930632"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 3.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-007-抖音202663-083115/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-007-抖音202663-083115/audio.m4a",
+    "analyzed_at": "2026-06-03T03:01:00.581875+00:00",
+    "normalized_at": "2026-06-03T03:19:12.594536+00:00"
+  }
+}

@@ -8,6 +8,8 @@
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0 --port 4173",
     "index:assets": "node ../scripts/index-assets.mjs",
+    "assets:clean-backgrounds": "conda run -n cv python ../scripts/clean-background-green-bands.py",
+    "assets:preprocess-cats": "node ../scripts/preprocess-cat-green-screen.mjs",
     "demo:plan": "node ../scripts/generate-demo-plan.mjs",
     "demo:render": "node ../scripts/render-demo-video.mjs",
     "demo:audit": "node ../scripts/audit-plan.mjs",

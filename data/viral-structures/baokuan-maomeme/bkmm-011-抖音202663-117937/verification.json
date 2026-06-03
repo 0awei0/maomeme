@@ -1,0 +1,38 @@
+{
+  "video_id": "bkmm-011-抖音202663-117937",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "拆解整体与视频高度一致，仅存在背景描述和音频描述的细小措辞差异",
+  "confirmed_points": [
+    "核心剧情、起承转合结构与视频完全匹配，梗点提取准确",
+    "分镜顺序、时长划分基本符合视频实际内容",
+    "猫素材的数量、位置、动作描述与画面一致",
+    "字幕风格、顶部固定标题、末尾引流贴纸的描述完全准确"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "2",
+      "field": "background",
+      "observed": "大教室第一排，粉cheems坐在第一排居中位置，后方是多排课桌椅",
+      "extracted": "大教室后排，多排课桌椅",
+      "suggestion": "修正背景描述为大教室第一排"
+    },
+    {
+      "severity": "minor",
+      "shot_id": "unknown",
+      "field": "audio",
+      "observed": "视频无旁白，仅包含BGM、憋笑、大笑等拟声音效",
+      "extracted": "夸张搞怪旁白+角色拟声",
+      "suggestion": "删除旁白相关描述，仅保留角色拟声描述"
+    }
+  ],
+  "audio_confidence": "medium",
+  "needs_human_review": false,
+  "_raw_content_sha256": "9567e232aef299bc4c7fc86e6a9fd86400350021ce0d03ecb0c284a56f013555",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:42:40.563401+00:00",
+  "structure_sha256": "6b43654aa67a4ac9df2e009d188f596ec58dfce73f2e1be85127639eacaa7564",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-011-抖音202663-117937/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

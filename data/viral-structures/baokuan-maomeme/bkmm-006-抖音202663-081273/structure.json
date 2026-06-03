@@ -1,0 +1,401 @@
+{
+  "video_summary": {
+    "title": "小时候笑点低课上笑到全班破防社死现场",
+    "one_sentence": "用猫meme演绎学生时代笑点低，和兄弟对视笑到被罚站最后全班都笑的共鸣向内容",
+    "primary_topic": "学生时代沙雕社死日常",
+    "meme_type": "真实经历共鸣型猫meme",
+    "overall_tone": "搞怪搞笑 戳共鸣"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "小时候笑点低 看动画片中…",
+      "speaker": "旁白",
+      "tone": "轻松调侃",
+      "emotion": "戏谑",
+      "function": "引入主题",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 2,
+      "end_time": 5,
+      "text": "有时候会突然想到好笑的事情 快要睡着时想到动画片片段",
+      "speaker": "旁白",
+      "tone": "陈述",
+      "emotion": "共情",
+      "function": "铺垫场景",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 5,
+      "end_time": 9,
+      "text": "吃饭时也会 这孩子是不是疯了？不知道啊",
+      "speaker": "旁白+家人",
+      "tone": "疑惑",
+      "emotion": "不解",
+      "function": "升级铺垫",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 9,
+      "end_time": 23,
+      "text": "上课走神突然想到笑点 憋不住笑 兄弟问笑啥答不出",
+      "speaker": "旁白+角色",
+      "tone": "搞怪",
+      "emotion": "憋笑",
+      "function": "核心冲突铺垫",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 23,
+      "end_time": 37,
+      "text": "老师罚站到下课 两人互相怪对方",
+      "speaker": "老师+角色",
+      "tone": "生气+委屈",
+      "emotion": "无奈",
+      "function": "第一个笑点爆发",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 37,
+      "end_time": 68,
+      "text": "罚站对视又笑 喊出你长得好好笑 全班都笑疯",
+      "speaker": "角色+同学",
+      "tone": "憋不住笑",
+      "emotion": "癫狂",
+      "function": "第二个笑点爆发",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 68,
+      "end_time": 75,
+      "text": "老师也憋不住笑破防",
+      "speaker": "无",
+      "tone": "搞怪",
+      "emotion": "爆笑",
+      "function": "终极爆点",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 75,
+      "end_time": 79,
+      "text": "为什么对视就会笑",
+      "speaker": "搜索框",
+      "tone": "引导",
+      "emotion": "好奇",
+      "function": "CTA引导",
+      "confidence": 1.0
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "hook",
+      "script": "小时候笑点低 看动画片中",
+      "joke_point": "铺垫笑点低人设",
+      "visual_description": "日式书房 橘猫坐在电脑前大笑",
+      "pacing_note": "快切 开篇抓共鸣"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2,
+      "end_time": 5,
+      "duration": 3,
+      "beat": "setup",
+      "script": "睡觉想到好笑片段突然笑",
+      "joke_point": "展示笑点低的随机触发",
+      "visual_description": "粉色卧室 橘猫躺床上突然大笑",
+      "pacing_note": "节奏平缓 铺垫场景"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 5,
+      "end_time": 9,
+      "duration": 4,
+      "beat": "escalation",
+      "script": "吃饭突然笑 家人疑惑",
+      "joke_point": "吃饭场景触发笑点 强化人设",
+      "visual_description": "餐厅 一只橘猫笑 另外两只猫疑惑",
+      "pacing_note": "节奏加快 展示多场景"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 9,
+      "end_time": 23,
+      "duration": 14,
+      "beat": "twist",
+      "script": "上课憋笑 兄弟问原因答不出",
+      "joke_point": "严肃课上触发笑点 反差感",
+      "visual_description": "教室 橘猫大笑 同桌白猪猫憋笑",
+      "pacing_note": "节奏放缓 铺垫憋笑冲突"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 23,
+      "end_time": 37,
+      "duration": 14,
+      "beat": "punchline",
+      "script": "被老师发现罚站到下课",
+      "joke_point": "笑到被抓社死",
+      "visual_description": "两只绿哭哭猫站着 老师猫生气",
+      "pacing_note": "节奏加快 第一个爆点"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 37,
+      "end_time": 68,
+      "duration": 31,
+      "beat": "punchline",
+      "script": "罚站对视又笑 全班都笑疯",
+      "joke_point": "罚站还笑 传染全班 社死升级",
+      "visual_description": "全班座位都换成大笑橘猫头",
+      "pacing_note": "节奏癫狂 第二个爆点"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 68,
+      "end_time": 75,
+      "duration": 7,
+      "beat": "ending",
+      "script": "老师也憋笑破防打滚",
+      "joke_point": "老师也破防 反差拉满",
+      "visual_description": "讲台猫从憋笑到大笑打滚",
+      "pacing_note": "节奏爆发 终极笑点"
+    },
+    {
+      "shot_id": 8,
+      "start_time": 75,
+      "end_time": 79,
+      "duration": 4,
+      "beat": "cta",
+      "script": "搜索为什么对视就会笑",
+      "joke_point": "引导互动",
+      "visual_description": "抖音搜索框界面",
+      "pacing_note": "收尾引导"
+    }
+  ],
+  "cat_track": [
+    "1只橘猫 坐电脑右侧 张大嘴大笑 布局右半区 关键词：大笑橘猫",
+    "1只橘猫 躺床中间 突然张嘴大笑 布局中央 关键词：大笑橘猫",
+    "3只橘猫 1只左位大笑 2只右位疑惑 布局餐桌周围 关键词：大笑橘猫 疑惑花脸猫",
+    "2只猫 左橘猫大笑 右白猪猫憋笑 布局课桌椅后 关键词：大笑橘猫 憋笑猪猫",
+    "3只猫 2只绿哭猫站着 左花脸猫生气 布局教室 关键词：哭哭罚站猫 生气老师猫",
+    "多只橘猫 满教室分布 全部张嘴大笑 布局全教室 关键词：大笑橘猫群像",
+    "1只花脸猫 站讲台 从憋笑到打滚大笑 布局讲台中央 关键词：憋笑老师猫"
+  ],
+  "background_track": [
+    "日式书房 书桌 电脑 书架 绿植 暖光 清新 关键词：日式书房 书桌 seedream_prompt：明亮日式书房 书桌电脑 书架窗户 需生成：否",
+    "粉色卧室 床 衣架 玩偶 暖光 温馨 关键词：粉色少女卧室 seedream_prompt：粉色温馨卧室 大床 落地衣架 需生成：否",
+    "现代餐厅 餐桌 橱柜 窗户 自然光 日常 关键词：原木餐桌餐厅 seedream_prompt：明亮现代餐厅 原木餐桌 橱柜 需生成：否",
+    "中小学教室 课桌椅 书架 窗户 自然光 明亮 关键词：中小学教室 seedream_prompt：明亮中小学教室 双人课桌椅 书架 需生成：否",
+    "教室讲台 黑板 讲桌 冷光 严肃 关键词：教室讲台 黑板 seedream_prompt：教室讲台 绿色黑板 白色讲桌 需生成：否",
+    "中小学教室 满座课桌椅 明亮 关键词：满座教室 seedream_prompt：明亮中小学教室 满排布课桌 需生成：否",
+    "教室讲台特写 黑板 讲桌 关键词：讲台特写 seedream_prompt：教室讲台特写 绿色黑板 需生成：否"
+  ],
+  "audio_track": {
+    "bgm_style": "搞怪轻快抖音meme常用BGM",
+    "bgm_mood": "跳脱 搞笑 洗脑",
+    "voice_style": "沙雕中二 生活化配音",
+    "voice_presence": "旁白+角色配音 混合",
+    "sfx": [
+      "大笑音效",
+      "憋笑噗嗤声",
+      "老师生气怒吼音效",
+      "全班哄笑声",
+      "破防笑到打滚音效"
+    ],
+    "rhythm_sync": "场景切换卡鼓点 笑点爆发卡重音"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "粗黑边白色圆角字体",
+    "subtitle_density": "每镜头1-3句 字数少",
+    "emphasis_words": [
+      "*突然想到好笑的事情*",
+      "*憋得说不出话*",
+      "超大声"
+    ],
+    "bubble_or_dialogue_style": "白色圆角顶部对话框 角色台词在头顶",
+    "stickers_or_overlays": [
+      "黄色惊叹号贴纸",
+      "角色身份标注（兄弟/我/老师）"
+    ],
+    "transition_notes": [
+      "硬切转场 闪黑转场 无复杂转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "日常场景铺垫笑点低人设→多场景重复触发→严肃场景触发冲突→社死升级→全员破防爆点"
+    ],
+    "shot_templates": [
+      "固定场景背景+猫头贴纸+对应台词 低成本制作"
+    ],
+    "cat_action_templates": [
+      "大笑橘猫",
+      "憋笑猪猫",
+      "疑惑猫",
+      "生气老师猫",
+      "哭哭罚站猫"
+    ],
+    "background_templates": [
+      "学生日常场景：家/卧室/餐厅/中小学教室"
+    ],
+    "audio_templates": [
+      "搞怪轻快BGM+多种笑声音效+反差配音"
+    ],
+    "suitable_topics": [
+      "学生社死日常",
+      "笑点低沙雕经历",
+      "和朋友的共鸣向内容",
+      "校园沙雕事"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.0,
+        "beat": "hook",
+        "script": "小时候笑点低，看动画片中",
+        "joke_point": "开篇戳笑点低人群共鸣",
+        "background": "明亮日式书房 书桌电脑 书架",
+        "cats": "橘猫坐椅子上 张大嘴大笑",
+        "audio": "轻快BGM开头 无音效",
+        "subtitle": "顶部白字黑边+右侧小字",
+        "seedream_prompt": "明亮日式书房 书桌电脑 书架窗户",
+        "local_cat_asset_keywords": "大笑橘猫",
+        "local_background_keywords": "日式书房 书桌"
+      },
+      {
+        "shot_id": 2,
+        "duration": 3.0,
+        "beat": "setup",
+        "script": "睡觉想到好笑片段突然笑",
+        "joke_point": "展示笑点低随机触发特性",
+        "background": "粉色温馨卧室 大床 衣架",
+        "cats": "橘猫躺床上 突然张嘴大笑",
+        "audio": "BGM继续 小声笑音效",
+        "subtitle": "顶部白字黑边",
+        "seedream_prompt": "粉色温馨卧室 大床 落地衣架",
+        "local_cat_asset_keywords": "大笑橘猫",
+        "local_background_keywords": "粉色卧室 大床"
+      },
+      {
+        "shot_id": 3,
+        "duration": 4.0,
+        "beat": "escalation",
+        "script": "吃饭突然笑 家人疑惑",
+        "joke_point": "多场景强化笑点低人设",
+        "background": "明亮餐厅 原木餐桌 橱柜",
+        "cats": "1只橘猫大笑 2只猫疑惑歪头",
+        "audio": "BGM加快 疑惑音效",
+        "subtitle": "顶部+角色头顶台词",
+        "seedream_prompt": "明亮现代餐厅 原木餐桌 橱柜",
+        "local_cat_asset_keywords": "大笑橘猫 疑惑花脸猫",
+        "local_background_keywords": "餐厅 原木餐桌"
+      },
+      {
+        "shot_id": 4,
+        "duration": 14.0,
+        "beat": "twist",
+        "script": "上课憋笑 兄弟问原因答不出",
+        "joke_point": "严肃课上触发笑点 反差感",
+        "background": "明亮中小学教室 双人课桌椅",
+        "cats": "左橘猫大笑 右白猪猫憋笑",
+        "audio": "BGM放缓 憋笑噗嗤声",
+        "subtitle": "角色头顶+顶部提示文字",
+        "seedream_prompt": "明亮中小学教室 双人课桌椅 书架",
+        "local_cat_asset_keywords": "大笑橘猫 憋笑猪猫",
+        "local_background_keywords": "中小学教室 课桌椅"
+      },
+      {
+        "shot_id": 5,
+        "duration": 14.0,
+        "beat": "punchline",
+        "script": "被老师发现 罚站到下课",
+        "joke_point": "笑到被抓 社死第一个爆点",
+        "background": "中小学教室 讲台 黑板",
+        "cats": "2只绿哭猫站着 老师猫生气",
+        "audio": "老师怒吼音效 委屈叹气声",
+        "subtitle": "老师台词在头顶 角色标注",
+        "seedream_prompt": "教室讲台 绿色黑板 白色讲桌",
+        "local_cat_asset_keywords": "哭哭罚站猫 生气老师猫",
+        "local_background_keywords": "教室讲台 黑板"
+      },
+      {
+        "shot_id": 6,
+        "duration": 31.0,
+        "beat": "punchline",
+        "script": "罚站对视又笑 全班都笑疯",
+        "joke_point": "笑传染全班 社死升级爆点",
+        "background": "满座中小学教室 多课桌椅",
+        "cats": "全班都是大笑橘猫头 分布满屏",
+        "audio": "全班哄笑声 癫狂大笑音效",
+        "subtitle": "角色台词+顶部提示文字",
+        "seedream_prompt": "明亮中小学教室 满排布课桌",
+        "local_cat_asset_keywords": "大笑橘猫群像",
+        "local_background_keywords": "满座中小学教室"
+      },
+      {
+        "shot_id": 7,
+        "duration": 7.0,
+        "beat": "ending",
+        "script": "老师也憋笑破防打滚",
+        "joke_point": "老师破防 反差拉满终极爆点",
+        "background": "教室讲台特写 黑板",
+        "cats": "花脸猫站讲台 笑到打滚",
+        "audio": "笑到打滚音效 BGM高潮",
+        "subtitle": "底部标注老师",
+        "seedream_prompt": "教室讲台特写 绿色黑板",
+        "local_cat_asset_keywords": "憋笑老师猫",
+        "local_background_keywords": "讲台特写 黑板"
+      },
+      {
+        "shot_id": 8,
+        "duration": 4.0,
+        "beat": "cta",
+        "script": "搜索为什么对视就会笑",
+        "joke_point": "引导互动 留钩子",
+        "background": "抖音搜索框界面",
+        "cats": "无",
+        "audio": "BGM收尾",
+        "subtitle": "搜索框文字",
+        "seedream_prompt": "抖音搜索界面 深色背景",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "抖音搜索框"
+      }
+    ]
+  },
+  "quality_notes": [
+    "共鸣感极强 覆盖学生群体共同记忆点",
+    "笑点层层递进 最终老师破防是核心爆点",
+    "制作成本极低 仅需背景图+猫meme贴纸+配音即可复刻"
+  ],
+  "_raw_content_sha256": "20e27724c563c315e1cd785a4d50f20fdda1f3ae56e3f51329d6067174d768dd",
+  "video_id": "bkmm-006-抖音202663-081273",
+  "filename": "抖音202663-081273.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 79.271,
+    "size_bytes": 7741641,
+    "width": 1312,
+    "height": 720,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "95930ad56540dc23b8ca6440fe273e0024890c48569eab475f3ed95d17cc824f"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 1.5,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-006-抖音202663-081273/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-006-抖音202663-081273/audio.m4a",
+    "analyzed_at": "2026-06-03T03:01:47.012908+00:00",
+    "normalized_at": "2026-06-03T03:19:12.593996+00:00"
+  }
+}

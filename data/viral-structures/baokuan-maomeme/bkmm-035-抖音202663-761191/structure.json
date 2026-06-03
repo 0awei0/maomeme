@@ -1,0 +1,314 @@
+{
+  "video_summary": {
+    "title": "女朋友的心里话",
+    "one_sentence": "女生睡觉说梦话吐槽男友，温情反转后补刀骂男友水货被当场抓包回怼",
+    "primary_topic": "情侣日常反差沙雕梗",
+    "meme_type": "香蕉猫/表情猫情侣meme",
+    "overall_tone": "搞笑沙雕、甜中带欠"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 1,
+      "text": "(情侣睡觉中)",
+      "speaker": "旁白",
+      "tone": "平和",
+      "emotion": "中性",
+      "function": "场景铺垫",
+      "confidence": 1
+    },
+    {
+      "start_time": 1,
+      "end_time": 3,
+      "text": "(说梦话)臭男人...",
+      "speaker": "女朋友",
+      "tone": "含糊",
+      "emotion": "怨念",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 3,
+      "end_time": 12,
+      "text": "不能要了/不爱我/老是凶我/不会哄人/也没钱/也不帅",
+      "speaker": "女朋友",
+      "tone": "含糊梦话",
+      "emotion": "怨念",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 12,
+      "end_time": 19,
+      "text": "但我又爱他/想陪他圆发财梦",
+      "speaker": "女朋友",
+      "tone": "软乎乎",
+      "emotion": "温柔",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 19,
+      "end_time": 29,
+      "text": "没有我...他就一水货",
+      "speaker": "女朋友",
+      "tone": "嫌弃",
+      "emotion": "怨念",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 29,
+      "end_time": 32,
+      "text": "你才是水货",
+      "speaker": "男朋友",
+      "tone": "炸毛",
+      "emotion": "愤怒",
+      "function": "punchline",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 1,
+      "duration": 1,
+      "beat": "hook",
+      "script": "情侣睡觉中",
+      "joke_point": "铺垫情侣同居场景",
+      "visual_description": "暖光卧室大床，两只躺平香蕉猫分饰男女友",
+      "pacing_note": "慢，交代场景"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 1,
+      "end_time": 12,
+      "duration": 11,
+      "beat": "escalation",
+      "script": "女生梦话吐槽男友全是缺点",
+      "joke_point": "精准戳中情侣日常女生怨念点",
+      "visual_description": "右边香蕉猫不动，左边猫先出问号再变震惊脸",
+      "pacing_note": "每2秒换一句吐槽字幕，节奏均匀"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 12,
+      "end_time": 19,
+      "duration": 7,
+      "beat": "twist",
+      "script": "女生突然说爱男友想陪他奋斗",
+      "joke_point": "吐槽反转温情，观众以为是甜梗",
+      "visual_description": "左边猫换成愧疚灰猫脸",
+      "pacing_note": "节奏放缓，铺垫情绪"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 19,
+      "end_time": 29,
+      "duration": 10,
+      "beat": "escalation",
+      "script": "女生补刀男友没了自己就是水货",
+      "joke_point": "温情碎掉，回到吐槽本质",
+      "visual_description": "左边猫换回震惊脸",
+      "pacing_note": "节奏加快，铺垫笑点"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 29,
+      "end_time": 32,
+      "duration": 3,
+      "beat": "punchline",
+      "script": "男友醒了回怼你才是水货",
+      "joke_point": "男友全程没睡全听到了，反转拉满",
+      "visual_description": "左边猫换成炸毛橘猫怼脸骂人的表情",
+      "pacing_note": "快，笑点爆发"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 32,
+      "end_time": 33.5,
+      "duration": 1.5,
+      "beat": "ending",
+      "script": "电视彩条",
+      "joke_point": "闹剧收尾留白",
+      "visual_description": "彩色故障电视条",
+      "pacing_note": "极快，戛然而止"
+    }
+  ],
+  "cat_track": [
+    "2只香蕉猫躺平，左男右女，睡觉状态",
+    "左猫依次换问号/震惊脸，右猫保持香蕉躺平",
+    "左猫换愧疚灰猫脸，右猫不动",
+    "左猫换回震惊脸，右猫不动",
+    "左猫换炸毛橘猫骂人脸，右猫不动",
+    "无猫"
+  ],
+  "background_track": [
+    "暖光现代卧室大床，带抱枕装饰画，暖黄氛围灯，无需生成，现有素材关键词：温馨卧室大床",
+    "同上",
+    "同上",
+    "同上",
+    "同上",
+    "电视故障彩条，无需生成，关键词：电视彩条"
+  ],
+  "audio_track": {
+    "bgm_style": "抖音常用沙雕轻节奏BGM",
+    "bgm_mood": "搞怪轻松",
+    "voice_style": "女生软乎乎含糊梦话音，男生炸毛接地气口音",
+    "voice_presence": "角色音清晰，无旁白",
+    "sfx": [
+      "最后彩条滋滋噪音"
+    ],
+    "rhythm_sync": "每句字幕卡BGM轻鼓点"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "粗黑边黄/白字，顶部大标题，中间台词，底部角色标注",
+    "subtitle_density": "每2-3秒1句，每句4-6字",
+    "emphasis_words": [
+      "臭男人",
+      "水货"
+    ],
+    "bubble_or_dialogue_style": "无气泡，文字直接悬浮在画面中间",
+    "stickers_or_overlays": [
+      "角色名前加*号标注"
+    ],
+    "transition_notes": [
+      "无转场，最后直接切彩条"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "A以为B睡着疯狂吐槽→中途反转温情→最后补刀吐槽→B全程没睡当场回怼"
+    ],
+    "shot_templates": [
+      "固定日常场景，双角色一边不动一边切换表情对应情绪"
+    ],
+    "cat_action_templates": [
+      "香蕉猫躺平代表睡觉，切换不同表情猫脸代表情绪变化"
+    ],
+    "background_templates": [
+      "固定不变的日常场景（卧室/客厅/办公室）降低制作成本"
+    ],
+    "audio_templates": [
+      "轻节奏搞怪BGM+梦话音效+最后怼人爆发音效"
+    ],
+    "suitable_topics": [
+      "情侣日常、闺蜜吐槽、室友沙雕事、职场摸鱼吐槽"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 1.0,
+        "beat": "hook",
+        "script": "情侣睡觉中",
+        "joke_point": "铺垫场景",
+        "background": "暖光卧室大床",
+        "cats": "左男右女2只香蕉猫躺平睡觉",
+        "audio": "BGM起",
+        "subtitle": "(情侣睡觉中)",
+        "seedream_prompt": "暖光现代卧室带大床抱枕",
+        "local_cat_asset_keywords": "香蕉猫躺平睡觉",
+        "local_background_keywords": "温馨卧室大床"
+      },
+      {
+        "shot_id": 2,
+        "duration": 11.0,
+        "beat": "escalation",
+        "script": "女生梦话吐槽男友缺点",
+        "joke_point": "情侣日常共鸣",
+        "background": "同上",
+        "cats": "左猫依次换问号/震惊脸，右猫不动",
+        "audio": "女生含糊梦话音",
+        "subtitle": "臭男人/不能要了等吐槽",
+        "seedream_prompt": "同上",
+        "local_cat_asset_keywords": "问号猫,震惊猫脸,香蕉猫睡觉",
+        "local_background_keywords": "同上"
+      },
+      {
+        "shot_id": 3,
+        "duration": 7.0,
+        "beat": "twist",
+        "script": "女生说爱男友想陪他奋斗",
+        "joke_point": "温情反转",
+        "background": "同上",
+        "cats": "左猫换愧疚灰猫脸，右猫不动",
+        "audio": "女生软乎乎梦话音",
+        "subtitle": "但我又爱他/想陪他圆发财梦",
+        "seedream_prompt": "同上",
+        "local_cat_asset_keywords": "愧疚猫脸,香蕉猫睡觉",
+        "local_background_keywords": "同上"
+      },
+      {
+        "shot_id": 4,
+        "duration": 10.0,
+        "beat": "escalation",
+        "script": "女生补刀男友是水货",
+        "joke_point": "温情碎掉回归吐槽",
+        "background": "同上",
+        "cats": "左猫换回震惊脸，右猫不动",
+        "audio": "女生嫌弃梦话音",
+        "subtitle": "没有我...他就一水货",
+        "seedream_prompt": "同上",
+        "local_cat_asset_keywords": "震惊猫脸,香蕉猫睡觉",
+        "local_background_keywords": "同上"
+      },
+      {
+        "shot_id": 5,
+        "duration": 3.0,
+        "beat": "punchline",
+        "script": "男友回怼你才是水货",
+        "joke_point": "当场抓包反转",
+        "background": "同上",
+        "cats": "左猫换炸毛橘猫骂人脸，右猫不动",
+        "audio": "男生炸毛怼人音",
+        "subtitle": "你才是水货",
+        "seedream_prompt": "同上",
+        "local_cat_asset_keywords": "橘猫骂人脸,香蕉猫睡觉",
+        "local_background_keywords": "同上"
+      },
+      {
+        "shot_id": 6,
+        "duration": 1.5,
+        "beat": "ending",
+        "script": "彩条收尾",
+        "joke_point": "闹剧留白",
+        "background": "电视故障彩条",
+        "cats": "无",
+        "audio": "彩条滋滋噪音",
+        "subtitle": "无",
+        "seedream_prompt": "彩色电视故障彩条",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "电视彩条"
+      }
+    ]
+  },
+  "quality_notes": [
+    "梗点贴合情侣日常共鸣强，表情切换节奏精准，反转分层到位笑点密集"
+  ],
+  "_raw_content_sha256": "71ee79d87d7fed847b919c3591e4cc37506fc0637f81a0546699238a9c3e47b1",
+  "video_id": "bkmm-035-抖音202663-761191",
+  "filename": "抖音202663-761191.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 33.483,
+    "size_bytes": 1309596,
+    "width": 720,
+    "height": 960,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "3ec6dd78b9fbf3b49f15a09562c798bf957bb2dda9bef17b9c1dbfaefaab3553"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-035-抖音202663-761191/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-035-抖音202663-761191/audio.m4a",
+    "analyzed_at": "2026-06-03T03:06:35.621989+00:00",
+    "normalized_at": "2026-06-03T03:19:12.610154+00:00"
+  }
+}

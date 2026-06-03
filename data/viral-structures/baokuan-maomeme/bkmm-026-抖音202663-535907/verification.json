@@ -1,0 +1,32 @@
+{
+  "video_id": "bkmm-026-抖音202663-535907",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "整体拆解与视频内容高度匹配，仅存在个别猫造型的细节偏差，核心剧情、分镜、素材描述均正确",
+  "confirmed_points": [
+    "核心剧情逻辑和视频完全一致：香蕉猫演绎童年被妈妈送去充气城堡，误以为是打自由搏击打晕所有小孩的沙雕故事",
+    "分镜顺序、起承转合、反转节点和视频画面完全对应",
+    "背景描述均为充气城堡相关场景，符合画面内容",
+    "猫素材核心设定（香蕉猫为主、老板后续用cheems形象）、动作、数量的描述基本准确",
+    "BGM、音效的风格、类型描述符合视频实际内容",
+    "字幕样式、转场方式的描述和视频一致"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "3",
+      "field": "cats",
+      "observed": "第一个小孩的妈妈刚出场时是未穿香蕉皮的奶牛猫，后续才变为香蕉猫",
+      "extracted": "4只香蕉猫，小孩哭，小孩妈面无表情",
+      "suggestion": "修正为「3只香蕉猫+1只奶牛猫（后续变为香蕉猫），小孩哭，小孩妈面无表情」"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "1db0e880f500a298107ca671b982a85676b7db9320b1590e8c942486d2ba2793",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:35:31.741712+00:00",
+  "structure_sha256": "d7a1cf6bc840776e96abf2ad276bf876e513275d85f8895e220ec5b4e6584654",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-026-抖音202663-535907/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

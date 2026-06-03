@@ -1,0 +1,88 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 2.0,
+      "beat": "hook",
+      "script": "医生：记住不要喝饮料，那玩意对身体不好",
+      "joke_point": "铺垫反差前提",
+      "background": "明亮医院诊室 靠窗办公桌 电脑X光片",
+      "cats": "奶白hamham猫桌后严肃 虎斑猫坐对面乖巧",
+      "audio": "轻快搞怪BGM 严肃男声",
+      "subtitle": "记住 不要喝饮料 那玩意对身体不好",
+      "seedream_prompt": "明亮现代医院诊室 靠窗办公桌椅",
+      "local_cat_asset_keywords": "hamham严肃猫 乖巧虎斑猫",
+      "local_background_keywords": "医院诊室 医生办公桌"
+    },
+    {
+      "shot_id": 2,
+      "duration": 1.0,
+      "beat": "setup",
+      "script": "患者：好的医生",
+      "joke_point": "建立听话预期",
+      "background": "同前",
+      "cats": "虎斑猫点头附和",
+      "audio": "软萌女声",
+      "subtitle": "好的 医生",
+      "seedream_prompt": "",
+      "local_cat_asset_keywords": "点头虎斑猫",
+      "local_background_keywords": ""
+    },
+    {
+      "shot_id": 3,
+      "duration": 2.0,
+      "beat": "escalation",
+      "script": "患者：医生你喝的是什么",
+      "joke_point": "打破预期引冲突",
+      "background": "同前 桌上放珍珠奶茶",
+      "cats": "hamham猫低头吸奶茶 虎斑猫抬头疑惑",
+      "audio": "疑惑女声 吸奶茶咕嘟声",
+      "subtitle": "医生 你喝的是什么",
+      "seedream_prompt": "",
+      "local_cat_asset_keywords": "吸奶茶hamham猫 疑惑虎斑猫",
+      "local_background_keywords": "珍珠奶茶素材"
+    },
+    {
+      "shot_id": 4,
+      "duration": 2.0,
+      "beat": "twist",
+      "script": "医生：我不一样，我可以自救",
+      "joke_point": "双标言论出反转",
+      "background": "同前",
+      "cats": "hamham猫抬头理直气壮 虎斑猫震惊",
+      "audio": "理直气壮男声 震惊音效",
+      "subtitle": "我不一样 我可以自救",
+      "seedream_prompt": "",
+      "local_cat_asset_keywords": "理直气壮hamham猫 大眼震惊虎斑猫",
+      "local_background_keywords": ""
+    },
+    {
+      "shot_id": 5,
+      "duration": 3.0,
+      "beat": "punchline",
+      "script": "医生：这玩意搞嘴里就舒服",
+      "joke_point": "破防说真话戳笑点",
+      "background": "同前",
+      "cats": "hamham猫眯眼爽 虎斑猫呆愣",
+      "audio": "欠揍男声",
+      "subtitle": "这玩意搞嘴里就舒服",
+      "seedream_prompt": "",
+      "local_cat_asset_keywords": "爽脸hamham猫 呆愣虎斑猫",
+      "local_background_keywords": ""
+    },
+    {
+      "shot_id": 6,
+      "duration": 2.7,
+      "beat": "ending",
+      "script": "引流信息",
+      "joke_point": "结尾引流/作者页收束",
+      "background": "深色抖音引流页",
+      "cats": "圆形hamham猫头像居中",
+      "audio": "BGM淡出",
+      "subtitle": "抖音搜索 梦梦的猫meme剧场",
+      "seedream_prompt": "深色背景抖音账号引流页",
+      "local_cat_asset_keywords": "圆形hamham猫头像",
+      "local_background_keywords": "抖音引流页素材"
+    }
+  ]
+}

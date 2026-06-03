@@ -1,0 +1,156 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 2.0,
+      "beat": "hook",
+      "script": "当我在做手术时医生突然表白",
+      "joke_point": "离谱手术表白设定抓眼球",
+      "background": "明亮浅蓝色手术室，带手术灯手术床",
+      "cats": "三只香蕉猫，左护士右医生中间躺患者",
+      "audio": "BGM起，旁白念标题",
+      "subtitle": "顶部黄色粗字标题",
+      "seedream_prompt": "明亮浅蓝色手术室，手术灯手术床监护仪",
+      "local_cat_asset_keywords": [
+        "香蕉猫站立",
+        "香蕉猫躺卧",
+        "橘猫医生"
+      ],
+      "local_background_keywords": [
+        "手术室实景"
+      ]
+    },
+    {
+      "shot_id": 2,
+      "duration": 4.0,
+      "beat": "setup",
+      "script": "护士：腹部有硬硬的东西 医生：拿出来看看→掏出戒指",
+      "joke_point": "手术掏戒指的离谱操作",
+      "background": "明亮浅蓝色手术室",
+      "cats": "左护士伸手掏，中患者躺，右医生淡定站",
+      "audio": "对话配音+掏戒指叮音效",
+      "subtitle": "护士、医生头顶白字，戒指旁标*戒指",
+      "seedream_prompt": "明亮浅蓝色手术室",
+      "local_cat_asset_keywords": [
+        "香蕉猫伸手",
+        "橘猫淡定"
+      ],
+      "local_background_keywords": [
+        "手术室实景"
+      ]
+    },
+    {
+      "shot_id": 3,
+      "duration": 8.0,
+      "beat": "escalation",
+      "script": "医生：两周年我要表白 患者：你好浪漫→变小丑脸",
+      "joke_point": "感动后突然小丑脸的反差",
+      "background": "明亮浅蓝色手术室",
+      "cats": "医生笑，患者脸红后脸换小丑表情包",
+      "audio": "对话配音+小丑出场音效",
+      "subtitle": "医生、患者头顶白字，表白标粉色",
+      "seedream_prompt": "明亮浅蓝色手术室",
+      "local_cat_asset_keywords": [
+        "白猫笑",
+        "香蕉猫脸红",
+        "小丑脸表情包"
+      ],
+      "local_background_keywords": [
+        "手术室实景"
+      ]
+    },
+    {
+      "shot_id": 4,
+      "duration": 8.0,
+      "beat": "escalation",
+      "script": "医生：还有惊喜→掏奔驰钥匙→掏两本房产证",
+      "joke_point": "礼物逐层升级的离谱感",
+      "background": "明亮浅蓝色手术室",
+      "cats": "护士表情逐渐震惊，医生得意",
+      "audio": "对话配音+两次掏物品叮音效",
+      "subtitle": "护士头顶白字，奔驰钥匙、房产证标粗",
+      "seedream_prompt": "明亮浅蓝色手术室",
+      "local_cat_asset_keywords": [
+        "香蕉猫震惊脸",
+        "虎斑猫淡定"
+      ],
+      "local_background_keywords": [
+        "手术室实景"
+      ]
+    },
+    {
+      "shot_id": 5,
+      "duration": 7.0,
+      "beat": "twist",
+      "script": "护士：我也有惊喜 患者：爸爸~",
+      "joke_point": "反向惊喜的伏笔",
+      "background": "明亮浅蓝色手术室",
+      "cats": "护士捂嘴笑，患者张嘴喊爸爸",
+      "audio": "对话配音+软萌小孩喊爸爸音效",
+      "subtitle": "护士头顶白字，爸爸标蓝色",
+      "seedream_prompt": "明亮浅蓝色手术室",
+      "local_cat_asset_keywords": [
+        "美短猫捂嘴",
+        "香蕉猫张嘴"
+      ],
+      "local_background_keywords": [
+        "手术室实景"
+      ]
+    },
+    {
+      "shot_id": 6,
+      "duration": 6.0,
+      "beat": "punchline",
+      "script": "护士：这是我给你生的三岁宝宝 患者：我是哆啦A梦吗",
+      "joke_point": "反向惊喜比医生更离谱",
+      "background": "明亮浅蓝色手术室",
+      "cats": "护士抱小香蕉猫，患者无语，医生震惊",
+      "audio": "对话配音+惊讶吸气音效",
+      "subtitle": "护士、患者头顶白字，三岁宝宝标粗",
+      "seedream_prompt": "明亮浅蓝色手术室",
+      "local_cat_asset_keywords": [
+        "小香蕉猫",
+        "香蕉猫无语脸",
+        "虎斑猫震惊"
+      ],
+      "local_background_keywords": [
+        "手术室实景"
+      ]
+    },
+    {
+      "shot_id": 7,
+      "duration": 6.0,
+      "beat": "punchline",
+      "script": "旁白：没有哆啦A梦，只有双向奔赴的爱情→患者变小丑",
+      "joke_point": "煽情后突然沙雕的反差",
+      "background": "明亮浅蓝色手术室加粉色爱心",
+      "cats": "患者脸换成小丑表情包，医生笑",
+      "audio": "煽情旁白+爱心音效+小丑音效",
+      "subtitle": "橙色煽情配文，无角色字幕",
+      "seedream_prompt": "手术室加飘动粉色爱心",
+      "local_cat_asset_keywords": [
+        "小丑脸表情包",
+        "粉色爱心贴纸"
+      ],
+      "local_background_keywords": [
+        "手术室实景"
+      ]
+    },
+    {
+      "shot_id": 8,
+      "duration": 3.0,
+      "beat": "cta",
+      "script": "搜索手术表白后续",
+      "joke_point": "结尾引流/作者页收束",
+      "background": "深色抖音搜索弹窗页",
+      "cats": "无猫镜头/平台作者信息页",
+      "audio": "引导旁白",
+      "subtitle": "搜索框内白字",
+      "seedream_prompt": "深色背景抖音搜索弹窗",
+      "local_cat_asset_keywords": [],
+      "local_background_keywords": [
+        "抖音搜索弹窗"
+      ]
+    }
+  ]
+}

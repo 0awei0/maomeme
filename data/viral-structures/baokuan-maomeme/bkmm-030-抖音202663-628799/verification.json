@@ -1,0 +1,31 @@
+{
+  "video_id": "bkmm-030-抖音202663-628799",
+  "verdict": "pass",
+  "score": 90.0,
+  "summary": "整体拆解与视频内容高度匹配，仅第一幕女友角色的动物类型描述存在小误差，其余内容均符合",
+  "confirmed_points": [
+    "核心剧情逻辑完全一致：情侣吵架、男友摔门离场、女友秒睡放嘴硬狠话、男友买奶茶哄人、最终和解、结尾引导搜索的顺序正确",
+    "分镜时间分段、起承转合节点、反转笑点（秒睡反差）均与视频匹配",
+    "背景描述准确，符合现代卧室从亮灯到关灯暖光的画面变化",
+    "字幕风格、贴纸、转场描述与画面一致，顶部黄字、中间白字台词、角色黄字标注的样式正确",
+    "大部分动物素材描述准确：橘猫男友、带问号灰猫、秒睡香蕉猫、cheems狗男友、和解阶段的橘猫和灰猫对应正确"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "1",
+      "field": "cats",
+      "observed": "第一幕右侧女友角色为灰色仓鼠meme",
+      "extracted": "灰猫（女友）站床上对吵/灰猫右蹦跶吵架",
+      "suggestion": "将第一幕女友角色修正为灰色仓鼠meme"
+    }
+  ],
+  "audio_confidence": "low",
+  "needs_human_review": false,
+  "_raw_content_sha256": "1dc1798288498bbbbc86745a259b8622301bcb455db6d0e77009ebe59b85f8c1",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:35:53.468424+00:00",
+  "structure_sha256": "aa6ad0c0e1a24bf5497d91904bed4c2cc23c880699ecf4290c733d3d9bbe0af7",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-030-抖音202663-628799/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

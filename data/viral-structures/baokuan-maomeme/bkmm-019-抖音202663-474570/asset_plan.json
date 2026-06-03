@@ -1,0 +1,88 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 2.0,
+      "beat": "setup",
+      "script": "男生：小美我喜欢你",
+      "joke_point": "观众误以为男生向女主表白",
+      "background": "明亮带护栏的走廊，暖光",
+      "cats": "3只：表白黄猫（前景背身）、闺蜜（左笑）、女主（中懵）",
+      "audio": "轻快BGM开头，表白音效",
+      "subtitle": "下方白字：小美我喜欢你",
+      "seedream_prompt": "明亮现代走廊，木地板，墙面有消防栓",
+      "local_cat_asset_keywords": "黄猫背身, 粉蝴蝶结开心猫, 粉蝴蝶结懵猫",
+      "local_background_keywords": "学校走廊, 写字楼走廊"
+    },
+    {
+      "shot_id": 2,
+      "duration": 2.0,
+      "beat": "escalation",
+      "script": "闺蜜：我也是~",
+      "joke_point": "表白对象是闺蜜，女主落空",
+      "background": "同上走廊",
+      "cats": "2只：闺蜜（wink上前）、女主（躲后震惊）",
+      "audio": "BGM卡点，俏皮笑声",
+      "subtitle": "闺蜜上方黄字：我也是~",
+      "seedream_prompt": "同上走廊场景",
+      "local_cat_asset_keywords": "wink猫咪, 震惊猫咪",
+      "local_background_keywords": "走廊"
+    },
+    {
+      "shot_id": 3,
+      "duration": 3.0,
+      "beat": "punchline",
+      "script": "女主：为什么从小到大没人跟我表白",
+      "joke_point": "女主没人表白的疑惑抛出",
+      "background": "同上走廊",
+      "cats": "1只：女主（流泪委屈）",
+      "audio": "BGM放缓，抽鼻子音效",
+      "subtitle": "上方黄字：为什么从小到大都没人和我表白",
+      "seedream_prompt": "同上走廊场景",
+      "local_cat_asset_keywords": "流泪委屈猫",
+      "local_background_keywords": "走廊"
+    },
+    {
+      "shot_id": 4,
+      "duration": 3.0,
+      "beat": "escalation",
+      "script": "女主：我真的这么丑吗",
+      "joke_point": "女主自我怀疑情绪拉满",
+      "background": "同上走廊",
+      "cats": "1只：女主（举镜子流泪）",
+      "audio": "BGM继续放缓，抽泣音效",
+      "subtitle": "上方黄字：我真的这么丑吗",
+      "seedream_prompt": "同上走廊场景",
+      "local_cat_asset_keywords": "举镜子流泪猫",
+      "local_background_keywords": "走廊"
+    },
+    {
+      "shot_id": 5,
+      "duration": 2.0,
+      "beat": "twist",
+      "script": "旁白：实际上 你未来的男朋友",
+      "joke_point": "视角反转铺垫笑点",
+      "background": "纯黑背景",
+      "cats": "无猫",
+      "audio": "BGM突变，提示音效",
+      "subtitle": "中间白字：实际上 你未来的男朋友",
+      "seedream_prompt": "纯黑背景",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "黑底"
+    },
+    {
+      "shot_id": 6,
+      "duration": 7.0,
+      "beat": "punchline",
+      "script": "未来男友：天灵灵地灵灵...",
+      "joke_point": "没人表白的原因是男友祈祷隔绝异性",
+      "background": "男生大学宿舍上下铺",
+      "cats": "1只：柴犬猫（戴道士帽摇拂尘）",
+      "audio": "BGM变搞怪道士风，摇铃音效",
+      "subtitle": "黄字高亮：男的公的雄的带把的",
+      "seedream_prompt": "男生四人间宿舍，上下铺，日常杂乱",
+      "local_cat_asset_keywords": "道士柴犬猫, 做法猫",
+      "local_background_keywords": "男生宿舍, 上下铺宿舍"
+    }
+  ]
+}

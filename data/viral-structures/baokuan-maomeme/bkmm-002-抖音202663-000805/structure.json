@@ -1,0 +1,475 @@
+{
+  "video_summary": {
+    "title": "室友偷用光我半个月的老干妈辣酱",
+    "one_sentence": "大学生宿舍室友偷用穷学生辣酱，整活反转请人“闻”烤串的搞笑香蕉猫meme",
+    "primary_topic": "大学生宿舍日常、生活费拮据梗、室友整活",
+    "meme_type": "香蕉猫宿舍整活meme",
+    "overall_tone": "搞怪、接地气、沙雕搞笑"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "生活费不够了啃馒头\n你们放开我...",
+      "speaker": "旁白/乐哥",
+      "tone": "委屈",
+      "emotion": "难过",
+      "function": "开篇点题",
+      "confidence": 1
+    },
+    {
+      "start_time": 2,
+      "end_time": 4,
+      "text": "乐哥你就好好看着吧",
+      "speaker": "我",
+      "tone": "得意",
+      "emotion": "窃喜",
+      "function": "铺垫剧情",
+      "confidence": 1
+    },
+    {
+      "start_time": 6,
+      "end_time": 8,
+      "text": "我的辣酱....",
+      "speaker": "乐哥",
+      "tone": "崩溃",
+      "emotion": "难过",
+      "function": "冲突爆发",
+      "confidence": 1
+    },
+    {
+      "start_time": 8,
+      "end_time": 10,
+      "text": "吃你点辣酱至于吗...",
+      "speaker": "我",
+      "tone": "无所谓",
+      "emotion": "满不在乎",
+      "function": "升级冲突",
+      "confidence": 1
+    },
+    {
+      "start_time": 10,
+      "end_time": 12,
+      "text": "这瓶辣酱要吃半个月呢",
+      "speaker": "乐哥",
+      "tone": "崩溃",
+      "emotion": "痛苦",
+      "function": "点明痛点",
+      "confidence": 1
+    },
+    {
+      "start_time": 14,
+      "end_time": 15,
+      "text": "*空了",
+      "speaker": "旁白",
+      "tone": "夸张",
+      "emotion": "戏谑",
+      "function": "反转点",
+      "confidence": 1
+    },
+    {
+      "start_time": 20,
+      "end_time": 22,
+      "text": "我和你们拼了",
+      "speaker": "乐哥",
+      "tone": "暴怒",
+      "emotion": "愤怒",
+      "function": "笑点爆发",
+      "confidence": 1
+    },
+    {
+      "start_time": 29,
+      "end_time": 31,
+      "text": "明天我们请你吃烤羊肉串",
+      "speaker": "我",
+      "tone": "讨好",
+      "emotion": "心虚",
+      "function": "画饼铺垫",
+      "confidence": 1
+    },
+    {
+      "start_time": 37,
+      "end_time": 39,
+      "text": "你们不是说请我吃烤羊肉串吗",
+      "speaker": "乐哥",
+      "tone": "疑惑",
+      "emotion": "期待",
+      "function": "铺垫反转",
+      "confidence": 1
+    },
+    {
+      "start_time": 52,
+      "end_time": 55,
+      "text": "味道一样闻着就馒头吃吧",
+      "speaker": "宁哥",
+      "tone": "欠揍",
+      "emotion": "戏谑",
+      "function": "最终笑点",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "hook",
+      "script": "生活费不够啃馒头，乐哥被按住",
+      "joke_point": "开篇点明贫穷设定+香蕉猫哭的反差",
+      "visual_description": "宿舍下铺两只猫按住哭的香蕉猫",
+      "pacing_note": "快切"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2,
+      "end_time": 4,
+      "duration": 2,
+      "beat": "setup",
+      "script": "我要去偷乐哥的辣酱",
+      "joke_point": "点明偷辣酱的核心冲突",
+      "visual_description": "杰瑞猫大笑特写",
+      "pacing_note": "快切"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 6,
+      "end_time": 8,
+      "duration": 2,
+      "beat": "escalation",
+      "script": "乐哥发现辣酱被偷崩溃",
+      "joke_point": "3个室友吃泡面，乐哥哭着喊辣酱没了",
+      "visual_description": "宿舍走廊4只香蕉猫贴图",
+      "pacing_note": "快切"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 13,
+      "end_time": 15,
+      "duration": 2,
+      "beat": "twist",
+      "script": "辣酱是空的",
+      "joke_point": "辣酱被吃光的反转",
+      "visual_description": "空老干妈特写",
+      "pacing_note": "停顿1s放大笑点"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 20,
+      "end_time": 23,
+      "duration": 3,
+      "beat": "punchline",
+      "script": "乐哥暴走跳窗",
+      "joke_point": "乐哥暴怒跳下去被当成扔垃圾",
+      "visual_description": "猫跳窗+楼下猫疑惑脸",
+      "pacing_note": "卡点音效"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 27,
+      "end_time": 31,
+      "duration": 4,
+      "beat": "setup",
+      "script": "室友道歉承诺请吃烤串",
+      "joke_point": "室友画饼赔偿",
+      "visual_description": "3个室友凑过来讨好",
+      "pacing_note": "快切"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 31,
+      "end_time": 33,
+      "duration": 2,
+      "beat": "twist",
+      "script": "室友钱包是空的",
+      "joke_point": "室友也没钱的反转",
+      "visual_description": "空钱包特写",
+      "pacing_note": "快切"
+    },
+    {
+      "shot_id": 8,
+      "start_time": 42,
+      "end_time": 52,
+      "duration": 10,
+      "beat": "escalation",
+      "script": "室友让乐哥闻味当吃串",
+      "joke_point": "“请吃串”是闻味道的整活",
+      "visual_description": "香蕉猫闭眼闻味道的特写",
+      "pacing_note": "慢节奏铺垫笑点"
+    },
+    {
+      "shot_id": 9,
+      "start_time": 52,
+      "end_time": 56,
+      "duration": 4,
+      "beat": "punchline",
+      "script": "闻的是狐臭",
+      "joke_point": "最终反转整活笑点",
+      "visual_description": "两只香蕉猫对话，标注狐臭",
+      "pacing_note": "卡点爆笑笑点"
+    },
+    {
+      "shot_id": 10,
+      "start_time": 56,
+      "end_time": 62,
+      "duration": 6,
+      "beat": "ending",
+      "script": "乐哥追打室友",
+      "joke_point": "收尾呼应整活风格",
+      "visual_description": "猫跑出门+花屏+抖音引导关注",
+      "pacing_note": "收尾"
+    }
+  ],
+  "cat_track": [
+    "3只：2狸花+1只哭的香蕉猫",
+    "1只杰瑞大笑猫",
+    "4只香蕉猫，3只淡定1只哭",
+    "无猫，辣酱特写",
+    "1只暴走香蕉猫+2只疑惑香蕉猫",
+    "3只讨好表情的猫",
+    "无猫，钱包特写",
+    "1只闭眼嗅闻的香蕉猫+1只坏笑的猫",
+    "2只香蕉猫，1只懵1只坏笑",
+    "1只跑的香蕉猫"
+  ],
+  "background_track": [
+    "大学宿舍下铺，蓝白格床单，地面有拖鞋",
+    "宿舍下铺局部，背景白墙",
+    "大学宿舍走廊，两边都是上下铺",
+    "纯色背景拍老干妈辣酱",
+    "宿舍下铺+宿舍门口",
+    "宿舍下铺+宿舍走廊",
+    "纯色背景拍空钱包",
+    "宿舍下铺+窗边局部",
+    "宿舍下铺局部",
+    "餐馆门口+花屏+抖音关注页"
+  ],
+  "audio_track": {
+    "bgm_style": "抖音流行沙雕搞怪BGM",
+    "bgm_mood": "轻松搞笑、戏谑",
+    "voice_style": "年轻男生搞怪配音，不同角色语气反差大",
+    "voice_presence": "清晰，音量大于BGM",
+    "sfx": [
+      "夸张哭泣音效",
+      "跳窗失重音效",
+      "搞笑爆点音效",
+      "跑酷音效"
+    ],
+    "rhythm_sync": "每2-3秒卡点，对应画面切换和字幕弹出"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "黑体白字加黑描边，位于画面上方居中",
+    "subtitle_density": "每镜头1-2行，每行不超15字",
+    "emphasis_words": [
+      "空了",
+      "生活费不够",
+      "烤羊肉串",
+      "狐臭"
+    ],
+    "bubble_or_dialogue_style": "无对话气泡，角色下方标注名字黑底白字",
+    "stickers_or_overlays": [
+      "角色名字标贴",
+      "老干妈贴图",
+      "泡面贴图"
+    ],
+    "transition_notes": [
+      "全片硬切，无花俏转场，节奏快"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "宿舍贫穷主角的专属物资被偷→主角崩溃→室友道歉画饼→饼是整活的反转套路"
+    ],
+    "shot_templates": [
+      "固定宿舍背景+猫meme贴图对话→反转特写→笑点镜头的三段式"
+    ],
+    "cat_action_templates": [
+      "香蕉猫哭、暴走、被按住、懵的表情动作"
+    ],
+    "background_templates": [
+      "大学上下铺宿舍蓝白格床单通用场景"
+    ],
+    "audio_templates": [
+      "搞怪沙雕BGM+年轻男生多角色配音+卡点音效"
+    ],
+    "suitable_topics": [
+      "大学生宿舍日常",
+      "室友整活",
+      "生活费拮据梗",
+      "穷学生日常",
+      "朋友互坑"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.0,
+        "beat": "hook",
+        "script": "生活费不够了啃馒头，你们放开我",
+        "joke_point": "开篇点题贫穷反差",
+        "background": "大学宿舍下铺蓝白格床单，地面有拖鞋",
+        "cats": "2只狸花按住1只哭泣的香蕉猫",
+        "audio": "BGM起，加哭泣音效",
+        "subtitle": "生活费不够了啃馒头\n你们放开我...",
+        "seedream_prompt": "男生大学宿舍下铺 蓝格床单 地面放拖鞋",
+        "local_cat_asset_keywords": "狸花猫 香蕉猫 哭泣猫",
+        "local_background_keywords": "大学宿舍 上下铺 蓝格床单"
+      },
+      {
+        "shot_id": 2,
+        "duration": 2.0,
+        "beat": "setup",
+        "script": "乐哥你就好好看着吧",
+        "joke_point": "点明偷辣酱的冲突",
+        "background": "宿舍下铺局部白墙",
+        "cats": "1只大笑的杰瑞猫",
+        "audio": "搞怪得意音效",
+        "subtitle": "乐哥你就好好看着吧",
+        "seedream_prompt": "大学宿舍下铺白墙背景",
+        "local_cat_asset_keywords": "杰瑞 大笑猫",
+        "local_background_keywords": "宿舍白墙"
+      },
+      {
+        "shot_id": 3,
+        "duration": 2.0,
+        "beat": "twist",
+        "script": "我的辣酱....",
+        "joke_point": "乐哥发现辣酱被偷崩溃",
+        "background": "大学宿舍走廊两边上下铺",
+        "cats": "3只淡定香蕉猫+1只哭的香蕉猫",
+        "audio": "夸张崩溃音效",
+        "subtitle": "我的辣酱....",
+        "seedream_prompt": "大学宿舍走廊 两边上下铺蓝格床单",
+        "local_cat_asset_keywords": "香蕉猫 吃泡面猫 哭泣猫",
+        "local_background_keywords": "宿舍走廊 上下铺"
+      },
+      {
+        "shot_id": 4,
+        "duration": 2.0,
+        "beat": "twist",
+        "script": "还给你吧乐哥...*空了",
+        "joke_point": "辣酱被吃光的反转",
+        "background": "纯色背景拍老干妈",
+        "cats": "无猫",
+        "audio": "停顿1秒加爆点音效",
+        "subtitle": "还给你吧乐哥....\n*空了",
+        "seedream_prompt": "特写空的老干妈辣酱瓶",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "老干妈 空瓶子"
+      },
+      {
+        "shot_id": 5,
+        "duration": 3.0,
+        "beat": "punchline",
+        "script": "我和你们拼了\n楼上的谁扔垃圾了",
+        "joke_point": "乐哥跳窗被当成扔垃圾",
+        "background": "宿舍下铺+宿舍门口",
+        "cats": "1只暴走香蕉猫+2只疑惑香蕉猫",
+        "audio": "跳窗失重音效+疑惑语气",
+        "subtitle": "我和你们拼了\n楼上的谁扔乱拉圾了",
+        "seedream_prompt": "大学宿舍下铺 宿舍门口",
+        "local_cat_asset_keywords": "暴走猫 香蕉猫 疑惑猫",
+        "local_background_keywords": "宿舍下铺 宿舍门"
+      },
+      {
+        "shot_id": 6,
+        "duration": 4.0,
+        "beat": "setup",
+        "script": "明天我们请你吃烤羊肉串",
+        "joke_point": "室友画饼赔偿",
+        "background": "宿舍走廊",
+        "cats": "3只讨好表情的香蕉猫/仓鼠",
+        "audio": "讨好语气配音",
+        "subtitle": "明天我们请你吃烤羊肉串",
+        "seedream_prompt": "大学宿舍走廊",
+        "local_cat_asset_keywords": "香蕉猫 仓鼠 讨好表情猫",
+        "local_background_keywords": "宿舍走廊"
+      },
+      {
+        "shot_id": 7,
+        "duration": 2.0,
+        "beat": "twist",
+        "script": ".......",
+        "joke_point": "室友也没钱的反转",
+        "background": "纯色背景拍空钱包",
+        "cats": "无猫",
+        "audio": "停顿音效",
+        "subtitle": ".......",
+        "seedream_prompt": "特写翻空的黑色钱包",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "空钱包"
+      },
+      {
+        "shot_id": 8,
+        "duration": 10.0,
+        "beat": "escalation",
+        "script": "乐哥你闻闻这是什么味\n孜然的焦香...羊肉的鲜香~",
+        "joke_point": "请吃串是闻味道的整活",
+        "background": "宿舍下铺+窗边",
+        "cats": "1只闭眼闻的香蕉猫+1只坏笑的猫",
+        "audio": "慢悠悠搞怪配音",
+        "subtitle": "乐哥你闻闻这是什么味\n孜然的焦香...\n羊肉的鲜香~",
+        "seedream_prompt": "大学宿舍下铺 窗边白墙",
+        "local_cat_asset_keywords": "香蕉猫 闭眼闻味猫 坏笑猫",
+        "local_background_keywords": "宿舍下铺 窗边"
+      },
+      {
+        "shot_id": 9,
+        "duration": 4.0,
+        "beat": "punchline",
+        "script": "你们不是没生活费...味道一样闻着就馒头吃吧",
+        "joke_point": "闻的是狐臭的终极反转",
+        "background": "宿舍下铺局部",
+        "cats": "1只懵的香蕉猫+1只坏笑的香蕉猫",
+        "audio": "爆笑笑点音效",
+        "subtitle": "你们不是没生活费...\n味道一样闻着就馒头吃吧",
+        "seedream_prompt": "大学宿舍下铺蓝格床单",
+        "local_cat_asset_keywords": "香蕉猫 懵脸猫 坏笑猫",
+        "local_background_keywords": "宿舍下铺 蓝格床单"
+      },
+      {
+        "shot_id": 10,
+        "duration": 6.0,
+        "beat": "ending",
+        "script": "跑走+引导关注",
+        "joke_point": "收尾呼应整活风格",
+        "background": "餐馆门口+花屏+抖音关注页",
+        "cats": "1只跑的香蕉猫",
+        "audio": "跑酷音效+收尾BGM",
+        "subtitle": "第二天\n抖音搜索 布丁的猫meme",
+        "seedream_prompt": "餐馆玻璃门 彩色花屏 抖音关注页",
+        "local_cat_asset_keywords": "香蕉猫 跑的猫",
+        "local_background_keywords": "餐馆门 花屏 抖音关注页"
+      }
+    ]
+  },
+  "quality_notes": [
+    "核心笑点贴合大学生生活费拮据、室友整活的普遍痛点，共情性强",
+    "全片用现成猫meme贴图+通用宿舍背景，复刻成本极低",
+    "节奏紧凑，每3秒左右一个笑点/反转，符合短视频完播率要求"
+  ],
+  "_raw_content_sha256": "dc16b9c9fb98d4b5e271b236b6095e98744fe889ddcf2016ff6d2aa2297a879f",
+  "video_id": "bkmm-002-抖音202663-000805",
+  "filename": "抖音202663-000805.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 62.206,
+    "size_bytes": 5402971,
+    "width": 1280,
+    "height": 720,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "d45d7794056c33c27d55a0154b28d2eb09f1ab567b779a264c6c84fc8e2bd068"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-002-抖音202663-000805/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-002-抖音202663-000805/audio.m4a",
+    "analyzed_at": "2026-06-03T02:55:41.539839+00:00",
+    "normalized_at": "2026-06-03T03:19:12.591434+00:00"
+  }
+}

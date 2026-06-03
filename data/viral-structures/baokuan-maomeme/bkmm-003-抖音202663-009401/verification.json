@@ -1,0 +1,31 @@
+{
+  "video_id": "bkmm-003-抖音202663-009401",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "整体拆解与视频内容高度一致，仅存在个别镜头时间点的微小误差",
+  "confirmed_points": [
+    "整体剧情逻辑正确，香蕉猫玩命卖机油被撞仍推销、后续衔接现实同款玩命销冠的内容与视频完全匹配",
+    "分镜顺序、反转点（被撞、爬起来继续推销、现实场景复刻）和视频画面一致",
+    "背景描述（乡间柏油路配绿树红白路桩、车内第一视角郊区马路）、猫素材的数量、位置、动作均符合视频内容",
+    "字幕内容、特效（红色泼墨KO特效、蓝机油桶贴图）描述正确",
+    "音频风格、音效类型的描述符合视频实际呈现"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "5",
+      "field": "timing",
+      "observed": "现实场景镜头实际从10.8s左右开始切入",
+      "extracted": "拆解标注shot5的start_time为9s",
+      "suggestion": "将shot5的start_time调整为11s左右，匹配实际切镜时间"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "642123244fe0eb69c909e0640f30cc803a753e6114aa51b20e79d2b996208375",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:32:52.024031+00:00",
+  "structure_sha256": "7966bad09102c7191b062d9d8c66dd78701d9ee43b8b0a874c70503e2d3185bf",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-003-抖音202663-009401/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

@@ -1,0 +1,524 @@
+{
+  "video_summary": {
+    "title": "让你意识到已经上年纪的瞬间",
+    "one_sentence": "用多个猫咪拟人场景展现年轻人变老的日常征兆，最后被叫阿姨的反转戳中笑点",
+    "primary_topic": "当代年轻人变老的日常征兆/年龄共鸣",
+    "meme_type": "日常扎心共鸣向猫meme",
+    "overall_tone": "搞笑又扎心，强共鸣感"
+  },
+  "script_track": [
+    {
+      "start_time": 0.0,
+      "end_time": 2.0,
+      "text": "你要喝啥饮料",
+      "speaker": "朋友",
+      "tone": "疑问",
+      "emotion": "好奇",
+      "function": "引出场景",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 2.0,
+      "end_time": 3.0,
+      "text": "都好甜啊 拿瓶矿泉水吧",
+      "speaker": "你",
+      "tone": "无奈",
+      "emotion": "嫌弃甜",
+      "function": "转折",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 3.0,
+      "end_time": 5.0,
+      "text": "没味道的水，以前都不喝的",
+      "speaker": "你",
+      "tone": "感慨",
+      "emotion": "扎心",
+      "function": "共鸣点",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 5.0,
+      "end_time": 8.0,
+      "text": "这个留着装垃圾，这个可以去超市装东西",
+      "speaker": "你",
+      "tone": "理所当然",
+      "emotion": "自然",
+      "function": "展现行为",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 8.0,
+      "end_time": 10.0,
+      "text": "以前都当垃圾丢了",
+      "speaker": "你",
+      "tone": "感慨",
+      "emotion": "扎心",
+      "function": "共鸣点",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 10.0,
+      "end_time": 13.0,
+      "text": "以前爱吃的零食，直接路过",
+      "speaker": "你",
+      "tone": "平淡",
+      "emotion": "无所谓",
+      "function": "展现行为",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 13.0,
+      "end_time": 16.0,
+      "text": "好新鲜呀，多买些水果，以前都是买一堆零食的",
+      "speaker": "你",
+      "tone": "感慨",
+      "emotion": "养生",
+      "function": "共鸣点",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 16.0,
+      "end_time": 20.0,
+      "text": "嗯好美啊，好有意境",
+      "speaker": "你",
+      "tone": "欣赏",
+      "emotion": "愉悦",
+      "function": "展现行为",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 20.0,
+      "end_time": 22.0,
+      "text": "小朋友 多少钱呀 我买一枝",
+      "speaker": "你",
+      "tone": "友好",
+      "emotion": "温和",
+      "function": "铺垫反转",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 22.0,
+      "end_time": 23.0,
+      "text": "10块钱 谢谢阿姨",
+      "speaker": "卖花小孩",
+      "tone": "天真",
+      "emotion": "礼貌",
+      "function": "反转触发",
+      "confidence": 1.0
+    },
+    {
+      "start_time": 23.0,
+      "end_time": 26.7,
+      "text": "阿姨！？",
+      "speaker": "你",
+      "tone": "震惊",
+      "emotion": "破防",
+      "function": "笑点 punchline",
+      "confidence": 1.0
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0.0,
+      "end_time": 3.0,
+      "duration": 3.0,
+      "beat": "setup",
+      "script": "超市买饮料选矿泉水",
+      "joke_point": "以前爱喝甜饮现在只喝无糖水",
+      "visual_description": "超市内两只橘猫对话，思考气泡闪过各种甜饮",
+      "pacing_note": "快节奏切甜饮画面"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 3.0,
+      "end_time": 10.0,
+      "duration": 7.0,
+      "beat": "escalation",
+      "script": "家里攒各种塑料袋留着用",
+      "joke_point": "以前嫌袋子占地方现在主动攒",
+      "visual_description": "奶猫蹲在一堆袋子前整理，配各种袋子贴纸",
+      "pacing_note": "中等节奏，配回忆反差"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 10.0,
+      "end_time": 16.0,
+      "duration": 6.0,
+      "beat": "escalation",
+      "script": "逛超市略过零食区直奔水果区",
+      "joke_point": "以前爱囤零食现在只买水果养生",
+      "visual_description": "香蕉猫拎小篮走零食区，后切奶牛猫看水果区",
+      "pacing_note": "快节奏切场景"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 16.0,
+      "end_time": 20.0,
+      "duration": 4.0,
+      "beat": "escalation",
+      "script": "出门爱拍花、拍日落",
+      "joke_point": "以前觉得拍花土现在自己也爱拍",
+      "visual_description": "橘猫大脸举手机拍花、拍日落",
+      "pacing_note": "慢节奏，配美好氛围"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 20.0,
+      "end_time": 26.7,
+      "duration": 6.7,
+      "beat": "twist+punchline",
+      "script": "买花被小孩叫阿姨，当场震惊",
+      "joke_point": "前面所有铺垫最后被叫阿姨直接破防",
+      "visual_description": "湖边买花，最后香蕉猫瞪大眼睛震惊脸",
+      "pacing_note": "节奏突停，放大震惊表情"
+    }
+  ],
+  "cat_track": [
+    {
+      "shot_id": 1,
+      "count": 2,
+      "roles": [
+        "朋友",
+        "你"
+      ],
+      "positions": [
+        "左下方",
+        "右下方"
+      ],
+      "actions": [
+        "张嘴说话",
+        "发呆思考后喝水"
+      ],
+      "expressions": [
+        "自然",
+        "面无表情"
+      ],
+      "emotions": [
+        "好奇",
+        "平淡"
+      ],
+      "layout": "左右分布",
+      "asset_keywords": [
+        "橘猫说话meme",
+        "橘猫呆脸meme",
+        "白猫喝水meme"
+      ]
+    },
+    {
+      "shot_id": 2,
+      "count": 2,
+      "roles": [
+        "你",
+        "回忆你"
+      ],
+      "positions": [
+        "中间",
+        "下方"
+      ],
+      "actions": [
+        "整理袋子",
+        "震惊"
+      ],
+      "expressions": [
+        "认真",
+        "惊讶"
+      ],
+      "emotions": [
+        "自然",
+        "扎心"
+      ],
+      "layout": "居中",
+      "asset_keywords": [
+        "奶白灰奶猫meme",
+        "橘猫震惊脸meme"
+      ]
+    },
+    {
+      "shot_id": 3,
+      "count": 3,
+      "roles": [
+        "你",
+        "你",
+        "回忆你"
+      ],
+      "positions": [
+        "中间",
+        "中间",
+        "下方"
+      ],
+      "actions": [
+        "走零食区",
+        "看水果",
+        "震惊"
+      ],
+      "expressions": [
+        "平淡",
+        "开心",
+        "惊讶"
+      ],
+      "emotions": [
+        "无所谓",
+        "愉悦",
+        "扎心"
+      ],
+      "layout": "居中",
+      "asset_keywords": [
+        "香蕉猫走路meme",
+        "奶牛猫仰头meme",
+        "橘猫震惊脸meme"
+      ]
+    },
+    {
+      "shot_id": 4,
+      "count": 1,
+      "role": "你",
+      "position": "左下角",
+      "action": "举手机拍照",
+      "expression": "陶醉",
+      "emotion": "愉悦",
+      "layout": "左对齐",
+      "asset_keywords": [
+        "橘猫大脸拍照meme"
+      ]
+    },
+    {
+      "shot_id": 5,
+      "count": 3,
+      "roles": [
+        "你",
+        "卖花小孩",
+        "你"
+      ],
+      "positions": [
+        "中间",
+        "左下方",
+        "中间"
+      ],
+      "actions": [
+        "买花",
+        "说话",
+        "震惊"
+      ],
+      "emotions": [
+        "温和",
+        "天真",
+        "破防"
+      ],
+      "layout": "左右分布后居中",
+      "asset_keywords": [
+        "美短蹲坐meme",
+        "三花小猫meme",
+        "香蕉猫震惊脸meme"
+      ]
+    }
+  ],
+  "background_track": [
+    {
+      "shot_id": 1,
+      "setting": "连锁超市饮料区",
+      "props": "冷柜、饮料、彩色气球、零食货架",
+      "composition": "中景，冷柜左货架右",
+      "mood": "明亮日常",
+      "existing_asset_keywords": "超市冷柜",
+      "seedream_prompt": "明亮连锁超市内部 饮料冷柜 彩色气球",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 2,
+      "setting": "家居客厅",
+      "props": "木质书架、收纳箱、一堆塑料袋",
+      "composition": "中景，书架为背景",
+      "mood": "温馨日常",
+      "existing_asset_keywords": "家居客厅",
+      "seedream_prompt": "温馨客厅 木质书架 桌面堆塑料袋",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 3,
+      "setting": "超市零食区+水果区",
+      "props": "零食货架、水果货架、小购物篮",
+      "composition": "中景，货架为背景",
+      "mood": "明亮日常",
+      "existing_asset_keywords": "超市货架",
+      "seedream_prompt": "超市零食货架 新鲜水果陈列区",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 4,
+      "setting": "公园花丛+湖边日落",
+      "props": "鲜花、湖、树",
+      "composition": "中景，风景为背景",
+      "mood": "温暖美好",
+      "existing_asset_keywords": "公园花丛 湖边日落",
+      "seedream_prompt": "白色花丛 湖边暖黄日落 步道",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 5,
+      "setting": "湖边步道",
+      "props": "花束、树",
+      "composition": "中景，湖树为背景",
+      "mood": "黄昏温馨",
+      "existing_asset_keywords": "湖边步道",
+      "seedream_prompt": "黄昏湖边步道 树影",
+      "need_generated_background": false
+    }
+  ],
+  "audio_track": {
+    "bgm_style": "抖音热门轻快搞怪电子BGM",
+    "bgm_mood": "轻松搞笑",
+    "voice_style": "网络热梗拟人配音，男女混合",
+    "voice_presence": "全程对话+旁白配音",
+    "sfx": [
+      "喝水声",
+      "翻袋子声",
+      "走路声",
+      "拍照音效",
+      "震惊破防音效"
+    ],
+    "rhythm_sync": "每个笑点、场景切换卡BGM鼓点，punchline处BGM骤停"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "黑边粗白字，顶部固定白框大标题，黄色加粗小标题标每个变老征兆",
+    "subtitle_density": "每镜头2-3行字，密度适中",
+    "emphasis_words": [
+      "甜度下降",
+      "收集袋子",
+      "不爱零食",
+      "拍花",
+      "阿姨！？"
+    ],
+    "bubble_or_dialogue_style": "开头有白色思考气泡，后续对话直接放在对应角色上方",
+    "stickers_or_overlays": [
+      "饮料贴纸",
+      "塑料袋贴纸",
+      "小购物篮贴纸",
+      "手机贴纸",
+      "花束贴纸"
+    ],
+    "transition_notes": [
+      "硬切转场，卡节奏，无花哨转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "上年纪征兆模板：[当前行为1]+[以前相反行为1]→[当前行为2]+[以前相反行为2]→最后暴击反转事件"
+    ],
+    "shot_templates": [
+      "场景展示+猫拟人演绎行为+回忆反差+最终反转punchline"
+    ],
+    "cat_action_templates": [
+      "橘猫疑问脸、白猫喝水脸、奶猫整理东西脸、香蕉猫走路脸、橘猫震惊脸、香蕉猫震惊脸"
+    ],
+    "background_templates": [
+      "超市、家居客厅、公园、湖边等日常场景"
+    ],
+    "audio_templates": [
+      "轻快搞怪BGM+网络梗配音+笑点处加对应音效+punchline处BGM骤停"
+    ],
+    "suitable_topics": [
+      "年轻人变老日常、年龄焦虑、日常共鸣梗、扎心搞笑生活片段"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 3.0,
+        "beat": "setup",
+        "script": "朋友问你喝啥，你说太甜要矿泉水",
+        "joke_point": "以前爱喝甜饮现在只喝矿泉水",
+        "background": "超市饮料区 冷柜货架带彩色气球",
+        "cats": "左橘猫张嘴问 右橘猫呆想后换白猫喝水",
+        "audio": "轻快BGM 对话配音 喝水声",
+        "subtitle": "顶部大标题+黄字“甜度下降”+对话文字",
+        "seedream_prompt": "明亮超市饮料区 冷柜 彩色气球",
+        "local_cat_asset_keywords": "橘猫说话meme 白猫喝水meme",
+        "local_background_keywords": "超市冷柜 超市货架"
+      },
+      {
+        "shot_id": 2,
+        "duration": 7.0,
+        "beat": "escalation",
+        "script": "你攒各种袋子留着用，以前都丢",
+        "joke_point": "以前嫌袋子占地方现在主动攒",
+        "background": "家居客厅 木质书架堆收纳盒",
+        "cats": "奶白灰奶猫蹲袋子前整理 橘猫震惊脸",
+        "audio": "BGM持续 配音 翻袋子声",
+        "subtitle": "黄字“收集袋子”+对话文字",
+        "seedream_prompt": "温馨客厅 木质书架 桌面堆袋子",
+        "local_cat_asset_keywords": "奶猫说话meme 橘猫震惊脸",
+        "local_background_keywords": "家居客厅 书架"
+      },
+      {
+        "shot_id": 3,
+        "duration": 6.0,
+        "beat": "escalation",
+        "script": "路过零食区直奔水果区，以前买一堆零食",
+        "joke_point": "以前爱囤零食现在只买水果养生",
+        "background": "超市零食区 后切新鲜水果区",
+        "cats": "香蕉猫拎篮走零食区 奶牛猫看水果 橘猫震惊脸",
+        "audio": "BGM持续 走路声 配音",
+        "subtitle": "黄字“不爱零食”+对话文字",
+        "seedream_prompt": "超市零食货架 新鲜水果陈列区",
+        "local_cat_asset_keywords": "香蕉猫走路meme 奶牛猫仰头meme",
+        "local_background_keywords": "超市零食区 超市水果区"
+      },
+      {
+        "shot_id": 4,
+        "duration": 4.0,
+        "beat": "escalation",
+        "script": "出门爱拍花拍日落，觉得好看",
+        "joke_point": "以前觉得拍花土现在自己也爱拍",
+        "background": "公园花丛 后切湖边暖黄日落",
+        "cats": "橘猫大脸举手机拍照",
+        "audio": "BGM持续 拍照音效 配音",
+        "subtitle": "黄字“拍花”“拍天空落日”+对话文字",
+        "seedream_prompt": "白色花丛 湖边日落 步道",
+        "local_cat_asset_keywords": "橘猫大脸拍照meme",
+        "local_background_keywords": "公园花丛 湖边日落"
+      },
+      {
+        "shot_id": 5,
+        "duration": 6.7,
+        "beat": "twist+punchline",
+        "script": "买花被小孩叫阿姨，当场震惊",
+        "joke_point": "所有铺垫后被叫阿姨直接破防",
+        "background": "黄昏湖边步道",
+        "cats": "美短买花 三花卖花 香蕉猫瞪眼睛震惊",
+        "audio": "BGM骤停 震惊音效 配音",
+        "subtitle": "对话文字 最后“阿姨！？”放大",
+        "seedream_prompt": "黄昏湖边步道 树影",
+        "local_cat_asset_keywords": "美短蹲坐meme 三花小猫meme 香蕉猫震惊脸",
+        "local_background_keywords": "湖边步道 黄昏公园"
+      }
+    ]
+  },
+  "quality_notes": [
+    "共鸣点密集，层层递进铺垫，最后反转punchline冲击力强，所用猫素材均为大众熟知的热门meme，传播性高"
+  ],
+  "video_id": "bkmm-032-抖音202663-659171",
+  "filename": "抖音202663-659171.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 26.703,
+    "size_bytes": 2274905,
+    "width": 720,
+    "height": 960,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "94ecb912c6a6631e73fd1809942fc904828e799674ba09eb0a8d262d520dbd98"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 3.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-032-抖音202663-659171/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-032-抖音202663-659171/audio.m4a",
+    "analyzed_at": "2026-06-03T03:12:13.638974+00:00",
+    "normalized_at": "2026-06-03T03:19:12.608571+00:00"
+  }
+}

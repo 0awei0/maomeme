@@ -1,0 +1,30 @@
+{
+  "video_id": "bkmm-023-抖音202663-504011",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "拆解与原视频整体高度匹配，仅个别猫素材的描述存在小措辞偏差，核心内容均符合要求",
+  "confirmed_points": [
+    "核心剧情脉络完全匹配，涵盖父母弃养、外婆抚养、申请边角地、开荒、土地被收回、父母认亲被拒、真实外婆画面收尾的完整逻辑",
+    "分镜顺序、起承转合节点和时间范围均与原视频画面对应准确",
+    "背景描述（土坯房、荒地、黄土地、乡村老屋、玉米地等）均贴合画面实际",
+    "绝大多数镜头的猫数量、位置、动作描述准确，字幕、音频风格、包装细节等都符合原视频特征"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "5",
+      "field": "cats",
+      "observed": "收地场景中递篮子的是灰白相间的外婆猫，后续才切换为橘色外婆猫",
+      "extracted": "橘猫递篮子，灰小猫拔花生，黑猫冷漠",
+      "suggestion": "修正为“灰白猫递篮子，灰小猫拔花生，黑猫冷漠，后续外婆猫切换为橘色面露难过”"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "02f85a5554f2817c6bd847d28fc995d27a4b04e43b0eb9df27c86acc536402b6",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:34:58.394209+00:00",
+  "structure_sha256": "ba35dbcf99aa4544c76800559a07c1721395e7ad0f825e11297ffbf2b75ec2ea",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-023-抖音202663-504011/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

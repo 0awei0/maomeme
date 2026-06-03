@@ -1,0 +1,102 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 2.0,
+      "beat": "hook",
+      "script": "家族技能 篮球基因",
+      "joke_point": "喂饭和篮球强关联造悬念",
+      "background": "中式客厅，沙发电视柜绿植",
+      "cats": "香蕉猫（我）坐沙发左，橘猫（妈）持碗站右",
+      "audio": "沙雕BGM开头",
+      "subtitle": "顶部大字体“家族技能 篮球基因”",
+      "seedream_prompt": "明亮中式居家客厅，沙发电视柜绿植",
+      "local_cat_asset_keywords": "香蕉猫 幼年 橘猫 喂饭",
+      "local_background_keywords": "中式普通家庭客厅"
+    },
+    {
+      "shot_id": 2,
+      "duration": 19.0,
+      "beat": "setup+escalation+punchline",
+      "script": "哥：喂个饭有那么难吗？妈：那你来喂我去买菜。哥：赶紧吃完/我：不吃。哥：三分球",
+      "joke_point": "把不吃饭的小孩当篮球扔垃圾桶",
+      "background": "同shot1客厅不同角度",
+      "cats": "山羊头哥、橘猫妈、小香蕉猫我",
+      "audio": "BGM持续，加抛投、投篮音效",
+      "subtitle": "角色名黄色标上方，台词白色打下方",
+      "seedream_prompt": "中式客厅地面垃圾桶",
+      "local_cat_asset_keywords": "山羊meme 橘猫 香蕉猫 扔东西",
+      "local_background_keywords": "中式客厅 垃圾桶"
+    },
+    {
+      "shot_id": 3,
+      "duration": 12.0,
+      "beat": "escalation",
+      "script": "哥：把它给吃/我：好的哥。哥：这不挺容易还挺乖",
+      "joke_point": "被扔过一次就乖乖吃饭的反差",
+      "background": "同shot1客厅",
+      "cats": "橘猫哥、乖乖吃饭的香蕉猫我",
+      "audio": "BGM持续，加得意笑声",
+      "subtitle": "角色名黄色标上方，台词白色打下方",
+      "seedream_prompt": "中式客厅沙发",
+      "local_cat_asset_keywords": "橘猫 得意笑 香蕉猫 乖巧",
+      "local_background_keywords": "中式客厅 沙发"
+    },
+    {
+      "shot_id": 4,
+      "duration": 16.0,
+      "beat": "setup+punchline",
+      "script": "几年后生弟弟，父母：你们喂下小宝。哥：你去喂/我：我？我：吃饭/弟：不吃。我把弟扔垃圾桶",
+      "joke_point": "扔娃技能家族传承",
+      "background": "同shot1客厅带花纹抱枕",
+      "cats": "柴犬爸、山羊妈、香蕉猫哥/我、小香蕉猫弟",
+      "audio": "BGM持续，加抛投、投篮音效",
+      "subtitle": "角色名黄色标上方，台词白色打下方",
+      "seedream_prompt": "中式客厅带花纹抱枕沙发",
+      "local_cat_asset_keywords": "柴犬meme 山羊meme 香蕉猫 抛投",
+      "local_background_keywords": "中式客厅 花纹沙发"
+    },
+    {
+      "shot_id": 5,
+      "duration": 6.0,
+      "beat": "escalation",
+      "script": "哥：有我当年风范/我：承让跟你学的",
+      "joke_point": "双方对扔娃感到骄傲的反差",
+      "background": "同shot1客厅",
+      "cats": "大笑的橘猫哥、大笑的橘猫我",
+      "audio": "BGM持续，加笑声",
+      "subtitle": "角色名黄色标上方，台词白色打下方",
+      "seedream_prompt": "中式客厅地面",
+      "local_cat_asset_keywords": "橘猫 大笑 得意",
+      "local_background_keywords": "中式客厅 地面"
+    },
+    {
+      "shot_id": 6,
+      "duration": 10.0,
+      "beat": "twist+punchline",
+      "script": "爸妈：忘带钥匙回来，我们教你运球。把哥和我扔垃圾桶",
+      "joke_point": "扔娃技能原来是爸妈传的",
+      "background": "同shot1客厅",
+      "cats": "橘猫爸妈持香蕉猫哥和我、小香蕉猫弟站旁",
+      "audio": "BGM高潮，加两次抛投投篮音效",
+      "subtitle": "角色名黄色标上方，台词白色打下方",
+      "seedream_prompt": "中式客厅 垃圾桶",
+      "local_cat_asset_keywords": "橘猫 淡定 香蕉猫 抛投",
+      "local_background_keywords": "中式客厅 垃圾桶"
+    },
+    {
+      "shot_id": 7,
+      "duration": 3.0,
+      "beat": "cta",
+      "script": "抖音搜索傻狗meme",
+      "joke_point": "结尾引流/作者页收束",
+      "background": "深色背景抖音引导页",
+      "cats": "无猫镜头/平台作者信息页",
+      "audio": "BGM收尾",
+      "subtitle": "抖音账号搜索引导文字",
+      "seedream_prompt": "深色简洁背景",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "深色引导页"
+    }
+  ]
+}

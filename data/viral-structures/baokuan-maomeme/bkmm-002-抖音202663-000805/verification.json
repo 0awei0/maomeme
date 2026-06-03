@@ -1,0 +1,21 @@
+{
+  "video_id": "bkmm-002-抖音202663-000805",
+  "verdict": "pass",
+  "score": 95.0,
+  "summary": "拆解整体与原视频高度匹配，剧情、分镜、猫素材、背景、字幕等核心内容基本一致，仅存在极细微的表述差异不影响正确性",
+  "confirmed_points": [
+    "核心剧情完全匹配：从开篇点明生活费拮据、偷辣酱冲突、辣酱被吃光反转、乐哥暴走被误认扔垃圾、室友承诺请烤串、没钱反转、闻味整活、狐臭终极反转到结尾追打+引导关注的流程完全符合原视频",
+    "分镜顺序、时长覆盖基本正确，各镜头的画面描述（猫的数量、动作、身份标注，背景为大学宿舍相关场景）都贴近原视频",
+    "台词、字幕和原视频匹配度高，核心梗点、笑点都准确对应",
+    "BGM、配音、音效的风格判断符合原视频沙雕搞怪的定位"
+  ],
+  "issues": [],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "389c4ee2f4949329ceda11ccc08d8ef16b8cb8d63d079293a7b01e6e6986f5f6",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:33:09.592353+00:00",
+  "structure_sha256": "53a1902b0a590bac01fcc565e6b2a4e3819f931471327f7942830fc58527abc9",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-002-抖音202663-000805/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

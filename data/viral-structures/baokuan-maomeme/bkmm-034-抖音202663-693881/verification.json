@@ -1,0 +1,31 @@
+{
+  "video_id": "bkmm-034-抖音202663-693881",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "拆解整体和视频高度一致，仅存在猫素材描述的小措辞差异",
+  "confirmed_points": [
+    "核心剧情符合：顾客买烤鸡腿后窜稀找摊主理论，反转是自身作息问题，摊主暖心送衣送食，最后无厘头收尾加好好吃饭提醒，和视频一致",
+    "分镜顺序、起承转合、反转点和视频画面完全匹配，时间节点基本准确",
+    "背景描述准确：夜市石板路、烤鸡腿三轮车、家用卫生间马桶、纯黑提示背景都和视频一致",
+    "台词字幕、音频风格、贴纸转场（海绵宝宝TOMORROW转场）的描述都符合视频内容",
+    "猫素材的数量、位置、动作表情基本准确，无大的偏差"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "3",
+      "field": "cats",
+      "observed": "视频中马桶上的是灰色嘶吼的小狗头（屎到淋头梗素材）",
+      "extracted": "cheems猫站马桶上 嘶吼痛苦",
+      "suggestion": "将猫素材描述修正为灰色嘶吼小狗头（屎到淋头梗素材）站马桶上嘶吼"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "b875bd4554817f1b1a7d049c7aafa97b1a9f021ded5d05d75a68355290b6513c",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:36:27.010027+00:00",
+  "structure_sha256": "6f8bb45bda4f44a0fae54ddb3a58c900cf2687b17ef598fc016e026386f6756e",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-034-抖音202663-693881/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

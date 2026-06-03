@@ -1,0 +1,40 @@
+{
+  "video_id": "bkmm-018-抖音202663-449762",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "整体拆解与视频高度一致，核心剧情、分镜、素材、字幕均匹配，仅音频部分存在两处微小描述偏差",
+  "confirmed_points": [
+    "剧情逻辑完全匹配：香蕉猫排队取餐祈祷前面号均不在，成功排到后下一位236号破防的主线正确",
+    "分镜顺序、时间节点、起承转合结构（hook/setup/escalation/twist/punchline/ending/cta）与视频一致",
+    "背景描述准确：商场餐饮店门口、暗调聚焦内心戏的场景均贴合画面",
+    "猫素材描述正确：排队的香蕉猫、不同阶段主角的灰猫/cheems/橘猫形象、不同状态的店员猫、236号绿猫的数量、位置、动作均贴近画面",
+    "字幕、台词、笑点提炼与视频内容一致，符合用户共鸣点",
+    "结尾抖音引流页的标注正确"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "1",
+      "field": "audio",
+      "observed": "视频开头无额外吐槽旁白，吐槽内容仅以字幕呈现",
+      "extracted": "音频描述为搞怪BGM起，吐槽旁白",
+      "suggestion": "修正为搞怪BGM起，无额外旁白，吐槽内容以字幕呈现"
+    },
+    {
+      "severity": "minor",
+      "shot_id": "unknown",
+      "field": "audio",
+      "observed": "视频中无明显叫号叮咚音效",
+      "extracted": "sfx列表包含叫号叮咚声",
+      "suggestion": "移除叫号叮咚声的音效描述"
+    }
+  ],
+  "audio_confidence": "medium",
+  "needs_human_review": false,
+  "_raw_content_sha256": "c0976dbf176d26e96d6df0c5373b9595266b23144d8b4d456f2781d3de0a3cb8",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:34:25.717214+00:00",
+  "structure_sha256": "da4895a8961641a3b305dba4c6cfebbcdc42c0e23b126ff5c74008b81ae9fc64",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-018-抖音202663-449762/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

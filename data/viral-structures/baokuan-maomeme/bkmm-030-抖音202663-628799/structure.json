@@ -1,0 +1,436 @@
+{
+  "video_summary": {
+    "title": "情侣吵架女生放狠话转头秒睡",
+    "one_sentence": "情侣吵架后女生放嘴硬狠话实则秒睡，男生买奶茶哄人最终和解的反差搞笑猫meme",
+    "primary_topic": "情侣日常搞笑反差",
+    "meme_type": "炸炸猪/cheems猫情侣梗",
+    "overall_tone": "沙雕、搞笑、共鸣感强"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "（情侣吵架中）",
+      "speaker": "旁白",
+      "tone": "搞怪",
+      "emotion": "中性",
+      "function": "场景交代",
+      "confidence": 1
+    },
+    {
+      "start_time": 2,
+      "end_time": 3,
+      "text": "（摔门而去）",
+      "speaker": "旁白",
+      "tone": "搞怪",
+      "emotion": "中性",
+      "function": "剧情推进",
+      "confidence": 1
+    },
+    {
+      "start_time": 3,
+      "end_time": 6,
+      "text": "谁在乎",
+      "speaker": "女朋友（内心）",
+      "tone": "傲娇",
+      "emotion": "嘴硬",
+      "function": "放狠话",
+      "confidence": 1
+    },
+    {
+      "start_time": 10,
+      "end_time": 12,
+      "text": "没关系",
+      "speaker": "女朋友（内心）",
+      "tone": "傲娇",
+      "emotion": "嘴硬",
+      "function": "放狠话",
+      "confidence": 1
+    },
+    {
+      "start_time": 14,
+      "end_time": 16,
+      "text": "都跑掉吧",
+      "speaker": "女朋友（内心）",
+      "tone": "傲娇",
+      "emotion": "嘴硬",
+      "function": "放狠话",
+      "confidence": 1
+    },
+    {
+      "start_time": 17,
+      "end_time": 19,
+      "text": "我很坚强",
+      "speaker": "女朋友（内心）",
+      "tone": "傲娇",
+      "emotion": "嘴硬",
+      "function": "放狠话",
+      "confidence": 1
+    },
+    {
+      "start_time": 20,
+      "end_time": 22,
+      "text": "不需要人疼我",
+      "speaker": "女朋友（内心）",
+      "tone": "傲娇",
+      "emotion": "嘴硬",
+      "function": "放狠话",
+      "confidence": 1
+    },
+    {
+      "start_time": 24,
+      "end_time": 26,
+      "text": "也不需要人爱我",
+      "speaker": "女朋友（内心）",
+      "tone": "傲娇",
+      "emotion": "嘴硬",
+      "function": "放狠话",
+      "confidence": 1
+    },
+    {
+      "start_time": 27,
+      "end_time": 29,
+      "text": "就这样吧...",
+      "speaker": "女朋友（内心）",
+      "tone": "傲娇",
+      "emotion": "嘴硬",
+      "function": "放狠话",
+      "confidence": 1
+    },
+    {
+      "start_time": 29,
+      "end_time": 31,
+      "text": "老婆我给你买了奶茶",
+      "speaker": "男朋友",
+      "tone": "讨好",
+      "emotion": "小心翼翼",
+      "function": "哄人",
+      "confidence": 1
+    },
+    {
+      "start_time": 31,
+      "end_time": 33,
+      "text": "我不要",
+      "speaker": "女朋友",
+      "tone": "傲娇",
+      "emotion": "还在生气",
+      "function": "拒绝",
+      "confidence": 1
+    },
+    {
+      "start_time": 35,
+      "end_time": 37,
+      "text": "我长痘了不能喝",
+      "speaker": "女朋友",
+      "tone": "委屈",
+      "emotion": "找借口",
+      "function": "解释",
+      "confidence": 1
+    },
+    {
+      "start_time": 38,
+      "end_time": 41,
+      "text": "多大点事，喝完买药吃",
+      "speaker": "男朋友",
+      "tone": "宠溺",
+      "emotion": "无奈",
+      "function": "哄人",
+      "confidence": 1
+    },
+    {
+      "start_time": 41,
+      "end_time": 43,
+      "text": "老公你对我可真好",
+      "speaker": "女朋友",
+      "tone": "开心",
+      "emotion": "满意",
+      "function": "和解",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "setup",
+      "script": "情侣吵架中对骂",
+      "joke_point": "猫吵架还原真实情侣吵架状态",
+      "visual_description": "橘猫（男友）、灰猫（女友）站床上对吵，中间有脏话乱码符号",
+      "pacing_note": "快节奏开场"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2,
+      "end_time": 4,
+      "duration": 2,
+      "beat": "escalation",
+      "script": "男友摔门而去，女友懵",
+      "joke_point": "吵架后男方离场的经典剧情",
+      "visual_description": "橘猫消失，灰猫头顶问号站在床上",
+      "pacing_note": "节奏稍缓"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 4,
+      "end_time": 9,
+      "duration": 5,
+      "beat": "twist",
+      "script": "女友放狠话“谁在乎”实则秒睡",
+      "joke_point": "嘴硬放狠话和秒睡的反差",
+      "visual_description": "香蕉猫躺在床上睡觉，下方标“*秒睡”",
+      "pacing_note": "反转笑点出现"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 9,
+      "end_time": 29,
+      "duration": 20,
+      "beat": "punchline",
+      "script": "女友持续放嘴硬台词，已经睡熟",
+      "joke_point": "全程嘴硬台词和沉睡状态的强反差",
+      "visual_description": "背景关灯变暗，香蕉猫一直保持睡觉姿势，台词逐句弹出",
+      "pacing_note": "慢节奏放大反差笑点"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 29,
+      "end_time": 37,
+      "duration": 8,
+      "beat": "escalation",
+      "script": "男友带奶茶回来哄人，女友拒绝",
+      "joke_point": "男生哄人标准操作和女生找借口拒绝的真实感",
+      "visual_description": "cheems狗（男友）举着奶茶出现，灰猫（女友）出现说长痘不能喝",
+      "pacing_note": "剧情推进"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 37,
+      "end_time": 43,
+      "duration": 6,
+      "beat": "punchline",
+      "script": "男友说喝完买药，女友开心和解",
+      "joke_point": "女生情绪转变快的真实反差",
+      "visual_description": "橘猫（男友）笑，灰猫（女友）开心拍手",
+      "pacing_note": "笑点收尾"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 43,
+      "end_time": 46.39,
+      "duration": 3.39,
+      "beat": "cta",
+      "script": "引导搜索炸炸猪猫meme",
+      "joke_point": "无",
+      "visual_description": "彩条转场后弹出抖音搜索框",
+      "pacing_note": "引流收尾"
+    }
+  ],
+  "cat_track": [
+    "2只猫：橘猫左吵架，灰猫右蹦跶吵架",
+    "1只猫：灰猫站床上面露疑惑",
+    "1只猫：香蕉猫平躺床上熟睡",
+    "1只猫：香蕉猫保持熟睡状态",
+    "2只：cheems狗左举奶茶，灰猫右面露犹豫，香蕉猫睡",
+    "2只：橘猫左笑，灰猫右开心拍手",
+    "无猫"
+  ],
+  "background_track": [
+    "亮灯现代简约卧室，大床带蓝白抱枕，后方有书桌",
+    "同亮灯卧室",
+    "同亮灯卧室",
+    "关灯后暖黄色灯光的同个卧室",
+    "同暖光卧室",
+    "同暖光卧室",
+    "抖音搜索引导页背景"
+  ],
+  "audio_track": {
+    "bgm_style": "热门emo流行曲改编沙雕版",
+    "bgm_mood": "先emo伤感后搞笑欢快",
+    "voice_style": "戏精沙雕配音，男女声都带夸张感",
+    "voice_presence": "清晰靠前，盖过BGM",
+    "sfx": [
+      "吵架嘈杂声",
+      "摔门声",
+      "关灯咔哒声",
+      "奶茶晃动声"
+    ],
+    "rhythm_sync": "台词和BGM鼓点完全对齐，每句台词卡拍弹出"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "顶部固定黄黑粗边大字“无可救药的我”，中间台词是白字黑边粗体，角色标注是黄字黑边",
+    "subtitle_density": "每2-5秒1句，单句不超过10字",
+    "emphasis_words": [
+      "秒睡",
+      "吵架中",
+      "摔门而去",
+      "奶茶"
+    ],
+    "bubble_or_dialogue_style": "无对话框，文字直接悬浮",
+    "stickers_or_overlays": [
+      "脏话乱码符号",
+      "问号贴纸",
+      "黄色手指关灯贴纸"
+    ],
+    "transition_notes": [
+      "仅结尾彩条转场，其余无转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "冲突场景→一方放嘴硬狠话→行为和台词强反差→另一方安抚→神反转和解"
+    ],
+    "shot_templates": [
+      "固定场景+猫meme替换角色+逐句弹出反差台词"
+    ],
+    "cat_action_templates": [
+      "对吵橘猫",
+      "蹦跶吵架灰猫",
+      "疑惑猫",
+      "香蕉熟睡猫",
+      "讨好cheems狗"
+    ],
+    "background_templates": [
+      "固定卧室场景，切换亮灯/暖光两种状态"
+    ],
+    "audio_templates": [
+      "emo BGM配沙雕反差剧情，台词卡点弹出"
+    ],
+    "suitable_topics": [
+      "情侣日常反差",
+      "男女思维差异",
+      "嘴硬人设",
+      "搞笑生活日常"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.0,
+        "beat": "setup",
+        "script": "情侣吵架中，男女朋友对骂",
+        "joke_point": "猫吵架还原情侣吵架真实感",
+        "background": "亮灯现代卧室，大床带蓝白抱枕",
+        "cats": "橘猫左张嘴吵架，灰猫右蹦跶吵架",
+        "audio": "吵架音效+emo BGM开头",
+        "subtitle": "黄字（情侣吵架中），下方标男女朋友",
+        "seedream_prompt": "现代简约亮灯卧室，大床带蓝抱枕",
+        "local_cat_asset_keywords": "吵架橘猫meme, 蹦跶灰猫meme",
+        "local_background_keywords": "现代卧室大床亮灯"
+      },
+      {
+        "shot_id": 2,
+        "duration": 2.0,
+        "beat": "escalation",
+        "script": "男朋友摔门而去，女朋友懵",
+        "joke_point": "还原吵架后男方离场经典场景",
+        "background": "同亮灯卧室",
+        "cats": "灰猫站床上，头顶问号面露疑惑",
+        "audio": "摔门音效+BGM继续",
+        "subtitle": "黄字（摔门而去）",
+        "seedream_prompt": "同前卧室场景",
+        "local_cat_asset_keywords": "问号疑惑猫meme",
+        "local_background_keywords": "现代卧室大床亮灯"
+      },
+      {
+        "shot_id": 3,
+        "duration": 5.0,
+        "beat": "twist",
+        "script": "女朋友内心：谁在乎",
+        "joke_point": "嘴硬放狠话和秒睡的反差",
+        "background": "同亮灯卧室",
+        "cats": "香蕉猫平躺在床上熟睡",
+        "audio": "傲娇女生配音+BGM继续",
+        "subtitle": "白字“谁在乎”，下方标*秒睡",
+        "seedream_prompt": "同前卧室场景",
+        "local_cat_asset_keywords": "香蕉睡觉猫meme",
+        "local_background_keywords": "现代卧室大床亮灯"
+      },
+      {
+        "shot_id": 4,
+        "duration": 20.0,
+        "beat": "punchline",
+        "script": "女朋友持续放嘴硬台词，已睡熟",
+        "joke_point": "全程嘴硬和沉睡状态的强反差",
+        "background": "关灯后暖光卧室",
+        "cats": "香蕉猫保持熟睡状态",
+        "audio": "关灯音效+傲娇女生配音逐句出",
+        "subtitle": "逐句弹出嘴硬台词，一直标*秒睡",
+        "seedream_prompt": "暖黄灯光昏暗卧室，大床",
+        "local_cat_asset_keywords": "香蕉睡觉猫meme",
+        "local_background_keywords": "卧室暖光暗灯"
+      },
+      {
+        "shot_id": 5,
+        "duration": 8.0,
+        "beat": "escalation",
+        "script": "男友：老婆我给你买了奶茶，女友：我不要，长痘了不能喝",
+        "joke_point": "男生哄人、女生找借口的真实感",
+        "background": "同暖光卧室",
+        "cats": "cheems狗左举奶茶，灰猫右犹豫，香蕉猫睡",
+        "audio": "男生讨好配音+女生傲娇配音",
+        "subtitle": "逐句弹出男女对话",
+        "seedream_prompt": "同前暖光卧室场景",
+        "local_cat_asset_keywords": "cheems笑狗meme, 犹豫灰猫meme",
+        "local_background_keywords": "卧室暖光暗灯"
+      },
+      {
+        "shot_id": 6,
+        "duration": 6.0,
+        "beat": "punchline",
+        "script": "男友：多大点事，喝完买药吃，女友：老公你真好",
+        "joke_point": "女生情绪转变快的真实反差",
+        "background": "同暖光卧室",
+        "cats": "橘猫左笑，灰猫右开心拍手",
+        "audio": "男生宠溺配音+女生开心配音",
+        "subtitle": "逐句弹出男女对话",
+        "seedream_prompt": "同前暖光卧室场景",
+        "local_cat_asset_keywords": "笑橘猫meme, 拍手开心猫meme",
+        "local_background_keywords": "卧室暖光暗灯"
+      },
+      {
+        "shot_id": 7,
+        "duration": 3.39,
+        "beat": "cta",
+        "script": "引导搜索炸炸猪猫meme",
+        "joke_point": "结尾引流/作者页收束",
+        "background": "抖音搜索引导页",
+        "cats": "无",
+        "audio": "彩条噪音音效+BGM结束",
+        "subtitle": "搜索框文字“炸炸猪猫meme”",
+        "seedream_prompt": "深色抖音搜索引导背景",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "抖音搜索页背景"
+      }
+    ]
+  },
+  "quality_notes": [
+    "核心爆点是嘴硬台词和秒睡行为的强反差，精准戳中情侣日常共鸣点，剧情节奏松紧合适，笑点密集",
+    "normalized_storyboard_fields: filled 1 blank or inconsistent fields"
+  ],
+  "_raw_content_sha256": "a6676a8dc3e94e55856b0cabdad1d7df30dc130354b5f50f8be5d9db15e5c23a",
+  "video_id": "bkmm-030-抖音202663-628799",
+  "filename": "抖音202663-628799.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 46.393,
+    "size_bytes": 2212087,
+    "width": 720,
+    "height": 960,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "d3fafe0b1ccec5f78e8573ea08231afeb23e2f11dc8f37ae0d02cf4847432d26"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-030-抖音202663-628799/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-030-抖音202663-628799/audio.m4a",
+    "analyzed_at": "2026-06-03T03:06:38.636219+00:00",
+    "normalized_at": "2026-06-03T03:19:12.607510+00:00"
+  }
+}

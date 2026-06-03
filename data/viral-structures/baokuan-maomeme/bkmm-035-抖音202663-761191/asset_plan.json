@@ -1,0 +1,88 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 1.0,
+      "beat": "hook",
+      "script": "情侣睡觉中",
+      "joke_point": "铺垫场景",
+      "background": "暖光卧室大床",
+      "cats": "左男右女2只香蕉猫躺平睡觉",
+      "audio": "BGM起",
+      "subtitle": "(情侣睡觉中)",
+      "seedream_prompt": "暖光现代卧室带大床抱枕",
+      "local_cat_asset_keywords": "香蕉猫躺平睡觉",
+      "local_background_keywords": "温馨卧室大床"
+    },
+    {
+      "shot_id": 2,
+      "duration": 11.0,
+      "beat": "escalation",
+      "script": "女生梦话吐槽男友缺点",
+      "joke_point": "情侣日常共鸣",
+      "background": "同上",
+      "cats": "左猫依次换问号/震惊脸，右猫不动",
+      "audio": "女生含糊梦话音",
+      "subtitle": "臭男人/不能要了等吐槽",
+      "seedream_prompt": "同上",
+      "local_cat_asset_keywords": "问号猫,震惊猫脸,香蕉猫睡觉",
+      "local_background_keywords": "同上"
+    },
+    {
+      "shot_id": 3,
+      "duration": 7.0,
+      "beat": "twist",
+      "script": "女生说爱男友想陪他奋斗",
+      "joke_point": "温情反转",
+      "background": "同上",
+      "cats": "左猫换愧疚灰猫脸，右猫不动",
+      "audio": "女生软乎乎梦话音",
+      "subtitle": "但我又爱他/想陪他圆发财梦",
+      "seedream_prompt": "同上",
+      "local_cat_asset_keywords": "愧疚猫脸,香蕉猫睡觉",
+      "local_background_keywords": "同上"
+    },
+    {
+      "shot_id": 4,
+      "duration": 10.0,
+      "beat": "escalation",
+      "script": "女生补刀男友是水货",
+      "joke_point": "温情碎掉回归吐槽",
+      "background": "同上",
+      "cats": "左猫换回震惊脸，右猫不动",
+      "audio": "女生嫌弃梦话音",
+      "subtitle": "没有我...他就一水货",
+      "seedream_prompt": "同上",
+      "local_cat_asset_keywords": "震惊猫脸,香蕉猫睡觉",
+      "local_background_keywords": "同上"
+    },
+    {
+      "shot_id": 5,
+      "duration": 3.0,
+      "beat": "punchline",
+      "script": "男友回怼你才是水货",
+      "joke_point": "当场抓包反转",
+      "background": "同上",
+      "cats": "左猫换炸毛橘猫骂人脸，右猫不动",
+      "audio": "男生炸毛怼人音",
+      "subtitle": "你才是水货",
+      "seedream_prompt": "同上",
+      "local_cat_asset_keywords": "橘猫骂人脸,香蕉猫睡觉",
+      "local_background_keywords": "同上"
+    },
+    {
+      "shot_id": 6,
+      "duration": 1.5,
+      "beat": "ending",
+      "script": "彩条收尾",
+      "joke_point": "闹剧留白",
+      "background": "电视故障彩条",
+      "cats": "无",
+      "audio": "彩条滋滋噪音",
+      "subtitle": "无",
+      "seedream_prompt": "彩色电视故障彩条",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "电视彩条"
+    }
+  ]
+}

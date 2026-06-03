@@ -1,0 +1,31 @@
+{
+  "video_id": "bkmm-001-抖音202662-534438",
+  "verdict": "pass",
+  "score": 93.0,
+  "summary": "拆解内容与视频整体高度匹配，剧情、分镜、背景、猫素材、字幕均符合实际，仅音频音效描述存在微小偏差",
+  "confirmed_points": [
+    "核心剧情脉络一致：00后向老板请假被拒→打120称需急救被抬走→同事效仿要求请假，最后匹配真实事件素材收尾，逻辑顺序正确",
+    "分镜时间划分、起承转合节点与视频画面完全对应",
+    "背景描述准确：依次为高层落地窗办公室、大开间开放办公区、路边救护车实拍场景，符合视频实际",
+    "各镜头猫的数量、位置、角色、表情描述均贴近画面，无错配漏配",
+    "字幕内容、风格、配色与视频实际展示一致"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "5",
+      "field": "audio",
+      "observed": "未听到明显抬担架相关音效",
+      "extracted": "音效包含抬担架音效",
+      "suggestion": "移除抬担架音效的相关描述"
+    }
+  ],
+  "audio_confidence": "medium",
+  "needs_human_review": false,
+  "_raw_content_sha256": "03f5361b6eb14feb860870608f6c63b5ccfcd7580bb9da74768e0f4024d42bc5",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:32:59.383737+00:00",
+  "structure_sha256": "b777c7358433cc72573596b4f6fc49c29690036897f2b499526f4de98e9f5eb7",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-001-抖音202662-534438/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

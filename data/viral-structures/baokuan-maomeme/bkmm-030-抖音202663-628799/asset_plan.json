@@ -1,0 +1,102 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 2.0,
+      "beat": "setup",
+      "script": "情侣吵架中，男女朋友对骂",
+      "joke_point": "猫吵架还原情侣吵架真实感",
+      "background": "亮灯现代卧室，大床带蓝白抱枕",
+      "cats": "橘猫左张嘴吵架，灰猫右蹦跶吵架",
+      "audio": "吵架音效+emo BGM开头",
+      "subtitle": "黄字（情侣吵架中），下方标男女朋友",
+      "seedream_prompt": "现代简约亮灯卧室，大床带蓝抱枕",
+      "local_cat_asset_keywords": "吵架橘猫meme, 蹦跶灰猫meme",
+      "local_background_keywords": "现代卧室大床亮灯"
+    },
+    {
+      "shot_id": 2,
+      "duration": 2.0,
+      "beat": "escalation",
+      "script": "男朋友摔门而去，女朋友懵",
+      "joke_point": "还原吵架后男方离场经典场景",
+      "background": "同亮灯卧室",
+      "cats": "灰猫站床上，头顶问号面露疑惑",
+      "audio": "摔门音效+BGM继续",
+      "subtitle": "黄字（摔门而去）",
+      "seedream_prompt": "同前卧室场景",
+      "local_cat_asset_keywords": "问号疑惑猫meme",
+      "local_background_keywords": "现代卧室大床亮灯"
+    },
+    {
+      "shot_id": 3,
+      "duration": 5.0,
+      "beat": "twist",
+      "script": "女朋友内心：谁在乎",
+      "joke_point": "嘴硬放狠话和秒睡的反差",
+      "background": "同亮灯卧室",
+      "cats": "香蕉猫平躺在床上熟睡",
+      "audio": "傲娇女生配音+BGM继续",
+      "subtitle": "白字“谁在乎”，下方标*秒睡",
+      "seedream_prompt": "同前卧室场景",
+      "local_cat_asset_keywords": "香蕉睡觉猫meme",
+      "local_background_keywords": "现代卧室大床亮灯"
+    },
+    {
+      "shot_id": 4,
+      "duration": 20.0,
+      "beat": "punchline",
+      "script": "女朋友持续放嘴硬台词，已睡熟",
+      "joke_point": "全程嘴硬和沉睡状态的强反差",
+      "background": "关灯后暖光卧室",
+      "cats": "香蕉猫保持熟睡状态",
+      "audio": "关灯音效+傲娇女生配音逐句出",
+      "subtitle": "逐句弹出嘴硬台词，一直标*秒睡",
+      "seedream_prompt": "暖黄灯光昏暗卧室，大床",
+      "local_cat_asset_keywords": "香蕉睡觉猫meme",
+      "local_background_keywords": "卧室暖光暗灯"
+    },
+    {
+      "shot_id": 5,
+      "duration": 8.0,
+      "beat": "escalation",
+      "script": "男友：老婆我给你买了奶茶，女友：我不要，长痘了不能喝",
+      "joke_point": "男生哄人、女生找借口的真实感",
+      "background": "同暖光卧室",
+      "cats": "cheems狗左举奶茶，灰猫右犹豫，香蕉猫睡",
+      "audio": "男生讨好配音+女生傲娇配音",
+      "subtitle": "逐句弹出男女对话",
+      "seedream_prompt": "同前暖光卧室场景",
+      "local_cat_asset_keywords": "cheems笑狗meme, 犹豫灰猫meme",
+      "local_background_keywords": "卧室暖光暗灯"
+    },
+    {
+      "shot_id": 6,
+      "duration": 6.0,
+      "beat": "punchline",
+      "script": "男友：多大点事，喝完买药吃，女友：老公你真好",
+      "joke_point": "女生情绪转变快的真实反差",
+      "background": "同暖光卧室",
+      "cats": "橘猫左笑，灰猫右开心拍手",
+      "audio": "男生宠溺配音+女生开心配音",
+      "subtitle": "逐句弹出男女对话",
+      "seedream_prompt": "同前暖光卧室场景",
+      "local_cat_asset_keywords": "笑橘猫meme, 拍手开心猫meme",
+      "local_background_keywords": "卧室暖光暗灯"
+    },
+    {
+      "shot_id": 7,
+      "duration": 3.39,
+      "beat": "cta",
+      "script": "引导搜索炸炸猪猫meme",
+      "joke_point": "结尾引流/作者页收束",
+      "background": "抖音搜索引导页",
+      "cats": "无",
+      "audio": "彩条噪音音效+BGM结束",
+      "subtitle": "搜索框文字“炸炸猪猫meme”",
+      "seedream_prompt": "深色抖音搜索引导背景",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "抖音搜索页背景"
+    }
+  ]
+}

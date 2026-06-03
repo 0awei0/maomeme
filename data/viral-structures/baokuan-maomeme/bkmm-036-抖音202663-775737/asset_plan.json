@@ -1,0 +1,102 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 2.0,
+      "beat": "hook",
+      "script": "男生的那些出厂设置 空瓶子",
+      "joke_point": "点题戳男生共性",
+      "background": "ins风浅色客厅 米白沙发",
+      "cats": "单橘猫 嫌弃脸 站可乐左侧",
+      "audio": "BGM起 旁白念标题",
+      "subtitle": "顶部白字标题+黄字「空瓶子」",
+      "seedream_prompt": "简约ins风客厅 米白沙发 浅色墙",
+      "local_cat_asset_keywords": "橘猫嫌弃脸 meme",
+      "local_background_keywords": "ins客厅 沙发"
+    },
+    {
+      "shot_id": 2,
+      "duration": 4.0,
+      "beat": "setup",
+      "script": "喝光剩可乐 打嗝",
+      "joke_point": "男生剩一口也要喝完的习惯",
+      "background": "同shot1客厅",
+      "cats": "cheems猫 仰头张嘴喝可乐",
+      "audio": "喝可乐咕噜声+打嗝音效",
+      "subtitle": "「嗝~」黄色气泡",
+      "seedream_prompt": "同shot1",
+      "local_cat_asset_keywords": "cheems猫 张嘴 meme",
+      "local_background_keywords": "ins客厅 沙发"
+    },
+    {
+      "shot_id": 3,
+      "duration": 9.0,
+      "beat": "escalation",
+      "script": "空瓶当哑铃甩",
+      "joke_point": "男生把废品当玩具",
+      "background": "同shot1客厅",
+      "cats": "开心狗meme 晃空可乐瓶",
+      "audio": "晃瓶子音效 BGM鼓点",
+      "subtitle": "无额外字幕",
+      "seedream_prompt": "同shot1",
+      "local_cat_asset_keywords": "开心狗meme 晃东西",
+      "local_background_keywords": "ins客厅 沙发"
+    },
+    {
+      "shot_id": 4,
+      "duration": 7.0,
+      "beat": "setup",
+      "script": "打赌摸高处树叶",
+      "joke_point": "男生走路幼稚打赌",
+      "background": "夏日林荫人行道",
+      "cats": "双猫左右分布 对话 跳着摸树叶",
+      "audio": "对话配音 跳起来音效",
+      "subtitle": "角色下方对应对话白字",
+      "seedream_prompt": "夏日林荫路 砖石人行道",
+      "local_cat_asset_keywords": "笑脸狗meme 跳高高猫meme",
+      "local_background_keywords": "林荫人行道 城市步道"
+    },
+    {
+      "shot_id": 5,
+      "duration": 13.0,
+      "beat": "punchline",
+      "script": "天天点猪脚饭被当NPC",
+      "joke_point": "男生吃饭专一一模一样",
+      "background": "家常小餐馆内景",
+      "cats": "左橘猫点单 右厨师猫惊喜脸",
+      "audio": "吃饭吧唧声 对话配音",
+      "subtitle": "「猪脚饭」「我店有救了」对应字幕",
+      "seedream_prompt": "家常小餐馆 简易餐桌",
+      "local_cat_asset_keywords": "橘猫淡定脸 厨师猫大眼meme",
+      "local_background_keywords": "小饭馆内景 平价餐馆"
+    },
+    {
+      "shot_id": 6,
+      "duration": 10.0,
+      "beat": "punchline",
+      "script": "11点说困11点01秒睡",
+      "joke_point": "男生秒睡技能共鸣",
+      "background": "卧室床 睡前场景",
+      "cats": "橘猫打哈欠 香蕉猫秒睡",
+      "audio": "打哈欠声 BGM变缓",
+      "subtitle": "「困了」「秒睡」「雷打不动」黄字",
+      "seedream_prompt": "卧室床 灰色被子 百叶窗",
+      "local_cat_asset_keywords": "橘猫打哈欠 香蕉猫睡觉meme",
+      "local_background_keywords": "卧室床 睡前场景"
+    },
+    {
+      "shot_id": 7,
+      "duration": 3.0,
+      "beat": "cta",
+      "script": "引导搜索男生出厂设置",
+      "joke_point": "结尾引流/作者页收束",
+      "background": "抖音搜索框深色背景",
+      "cats": "无猫镜头/平台作者信息页",
+      "audio": "BGM渐弱",
+      "subtitle": "搜索框文字「男生出厂设置」",
+      "seedream_prompt": "深色背景 抖音搜索框",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "抖音搜索界面"
+    }
+  ]
+}

@@ -6,11 +6,19 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const planPath = process.argv[2] || path.join(root, 'data/runs/latest-backend-plan.json');
 
 const hardRules = [
-  { when: ['电脑', '会议', '周会', '复盘'], expect: ['电脑', '笔记本', '碎碎念', '生无可恋'], forbid: ['开车', '方向盘'] },
+  { when: ['电脑', '周会', '复盘'], expect: ['电脑', '笔记本', '碎碎念', '生无可恋'], forbid: ['开车', '方向盘'] },
+  { when: ['会议'], expect: ['电脑', '笔记本', '碎碎念', '生无可恋', '震惊', '错愕'], forbid: ['开车', '方向盘'] },
   { when: ['开车', '堵车', '导航'], expect: ['开车', '方向盘'], forbid: ['电脑', '笔记本'] },
   { when: ['哭', '崩溃', '晚上还在会'], expect: ['哭', '委屈', '嚎啕', '疯狂'], forbid: [] },
   { when: ['加班'], expect: ['哭', '委屈', '嚎啕', '疯狂', '电脑'], forbid: [], skipIf: ['装可爱', '卖萌', '逃过', '下班'] },
-  { when: ['装可爱', '卖萌', '逃过', '下班'], expect: ['可爱', '蹦跳', '欢快', '跳舞'], forbid: ['哭', '嚎啕'] }
+  { when: ['装可爱', '卖萌', '逃过', '准点下班', '复活'], expect: ['可爱', '蹦跳', '欢快', '跳舞'], forbid: ['哭', '嚎啕'] }
+];
+
+const genericBadCopies = [
+  { theme: ['工作', '简历', '就业', '岗位'], bad: ['请假去医院', '打120', '工伤', '冲食堂', '班主任', '裸贷'] },
+  { theme: ['上班', '会议', '加班', '内卷'], bad: ['冲食堂', '班主任', '裸贷', '压岁钱'] },
+  { theme: ['考研', '考公', '上岸'], bad: ['打120', '裸贷', '烤鸡腿', '压岁钱'] },
+  { theme: ['烤肠', '摆摊', '夜市', '小吃'], bad: ['请假去医院', '打120', '班主任', '压岁钱'] }
 ];
 
 function hits(text, words) {
@@ -19,7 +27,7 @@ function hits(text, words) {
 
 function auditSlot(slot) {
   const copy = slot.copy || slot.caption || '';
-  const desc = slot.motion?.description || '';
+  const desc = `${slot.motion?.id || ''} ${slot.motion?.file || ''} ${slot.motion?.description || ''} ${motionTags(slot.motion?.id)}`;
   const scene = `${slot.background?.id || ''} ${slot.background?.description || ''}`;
   const issues = [];
   for (const rule of hardRules) {
@@ -32,15 +40,49 @@ function auditSlot(slot) {
       issues.push(`文案"${copy}"不应使用包含 ${rule.forbid.join('/')} 的猫素材："${desc}"`);
     }
   }
-  if (hits(copy, ['会议', '电脑', '老板', '加班']) && !hits(scene, ['办公室', '办公', '工位', '电脑'])) {
+  if (hits(copy, ['会议', '电脑', '老板', '加班', '同步', '复盘']) && !hits(scene, ['办公室', '办公', '工位', '电脑', '会议室', '会议', '复盘', '同步'])) {
     issues.push(`办公剧情背景不够贴合："${scene}"`);
   }
   return issues;
 }
 
+function motionTags(id) {
+  return {
+    '1': '电脑 笔记本 办公 工位',
+    '2': '可爱 蹦跳 欢快 跳舞',
+    '9': '哭 委屈 嚎啕 崩溃',
+    '10': '冷漠 沉默 生无可恋',
+    '13': '跳舞 欢快 蹦跳 可爱',
+    '15': '震惊 瞪圆 错愕',
+    '16': '探头 电脑 冷漠',
+    '18': '冷漠 生无可恋',
+    '26': '震惊 错愕 疯狂'
+  }[String(id || '')] || '';
+}
+
 async function main() {
   const plan = JSON.parse(await fs.readFile(planPath, 'utf8'));
   const allIssues = [];
+  const theme = plan.theme || '';
+  const planText = JSON.stringify({
+    script: plan.script || [],
+    timeline: plan.timeline || [],
+    material_needs: plan.material_needs || {}
+  }, null, 2);
+  if (!Array.isArray(plan.agent_notes) || !plan.agent_notes.some((note) => String(note).includes('爆款结构参考'))) {
+    allIssues.push({ slot: 'plan', issue: '缺少爆款结构参考记录，说明新结构库没有接入生成链路' });
+  }
+  if (!Array.isArray(plan.timeline) || !plan.timeline.some((slot) => String(slot.source_pattern || '').includes('爆款参考'))) {
+    allIssues.push({ slot: 'plan', issue: 'timeline.source_pattern 未标注具体爆款参考' });
+  }
+  for (const rule of genericBadCopies) {
+    if (!hits(theme, rule.theme)) continue;
+    for (const bad of rule.bad) {
+      if (planText.includes(bad)) {
+        allIssues.push({ slot: 'plan', issue: `主题"${theme}"疑似照搬不相关爆款情节："${bad}"` });
+      }
+    }
+  }
   for (const slot of plan.timeline || []) {
     for (const issue of auditSlot(slot)) {
       allIssues.push({ slot: slot.id, issue });

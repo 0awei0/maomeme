@@ -24,6 +24,7 @@ conda run -n cv python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --relo
 - `scripts/`: repo-level CLI tools for asset indexing, demo plan generation, plan audit, caption PNG generation, and FFmpeg video rendering.
 - `assets/cat-motions/`: source cat animation clips.
 - `assets/backgrounds/`: source background images and descriptions.
+- `assets/processed/`: local regenerated caches such as pre-keyed transparent cat clips; do not treat this as source material or commit it.
 - `data/`: asset index, text material library, structure protocols, and run JSON files.
 - `samples/viral/`: complete viral reference videos for structure analysis.
 - `docs/`: competition docs and project notes.
@@ -55,6 +56,8 @@ The backend borrows ideas from `/Users/a1-6/Desktop/code/douyin/backend`, especi
 - Dynamic Agent tools live as backend service functions, mainly `backend/app/services/agent_tools.py`.
 - Repo scripts under `scripts/` are fixed workflow executors:
   - `scripts/index-assets.mjs`: rebuilds `data/assets-index.json`.
+  - `scripts/clean-background-green-bands.py`: crops obvious green-screen bands from background images.
+  - `scripts/preprocess-cat-green-screen.mjs`: regenerates local transparent cat-motion cache from source mp4 clips.
   - `scripts/render-demo-video.mjs`: stable FFmpeg/Pillow renderer.
   - `scripts/make-caption.py`: renderer helper for caption PNGs.
   - `scripts/make-overlay-frames.py`: renderer helper for overlay animation frames.

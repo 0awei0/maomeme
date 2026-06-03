@@ -1,0 +1,308 @@
+{
+  "video_summary": {
+    "title": "当爸妈问我对生活的态度",
+    "one_sentence": "年轻人用搞怪表情包向爸妈输出摆烂式豁达生活观，反差感拉满",
+    "primary_topic": "当代年轻人生活态度",
+    "meme_type": "蟑螂猫对话玩梗",
+    "overall_tone": "搞怪、贱萌、反鸡汤"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "人是随时会s的",
+      "speaker": "我",
+      "tone": "跳脱",
+      "emotion": "无所谓",
+      "function": "hook",
+      "confidence": 1
+    },
+    {
+      "start_time": 2,
+      "end_time": 4,
+      "text": "不是老了才会s的",
+      "speaker": "我",
+      "tone": "淡定",
+      "emotion": "无所谓",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 4,
+      "end_time": 6,
+      "text": "所以啊！活到现在已经很不错了",
+      "speaker": "我",
+      "tone": "嗨",
+      "emotion": "豁达",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 6,
+      "end_time": 18,
+      "text": "富贵我就淫/贫贱我就依/有钱我就花/没钱我就赊/有苦我不吃/没福我硬享/没事我不找事/有事我不怕事/除了s没有大事",
+      "speaker": "我",
+      "tone": "有节奏",
+      "emotion": "理直气壮",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 18,
+      "end_time": 22,
+      "text": "s了更没事了！",
+      "speaker": "我",
+      "tone": "笃定",
+      "emotion": "摆烂到底",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 22,
+      "end_time": 24,
+      "text": "搜索人随时会死的原视频",
+      "speaker": "系统",
+      "tone": "平淡",
+      "emotion": "无",
+      "function": "cta",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "hook",
+      "script": "人是随时会s的",
+      "joke_point": "开场抛反常识死亡观点炸场",
+      "visual_description": "左开心吐舌狗，右2只呆滞蟑螂猫标爸妈",
+      "pacing_note": "快切"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2,
+      "end_time": 4,
+      "duration": 2,
+      "beat": "setup",
+      "script": "不是老了才会s的",
+      "joke_point": "强化摆烂歪理前提",
+      "visual_description": "左丧脸橘猫，右2只呆滞蟑螂猫",
+      "pacing_note": "快切"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 4,
+      "end_time": 6,
+      "duration": 2,
+      "beat": "escalation",
+      "script": "所以啊活到现在很不错",
+      "joke_point": "推出核心摆烂观点",
+      "visual_description": "左仰头嗨橘猫，右2只呆滞蟑螂猫",
+      "pacing_note": "快切"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 6,
+      "end_time": 18,
+      "duration": 12,
+      "beat": "escalation",
+      "script": "押韵排比口号",
+      "joke_point": "反鸡汤押韵口号洗脑",
+      "visual_description": "左点头指人cheems，右2只呆滞蟑螂猫",
+      "pacing_note": "每句卡点切换表情"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 18,
+      "end_time": 22,
+      "duration": 4,
+      "beat": "punchline",
+      "script": "s了更没事了",
+      "joke_point": "终极摆烂+爸妈震惊反差",
+      "visual_description": "左傻脸橘猫，右2只瞳孔地震蟑螂猫",
+      "pacing_note": "慢放突出笑点"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 22,
+      "end_time": 24,
+      "duration": 2,
+      "beat": "cta",
+      "script": "抖音搜索引导",
+      "joke_point": "引导搜原梗引流",
+      "visual_description": "抖音搜索框界面",
+      "pacing_note": "收尾"
+    }
+  ],
+  "cat_track": [
+    "3个角色：左我（换对应表情），右爸妈（全程呆滞最后震惊）",
+    "用到素材：开心狗、丧橘猫、嗨橘猫、cheems、傻橘猫、大眼睛蟑螂猫"
+  ],
+  "background_track": [
+    "统一中式家庭客厅：电视柜、电视、两侧绿植、浅色瓷砖地",
+    "最后一镜为抖音搜索页界面，无需生成可直接找素材"
+  ],
+  "audio_track": {
+    "bgm_style": "快节奏土味洗脑BGM",
+    "bgm_mood": "欢乐搞怪",
+    "voice_style": "年轻男生贱兮兮跳脱配音",
+    "voice_presence": "清晰突出盖过BGM",
+    "sfx": [
+      "每句台词卡点咚声重鼓音效",
+      "最后punchline加重炸音效"
+    ],
+    "rhythm_sync": "每句台词完全卡BGM鼓点"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "黄色粗字加黑描边，顶部居中",
+    "subtitle_density": "每屏1-2句，每句不超10字",
+    "emphasis_words": [
+      "s了更没事了",
+      "有苦我不吃",
+      "没钱我就赊"
+    ],
+    "bubble_or_dialogue_style": "最后punchline加粉色括号补充文字",
+    "stickers_or_overlays": [
+      "角色下方标白色小字：我/老爸/老妈"
+    ],
+    "transition_notes": [
+      "无特殊转场，直接快切镜头"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "【长辈提问场景】+【歪理前提】+【押韵排比口号】+【反常识终极punchline】"
+    ],
+    "shot_templates": [
+      "固定场景：发言角色在左，2个听众在右，只换发言者表情包"
+    ],
+    "cat_action_templates": [
+      "发言者表情对应台词情绪，听众全程呆滞最后做震惊反差表情"
+    ],
+    "background_templates": [
+      "固定普通生活场景（客厅/办公室）无需切换，降低制作成本"
+    ],
+    "audio_templates": [
+      "快节奏土味BGM+贱声配音+每句台词卡鼓点加咚音效"
+    ],
+    "suitable_topics": [
+      "年轻人生活态度、职场摸鱼、亲属对话反套路、反鸡汤吐槽"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.0,
+        "beat": "hook",
+        "script": "人是随时会s的",
+        "joke_point": "开场抛反常识观点炸场",
+        "background": "中式客厅 电视柜 绿植 瓷砖地",
+        "cats": "左：开心吐舌狗 右：2只呆滞蟑螂猫",
+        "audio": "BGM起 贱声配音 咚音效",
+        "subtitle": "黄字黑边居中：人是随时会s的",
+        "seedream_prompt": "明亮普通中式家庭客厅",
+        "local_cat_asset_keywords": "开心狗表情包 大眼睛蟑螂猫",
+        "local_background_keywords": "中式客厅 家庭场景"
+      },
+      {
+        "shot_id": 2,
+        "duration": 2.0,
+        "beat": "setup",
+        "script": "不是老了才会s的",
+        "joke_point": "强化摆烂歪理前提",
+        "background": "同上中式客厅",
+        "cats": "左：丧脸橘猫 右：2只呆滞蟑螂猫",
+        "audio": "贱声配音 咚音效",
+        "subtitle": "黄字黑边居中：不是老了才会s的",
+        "seedream_prompt": "同上中式客厅",
+        "local_cat_asset_keywords": "丧橘猫 蟑螂猫",
+        "local_background_keywords": "中式客厅"
+      },
+      {
+        "shot_id": 3,
+        "duration": 2.0,
+        "beat": "escalation",
+        "script": "所以啊活到现在已经很不错了",
+        "joke_point": "推出核心摆烂观点",
+        "background": "同上中式客厅",
+        "cats": "左：仰头嗨橘猫 右：2只呆滞蟑螂猫",
+        "audio": "贱声配音 咚音效",
+        "subtitle": "黄字黑边居中：所以啊活到现在很不错",
+        "seedream_prompt": "同上中式客厅",
+        "local_cat_asset_keywords": "嗨橘猫 蟑螂猫",
+        "local_background_keywords": "中式客厅"
+      },
+      {
+        "shot_id": 4,
+        "duration": 12.0,
+        "beat": "escalation",
+        "script": "富贵我就淫等9句押韵口号",
+        "joke_point": "反鸡汤押韵口号洗脑",
+        "background": "同上中式客厅",
+        "cats": "左：点头指人cheems 右：2只呆滞蟑螂猫",
+        "audio": "每句配音卡鼓点 配咚音效",
+        "subtitle": "每句黄字黑边居中切换",
+        "seedream_prompt": "同上中式客厅",
+        "local_cat_asset_keywords": "cheems指人 蟑螂猫",
+        "local_background_keywords": "中式客厅"
+      },
+      {
+        "shot_id": 5,
+        "duration": 4.0,
+        "beat": "punchline",
+        "script": "s了更没事了",
+        "joke_point": "终极摆烂+爸妈震惊反差",
+        "background": "同上中式客厅",
+        "cats": "左：傻脸橘猫 右：2只瞳孔地震蟑螂猫",
+        "audio": "贱声配音 重炸音效",
+        "subtitle": "黄字黑边居中 加粉色括号补充",
+        "seedream_prompt": "同上中式客厅",
+        "local_cat_asset_keywords": "傻橘猫 震惊蟑螂猫",
+        "local_background_keywords": "中式客厅"
+      },
+      {
+        "shot_id": 6,
+        "duration": 2.0,
+        "beat": "cta",
+        "script": "搜索人随时会死的原视频",
+        "joke_point": "引导搜原梗引流",
+        "background": "抖音搜索页界面",
+        "cats": "无",
+        "audio": "收尾音效",
+        "subtitle": "搜索框内文字",
+        "seedream_prompt": "抖音搜索界面",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "抖音搜索页"
+      }
+    ]
+  },
+  "quality_notes": [
+    "核心梗是反常识摆烂生活观，台词押韵易传播，角色表情反差感强，制作成本低易复刻"
+  ],
+  "_raw_content_sha256": "13172b9f01ca785539e67f2e7a73aff05a778134535d6d4cec31cd7c5f9520b8",
+  "video_id": "bkmm-014-抖音202663-221817",
+  "filename": "抖音202663-221817.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 23.94,
+    "size_bytes": 2760990,
+    "width": 1280,
+    "height": 720,
+    "fps": 60.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "8f4ba6390a41912e59de121a5d791972c973fb92d8805a2b4e127b2c760239c2"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 3.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-014-抖音202663-221817/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-014-抖音202663-221817/audio.m4a",
+    "analyzed_at": "2026-06-03T03:02:45.160582+00:00",
+    "normalized_at": "2026-06-03T03:19:12.598209+00:00"
+  }
+}

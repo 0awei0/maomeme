@@ -1,0 +1,389 @@
+{
+  "video_summary": {
+    "title": "外婆的边角地",
+    "one_sentence": "被父母嫌弃的女孩由外婆养大，开荒种地被收回，长大后拒绝认回原生家庭，只守着外婆的真实亲情故事",
+    "primary_topic": "隔代亲情、原生家庭矛盾、基层利益纠纷",
+    "meme_type": "猫meme真人事件改编",
+    "overall_tone": "共情催泪，带现实讽刺感"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 4,
+      "text": "生来爸妈瞧不上我，送人吧带出去累赘。你们不养我来养！",
+      "speaker": "旁白、父母、外婆",
+      "tone": "委屈、嫌弃、坚定",
+      "emotion": "无奈、冷漠、坚定",
+      "function": "hook",
+      "confidence": 1
+    },
+    {
+      "start_time": 4,
+      "end_time": 9,
+      "text": "我和外婆相依为命，小羊不怕有外婆",
+      "speaker": "旁白、外婆",
+      "tone": "温柔",
+      "emotion": "温暖",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 9,
+      "end_time": 13,
+      "text": "边角地给我种行吗？没开垦你要就种吧",
+      "speaker": "外婆、村民",
+      "tone": "恳求、大方",
+      "emotion": "期待、随意",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 13,
+      "end_time": 18,
+      "text": "荒地快整好了，种花生卖了就有钱了",
+      "speaker": "外婆、我",
+      "tone": "开心",
+      "emotion": "充满希望",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 18,
+      "end_time": 28,
+      "text": "地我要收回，我们辛苦整好的凭什么收？我的地我说了算",
+      "speaker": "村民、我、村民",
+      "tone": "理直气壮、愤怒、蛮横",
+      "emotion": "委屈、生气",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 28,
+      "end_time": 32,
+      "text": "我们回来接小羊，给她更好的生活",
+      "speaker": "父母",
+      "tone": "虚伪",
+      "emotion": "假意",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 32,
+      "end_time": 38,
+      "text": "我不是边角地，我没有父母只有外婆，不会跟你们走",
+      "speaker": "我",
+      "tone": "愤怒坚定",
+      "emotion": "决绝",
+      "function": "punchline",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 4,
+      "duration": 4,
+      "beat": "hook",
+      "script": "父母嫌弃孩子要送人，外婆接手",
+      "joke_point": "原生家庭的冷漠对比外婆的坚定",
+      "visual_description": "土坯房前4只猫分左右站，分别标我、外婆、父母",
+      "pacing_note": "快节奏切台词"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 4,
+      "end_time": 9,
+      "duration": 5,
+      "beat": "setup",
+      "script": "祖孙相依为命，外婆安抚孩子",
+      "joke_point": "温馨隔代亲情",
+      "visual_description": "外婆猫摸小奶猫头",
+      "pacing_note": "节奏放缓"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 9,
+      "end_time": 13,
+      "duration": 4,
+      "beat": "setup",
+      "script": "外婆找村民要边角荒地种",
+      "joke_point": "底层人谋生的卑微",
+      "visual_description": "荒地前外婆背小孩猫求村民猫",
+      "pacing_note": "对话节奏"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 13,
+      "end_time": 18,
+      "duration": 5,
+      "beat": "escalation",
+      "script": "祖孙开荒种地有盼头",
+      "joke_point": "努力生活的希望感",
+      "visual_description": "黄土地上外婆猫锄地，小孩猫跑来帮忙",
+      "pacing_note": "轻快"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 18,
+      "end_time": 28,
+      "duration": 10,
+      "beat": "twist",
+      "script": "地整好后村民来收回",
+      "joke_point": "老实人被欺负的现实矛盾",
+      "visual_description": "家门口村民猫要收地，祖孙猫委屈愤怒",
+      "pacing_note": "冲突节奏加快"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 28,
+      "end_time": 32,
+      "duration": 4,
+      "beat": "twist",
+      "script": "父母成年后回来要接孩子",
+      "joke_point": "原生家庭的吸血本质",
+      "visual_description": "老屋里父母猫提礼品找外婆",
+      "pacing_note": "节奏放缓埋冲突"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 32,
+      "end_time": 38,
+      "duration": 6,
+      "beat": "punchline",
+      "script": "孩子拒绝父母，只认外婆",
+      "joke_point": "反抗吸血原生家庭的爽感+亲情共鸣",
+      "visual_description": "孩子猫扔礼品赶父母，放决绝台词",
+      "pacing_note": "情绪高潮"
+    },
+    {
+      "shot_id": 8,
+      "start_time": 38,
+      "end_time": 49,
+      "duration": 11,
+      "beat": "ending",
+      "script": "真实外婆站在玉米地笑的画面",
+      "joke_point": "真实原型升华共情",
+      "visual_description": "真实人物画面无猫",
+      "pacing_note": "慢节奏收尾"
+    }
+  ],
+  "cat_track": [
+    "4只：小奶猫（我）左下，奶牛猫（外婆）左，2只成年猫（父母）右，爸妈嫌恶脸，外婆坚定脸",
+    "2只：小奶猫（我）左，白猫外婆伸爪摸头，表情温柔",
+    "3只：橘猫外婆背小奶猫（我），黑猫村民右，外婆恳求脸，村民随意脸",
+    "2只：灰猫外婆举锄头，白小猫（我）跑过来，外婆欣慰，小孩开心",
+    "3只：橘猫外婆递篮子，灰小猫拔花生，黑猫村民冷漠，外婆委屈小孩愤怒",
+    "2只：2只成年猫（父母）左拎礼品，花斑猫外婆坐椅子，父母虚伪，外婆迟疑",
+    "3只：橘猫（我）扔礼品，父母猫站着骂，我愤怒决绝",
+    "无猫，真实人物画面"
+  ],
+  "background_track": [
+    "乡村土坯房院子，挂玉米串，黄土地面，素材关键词：乡村老房子、土坯房",
+    "土坯房门口石阶，素材关键词：乡村老屋台阶",
+    "郊外荒地长杂草，素材关键词：农村荒地、田边",
+    "开垦后的黄土地，素材关键词：耕地、黄土地",
+    "土坯房门口，放竹篮，素材关键词：乡村家门口",
+    "乡村老屋内堂，木椅子木桌子，素材关键词：农村堂屋",
+    "土坯房门口石阶，素材关键词：乡村老屋门口",
+    "真实玉米地，背景树林，素材关键词：玉米地、农村田地"
+  ],
+  "audio_track": {
+    "bgm_style": "抖音热门抒情钢琴BGM",
+    "bgm_mood": "催泪、共情、温暖",
+    "voice_style": "多角色配音，小孩软萌、外婆苍老、父母虚伪、村民蛮横",
+    "voice_presence": "清晰盖过BGM",
+    "sfx": [
+      "锄头挖土声",
+      "扔东西碰撞声"
+    ],
+    "rhythm_sync": "每句台词卡字幕出现节奏，结尾真实画面BGM放缓"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "白字粗体加黑描边，对应角色上方显示",
+    "subtitle_density": "每镜头2-3句，单句不超10字",
+    "emphasis_words": [
+      "我没有父母只有外婆",
+      "边角地",
+      "收回"
+    ],
+    "bubble_or_dialogue_style": "无气泡，直接文字悬浮角色上方",
+    "stickers_or_overlays": [
+      "角色名黄色小字标注在猫下方",
+      "顶部固定白色标题条写「外婆的边角地」"
+    ],
+    "transition_notes": [
+      "全片硬切转场，无花哨特效"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "【原生家庭抛弃→隔代亲人养大→利益被侵占→成年后拒绝原生家庭吸血】"
+    ],
+    "shot_templates": [
+      "【对话左右分镜+猫贴角色+名字标下方+结尾升维放真实原型】"
+    ],
+    "cat_action_templates": [
+      "嫌弃脸猫=自私角色",
+      "摸头/温柔脸猫=长辈角色",
+      "炸毛/愤怒脸猫=反抗角色"
+    ],
+    "background_templates": [
+      "乡村土坯房",
+      "农村荒地/耕地",
+      "乡村老屋内堂"
+    ],
+    "audio_templates": [
+      "抒情BGM+多角色差异化配音+动作对应轻音效"
+    ],
+    "suitable_topics": [
+      "隔代亲情",
+      "原生家庭矛盾",
+      "重男轻女",
+      "老实人权益被侵害",
+      "反吸血"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 4.0,
+        "beat": "hook",
+        "script": "父母嫌孩子累赘要送人，外婆说我来养",
+        "joke_point": "原生家庭冷漠对比外婆的坚定",
+        "background": "乡村土坯房院子，挂玉米黄土地",
+        "cats": "小奶猫+奶牛猫左，两只成年猫右，表情分别嫌弃、坚定",
+        "audio": "抒情BGM起，父母嫌恶音，外婆坚定音",
+        "subtitle": "生来爸妈瞧不上我 你们不养我来养",
+        "seedream_prompt": "北方乡村土坯房院子，晒着玉米",
+        "local_cat_asset_keywords": "小奶猫 奶牛猫 嫌弃脸成年猫",
+        "local_background_keywords": "乡村老房子 土坯房"
+      },
+      {
+        "shot_id": 2,
+        "duration": 5.0,
+        "beat": "setup",
+        "script": "祖孙相依为命，外婆安抚孩子",
+        "joke_point": "隔代亲情的温暖",
+        "background": "土坯房门口石阶",
+        "cats": "白猫伸爪摸小奶猫头，表情温柔",
+        "audio": "BGM放缓，外婆温柔配音",
+        "subtitle": "小羊不怕 有外婆",
+        "seedream_prompt": "乡村老屋石阶，暖光",
+        "local_cat_asset_keywords": "温柔摸头猫 小奶猫",
+        "local_background_keywords": "老屋台阶"
+      },
+      {
+        "shot_id": 3,
+        "duration": 4.0,
+        "beat": "setup",
+        "script": "外婆找村民要边角地种",
+        "joke_point": "底层谋生的卑微",
+        "background": "田边荒地长杂草",
+        "cats": "橘猫背小奶猫，对面站黑猫，表情恳求",
+        "audio": "外婆恳求音，村民随意音",
+        "subtitle": "边角地给我种行吗 你要就种吧",
+        "seedream_prompt": "农村郊外荒地，长杂草",
+        "local_cat_asset_keywords": "背小猫的猫 冷漠黑猫",
+        "local_background_keywords": "农村荒地 田边"
+      },
+      {
+        "shot_id": 4,
+        "duration": 5.0,
+        "beat": "escalation",
+        "script": "祖孙开荒种地有盼头",
+        "joke_point": "努力生活的希望感",
+        "background": "开垦后的黄土地",
+        "cats": "灰猫举锄头，白小猫跑过来，表情欣慰开心",
+        "audio": "BGM变轻快，锄头挖土音效",
+        "subtitle": "种花生卖了就有钱了 太好了",
+        "seedream_prompt": "刚开垦的黄土地，远处有树",
+        "local_cat_asset_keywords": "举锄头猫 跑的小猫",
+        "local_background_keywords": "耕地 黄土地"
+      },
+      {
+        "shot_id": 5,
+        "duration": 10.0,
+        "beat": "twist",
+        "script": "地整好后村民来收回",
+        "joke_point": "老实人被欺负的现实矛盾",
+        "background": "土坯房门口",
+        "cats": "橘猫递篮子，灰小猫拔花生，黑猫冷漠",
+        "audio": "冲突感增强，村民蛮横音，小孩愤怒音",
+        "subtitle": "地我要收回 凭什么我们整好的",
+        "seedream_prompt": "乡村土坯房门口，放竹篮",
+        "local_cat_asset_keywords": "递篮子猫 愤怒小猫 冷漠黑猫",
+        "local_background_keywords": "乡村家门口"
+      },
+      {
+        "shot_id": 6,
+        "duration": 4.0,
+        "beat": "twist",
+        "script": "父母回来要接孩子走",
+        "joke_point": "原生家庭的吸血本质",
+        "background": "乡村老屋内堂，木桌椅",
+        "cats": "两只成年猫拎礼品，花斑猫坐椅子，表情虚伪",
+        "audio": "父母虚伪音，外婆迟疑音",
+        "subtitle": "我们带小羊走 给她更好的生活",
+        "seedream_prompt": "农村老堂屋，木椅子木桌子",
+        "local_cat_asset_keywords": "拎东西的猫 坐椅子的猫",
+        "local_background_keywords": "农村堂屋"
+      },
+      {
+        "shot_id": 7,
+        "duration": 6.0,
+        "beat": "punchline",
+        "script": "孩子拒绝父母，只认外婆",
+        "joke_point": "反吸血的爽感+亲情共鸣",
+        "background": "土坯房门口石阶",
+        "cats": "橘猫扔礼品，表情愤怒决绝",
+        "audio": "BGM高潮，小孩坚定愤怒音，扔东西音效",
+        "subtitle": "我没有父母 只有外婆 不跟你们走",
+        "seedream_prompt": "乡村土坯房门口石阶",
+        "local_cat_asset_keywords": "扔东西猫 愤怒脸猫",
+        "local_background_keywords": "老屋门口"
+      },
+      {
+        "shot_id": 8,
+        "duration": 11.0,
+        "beat": "ending",
+        "script": "真实外婆站在玉米地笑",
+        "joke_point": "真实原型升华共情",
+        "background": "真实玉米地，背景树林",
+        "cats": "无猫",
+        "audio": "BGM放缓，淡出",
+        "subtitle": "无",
+        "seedream_prompt": "玉米地，老太太站在里面笑",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "玉米地 农村田地"
+      }
+    ]
+  },
+  "quality_notes": [
+    "结尾真实人物画面大幅提升共情效果，猫角色对应清晰，冲突点密集符合短视频传播逻辑"
+  ],
+  "_raw_content_sha256": "82d2bc390613c8ba327bd03d9f783a4fece9d4048b1154b7b8aa7f55bc22a9a8",
+  "video_id": "bkmm-023-抖音202663-504011",
+  "filename": "抖音202663-504011.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 49.412,
+    "size_bytes": 4147262,
+    "width": 720,
+    "height": 960,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "7679981961589a133e68d78efc47ccd108c7511f5d57ff3012482bd0358b1996"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-023-抖音202663-504011/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-023-抖音202663-504011/audio.m4a",
+    "analyzed_at": "2026-06-03T03:04:51.555885+00:00",
+    "normalized_at": "2026-06-03T03:19:12.603399+00:00"
+  }
+}

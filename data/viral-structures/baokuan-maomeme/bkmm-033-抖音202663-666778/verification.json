@@ -1,0 +1,31 @@
+{
+  "video_id": "bkmm-033-抖音202663-666778",
+  "verdict": "pass",
+  "score": 90.0,
+  "summary": "整体拆解与视频内容高度匹配，仅存在个别小细节遗漏，核心剧情、分镜、背景、素材描述均准确",
+  "confirmed_points": [
+    "剧情脉络与视频完全一致，准确还原了大学生发生活费下单后等待快递、刚回寝就收到取件通知的完整情绪变化过程",
+    "分镜顺序、时间节点、反转点定位均和视频画面匹配",
+    "各镜头背景描述准确，大学宿舍床、ins风书桌、教学楼走廊、空旷食堂场景均符合画面内容",
+    "字幕样式、贴纸描述与视频呈现一致",
+    "核心猫素材描述基本准确，仓鼠、焦虑橘猫、开心狸花奶猫、暴躁奶猫、疲惫橘猫的状态均符合画面"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "4",
+      "field": "cats",
+      "observed": "该镜头后半段还切换出现了一只灰白配色的歪嘴猫meme",
+      "extracted": "仅描述了蹦跶怒吼的暴躁奶猫meme",
+      "suggestion": "补充提到该镜头后半段切换为灰白歪嘴猫meme"
+    }
+  ],
+  "audio_confidence": "low",
+  "needs_human_review": false,
+  "_raw_content_sha256": "43539fa6336c770c62bd061e58bad8f5bc843cd75b11238d82235fc50f1126c1",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:36:04.179407+00:00",
+  "structure_sha256": "fdaaecc34fcdd6e762920940309587e793b99abb0ff0a214c742bd326ce33889",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-033-抖音202663-666778/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

@@ -1,0 +1,60 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 3.0,
+      "beat": "hook",
+      "script": "没人见过我的真面目",
+      "joke_point": "立对外高冷完美人设",
+      "background": "公主风暖光卧室，软包床头碎花床",
+      "cats": "左蓝猫张嘴，右白猫面无表情",
+      "audio": "俏皮旁白，搞怪BGM起",
+      "subtitle": "顶部黄底黑字：没人见过我的真面目",
+      "seedream_prompt": "轻奢公主风卧室，暖光，软包床头碎花床品",
+      "local_cat_asset_keywords": "蓝猫张嘴meme，白猫冷漠脸meme",
+      "local_background_keywords": "公主风卧室 床 暖光"
+    },
+    {
+      "shot_id": 2,
+      "duration": 3.0,
+      "beat": "setup",
+      "script": "*除了我的男友",
+      "joke_point": "反转铺垫只有男友见过真实状态",
+      "background": "同前",
+      "cats": "蓝猫开始咬袜子，白猫面无表情",
+      "audio": "补刀旁白，啃咬音效入",
+      "subtitle": "顶部黄字：*除了我的男友",
+      "seedream_prompt": "轻奢公主风卧室，暖光，软包床头碎花床品",
+      "local_cat_asset_keywords": "蓝猫咬袜子meme，白猫冷漠脸meme",
+      "local_background_keywords": "公主风卧室 床 暖光"
+    },
+    {
+      "shot_id": 3,
+      "duration": 6.0,
+      "beat": "punchline",
+      "script": "男友：……",
+      "joke_point": "蓝猫疯癫和男友冷漠的强反差",
+      "background": "同前",
+      "cats": "蓝猫疯狂咬脚晃头，表情疯癫，白猫冷漠",
+      "audio": "啃咬音效持续，魔性笑声入",
+      "subtitle": "白猫上方省略号，下方标我、男友",
+      "seedream_prompt": "轻奢公主风卧室，暖光，软包床头碎花床品",
+      "local_cat_asset_keywords": "蓝猫咬脚晃头meme，白猫冷漠脸meme",
+      "local_background_keywords": "公主风卧室 床 暖光"
+    },
+    {
+      "shot_id": 4,
+      "duration": 1.8,
+      "beat": "cta",
+      "script": "搜索蓝猫咬脚原视频",
+      "joke_point": "结尾引流/作者页收束",
+      "background": "抖音深色搜索引导页",
+      "cats": "无猫镜头/平台作者信息页",
+      "audio": "BGM收",
+      "subtitle": "搜索框文字：蓝猫哈哈大笑咬脚原视频",
+      "seedream_prompt": "抖音搜索引导页，深色背景带搜索框",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "抖音搜索页 引导页"
+    }
+  ]
+}

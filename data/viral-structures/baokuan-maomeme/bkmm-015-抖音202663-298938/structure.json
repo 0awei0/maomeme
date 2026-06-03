@@ -1,0 +1,378 @@
+{
+  "video_summary": {
+    "title": "冲食堂撞倒班主任的爆笑连锁反应",
+    "one_sentence": "学生冲食堂多次撞倒班主任，最终出校规还陷入循环撞人宿命",
+    "primary_topic": "校园干饭社死趣事",
+    "meme_type": "香蕉猫+山羊鬼畜校园梗",
+    "overall_tone": "沙雕搞笑 共鸣感强"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "高中去食堂冲太猛 不小心撞到班主任",
+      "speaker": "旁白",
+      "tone": "搞怪",
+      "emotion": "戏谑",
+      "function": "引出场景",
+      "confidence": 1
+    },
+    {
+      "start_time": 4,
+      "end_time": 5,
+      "text": "老师对不起",
+      "speaker": "我",
+      "tone": "愧疚",
+      "emotion": "慌张",
+      "function": "角色对话",
+      "confidence": 1
+    },
+    {
+      "start_time": 8,
+      "end_time": 9,
+      "text": "几天后 又有同学撞到班主任",
+      "speaker": "旁白",
+      "tone": "惊讶",
+      "emotion": "戏谑",
+      "function": "剧情升级",
+      "confidence": 1
+    },
+    {
+      "start_time": 11,
+      "end_time": 16,
+      "text": "以后去吃饭不准跑！谁跑谁值日 明天我蹲点抓",
+      "speaker": "班主任",
+      "tone": "暴躁",
+      "emotion": "生气",
+      "function": "冲突铺垫",
+      "confidence": 1
+    },
+    {
+      "start_time": 20,
+      "end_time": 22,
+      "text": "饭！！",
+      "speaker": "我",
+      "tone": "兴奋",
+      "emotion": "急切",
+      "function": "反转笑点",
+      "confidence": 1
+    },
+    {
+      "start_time": 26,
+      "end_time": 28,
+      "text": "你们班主任有事 我来代课",
+      "speaker": "代课老师",
+      "tone": "平静",
+      "emotion": "正常",
+      "function": "铺垫笑点",
+      "confidence": 1
+    },
+    {
+      "start_time": 30,
+      "end_time": 34,
+      "text": "班主任被撞飞3米 拉去医院了",
+      "speaker": "同桌",
+      "tone": "八卦",
+      "emotion": "幸灾乐祸",
+      "function": "爆点",
+      "confidence": 1
+    },
+    {
+      "start_time": 38,
+      "end_time": 44,
+      "text": "校规禁止吃饭乱跑 我就要跑！",
+      "speaker": "新生",
+      "tone": "叛逆",
+      "emotion": "不服",
+      "function": "循环笑点",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 4,
+      "duration": 4,
+      "beat": "hook",
+      "script": "我冲食堂撞倒班主任",
+      "joke_point": "干饭优先级高于老师",
+      "visual_description": "两只香蕉猫相撞 班主任倒地冒星星",
+      "pacing_note": "快切 撞的瞬间踩鼓点"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 4,
+      "end_time": 8,
+      "duration": 4,
+      "beat": "setup",
+      "script": "我道歉 班主任淡定离开",
+      "joke_point": "我吓成黑脸猫 班主任毫不在意",
+      "visual_description": "我变黑脸猫道歉 班主任起身走掉",
+      "pacing_note": "节奏稍缓 留反应时间"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 8,
+      "end_time": 11,
+      "duration": 3,
+      "beat": "setup",
+      "script": "又有同学撞倒班主任",
+      "joke_point": "班主任连续被撞 太倒霉",
+      "visual_description": "另一只香蕉猫把班主任撞成倒地灰猫",
+      "pacing_note": "快切 再触发笑点"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 11,
+      "end_time": 18,
+      "duration": 7,
+      "beat": "escalation",
+      "script": "班主任发火说要蹲点抓跑的人",
+      "joke_point": "山羊班主任鬼畜暴躁发言",
+      "visual_description": "山羊头在讲台晃 放狠话",
+      "pacing_note": "节奏稍快 山羊鬼畜踩点"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 18,
+      "end_time": 25,
+      "duration": 7,
+      "beat": "twist",
+      "script": "我无视蹲点的班主任直接冲饭撞过去",
+      "joke_point": "干饭魂爆发 完全看不见老师",
+      "visual_description": "大橘班主任蹲点 我喊着饭直接冲过撞飞他",
+      "pacing_note": "快切 冲饭瞬间踩重音"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 25,
+      "end_time": 37,
+      "duration": 12,
+      "beat": "punchline",
+      "script": "班主任被撞进医院",
+      "joke_point": "小事故变大新闻 我直接干翻老师",
+      "visual_description": "代课老师通知 同桌八卦说班主任被撞飞3米 我震惊",
+      "pacing_note": "节奏稍缓 爆笑点留反应时间"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 37,
+      "end_time": 52,
+      "duration": 15,
+      "beat": "ending",
+      "script": "一年后新生无视校规再撞班主任",
+      "joke_point": "宿命循环 班主任永远逃不过被撞",
+      "visual_description": "新生冲饭撞刚回来的班主任 校规形同虚设",
+      "pacing_note": "收尾 循环梗留余味"
+    }
+  ],
+  "cat_track": [
+    "2只香蕉猫：我跑、班主任走，相撞后班主任倒地",
+    "2只：我黑脸道歉，班主任起身走，表情无奈",
+    "2只：同学甲跑撞班主任，班主任变灰猫倒地",
+    "山羊头班主任：在讲台暴躁晃头",
+    "3只：大橘班主任蹲点，2只香蕉猫冲饭",
+    "2只：大眼猫我震惊，山羊同桌八卦",
+    "1只香蕉猫新生跑，班主任惨叫"
+  ],
+  "background_track": [
+    "校园主干道：绿化、教学楼、水泥路面，白天，可找实拍素材",
+    "同前，校园主干道",
+    "同前，校园主干道",
+    "高中教室讲台：黑板、空调、讲桌，可找实拍素材",
+    "同前，校园主干道",
+    "高中教室：堆满书的课桌，可找实拍素材",
+    "校园主干道+小黑板校规牌，可实拍加元素"
+  ],
+  "audio_track": {
+    "bgm_style": "沙雕搞怪电子BGM",
+    "bgm_mood": "欢快跳脱 戏谑感强",
+    "voice_style": "萌系搞怪配音 旁白带吐槽感",
+    "voice_presence": "旁白+角色对话 占比各半",
+    "sfx": [
+      "碰撞声",
+      "晕倒冒星音效",
+      "山羊叫声",
+      "跑步风声",
+      "爆炸音效",
+      "惨叫音效"
+    ],
+    "rhythm_sync": "所有碰撞、笑点都踩BGM重鼓点"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "黑体加粗 白字黑边 角色标注黄字黑边",
+    "subtitle_density": "每镜头1-2行 密度低",
+    "emphasis_words": [
+      "撞倒班主任",
+      "不准跑",
+      "撞飞3米",
+      "我就要跑"
+    ],
+    "bubble_or_dialogue_style": "无气泡 直接大字弹窗",
+    "stickers_or_overlays": [
+      "角色下方黄色文字标注身份",
+      "重点词加黄粉描边放大"
+    ],
+    "transition_notes": [
+      "全片硬切 无花里胡哨转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "小事触发连锁反应 最终宿命循环模板",
+      "社死事件升级到离谱程度模板"
+    ],
+    "shot_templates": [
+      "事件引入-连续升级-反转爆点-循环收尾分镜模板"
+    ],
+    "cat_action_templates": [
+      "香蕉猫跑步/相撞/倒地",
+      "大眼猫震惊脸",
+      "大橘严肃脸",
+      "山羊鬼畜晃头"
+    ],
+    "background_templates": [
+      "校园主干道",
+      "高中教室讲台",
+      "堆满书的高中课桌"
+    ],
+    "audio_templates": [
+      "搞怪快节奏BGM+碰撞音效+山羊叫通用模板"
+    ],
+    "suitable_topics": [
+      "校园趣事",
+      "打工人干饭社死",
+      "日常离谱小事",
+      "宿命循环梗"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 4.0,
+        "beat": "hook",
+        "script": "高中冲食堂太猛 撞倒班主任",
+        "joke_point": "干饭优先级高过老师",
+        "background": "高中校园主干道 绿化带 教学楼",
+        "cats": "2只香蕉猫 左我跑 右班主任走 相撞倒地",
+        "audio": "BGM起 碰撞音效 冒星音效",
+        "subtitle": "顶部白字 中部黄粉大字 底部标角色",
+        "seedream_prompt": "高中校园主干道 白天 绿化好 教学楼",
+        "local_cat_asset_keywords": "香蕉猫跑步 香蕉猫倒地",
+        "local_background_keywords": "高中校园道路 实拍"
+      },
+      {
+        "shot_id": 2,
+        "duration": 4.0,
+        "beat": "setup",
+        "script": "我道歉 班主任淡定离开",
+        "joke_point": "我吓成黑脸 班主任毫不在意",
+        "background": "同前 校园主干道",
+        "cats": "我变黑脸猫低头 班主任起身走 表情无奈",
+        "audio": "我弱弱道歉配音 走路音效",
+        "subtitle": "中部白字<老师对不起> 底部标角色",
+        "seedream_prompt": "高中校园主干道 白天",
+        "local_cat_asset_keywords": "黑脸猫道歉 香蕉猫走路",
+        "local_background_keywords": "高中校园道路 实拍"
+      },
+      {
+        "shot_id": 3,
+        "duration": 3.0,
+        "beat": "setup",
+        "script": "几天后又有同学撞倒班主任",
+        "joke_point": "班主任连续被撞 太倒霉",
+        "background": "同前 校园主干道",
+        "cats": "另一只香蕉猫跑 撞得班主任变灰猫倒地",
+        "audio": "碰撞音效 倒地音效",
+        "subtitle": "顶部白字 底部标角色",
+        "seedream_prompt": "高中校园主干道 白天",
+        "local_cat_asset_keywords": "香蕉猫跑步 灰猫倒地",
+        "local_background_keywords": "高中校园道路 实拍"
+      },
+      {
+        "shot_id": 4,
+        "duration": 7.0,
+        "beat": "escalation",
+        "script": "班主任发火 说要蹲点抓跑的人",
+        "joke_point": "山羊班主任鬼畜暴躁发言",
+        "background": "高中教室讲台 黑板 空调",
+        "cats": "山羊头在讲台晃 表情暴躁",
+        "audio": "山羊暴躁配音 山羊叫音效",
+        "subtitle": "顶部白字 中部白字台词 底部标角色",
+        "seedream_prompt": "高中教室讲台 黑板 空调 白天",
+        "local_cat_asset_keywords": "山羊鬼畜晃头",
+        "local_background_keywords": "高中教室讲台 实拍"
+      },
+      {
+        "shot_id": 5,
+        "duration": 7.0,
+        "beat": "twist",
+        "script": "我无视蹲点班主任 喊着饭直接冲过去",
+        "joke_point": "干饭魂爆发 完全看不见老师",
+        "background": "同前 校园主干道",
+        "cats": "大橘班主任蹲点严肃 我喊饭冲过撞他",
+        "audio": "我兴奋喊饭配音 跑步风声 碰撞音效",
+        "subtitle": "顶部白字 我旁边白字<饭！！> 底部标角色",
+        "seedream_prompt": "高中校园主干道 白天",
+        "local_cat_asset_keywords": "大橘严肃脸 香蕉猫跑步",
+        "local_background_keywords": "高中校园道路 实拍"
+      },
+      {
+        "shot_id": 6,
+        "duration": 12.0,
+        "beat": "punchline",
+        "script": "班主任被撞飞3米 拉去医院了",
+        "joke_point": "小事故变大新闻 我干翻老师",
+        "background": "高中教室 堆满书的课桌",
+        "cats": "大眼猫我震惊 山羊同桌八卦晃头",
+        "audio": "代课老师平静配音 同桌八卦配音 震惊音效",
+        "subtitle": "顶部白字 中部台词 底部标角色",
+        "seedream_prompt": "高中教室 堆满书的课桌 白天",
+        "local_cat_asset_keywords": "大眼猫震惊 山羊鬼畜晃头",
+        "local_background_keywords": "高中堆满书课桌 实拍"
+      },
+      {
+        "shot_id": 7,
+        "duration": 15.0,
+        "beat": "ending",
+        "script": "一年后新生无视校规 再撞班主任",
+        "joke_point": "宿命循环 班主任永远逃不过被撞",
+        "background": "校园主干道 加小黑板校规牌",
+        "cats": "香蕉猫新生跑 班主任惨叫",
+        "audio": "新生叛逆配音 碰撞音效 班主任惨叫音效",
+        "subtitle": "顶部白字 校规牌文字 底部台词",
+        "seedream_prompt": "高中校园主干道 小黑板 白天",
+        "local_cat_asset_keywords": "香蕉猫跑步 山羊惨叫",
+        "local_background_keywords": "高中校园道路 实拍 加小黑板元素"
+      }
+    ]
+  },
+  "quality_notes": [
+    "复用热门香蕉猫、山羊、大橘猫梗，校园共鸣强，笑点密集，循环宿命梗传播性极强"
+  ],
+  "_raw_content_sha256": "531fa6c6c0725f28137e13a3da491a6e5c52734d3c7f5192838c783be28c5a20",
+  "video_id": "bkmm-015-抖音202663-298938",
+  "filename": "抖音202663-298938.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 52.547,
+    "size_bytes": 3378559,
+    "width": 1280,
+    "height": 720,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "4ea9030a9dffab752d0e9f1d46c4213902b7b1fc79e17b97af0d0d3d78da129f"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-015-抖音202663-298938/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-015-抖音202663-298938/audio.m4a",
+    "analyzed_at": "2026-06-03T03:03:11.594104+00:00",
+    "normalized_at": "2026-06-03T03:19:12.598811+00:00"
+  }
+}

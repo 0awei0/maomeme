@@ -1,0 +1,378 @@
+{
+  "video_summary": {
+    "title": "当最没用的我在家时",
+    "one_sentence": "我上厕所腿麻拽坏卫生间门，被妈妈骂爸爸不敢救的搞笑日常",
+    "primary_topic": "家庭倒霉日常、有理说不清的废柴人设",
+    "meme_type": "真人情景猫meme",
+    "overall_tone": "搞笑、接地气、强共鸣"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 3,
+      "text": "当最没用的我在家时/丸辣腿麻了",
+      "speaker": "我",
+      "tone": "无奈",
+      "emotion": "难受",
+      "function": "hook",
+      "confidence": 1
+    },
+    {
+      "start_time": 3,
+      "end_time": 6,
+      "text": "扶着走/这门怎么打不开了",
+      "speaker": "我",
+      "tone": "虚弱",
+      "emotion": "着急",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 6,
+      "end_time": 12,
+      "text": "将大局逆转吧/（门被拽掉）",
+      "speaker": "我",
+      "tone": "激昂",
+      "emotion": "下定决心",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 12,
+      "end_time": 16,
+      "text": "什么动静？是不是那小子又闯祸了",
+      "speaker": "爸妈",
+      "tone": "疑惑",
+      "emotion": "嫌弃",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 16,
+      "end_time": 28,
+      "text": "这门质量太差了/你又干了什么好事/我听我狡辩啊",
+      "speaker": "我、妈",
+      "tone": "慌张、生气",
+      "emotion": "慌乱、愤怒",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 28,
+      "end_time": 32,
+      "text": "啥到你手上都坏/我错了",
+      "speaker": "妈、我",
+      "tone": "生气、委屈",
+      "emotion": "愤怒、害怕",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 32,
+      "end_time": 37,
+      "text": "对不起了好大儿只能委屈你了",
+      "speaker": "爸",
+      "tone": "无奈",
+      "emotion": "爱莫能助",
+      "function": "ending",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 3,
+      "duration": 3,
+      "beat": "hook",
+      "script": "当最没用的我在家时/丸辣腿麻了",
+      "joke_point": "代入废柴人设",
+      "visual_description": "卫生间橘猫怼脸晃",
+      "pacing_note": "慢"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 3,
+      "end_time": 6,
+      "duration": 3,
+      "beat": "setup",
+      "script": "扶着走/这门怎么打不开了",
+      "joke_point": "腿麻的狼狈",
+      "visual_description": "黑猫扶墙走、灰猫扒门",
+      "pacing_note": "中速"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 6,
+      "end_time": 12,
+      "duration": 6,
+      "beat": "escalation",
+      "script": "将大局逆转吧/门被拽掉",
+      "joke_point": "用力过猛扯坏门",
+      "visual_description": "猫发力后露出惊讶香蕉猫",
+      "pacing_note": "先慢后快"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 12,
+      "end_time": 16,
+      "duration": 4,
+      "beat": "escalation",
+      "script": "什么动静？是不是那小子又闯祸了",
+      "joke_point": "爸妈熟悉的嫌弃感",
+      "visual_description": "卧室床上两只猫对话",
+      "pacing_note": "中速"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 16,
+      "end_time": 28,
+      "duration": 12,
+      "beat": "twist",
+      "script": "门质量差/你又干了啥/我听我狡辩",
+      "joke_point": "越描越黑的辩解",
+      "visual_description": "猫背对门装无辜、辩解",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 28,
+      "end_time": 32,
+      "duration": 4,
+      "beat": "punchline",
+      "script": "啥到你手上都坏/我错了",
+      "joke_point": "香蕉猫哭被妈打",
+      "visual_description": "橘猫打哭香蕉猫",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 32,
+      "end_time": 37,
+      "duration": 5,
+      "beat": "ending",
+      "script": "对不起了好大儿只能委屈你了",
+      "joke_point": "老爸不敢帮忙的现实",
+      "visual_description": "床上白猫无奈说话",
+      "pacing_note": "慢"
+    },
+    {
+      "shot_id": 8,
+      "start_time": 37,
+      "end_time": 39,
+      "duration": 2,
+      "beat": "cta",
+      "script": "搜索有理说不清猫",
+      "joke_point": "",
+      "visual_description": "抖音搜索框",
+      "pacing_note": "快"
+    }
+  ],
+  "cat_track": [
+    "1只橘猫，马桶上怼脸晃，难受表情，关键词：橘猫怼脸",
+    "2只：黑猫直立扶着走，灰白猫扒门，关键词：黑猫走路、灰猫扒门",
+    "1只：发力→惊讶，最后是香蕉猫，关键词：发力猫、香蕉猫",
+    "2只：床左狸花猫（妈），床右黑猫（爸），关键词：狸花猫、黑猫",
+    "2只：狸花猫背对门（我），左奶牛猫（妈）生气，关键词：狸花背影、奶牛猫生气",
+    "2只：左橘猫打人（妈），中间香蕉猫哭（我），关键词：橘猫打人、香蕉猫哭",
+    "1只白胖猫蹲床上（爸），无奈表情，关键词：白胖猫蹲床",
+    "无猫"
+  ],
+  "background_track": [
+    "米黄色瓷砖家庭卫生间，带淋浴马桶暖气片，现成素材，无需生成",
+    "同前，加洗手池拖布，现成素材",
+    "同前，门掉落，现成素材",
+    "现代简约卧室，软包床头挂画，现成素材",
+    "白色墙面卫生间门口过道，现成素材",
+    "同前，现成素材",
+    "同卧室，现成素材",
+    "抖音搜索页，现成素材"
+  ],
+  "audio_track": {
+    "bgm_style": "短视频搞怪常用BGM",
+    "bgm_mood": "轻松搞笑",
+    "voice_style": "搞笑接地气配音，带方言感",
+    "voice_presence": "清晰突出",
+    "sfx": [
+      "门掉落哐当声",
+      "打耳光声",
+      "哭唧唧音效"
+    ],
+    "rhythm_sync": "每个笑点对应BGM鼓点"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "黑体加粗，白字黑边，角色名黄色字",
+    "subtitle_density": "每屏1-2行，密度低",
+    "emphasis_words": [
+      "丸辣",
+      "将大局逆转",
+      "狡辩"
+    ],
+    "bubble_or_dialogue_style": "无气泡，直接悬浮字幕",
+    "stickers_or_overlays": [
+      "出汗特效",
+      "眼泪特效"
+    ],
+    "transition_notes": [
+      "简单硬切，无花哨转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "废柴孩子在家闯祸→爸妈嫌弃→越描越黑→被骂爸不敢救"
+    ],
+    "shot_templates": [
+      "固定场景+换对应情绪猫素材+字幕"
+    ],
+    "cat_action_templates": [
+      "怼脸难受",
+      "扒门",
+      "发力",
+      "生气",
+      "哭",
+      "无奈"
+    ],
+    "background_templates": [
+      "家庭卫生间",
+      "居家卧室",
+      "家门口过道"
+    ],
+    "audio_templates": [
+      "搞怪BGM+搞笑配音+对应场景音效"
+    ],
+    "suitable_topics": [
+      "家庭日常",
+      "倒霉孩子",
+      "有理说不清",
+      "亲子代沟"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 3.0,
+        "beat": "hook",
+        "script": "当最没用的我在家时/丸辣腿麻了",
+        "joke_point": "代入废柴人设",
+        "background": "米黄色瓷砖卫生间带淋浴马桶",
+        "cats": "橘猫在马桶上怼脸晃，表情难受",
+        "audio": "搞怪BGM起，无奈配音",
+        "subtitle": "顶部标题+底部字幕",
+        "seedream_prompt": "普通家庭米黄色瓷砖卫生间",
+        "local_cat_asset_keywords": "橘猫怼脸meme",
+        "local_background_keywords": "家庭卫生间素材"
+      },
+      {
+        "shot_id": 2,
+        "duration": 3.0,
+        "beat": "setup",
+        "script": "扶着走/这门怎么打不开了",
+        "joke_point": "腿麻的狼狈",
+        "background": "同卫生间，加洗手池拖布",
+        "cats": "黑猫扶墙走，灰白猫扒门",
+        "audio": "BGM持续，虚弱配音",
+        "subtitle": "中部白字",
+        "seedream_prompt": "带洗手池的家庭卫生间",
+        "local_cat_asset_keywords": "黑猫直立走路、灰猫扒门",
+        "local_background_keywords": "家庭卫生间素材"
+      },
+      {
+        "shot_id": 3,
+        "duration": 6.0,
+        "beat": "escalation",
+        "script": "将大局逆转吧/门被拽掉",
+        "joke_point": "用力过猛扯坏门",
+        "background": "同卫生间，门掉落",
+        "cats": "猫发力→惊讶香蕉猫露面",
+        "audio": "BGM升调，门掉哐当音效",
+        "subtitle": "中部白字",
+        "seedream_prompt": "卫生间门掉落场景",
+        "local_cat_asset_keywords": "发力猫、香蕉猫",
+        "local_background_keywords": "家庭卫生间素材"
+      },
+      {
+        "shot_id": 4,
+        "duration": 4.0,
+        "beat": "escalation",
+        "script": "什么动静？是不是那小子又闯祸了",
+        "joke_point": "爸妈熟悉的嫌弃感",
+        "background": "现代简约卧室软包床头",
+        "cats": "床左狸花猫（妈）床右黑猫（爸）",
+        "audio": "BGM持续，疑惑嫌弃配音",
+        "subtitle": "角色上方白字",
+        "seedream_prompt": "现代浅灰色大床卧室带挂画",
+        "local_cat_asset_keywords": "狸花猫、黑猫meme",
+        "local_background_keywords": "居家卧室素材"
+      },
+      {
+        "shot_id": 5,
+        "duration": 12.0,
+        "beat": "twist",
+        "script": "门质量差/你又干了啥/我听我狡辩",
+        "joke_point": "越描越黑的辩解",
+        "background": "白色墙面卫生间门口过道",
+        "cats": "狸花猫背对门（我），左奶牛猫（妈）生气",
+        "audio": "BGM加快，慌张生气配音",
+        "subtitle": "中部白字+出汗特效",
+        "seedream_prompt": "白色墙面卫生间门口过道",
+        "local_cat_asset_keywords": "狸花背影、奶牛猫生气",
+        "local_background_keywords": "家门口过道素材"
+      },
+      {
+        "shot_id": 6,
+        "duration": 4.0,
+        "beat": "punchline",
+        "script": "啥到你手上都坏/我错了",
+        "joke_point": "香蕉猫哭被妈打",
+        "background": "同卫生间门口",
+        "cats": "左橘猫打人（妈），中间香蕉猫哭（我）",
+        "audio": "打耳光音效+哭唧唧音效",
+        "subtitle": "中部白字+眼泪特效",
+        "seedream_prompt": "白色墙面卫生间门口过道",
+        "local_cat_asset_keywords": "橘猫打人、香蕉猫哭",
+        "local_background_keywords": "家门口过道素材"
+      },
+      {
+        "shot_id": 7,
+        "duration": 5.0,
+        "beat": "ending",
+        "script": "对不起了好大儿只能委屈你了",
+        "joke_point": "老爸不敢帮忙的现实",
+        "background": "同现代卧室",
+        "cats": "白胖猫蹲床上，无奈表情",
+        "audio": "BGM放缓，无奈配音",
+        "subtitle": "猫上方白字",
+        "seedream_prompt": "现代浅灰色大床卧室带挂画",
+        "local_cat_asset_keywords": "白胖猫蹲床",
+        "local_background_keywords": "居家卧室素材"
+      }
+    ]
+  },
+  "quality_notes": [
+    "笑点贴合大众家庭共鸣，猫素材均为热门meme，复刻成本低"
+  ],
+  "_raw_content_sha256": "a34efa4df381901f5b3296c925f738a632ea9fbf42238e3168775a0f93b44a43",
+  "video_id": "bkmm-042-抖音202663-978042",
+  "filename": "抖音202663-978042.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 39.358,
+    "size_bytes": 2860657,
+    "width": 720,
+    "height": 960,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "002ac2954de91b28398b667e8ffd12fe1c0f91a29f5d7c44c2c2d043d19b6f7e"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-042-抖音202663-978042/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-042-抖音202663-978042/audio.m4a",
+    "analyzed_at": "2026-06-03T03:08:22.763618+00:00",
+    "normalized_at": "2026-06-03T03:19:12.613835+00:00"
+  }
+}

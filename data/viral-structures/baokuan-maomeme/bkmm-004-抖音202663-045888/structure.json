@@ -1,0 +1,409 @@
+{
+  "video_summary": {
+    "title": "男大学生裸贷反套路搞笑梗",
+    "one_sentence": "缺钱大学生借裸贷，被催债时摆烂不怕曝照的反套路搞笑剧情",
+    "primary_topic": "反套路反诈、大学生生活梗、摆烂文化",
+    "meme_type": "剧情反转类猫meme",
+    "overall_tone": "荒诞搞笑、玩梗吐槽"
+  },
+  "script_track": [
+    {
+      "start_time": "0.0",
+      "end_time": "1.0",
+      "text": "五月初：这个月要吃土了 余额0.25元",
+      "speaker": "旁白",
+      "tone": "调侃",
+      "emotion": "无奈",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": "1.0",
+      "end_time": "3.0",
+      "text": "裸贷最高80w？我可以贷款啊！",
+      "speaker": "男大学生",
+      "tone": "惊喜",
+      "emotion": "兴奋",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": "5.0",
+      "end_time": "7.0",
+      "text": "竟然在这种地方，一看就值得信赖",
+      "speaker": "男大学生",
+      "tone": "庆幸",
+      "emotion": "期待",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": "7.0",
+      "end_time": "10.0",
+      "text": "拍写真还送钱",
+      "speaker": "贷款老板",
+      "tone": "诱惑",
+      "emotion": "狡黠",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": "11.0",
+      "end_time": "13.0",
+      "text": "小伙子你要贷多少？就贷80w吧",
+      "speaker": "老板/学生",
+      "tone": "询问/爽快",
+      "emotion": "试探/急切",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": "13.0",
+      "end_time": "16.0",
+      "text": "还来了只大肥羊",
+      "speaker": "老板",
+      "tone": "狂喜",
+      "emotion": "得意",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": "17.0",
+      "end_time": "20.0",
+      "text": "没问题，但要拍小照片当保障",
+      "speaker": "老板",
+      "tone": "假意客气",
+      "emotion": "算计",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": "20.0",
+      "end_time": "22.0",
+      "text": "能不能快点拍，我着急用钱",
+      "speaker": "学生",
+      "tone": "急切",
+      "emotion": "不耐烦",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": "25.0",
+      "end_time": "30.0",
+      "text": "支付宝到账100w，我发财了？",
+      "speaker": "系统音/学生",
+      "tone": "狂喜",
+      "emotion": "震惊",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": "32.0",
+      "end_time": "36.0",
+      "text": "2.5年后，快还钱不然发你小照片",
+      "speaker": "催债人",
+      "tone": "凶狠",
+      "emotion": "愤怒",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": "36.0",
+      "end_time": "42.0",
+      "text": "凭本事借的凭啥还？记得放猛男区",
+      "speaker": "学生",
+      "tone": "摆烂",
+      "emotion": "无所谓",
+      "function": "punchline",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": "1",
+      "start_time": "0.0",
+      "end_time": "1.0",
+      "duration": 1,
+      "beat": "setup",
+      "script": "学生喊吃土余额0.25元",
+      "joke_point": "月光族共鸣点",
+      "visual_description": "傍晚天台橘猫居中，旁边放手机",
+      "pacing_note": "快切"
+    },
+    {
+      "shot_id": "2",
+      "start_time": "1.0",
+      "end_time": "3.0",
+      "duration": 2,
+      "beat": "hook",
+      "script": "看到裸贷广告想贷款",
+      "joke_point": "离谱解决方法",
+      "visual_description": "大眼猫贴脸，左侧弹裸贷消息弹窗",
+      "pacing_note": "快切"
+    },
+    {
+      "shot_id": "3",
+      "start_time": "4.0",
+      "end_time": "10.0",
+      "duration": 6,
+      "beat": "escalation",
+      "script": "找裸贷店，老板说拍写真送钱",
+      "joke_point": "伪装成正规店的套路",
+      "visual_description": "昏暗小巷，左侧立裸贷店招牌",
+      "pacing_note": "中等"
+    },
+    {
+      "shot_id": "4",
+      "start_time": "11.0",
+      "end_time": "23.0",
+      "duration": 12,
+      "beat": "escalation",
+      "script": "办公室谈贷款，要求拍小照片学生催促",
+      "joke_point": "学生比老板还急的反差",
+      "visual_description": "轻奢办公室，老板坐桌后学生站对面",
+      "pacing_note": "中等"
+    },
+    {
+      "shot_id": "5",
+      "start_time": "24.0",
+      "end_time": "30.0",
+      "duration": 6,
+      "beat": "twist",
+      "script": "到账100w学生狂喜",
+      "joke_point": "到账金额比申请多的意外",
+      "visual_description": "客厅里香蕉猫跳舞，弹到账通知",
+      "pacing_note": "快切"
+    },
+    {
+      "shot_id": "6",
+      "start_time": "31.0",
+      "end_time": "42.0",
+      "duration": 11,
+      "beat": "punchline",
+      "script": "2.5年后被催债，学生摆烂不怕曝照",
+      "joke_point": "摆烂反杀威胁的反转",
+      "visual_description": "大学宿舍，香蕉猫摆烂，弹思想气泡",
+      "pacing_note": "慢"
+    },
+    {
+      "shot_id": "7",
+      "start_time": "42.0",
+      "end_time": "44.9",
+      "duration": 2.9,
+      "beat": "cta",
+      "script": "抖音账号引导",
+      "joke_point": "",
+      "visual_description": "深色背景+账号搜索框",
+      "pacing_note": "快切"
+    }
+  ],
+  "cat_track": [
+    "shot1：1只橘猫，居中，面无表情，扮演男大学生",
+    "shot2：1只大眼花猫，居中，震惊脸，扮演男大学生",
+    "shot3：1只白胖猫，居中，靠谱脸，扮演贷款老板",
+    "shot4：2只猫，橘白老板坐桌后，香蕉猫学生站对面",
+    "shot5：1只香蕉猫，居中，跳舞，扮演男大学生",
+    "shot6：1只香蕉猫，居中，摆烂脸，扮演男大学生"
+  ],
+  "background_track": [
+    "shot1：傍晚城市天台，远处有居民楼，橙色晚霞",
+    "shot2：昏暗潮湿小巷，两侧砖墙，远处有暖光路灯",
+    "shot3：轻奢现代老板办公室，木质办公桌，大落地窗",
+    "shot4：简约出租屋客厅，米色皮沙发，茶几",
+    "shot5：大学男生宿舍，上下铺铁床，书桌",
+    "shot6：深色纯背景，带抖音搜索框UI"
+  ],
+  "audio_track": {
+    "bgm_style": "沙雕搞怪短视频常用电子BGM",
+    "bgm_mood": "欢快跳脱、滑稽",
+    "voice_style": "夸张搞笑男生素，不同角色音色区分明显",
+    "voice_presence": "清晰靠前，盖过BGM",
+    "sfx": [
+      "手机消息提示音",
+      "支付宝到账音效",
+      "搞怪笑声"
+    ],
+    "rhythm_sync": "每个剧情反转点卡BGM鼓点切换镜头"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "黄色粗黑边黑体字，大小适中",
+    "subtitle_density": "每屏1-2句话，字数少",
+    "emphasis_words": [
+      "最高80w",
+      "小照片",
+      "凭本事借的",
+      "猛男区"
+    ],
+    "bubble_or_dialogue_style": "顶部黄色圆角标签提示剧情环节，底部标注角色名",
+    "stickers_or_overlays": [
+      "手机消息弹窗",
+      "思想气泡框",
+      "iPhone素材"
+    ],
+    "transition_notes": [
+      "模糊闪切转场",
+      "无复杂转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "遇到困境→出现离谱解决方法→对方提不合理要求→主角摆烂反杀反转"
+    ],
+    "shot_templates": [
+      "固定场景背景+猫meme头贴纸+上下字幕+顶部剧情标签"
+    ],
+    "cat_action_templates": [
+      "橘猫无奈脸",
+      "大眼震惊猫",
+      "歪嘴白猫老板",
+      "香蕉猫跳舞",
+      "香蕉猫摆烂"
+    ],
+    "background_templates": [
+      "傍晚天台",
+      "昏暗小巷",
+      "现代办公室",
+      "大学宿舍"
+    ],
+    "audio_templates": [
+      "沙雕BGM+消息提示音+到账音效+夸张配音"
+    ],
+    "suitable_topics": [
+      "反诈宣传",
+      "大学生生活梗",
+      "摆烂文化",
+      "反套路梗",
+      "月光族共鸣"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": "1",
+        "duration": 1.0,
+        "beat": "setup",
+        "script": "五月初余额0.25元，这个月要吃土了",
+        "joke_point": "月光族没钱的共鸣点",
+        "background": "傍晚城市天台，橙色晚霞远处居民楼",
+        "cats": "橘猫居中，面无表情，扮演男大学生",
+        "audio": "搞怪BGM起，配音调侃语气",
+        "subtitle": "黄色黑边字居中，底部标「某男大学生」",
+        "seedream_prompt": "城市天台傍晚晚霞，水泥地面水塔",
+        "local_cat_asset_keywords": "橘猫无奈脸meme",
+        "local_background_keywords": "傍晚天台"
+      },
+      {
+        "shot_id": "2",
+        "duration": 2.0,
+        "beat": "hook",
+        "script": "看到裸贷最高80w广告，心想可以贷款",
+        "joke_point": "缺钱时找离谱解决方法的反差",
+        "background": "同shot1傍晚天台",
+        "cats": "大眼花猫居中，震惊脸，扮演学生",
+        "audio": "消息提示音，配音惊喜语气",
+        "subtitle": "左侧弹消息弹窗，居中配「我可以贷款啊」",
+        "seedream_prompt": "同shot1",
+        "local_cat_asset_keywords": "大眼震惊花猫meme",
+        "local_background_keywords": "傍晚天台"
+      },
+      {
+        "shot_id": "3",
+        "duration": 6.0,
+        "beat": "escalation",
+        "script": "找到小巷里的裸贷店，老板说拍写真送钱",
+        "joke_point": "裸贷店伪装成正规老店的讽刺感",
+        "background": "昏暗潮湿小巷，砖墙暖光路灯",
+        "cats": "白胖猫居中，老实脸，扮演老板",
+        "audio": "BGM节奏放缓，配音诱惑语气",
+        "subtitle": "左侧立「百年老店裸贷」招牌，顶部黄标提示",
+        "seedream_prompt": "昏暗潮湿小巷，砖墙远处暖光路灯",
+        "local_cat_asset_keywords": "白胖猫无辜脸meme",
+        "local_background_keywords": "昏暗小巷"
+      },
+      {
+        "shot_id": "4",
+        "duration": 12.0,
+        "beat": "escalation",
+        "script": "办公室谈贷款，要拍小照片学生催快点",
+        "joke_point": "学生比老板还急的反差感",
+        "background": "轻奢现代办公室，木质办公桌落地窗",
+        "cats": "橘白老板坐桌后，香蕉猫学生站对面",
+        "audio": "搞怪笑声，老板配音算计，学生配音急切",
+        "subtitle": "对话分上下显示，底部标角色名",
+        "seedream_prompt": "现代轻奢老板办公室，木质办公桌",
+        "local_cat_asset_keywords": "橘白胖猫meme, 香蕉猫meme",
+        "local_background_keywords": "现代老板办公室"
+      },
+      {
+        "shot_id": "5",
+        "duration": 6.0,
+        "beat": "twist",
+        "script": "支付宝到账100w，学生狂喜",
+        "joke_point": "到账金额比申请多的意外感",
+        "background": "简约出租屋客厅，米色皮沙发",
+        "cats": "香蕉猫居中，左右摇晃跳舞",
+        "audio": "支付宝到账音效，配音狂喜语气",
+        "subtitle": "弹到账通知，居中配「我发财了？」",
+        "seedream_prompt": "简约出租屋客厅，米色皮沙发茶几",
+        "local_cat_asset_keywords": "香蕉猫跳舞meme",
+        "local_background_keywords": "出租屋客厅"
+      },
+      {
+        "shot_id": "6",
+        "duration": 11.0,
+        "beat": "punchline",
+        "script": "2.5年后被催债，学生摆烂不怕发照片",
+        "joke_point": "摆烂反杀威胁的反转笑点",
+        "background": "大学男生宿舍，上下铺铁床",
+        "cats": "香蕉猫居中，摆烂无所谓脸",
+        "audio": "BGM节奏变欢快，配音摆烂语气",
+        "subtitle": "弹思想气泡，配「凭本事借的凭啥还」",
+        "seedream_prompt": "大学男生宿舍，上下铺铁床书桌",
+        "local_cat_asset_keywords": "香蕉猫摆烂meme",
+        "local_background_keywords": "大学宿舍"
+      },
+      {
+        "shot_id": "7",
+        "duration": 2.9,
+        "beat": "cta",
+        "script": "引导搜索抖音账号",
+        "joke_point": "结尾引流/作者页收束",
+        "background": "深色纯背景，带抖音搜索UI",
+        "cats": "无",
+        "audio": "BGM渐停",
+        "subtitle": "抖音搜索框引导文字",
+        "seedream_prompt": "深色纯背景带抖音搜索框UI",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "抖音片尾背景"
+      }
+    ]
+  },
+  "quality_notes": [
+    "所有猫素材均为公共热门meme，复用性强",
+    "剧情反转清晰，笑点密集，适合二次创作改编",
+    "normalized_storyboard_fields: filled 1 blank or inconsistent fields"
+  ],
+  "_raw_content_sha256": "5b86255600a93acff5d760002846d74b2508d19ca9dbaf94552657a48f509473",
+  "video_id": "bkmm-004-抖音202663-045888",
+  "filename": "抖音202663-045888.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 44.931,
+    "size_bytes": 4723848,
+    "width": 960,
+    "height": 720,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "bc58fa44f533a7f212908f33c4c5f165e3e1f032888232154f8c0c75b1fc8d71"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-004-抖音202663-045888/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-004-抖音202663-045888/audio.m4a",
+    "analyzed_at": "2026-06-03T03:01:29.752854+00:00",
+    "normalized_at": "2026-06-03T03:19:12.592645+00:00"
+  }
+}

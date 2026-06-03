@@ -1,0 +1,311 @@
+{
+  "video_summary": {
+    "title": "当医生嘱咐你不要喝饮料",
+    "one_sentence": "医生猫劝患者别喝饮料，自己转头就喝还嘴硬双标",
+    "primary_topic": "吐槽权威角色双标言行",
+    "meme_type": "对话反差梗",
+    "overall_tone": "搞笑反讽 扎心共鸣"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "记住不要喝饮料，那玩意对身体不好",
+      "speaker": "医生猫",
+      "tone": "严肃",
+      "emotion": "认真",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 2,
+      "end_time": 3,
+      "text": "好的医生",
+      "speaker": "患者猫",
+      "tone": "乖巧",
+      "emotion": "顺从",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 3,
+      "end_time": 5,
+      "text": "医生你喝的是什么",
+      "speaker": "患者猫",
+      "tone": "疑惑",
+      "emotion": "诧异",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 5,
+      "end_time": 7,
+      "text": "我不一样，我可以自救",
+      "speaker": "医生猫",
+      "tone": "理直气壮",
+      "emotion": "理所当然",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 7,
+      "end_time": 10,
+      "text": "这玩意搞嘴里就舒服",
+      "speaker": "医生猫",
+      "tone": "欠揍",
+      "emotion": "得意",
+      "function": "punchline",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "hook",
+      "script": "医生嘱咐别喝饮料对身体不好",
+      "joke_point": "铺垫反差前提",
+      "visual_description": "诊室里医生猫坐桌后对面是患者猫",
+      "pacing_note": "慢节奏铺垫"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2,
+      "end_time": 3,
+      "duration": 1,
+      "beat": "setup",
+      "script": "患者乖巧答应",
+      "joke_point": "建立听话预期",
+      "visual_description": "患者猫点头附和",
+      "pacing_note": "快节奏承接"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 3,
+      "end_time": 5,
+      "duration": 2,
+      "beat": "escalation",
+      "script": "患者发现医生在喝奶茶",
+      "joke_point": "打破预期引出冲突",
+      "visual_description": "医生猫低头吸桌上的奶茶",
+      "pacing_note": "稍慢留悬念"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 5,
+      "end_time": 7,
+      "duration": 2,
+      "beat": "twist",
+      "script": "医生嘴硬说自己不一样能自救",
+      "joke_point": "双标言论出现",
+      "visual_description": "医生猫抬头理直气壮说话",
+      "pacing_note": "快节奏出反转"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 7,
+      "end_time": 10,
+      "duration": 3,
+      "beat": "punchline",
+      "script": "医生坦言喝饮料就是爽",
+      "joke_point": "破防说真话戳中笑点",
+      "visual_description": "医生猫眯眼爽到，患者猫瞪大眼睛震惊",
+      "pacing_note": "慢节奏留笑点"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 10,
+      "end_time": 12.7,
+      "duration": 2.7,
+      "beat": "ending",
+      "script": "抖音创作者引流页",
+      "joke_point": "",
+      "visual_description": "深色背景显示账号信息搜索框",
+      "pacing_note": "正常引流节奏"
+    }
+  ],
+  "cat_track": [
+    "2只：奶白hamham猫（医生）桌后严肃，虎斑猫（患者）桌前乖巧",
+    "2只：虎斑猫点头，hamham猫坐后方",
+    "2只：hamham猫低头吸奶茶，虎斑猫抬头疑惑",
+    "2只：hamham猫理直气壮，虎斑猫瞪大眼睛震惊",
+    "2只：hamham猫眯眼爽，虎斑猫呆愣",
+    "1只：圆形hamham猫头像居中"
+  ],
+  "background_track": [
+    "明亮现代医院诊室，靠窗办公桌、电脑、X光片，干净明亮",
+    "同前",
+    "同前，桌上放奶茶",
+    "同前",
+    "同前",
+    "深色抖音引流背景，居中账号搜索框"
+  ],
+  "audio_track": {
+    "bgm_style": "搞怪轻快短视频常用meme BGM",
+    "bgm_mood": "轻松搞笑",
+    "voice_style": "贱兮兮男声配医生，软萌女声配患者",
+    "voice_presence": "清晰突出，盖过BGM",
+    "sfx": [
+      "吸奶茶咕嘟声",
+      "震惊音效"
+    ],
+    "rhythm_sync": "每句台词卡BGM鼓点"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "黑体粗字 白色描黑边",
+    "subtitle_density": "每屏1-8字 低密度",
+    "emphasis_words": [
+      "不要喝饮料",
+      "我不一样",
+      "就舒服"
+    ],
+    "bubble_or_dialogue_style": "无气泡 直接显示在角色上方/画面中间",
+    "stickers_or_overlays": [
+      "角色下方黄色字标注「你」「医生」",
+      "顶部白色标题条"
+    ],
+    "transition_notes": [
+      "无转场 直接切镜"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "权威角色劝你别做XX，转头自己做还嘴硬双标"
+    ],
+    "shot_templates": [
+      "双人对话分镜：对方劝→你答应→发现对方做→对方嘴硬→说真话"
+    ],
+    "cat_action_templates": [
+      "严肃劝人→偷偷做事→被发现理直气壮→爽到眯眼"
+    ],
+    "background_templates": [
+      "办公/诊室等权威场景双人对话背景"
+    ],
+    "audio_templates": [
+      "轻快搞怪BGM+反差配音+动作音效"
+    ],
+    "suitable_topics": [
+      "领导双标",
+      "父母双标",
+      "朋友双标",
+      "权威角色言行不一吐槽"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.0,
+        "beat": "hook",
+        "script": "医生：记住不要喝饮料，那玩意对身体不好",
+        "joke_point": "铺垫反差前提",
+        "background": "明亮医院诊室 靠窗办公桌 电脑X光片",
+        "cats": "奶白hamham猫桌后严肃 虎斑猫坐对面乖巧",
+        "audio": "轻快搞怪BGM 严肃男声",
+        "subtitle": "记住 不要喝饮料 那玩意对身体不好",
+        "seedream_prompt": "明亮现代医院诊室 靠窗办公桌椅",
+        "local_cat_asset_keywords": "hamham严肃猫 乖巧虎斑猫",
+        "local_background_keywords": "医院诊室 医生办公桌"
+      },
+      {
+        "shot_id": 2,
+        "duration": 1.0,
+        "beat": "setup",
+        "script": "患者：好的医生",
+        "joke_point": "建立听话预期",
+        "background": "同前",
+        "cats": "虎斑猫点头附和",
+        "audio": "软萌女声",
+        "subtitle": "好的 医生",
+        "seedream_prompt": "",
+        "local_cat_asset_keywords": "点头虎斑猫",
+        "local_background_keywords": ""
+      },
+      {
+        "shot_id": 3,
+        "duration": 2.0,
+        "beat": "escalation",
+        "script": "患者：医生你喝的是什么",
+        "joke_point": "打破预期引冲突",
+        "background": "同前 桌上放珍珠奶茶",
+        "cats": "hamham猫低头吸奶茶 虎斑猫抬头疑惑",
+        "audio": "疑惑女声 吸奶茶咕嘟声",
+        "subtitle": "医生 你喝的是什么",
+        "seedream_prompt": "",
+        "local_cat_asset_keywords": "吸奶茶hamham猫 疑惑虎斑猫",
+        "local_background_keywords": "珍珠奶茶素材"
+      },
+      {
+        "shot_id": 4,
+        "duration": 2.0,
+        "beat": "twist",
+        "script": "医生：我不一样，我可以自救",
+        "joke_point": "双标言论出反转",
+        "background": "同前",
+        "cats": "hamham猫抬头理直气壮 虎斑猫震惊",
+        "audio": "理直气壮男声 震惊音效",
+        "subtitle": "我不一样 我可以自救",
+        "seedream_prompt": "",
+        "local_cat_asset_keywords": "理直气壮hamham猫 大眼震惊虎斑猫",
+        "local_background_keywords": ""
+      },
+      {
+        "shot_id": 5,
+        "duration": 3.0,
+        "beat": "punchline",
+        "script": "医生：这玩意搞嘴里就舒服",
+        "joke_point": "破防说真话戳笑点",
+        "background": "同前",
+        "cats": "hamham猫眯眼爽 虎斑猫呆愣",
+        "audio": "欠揍男声",
+        "subtitle": "这玩意搞嘴里就舒服",
+        "seedream_prompt": "",
+        "local_cat_asset_keywords": "爽脸hamham猫 呆愣虎斑猫",
+        "local_background_keywords": ""
+      },
+      {
+        "shot_id": 6,
+        "duration": 2.7,
+        "beat": "ending",
+        "script": "引流信息",
+        "joke_point": "结尾引流/作者页收束",
+        "background": "深色抖音引流页",
+        "cats": "圆形hamham猫头像居中",
+        "audio": "BGM淡出",
+        "subtitle": "抖音搜索 梦梦的猫meme剧场",
+        "seedream_prompt": "深色背景抖音账号引流页",
+        "local_cat_asset_keywords": "圆形hamham猫头像",
+        "local_background_keywords": "抖音引流页素材"
+      }
+    ]
+  },
+  "quality_notes": [
+    "双标梗共鸣强，笑点密集，素材复用性高，适合多场景迁移",
+    "normalized_storyboard_fields: filled 1 blank or inconsistent fields"
+  ],
+  "_raw_content_sha256": "720530df0e7c31faf3badb635dbe1881a06a58341dff8bc15798fc8a497141c0",
+  "video_id": "bkmm-017-抖音202663-378934",
+  "filename": "抖音202663-378934.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 12.769,
+    "size_bytes": 702754,
+    "width": 720,
+    "height": 960,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "eb77f1b987560c91935966b7b54f92be1c3eb325737a3443a63162378872116b"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 3.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-017-抖音202663-378934/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-017-抖音202663-378934/audio.m4a",
+    "analyzed_at": "2026-06-03T03:02:49.859433+00:00",
+    "normalized_at": "2026-06-03T03:19:12.599916+00:00"
+  }
+}

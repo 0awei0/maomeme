@@ -24,6 +24,12 @@ from .doubao_client import (
     stream_candidates_with_doubao_context,
 )
 from .text_materials import matching_preset_scenes, topic_for_agent
+from .viral_structure_library import (
+    viral_reference_notes,
+    viral_reference_prompt,
+    viral_references_for_theme,
+    viral_template_seed,
+)
 from .video_analyzer import analyze_video_structure, source_summary
 
 
@@ -54,6 +60,7 @@ async def generate_script_candidates(
 ) -> list[ScriptCandidate]:
     index = load_assets()
     text_context = topic_for_agent(theme)
+    viral_refs = viral_references_for_theme(theme, text_context)
     scripts = []
     provider_note = "local_fallback"
     if use_doubao and ark_available():
@@ -62,10 +69,11 @@ async def generate_script_candidates(
             assets_text=assets_summary(index),
             text_context=text_context,
             duration_mode=normalize_duration_mode(duration_mode),
+            viral_reference_text=viral_reference_prompt(viral_refs),
         )
         provider_note = "doubao_agent" if scripts else "doubao_parse_failed_fallback"
     if not scripts:
-        scripts = screenwriter_agent(theme, text_context)
+        scripts = screenwriter_agent(theme, text_context, viral_refs)
     scored = [(score_script(script, theme, index), script) for script in scripts]
     scored.sort(key=lambda item: item[0], reverse=True)
     candidates = [
@@ -74,13 +82,17 @@ async def generate_script_candidates(
     ]
     for candidate in candidates:
         candidate.notes.insert(0, f"生成来源：{provider_note}")
+        for note in reversed(viral_reference_notes(viral_refs)):
+            candidate.notes.insert(1, note)
     while len(candidates) < 3:
-        base = scripts[0] if scripts else screenwriter_agent(theme, {})[0]
+        base = scripts[0] if scripts else screenwriter_agent(theme, {}, viral_refs)[0]
         variant = json.loads(json.dumps(base, ensure_ascii=False))
         variant["name"] = f"{base.get('name', '候选')}·变体{len(candidates) + 1}"
         variant["beats"] = revise_beats_for_instruction(variant.get("beats", []), "更轻松一点")
         fallback_candidate = script_to_candidate(variant, theme, score_script(variant, theme, index) - len(candidates), text_context, len(candidates) + 1, duration_mode)
         fallback_candidate.notes.insert(0, f"生成来源：{provider_note}")
+        for note in reversed(viral_reference_notes(viral_refs)):
+            fallback_candidate.notes.insert(1, note)
         candidates.append(fallback_candidate)
     return candidates
 
@@ -94,16 +106,18 @@ async def stream_script_candidates(
     index = load_assets()
     text_context = topic_for_agent(theme)
     mode = normalize_duration_mode(duration_mode)
+    viral_refs = viral_references_for_theme(theme, text_context)
 
     if not use_doubao:
         yield {"type": "stage", "message": "测试模式：使用本地预设候选", "progress": 0.18}
         candidates = build_script_candidates(
-            scripts=screenwriter_agent(theme, text_context),
+            scripts=screenwriter_agent(theme, text_context, viral_refs),
             theme=theme,
             index=index,
             text_context=text_context,
             duration_mode=mode,
             provider_note="local_fallback_explicit",
+            viral_refs=viral_refs,
         )
         yield {"type": "final", "candidates": candidates, "provider_note": "local_fallback_explicit"}
         return
@@ -111,25 +125,27 @@ async def stream_script_candidates(
     if not ark_available():
         yield {"type": "stage", "message": "Doubao 未配置，回退本地候选", "progress": 0.18}
         candidates = build_script_candidates(
-            scripts=screenwriter_agent(theme, text_context),
+            scripts=screenwriter_agent(theme, text_context, viral_refs),
             theme=theme,
             index=index,
             text_context=text_context,
             duration_mode=mode,
             provider_note="local_fallback_no_ark",
+            viral_refs=viral_refs,
         )
         yield {"type": "final", "candidates": candidates, "provider_note": "local_fallback_no_ark"}
         return
 
     preview_candidates = build_script_candidates(
-        scripts=screenwriter_agent(theme, text_context),
+        scripts=screenwriter_agent(theme, text_context, viral_refs),
         theme=theme,
         index=index,
         text_context=text_context,
         duration_mode=mode,
         provider_note="doubao_waiting_preview",
+        viral_refs=viral_refs,
     )
-    yield {"type": "stage", "message": "先展示素材库草稿方向，等待 Doubao Agent 流式结果", "progress": 0.42}
+    yield {"type": "stage", "message": "已匹配已验证爆款结构，先展示草稿方向", "progress": 0.42}
     for index_num, candidate in enumerate(preview_candidates):
         candidate.notes.insert(0, "等待真实 Agent 中：这是文本素材库草稿预览")
         yield {
@@ -141,7 +157,7 @@ async def stream_script_candidates(
 
     raw_result: dict[str, Any] | None = None
     content_size = 0
-    async for event in stream_candidates_with_doubao_context(theme, assets_summary(index), text_context, mode):
+    async for event in stream_candidates_with_doubao_context(theme, assets_summary(index), text_context, mode, viral_reference_text=viral_reference_prompt(viral_refs)):
         if event["type"] == "delta":
             text = event.get("text", "")
             content_size += len(text)
@@ -158,7 +174,7 @@ async def stream_script_candidates(
     provider_note = "doubao_agent_stream"
     if not scripts:
         provider_note = "doubao_stream_parse_failed_fallback"
-        scripts = screenwriter_agent(theme, text_context)
+        scripts = screenwriter_agent(theme, text_context, viral_refs)
 
     candidates = build_script_candidates(
         scripts=scripts,
@@ -167,6 +183,7 @@ async def stream_script_candidates(
         text_context=text_context,
         duration_mode=mode,
         provider_note=provider_note,
+        viral_refs=viral_refs,
     )
     yield {"type": "final", "candidates": candidates, "provider_note": provider_note}
 
@@ -196,9 +213,10 @@ async def generate_doubao_candidate_scripts_parallel(
     assets_text: str,
     text_context: dict[str, Any],
     duration_mode: str,
+    viral_reference_text: str = "",
 ) -> list[dict[str, Any]]:
     scripts: list[dict[str, Any]] = []
-    async for event in stream_doubao_candidate_scripts_parallel(theme, assets_text, text_context, duration_mode):
+    async for event in stream_doubao_candidate_scripts_parallel(theme, assets_text, text_context, duration_mode, viral_reference_text):
         if event["type"] == "script":
             scripts.append(event["script"])
     return dedupe_scripts(scripts)
@@ -209,6 +227,7 @@ async def stream_doubao_candidate_scripts_parallel(
     assets_text: str,
     text_context: dict[str, Any],
     duration_mode: str,
+    viral_reference_text: str = "",
 ):
     settings = get_settings()
     semaphore = asyncio.Semaphore(settings.ARK_AGENT_CONCURRENCY)
@@ -221,6 +240,7 @@ async def stream_doubao_candidate_scripts_parallel(
                 text_context=text_context,
                 duration_mode=duration_mode,
                 angle=angle,
+                viral_reference_text=viral_reference_text,
             )
         scripts = normalize_doubao_candidate_scripts(raw)
         return {"position": position, "angle": angle, "scripts": scripts}
@@ -276,9 +296,10 @@ def build_script_candidates(
     text_context: dict[str, Any],
     duration_mode: str,
     provider_note: str,
+    viral_refs: list[dict[str, Any]] | None = None,
 ) -> list[ScriptCandidate]:
     if not scripts:
-        scripts = screenwriter_agent(theme, text_context)
+        scripts = screenwriter_agent(theme, text_context, viral_refs)
     scored = [(score_script(script, theme, index), script) for script in scripts]
     scored.sort(key=lambda item: item[0], reverse=True)
     candidates = [
@@ -287,8 +308,10 @@ def build_script_candidates(
     ]
     for candidate in candidates:
         candidate.notes.insert(0, f"生成来源：{provider_note}")
+        for note in reversed(viral_reference_notes(viral_refs or [])):
+            candidate.notes.insert(1, note)
     while len(candidates) < 3:
-        base = scripts[0] if scripts else screenwriter_agent(theme, {})[0]
+        base = scripts[0] if scripts else screenwriter_agent(theme, {}, viral_refs)[0]
         variant = json.loads(json.dumps(base, ensure_ascii=False))
         variant["name"] = f"{base.get('name', '候选')}·变体{len(candidates) + 1}"
         variant["beats"] = revise_beats_for_instruction(variant.get("beats", []), "更轻松一点")
@@ -301,6 +324,8 @@ def build_script_candidates(
             duration_mode,
         )
         fallback_candidate.notes.insert(0, f"生成来源：{provider_note}")
+        for note in reversed(viral_reference_notes(viral_refs or [])):
+            fallback_candidate.notes.insert(1, note)
         candidates.append(fallback_candidate)
     return candidates
 
@@ -315,10 +340,12 @@ async def plan_from_candidate(
     index = load_assets()
     source_structure = await _source_structure(sample_video_path, use_doubao, prefer_fast=sample_video_path is None)
     text_context = topic_for_agent(theme)
+    viral_refs = viral_references_for_theme(theme, text_context)
     script = candidate_to_script(candidate)
     mode = normalize_duration_mode(duration_mode)
     script["beats"] = expand_beats_for_duration(script.get("beats", []), mode, theme, text_context)
     beats = director_agent(script, theme, mode)
+    apply_viral_patterns_to_beats(beats, candidate, viral_refs)
     timeline, notes = casting_and_validator_agents(beats, theme, index)
     plan = MaoMemePlan(
         id=f"maomeme-{int(time.time())}",
@@ -334,6 +361,7 @@ async def plan_from_candidate(
             f"用户选择剧本：{candidate.title}",
             f"素材覆盖评分：{candidate.score:.1f}",
             f"目标时长模式：{mode}，预计 {round(beats[-1]['end'], 1) if beats else 0}s。",
+            *viral_reference_notes(viral_refs),
             *context_notes(text_context),
             *notes,
         ],
@@ -352,10 +380,12 @@ async def storyboard_stream_from_candidate(
     index = load_assets()
     yield {"type": "stage", "message": "素材索引已读取，正在拆解剧本", "progress": 0.08}
     text_context = topic_for_agent(theme)
+    viral_refs = viral_references_for_theme(theme, text_context)
     script = candidate_to_script(candidate)
     mode = normalize_duration_mode(duration_mode)
     script["beats"] = expand_beats_for_duration(script.get("beats", []), mode, theme, text_context)
     beats = director_agent(script, theme, mode)
+    apply_viral_patterns_to_beats(beats, candidate, viral_refs)
     source_task = asyncio.create_task(_source_structure(sample_video_path, use_doubao, prefer_fast=sample_video_path is None))
     yield {
         "type": "stage",
@@ -389,6 +419,7 @@ async def storyboard_stream_from_candidate(
             f"用户选择剧本：{candidate.title}",
             f"素材覆盖评分：{candidate.score:.1f}",
             f"目标时长模式：{mode}，预计 {round(beats[-1]['end'], 1) if beats else 0}s。",
+            *viral_reference_notes(viral_refs),
             *context_notes(text_context),
             *notes,
         ],
@@ -521,6 +552,8 @@ def script_to_candidate(script: dict[str, Any], theme: str, score: float, text_c
             "motions": script.get("emotion", []),
             "backgrounds": script.get("scene", []),
             "keywords": script.get("theme_keywords", []),
+            "viral_reference_id": script.get("viral_reference_id", ""),
+            "viral_reference_title": script.get("viral_reference_title", ""),
         },
         notes=context_notes(text_context),
     )
@@ -577,6 +610,8 @@ def candidate_to_script(candidate: ScriptCandidate) -> dict[str, Any]:
         "scene": candidate.asset_hints.get("backgrounds", []),
         "theme_keywords": candidate.asset_hints.get("keywords", []),
         "emotion": candidate.asset_hints.get("motions", []),
+        "viral_reference_id": candidate.asset_hints.get("viral_reference_id", ""),
+        "viral_reference_title": candidate.asset_hints.get("viral_reference_title", ""),
     }
 
 
@@ -723,11 +758,14 @@ def multi_agent_fallback_plan(theme: str, source_structure: VideoStructure | Non
     3. casting director matches each beat to local cat/background assets
     4. validator rejects weak matches and records gap strategies
     """
-    candidates = screenwriter_agent(theme, text_context)
+    viral_refs = viral_references_for_theme(theme, text_context)
+    candidates = screenwriter_agent(theme, text_context, viral_refs)
     scored = [(score_script(candidate, theme, index), candidate) for candidate in candidates]
     scored.sort(key=lambda item: item[0], reverse=True)
     script = scored[0][1]
     beats = director_agent(script, theme)
+    selected_candidate = script_to_candidate(script, theme, scored[0][0], text_context, 1)
+    apply_viral_patterns_to_beats(beats, selected_candidate, viral_refs)
     timeline, notes = casting_and_validator_agents(beats, theme, index)
     return MaoMemePlan(
         id=f"maomeme-{int(time.time())}",
@@ -743,6 +781,7 @@ def multi_agent_fallback_plan(theme: str, source_structure: VideoStructure | Non
             f"编剧 agent 生成 {len(candidates)} 个候选剧本，选择素材贴合度最高的一版。",
             "导演 agent 将剧本压成 4 个猫 meme 节奏点：hook/setup/escalation/punchline。",
             "素材导演 agent 按情绪动作和场景关键词匹配猫动画与背景。",
+            *viral_reference_notes(viral_refs),
             *context_notes(text_context),
             *notes,
         ],
@@ -832,17 +871,22 @@ def fallback_plan(theme: str, source_structure: VideoStructure | None, index: di
     )
 
 
-def screenwriter_agent(theme: str, text_context: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+def screenwriter_agent(
+    theme: str,
+    text_context: dict[str, Any] | None = None,
+    viral_refs: list[dict[str, Any]] | None = None,
+) -> list[dict[str, Any]]:
     theme_short = _setup_copy(theme)
+    viral_scripts = [viral_template_seed(ref, theme) for ref in (viral_refs or [])[:1]]
     if text_context:
         contextual = contextual_scripts(theme, text_context)
         if contextual:
-            return contextual
+            return [*viral_scripts, *contextual][:3] if viral_scripts else contextual
     office = _theme_has(theme, ["上班", "打工", "会议", "电脑", "老板", "加班"])
     school = _theme_has(theme, ["学校", "教室", "考试", "作业", "同学"])
     car = _theme_has(theme, ["开车", "堵车", "车里", "路上"])
     if office:
-        return [
+        return [*viral_scripts, *[
             {
                 "name": "会议排满版",
                 "beats": [
@@ -879,9 +923,9 @@ def screenwriter_agent(theme: str, text_context: dict[str, Any] | None = None) -
                 "theme_keywords": ["周一", "打工", "会议", "下班"],
                 "emotion": ["探头", "冷漠", "哭", "跳舞"],
             },
-        ]
+        ]][:3]
     if school:
-        return [
+        return [*viral_scripts, *[
             {
                 "name": "作业突袭版",
                 "beats": [
@@ -894,9 +938,9 @@ def screenwriter_agent(theme: str, text_context: dict[str, Any] | None = None) -
                 "theme_keywords": ["老师", "作业", "教室", "同桌"],
                 "emotion": ["震惊", "探头", "哭", "蹦跳"],
             }
-        ]
+        ]][:3]
     if car:
-        return [
+        return [*viral_scripts, *[
             {
                 "name": "堵车路怒版",
                 "beats": [
@@ -909,8 +953,8 @@ def screenwriter_agent(theme: str, text_context: dict[str, Any] | None = None) -
                 "theme_keywords": ["导航", "开车", "堵车", "方向盘"],
                 "emotion": ["震惊", "开车", "疯狂", "演奏"],
             }
-        ]
-    return [
+        ]][:3]
+    fallback = [
         {
             "name": "万能反差版",
             "beats": [
@@ -924,6 +968,7 @@ def screenwriter_agent(theme: str, text_context: dict[str, Any] | None = None) -
             "emotion": ["震惊", "冷漠", "哭", "跳舞"],
         }
     ]
+    return [*viral_scripts, *fallback][:3]
 
 
 def contextual_scripts(theme: str, topic: dict[str, Any]) -> list[dict[str, Any]]:
@@ -1036,6 +1081,37 @@ def director_agent(script: dict[str, Any], theme: str, duration_mode: str = "sho
         )
         start = end
     return beats
+
+
+def apply_viral_patterns_to_beats(
+    beats: list[dict[str, Any]],
+    candidate: ScriptCandidate,
+    viral_refs: list[dict[str, Any]],
+) -> None:
+    reference_id = str(candidate.asset_hints.get("viral_reference_id") or "")
+    reference = next((item for item in viral_refs if str(item.get("id")) == reference_id), None)
+    if reference is None and viral_refs:
+        reference = viral_refs[0]
+    if not reference:
+        return
+    storyboard = reference.get("storyboard", [])
+    for index, beat in enumerate(beats):
+        source_shot = storyboard[min(index, len(storyboard) - 1)] if storyboard else {}
+        if not isinstance(source_shot, dict):
+            source_shot = {}
+        beat["viral_reference"] = {
+            "id": reference.get("id", ""),
+            "title": reference.get("title", ""),
+            "beat": source_shot.get("beat", ""),
+            "joke_point": source_shot.get("joke_point", ""),
+            "background": source_shot.get("background", ""),
+            "cats": source_shot.get("cats", ""),
+            "audio": source_shot.get("audio", ""),
+        }
+        for key, field in (("background", "scene_keywords"), ("cats", "emotion_keywords")):
+            text = str(source_shot.get(key, ""))
+            if text:
+                beat[field] = list(dict.fromkeys([*beat.get(field, []), text]))
 
 
 def layout_for_role(role: str, caption: str) -> str:
@@ -1227,7 +1303,7 @@ def build_timeline_slot(
         "overlay_actions": overlay_planner_tool(beat, motion, background),
         "gap": gap,
         "packaging": packaging_for_gap(beat["role"], gap),
-        "source_pattern": pattern_for_role(beat["role"]),
+        "source_pattern": pattern_for_beat(beat),
     }
     return slot, slot_notes
 
@@ -1514,6 +1590,18 @@ def pattern_for_role(role: str) -> str:
         "punchline": "爆款结尾：反转或记忆点收束",
         "cta": "爆款尾声：轻 CTA/情绪回落",
     }.get(role, "爆款结构槽位")
+
+
+def pattern_for_beat(beat: dict[str, Any]) -> str:
+    viral = beat.get("viral_reference") if isinstance(beat.get("viral_reference"), dict) else None
+    if viral and viral.get("title"):
+        details = " / ".join(
+            str(item)
+            for item in [viral.get("beat"), viral.get("joke_point")]
+            if item
+        )
+        return f"爆款参考《{viral.get('title')}》：{details or pattern_for_role(beat['role'])}"
+    return pattern_for_role(beat["role"])
 
 
 def material_needs_from_timeline(timeline: list[dict[str, Any]]) -> dict[str, Any]:

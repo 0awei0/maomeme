@@ -1,0 +1,102 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 2.0,
+      "beat": "hook",
+      "script": "亡牌销冠这一块",
+      "joke_point": "铺垫玩命销冠人设",
+      "background": "乡间柏油路两侧绿树红白路桩",
+      "cats": "2只香蕉猫，一只站路中拿机油，一只坐车里",
+      "audio": "土嗨BGM起，卡车呼啸音效",
+      "subtitle": "顶部黑边白字：亡牌销冠这一块",
+      "seedream_prompt": "乡间柏油路两侧绿树路边红白路桩",
+      "local_cat_asset_keywords": "香蕉猫 拿机油 香蕉猫 坐车",
+      "local_background_keywords": "乡间马路 红卡车 白轿车"
+    },
+    {
+      "shot_id": 2,
+      "duration": 2.0,
+      "beat": "twist",
+      "script": "卧槽！？",
+      "joke_point": "真撞的反差感",
+      "background": "同前，加KO特效",
+      "cats": "香蕉猫躺地懵逼，车主猫瞪大眼睛",
+      "audio": "撞击音效+KO特效音",
+      "subtitle": "车主头顶：卧槽！？",
+      "seedream_prompt": "乡间马路加红色泼墨KO特效",
+      "local_cat_asset_keywords": "香蕉猫 倒地 震惊猫表情包",
+      "local_background_keywords": "KO特效素材"
+    },
+    {
+      "shot_id": 3,
+      "duration": 2.0,
+      "beat": "escalation",
+      "script": "不是哥们？这还不阴吗？",
+      "joke_point": "被撞还推销的离谱",
+      "background": "同前，无特效",
+      "cats": "黑脸香蕉猫站起举机油，车主猫张嘴",
+      "audio": "BGM继续",
+      "subtitle": "车主头顶：不是哥们？这还不阴吗？",
+      "seedream_prompt": "乡间柏油路白天",
+      "local_cat_asset_keywords": "黑脸香蕉猫 举机油 吐槽猫表情包",
+      "local_background_keywords": "乡间马路"
+    },
+    {
+      "shot_id": 4,
+      "duration": 3.0,
+      "beat": "punchline",
+      "script": "推销机油+冲你没被撞死我买了+爽快",
+      "joke_point": "购买理由离谱",
+      "background": "同前",
+      "cats": "两只大笑橘猫，一只举机油",
+      "audio": "大笑音效",
+      "subtitle": "对应台词放角色头顶",
+      "seedream_prompt": "乡间柏油路白天",
+      "local_cat_asset_keywords": "大笑橘猫表情包 举机油",
+      "local_background_keywords": "乡间马路"
+    },
+    {
+      "shot_id": 5,
+      "duration": 6.0,
+      "beat": "setup",
+      "script": "无台词",
+      "joke_point": "现实复刻meme场景",
+      "background": "车内第一视角，郊区马路",
+      "cats": "无猫，真人素材",
+      "audio": "撞击音效+玻璃碎裂音效",
+      "subtitle": "无",
+      "seedream_prompt": "汽车驾驶舱内第一视角郊区马路",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "车内第一视角 撞车素材"
+    },
+    {
+      "shot_id": 6,
+      "duration": 4.0,
+      "beat": "escalation",
+      "script": "无台词",
+      "joke_point": "现实真亡牌销冠",
+      "background": "车内视角，挡风玻璃有裂纹",
+      "cats": "无猫，真人素材",
+      "audio": "BGM继续",
+      "subtitle": "无",
+      "seedream_prompt": "车内视角挡风玻璃裂站举机油男子",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "车内视角 举机油男子"
+    },
+    {
+      "shot_id": 7,
+      "duration": 7.0,
+      "beat": "ending",
+      "script": "无台词",
+      "joke_point": "梗照进现实的反差",
+      "background": "车内视角，男子趴车窗",
+      "cats": "无猫，真人素材",
+      "audio": "BGM渐停",
+      "subtitle": "无",
+      "seedream_prompt": "男子趴车窗举机油笑",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "车内视角 男子趴车窗"
+    }
+  ]
+}

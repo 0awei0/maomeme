@@ -1,0 +1,22 @@
+{
+  "video_id": "bkmm-022-抖音202663-502975",
+  "verdict": "pass",
+  "score": 90.0,
+  "summary": "拆解整体与视频内容高度匹配，剧情、分镜、背景、猫素材、字幕均符合视频实际，仅音频内容无法从画面完全确认",
+  "confirmed_points": [
+    "整体剧情脉络和起承转合与视频一致，完整覆盖现有场景和情感反转点",
+    "分镜顺序正确，场景切换节奏符合视频实际",
+    "各场景背景描述准确，分别为现代客厅、华为手机门店、CS沙漠游戏地图、电脑城、汽车4S店、纯黑背景、抖音搜索界面",
+    "猫及其他动物素材的数量、位置、角色设定均与画面一致",
+    "剧本和字幕内容与视频中的文字完全匹配"
+  ],
+  "issues": [],
+  "audio_confidence": "low",
+  "needs_human_review": false,
+  "_raw_content_sha256": "dc2e5e4fd3f4d8684c9078d3087b128353d9b1effbdaa3054daf24baa17e3d8e",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:34:53.121940+00:00",
+  "structure_sha256": "6beb5c0135fcf1b9c3b14580f1769b6ee1a4f45db17f99ded78e9b41ba35913f",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-022-抖音202663-502975/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

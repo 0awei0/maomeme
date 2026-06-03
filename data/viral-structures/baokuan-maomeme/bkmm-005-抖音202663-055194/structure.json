@@ -1,0 +1,410 @@
+{
+  "video_summary": {
+    "title": "当我第一次在家煮米饭",
+    "one_sentence": "新手按人头算碗数放米煮出溢出天际的米饭的搞笑翻车吐槽",
+    "primary_topic": "新手做饭翻车日常",
+    "meme_type": "生活沙雕吐槽类猫meme",
+    "overall_tone": "搞怪沙雕 共鸣感强"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "妈妈吃一碗",
+      "speaker": "我",
+      "tone": "软萌",
+      "emotion": "天真",
+      "function": "铺垫",
+      "confidence": 1
+    },
+    {
+      "start_time": 2,
+      "end_time": 4,
+      "text": "爸爸吃一碗",
+      "speaker": "我",
+      "tone": "软萌",
+      "emotion": "天真",
+      "function": "铺垫",
+      "confidence": 1
+    },
+    {
+      "start_time": 4,
+      "end_time": 6,
+      "text": "姐姐吃一碗",
+      "speaker": "我",
+      "tone": "软萌",
+      "emotion": "天真",
+      "function": "铺垫",
+      "confidence": 1
+    },
+    {
+      "start_time": 6,
+      "end_time": 9,
+      "text": "我自己吃两碗",
+      "speaker": "我",
+      "tone": "软萌",
+      "emotion": "满足",
+      "function": " escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 9,
+      "end_time": 11,
+      "text": "一锅刚刚好",
+      "speaker": "我",
+      "tone": "呆萌",
+      "emotion": "满意",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 11,
+      "end_time": 15,
+      "text": "我真是个小天才，妈妈回来肯定会夸我",
+      "speaker": "我",
+      "tone": "得意",
+      "emotion": "自恋",
+      "function": " escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 15,
+      "end_time": 18,
+      "text": "我：妈妈我把饭煮好了 妈妈：真的假的？",
+      "speaker": "我/妈妈",
+      "tone": "兴奋/疑惑",
+      "emotion": "期待/怀疑",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 18,
+      "end_time": 21,
+      "text": "我：你快来看...",
+      "speaker": "我",
+      "tone": "兴奋",
+      "emotion": "得意",
+      "function": "punchline铺垫",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "setup",
+      "script": "加第一碗米给妈妈",
+      "joke_point": "按人头分碗放米",
+      "visual_description": "厨房台面上奶猫往内胆加一碗米",
+      "pacing_note": "快节奏卡点"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2,
+      "end_time": 9,
+      "duration": 7,
+      "beat": "escalation",
+      "script": "连续加4碗米",
+      "joke_point": "米量越堆越高",
+      "visual_description": "奶猫每次点头加一碗米，内胆米越来越多",
+      "pacing_note": "重复动作卡点"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 9,
+      "end_time": 11,
+      "duration": 2,
+      "beat": "twist",
+      "script": "一锅刚刚好",
+      "joke_point": "5碗米只堆成小团还以为刚好",
+      "visual_description": "橘猫震惊脸看内胆的米",
+      "pacing_note": "停顿0.5秒增强反差"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 11,
+      "end_time": 15,
+      "duration": 4,
+      "beat": "escalation",
+      "script": "自我夸奖等妈妈表扬",
+      "joke_point": "自我感觉极度良好",
+      "visual_description": "歪嘴狗摇头晃脑得意",
+      "pacing_note": "慢一点突出得意感"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 15,
+      "end_time": 18,
+      "duration": 3,
+      "beat": "setup",
+      "script": "迎接妈妈回家",
+      "joke_point": "妈妈半信半疑",
+      "visual_description": "玄关处小狗兴奋，橘猫妈妈疑惑",
+      "pacing_note": "对话节奏自然"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 18,
+      "end_time": 21,
+      "duration": 3,
+      "beat": "punchline",
+      "script": "展示煮好的饭",
+      "joke_point": "饭溢到天花板高，两人震惊",
+      "visual_description": "厨房内米饭柱溢出，两只猫瞳孔地震",
+      "pacing_note": "突然切镜头增强冲击"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 21,
+      "end_time": 24.45,
+      "duration": 3.45,
+      "beat": "ending",
+      "script": "真实溢出米饭实拍",
+      "joke_point": "现实真有这种翻车案例",
+      "visual_description": "实拍电饭煲米饭溢出到顶的画面",
+      "pacing_note": "定格3秒留余韵"
+    }
+  ],
+  "cat_track": [
+    {
+      "shot_id": 1,
+      "count": 1,
+      "role": "我",
+      "position": "画面右侧",
+      "action": "点头递米",
+      "expression": "软萌微笑",
+      "emotion": "天真",
+      "layout": "右半边",
+      "asset_keywords": "灰白花奶猫 歪头点头"
+    },
+    {
+      "shot_id": 3,
+      "count": 1,
+      "role": "我",
+      "position": "画面右侧",
+      "action": "瞪大眼睛",
+      "expression": "震惊",
+      "emotion": "难以置信",
+      "layout": "右半边",
+      "asset_keywords": "橘猫 瞪大眼 震惊脸"
+    },
+    {
+      "shot_id": 6,
+      "count": 2,
+      "role": "我/妈妈",
+      "position": "画面中右/右",
+      "action": "瞪大眼睛愣住",
+      "expression": "瞳孔地震",
+      "emotion": "震惊",
+      "layout": "左右分布",
+      "asset_keywords": "震惊猫 橘猫 懵逼脸"
+    }
+  ],
+  "background_track": [
+    {
+      "shot_id": 1,
+      "setting": "现代简约厨房",
+      "props": "电饭煲内胆 挂墙锅盖 电饭煲",
+      "composition": "居中放内胆，右侧留猫的位置",
+      "mood": "暖光日常",
+      "existing_asset_keywords": "厨房 台面 电饭煲",
+      "seedream_prompt": "暖光现代厨房台面，放电饭煲和内胆",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 5,
+      "setting": "家居玄关",
+      "props": "入户门 收纳柜",
+      "composition": "左右两边留角色位",
+      "mood": "日常家居",
+      "existing_asset_keywords": "玄关 走廊 入户门",
+      "seedream_prompt": "简约家居玄关走廊，暖光",
+      "need_generated_background": false
+    }
+  ],
+  "audio_track": {
+    "bgm_style": "抖音常用轻快沙雕BGM",
+    "bgm_mood": "活泼搞怪",
+    "voice_style": "萌系少女音+中年女性疑问音",
+    "voice_presence": "清晰突出，盖过BGM",
+    "sfx": [
+      "放米咚咚声",
+      "震惊倒抽气音效"
+    ],
+    "rhythm_sync": "每加一碗米踩一次鼓点，反转处停顿重音"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "白色粗黑圆角字体，带黑边",
+    "subtitle_density": "低，每屏最多2行",
+    "emphasis_words": [
+      "一碗",
+      "两碗",
+      "刚刚好",
+      "小天才"
+    ],
+    "bubble_or_dialogue_style": "无气泡，文字直接在角色下方",
+    "stickers_or_overlays": [
+      "顶部固定白色标题条：当我第一次在家煮米饭"
+    ],
+    "transition_notes": [
+      "全部硬切，无花哨转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "新手做某事按份算量→自我满意→实际过量翻车→他人震惊"
+    ],
+    "shot_templates": [
+      "重复加量卡点→自我得意→反转翻车→实拍佐证"
+    ],
+    "cat_action_templates": [
+      "点头递东西动作",
+      "震惊瞪大眼表情",
+      "歪嘴得意表情"
+    ],
+    "background_templates": [
+      "日常厨房台面",
+      "家居玄关"
+    ],
+    "audio_templates": [
+      "轻快沙雕BGM+动作卡点音效+萌系配音"
+    ],
+    "suitable_topics": [
+      "做饭翻车",
+      "新手做事没概念过量",
+      "购物买多了",
+      "做饭量估错"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.0,
+        "beat": "setup",
+        "script": "妈妈吃一碗",
+        "joke_point": "按人头加米",
+        "background": "暖光厨房台面，放电饭煲内胆",
+        "cats": "灰白花奶猫右方歪头点头，表情天真",
+        "audio": "萌音说台词+咚的放米音效",
+        "subtitle": "妈妈吃一碗",
+        "seedream_prompt": "现代暖光厨房台面，放电饭煲内胆",
+        "local_cat_asset_keywords": "灰白花奶猫 点头 软萌",
+        "local_background_keywords": "厨房 台面 电饭煲"
+      },
+      {
+        "shot_id": 2,
+        "duration": 7.0,
+        "beat": "escalation",
+        "script": "爸爸/姐姐/我各加对应碗数米",
+        "joke_point": "米量越堆越高",
+        "background": "同前",
+        "cats": "同前奶猫连续点头",
+        "audio": "萌音说对应台词+每次放米咚声",
+        "subtitle": "对应台词",
+        "seedream_prompt": "同前",
+        "local_cat_asset_keywords": "同前",
+        "local_background_keywords": "同前"
+      },
+      {
+        "shot_id": 3,
+        "duration": 2.0,
+        "beat": "twist",
+        "script": "一锅刚刚好",
+        "joke_point": "米量很少还以为刚好",
+        "background": "同前",
+        "cats": "橘猫在右侧瞪大眼睛看米",
+        "audio": "呆萌音说台词+短重音",
+        "subtitle": "一锅刚刚好",
+        "seedream_prompt": "同前",
+        "local_cat_asset_keywords": "橘猫 震惊脸 瞪大眼",
+        "local_background_keywords": "同前"
+      },
+      {
+        "shot_id": 4,
+        "duration": 4.0,
+        "beat": "escalation",
+        "script": "我真是个小天才，妈妈肯定夸我",
+        "joke_point": "自我感觉极度良好",
+        "background": "同前，内胆合上电饭煲",
+        "cats": "歪嘴狗在右侧摇头晃脑",
+        "audio": "得意音说台词",
+        "subtitle": "对应台词",
+        "seedream_prompt": "同前，电饭煲合上盖子",
+        "local_cat_asset_keywords": "歪嘴狗 得意 晃头",
+        "local_background_keywords": "同前 电饭煲合盖"
+      },
+      {
+        "shot_id": 5,
+        "duration": 3.0,
+        "beat": "setup",
+        "script": "我：妈妈我把饭煮好了 妈妈：真的假的？",
+        "joke_point": "妈妈半信半疑",
+        "background": "简约玄关走廊",
+        "cats": "左：开心小狗 右：疑惑橘猫",
+        "audio": "兴奋音+疑惑音",
+        "subtitle": "对应对话",
+        "seedream_prompt": "简约暖光家居玄关走廊",
+        "local_cat_asset_keywords": "开心吐舌狗 疑惑橘猫",
+        "local_background_keywords": "玄关 走廊 入户门"
+      },
+      {
+        "shot_id": 6,
+        "duration": 3.0,
+        "beat": "punchline",
+        "script": "你快来看...",
+        "joke_point": "饭溢成柱两人震惊",
+        "background": "同厨房背景，米饭柱溢出顶到天花板",
+        "cats": "中：震惊狗 右：震惊橘猫",
+        "audio": "兴奋音+倒抽气音效",
+        "subtitle": "你快来看...",
+        "seedream_prompt": "厨房内米饭柱溢出顶到天花板",
+        "local_cat_asset_keywords": "震惊狗 瞳孔地震橘猫",
+        "local_background_keywords": "厨房 溢出的米饭柱"
+      },
+      {
+        "shot_id": 7,
+        "duration": 3.45,
+        "beat": "ending",
+        "script": "收尾：现实真有这种翻车",
+        "joke_point": "现实真有这种翻车",
+        "background": "实拍米饭溢出到顶的厨房",
+        "cats": "无",
+        "audio": "搞笑重音收尾",
+        "subtitle": "收尾：现实真有这种翻车",
+        "seedream_prompt": "",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "实拍 电饭煲米饭溢出"
+      }
+    ]
+  },
+  "quality_notes": [
+    "米量递增动画卡点准确，反转反差强烈，真实实拍结尾增强共鸣",
+    "normalized_storyboard_fields: filled 2 blank or inconsistent fields"
+  ],
+  "_raw_content_sha256": "60bcd68830c5684dbfa29f3dd7d2eff2e10c6cf342d6e612567bcb7c7a3dea60",
+  "video_id": "bkmm-005-抖音202663-055194",
+  "filename": "抖音202663-055194.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 24.451,
+    "size_bytes": 1611782,
+    "width": 960,
+    "height": 720,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "9a9e1a881f1bbacc9aba506365ae29fed708fcedaee874b13464b7415e8d6922"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 3.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-005-抖音202663-055194/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-005-抖音202663-055194/audio.m4a",
+    "analyzed_at": "2026-06-03T03:01:10.877518+00:00",
+    "normalized_at": "2026-06-03T03:19:12.593333+00:00"
+  }
+}

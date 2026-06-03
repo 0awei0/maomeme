@@ -1,0 +1,444 @@
+{
+  "video_summary": {
+    "title": "凌晨两点不小心回复妈妈微信社死现场",
+    "one_sentence": "年轻人熬夜骗妈妈已睡觉，凌晨两点手滑回妈妈微信被抓包挨骂的搞笑日常",
+    "primary_topic": "亲子互动、熬夜社死、撒谎被戳穿",
+    "meme_type": "真人日常猫meme演绎",
+    "overall_tone": "搞笑接地气、共鸣感强"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 3,
+      "text": "当我在凌晨两点不小心回复了妈妈的微信",
+      "speaker": "旁白",
+      "tone": "戏谑",
+      "emotion": "吃瓜",
+      "function": "hook",
+      "confidence": 1
+    },
+    {
+      "start_time": 4,
+      "end_time": 6,
+      "text": "这么晚了还不睡",
+      "speaker": "妈妈",
+      "tone": "严肃",
+      "emotion": "质疑",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 7,
+      "end_time": 8,
+      "text": "我马上睡妈妈",
+      "speaker": "我",
+      "tone": "乖巧",
+      "emotion": "心虚",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 9,
+      "end_time": 10,
+      "text": "好我等会来检查",
+      "speaker": "妈妈",
+      "tone": "威严",
+      "emotion": "半信半疑",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 12,
+      "end_time": 14,
+      "text": "刷会手机再睡吧",
+      "speaker": "我",
+      "tone": "放松",
+      "emotion": "窃喜",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 18,
+      "end_time": 20,
+      "text": "妈妈你怎么还没睡呢",
+      "speaker": "我",
+      "tone": "惊讶",
+      "emotion": "慌张",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 21,
+      "end_time": 22,
+      "text": "过来看你睡了没有",
+      "speaker": "妈妈",
+      "tone": "淡定",
+      "emotion": "抓包",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 30,
+      "end_time": 32,
+      "text": "睡不着 再玩会吧",
+      "speaker": "我",
+      "tone": "侥幸",
+      "emotion": "放松",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 37,
+      "end_time": 39,
+      "text": "回下妈妈微信",
+      "speaker": "我",
+      "tone": "随意",
+      "emotion": "无防备",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 39,
+      "end_time": 41,
+      "text": "等等 现在是几点？",
+      "speaker": "我",
+      "tone": "震惊",
+      "emotion": "恐慌",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 48,
+      "end_time": 50,
+      "text": "完啦 芭比Q啦",
+      "speaker": "我",
+      "tone": "崩溃",
+      "emotion": "绝望",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 53,
+      "end_time": 56,
+      "text": "我让你熬夜！/妈妈我以后再也不熬夜了",
+      "speaker": "妈妈/我",
+      "tone": "愤怒/求饶",
+      "emotion": "生气/害怕",
+      "function": "ending",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 3,
+      "duration": 3,
+      "beat": "hook",
+      "script": "顶部标题点明核心梗，时间显示21:00，我在床上打游戏",
+      "joke_point": "提前剧透社死结局引发好奇",
+      "visual_description": "卧室场景，橘白猫抱手机坐在床上",
+      "pacing_note": "快节奏切入"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 4,
+      "end_time": 11,
+      "duration": 7,
+      "beat": "setup",
+      "script": "妈妈来查岗，我假装答应马上睡",
+      "joke_point": "表面乖顺背后要熬夜的反差",
+      "visual_description": "右侧出现金渐层猫（妈妈），我换成端正坐的灰猫",
+      "pacing_note": "对话节奏平缓"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 12,
+      "end_time": 17,
+      "duration": 5,
+      "beat": "escalation",
+      "script": "妈妈走后我立刻拿起手机刷，时间从21点跳到23点",
+      "joke_point": "嘴上说睡实际熬夜的真实写照",
+      "visual_description": "换成揉眼睛的猫刷手机，时间数字跳转",
+      "pacing_note": "快进时间加快节奏"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 18,
+      "end_time": 26,
+      "duration": 8,
+      "beat": "twist",
+      "script": "23点妈妈突然又来查岗，我撒谎差点睡着",
+      "joke_point": "连续被查岗的慌张感",
+      "visual_description": "我换成笑到张嘴的猫，妈妈换成戴假发的橘猫",
+      "pacing_note": "突然转折节奏加快"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 27,
+      "end_time": 34,
+      "duration": 7,
+      "beat": "escalation",
+      "script": "关灯后我躺床上继续玩，时间跳到凌晨2点",
+      "joke_point": "屡教不改熬夜的真实感",
+      "visual_description": "场景变暗，换成香蕉猫躺在床上玩手机",
+      "pacing_note": "时间快进节奏放缓"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 35,
+      "end_time": 44,
+      "duration": 9,
+      "beat": "punchline",
+      "script": "收到妈妈微信随手回复，突然发现已经凌晨2点",
+      "joke_point": "手滑回复的社死瞬间",
+      "visual_description": "微信弹窗弹出，猫依次换成震惊脸、恐慌脸",
+      "pacing_note": "节奏骤紧"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 45,
+      "end_time": 50,
+      "duration": 5,
+      "beat": "punchline",
+      "script": "我瞎编梦游回复的借口，妈妈发问号",
+      "joke_point": "弱智借口的搞笑感",
+      "visual_description": "微信聊天界面弹出，换成震惊脸灰猫",
+      "pacing_note": "笑点密集"
+    },
+    {
+      "shot_id": 8,
+      "start_time": 51,
+      "end_time": 56,
+      "duration": 5,
+      "beat": "ending",
+      "script": "妈妈生气出现，我求饶挨揍",
+      "joke_point": "被抓包挨骂的共鸣感",
+      "visual_description": "红眼长发猫（妈妈）出现，香蕉猫拿棒球棍求饶",
+      "pacing_note": "收尾干脆"
+    }
+  ],
+  "cat_track": [
+    "单只橘白猫，臭脸抱手机，打游戏状态",
+    "双猫，左灰猫端正坐（我），右金渐层严肃（妈妈）",
+    "单只浅棕猫，揉眼睛刷手机",
+    "双猫，左狗头笑（我），右戴假发橘猫（妈妈）",
+    "单只香蕉猫，躺床玩手机",
+    "单只灰猫，震惊恐慌表情",
+    "单只灰猫，瞪眼睛崩溃表情",
+    "双猫，左红眼长发猫（妈妈），右香蕉猫求饶"
+  ],
+  "background_track": [
+    "暖光卧室，波点床单，纱帘，床头灯，亮灯",
+    "同卧室，亮灯",
+    "同卧室，亮灯，顶部时间数字跳转",
+    "同卧室，亮灯",
+    "同卧室，关灯偏暗，顶部时间跳转",
+    "同卧室，暗灯，弹出微信弹窗",
+    "同卧室，暗灯，弹出聊天界面",
+    "同卧室，暗灯"
+  ],
+  "audio_track": {
+    "bgm_style": "抖音常用搞怪轻快电子BGM",
+    "bgm_mood": "诙谐轻松",
+    "voice_style": "戏精搞笑配音，分男女声配妈妈和我",
+    "voice_presence": "清晰靠前，盖过BGM",
+    "sfx": [
+      "手机点击声",
+      "关灯声",
+      "惊讶吸气声",
+      "挨揍咚咚声"
+    ],
+    "rhythm_sync": "每切换猫表情、弹字幕时踩BGM鼓点"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "黄字黑边粗体",
+    "subtitle_density": "每镜头1-2行，每行不超10字",
+    "emphasis_words": [
+      "凌晨两点",
+      "芭比Q啦",
+      "再也不熬夜了"
+    ],
+    "bubble_or_dialogue_style": "无气泡，文字直接显示在对应角色上方",
+    "stickers_or_overlays": [
+      "顶部黄色标题条",
+      "微信消息弹窗",
+      "聊天界面弹窗",
+      "时间数字贴纸"
+    ],
+    "transition_notes": [
+      "全程硬切，无花哨转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "撒谎应付长辈/领导→偷偷放飞自我→意外露马脚→社死被抓"
+    ],
+    "shot_templates": [
+      "固定统一背景+时间跳转+换猫表情对应情绪变化"
+    ],
+    "cat_action_templates": [
+      "臭脸玩手机",
+      "端正坐装乖",
+      "揉眼刷手机",
+      "震惊脸",
+      "求饶脸"
+    ],
+    "background_templates": [
+      "统一居家卧室场景，仅调整灯光亮度区分时间"
+    ],
+    "audio_templates": [
+      "搞怪轻快BGM+戏精分角色配音+踩点音效"
+    ],
+    "suitable_topics": [
+      "熬夜被抓",
+      "摸鱼被领导抓",
+      "撒谎被戳穿",
+      "日常社死瞬间"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 3.0,
+        "beat": "hook",
+        "script": "21点我在床上打游戏，顶部点明核心梗",
+        "joke_point": "提前剧透社死结局引发好奇",
+        "background": "暖光卧室，波点床单，纱帘床头灯",
+        "cats": "橘白猫臭脸抱手机，打游戏状",
+        "audio": "BGM起，旁白读标题",
+        "subtitle": "当我在凌晨两点不小心回复了妈妈的微信",
+        "seedream_prompt": "暖光温馨卧室，波点床单，纱帘，床头灯",
+        "local_cat_asset_keywords": "臭脸橘白猫 抱手机",
+        "local_background_keywords": "居家卧室 波点床单"
+      },
+      {
+        "shot_id": 2,
+        "duration": 7.0,
+        "beat": "setup",
+        "script": "妈妈查岗问怎么还不睡，我答应马上睡",
+        "joke_point": "表面乖顺背后要熬夜的反差",
+        "background": "同卧室亮灯",
+        "cats": "左灰猫端正坐，右金渐层严肃看左",
+        "audio": "分角色配妈妈和我的台词",
+        "subtitle": "这么晚了还不睡/我马上睡妈妈",
+        "seedream_prompt": "同之前卧室场景，亮灯",
+        "local_cat_asset_keywords": "端正灰猫 严肃金渐层",
+        "local_background_keywords": "居家卧室 亮灯"
+      },
+      {
+        "shot_id": 3,
+        "duration": 5.0,
+        "beat": "escalation",
+        "script": "妈妈走后我刷手机，时间从21点跳到23点",
+        "joke_point": "嘴上说睡实际熬夜的真实写照",
+        "background": "同卧室亮灯，顶部时间跳转",
+        "cats": "浅棕猫揉眼睛，面前放手机",
+        "audio": "刷手机音效，时间跳转滴答声",
+        "subtitle": "刷会手机再睡吧",
+        "seedream_prompt": "同卧室，亮灯，加时间数字贴纸",
+        "local_cat_asset_keywords": "揉眼睛猫 刷手机",
+        "local_background_keywords": "居家卧室 时间贴纸"
+      },
+      {
+        "shot_id": 4,
+        "duration": 8.0,
+        "beat": "twist",
+        "script": "23点妈妈又来查岗，我撒谎差点睡着",
+        "joke_point": "连续被查岗的慌张感",
+        "background": "同卧室亮灯",
+        "cats": "左狗头笑，右戴短发假发橘猫",
+        "audio": "惊讶吸气声，分角色配台词",
+        "subtitle": "妈妈你怎么还没睡呢/过来看你睡了没有",
+        "seedream_prompt": "同卧室亮灯",
+        "local_cat_asset_keywords": "笑脸狗头 戴假发橘猫",
+        "local_background_keywords": "居家卧室 亮灯"
+      },
+      {
+        "shot_id": 5,
+        "duration": 7.0,
+        "beat": "escalation",
+        "script": "关灯后我继续玩，时间跳到凌晨2点",
+        "joke_point": "屡教不改熬夜的真实感",
+        "background": "同卧室，关灯调暗",
+        "cats": "香蕉猫躺床上玩手机",
+        "audio": "关灯音效，时间跳转滴答声",
+        "subtitle": "睡不着 再玩会吧",
+        "seedream_prompt": "同卧室，光线调暗，暖黄小台灯亮",
+        "local_cat_asset_keywords": "香蕉猫 躺床玩手机",
+        "local_background_keywords": "卧室 暗灯"
+      },
+      {
+        "shot_id": 6,
+        "duration": 9.0,
+        "beat": "punchline",
+        "script": "收到妈妈微信随手回，突然发现已经2点",
+        "joke_point": "手滑回复的社死瞬间",
+        "background": "同卧室暗灯，弹出微信弹窗",
+        "cats": "依次换香蕉猫点手机、震惊猫、恐慌猫",
+        "audio": "手机提示音，点击声，惊讶吸气声",
+        "subtitle": "回下妈妈微信/等等 现在是几点？",
+        "seedream_prompt": "同暗灯卧室，加微信消息弹窗",
+        "local_cat_asset_keywords": "香蕉猫 震惊猫 恐慌猫",
+        "local_background_keywords": "暗灯卧室 微信弹窗"
+      },
+      {
+        "shot_id": 7,
+        "duration": 5.0,
+        "beat": "punchline",
+        "script": "我编梦游回复的借口，妈妈发问号",
+        "joke_point": "弱智借口的搞笑感",
+        "background": "同暗灯卧室，弹出聊天界面",
+        "cats": "灰猫瞪眼睛崩溃状",
+        "audio": "崩溃哀嚎声",
+        "subtitle": "完啦 芭比Q啦",
+        "seedream_prompt": "同暗灯卧室，加微信聊天界面弹窗",
+        "local_cat_asset_keywords": "崩溃震惊灰猫",
+        "local_background_keywords": "暗灯卧室 聊天界面"
+      },
+      {
+        "shot_id": 8,
+        "duration": 5.0,
+        "beat": "ending",
+        "script": "妈妈生气出现，我求饶挨揍",
+        "joke_point": "被抓包挨骂的共鸣感",
+        "background": "同暗灯卧室",
+        "cats": "左红眼长发猫（妈妈），右香蕉猫拿棒球棍求饶",
+        "audio": "愤怒吼声，求饶声，挨揍咚咚声",
+        "subtitle": "我让你熬夜！/妈妈我以后再也不熬夜了",
+        "seedream_prompt": "同暗灯卧室",
+        "local_cat_asset_keywords": "红眼长发猫 求饶香蕉猫",
+        "local_background_keywords": "暗灯卧室"
+      }
+    ]
+  },
+  "quality_notes": [
+    "猫meme表情和情绪匹配度高，共鸣感强",
+    "场景统一，制作成本低，易复刻",
+    "梗点贴近年轻人日常，传播性强"
+  ],
+  "_raw_content_sha256": "ed7c2b5ade666765c10c57d83db180bcc907dc5c8e474baadbbea400c81678c2",
+  "video_id": "bkmm-021-抖音202663-494793",
+  "filename": "抖音202663-494793.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 56.378,
+    "size_bytes": 2265828,
+    "width": 720,
+    "height": 730,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "abf261f5788285070887f508c912e5e124f34758879a55f151e19b13c6f93cbd"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-021-抖音202663-494793/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-021-抖音202663-494793/audio.m4a",
+    "analyzed_at": "2026-06-03T03:04:34.371668+00:00",
+    "normalized_at": "2026-06-03T03:19:12.602318+00:00"
+  }
+}

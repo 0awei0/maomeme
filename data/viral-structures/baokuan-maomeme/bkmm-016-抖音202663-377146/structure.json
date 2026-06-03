@@ -1,0 +1,396 @@
+{
+  "video_summary": {
+    "title": "在村里的假期日常",
+    "one_sentence": "两只猫模拟农村闺蜜假期约去县城玩的完整日常，引发返乡年轻人共鸣",
+    "primary_topic": "乡村假期县城游玩日常",
+    "meme_type": "猫meme写实vlog",
+    "overall_tone": "轻松搞笑 接地气有共鸣"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "我：去县城玩吗",
+      "speaker": "我",
+      "tone": "期待",
+      "emotion": "开心",
+      "function": "邀约",
+      "confidence": 1
+    },
+    {
+      "start_time": 2,
+      "end_time": 3,
+      "text": "闺蜜：走！先去广场",
+      "speaker": "闺蜜",
+      "tone": "爽快",
+      "emotion": "兴奋",
+      "function": "应答",
+      "confidence": 1
+    },
+    {
+      "start_time": 5,
+      "end_time": 7,
+      "text": "我：有点想吐 朋友：我也是",
+      "speaker": "我/朋友",
+      "tone": "虚弱",
+      "emotion": "晕车",
+      "function": "状态描述",
+      "confidence": 1
+    },
+    {
+      "start_time": 13,
+      "end_time": 15,
+      "text": "终于到了 先买奶茶",
+      "speaker": "我",
+      "tone": "解脱",
+      "emotion": "开心",
+      "function": "行程安排",
+      "confidence": 1
+    },
+    {
+      "start_time": 18,
+      "end_time": 20,
+      "text": "就是这个味 去看电影",
+      "speaker": "我/朋友",
+      "tone": "满足",
+      "emotion": "开心",
+      "function": "行程推进",
+      "confidence": 1
+    },
+    {
+      "start_time": 22,
+      "end_time": 25,
+      "text": "太好看了 快出下一部",
+      "speaker": "我/朋友",
+      "tone": "兴奋",
+      "emotion": "满意",
+      "function": "观影反馈",
+      "confidence": 1
+    },
+    {
+      "start_time": 27,
+      "end_time": 33,
+      "text": "你尝尝这个 不好 五点多了",
+      "speaker": "我/朋友",
+      "tone": "惊讶",
+      "emotion": "慌乱",
+      "function": "冲突点",
+      "confidence": 1
+    },
+    {
+      "start_time": 35,
+      "end_time": 38,
+      "text": "还好赶上了 明天还玩吗？好啊",
+      "speaker": "我/朋友",
+      "tone": "庆幸",
+      "emotion": "期待",
+      "function": "收尾邀约",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 3,
+      "duration": 3,
+      "beat": "hook",
+      "script": "村口邀约去县城",
+      "joke_point": "农村小孩约玩的真实感",
+      "visual_description": "乡村老房前景两只猫对话",
+      "pacing_note": "快切"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 5,
+      "end_time": 12,
+      "duration": 7,
+      "beat": "setup",
+      "script": "坐颠簸班车晕车",
+      "joke_point": "农村班车晕车共鸣",
+      "visual_description": "班车内两只丧橘猫",
+      "pacing_note": "中速 晃动感"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 13,
+      "end_time": 17,
+      "duration": 4,
+      "beat": "escalation",
+      "script": "到县城广场",
+      "joke_point": "下车解脱的真实感",
+      "visual_description": "商场前两只猫下车",
+      "pacing_note": "快切"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 18,
+      "end_time": 21,
+      "duration": 3,
+      "beat": "escalation",
+      "script": "买蜜雪冰城",
+      "joke_point": "县城奶茶标配共鸣",
+      "visual_description": "蜜雪门店两只猫喝奶茶",
+      "pacing_note": "快切"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 22,
+      "end_time": 26,
+      "duration": 4,
+      "beat": "escalation",
+      "script": "看完电影聊感想",
+      "joke_point": "哪吒电影玩梗共鸣",
+      "visual_description": "影院大厅两只猫聊电影",
+      "pacing_note": "中速"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 27,
+      "end_time": 33,
+      "duration": 6,
+      "beat": "twist",
+      "script": "吃小吃发现到点",
+      "joke_point": "玩嗨忘时间的真实感",
+      "visual_description": "老街小吃摊两只猫慌了",
+      "pacing_note": "节奏加快"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 34,
+      "end_time": 35,
+      "duration": 1,
+      "beat": "punchline",
+      "script": "快跑赶末班车",
+      "joke_point": "赶车的慌乱感",
+      "visual_description": "猫跑步动效",
+      "pacing_note": "极快"
+    },
+    {
+      "shot_id": 8,
+      "start_time": 35,
+      "end_time": 38,
+      "duration": 3,
+      "beat": "ending",
+      "script": "返程约明天",
+      "joke_point": "意犹未尽约下次的真实感",
+      "visual_description": "班车内两只猫对话",
+      "pacing_note": "平缓收尾"
+    }
+  ],
+  "cat_track": [
+    "双猫：左橘猫（我）右金渐层（闺蜜），对话感",
+    "双橘猫：丧脸，挨一起，晕车状态",
+    "双猫：橘猫仰头喘气，白胖猫点头",
+    "双猫：cheems喝奶茶，香蕉猫开心",
+    "双猫：花脸猫笑，金渐层拿爆米花",
+    "双猫：奶牛猫递吃的，香蕉猫惊讶",
+    "单猫：灰猫跑步动态",
+    "双橘猫：丧脸，挨一起，放松状态"
+  ],
+  "background_track": [
+    "乡村老砖房，石板路，晒玉米，白天",
+    "老旧中巴车内，窗外绿树晃动，颠簸感",
+    "县城商场广场，中巴车停门口，白天",
+    "蜜雪冰城门店，红色招牌，店内",
+    "县城影院大厅，紫色灯光，开阔",
+    "县城老街小吃摊，三轮车，红色招牌",
+    "老街马路，人来人往，傍晚",
+    "老旧中巴车内，窗外树晃，返程"
+  ],
+  "audio_track": {
+    "bgm_style": "抖音轻快搞笑热曲",
+    "bgm_mood": "活泼接地气",
+    "voice_style": "搞笑女软萌配音 带点方言感",
+    "voice_presence": "清晰 贴脸",
+    "sfx": [
+      "班车颠簸声",
+      "转场咻声",
+      "跑步音效"
+    ],
+    "rhythm_sync": "每2-3秒对应一个笑点 字幕和猫动作同步BGM鼓点"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "黑体白字黑边 居中",
+    "subtitle_density": "每屏1-2句 每句10字以内",
+    "emphasis_words": [
+      "去县城",
+      "末班车",
+      "蜜雪冰城"
+    ],
+    "bubble_or_dialogue_style": "无气泡 角色名黄底黑字标在猫下方",
+    "stickers_or_overlays": [
+      "手机贴纸",
+      "奶茶贴纸",
+      "爆米花贴纸"
+    ],
+    "transition_notes": [
+      "模糊跳切 无复杂转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "乡村约玩流程：邀约-赶路-游玩-赶车返程-约下次"
+    ],
+    "shot_templates": [
+      "典型场景跳切+双猫对话 每场景3-5秒"
+    ],
+    "cat_action_templates": [
+      "橘猫丧脸=状态差 金渐层活泼=开心 香蕉猫=惊讶"
+    ],
+    "background_templates": [
+      "乡村+县城典型场景组合 写实接地气"
+    ],
+    "audio_templates": [
+      "轻快搞笑BGM+搞笑女配音+生活化音效"
+    ],
+    "suitable_topics": [
+      "放假日常",
+      "闺蜜出行",
+      "县城生活共鸣",
+      "返乡vlog"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 3.0,
+        "beat": "hook",
+        "script": "我：去县城玩吗？闺蜜：走！",
+        "joke_point": "农村约玩真实感",
+        "background": "乡村老砖房石板路 晒玉米",
+        "cats": "左橘猫怼脸 右金渐层跳出",
+        "audio": "轻快BGM 爽快配音",
+        "subtitle": "对应台词+角色标注",
+        "seedream_prompt": "乡村老房石板路 晒玉米 白天",
+        "local_cat_asset_keywords": "橘猫怼脸 金渐层跳",
+        "local_background_keywords": "乡村村口 老房"
+      },
+      {
+        "shot_id": 2,
+        "duration": 7.0,
+        "beat": "setup",
+        "script": "我：有点想吐 朋友：我也是 忍",
+        "joke_point": "班车晕车共鸣",
+        "background": "老旧中巴车内 窗外树晃",
+        "cats": "两只丧橘猫挨一起 状态差",
+        "audio": "BGM+颠簸音效 虚弱配音",
+        "subtitle": "对应台词+角色标注",
+        "seedream_prompt": "老旧中巴车内 窗外绿树晃动",
+        "local_cat_asset_keywords": "丧脸橘猫 两只",
+        "local_background_keywords": "农村班车 内景"
+      },
+      {
+        "shot_id": 3,
+        "duration": 4.0,
+        "beat": "escalation",
+        "script": "终于到了 先买奶茶",
+        "joke_point": "下车解脱感",
+        "background": "县城商场广场 中巴停门口",
+        "cats": "橘猫仰头喘气 白胖猫点头",
+        "audio": "BGM 解脱感配音",
+        "subtitle": "对应台词+角色标注",
+        "seedream_prompt": "县城商场广场 中巴车停门口",
+        "local_cat_asset_keywords": "橘猫喘气 白胖猫",
+        "local_background_keywords": "县城广场 商场"
+      },
+      {
+        "shot_id": 4,
+        "duration": 3.0,
+        "beat": "escalation",
+        "script": "就是这个味 去看电影",
+        "joke_point": "蜜雪冰城标配共鸣",
+        "background": "蜜雪冰城门店 红色招牌",
+        "cats": "cheems喝奶茶 香蕉猫开心",
+        "audio": "BGM 满足配音",
+        "subtitle": "对应台词+角色标注",
+        "seedream_prompt": "蜜雪冰城门店 红色招牌 店内",
+        "local_cat_asset_keywords": "cheems喝奶茶 香蕉猫",
+        "local_background_keywords": "蜜雪冰城 门店"
+      },
+      {
+        "shot_id": 5,
+        "duration": 4.0,
+        "beat": "escalation",
+        "script": "太好看了 快出下一部",
+        "joke_point": "哪吒电影玩梗",
+        "background": "县城影院大厅 紫色灯光",
+        "cats": "花脸猫笑 金渐层拿爆米花",
+        "audio": "BGM 兴奋配音",
+        "subtitle": "对应台词+角色标注",
+        "seedream_prompt": "县城影院大厅 紫色灯光",
+        "local_cat_asset_keywords": "花脸猫笑 金渐层",
+        "local_background_keywords": "影院大厅 县城"
+      },
+      {
+        "shot_id": 6,
+        "duration": 6.0,
+        "beat": "twist",
+        "script": "你尝尝这个 不好 五点多了",
+        "joke_point": "玩嗨忘时间的真实感",
+        "background": "县城老街小吃摊 三轮车",
+        "cats": "奶牛猫递吃的 香蕉猫惊讶",
+        "audio": "BGM节奏加快 惊讶配音",
+        "subtitle": "对应台词+角色标注",
+        "seedream_prompt": "县城老街小吃摊 三轮车 红色招牌",
+        "local_cat_asset_keywords": "奶牛猫 香蕉猫惊讶",
+        "local_background_keywords": "老街小吃摊 县城"
+      },
+      {
+        "shot_id": 7,
+        "duration": 1.0,
+        "beat": "punchline",
+        "script": "快跑 没末班车了",
+        "joke_point": "赶车慌乱感",
+        "background": "老街马路 傍晚",
+        "cats": "灰猫跑步动态",
+        "audio": "BGM+跑步音效 急促配音",
+        "subtitle": "对应台词",
+        "seedream_prompt": "老街马路 人来人往 傍晚",
+        "local_cat_asset_keywords": "灰猫跑 动态",
+        "local_background_keywords": "老街马路 傍晚"
+      },
+      {
+        "shot_id": 8,
+        "duration": 3.0,
+        "beat": "ending",
+        "script": "还好赶上了 明天还玩吗？好啊",
+        "joke_point": "约下次的真实感",
+        "background": "中巴车内 返程 窗外晃",
+        "cats": "两只丧橘猫挨一起",
+        "audio": "BGM平缓 放松配音",
+        "subtitle": "对应台词+角色标注",
+        "seedream_prompt": "中巴车内 返程 窗外树晃动",
+        "local_cat_asset_keywords": "丧脸橘猫 两只",
+        "local_background_keywords": "农村班车 内景"
+      }
+    ]
+  },
+  "quality_notes": [
+    "场景写实共鸣强，猫meme情绪匹配度高，节奏紧凑笑点密"
+  ],
+  "_raw_content_sha256": "24c39e1cb0281c49042a2820043c9410d898737e2e715182e835080602c7abd3",
+  "video_id": "bkmm-016-抖音202663-377146",
+  "filename": "抖音202663-377146.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 38.777,
+    "size_bytes": 2907877,
+    "width": 720,
+    "height": 960,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "a3619396066aa04429d720bf2bda1c2271dd0ead3befb6d44f9e1fa4e057d3a1"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-016-抖音202663-377146/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-016-抖音202663-377146/audio.m4a",
+    "analyzed_at": "2026-06-03T03:03:10.713097+00:00",
+    "normalized_at": "2026-06-03T03:19:12.599317+00:00"
+  }
+}

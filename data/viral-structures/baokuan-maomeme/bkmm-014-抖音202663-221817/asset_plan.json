@@ -1,0 +1,88 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 2.0,
+      "beat": "hook",
+      "script": "人是随时会s的",
+      "joke_point": "开场抛反常识观点炸场",
+      "background": "中式客厅 电视柜 绿植 瓷砖地",
+      "cats": "左：开心吐舌狗 右：2只呆滞蟑螂猫",
+      "audio": "BGM起 贱声配音 咚音效",
+      "subtitle": "黄字黑边居中：人是随时会s的",
+      "seedream_prompt": "明亮普通中式家庭客厅",
+      "local_cat_asset_keywords": "开心狗表情包 大眼睛蟑螂猫",
+      "local_background_keywords": "中式客厅 家庭场景"
+    },
+    {
+      "shot_id": 2,
+      "duration": 2.0,
+      "beat": "setup",
+      "script": "不是老了才会s的",
+      "joke_point": "强化摆烂歪理前提",
+      "background": "同上中式客厅",
+      "cats": "左：丧脸橘猫 右：2只呆滞蟑螂猫",
+      "audio": "贱声配音 咚音效",
+      "subtitle": "黄字黑边居中：不是老了才会s的",
+      "seedream_prompt": "同上中式客厅",
+      "local_cat_asset_keywords": "丧橘猫 蟑螂猫",
+      "local_background_keywords": "中式客厅"
+    },
+    {
+      "shot_id": 3,
+      "duration": 2.0,
+      "beat": "escalation",
+      "script": "所以啊活到现在已经很不错了",
+      "joke_point": "推出核心摆烂观点",
+      "background": "同上中式客厅",
+      "cats": "左：仰头嗨橘猫 右：2只呆滞蟑螂猫",
+      "audio": "贱声配音 咚音效",
+      "subtitle": "黄字黑边居中：所以啊活到现在很不错",
+      "seedream_prompt": "同上中式客厅",
+      "local_cat_asset_keywords": "嗨橘猫 蟑螂猫",
+      "local_background_keywords": "中式客厅"
+    },
+    {
+      "shot_id": 4,
+      "duration": 12.0,
+      "beat": "escalation",
+      "script": "富贵我就淫等9句押韵口号",
+      "joke_point": "反鸡汤押韵口号洗脑",
+      "background": "同上中式客厅",
+      "cats": "左：点头指人cheems 右：2只呆滞蟑螂猫",
+      "audio": "每句配音卡鼓点 配咚音效",
+      "subtitle": "每句黄字黑边居中切换",
+      "seedream_prompt": "同上中式客厅",
+      "local_cat_asset_keywords": "cheems指人 蟑螂猫",
+      "local_background_keywords": "中式客厅"
+    },
+    {
+      "shot_id": 5,
+      "duration": 4.0,
+      "beat": "punchline",
+      "script": "s了更没事了",
+      "joke_point": "终极摆烂+爸妈震惊反差",
+      "background": "同上中式客厅",
+      "cats": "左：傻脸橘猫 右：2只瞳孔地震蟑螂猫",
+      "audio": "贱声配音 重炸音效",
+      "subtitle": "黄字黑边居中 加粉色括号补充",
+      "seedream_prompt": "同上中式客厅",
+      "local_cat_asset_keywords": "傻橘猫 震惊蟑螂猫",
+      "local_background_keywords": "中式客厅"
+    },
+    {
+      "shot_id": 6,
+      "duration": 2.0,
+      "beat": "cta",
+      "script": "搜索人随时会死的原视频",
+      "joke_point": "引导搜原梗引流",
+      "background": "抖音搜索页界面",
+      "cats": "无",
+      "audio": "收尾音效",
+      "subtitle": "搜索框内文字",
+      "seedream_prompt": "抖音搜索界面",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "抖音搜索页"
+    }
+  ]
+}

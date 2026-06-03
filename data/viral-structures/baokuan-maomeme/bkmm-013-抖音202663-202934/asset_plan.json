@@ -1,0 +1,88 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 3.0,
+      "beat": "hook",
+      "script": "1、没有上午，每天睡足八小时，爽！",
+      "joke_point": "睡懒觉共鸣",
+      "background": "现代卧室暖光大床带闹钟",
+      "cats": "1只香蕉猫站床上打哈欠，开心",
+      "audio": "BGM开头+打哈欠音效",
+      "subtitle": "顶部黄条“暑假在家现状”，下方“1、没有上午”，两侧小字标注",
+      "seedream_prompt": "现代简约卧室暖光大床床头柜",
+      "local_cat_asset_keywords": "香蕉猫 打哈欠 开心",
+      "local_background_keywords": "卧室 大床 现代"
+    },
+    {
+      "shot_id": 2,
+      "duration": 2.0,
+      "beat": "setup",
+      "script": "2、蓬头垢面，毫无形象",
+      "joke_point": "不打理形象的真实状态",
+      "background": "卧室床品近景暖光",
+      "cats": "1只炸毛胡子猫坐床上，颓废",
+      "audio": "BGM继续+臭屁音效",
+      "subtitle": "下方“2、蓬头垢面”，左侧“毫无形象”",
+      "seedream_prompt": "卧室床品近景暖光",
+      "local_cat_asset_keywords": "炸毛胡子猫 颓废",
+      "local_background_keywords": "卧室 床 近景"
+    },
+    {
+      "shot_id": 3,
+      "duration": 7.0,
+      "beat": "escalation",
+      "script": "3、各种姿势玩手机：坐/躺/倒立/举着玩",
+      "joke_point": "玩手机离谱姿势共鸣",
+      "background": "现代客厅米色沙发带装饰",
+      "cats": "香蕉猫依次换4种姿势玩手机，呆滞",
+      "audio": "BGM鼓点卡每个姿势切换+手机音效",
+      "subtitle": "下方“3、各种姿势玩手机”，对应姿势配小字",
+      "seedream_prompt": "现代客厅米色沙发暖光装饰",
+      "local_cat_asset_keywords": "香蕉猫 玩手机 各种姿势",
+      "local_background_keywords": "客厅 沙发 现代"
+    },
+    {
+      "shot_id": 4,
+      "duration": 5.0,
+      "beat": "escalation",
+      "script": "4、站起来两眼发黑，双脚发软",
+      "joke_point": "久躺站起来头晕的真实体验",
+      "background": "现代客厅米色沙发",
+      "cats": "香蕉猫站着晃悠后晕倒，迷糊",
+      "audio": "BGM变慢+头晕嗡鸣+摔倒音效",
+      "subtitle": "下方“4、站起来两眼发黑”，配状态小字",
+      "seedream_prompt": "现代客厅米色沙发",
+      "local_cat_asset_keywords": "香蕉猫 头晕 晕倒",
+      "local_background_keywords": "客厅 沙发 现代"
+    },
+    {
+      "shot_id": 5,
+      "duration": 9.0,
+      "beat": "punchline",
+      "script": "5、骚扰妈妈：要300就行，你看我像不像300？",
+      "joke_point": "找妈妈要生活费的搞笑互动",
+      "background": "现代家庭厨房橱柜洗碗池",
+      "cats": "洗碗狸花猫+撒娇香蕉猫+要生活费猫",
+      "audio": "BGM欢快+洗碗声+撒娇音+妈妈不耐烦音",
+      "subtitle": "下方“5、没事骚扰一下妈妈”，对话配彩色气泡",
+      "seedream_prompt": "现代家庭厨房橱柜洗碗池",
+      "local_cat_asset_keywords": "香蕉猫 狸花猫 洗碗 要生活费猫",
+      "local_background_keywords": "厨房 家庭 生活化"
+    },
+    {
+      "shot_id": 6,
+      "duration": 3.2,
+      "beat": "ending",
+      "script": "收尾：抖音深色作者信息页",
+      "joke_point": "结尾引流/作者页收束",
+      "background": "抖音深色作者信息页",
+      "cats": "无猫镜头/平台作者信息页",
+      "audio": "BGM结束",
+      "subtitle": "收尾：抖音深色作者信息页",
+      "seedream_prompt": "深色背景作者信息页",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "抖音结尾页"
+    }
+  ]
+}

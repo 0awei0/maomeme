@@ -1,0 +1,30 @@
+{
+  "video_id": "bkmm-024-抖音202663-525083",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "整体拆解与视频高度匹配，仅存在个别猫素材描述的小细节偏差",
+  "confirmed_points": [
+    "剧情结构、分镜顺序、台词字幕与视频完全一致，起承转合反转点对应准确",
+    "背景描述符合画面：高层住宅外墙、高空俯视视角、冬季积雪、楼下救生垫消防车等元素都准确",
+    "猫角色设定（空调师傅猫、戴安全帽的消防员猫）、动作表情的核心描述匹配画面",
+    "音频风格、字幕样式、结尾抖音搜索引流页的描述均与视频吻合"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "1",
+      "field": "cats",
+      "observed": "0-2s镜头内先出现灰白色cheems猫趴在空调外机，随后才切换为橘白猫",
+      "extracted": "橘白猫趴在空调外机上，表情疑惑",
+      "suggestion": "补充该镜头先出现灰白色cheems猫，后切换为橘白猫的描述"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "6dbf6c22675686e57160d2f05802d9ba88434165ad1e362f29fd770b7785ccf8",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:34:43.132841+00:00",
+  "structure_sha256": "bbda546c4ab7e84fba2df8d01295871b2168f52bf89448176b385388fb303e91",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-024-抖音202663-525083/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

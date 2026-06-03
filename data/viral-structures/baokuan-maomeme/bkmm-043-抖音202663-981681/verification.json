@@ -1,0 +1,22 @@
+{
+  "video_id": "bkmm-043-抖音202663-981681",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "拆解内容和视频整体高度一致，核心要素全部匹配，无严重错误",
+  "confirmed_points": [
+    "整体剧情为两只香蕉猫演绎整蛊循环套路，符合视频内容",
+    "分镜顺序、起承转合、循环反转点和视频画面完全一致",
+    "背景描述（简约白墙木门房间、抖音搜索弹窗）符合画面实际内容",
+    "猫的数量、位置、动作（端碗、敲门、探头、冒问号）描述基本准确",
+    "顶部标题字幕、结尾搜索引导文案和视频显示内容一致"
+  ],
+  "issues": [],
+  "audio_confidence": "medium",
+  "needs_human_review": false,
+  "_raw_content_sha256": "8b75feb75789cf14ab574018f0096a8b9f28b25224ab975ff45994a6a8f4312d",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:37:25.384928+00:00",
+  "structure_sha256": "d3578fd0d8d117f2de3e8535bfe676dda878d48037bdf5b61cb8f4a8d48cd47d",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-043-抖音202663-981681/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

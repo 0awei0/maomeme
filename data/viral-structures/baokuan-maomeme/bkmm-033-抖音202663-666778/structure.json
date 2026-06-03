@@ -1,0 +1,323 @@
+{
+  "video_summary": {
+    "title": "大学生最不能接受的事",
+    "one_sentence": "大学生下单后反复等快递，刚回宿舍就收到取件通知的崩溃日常",
+    "primary_topic": "大学生快递等待痛点",
+    "meme_type": "日常吐槽类",
+    "overall_tone": "搞笑共鸣"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2.5,
+      "text": "三天前：发生活费了 买两件像样的衣服穿 *下单",
+      "speaker": "旁白",
+      "tone": "活泼",
+      "emotion": "开心",
+      "function": "hook",
+      "confidence": 1
+    },
+    {
+      "start_time": 2.5,
+      "end_time": 5.5,
+      "text": "三天后：都三天了怎么还没到啊 算了先去上课吧 *焦急",
+      "speaker": "旁白",
+      "tone": "焦虑",
+      "emotion": "烦躁",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 5.5,
+      "end_time": 7.5,
+      "text": "上完课后：在配送了 吃完饭后再去拿 *期待",
+      "speaker": "旁白",
+      "tone": "雀跃",
+      "emotion": "期待",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 7.5,
+      "end_time": 12,
+      "text": "吃完饭后：怎么还在派送中啊 算了先回寝室吧 *不耐烦",
+      "speaker": "旁白",
+      "tone": "暴躁",
+      "emotion": "不满",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 12,
+      "end_time": 15.5,
+      "text": "刚回寝室：累死我了 今天应该不能到了",
+      "speaker": "旁白",
+      "tone": "疲惫",
+      "emotion": "摆烂",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 15.5,
+      "end_time": 17.8,
+      "text": "【菜鸟通知】你的快递已到，请凭取件码领取",
+      "speaker": "系统音",
+      "tone": "机械",
+      "emotion": "暴击",
+      "function": "punchline",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2.5,
+      "duration": 2.5,
+      "beat": "hook",
+      "script": "刚发生活费豪爽下单",
+      "joke_point": "大学生发生活费后的消费状态",
+      "visual_description": "仓鼠坐在宿舍床上开心蹦跶，旁侧有手机下单标识",
+      "pacing_note": "快节奏引入"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2.5,
+      "end_time": 5.5,
+      "duration": 3,
+      "beat": "setup",
+      "script": "等快递三天没到决定先上课",
+      "joke_point": "等快递的普遍焦虑心态",
+      "visual_description": "橘猫皱眉趴在书桌前盯手机",
+      "pacing_note": "情绪铺垫"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 5.5,
+      "end_time": 7.5,
+      "duration": 2,
+      "beat": "escalation",
+      "script": "看快递在配送打算吃完饭拿",
+      "joke_point": "物流更新后的期待感",
+      "visual_description": "狸花奶猫站在教学楼走廊开心咧嘴",
+      "pacing_note": "情绪上扬"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 7.5,
+      "end_time": 12,
+      "duration": 4.5,
+      "beat": "escalation",
+      "script": "吃完饭看还在派送打算回寝",
+      "joke_point": "等待超时的烦躁情绪",
+      "visual_description": "奶猫在食堂蹦跶暴躁怒吼",
+      "pacing_note": "情绪回落"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 12,
+      "end_time": 15.5,
+      "duration": 3.5,
+      "beat": "setup",
+      "script": "回寝累瘫觉得今天快递到不了",
+      "joke_point": "放弃等待的摆烂心态",
+      "visual_description": "橘猫趴在书桌前仰头叹气",
+      "pacing_note": "情绪谷底铺垫反转"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 15.5,
+      "end_time": 17.8,
+      "duration": 2.3,
+      "beat": "punchline",
+      "script": "刚回寝就收到快递取件通知",
+      "joke_point": "快递卡着回寝时间送达的崩溃暴击",
+      "visual_description": "橘猫看到通知后震惊转头跑走",
+      "pacing_note": "反转笑点爆发"
+    }
+  ],
+  "cat_track": [
+    "单只开心伸臂蹦跶的仓鼠meme，位于画面中心",
+    "单只皱眉焦虑的橘猫大头meme，位于画面中心",
+    "单只咧嘴开心的狸花奶猫meme，位于画面中心",
+    "单只暴躁蹦跶的奶猫meme，位于画面中心",
+    "单只疲惫叹气的橘猫meme，位于画面中心",
+    "单只震惊转头的橘猫meme，位于画面中心"
+  ],
+  "background_track": [
+    "大学单人宿舍床，格子床单，旁有玩偶，暖光",
+    "ins风大学书桌，洞洞板，收纳盒，台灯，明亮",
+    "明亮大学教学楼走廊，落地窗，浅色墙面",
+    "空旷大学食堂，浅色长桌椅，自然光",
+    "ins风大学书桌，洞洞板收纳，桌面整洁",
+    "ins风大学书桌，放有笔记本电脑，桌面整洁"
+  ],
+  "audio_track": {
+    "bgm_style": "抖音常用搞怪轻快电子BGM",
+    "bgm_mood": "活泼搞笑",
+    "voice_style": "萌系软妹女声配音",
+    "voice_presence": "清晰贴耳",
+    "sfx": [
+      "叹气声",
+      "手机消息通知音效",
+      "搞笑暴击音效"
+    ],
+    "rhythm_sync": "每段台词和猫动作、字幕切换严格卡点"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "顶部黄色粗体大标题，中间粉色对话字体，右侧白色状态标注",
+    "subtitle_density": "每屏2-3行字，密度低",
+    "emphasis_words": [
+      "下单",
+      "焦急",
+      "期待",
+      "不耐烦",
+      "快递通知"
+    ],
+    "bubble_or_dialogue_style": "无气泡，文字直接叠加在画面上",
+    "stickers_or_overlays": [
+      "手机图标贴纸",
+      "快递通知弹窗贴纸"
+    ],
+    "transition_notes": [
+      "镜头间硬切，无花哨转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "时间线递进式日常吐槽模板：过去-现在-不同时间节点情绪变化-反转暴击"
+    ],
+    "shot_templates": [
+      "相同主角不同场景切换，每镜头对应一个情绪节点的短平快分镜"
+    ],
+    "cat_action_templates": [
+      "不同情绪匹配对应网红猫meme脸模板：开心/焦虑/期待/暴躁/疲惫/震惊"
+    ],
+    "background_templates": [
+      "大学生常见场景模板：宿舍/书桌/教学楼/食堂"
+    ],
+    "audio_templates": [
+      "搞怪轻快BGM+萌系配音+对应情绪音效的搭配"
+    ],
+    "suitable_topics": [
+      "大学生日常吐槽",
+      "快递等待痛点",
+      "消费相关吐槽",
+      "当代年轻人生活状态"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.5,
+        "beat": "hook",
+        "script": "三天前发生活费了，买两件像样的衣服穿，下单",
+        "joke_point": "大学生刚发生活费的豪爽状态",
+        "background": "大学单人宿舍床，格子床单，玩偶摆件",
+        "cats": "开心张嘴伸臂蹦跶的仓鼠meme",
+        "audio": "轻快BGM开头，萌系女声开心念台词",
+        "subtitle": "顶部黄标题，中间粉字对话，右侧*下单标注",
+        "seedream_prompt": "大学单人宿舍床 格子床单 毛绒玩偶 暖光",
+        "local_cat_asset_keywords": "开心蹦跶仓鼠meme",
+        "local_background_keywords": "大学宿舍床"
+      },
+      {
+        "shot_id": 2,
+        "duration": 3.0,
+        "beat": "setup",
+        "script": "三天后：都三天了怎么还没到啊，算了先去上课吧",
+        "joke_point": "等快递的普遍焦虑心态",
+        "background": "ins风大学书桌，洞洞板，收纳盒",
+        "cats": "皱眉盯手机的焦虑橘猫大头meme",
+        "audio": "BGM继续，女声焦虑配音",
+        "subtitle": "中间粉字，右侧*焦急标注",
+        "seedream_prompt": "ins风大学书桌 洞洞板 收纳盒 台灯",
+        "local_cat_asset_keywords": "焦虑皱眉橘猫meme",
+        "local_background_keywords": "大学书桌"
+      },
+      {
+        "shot_id": 3,
+        "duration": 2.0,
+        "beat": "escalation",
+        "script": "上完课后：在配送了，吃完饭后再去拿",
+        "joke_point": "看到物流更新的期待感",
+        "background": "明亮大学教学楼走廊，落地窗",
+        "cats": "咧嘴开心的狸花奶猫meme",
+        "audio": "女声雀跃配音",
+        "subtitle": "中间粉字，右侧*期待标注",
+        "seedream_prompt": "明亮大学教学楼走廊 落地窗 浅色墙面",
+        "local_cat_asset_keywords": "开心狸花奶猫meme",
+        "local_background_keywords": "大学教学楼走廊"
+      },
+      {
+        "shot_id": 4,
+        "duration": 4.5,
+        "beat": "escalation",
+        "script": "吃完饭后：怎么还在派送中啊，算了先回寝室吧",
+        "joke_point": "等待超时的烦躁情绪",
+        "background": "空旷大学食堂，浅色长桌椅",
+        "cats": "蹦跶怒吼的暴躁奶猫meme",
+        "audio": "女声烦躁配音，搭配叹气音效",
+        "subtitle": "中间粉字，右侧*不耐烦标注",
+        "seedream_prompt": "空旷大学食堂 浅色长桌椅 自然光",
+        "local_cat_asset_keywords": "暴躁蹦跶奶猫meme",
+        "local_background_keywords": "大学食堂"
+      },
+      {
+        "shot_id": 5,
+        "duration": 3.5,
+        "beat": "setup",
+        "script": "刚回寝室：累死我了，今天应该不能到了",
+        "joke_point": "放弃等待的摆烂心态",
+        "background": "ins风大学书桌，洞洞板收纳",
+        "cats": "仰头叹气的疲惫橘猫meme",
+        "audio": "女声疲惫配音",
+        "subtitle": "中间粉字",
+        "seedream_prompt": "ins风大学书桌 洞洞板收纳 桌面整洁",
+        "local_cat_asset_keywords": "疲惫叹气橘猫meme",
+        "local_background_keywords": "大学书桌"
+      },
+      {
+        "shot_id": 6,
+        "duration": 2.3,
+        "beat": "punchline",
+        "script": "刚回寝就收到快递取件通知",
+        "joke_point": "快递卡着回寝时间送达的崩溃暴击",
+        "background": "ins风大学书桌，放有笔记本电脑",
+        "cats": "震惊转头跑走的橘猫meme",
+        "audio": "手机通知音效，搞笑暴击音效",
+        "subtitle": "右下角快递通知弹窗",
+        "seedream_prompt": "ins风大学书桌 放笔记本电脑 桌面整洁",
+        "local_cat_asset_keywords": "震惊转头橘猫meme",
+        "local_background_keywords": "大学书桌"
+      }
+    ]
+  },
+  "quality_notes": [
+    "情绪递进完全符合用户等快递的真实心路，共鸣感极强，猫meme与情绪匹配度高，梗点精准戳中大学生群体"
+  ],
+  "_raw_content_sha256": "4534d6397cf6a22a0ad05ef68aac9d150ce01b75f0af584b2d08fa5eb4a43b9e",
+  "video_id": "bkmm-033-抖音202663-666778",
+  "filename": "抖音202663-666778.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 17.878,
+    "size_bytes": 1209906,
+    "width": 960,
+    "height": 720,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "dfd8c27357dae54cc8e59d145b08e4f048a3734b958c7d5aac821483ebad328c"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 3.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-033-抖音202663-666778/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-033-抖音202663-666778/audio.m4a",
+    "analyzed_at": "2026-06-03T03:06:42.978852+00:00",
+    "normalized_at": "2026-06-03T03:19:12.609132+00:00"
+  }
+}

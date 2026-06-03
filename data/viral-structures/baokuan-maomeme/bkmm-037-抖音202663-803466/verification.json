@@ -1,0 +1,30 @@
+{
+  "video_id": "bkmm-037-抖音202663-803466",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "整体拆解高度匹配原视频，仅11-15秒的“我”的角色形象描述存在小错误，其余内容均准确",
+  "confirmed_points": [
+    "整体剧情顺序、起承转合、反转点完全符合原视频：老鼠嚣张被打、主人奖励鱼、猫反向送老鼠、多次送鼠最终端全家送床头的逻辑正确",
+    "各场景背景描述准确，浅米色墙面、客厅木质电视柜、深红色红木长椅、夜晚家门口、卧室格子被沙发床等场景均匹配画面",
+    "大部分猫/鼠素材描述正确，三只灰仓鼠meme、橘猫香炉meme、香蕉猫、死老鼠叉眼等元素均符合画面内容",
+    "字幕风格、BGM音效风格、转场的黑屏白字设计描述均符合原视频特点"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "3",
+      "field": "cats",
+      "observed": "11-15秒的“我”先为狸花猫震惊脸，后变为开心狗头，未出现香蕉猫",
+      "extracted": "拆解描述该镜头“我”的形象为香蕉猫震惊脸",
+      "suggestion": "修正为“左侧‘我’先为狸花猫震惊脸，后变为开心狗头，橘猫在右侧鸟巢”"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "bce1f47071d8829d79ce80ae402f000d30bb7d0ad984b75d50ca204dc30bfee7",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:36:46.787924+00:00",
+  "structure_sha256": "448b735e7451015da105ec4964fa558bf004a2edd08ce5173400651b285227af",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-037-抖音202663-803466/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

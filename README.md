@@ -10,7 +10,7 @@
 - 后端 `backend/`：FastAPI 服务，负责剧本候选生成、分镜规划、素材匹配、自然语言修订和渲染 job 队列。
 - 素材与文本库：`assets/` 放猫动画和背景图，`data/text-materials/` 放社会现实主题素材，`data/assets-index.json` 是素材索引。
 - 预制场景：`data/preset-scenes/social-scenes.json` 维护招聘会、会议室、自习室、出租屋、家庭预算桌、通勤站台等高频社会现实背景语义。
-- 渲染：默认使用 FFmpeg + Pillow 字幕图，保留猫动画原素材声音；HyperFrames 作为后续 Agent 友好的 HTML 包装增强。
+- 渲染：默认使用 FFmpeg + Pillow 字幕图，保留猫动画原素材声音；猫素材可先预抠绿生成本地透明缓存，HyperFrames 作为后续 Agent 友好的 HTML 包装增强。
 - Agent 策略：编剧 Agent 默认走豆包异步流式生成候选，导演 Agent 拆分镜，素材导演 Agent 匹配猫动画/背景，质检 Agent 检查文案和素材是否冲突。
 - 并行策略：候选剧本默认用一次协调式流式请求生成 3 个差异化方案，避免三路请求重复；批量非流式接口可按角度并发生成。分镜素材预匹配、字幕/overlay 生成、视频片段渲染会并行执行，再按时间线顺序合成。
 
@@ -28,7 +28,7 @@
 6. 如果缺少具体背景，例如“烤肠摊”“小吃摊”，分镜会记录 `background_prompt` 和补图状态；已有 Seedream 生成素材会优先复用，分镜阶段不等待慢速补图。
 7. 用户可用自然语言调用 `/api/maomeme/revise` 调整，例如“更讽刺一点”“结尾更温暖”“增加双猫对话”。
 8. 用户点击生成视频后，前端调用 `/api/maomeme/render-jobs`，后端创建异步渲染任务，前端轮询 `/api/maomeme/render-jobs/{job_id}`。
-9. 渲染器用 FFmpeg/Pillow/HyperFrames 包装执行：裁剪猫素材、保留并混合原素材音频、抠绿幕、叠背景、加字幕/气泡/飞物件/盖章/转场，最后输出 mp4。
+9. 渲染器用 FFmpeg/Pillow/HyperFrames 包装执行：裁剪猫素材、保留并混合原素材音频、优先使用预抠透明猫素材并在缺失时实时抠绿、叠背景、加字幕/气泡/飞物件/盖章/转场，最后输出 mp4。
 10. 最终视频写入 `output/jobs/`，前端可预览和下载；中间计划与运行文件写入 `backend/outputs/`。
 
 ## Agent 与固定 Workflow
@@ -45,6 +45,8 @@
 | --- | --- | --- |
 | `backend/app/services/agent_tools.py` | 素材检索、裁剪规划、转场规划、overlay 规划、背景补图决策 | Agent 工具函数 |
 | `scripts/index-assets.mjs` | 扫描猫动画和背景描述，生成 `data/assets-index.json` | 固定 workflow |
+| `scripts/clean-background-green-bands.py` | 裁掉生成背景图底部误出现的绿幕色块 | 固定素材清理 |
+| `scripts/preprocess-cat-green-screen.mjs` | 把猫绿幕 mp4 预处理成本地透明 mov 缓存 | 固定素材清理 |
 | `scripts/render-demo-video.mjs` | FFmpeg/Pillow 视频渲染执行器，支持片段并行 | 固定 workflow |
 | `scripts/make-caption.py` | 生成字幕 PNG | 渲染辅助脚本 |
 | `scripts/make-overlay-frames.py` | 生成飞物件、盖章、弹窗等 overlay 帧 | 渲染辅助脚本 |
@@ -79,9 +81,26 @@ cd frontend
 npm run index:assets
 ```
 
+如果 Seedream 或人工素材里出现明显的绿色底条，先清理背景图再重新索引：
+
+```bash
+cd frontend
+npm run assets:clean-backgrounds
+npm run index:assets
+```
+
+如果猫素材边缘绿幕明显，可以生成本地预抠缓存。缓存位于 `assets/processed/cat-motions-keyed/`，体积较大、可再生，不提交 Git：
+
+```bash
+cd frontend
+npm run assets:preprocess-cats
+```
+
 ## 素材上传策略
 
 当前仓库尽量直接上传可复现主流程所需素材：`assets/cat-motions/` 的猫动作 mp4、`assets/backgrounds/` 的背景图、`assets/generated/backgrounds/` 的预制 Seedream 背景，以及所有 `descriptions.json` 和 `data/assets-index.json`。
+
+`assets/processed/` 是本地预处理缓存，例如预抠绿后的透明猫素材，默认忽略不上传；团队成员可用 `npm run assets:preprocess-cats` 从原始猫素材重新生成。
 
 如果后续素材太大导致 GitHub 上传不稳定，优先保证这些信息被提交：
 
@@ -182,6 +201,36 @@ cd backend
 conda run -n cv python scripts/generate_preset_backgrounds.py
 ```
 
+## 爆款猫 Meme 拆解库
+
+爆款参考视频按“本地 raw + 可提交分析结果”的方式管理。原视频复制到 `samples/viral-structure/baokuan-maomeme/raw/`，该目录不提交；清单和分析结果提交，方便团队共享剧本、分镜、背景、猫素材和声音设计。
+
+导入 43 条爆款视频：
+
+```bash
+conda run -n cv python backend/scripts/import_viral_maomeme.py
+```
+
+并发调用 Doubao 视频理解分析，默认使用 base64 `video_url`，默认并发为 8，可按火山引擎额度调大到 16：
+
+```bash
+conda run -n cv python backend/scripts/analyze_viral_maomeme.py --concurrency 8 --resume
+```
+
+小批量验证：
+
+```bash
+conda run -n cv python backend/scripts/analyze_viral_maomeme.py --limit 3 --concurrency 3
+```
+
+无 API 或调试本地链路：
+
+```bash
+conda run -n cv python backend/scripts/analyze_viral_maomeme.py --limit 2 --use-doubao false
+```
+
+分析结果位于 `data/viral-structures/baokuan-maomeme/`。每条视频会生成 `structure.json`、`asset_plan.json`、`storyboard.md`、`contact_sheet.jpg` 和抽帧；本地参考音频 `audio.m4a` 与原始 Doubao 响应 `raw_doubao_response.json` 默认忽略不提交。`asset_plan.storyboard` 是后续 Agent 最重要的输入，每个分镜包含具体剧本、梗点、背景、猫素材关键词、BGM/配音/音效和 Seedream prompt。
+
 HyperFrames 包装模板位于 `hyperframes/templates/packaging-presets.json`。当前主渲染仍由稳定 FFmpeg/Pillow 执行，HyperFrames 会生成 manifest，记录每个镜头命中的包装 preset，后续可以把这些 preset 接管为更复杂的 HTML/CSS 字幕、气泡、贴纸和转场动画。
 
 ## 主要接口
@@ -211,6 +260,7 @@ data/preset-scenes/        高频社会现实背景和 Seedream prompt 预设
 data/structures/           结构迁移协议
 data/runs/                 运行生成的 plan/audit JSON
 samples/viral/             爆款参考视频样例
+samples/viral-structure/   爆款猫 meme 本地 raw 视频与 manifest
 docs/                      比赛文档和项目说明
 output/                    最终生成视频和公开产物
 backend/outputs/           后端运行中间文件

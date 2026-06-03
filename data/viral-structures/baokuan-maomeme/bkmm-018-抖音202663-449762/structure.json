@@ -1,0 +1,344 @@
+{
+  "video_summary": {
+    "title": "吃饭排队祈祷前面人都不在的恶毒时刻",
+    "one_sentence": "香蕉猫排队取餐，疯狂祈祷前面的号都不在，顺利排到后下一位破防",
+    "primary_topic": "日常排队等号的共鸣梗",
+    "meme_type": "香蕉猫搞怪meme",
+    "overall_tone": "搞笑、扎心、共鸣"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 3,
+      "text": "人生最恶毒的时刻，里面的人吃个饭怎么这么久",
+      "speaker": "旁白",
+      "tone": "吐槽",
+      "emotion": "烦躁",
+      "function": "hook",
+      "confidence": 1
+    },
+    {
+      "start_time": 3,
+      "end_time": 5,
+      "text": "232号在吗 排到您了",
+      "speaker": "店员",
+      "tone": "平淡",
+      "emotion": "无",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 5,
+      "end_time": 8,
+      "text": "内心：不在不在不在不在",
+      "speaker": "主角",
+      "tone": "默念",
+      "emotion": "祈祷",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 19,
+      "end_time": 22,
+      "text": "叫到号不在的待会都要顺延3个号哦",
+      "speaker": "店员",
+      "tone": "提示",
+      "emotion": "无",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 22,
+      "end_time": 25,
+      "text": "235号...",
+      "speaker": "店员",
+      "tone": "平淡",
+      "emotion": "无",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 25,
+      "end_time": 29,
+      "text": "我在我在！我不着急菜可以慢慢上",
+      "speaker": "主角",
+      "tone": "狂喜",
+      "emotion": "激动",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 30,
+      "end_time": 35,
+      "text": "内心：就差一个...！我的咒语还是不够恶毒",
+      "speaker": "236号",
+      "tone": "崩溃",
+      "emotion": "破防",
+      "function": "ending",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 3,
+      "duration": 3,
+      "beat": "hook",
+      "script": "主角排队等号抱怨吃饭慢",
+      "joke_point": "说出排队人的心声",
+      "visual_description": "餐饮店门口一排香蕉猫坐椅子等号，灰猫举235号在前面",
+      "pacing_note": "快切引入场景"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 3,
+      "end_time": 5,
+      "duration": 2,
+      "beat": "setup",
+      "script": "店员叫232号",
+      "joke_point": "开启祈祷循环",
+      "visual_description": "店员橘白猫站在店门口叫号",
+      "pacing_note": "节奏加快"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 5,
+      "end_time": 18,
+      "duration": 13,
+      "beat": "escalation",
+      "script": "主角连续祈祷232、233、234号都不在",
+      "joke_point": "精准复刻排队人内心OS",
+      "visual_description": "暗调聚焦主角，周围香蕉猫虚化，主角脸变cheems、橘猫表达情绪",
+      "pacing_note": "循环节奏，每次叫号切内心戏"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 18,
+      "end_time": 22,
+      "duration": 4,
+      "beat": "twist",
+      "script": "店员说叫号不在顺延3个号",
+      "joke_point": "增加祈祷的必要性",
+      "visual_description": "胖橘店员站在门口念规则",
+      "pacing_note": "节奏稍缓，铺垫笑点"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 22,
+      "end_time": 29,
+      "duration": 7,
+      "beat": "punchline",
+      "script": "叫到235号，主角狂喜应答",
+      "joke_point": "祈祷成真的爽感",
+      "visual_description": "主角跳起来大喊，表情夸张",
+      "pacing_note": "情绪高潮"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 30,
+      "end_time": 35,
+      "duration": 5,
+      "beat": "ending",
+      "script": "236号破防，吐槽自己咒语不够毒",
+      "joke_point": "反转共情下一个排队的人",
+      "visual_description": "绿猫举236号崩溃，周围香蕉猫虚化",
+      "pacing_note": "结尾留梗"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 35,
+      "end_time": 37.4,
+      "duration": 2.4,
+      "beat": "cta",
+      "script": "抖音账号引流页",
+      "joke_point": "",
+      "visual_description": "抖音账号搜索提示",
+      "pacing_note": "收尾"
+    }
+  ],
+  "cat_track": [
+    "1只灰猫主角+多只香蕉猫排队，举号码牌，表情呆滞",
+    "橘白脸猫站右侧，店员角色，表情平淡",
+    "主角依次变cheems脸、皱眉橘猫，祈祷情绪强烈",
+    "胖橘猫店员，表情正经念规则",
+    "主角跳起来大喊，表情狂喜",
+    "绿猫坐后排，举236号，崩溃表情",
+    "无猫"
+  ],
+  "background_track": [
+    "商场餐饮店门口，暖黄灯光，木质餐椅，餐品海报，暖色调",
+    "同前，餐饮店门口排队区",
+    "暗调背景，周围模糊，仅聚焦主角位置，压抑感",
+    "同前，餐饮店门口排队区",
+    "同前，餐饮店门口排队区",
+    "暗调背景，聚焦236号位置",
+    "抖音黑色引流页，白色文字"
+  ],
+  "audio_track": {
+    "bgm_style": "抖音搞怪轻快BGM，旋律俏皮",
+    "bgm_mood": "轻松搞笑",
+    "voice_style": "搞怪配音，内心戏是吐槽感，店员是平淡播音感",
+    "voice_presence": "清晰，盖过BGM",
+    "sfx": [
+      "叫号叮咚声",
+      "狂喜欢呼声",
+      "崩溃叹气声"
+    ],
+    "rhythm_sync": "和叫号、内心戏的停顿完全同步，每轮叫号踩鼓点"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "白色黑体字，居中显示，角色名黄色标注在下方",
+    "subtitle_density": "每屏1-2行，密度低",
+    "emphasis_words": [
+      "不在",
+      "别来",
+      "我在",
+      "不够恶毒"
+    ],
+    "bubble_or_dialogue_style": "无气泡，直接字幕显示内心戏和台词",
+    "stickers_or_overlays": [
+      "号码牌贴纸",
+      "角色身份标注"
+    ],
+    "transition_notes": [
+      "硬切，无花哨转场，场景和内心戏直接切换"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "排队等号/办事，主角祈祷前面的号都跳过，自己顺利排到，下一位破防"
+    ],
+    "shot_templates": [
+      "公共排队场景+暗调聚焦内心戏切镜，循环递进"
+    ],
+    "cat_action_templates": [
+      "香蕉猫举号码牌排队",
+      "cheems脸祈祷",
+      "夸张表情的破防猫"
+    ],
+    "background_templates": [
+      "餐饮店/医院/银行排队等候区，暖黄灯光"
+    ],
+    "audio_templates": [
+      "轻快搞怪BGM+交替叫号声+内心吐槽配音"
+    ],
+    "suitable_topics": [
+      "排队吃饭、挂号、办业务、抢号等日常共鸣场景"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 3.0,
+        "beat": "hook",
+        "script": "主角排队抱怨吃饭太慢",
+        "joke_point": "戳中排队人共同烦躁点",
+        "background": "商场餐饮店门口，暖黄灯光，木餐椅，餐品海报",
+        "cats": "1只灰猫举235号在前，多只香蕉猫排队举号",
+        "audio": "搞怪BGM起，吐槽旁白",
+        "subtitle": "人生最恶毒的时刻 里面的人吃个饭怎么这么久",
+        "seedream_prompt": "商场餐饮店门口排队区，暖色调，木质餐椅",
+        "local_cat_asset_keywords": "香蕉猫, 灰猫meme, 举号码牌",
+        "local_background_keywords": "餐饮店门口, 排队区, 暖光"
+      },
+      {
+        "shot_id": 2,
+        "duration": 2.0,
+        "beat": "setup",
+        "script": "店员叫232号",
+        "joke_point": "开启祈祷循环",
+        "background": "同前，餐饮店门口",
+        "cats": "橘白脸猫站右侧，店员角色，表情平淡",
+        "audio": "叫号叮咚声，店员平淡配音",
+        "subtitle": "232号在吗 排到您了",
+        "seedream_prompt": "餐饮店门口叫号场景，暖光",
+        "local_cat_asset_keywords": "橘白猫猫meme, 店员表情",
+        "local_background_keywords": "餐饮店门口, 排队区"
+      },
+      {
+        "shot_id": 3,
+        "duration": 13.0,
+        "beat": "escalation",
+        "script": "主角连续祈祷前面的号都不在",
+        "joke_point": "复刻排队人真实内心OS",
+        "background": "暗调，周围模糊，仅聚焦主角位置",
+        "cats": "主角依次变cheems、皱眉橘猫，祈祷表情",
+        "audio": "默念配音，BGM节奏加快",
+        "subtitle": "内心：不在不在不在/没来没来没来/别来别来别来",
+        "seedream_prompt": "暗调聚焦场景，背景虚化",
+        "local_cat_asset_keywords": "cheems脸, 皱眉橘猫, 祈祷表情",
+        "local_background_keywords": "暗调, 虚化背景, 聚焦"
+      },
+      {
+        "shot_id": 4,
+        "duration": 4.0,
+        "beat": "twist",
+        "script": "店员说叫号不在顺延3个号",
+        "joke_point": "增加祈祷的必要性",
+        "background": "同前，餐饮店门口",
+        "cats": "胖橘猫站右侧，表情正经",
+        "audio": "店员正经配音",
+        "subtitle": "叫到号不在的待会都要顺延3个号哦",
+        "seedream_prompt": "餐饮店门口叫号场景，暖光",
+        "local_cat_asset_keywords": "胖橘猫meme, 正经表情",
+        "local_background_keywords": "餐饮店门口, 排队区"
+      },
+      {
+        "shot_id": 5,
+        "duration": 7.0,
+        "beat": "punchline",
+        "script": "叫到235号，主角狂喜应答",
+        "joke_point": "祈祷成真的爽感",
+        "background": "同前，餐饮店门口",
+        "cats": "主角跳起来大喊，表情狂喜",
+        "audio": "狂喜欢呼声，激动配音",
+        "subtitle": "235号... 我在我在！我不着急菜可以慢慢上",
+        "seedream_prompt": "餐饮店门口叫号场景，暖光",
+        "local_cat_asset_keywords": "猫狂喜表情, 大喊动作",
+        "local_background_keywords": "餐饮店门口, 排队区"
+      },
+      {
+        "shot_id": 6,
+        "duration": 5.0,
+        "beat": "ending",
+        "script": "236号破防吐槽咒语不够毒",
+        "joke_point": "共情下一个排队的人",
+        "background": "暗调，聚焦236号位置",
+        "cats": "绿猫举236号，崩溃表情",
+        "audio": "崩溃叹气声，吐槽配音",
+        "subtitle": "内心：就差一个...！我的咒语还是不够恶毒",
+        "seedream_prompt": "暗调聚焦场景，背景虚化",
+        "local_cat_asset_keywords": "绿猫meme, 崩溃表情, 举号码牌",
+        "local_background_keywords": "暗调, 虚化背景, 聚焦"
+      }
+    ]
+  },
+  "quality_notes": [
+    "内容共鸣极强，精准戳中日常排队的大众情绪，香蕉猫IP受众广，笑点密集递进"
+  ],
+  "_raw_content_sha256": "5e4c6785a6fa80e1ef04a309243cd06477ae1e7a01e9ab78444c44c876bd5280",
+  "video_id": "bkmm-018-抖音202663-449762",
+  "filename": "抖音202663-449762.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 37.493,
+    "size_bytes": 2936727,
+    "width": 960,
+    "height": 720,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "36265b5029f70796d1c524d1672a40f014ff7546b794cd784ac38809b3b28454"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-018-抖音202663-449762/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-018-抖音202663-449762/audio.m4a",
+    "analyzed_at": "2026-06-03T03:03:02.191515+00:00",
+    "normalized_at": "2026-06-03T03:19:12.600564+00:00"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "video_id": "bkmm-004-抖音202663-045888",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "拆解与视频整体高度匹配，剧情逻辑、分镜顺序、背景、猫素材描述均准确，仅存在极细微的时间点偏差",
+  "confirmed_points": [
+    "核心剧情：男大学生缺钱遇裸贷、申请贷款、到账金额超预期、2.5年后被催债摆烂反杀的反转剧情完全匹配",
+    "分镜背景：傍晚天台、昏暗小巷、轻奢办公室、居家客厅、大学宿舍、深色引导页的场景描述均符合画面",
+    "猫素材：各镜头猫的品种、动作、角色设定（橘猫学生、大眼花猫、白胖猫老板、橘白老板、香蕉猫学生）均与画面吻合",
+    "音频、字幕、笑点、节奏标注均符合视频内容"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "3",
+      "field": "timing",
+      "observed": "视频中小巷裸贷店场景实际开始时间约为4.8s",
+      "extracted": "拆解标注shot3的start_time为4.0s",
+      "suggestion": "将shot3的start_time调整为约5.0s"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "017356da461da49901e1c8ecea7120c9df39020c6a38cc02a27086ad7560d633",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:33:07.380352+00:00",
+  "structure_sha256": "5f120fa771b6c5197b57c12c9a51c95470026b1a75634773d32e3b69a7824336",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-004-抖音202663-045888/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

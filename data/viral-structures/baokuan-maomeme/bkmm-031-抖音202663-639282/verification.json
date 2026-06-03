@@ -1,0 +1,38 @@
+{
+  "video_id": "bkmm-031-抖音202663-639282",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "整体拆解和视频高度一致，仅存在个别时间节点、罪状数量的细微误差，核心内容完全匹配",
+  "confirmed_points": [
+    "主题定位准确，符合用猫狗meme演绎家长数落放假在家孩子、最终挨打的核心剧情",
+    "分镜起承转合逻辑正确，setup引入罪状、escalation堆叠共鸣点、punchline推出挨打笑点、cta引导关注的结构符合视频",
+    "背景、猫/狗素材的描述基本贴合画面，各场景、角色状态对应正确",
+    "音频、字幕包装的风格描述符合视频实际呈现效果"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "2、3",
+      "field": "timing",
+      "observed": "shot2对应6条罪状的实际时间范围是1-9s，shot3对应剩余罪状的实际时间范围是9-18s",
+      "extracted": "shot2 end_time标注为7s，shot3 start_time标注为7s、duration标注为11s",
+      "suggestion": "修正shot2 end_time为9s，shot3 start_time为9s，调整对应duration数值"
+    },
+    {
+      "severity": "minor",
+      "shot_id": "3",
+      "field": "script",
+      "observed": "9-18s实际共罗列7条罪状",
+      "extracted": "标注为罗列剩余6条罪状",
+      "suggestion": "修正为罗列剩余7条罪状"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "95e5a581dab3c6a016e145d09b94ec5be95926b230949eb3d064c8842a9796a6",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:35:56.345013+00:00",
+  "structure_sha256": "18d58f59d5862367110a90ba5672840437b62d5cf4623f9c0a41fb168457d301",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-031-抖音202663-639282/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

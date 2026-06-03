@@ -1,0 +1,324 @@
+{
+  "video_summary": {
+    "title": "当你很漂亮却一直单身",
+    "one_sentence": "女生疑惑没人表白，反转是未来男友天天祈祷她远离所有异性",
+    "primary_topic": "单身情感反差梗",
+    "meme_type": "剧情反转类猫meme",
+    "overall_tone": "搞怪扎心又好笑"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "小美我喜欢你",
+      "speaker": "表白男生",
+      "tone": "激动",
+      "emotion": "期待",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 2,
+      "end_time": 4,
+      "text": "我也是~",
+      "speaker": "闺蜜",
+      "tone": "俏皮",
+      "emotion": "得意",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 4,
+      "end_time": 7,
+      "text": "为什么从小到大都没人和我表白",
+      "speaker": "女主",
+      "tone": "委屈",
+      "emotion": "难过疑惑",
+      "function": "punchline_pre",
+      "confidence": 1
+    },
+    {
+      "start_time": 7,
+      "end_time": 10,
+      "text": "我真的这么丑吗",
+      "speaker": "女主",
+      "tone": "哭腔",
+      "emotion": "自我怀疑",
+      "function": "twist_pre",
+      "confidence": 1
+    },
+    {
+      "start_time": 10,
+      "end_time": 12,
+      "text": "实际上 你未来的男朋友",
+      "speaker": "旁白",
+      "tone": "正经",
+      "emotion": "平淡",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 12,
+      "end_time": 19,
+      "text": "天灵灵地灵灵，让我未来的女朋友远离一切男的公的雄的带把的",
+      "speaker": "未来男友",
+      "tone": "虔诚",
+      "emotion": "认真",
+      "function": "punchline",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "setup",
+      "script": "男生向女主方向表白",
+      "joke_point": "观众以为男生在跟女主表白",
+      "visual_description": "走廊三个猫头，前景黄猫背对着表白",
+      "pacing_note": "快节奏卡点"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2,
+      "end_time": 4,
+      "duration": 2,
+      "beat": "escalation",
+      "script": "闺蜜接话表示是跟自己表白",
+      "joke_point": "表白对象是闺蜜，女主落空",
+      "visual_description": "闺蜜wink凑上前，女主躲在身后",
+      "pacing_note": "快节奏反转"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 4,
+      "end_time": 7,
+      "duration": 3,
+      "beat": "punchline",
+      "script": "女主委屈流泪自我怀疑",
+      "joke_point": "女主没人表白的疑惑点抛出",
+      "visual_description": "只剩女主猫头流泪",
+      "pacing_note": "慢节奏放大情绪"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 7,
+      "end_time": 10,
+      "duration": 3,
+      "beat": "escalation",
+      "script": "女主拿镜子质疑自己颜值",
+      "joke_point": "女主自我怀疑情绪拉满",
+      "visual_description": "女主举镜子流泪",
+      "pacing_note": "慢节奏放大情绪"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 10,
+      "end_time": 12,
+      "duration": 2,
+      "beat": "twist",
+      "script": "旁白引出未来男友视角",
+      "joke_point": "视角反转铺垫笑点",
+      "visual_description": "黑底白字转场",
+      "pacing_note": "快节奏转场"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 12,
+      "end_time": 19,
+      "duration": 7,
+      "beat": "punchline",
+      "script": "未来男友在宿舍做法祈祷",
+      "joke_point": "没人表白的原因是男友天天祈祷隔绝异性",
+      "visual_description": "柴犬猫头戴道士帽摇拂尘",
+      "pacing_note": "慢节奏放大笑点"
+    }
+  ],
+  "cat_track": [
+    "3只：左闺蜜猫（粉蝴蝶结招手笑）、中女主猫（粉蝴蝶结懵）、前景黄猫（表白）",
+    "2只：闺蜜猫（wink上前）、女主猫（震惊躲后）",
+    "1只：女主猫（流泪委屈）",
+    "1只：女主猫（举镜子流泪）",
+    "无猫",
+    "1只：柴犬猫（戴道士帽摇拂尘 虔诚）"
+  ],
+  "background_track": [
+    "亮堂学校/写字楼走廊，木地板、护栏、消防栓，暖光",
+    "同上走廊",
+    "同上走廊",
+    "同上走廊",
+    "纯黑背景",
+    "男生大学宿舍，上下铺、香炉、窗帘，日常感"
+  ],
+  "audio_track": {
+    "bgm_style": "抖音搞怪轻快热曲",
+    "bgm_mood": "俏皮搞笑",
+    "voice_style": "夸张搞怪配音，男女声都有",
+    "voice_presence": "清晰贴脸",
+    "sfx": [
+      "表白音效",
+      "流泪抽鼻子音效",
+      "做法摇铃音效"
+    ],
+    "rhythm_sync": "每句台词严格卡BGM鼓点"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "粗体黑边字，重点词黄色高亮",
+    "subtitle_density": "每屏1-2句，字数适中",
+    "emphasis_words": [
+      "没人表白",
+      "远离一切男的公的雄的带把的"
+    ],
+    "bubble_or_dialogue_style": "无气泡，字幕直接在角色下方",
+    "stickers_or_overlays": [
+      "顶栏固定黄色标题条",
+      "香炉、拂尘道具贴纸"
+    ],
+    "transition_notes": [
+      "简单切黑转场",
+      "无复杂特效"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "当事人自我疑惑→反转到第三方视角揭秘原因"
+    ],
+    "shot_templates": [
+      "日常场景铺垫情绪→黑底转场切换视角→反差笑点抛出"
+    ],
+    "cat_action_templates": [
+      "流泪委屈猫",
+      "wink得意猫",
+      "道士做法柴犬猫"
+    ],
+    "background_templates": [
+      "明亮走廊",
+      "男生上下铺宿舍"
+    ],
+    "audio_templates": [
+      "轻快搞怪BGM+台词卡点+对应情绪音效"
+    ],
+    "suitable_topics": [
+      "单身梗",
+      "男女思维差异",
+      "情感反差",
+      "搞笑日常"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.0,
+        "beat": "setup",
+        "script": "男生：小美我喜欢你",
+        "joke_point": "观众误以为男生向女主表白",
+        "background": "明亮带护栏的走廊，暖光",
+        "cats": "3只：表白黄猫（前景背身）、闺蜜（左笑）、女主（中懵）",
+        "audio": "轻快BGM开头，表白音效",
+        "subtitle": "下方白字：小美我喜欢你",
+        "seedream_prompt": "明亮现代走廊，木地板，墙面有消防栓",
+        "local_cat_asset_keywords": "黄猫背身, 粉蝴蝶结开心猫, 粉蝴蝶结懵猫",
+        "local_background_keywords": "学校走廊, 写字楼走廊"
+      },
+      {
+        "shot_id": 2,
+        "duration": 2.0,
+        "beat": "escalation",
+        "script": "闺蜜：我也是~",
+        "joke_point": "表白对象是闺蜜，女主落空",
+        "background": "同上走廊",
+        "cats": "2只：闺蜜（wink上前）、女主（躲后震惊）",
+        "audio": "BGM卡点，俏皮笑声",
+        "subtitle": "闺蜜上方黄字：我也是~",
+        "seedream_prompt": "同上走廊场景",
+        "local_cat_asset_keywords": "wink猫咪, 震惊猫咪",
+        "local_background_keywords": "走廊"
+      },
+      {
+        "shot_id": 3,
+        "duration": 3.0,
+        "beat": "punchline",
+        "script": "女主：为什么从小到大没人跟我表白",
+        "joke_point": "女主没人表白的疑惑抛出",
+        "background": "同上走廊",
+        "cats": "1只：女主（流泪委屈）",
+        "audio": "BGM放缓，抽鼻子音效",
+        "subtitle": "上方黄字：为什么从小到大都没人和我表白",
+        "seedream_prompt": "同上走廊场景",
+        "local_cat_asset_keywords": "流泪委屈猫",
+        "local_background_keywords": "走廊"
+      },
+      {
+        "shot_id": 4,
+        "duration": 3.0,
+        "beat": "escalation",
+        "script": "女主：我真的这么丑吗",
+        "joke_point": "女主自我怀疑情绪拉满",
+        "background": "同上走廊",
+        "cats": "1只：女主（举镜子流泪）",
+        "audio": "BGM继续放缓，抽泣音效",
+        "subtitle": "上方黄字：我真的这么丑吗",
+        "seedream_prompt": "同上走廊场景",
+        "local_cat_asset_keywords": "举镜子流泪猫",
+        "local_background_keywords": "走廊"
+      },
+      {
+        "shot_id": 5,
+        "duration": 2.0,
+        "beat": "twist",
+        "script": "旁白：实际上 你未来的男朋友",
+        "joke_point": "视角反转铺垫笑点",
+        "background": "纯黑背景",
+        "cats": "无猫",
+        "audio": "BGM突变，提示音效",
+        "subtitle": "中间白字：实际上 你未来的男朋友",
+        "seedream_prompt": "纯黑背景",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "黑底"
+      },
+      {
+        "shot_id": 6,
+        "duration": 7.0,
+        "beat": "punchline",
+        "script": "未来男友：天灵灵地灵灵...",
+        "joke_point": "没人表白的原因是男友祈祷隔绝异性",
+        "background": "男生大学宿舍上下铺",
+        "cats": "1只：柴犬猫（戴道士帽摇拂尘）",
+        "audio": "BGM变搞怪道士风，摇铃音效",
+        "subtitle": "黄字高亮：男的公的雄的带把的",
+        "seedream_prompt": "男生四人间宿舍，上下铺，日常杂乱",
+        "local_cat_asset_keywords": "道士柴犬猫, 做法猫",
+        "local_background_keywords": "男生宿舍, 上下铺宿舍"
+      }
+    ]
+  },
+  "quality_notes": [
+    "反转点清晰，卡点准确，猫meme素材辨识度高，情绪递进自然，极易复刻"
+  ],
+  "_raw_content_sha256": "86a4bded9f3ee4482ff149bd0d027229060f81e5cbe21143fcbd629e85672f3f",
+  "video_id": "bkmm-019-抖音202663-474570",
+  "filename": "抖音202663-474570.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 20.571,
+    "size_bytes": 3112425,
+    "width": 720,
+    "height": 960,
+    "fps": 60.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "644538240678aa2871c09bd43b618ef4cb9e381f48979a8511f4331a6f0a310a"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 3.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-019-抖音202663-474570/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-019-抖音202663-474570/audio.m4a",
+    "analyzed_at": "2026-06-03T03:03:11.238290+00:00",
+    "normalized_at": "2026-06-03T03:19:12.601115+00:00"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 7.0,
+      "beat": "hook",
+      "script": "旁白说猫能抓老鼠，三只老鼠嚣张说要打猫",
+      "joke_point": "打破老鼠怕猫的固有认知",
+      "background": "浅米色纯色墙面",
+      "cats": "三只灰仓鼠meme，并排晃头，表情得意",
+      "audio": "搞怪BGM起，老鼠贱兮兮配音",
+      "subtitle": "顶部大字幕+每只老鼠上方台词",
+      "seedream_prompt": "浅米色干净墙面无杂物",
+      "local_cat_asset_keywords": "灰色仓鼠meme 摇头",
+      "local_background_keywords": "纯色浅米色背景"
+    },
+    {
+      "shot_id": 2,
+      "duration": 3.0,
+      "beat": "punchline",
+      "script": "猫一巴掌拍晕三只老鼠",
+      "joke_point": "老鼠装逼当场被打脸",
+      "background": "米色墙面加干草鸟巢",
+      "cats": "橘猫香炉meme站鸟巢，表情不屑",
+      "audio": "啪的打脸音效",
+      "subtitle": "无",
+      "seedream_prompt": "米色墙面前放干草鸟巢",
+      "local_cat_asset_keywords": "橘猫香炉meme 不屑脸",
+      "local_background_keywords": "干草鸟巢 米色背景"
+    },
+    {
+      "shot_id": 3,
+      "duration": 5.0,
+      "beat": "setup",
+      "script": "我震惊，说要奖励猫吃鱼",
+      "joke_point": "正向奖励铺垫后续反转",
+      "background": "居家客厅，木质电视柜",
+      "cats": "香蕉猫震惊脸站左，橘猫站鸟巢旁",
+      "audio": "主人开心配音",
+      "subtitle": "顶部字幕+角色下方标注我/猫",
+      "seedream_prompt": "普通客厅 木质电视柜 瓷砖地",
+      "local_cat_asset_keywords": "香蕉猫meme 震惊脸",
+      "local_background_keywords": "普通客厅 电视柜"
+    },
+    {
+      "shot_id": 4,
+      "duration": 10.0,
+      "beat": "twist",
+      "script": "猫推走鱼，把死老鼠递我，说你吃吧",
+      "joke_point": "猫反向送主人死老鼠的反差",
+      "background": "同客厅场景",
+      "cats": "橘猫递死老鼠，香蕉猫头顶问号",
+      "audio": "橘猫冷漠配音 疑惑音效",
+      "subtitle": "角色上方台词字幕",
+      "seedream_prompt": "同客厅场景",
+      "local_cat_asset_keywords": "橘猫递东西 香蕉猫问号脸",
+      "local_background_keywords": "客厅场景"
+    },
+    {
+      "shot_id": 5,
+      "duration": 17.0,
+      "beat": "escalation",
+      "script": "我玩三国杀，猫又叼来现杀老鼠",
+      "joke_point": "送老鼠行为升级，离谱程度加深",
+      "background": "深红色红木长椅",
+      "cats": "橘猫叼活老鼠，主人橘猫脸震惊",
+      "audio": "游戏音效 惊讶配音",
+      "subtitle": "游戏引导字幕+角色台词",
+      "seedream_prompt": "深红色红木长椅 浅色地面",
+      "local_cat_asset_keywords": "橘猫叼老鼠 惊讶猫meme",
+      "local_background_keywords": "红木长椅 三国杀界面"
+    },
+    {
+      "shot_id": 6,
+      "duration": 10.0,
+      "beat": "punchline",
+      "script": "晚上猫抓了老鼠全家放红桶里",
+      "joke_point": "猫直接团灭老鼠全家",
+      "background": "夜晚家门口 贴红春联",
+      "cats": "橘猫站左侧，四只死老鼠在右侧",
+      "audio": "凶狠配音 死亡音效",
+      "subtitle": "顶部字幕 台词",
+      "seedream_prompt": "夜晚家门口 红对联 昏暗",
+      "local_cat_asset_keywords": "橘猫香炉meme 死老鼠meme 红桶",
+      "local_background_keywords": "夜晚家门口 春联"
+    },
+    {
+      "shot_id": 7,
+      "duration": 6.0,
+      "beat": "ending",
+      "script": "我醒来看见床头的老鼠全家桶，震惊",
+      "joke_point": "终极暴击，主人收到老鼠全家桶",
+      "background": "卧室沙发床 棕色格子被子",
+      "cats": "香蕉猫睡醒瞪大眼睛，旁侧红桶装死老鼠",
+      "audio": "震惊音效",
+      "subtitle": "台词：全家桶？",
+      "seedream_prompt": "卧室沙发 棕色格子被子",
+      "local_cat_asset_keywords": "香蕉猫睡醒震惊脸 红桶 死老鼠",
+      "local_background_keywords": "卧室床 格子被子"
+    }
+  ]
+}

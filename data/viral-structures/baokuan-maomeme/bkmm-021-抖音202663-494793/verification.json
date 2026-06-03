@@ -1,0 +1,22 @@
+{
+  "video_id": "bkmm-021-抖音202663-494793",
+  "verdict": "pass",
+  "score": 95.0,
+  "summary": "拆解内容与视频整体高度匹配，剧情、分镜、背景、猫素材、字幕包装均符合视频内容，仅音频无法确认。",
+  "confirmed_points": [
+    "核心剧情逻辑与视频完全一致，还原了年轻人熬夜骗妈妈已睡觉，凌晨2点手滑回复妈妈微信被抓包的全过程",
+    "分镜顺序、起承转合、反转点与视频画面完全匹配",
+    "背景描述准确，统一为带波点床单、纱帘、床头灯的卧室场景",
+    "各镜头猫/角色素材的数量、位置、动作、表情描述贴近画面",
+    "字幕样式、贴纸元素（顶部黄色标题条、微信弹窗、时间贴纸）与视频一致"
+  ],
+  "issues": [],
+  "audio_confidence": "low",
+  "needs_human_review": false,
+  "_raw_content_sha256": "a5d1d180620b2f8e6192a1ac441b0fcde41518bcb9d467e9c6341852566d1990",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:35:02.813901+00:00",
+  "structure_sha256": "b4f8a559ca3694f229556ad854fd3a109edf958520dc59abf1f90d14cec685a8",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-021-抖音202663-494793/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

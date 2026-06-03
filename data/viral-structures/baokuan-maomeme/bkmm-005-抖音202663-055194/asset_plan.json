@@ -1,0 +1,102 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 2.0,
+      "beat": "setup",
+      "script": "妈妈吃一碗",
+      "joke_point": "按人头加米",
+      "background": "暖光厨房台面，放电饭煲内胆",
+      "cats": "灰白花奶猫右方歪头点头，表情天真",
+      "audio": "萌音说台词+咚的放米音效",
+      "subtitle": "妈妈吃一碗",
+      "seedream_prompt": "现代暖光厨房台面，放电饭煲内胆",
+      "local_cat_asset_keywords": "灰白花奶猫 点头 软萌",
+      "local_background_keywords": "厨房 台面 电饭煲"
+    },
+    {
+      "shot_id": 2,
+      "duration": 7.0,
+      "beat": "escalation",
+      "script": "爸爸/姐姐/我各加对应碗数米",
+      "joke_point": "米量越堆越高",
+      "background": "同前",
+      "cats": "同前奶猫连续点头",
+      "audio": "萌音说对应台词+每次放米咚声",
+      "subtitle": "对应台词",
+      "seedream_prompt": "同前",
+      "local_cat_asset_keywords": "同前",
+      "local_background_keywords": "同前"
+    },
+    {
+      "shot_id": 3,
+      "duration": 2.0,
+      "beat": "twist",
+      "script": "一锅刚刚好",
+      "joke_point": "米量很少还以为刚好",
+      "background": "同前",
+      "cats": "橘猫在右侧瞪大眼睛看米",
+      "audio": "呆萌音说台词+短重音",
+      "subtitle": "一锅刚刚好",
+      "seedream_prompt": "同前",
+      "local_cat_asset_keywords": "橘猫 震惊脸 瞪大眼",
+      "local_background_keywords": "同前"
+    },
+    {
+      "shot_id": 4,
+      "duration": 4.0,
+      "beat": "escalation",
+      "script": "我真是个小天才，妈妈肯定夸我",
+      "joke_point": "自我感觉极度良好",
+      "background": "同前，内胆合上电饭煲",
+      "cats": "歪嘴狗在右侧摇头晃脑",
+      "audio": "得意音说台词",
+      "subtitle": "对应台词",
+      "seedream_prompt": "同前，电饭煲合上盖子",
+      "local_cat_asset_keywords": "歪嘴狗 得意 晃头",
+      "local_background_keywords": "同前 电饭煲合盖"
+    },
+    {
+      "shot_id": 5,
+      "duration": 3.0,
+      "beat": "setup",
+      "script": "我：妈妈我把饭煮好了 妈妈：真的假的？",
+      "joke_point": "妈妈半信半疑",
+      "background": "简约玄关走廊",
+      "cats": "左：开心小狗 右：疑惑橘猫",
+      "audio": "兴奋音+疑惑音",
+      "subtitle": "对应对话",
+      "seedream_prompt": "简约暖光家居玄关走廊",
+      "local_cat_asset_keywords": "开心吐舌狗 疑惑橘猫",
+      "local_background_keywords": "玄关 走廊 入户门"
+    },
+    {
+      "shot_id": 6,
+      "duration": 3.0,
+      "beat": "punchline",
+      "script": "你快来看...",
+      "joke_point": "饭溢成柱两人震惊",
+      "background": "同厨房背景，米饭柱溢出顶到天花板",
+      "cats": "中：震惊狗 右：震惊橘猫",
+      "audio": "兴奋音+倒抽气音效",
+      "subtitle": "你快来看...",
+      "seedream_prompt": "厨房内米饭柱溢出顶到天花板",
+      "local_cat_asset_keywords": "震惊狗 瞳孔地震橘猫",
+      "local_background_keywords": "厨房 溢出的米饭柱"
+    },
+    {
+      "shot_id": 7,
+      "duration": 3.45,
+      "beat": "ending",
+      "script": "收尾：现实真有这种翻车",
+      "joke_point": "现实真有这种翻车",
+      "background": "实拍米饭溢出到顶的厨房",
+      "cats": "无",
+      "audio": "搞笑重音收尾",
+      "subtitle": "收尾：现实真有这种翻车",
+      "seedream_prompt": "",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "实拍 电饭煲米饭溢出"
+    }
+  ]
+}

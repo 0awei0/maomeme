@@ -1,0 +1,39 @@
+{
+  "video_id": "bkmm-027-抖音202663-550698",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "拆解整体与视频内容高度一致，剧情、分镜、背景、猫素材描述均符合要求，仅个别字幕措辞存在细小差异",
+  "confirmed_points": [
+    "核心剧情走向正确，从情侣刷手机到女友质疑不爱，男生多次举证被反驳，最后被绝杀提问的流程与视频一致",
+    "背景描述准确，均为现代简约卧室带蓝色床品的场景，无错误",
+    "猫素材的数量、左右角色分配、各镜头下的动作表情描述均贴近画面",
+    "分镜的起承转合节点、时间划分基本符合原视频节奏",
+    "字幕风格描述正确，顶部固定黄色「情侣日常」标题、猫下方黄色小字标注角色的设置与视频一致"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "4",
+      "field": "subtitle",
+      "observed": "视频中字幕为「说的好像跟别人谈不用买一样」「说的好像跟别人谈不用送一样」",
+      "extracted": "拆解中写的是「笑死人和谁谈都要买」「和谁谈都要送」",
+      "suggestion": "修正字幕内容为视频实际显示的文字"
+    },
+    {
+      "severity": "minor",
+      "shot_id": "5",
+      "field": "subtitle",
+      "observed": "视频中字幕为「谁知道你有没有藏私房钱 偷偷请别的小姐姐喝奶茶」",
+      "extracted": "拆解中写的是「你是不是藏钱请别的女生喝奶茶」",
+      "suggestion": "修正字幕内容为视频实际显示的文字"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "d4d00220333854c8f281dfbc892a052ad4a298e31c9155f805d48e16f524db2d",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:35:22.218073+00:00",
+  "structure_sha256": "8f73923cb16f9e29e03d95806b8a3ec875bc8f83ac022d84a4f3cd11bc14c544",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-027-抖音202663-550698/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

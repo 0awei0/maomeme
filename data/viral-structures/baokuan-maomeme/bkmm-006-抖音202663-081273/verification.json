@@ -1,0 +1,30 @@
+{
+  "video_id": "bkmm-006-抖音202663-081273",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "整体拆解和视频内容高度一致，仅音频的配音相关描述存在小偏差",
+  "confirmed_points": [
+    "整体剧情和分镜顺序一致，从笑点低多场景铺垫到课上憋笑、罚站、全班笑、老师破防的逻辑完全匹配",
+    "各镜头背景描述准确，日式书房、粉色卧室、餐厅、中小学教室等均贴合画面",
+    "猫素材的数量、动作、位置描述基本正确，橘猫大笑、绿哭猫罚站、全班大笑橘猫头、讲台猫笑到打滚等核心素材表述无误",
+    "字幕包装、转场、节奏的描述符合视频实际呈现"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "unknown",
+      "field": "audio",
+      "observed": "视频仅包含搞怪BGM和各类笑/生气音效，无旁白及角色配音",
+      "extracted": "音频描述提及「沙雕中二 生活化配音、旁白+角色配音 混合」",
+      "suggestion": "修正音频描述，删除配音相关表述，明确仅有BGM和音效"
+    }
+  ],
+  "audio_confidence": "medium",
+  "needs_human_review": false,
+  "_raw_content_sha256": "a8023fa0ed436dddf93cd62fc8199861e6a52f3baf0a5cdb8a45c44c5206f4c9",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:33:10.835481+00:00",
+  "structure_sha256": "e619ec16b9a5f8cfbb232582d592d7e01ba85efb8c1c5553529d954e3e71d4fa",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-006-抖音202663-081273/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

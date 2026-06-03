@@ -1,0 +1,22 @@
+{
+  "video_id": "bkmm-013-抖音202663-202934",
+  "verdict": "pass",
+  "score": 95.0,
+  "summary": "拆解内容与原视频整体高度匹配，剧情结构、分镜顺序、背景描述、猫素材刻画、字幕内容均准确符合视频画面",
+  "confirmed_points": [
+    "整体剧情为5种暑假在家状态+结尾作者页，结构和顺序完全匹配",
+    "各镜头背景描述准确：卧室床、客厅沙发、家庭厨房、抖音深色作者页均符合画面",
+    "猫素材描述正确：香蕉猫的各种姿势、炸毛带胡子的猫、洗碗狸花猫等形象、数量、动作都和视频一致",
+    "剧本和字幕内容与视频显示的文字、剧情走向完全吻合",
+    "节奏卡点、转场方式的描述符合视频实际呈现"
+  ],
+  "issues": [],
+  "audio_confidence": "medium",
+  "needs_human_review": false,
+  "_raw_content_sha256": "e7590a32b7ebe8a6b999d53592e52574f73350832077f003bc34cce0c1e26c85",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:33:49.364317+00:00",
+  "structure_sha256": "2569dd6391adff88b2edeefe4e80329b829f0ef702f1221a31a0d18537465c3b",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-013-抖音202663-202934/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

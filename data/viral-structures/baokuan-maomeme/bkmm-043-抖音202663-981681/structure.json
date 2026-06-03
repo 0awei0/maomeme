@@ -1,0 +1,447 @@
+{
+  "video_summary": {
+    "title": "教你如何整蛊朋友",
+    "one_sentence": "两只香蕉猫演绎无限循环开门的沙雕整蛊套路",
+    "primary_topic": "趣味整蛊梗",
+    "meme_type": "香蕉猫搞怪meme",
+    "overall_tone": "沙雕搞怪"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "我出门啦",
+      "speaker": "小香蕉猫",
+      "tone": "轻快",
+      "emotion": "轻松",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 2,
+      "end_time": 4,
+      "text": "（坏笑）",
+      "speaker": "大香蕉猫",
+      "tone": "搞怪",
+      "emotion": "狡黠",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 4,
+      "end_time": 6,
+      "text": "？",
+      "speaker": "大香蕉猫",
+      "tone": "疑惑",
+      "emotion": "懵",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 9,
+      "end_time": 11.4,
+      "text": "搜索整蛊朋友进入循环怎么做到的",
+      "speaker": "旁白",
+      "tone": "引导",
+      "emotion": "中性",
+      "function": "cta",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "setup",
+      "script": "小香蕉猫敲门后出门",
+      "joke_point": "铺垫整蛊场景",
+      "visual_description": "大香蕉猫端碗站门边，小猫从左走到门口敲门后离开",
+      "pacing_note": "节奏明快"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2,
+      "end_time": 4,
+      "duration": 2,
+      "beat": "escalation",
+      "script": "大香蕉猫从门后探头坏笑",
+      "joke_point": "暗示整蛊动作",
+      "visual_description": "门半开，大香蕉猫从门后歪头探头坏笑",
+      "pacing_note": "卡点切换"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 4,
+      "end_time": 6,
+      "duration": 2,
+      "beat": "twist",
+      "script": "大香蕉猫站门边冒问号",
+      "joke_point": "反差点铺垫",
+      "visual_description": "大香蕉猫回到原来位置，头上冒红色问号一脸懵",
+      "pacing_note": "反差停顿"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 6,
+      "end_time": 8,
+      "duration": 2,
+      "beat": "punchline",
+      "script": "小香蕉猫又从门里走出来",
+      "joke_point": "无限循环笑点",
+      "visual_description": "门半开，小猫从门里走出，两边猫都一脸懵",
+      "pacing_note": "笑点卡点"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 8,
+      "end_time": 9,
+      "duration": 1,
+      "beat": "ending",
+      "script": "小香蕉猫再次走出去",
+      "joke_point": "强化循环梗",
+      "visual_description": "小猫向左走出画面，门保持半开",
+      "pacing_note": "快速切镜"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 9,
+      "end_time": 11.4,
+      "duration": 2.4,
+      "beat": "cta",
+      "script": "引导搜索教程",
+      "joke_point": "引流互动",
+      "visual_description": "抖音搜索弹窗显示整蛊关键词",
+      "pacing_note": "停留引导"
+    }
+  ],
+  "cat_track": [
+    {
+      "cat_count": 2,
+      "roles": [
+        "整蛊者",
+        "出行者"
+      ],
+      "positions": [
+        "右侧门边",
+        "左侧区域"
+      ],
+      "actions": [
+        "端碗站立",
+        "走路敲门"
+      ],
+      "expressions": [
+        "贱笑",
+        "无辜"
+      ],
+      "layout": "左右分布",
+      "asset_keywords": "香蕉猫 端碗 走路"
+    },
+    {
+      "cat_count": 1,
+      "roles": [
+        "整蛊者"
+      ],
+      "positions": [
+        "门后"
+      ],
+      "actions": [
+        "探头"
+      ],
+      "expressions": [
+        "坏笑"
+      ],
+      "layout": "右侧半遮挡",
+      "asset_keywords": "香蕉猫 探头 坏笑"
+    },
+    {
+      "cat_count": 1,
+      "roles": [
+        "整蛊者"
+      ],
+      "positions": [
+        "右侧门边"
+      ],
+      "actions": [
+        "端碗站立"
+      ],
+      "expressions": [
+        "懵圈"
+      ],
+      "layout": "右侧靠墙",
+      "asset_keywords": "香蕉猫 问号 懵"
+    },
+    {
+      "cat_count": 2,
+      "roles": [
+        "整蛊者",
+        "出行者"
+      ],
+      "positions": [
+        "门后/右侧",
+        "门内"
+      ],
+      "actions": [
+        "冒问号",
+        "走路"
+      ],
+      "expressions": [
+        "懵圈",
+        "疑惑"
+      ],
+      "layout": "门两侧分布",
+      "asset_keywords": "香蕉猫 走路 问号"
+    },
+    {
+      "cat_count": 1,
+      "roles": [
+        "出行者"
+      ],
+      "positions": [
+        "左侧区域"
+      ],
+      "actions": [
+        "走路离开"
+      ],
+      "expressions": [
+        "疑惑"
+      ],
+      "layout": "左侧移动",
+      "asset_keywords": "香蕉猫 走路"
+    },
+    {
+      "cat_count": 0,
+      "roles": [],
+      "positions": [],
+      "actions": [],
+      "expressions": [],
+      "layout": "",
+      "asset_keywords": ""
+    }
+  ],
+  "background_track": [
+    {
+      "setting": "现代出租屋客厅",
+      "props": "木门、冰箱",
+      "composition": "居中木门左右留白",
+      "mood": "明亮日常",
+      "existing_asset_keywords": "居家客厅 木门",
+      "seedream_prompt": "简约白墙客厅浅色地板单扇木门",
+      "need_generated_background": false
+    },
+    {
+      "setting": "门缝视角",
+      "props": "半开木门",
+      "composition": "门占画面中间",
+      "mood": "略带悬念",
+      "existing_asset_keywords": "半开木门 房间",
+      "seedream_prompt": "半开的木门露出后方白墙房间",
+      "need_generated_background": false
+    },
+    {
+      "setting": "同第一个分镜客厅",
+      "props": "木门",
+      "composition": "居中木门右侧留空",
+      "mood": "明亮日常",
+      "existing_asset_keywords": "居家客厅 木门",
+      "seedream_prompt": "简约白墙客厅木门右侧留空",
+      "need_generated_background": false
+    },
+    {
+      "setting": "同第二个分镜门缝",
+      "props": "半开木门",
+      "composition": "门占中间",
+      "mood": "搞怪反差",
+      "existing_asset_keywords": "半开木门",
+      "seedream_prompt": "半开的木门后方留白",
+      "need_generated_background": false
+    },
+    {
+      "setting": "同第二个分镜门缝",
+      "props": "半开木门",
+      "composition": "门占中间",
+      "mood": "搞怪",
+      "existing_asset_keywords": "半开木门",
+      "seedream_prompt": "半开的木门左侧留白",
+      "need_generated_background": false
+    },
+    {
+      "setting": "抖音UI界面",
+      "props": "搜索框",
+      "composition": "居中搜索框",
+      "mood": "引导",
+      "existing_asset_keywords": "抖音搜索弹窗",
+      "seedream_prompt": "深色背景抖音搜索弹窗界面",
+      "need_generated_background": false
+    }
+  ],
+  "audio_track": {
+    "bgm_style": "沙雕搞怪电子BGM",
+    "bgm_mood": "欢快跳脱",
+    "voice_style": "奶声奶气卡通猫配音",
+    "voice_presence": "轻快明亮",
+    "sfx": [
+      "敲门声",
+      "开门声"
+    ],
+    "rhythm_sync": "每个猫动作卡BGM鼓点切换"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "顶部居中黑体白字黑边",
+    "subtitle_density": "低，单镜头最多10字",
+    "emphasis_words": [
+      "整蛊朋友",
+      "循环"
+    ],
+    "bubble_or_dialogue_style": "红色问号气泡贴在猫头上",
+    "stickers_or_overlays": [
+      "卡通碗贴纸",
+      "卡通手贴纸"
+    ],
+    "transition_notes": [
+      "硬切无特效"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "【整蛊教程设定】→【角色出门】→【整蛊者躲门后】→【反向出现形成循环】→【引导搜索教程】"
+    ],
+    "shot_templates": [
+      "固定场景双角色动线→门后探头反差→双向懵逼循环→引流cta"
+    ],
+    "cat_action_templates": [
+      "香蕉猫走路",
+      "香蕉猫端碗",
+      "香蕉猫探头坏笑",
+      "香蕉猫懵圈冒问号"
+    ],
+    "background_templates": [
+      "简约居家客厅带单扇门场景"
+    ],
+    "audio_templates": [
+      "沙雕搞怪BGM+奶声猫配音+敲门声音效"
+    ],
+    "suitable_topics": [
+      "整蛊朋友",
+      "沙雕日常",
+      "循环梗",
+      "搞笑整活教程"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.0,
+        "beat": "setup",
+        "script": "我出门啦",
+        "joke_point": "铺垫整蛊场景",
+        "background": "简约出租屋客厅白墙木门",
+        "cats": "2只香蕉猫，大的右门边端碗贱笑，小的左走敲门",
+        "audio": "搞怪BGM，奶声配音，敲门声",
+        "subtitle": "顶部：教你如何整蛊朋友",
+        "seedream_prompt": "简约现代客厅白墙木门浅色地板",
+        "local_cat_asset_keywords": "香蕉猫 端碗 走路 贱笑",
+        "local_background_keywords": "居家客厅 木门"
+      },
+      {
+        "shot_id": 2,
+        "duration": 2.0,
+        "beat": "escalation",
+        "script": "（坏笑）",
+        "joke_point": "暗示整蛊动作",
+        "background": "半开木门露出后方房间",
+        "cats": "1只香蕉猫躲门后探头坏笑",
+        "audio": "搞怪BGM，开门音效",
+        "subtitle": "顶部：教你如何整蛊朋友",
+        "seedream_prompt": "半开的木门露出后方白墙房间",
+        "local_cat_asset_keywords": "香蕉猫 探头 坏笑",
+        "local_background_keywords": "半开木门 房间"
+      },
+      {
+        "shot_id": 3,
+        "duration": 2.0,
+        "beat": "twist",
+        "script": "？",
+        "joke_point": "反差点铺垫",
+        "background": "简约出租屋客厅白墙木门",
+        "cats": "1只香蕉猫站右门边端碗冒问号懵",
+        "audio": "搞怪BGM，疑惑音效",
+        "subtitle": "顶部：教你如何整蛊朋友",
+        "seedream_prompt": "简约白墙客厅木门右侧留空",
+        "local_cat_asset_keywords": "香蕉猫 问号 懵",
+        "local_background_keywords": "居家客厅 木门"
+      },
+      {
+        "shot_id": 4,
+        "duration": 2.0,
+        "beat": "punchline",
+        "script": "（又走出来）",
+        "joke_point": "无限循环笑点",
+        "background": "半开木门露出后方房间",
+        "cats": "1只香蕉猫从门里走出一脸懵",
+        "audio": "搞怪BGM，笑点鼓点",
+        "subtitle": "顶部：教你如何整蛊朋友",
+        "seedream_prompt": "半开的木门后方留白",
+        "local_cat_asset_keywords": "香蕉猫 走路 懵",
+        "local_background_keywords": "半开木门"
+      },
+      {
+        "shot_id": 5,
+        "duration": 1.0,
+        "beat": "ending",
+        "script": "（又走出去）",
+        "joke_point": "强化循环梗",
+        "background": "半开木门露出后方房间",
+        "cats": "1只香蕉猫向左走出画面",
+        "audio": "搞怪BGM",
+        "subtitle": "顶部：教你如何整蛊朋友",
+        "seedream_prompt": "半开的木门左侧留白",
+        "local_cat_asset_keywords": "香蕉猫 走路",
+        "local_background_keywords": "半开木门"
+      },
+      {
+        "shot_id": 6,
+        "duration": 2.4,
+        "beat": "cta",
+        "script": "搜索整蛊朋友进入循环怎么做到的",
+        "joke_point": "引流互动",
+        "background": "抖音深色搜索弹窗",
+        "cats": "无猫镜头/平台作者信息页",
+        "audio": "搞怪BGM淡出",
+        "subtitle": "居中搜索框文字",
+        "seedream_prompt": "深色背景抖音搜索弹窗界面",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "抖音搜索弹窗"
+      }
+    ]
+  },
+  "quality_notes": [
+    "节奏明快，循环反差笑点清晰，CTA引流引导明确，复用性强",
+    "normalized_storyboard_fields: filled 1 blank or inconsistent fields"
+  ],
+  "_raw_content_sha256": "f148bea5b51f7b4257361f6c3c1946aa2a3844183e7e8bcca81e5db6fe734fa4",
+  "video_id": "bkmm-043-抖音202663-981681",
+  "filename": "抖音202663-981681.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 11.401,
+    "size_bytes": 518875,
+    "width": 960,
+    "height": 720,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "59d5756639375f649e98ee77fc53b5fc99853c2fb01bb955fef2b0d820d90c78"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 3.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-043-抖音202663-981681/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-043-抖音202663-981681/audio.m4a",
+    "analyzed_at": "2026-06-03T03:08:26.413313+00:00",
+    "normalized_at": "2026-06-03T03:19:12.614348+00:00"
+  }
+}

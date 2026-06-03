@@ -1,0 +1,939 @@
+{
+  "library": "baokuan-maomeme",
+  "generated_at": "2026-06-03T03:43:06.118383+00:00",
+  "total": 43,
+  "entries": [
+    {
+      "id": "bkmm-001-抖音202662-534438",
+      "filename": "抖音202662-534438.mp4",
+      "title": "00后有自己的请假方式",
+      "topic": "00后整顿职场/请假梗",
+      "verdict": "pass",
+      "score": 93.0,
+      "provider": "doubao",
+      "summary": "拆解内容与视频整体高度匹配，剧情、分镜、背景、猫素材、字幕均符合实际，仅音频音效描述存在微小偏差",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "5",
+          "field": "audio",
+          "observed": "未听到明显抬担架相关音效",
+          "extracted": "音效包含抬担架音效",
+          "suggestion": "移除抬担架音效的相关描述"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-002-抖音202663-000805",
+      "filename": "抖音202663-000805.mp4",
+      "title": "室友偷用光我半个月的老干妈辣酱",
+      "topic": "大学生宿舍日常、生活费拮据梗、室友整活",
+      "verdict": "pass",
+      "score": 95.0,
+      "provider": "doubao",
+      "summary": "拆解整体与原视频高度匹配，剧情、分镜、猫素材、背景、字幕等核心内容基本一致，仅存在极细微的表述差异不影响正确性",
+      "issues": [],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-003-抖音202663-009401",
+      "filename": "抖音202663-009401.mp4",
+      "title": "亡牌销冠马路玩命卖机油",
+      "topic": "离谱玩命销售内卷梗",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "整体拆解与视频内容高度一致，仅存在个别镜头时间点的微小误差",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "5",
+          "field": "timing",
+          "observed": "现实场景镜头实际从10.8s左右开始切入",
+          "extracted": "拆解标注shot5的start_time为9s",
+          "suggestion": "将shot5的start_time调整为11s左右，匹配实际切镜时间"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-004-抖音202663-045888",
+      "filename": "抖音202663-045888.mp4",
+      "title": "男大学生裸贷反套路搞笑梗",
+      "topic": "反套路反诈、大学生生活梗、摆烂文化",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "拆解与视频整体高度匹配，剧情逻辑、分镜顺序、背景、猫素材描述均准确，仅存在极细微的时间点偏差",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "3",
+          "field": "timing",
+          "observed": "视频中小巷裸贷店场景实际开始时间约为4.8s",
+          "extracted": "拆解标注shot3的start_time为4.0s",
+          "suggestion": "将shot3的start_time调整为约5.0s"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-005-抖音202663-055194",
+      "filename": "抖音202663-055194.mp4",
+      "title": "当我第一次在家煮米饭",
+      "topic": "新手做饭翻车日常",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "整体拆解与原视频高度一致，仅存在两处微小细节偏差，核心内容完全匹配",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "6",
+          "field": "cats",
+          "observed": "该镜头前期是开心小狗在中间、浅紫色英短猫在右侧，后期切换为狸花震惊猫在中、橘猫震惊猫在右",
+          "extracted": "中：震惊狗 右：震惊橘猫",
+          "suggestion": "修正动物描述，补充该镜头先后出现的两组动物信息"
+        },
+        {
+          "severity": "minor",
+          "shot_id": "7",
+          "field": "subtitle",
+          "observed": "实拍溢出米饭的收尾镜头无额外字幕",
+          "extracted": "subtitle标注为“收尾：现实真有这种翻车”",
+          "suggestion": "删除该字幕描述，实拍收尾镜头无对应字幕"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-006-抖音202663-081273",
+      "filename": "抖音202663-081273.mp4",
+      "title": "小时候笑点低课上笑到全班破防社死现场",
+      "topic": "学生时代沙雕社死日常",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "整体拆解和视频内容高度一致，仅音频的配音相关描述存在小偏差",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "unknown",
+          "field": "audio",
+          "observed": "视频仅包含搞怪BGM和各类笑/生气音效，无旁白及角色配音",
+          "extracted": "音频描述提及「沙雕中二 生活化配音、旁白+角色配音 混合」",
+          "suggestion": "修正音频描述，删除配音相关表述，明确仅有BGM和音效"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-007-抖音202663-083115",
+      "filename": "抖音202663-083115.mp4",
+      "title": "没人见过我的真面目除了我女友",
+      "topic": "情侣日常反差梗",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "拆解整体与视频内容高度匹配，剧情、分镜、背景、猫素材、字幕包装描述均准确，仅音频内容无法验证",
+      "issues": [],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-008-抖音202663-106082",
+      "filename": "抖音202663-106082.mp4",
+      "title": "当儿时的我逻辑不符合逻辑",
+      "topic": "儿时迷惑逻辑搞笑吐槽",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "整体拆解和视频内容高度匹配，仅存在个别细微的措辞和细节偏差",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "4",
+          "field": "cats",
+          "observed": "三橘猫横排，左为妈、中间为爸、右侧为我，爸妈低头吃饭",
+          "extracted": "三橘猫横排，左右爸妈吃饭，右我拽脸",
+          "suggestion": "修正为三橘猫横排，左为妈、中间为爸、右侧为我，爸妈低头吃饭，我表情嚣张"
+        },
+        {
+          "severity": "minor",
+          "shot_id": "unknown",
+          "field": "audio",
+          "observed": "视频中未出现明确的挨打闷响音效",
+          "extracted": "sfx包含挨打闷响音效",
+          "suggestion": "删除挨打闷响音效的描述，或标记为低置信"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-009-抖音202663-107578",
+      "filename": "抖音202663-107578.mp4",
+      "title": "家族篮球基因喂饭传承梗",
+      "topic": "家庭兄弟姐妹带娃日常搞笑",
+      "verdict": "pass",
+      "score": 91.0,
+      "provider": "doubao",
+      "summary": "整体拆解与视频高度一致，剧情逻辑、分镜顺序、背景、核心素材描述均匹配，仅存在个别角色形象细节的小偏差",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "2",
+          "field": "cats",
+          "observed": "该镜头段哥的形象依次为山羊头、橘猫、cheems狗",
+          "extracted": "仅描述为山羊头哥",
+          "suggestion": "补充该镜头段哥的不同形象变化说明"
+        },
+        {
+          "severity": "minor",
+          "shot_id": "3",
+          "field": "cats",
+          "observed": "哥的形象为棕白花纹猫",
+          "extracted": "描述为橘猫哥",
+          "suggestion": "修正哥的形象描述为棕白花纹猫"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-010-抖音202663-115078",
+      "filename": "抖音202663-115078.mp4",
+      "title": "没人见过我的真面目除了男友",
+      "topic": "情侣日常反差",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "整体拆解与视频内容高度匹配，仅字幕出现时机、动作时间拆分存在细微偏差",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "1、2",
+          "field": "subtitle|timing",
+          "observed": "视频正片全程同时显示「没人见过我的真面目」「*除了我的男友」两行字幕，并非分阶段先后出现",
+          "extracted": "拆解将两句字幕分别归到0-3s、3-6s两个分镜作为单独脚本内容",
+          "suggestion": "调整分镜脚本描述，说明两行字幕从正片开始即同时存在"
+        },
+        {
+          "severity": "minor",
+          "shot_id": "1、2",
+          "field": "cats|timing",
+          "observed": "视频0秒开始蓝猫就已经抱着袜子啃咬，并非3s后才开始咬袜子",
+          "extracted": "拆解描述3s后蓝猫才开始咬袜子",
+          "suggestion": "调整动作时间描述，说明蓝猫从正片开始就持续做咬袜子晃头的动作"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-011-抖音202663-117937",
+      "filename": "抖音202663-117937.mp4",
+      "title": "当上课发现老师裤子坏了",
+      "topic": "校园社死日常",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "拆解整体与视频高度一致，仅存在背景描述和音频描述的细小措辞差异",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "2",
+          "field": "background",
+          "observed": "大教室第一排，粉cheems坐在第一排居中位置，后方是多排课桌椅",
+          "extracted": "大教室后排，多排课桌椅",
+          "suggestion": "修正背景描述为大教室第一排"
+        },
+        {
+          "severity": "minor",
+          "shot_id": "unknown",
+          "field": "audio",
+          "observed": "视频无旁白，仅包含BGM、憋笑、大笑等拟声音效",
+          "extracted": "夸张搞怪旁白+角色拟声",
+          "suggestion": "删除旁白相关描述，仅保留角色拟声描述"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-012-抖音202663-122472",
+      "filename": "抖音202663-122472.mp4",
+      "title": "2025年3月底猫meme考试",
+      "topic": "猫meme知识互动答题",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "整体拆解和视频高度一致，仅存在个别猫素材的描述措辞小误差",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "2",
+          "field": "cats",
+          "observed": "第二题B选项是两只手指对戳的橘猫",
+          "extracted": "中指脸橘猫",
+          "suggestion": "修正为双指对戳的橘猫"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-013-抖音202663-202934",
+      "filename": "抖音202663-202934.mp4",
+      "title": "暑假在家现状",
+      "topic": "学生暑假生活",
+      "verdict": "pass",
+      "score": 95.0,
+      "provider": "doubao",
+      "summary": "拆解内容与原视频整体高度匹配，剧情结构、分镜顺序、背景描述、猫素材刻画、字幕内容均准确符合视频画面",
+      "issues": [],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-014-抖音202663-221817",
+      "filename": "抖音202663-221817.mp4",
+      "title": "当爸妈问我对生活的态度",
+      "topic": "当代年轻人生活态度",
+      "verdict": "pass",
+      "score": 95.0,
+      "provider": "doubao",
+      "summary": "整体拆解和原视频高度一致，仅个别字幕存在微小措辞差异，核心剧情、素材、风格信息完全匹配",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "3",
+          "field": "subtitle|script",
+          "observed": "原视频台词/字幕为“所以啊！活到现在已经很不错了”",
+          "extracted": "拆解写的是“所以啊活到现在很不错”",
+          "suggestion": "补充“已经”二字，和原视频内容完全一致"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-015-抖音202663-298938",
+      "filename": "抖音202663-298938.mp4",
+      "title": "冲食堂撞倒班主任的爆笑连锁反应",
+      "topic": "校园干饭社死趣事",
+      "verdict": "pass",
+      "score": 95.0,
+      "provider": "doubao",
+      "summary": "拆解内容与原视频的剧情、分镜、角色、背景、包装风格整体高度一致，细节匹配准确",
+      "issues": [],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-016-抖音202663-377146",
+      "filename": "抖音202663-377146.mp4",
+      "title": "在村里的假期日常",
+      "topic": "乡村假期县城游玩日常",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "拆解内容和视频整体高度匹配，剧情、分镜、背景、猫素材、台词核心信息均符合实际内容，仅存在微小时间标注偏差不影响准确性",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "1",
+          "field": "timing",
+          "observed": "村口邀约镜头实际持续到5秒",
+          "extracted": "拆解标注该镜头end_time为3秒",
+          "suggestion": "修正该镜头end_time为5秒"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-017-抖音202663-378934",
+      "filename": "抖音202663-378934.mp4",
+      "title": "当医生嘱咐你不要喝饮料",
+      "topic": "吐槽权威角色双标言行",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "整体拆解与原视频高度匹配，仅存在两处关于猫动作和形象的细节描述小误差，核心内容全部正确",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "2",
+          "field": "cats",
+          "observed": "原视频中患者猫没有做出点头的动作，仅显示字幕“好的 医生”，猫无明显点头动作",
+          "extracted": "患者猫点头附和",
+          "suggestion": "修改为“患者猫乖巧坐在座位上回应”"
+        },
+        {
+          "severity": "minor",
+          "shot_id": "4",
+          "field": "cats",
+          "observed": "原视频中此处患者猫已经变为大眼睛的灰虎斑猫形象，并非原有普通虎斑猫",
+          "extracted": "虎斑猫震惊",
+          "suggestion": "修改为“大眼虎斑猫露出震惊表情”"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-018-抖音202663-449762",
+      "filename": "抖音202663-449762.mp4",
+      "title": "吃饭排队祈祷前面人都不在的恶毒时刻",
+      "topic": "日常排队等号的共鸣梗",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "整体拆解与视频高度一致，核心剧情、分镜、素材、字幕均匹配，仅音频部分存在两处微小描述偏差",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "1",
+          "field": "audio",
+          "observed": "视频开头无额外吐槽旁白，吐槽内容仅以字幕呈现",
+          "extracted": "音频描述为搞怪BGM起，吐槽旁白",
+          "suggestion": "修正为搞怪BGM起，无额外旁白，吐槽内容以字幕呈现"
+        },
+        {
+          "severity": "minor",
+          "shot_id": "unknown",
+          "field": "audio",
+          "observed": "视频中无明显叫号叮咚音效",
+          "extracted": "sfx列表包含叫号叮咚声",
+          "suggestion": "移除叫号叮咚声的音效描述"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-019-抖音202663-474570",
+      "filename": "抖音202663-474570.mp4",
+      "title": "当你很漂亮却一直单身",
+      "topic": "单身情感反差梗",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "拆解与视频内容整体高度匹配，剧情、分镜、背景、字幕、核心梗等信息均准确，仅存在个别措辞小错误",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "6",
+          "field": "cats",
+          "observed": "视频中该镜头的meme是柴犬（狗）形象，不属于猫",
+          "extracted": "1只：柴犬猫（戴道士帽摇拂尘）",
+          "suggestion": "修正为1只：柴犬meme（戴道士帽摇拂尘）"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-020-抖音202663-487524",
+      "filename": "抖音202663-487524.mp4",
+      "title": "当我在做手术时医生突然表白",
+      "topic": "沙雕恋爱反转整活",
+      "verdict": "pass",
+      "score": 90.0,
+      "provider": "doubao",
+      "summary": "整体拆解和视频内容高度一致，仅存在少量台词角色归属、猫描述的细节偏差",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "1",
+          "field": "cats",
+          "observed": "左护士、中患者是香蕉猫，右医生是未穿香蕉套装的橘猫，共2只香蕉猫",
+          "extracted": "三只香蕉猫，左护士右医生中间躺患者",
+          "suggestion": "修正猫的描述为“左护士、中患者为香蕉猫，右医生为橘猫，共3只猫”"
+        },
+        {
+          "severity": "minor",
+          "shot_id": "3",
+          "field": "script",
+          "observed": "“你好浪漫啊”是左侧护士的台词",
+          "extracted": "患者：你好浪漫",
+          "suggestion": "修正为“护士：你好浪漫啊”"
+        },
+        {
+          "severity": "minor",
+          "shot_id": "4",
+          "field": "script",
+          "observed": "奔驰钥匙、房产证由护士从患者腹部掏出，医生仅负责提示有惊喜",
+          "extracted": "医生依次掏出奔驰钥匙、两本房产证",
+          "suggestion": "修正为“医生提示还有惊喜，护士依次掏出奔驰钥匙、两本房产证”"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-021-抖音202663-494793",
+      "filename": "抖音202663-494793.mp4",
+      "title": "凌晨两点不小心回复妈妈微信社死现场",
+      "topic": "亲子互动、熬夜社死、撒谎被戳穿",
+      "verdict": "pass",
+      "score": 95.0,
+      "provider": "doubao",
+      "summary": "拆解内容与视频整体高度匹配，剧情、分镜、背景、猫素材、字幕包装均符合视频内容，仅音频无法确认。",
+      "issues": [],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-022-抖音202663-502975",
+      "filename": "抖音202663-502975.mp4",
+      "title": "男孩子低配的一生",
+      "topic": "男性消费观念、情侣温情、原生家庭影响",
+      "verdict": "pass",
+      "score": 90.0,
+      "provider": "doubao",
+      "summary": "拆解整体与视频内容高度匹配，剧情、分镜、背景、猫素材、字幕均符合视频实际，仅音频内容无法从画面完全确认",
+      "issues": [],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-023-抖音202663-504011",
+      "filename": "抖音202663-504011.mp4",
+      "title": "外婆的边角地",
+      "topic": "隔代亲情、原生家庭矛盾、基层利益纠纷",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "拆解与原视频整体高度匹配，仅个别猫素材的描述存在小措辞偏差，核心内容均符合要求",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "5",
+          "field": "cats",
+          "observed": "收地场景中递篮子的是灰白相间的外婆猫，后续才切换为橘色外婆猫",
+          "extracted": "橘猫递篮子，灰小猫拔花生，黑猫冷漠",
+          "suggestion": "修正为“灰白猫递篮子，灰小猫拔花生，黑猫冷漠，后续外婆猫切换为橘色面露难过”"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-024-抖音202663-525083",
+      "filename": "抖音202663-525083.mp4",
+      "title": "当修空调被错当以为跳楼",
+      "topic": "打工人离谱误会社死日常",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "整体拆解与视频高度匹配，仅存在个别猫素材描述的小细节偏差",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "1",
+          "field": "cats",
+          "observed": "0-2s镜头内先出现灰白色cheems猫趴在空调外机，随后才切换为橘白猫",
+          "extracted": "橘白猫趴在空调外机上，表情疑惑",
+          "suggestion": "补充该镜头先出现灰白色cheems猫，后切换为橘白猫的描述"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-025-抖音202663-534479",
+      "filename": "抖音202663-534479.mp4",
+      "title": "香蕉猫扔传单误砸骑车大哥反被整蛊爆笑反转",
+      "topic": "街头日常社死搞笑反转",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "拆解整体与视频高度匹配，核心剧情、角色、背景、台词均一致，仅存在两处细微细节偏差",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "s2",
+          "field": "cats",
+          "observed": "发传单的香蕉猫为多只（数量大于3）",
+          "extracted": "3只香蕉猫递传单",
+          "suggestion": "将发单猫数量修正为多只香蕉猫"
+        },
+        {
+          "severity": "minor",
+          "shot_id": "s7",
+          "field": "cats",
+          "observed": "骑车大哥张嘴要爆发后，突然切换为带问号的无辜小猫脸",
+          "extracted": "最后车胎爆气并张嘴怒吼",
+          "suggestion": "补充大哥怒吼后切换问号脸的反转细节"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-026-抖音202663-535907",
+      "filename": "抖音202663-535907.mp4",
+      "title": "小时候玩充气城堡以为是来打自由搏击",
+      "topic": "童年趣事沙雕二创",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "整体拆解与视频内容高度匹配，仅存在个别猫造型的细节偏差，核心剧情、分镜、素材描述均正确",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "3",
+          "field": "cats",
+          "observed": "第一个小孩的妈妈刚出场时是未穿香蕉皮的奶牛猫，后续才变为香蕉猫",
+          "extracted": "4只香蕉猫，小孩哭，小孩妈面无表情",
+          "suggestion": "修正为「3只香蕉猫+1只奶牛猫（后续变为香蕉猫），小孩哭，小孩妈面无表情」"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-027-抖音202663-550698",
+      "filename": "抖音202663-550698.mp4",
+      "title": "情侣日常之女友灵魂拷问",
+      "topic": "情侣搞笑日常",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "拆解整体与视频内容高度一致，剧情、分镜、背景、猫素材描述均符合要求，仅个别字幕措辞存在细小差异",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "4",
+          "field": "subtitle",
+          "observed": "视频中字幕为「说的好像跟别人谈不用买一样」「说的好像跟别人谈不用送一样」",
+          "extracted": "拆解中写的是「笑死人和谁谈都要买」「和谁谈都要送」",
+          "suggestion": "修正字幕内容为视频实际显示的文字"
+        },
+        {
+          "severity": "minor",
+          "shot_id": "5",
+          "field": "subtitle",
+          "observed": "视频中字幕为「谁知道你有没有藏私房钱 偷偷请别的小姐姐喝奶茶」",
+          "extracted": "拆解中写的是「你是不是藏钱请别的女生喝奶茶」",
+          "suggestion": "修正字幕内容为视频实际显示的文字"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-028-抖音202663-572122",
+      "filename": "抖音202663-572122.mp4",
+      "title": "情侣猫过马路遇卡车上演狗血殉情戏",
+      "topic": "情侣狗血剧情玩梗",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "拆解整体与视频高度匹配，仅存在一处非核心的字幕、脚本多余描述小问题，核心信息全部准确",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "6",
+          "field": "script|subtitle",
+          "observed": "视频中第6个镜头（落叶躺平片段）无对应台词和字幕",
+          "extracted": "拆解中asset_plan.storyboard.shot6的script写为“收尾：两人分别被撞的离谱结局”，subtitle也标注了该内容",
+          "suggestion": "删除该句多余的script和subtitle描述，明确该镜头无台词字幕"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-029-抖音202663-574311",
+      "filename": "抖音202663-574311.mp4",
+      "title": "从别家店出来被常去餐馆老板抓包",
+      "topic": "日常社死互动梗",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "拆解整体与视频高度匹配，剧情、分镜、背景、猫素材、字幕包装描述均准确，仅音频内容无法通过画面确认",
+      "issues": [],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-030-抖音202663-628799",
+      "filename": "抖音202663-628799.mp4",
+      "title": "情侣吵架女生放狠话转头秒睡",
+      "topic": "情侣日常搞笑反差",
+      "verdict": "pass",
+      "score": 90.0,
+      "provider": "doubao",
+      "summary": "整体拆解与视频内容高度匹配，仅第一幕女友角色的动物类型描述存在小误差，其余内容均符合",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "1",
+          "field": "cats",
+          "observed": "第一幕右侧女友角色为灰色仓鼠meme",
+          "extracted": "灰猫（女友）站床上对吵/灰猫右蹦跶吵架",
+          "suggestion": "将第一幕女友角色修正为灰色仓鼠meme"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-031-抖音202663-639282",
+      "filename": "抖音202663-639282.mp4",
+      "title": "放假后在家挨骂的你",
+      "topic": "放假在家被家长吐槽的大众共鸣场景",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "整体拆解和视频高度一致，仅存在个别时间节点、罪状数量的细微误差，核心内容完全匹配",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "2、3",
+          "field": "timing",
+          "observed": "shot2对应6条罪状的实际时间范围是1-9s，shot3对应剩余罪状的实际时间范围是9-18s",
+          "extracted": "shot2 end_time标注为7s，shot3 start_time标注为7s、duration标注为11s",
+          "suggestion": "修正shot2 end_time为9s，shot3 start_time为9s，调整对应duration数值"
+        },
+        {
+          "severity": "minor",
+          "shot_id": "3",
+          "field": "script",
+          "observed": "9-18s实际共罗列7条罪状",
+          "extracted": "标注为罗列剩余6条罪状",
+          "suggestion": "修正为罗列剩余7条罪状"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-032-抖音202663-659171",
+      "filename": "抖音202663-659171.mp4",
+      "title": "让你意识到已经上年纪的瞬间",
+      "topic": "当代年轻人变老的日常征兆/年龄共鸣",
+      "verdict": "pass",
+      "score": 95.0,
+      "provider": "doubao",
+      "summary": "拆解内容与原视频的剧情脉络、分镜顺序、背景设定、猫素材特征、包装风格等各维度高度匹配，无明显偏差",
+      "issues": [],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-033-抖音202663-666778",
+      "filename": "抖音202663-666778.mp4",
+      "title": "大学生最不能接受的事",
+      "topic": "大学生快递等待痛点",
+      "verdict": "pass",
+      "score": 90.0,
+      "provider": "doubao",
+      "summary": "整体拆解与视频内容高度匹配，仅存在个别小细节遗漏，核心剧情、分镜、背景、素材描述均准确",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "4",
+          "field": "cats",
+          "observed": "该镜头后半段还切换出现了一只灰白配色的歪嘴猫meme",
+          "extracted": "仅描述了蹦跶怒吼的暴躁奶猫meme",
+          "suggestion": "补充提到该镜头后半段切换为灰白歪嘴猫meme"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-034-抖音202663-693881",
+      "filename": "抖音202663-693881.mp4",
+      "title": "香蕉猫烤鸡腿摊暖心反转整活",
+      "topic": "打工人日常暖心整活",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "拆解整体和视频高度一致，仅存在猫素材描述的小措辞差异",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "3",
+          "field": "cats",
+          "observed": "视频中马桶上的是灰色嘶吼的小狗头（屎到淋头梗素材）",
+          "extracted": "cheems猫站马桶上 嘶吼痛苦",
+          "suggestion": "将猫素材描述修正为灰色嘶吼小狗头（屎到淋头梗素材）站马桶上嘶吼"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-035-抖音202663-761191",
+      "filename": "抖音202663-761191.mp4",
+      "title": "女朋友的心里话",
+      "topic": "情侣日常反差沙雕梗",
+      "verdict": "pass",
+      "score": 95.0,
+      "provider": "doubao",
+      "summary": "拆解整体和原视频高度一致，剧情、分镜、背景、猫素材描述均准确匹配",
+      "issues": [],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-036-抖音202663-775737",
+      "filename": "抖音202663-775737.mp4",
+      "title": "男生的那些出厂设置",
+      "topic": "男生日常共性梗",
+      "verdict": "pass",
+      "score": 89.0,
+      "provider": "doubao",
+      "summary": "整体拆解与视频高度匹配，核心剧情、场景、梗点、meme描述均准确，仅存在少量非核心细节遗漏",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "4",
+          "field": "script",
+          "observed": "15-18s先出现两个狗头meme互相谦让走前面的过渡内容，之后才进入双猫打赌摸树叶剧情",
+          "extracted": "仅描述双猫人行道对话、跳起来摸树叶，未提及前置狗头谦让内容",
+          "suggestion": "补充狗头meme互相谦让的过渡剧情描述"
+        },
+        {
+          "severity": "minor",
+          "shot_id": "5",
+          "field": "script",
+          "observed": "32-35s出现羊头meme从一月到一年反复点猪脚饭，被老板当成NPC的内容",
+          "extracted": "仅描述橘猫点单、老板狂喜，未提及羊头长期固定点单的内容",
+          "suggestion": "补充羊头长期固定点猪脚饭被老板视为NPC的相关剧情描述"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-037-抖音202663-803466",
+      "filename": "抖音202663-803466.mp4",
+      "title": "猫抓老鼠全家送主人当全家桶",
+      "topic": "养猫日常离谱反差",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "整体拆解高度匹配原视频，仅11-15秒的“我”的角色形象描述存在小错误，其余内容均准确",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "3",
+          "field": "cats",
+          "observed": "11-15秒的“我”先为狸花猫震惊脸，后变为开心狗头，未出现香蕉猫",
+          "extracted": "拆解描述该镜头“我”的形象为香蕉猫震惊脸",
+          "suggestion": "修正为“左侧‘我’先为狸花猫震惊脸，后变为开心狗头，橘猫在右侧鸟巢”"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-038-抖音202663-863419",
+      "filename": "抖音202663-863419.mp4",
+      "title": "记忆中的童年生日声音",
+      "topic": "90后童年生日怀旧共鸣",
+      "verdict": "pass",
+      "score": 90.0,
+      "provider": "doubao",
+      "summary": "整体剧情、分镜顺序、背景、猫素材和字幕包装描述基本匹配，仅存在个别细节小误差，音频描述因无法听音为低置信",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "3",
+          "field": "cats",
+          "observed": "画面中床上听歌的是浅橘色普通猫，摸音乐盒的是纯白色猫",
+          "extracted": "香蕉猫开心听歌，白橘猫摸音乐盒",
+          "suggestion": "修正为「浅橘猫开心听歌，白色猫摸音乐盒」"
+        },
+        {
+          "severity": "minor",
+          "shot_id": "6",
+          "field": "script",
+          "observed": "该时间段画面仅出现「终于安静了」台词字幕，无「怎么又响了」内容",
+          "extracted": "我：终于安静了，怎么又响了？",
+          "suggestion": "删除多余的「怎么又响了」，保留「终于安静了」即可"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-039-抖音202663-938533",
+      "filename": "抖音202663-938533.mp4",
+      "title": "当我不小心熬穿了夜",
+      "topic": "年轻人熬夜日常/家庭反向整活",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "整体拆解与原视频高度匹配，仅存在少量字幕描述的细微偏差",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "2",
+          "field": "subtitle",
+          "observed": "原视频该镜头字幕为「不好 天都快亮了 快睡快睡 不行！睡了起不来又要被骂」",
+          "extracted": "「不好 天都快亮了 睡了要被骂」",
+          "suggestion": "补充完整该镜头的字幕内容"
+        },
+        {
+          "severity": "minor",
+          "shot_id": "4",
+          "field": "subtitle",
+          "observed": "原视频厨房炒菜镜头无对应字幕",
+          "extracted": "「去厨房做早餐」",
+          "suggestion": "删除该条不存在的字幕描述"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-040-抖音202663-960265",
+      "filename": "抖音202663-960265.mp4",
+      "title": "爱笑小孩被带去看医生结果全员破防",
+      "topic": "家庭搞笑日常反转梗",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "整体拆解与视频内容高度匹配，剧情、分镜、背景、猫素材描述均准确，仅个别镜头台词存在小遗漏",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "2",
+          "field": "script",
+          "observed": "视频该镜头顶部字幕为“爸爸觉得我有病带我来看医生”",
+          "extracted": "shot_track中该镜头script写为“爸爸带我来看医生”",
+          "suggestion": "补充完整台词为“爸爸觉得我有病带我来看医生”"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-041-抖音202663-963163",
+      "filename": "抖音202663-963163.mp4",
+      "title": "压岁钱卡BUG反杀爽文反转",
+      "topic": "春节压岁钱搞笑脑洞剧情",
+      "verdict": "pass",
+      "score": 95.0,
+      "provider": "doubao",
+      "summary": "拆解与原视频整体高度一致，剧情、分镜、背景、猫素材、音频风格等核心内容均匹配，仅存在细微措辞差异",
+      "issues": [],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-042-抖音202663-978042",
+      "filename": "抖音202663-978042.mp4",
+      "title": "当最没用的我在家时",
+      "topic": "家庭倒霉日常、有理说不清的废柴人设",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "整体拆解和视频内容高度一致，仅存在少量台词遗漏、细节描述不全的微小瑕疵",
+      "issues": [
+        {
+          "severity": "minor",
+          "shot_id": "4",
+          "field": "script",
+          "observed": "视频中爸妈对话除了\"什么动静！？\"\"是不是那小子又闯祸了\"外，还有\"你快去看看！\"的台词",
+          "extracted": "拆解shot4的script仅写了\"什么动静？是不是那小子又闯祸了\"",
+          "suggestion": "在shot4的script中补充\"你快去看看！\"的台词内容"
+        },
+        {
+          "severity": "minor",
+          "shot_id": "8",
+          "field": "other",
+          "observed": "视频末尾有抖音搜索框的cta引导镜头",
+          "extracted": "asset_plan的storyboard未包含该cta镜头的相关描述",
+          "suggestion": "在asset_plan的storyboard中补充cta镜头的对应描述"
+        }
+      ],
+      "needs_human_review": false
+    },
+    {
+      "id": "bkmm-043-抖音202663-981681",
+      "filename": "抖音202663-981681.mp4",
+      "title": "教你如何整蛊朋友",
+      "topic": "趣味整蛊梗",
+      "verdict": "pass",
+      "score": 92.0,
+      "provider": "doubao",
+      "summary": "拆解内容和视频整体高度一致，核心要素全部匹配，无严重错误",
+      "issues": [],
+      "needs_human_review": false
+    }
+  ]
+}

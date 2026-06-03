@@ -1,0 +1,394 @@
+{
+  "video_summary": {
+    "title": "香蕉猫扔传单误砸骑车大哥反被整蛊爆笑反转",
+    "one_sentence": "香蕉猫扔传单砸到骑车大哥，第二次遇大哥发传单被拿光，疯狂扔纸团报复",
+    "primary_topic": "街头日常社死搞笑反转",
+    "meme_type": "香蕉猫沙雕搞笑meme",
+    "overall_tone": "搞怪贱萌 反转搞笑"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "你想往哪儿跑 我要拿回属于我的荣誉",
+      "speaker": "旁白",
+      "tone": "激昂",
+      "emotion": "中二",
+      "function": "hook",
+      "confidence": 1
+    },
+    {
+      "start_time": 2,
+      "end_time": 4,
+      "text": "发传单啦 下意识接住",
+      "speaker": "发单猫/主角",
+      "tone": "活泼/懵",
+      "emotion": "疑惑",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 6,
+      "end_time": 10,
+      "text": "打算来个空心球 纸团命中路过大哥",
+      "speaker": "旁白/主角",
+      "tone": "得意/慌",
+      "emotion": "慌乱",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 14,
+      "end_time": 18,
+      "text": "大哥我不是故意的",
+      "speaker": "主角",
+      "tone": "讨好",
+      "emotion": "愧疚",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 23,
+      "end_time": 35,
+      "text": "又碰到发传单的 给我传单 居然是大哥",
+      "speaker": "旁白/主角",
+      "tone": "惊讶",
+      "emotion": "震惊",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 38,
+      "end_time": 48,
+      "text": "多来点 都给我 够吗孩子",
+      "speaker": "主角/大哥",
+      "tone": "嚣张/宠溺",
+      "emotion": "戏谑",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 51,
+      "end_time": 75,
+      "text": "这次我要拿回荣誉 强的可怕 没完了？",
+      "speaker": "主角/大哥",
+      "tone": "中二/无语",
+      "emotion": "生气",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 85,
+      "end_time": 90,
+      "text": "你想往哪儿跑 You no run！",
+      "speaker": "旁白",
+      "tone": "魔性",
+      "emotion": "搞笑",
+      "function": "ending",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": "s1",
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "hook",
+      "script": "主角对着垃圾桶放狠话要拿荣誉",
+      "joke_point": "中二宣言反差",
+      "visual_description": "香蕉猫背对着镜头面对绿色垃圾桶",
+      "pacing_note": "快切 直接入题"
+    },
+    {
+      "shot_id": "s2",
+      "start_time": 2,
+      "end_time": 5,
+      "duration": 3,
+      "beat": "setup",
+      "script": "发单猫递传单 主角下意识接住",
+      "joke_point": "社死接传单日常",
+      "visual_description": "多只香蕉猫在步行街发传单 主角猫懵住",
+      "pacing_note": "轻快 贴近日常"
+    },
+    {
+      "shot_id": "s3",
+      "start_time": 5,
+      "end_time": 12,
+      "duration": 7,
+      "beat": "escalation",
+      "script": "主角扔传单纸团 命中路过骑车大哥",
+      "joke_point": "扔纸团失误砸到人",
+      "visual_description": "纸团飞出去砸到骑车路过的香蕉猫",
+      "pacing_note": "节奏放缓 突出意外"
+    },
+    {
+      "shot_id": "s4",
+      "start_time": 12,
+      "end_time": 22,
+      "duration": 10,
+      "beat": "twist",
+      "script": "主角道歉 大哥没说啥直接走",
+      "joke_point": "社死道歉对方反应冷淡",
+      "visual_description": "主角猫低头道歉 骑车大哥径直离开",
+      "pacing_note": "留白 铺垫后续反转"
+    },
+    {
+      "shot_id": "s5",
+      "start_time": 23,
+      "end_time": 36,
+      "duration": 13,
+      "beat": "twist",
+      "script": "第二天遇发单的 发现是上次的大哥",
+      "joke_point": "冤家路窄的反转",
+      "visual_description": "主角伸手要传单 抬头发现是骑车大哥",
+      "pacing_note": "卡点 突出震惊感"
+    },
+    {
+      "shot_id": "s6",
+      "start_time": 36,
+      "end_time": 50,
+      "duration": 14,
+      "beat": "escalation",
+      "script": "主角疯狂要传单 大哥把所有传单都给了他",
+      "joke_point": "报复式拿光对方传单",
+      "visual_description": "主角抱了一大堆传单 大哥问够吗孩子",
+      "pacing_note": "节奏加快 突出爽感"
+    },
+    {
+      "shot_id": "s7",
+      "start_time": 50,
+      "end_time": 82,
+      "duration": 32,
+      "beat": "punchline",
+      "script": "主角疯狂扔纸团砸骑车路过的大哥 大哥车胎被砸爆要爆发",
+      "joke_point": "反复砸人直到对方破防",
+      "visual_description": "无数纸团砸到大哥身上 车胎爆了大哥张嘴怒吼",
+      "pacing_note": "循环卡点 搞笑感拉满"
+    },
+    {
+      "shot_id": "s8",
+      "start_time": 83,
+      "end_time": 95,
+      "duration": 12,
+      "beat": "ending",
+      "script": "漫天纸团配字你想往哪儿跑",
+      "joke_point": "魔性台词收尾",
+      "visual_description": "无数纸团飞在天空 配中英双语台词",
+      "pacing_note": "慢放 留记忆点"
+    }
+  ],
+  "cat_track": [
+    "s1：1只香蕉套橘猫主角，垃圾桶前放狠话",
+    "s2：多只香蕉猫发传单，主角下意识接住",
+    "s3：主角香蕉猫扔纸团，香蕉猫骑车大哥被砸",
+    "s4：主角香蕉猫道歉，骑车大哥冷淡离开",
+    "s5：主角伸手要传单，胖橘/香蕉猫自行车大哥发传单",
+    "s6：主角疯狂索要传单，大哥把一整沓传单给他，旁边狗头表情包烘托",
+    "s7：主角反复扔纸团，自行车大哥被砸、爆胎、怒吼",
+    "s8：无猫镜头/漫天纸团和平台引导页"
+  ],
+  "background_track": [
+    "小区门口 绿色垃圾桶 石板路 绿植 明亮白天",
+    "城市步行街 地砖 商铺 远处游乐设施 白天",
+    "城市马路边 绿化 路灯 小区楼房 白天",
+    "纯黑背景 白色文字“第二天” 转场用"
+  ],
+  "audio_track": {
+    "bgm_style": "抖音热门魔性搞怪电子BGM",
+    "bgm_mood": "欢快 沙雕 节奏强",
+    "voice_style": "贱萌搞怪 多种音色分角色配",
+    "voice_presence": "清晰 盖过BGM 突出台词",
+    "sfx": [
+      "扔纸团嗖嗖声",
+      "惊讶哇哦声",
+      "车胎爆气声",
+      "怒吼音效"
+    ],
+    "rhythm_sync": "每句台词、每个笑点都踩鼓点"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "黄边黑粗黑体大字",
+    "subtitle_density": "每镜头1-2句 不占过多画面",
+    "emphasis_words": [
+      "拿回荣誉",
+      "自行车大哥",
+      "你想往哪儿跑"
+    ],
+    "bubble_or_dialogue_style": "无气泡 文字直接放在角色旁边",
+    "stickers_or_overlays": [
+      "角色名黄色标注贴纸",
+      "问号贴纸",
+      "动作说明星号标注"
+    ],
+    "transition_notes": [
+      "硬切为主 第二天转场用黑场白字"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "日常小失误→冤家路窄遇对方→反向报复反转搞笑"
+    ],
+    "shot_templates": [
+      "现实场景合成卡通猫角色 简单特效配合笑点"
+    ],
+    "cat_action_templates": [
+      "香蕉猫走路递东西 扔东西 骑车 懵/拽表情"
+    ],
+    "background_templates": [
+      "城市步行街 小区门口马路 现实街景素材"
+    ],
+    "audio_templates": [
+      "魔性搞怪BGM+贱萌角色配音+卡点音效"
+    ],
+    "suitable_topics": [
+      "社死日常",
+      "街头搞笑",
+      "冤种朋友互动",
+      "日常小报复爽梗"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": "s1",
+        "duration": 2.0,
+        "beat": "hook",
+        "script": "你想往哪儿跑 我要拿回属于我的荣誉",
+        "joke_point": "对着垃圾桶放狠话的中二反差",
+        "background": "小区门口绿色垃圾桶旁，石板路和绿植",
+        "cats": "1只香蕉套橘猫主角，背对镜头面对垃圾桶，表情拽",
+        "audio": "激昂中二配音，魔性BGM鼓点起",
+        "subtitle": "你想往哪儿跑 / 我要拿回属于我的荣誉",
+        "seedream_prompt": "白天小区门口 绿色垃圾桶 石板路 绿植",
+        "local_cat_asset_keywords": "香蕉猫 背影 放狠话",
+        "local_background_keywords": "小区门口 绿色垃圾桶 石板路"
+      },
+      {
+        "shot_id": "s2",
+        "duration": 3.0,
+        "beat": "setup",
+        "script": "发传单啦 下意识接住",
+        "joke_point": "社恐路过时下意识接传单的日常共鸣",
+        "background": "城市步行街，地砖，远处商铺和行人",
+        "cats": "3只香蕉猫递传单，1只主角猫懵住接传单",
+        "audio": "活泼发单配音，懵住反应音效",
+        "subtitle": "发传单啦 / 下意识接住",
+        "seedream_prompt": "白天城市步行街 地砖 商铺 人少",
+        "local_cat_asset_keywords": "香蕉猫 递传单 懵住",
+        "local_background_keywords": "城市步行街 商铺 地砖"
+      },
+      {
+        "shot_id": "s3",
+        "duration": 7.0,
+        "beat": "escalation",
+        "script": "打算来个空心球，纸团命中路过大哥",
+        "joke_point": "扔垃圾失误砸到路人的社死",
+        "background": "小区马路边，绿化、路灯和平整路面",
+        "cats": "主角猫扔纸团，香蕉猫骑车大哥路过被砸懵",
+        "audio": "纸团嗖嗖声，命中惊讶音效",
+        "subtitle": "打算来个空心球 / 命中路过大哥",
+        "seedream_prompt": "白天小区旁马路 绿化 路灯 平整路面",
+        "local_cat_asset_keywords": "香蕉猫 扔纸团 骑车 被砸",
+        "local_background_keywords": "小区马路 绿化 路灯"
+      },
+      {
+        "shot_id": "s4",
+        "duration": 10.0,
+        "beat": "twist",
+        "script": "大哥我不是故意的，大哥径直离开",
+        "joke_point": "主角社死道歉，对方冷处理留下后续伏笔",
+        "background": "同一小区马路边，绿色垃圾桶和居民楼外立面",
+        "cats": "主角香蕉猫低头道歉，骑车大哥冷淡经过并离开",
+        "audio": "讨好道歉配音，短暂停顿留白",
+        "subtitle": "大哥我不是故意的",
+        "seedream_prompt": "白天小区马路 绿色垃圾桶 居民楼外立面",
+        "local_cat_asset_keywords": "香蕉猫 道歉 骑车大哥 冷淡",
+        "local_background_keywords": "小区马路 居民楼 绿化"
+      },
+      {
+        "shot_id": "s5",
+        "duration": 13.0,
+        "beat": "twist",
+        "script": "第二天又遇到发传单的，抬头发现是上次的大哥",
+        "joke_point": "冤家路窄的反转",
+        "background": "城市步行街，人来人往，地砖广场",
+        "cats": "主角伸手要传单，抬头发现胖橘/香蕉猫自行车大哥在发传单",
+        "audio": "震惊音效，傻愣愣配音",
+        "subtitle": "给我传单 / 没想到是上次的自行车大哥",
+        "seedream_prompt": "白天热闹步行街 地砖 远处行人",
+        "local_cat_asset_keywords": "香蕉猫 要传单 胖橘大哥 发传单 震惊",
+        "local_background_keywords": "步行街 地砖 行人"
+      },
+      {
+        "shot_id": "s6",
+        "duration": 14.0,
+        "beat": "escalation",
+        "script": "多来点，都给我，大哥把全部传单塞给主角",
+        "joke_point": "主角想报复拿传单，反被大哥顺势清库存",
+        "background": "同一城市步行街近景",
+        "cats": "主角香蕉猫疯狂索要传单，胖橘/香蕉猫大哥把一整沓传单给他，旁边狗头表情包烘托",
+        "audio": "夸张递传单音效，贱萌对话配音",
+        "subtitle": "多来点 / 都给我 / 够吗孩子",
+        "seedream_prompt": "白天步行街 两个角色递一大沓传单 远处行人",
+        "local_cat_asset_keywords": "香蕉猫 疯狂要传单 大哥 递一沓传单 狗头",
+        "local_background_keywords": "步行街 地砖 行人"
+      },
+      {
+        "shot_id": "s7",
+        "duration": 32.0,
+        "beat": "punchline",
+        "script": "这次我要拿回荣誉，疯狂扔纸团砸骑车大哥，车胎爆了大哥要爆发",
+        "joke_point": "反复砸人直到对方破防的循环笑点",
+        "background": "小区马路边，绿化和空路面，纸团不断飞过",
+        "cats": "主角香蕉猫疯狂扔纸团，自行车大哥反复被砸，最后车胎爆气并张嘴怒吼",
+        "audio": "纸团嗖嗖声循环，爆胎声，怒吼音效",
+        "subtitle": "这次我要拿回属于我的荣誉 / 强的可怕 / 没完了？ / 要爆发了",
+        "seedream_prompt": "白天小区马路 绿化 路灯 空路面 黄色纸团飞过",
+        "local_cat_asset_keywords": "香蕉猫 扔纸团 骑车大哥 爆胎 怒吼",
+        "local_background_keywords": "小区马路 绿化 纸团"
+      },
+      {
+        "shot_id": "s8",
+        "duration": 12.0,
+        "beat": "ending",
+        "script": "你想往哪儿跑 You no run",
+        "joke_point": "魔性中英双语台词洗脑收尾",
+        "background": "天空和树林背景，漫天黄色纸团飞舞，结尾切抖音关注页",
+        "cats": "无猫镜头/纸团飞舞和平台引导页",
+        "audio": "魔性高音台词，BGM高潮后收尾",
+        "subtitle": "你想往哪儿跑 / You no run！",
+        "seedream_prompt": "天空 树林 漫天黄色纸团 明亮",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "天空 树林 黄色纸团 抖音关注页"
+      }
+    ]
+  },
+  "quality_notes": [
+    "角色合成自然 笑点卡点准确 台词贴合日常共鸣点",
+    "verification_repair: expanded bkmm-025 asset_plan storyboard to match 8-shot shot_track and removed unverified bicycle bell sfx"
+  ],
+  "_raw_content_sha256": "d145d235295d22cdb70ece03d50792aea39b70a4c23a0b634bb53ec1dad12e5d",
+  "video_id": "bkmm-025-抖音202663-534479",
+  "filename": "抖音202663-534479.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 95.736,
+    "size_bytes": 11541265,
+    "width": 1100,
+    "height": 716,
+    "fps": 30,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "ccb81033eb7676a15c34f35522387e55a259b9ff6ee086b9bdfdea9d3be74795"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 1.5,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-025-抖音202663-534479/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-025-抖音202663-534479/audio.m4a",
+    "analyzed_at": "2026-06-03T03:04:47.604338+00:00",
+    "normalized_at": "2026-06-03T03:41:40.415553+00:00"
+  }
+}

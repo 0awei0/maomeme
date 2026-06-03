@@ -1,0 +1,40 @@
+{
+  "video_id": "bkmm-017-抖音202663-378934",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "整体拆解与原视频高度匹配，仅存在两处关于猫动作和形象的细节描述小误差，核心内容全部正确",
+  "confirmed_points": [
+    "整体剧情逻辑、核心双标反差梗与原视频完全一致",
+    "背景描述准确，为医院诊室场景，包含办公桌、电脑、X光片、窗户等元素",
+    "台词、字幕内容及出现顺序和原视频完全吻合",
+    "分镜的时间节点、节奏、起承转合反转点均符合原视频内容",
+    "配音、BGM风格描述与实际音频匹配",
+    "结尾抖音引流页的描述正确"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "2",
+      "field": "cats",
+      "observed": "原视频中患者猫没有做出点头的动作，仅显示字幕“好的 医生”，猫无明显点头动作",
+      "extracted": "患者猫点头附和",
+      "suggestion": "修改为“患者猫乖巧坐在座位上回应”"
+    },
+    {
+      "severity": "minor",
+      "shot_id": "4",
+      "field": "cats",
+      "observed": "原视频中此处患者猫已经变为大眼睛的灰虎斑猫形象，并非原有普通虎斑猫",
+      "extracted": "虎斑猫震惊",
+      "suggestion": "修改为“大眼虎斑猫露出震惊表情”"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "3d6adc4c45e4ee763679455e41edde5e96c755ac95fa124ac91f26a65625c3be",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:34:39.298870+00:00",
+  "structure_sha256": "6ec8d17f97c5d253e80dcdb0573aa3145e53622f1dc46982fb40ed4dc9b02222",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-017-抖音202663-378934/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

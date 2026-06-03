@@ -1,0 +1,102 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 3.0,
+      "beat": "hook",
+      "script": "当最没用的我在家时/丸辣腿麻了",
+      "joke_point": "代入废柴人设",
+      "background": "米黄色瓷砖卫生间带淋浴马桶",
+      "cats": "橘猫在马桶上怼脸晃，表情难受",
+      "audio": "搞怪BGM起，无奈配音",
+      "subtitle": "顶部标题+底部字幕",
+      "seedream_prompt": "普通家庭米黄色瓷砖卫生间",
+      "local_cat_asset_keywords": "橘猫怼脸meme",
+      "local_background_keywords": "家庭卫生间素材"
+    },
+    {
+      "shot_id": 2,
+      "duration": 3.0,
+      "beat": "setup",
+      "script": "扶着走/这门怎么打不开了",
+      "joke_point": "腿麻的狼狈",
+      "background": "同卫生间，加洗手池拖布",
+      "cats": "黑猫扶墙走，灰白猫扒门",
+      "audio": "BGM持续，虚弱配音",
+      "subtitle": "中部白字",
+      "seedream_prompt": "带洗手池的家庭卫生间",
+      "local_cat_asset_keywords": "黑猫直立走路、灰猫扒门",
+      "local_background_keywords": "家庭卫生间素材"
+    },
+    {
+      "shot_id": 3,
+      "duration": 6.0,
+      "beat": "escalation",
+      "script": "将大局逆转吧/门被拽掉",
+      "joke_point": "用力过猛扯坏门",
+      "background": "同卫生间，门掉落",
+      "cats": "猫发力→惊讶香蕉猫露面",
+      "audio": "BGM升调，门掉哐当音效",
+      "subtitle": "中部白字",
+      "seedream_prompt": "卫生间门掉落场景",
+      "local_cat_asset_keywords": "发力猫、香蕉猫",
+      "local_background_keywords": "家庭卫生间素材"
+    },
+    {
+      "shot_id": 4,
+      "duration": 4.0,
+      "beat": "escalation",
+      "script": "什么动静？是不是那小子又闯祸了",
+      "joke_point": "爸妈熟悉的嫌弃感",
+      "background": "现代简约卧室软包床头",
+      "cats": "床左狸花猫（妈）床右黑猫（爸）",
+      "audio": "BGM持续，疑惑嫌弃配音",
+      "subtitle": "角色上方白字",
+      "seedream_prompt": "现代浅灰色大床卧室带挂画",
+      "local_cat_asset_keywords": "狸花猫、黑猫meme",
+      "local_background_keywords": "居家卧室素材"
+    },
+    {
+      "shot_id": 5,
+      "duration": 12.0,
+      "beat": "twist",
+      "script": "门质量差/你又干了啥/我听我狡辩",
+      "joke_point": "越描越黑的辩解",
+      "background": "白色墙面卫生间门口过道",
+      "cats": "狸花猫背对门（我），左奶牛猫（妈）生气",
+      "audio": "BGM加快，慌张生气配音",
+      "subtitle": "中部白字+出汗特效",
+      "seedream_prompt": "白色墙面卫生间门口过道",
+      "local_cat_asset_keywords": "狸花背影、奶牛猫生气",
+      "local_background_keywords": "家门口过道素材"
+    },
+    {
+      "shot_id": 6,
+      "duration": 4.0,
+      "beat": "punchline",
+      "script": "啥到你手上都坏/我错了",
+      "joke_point": "香蕉猫哭被妈打",
+      "background": "同卫生间门口",
+      "cats": "左橘猫打人（妈），中间香蕉猫哭（我）",
+      "audio": "打耳光音效+哭唧唧音效",
+      "subtitle": "中部白字+眼泪特效",
+      "seedream_prompt": "白色墙面卫生间门口过道",
+      "local_cat_asset_keywords": "橘猫打人、香蕉猫哭",
+      "local_background_keywords": "家门口过道素材"
+    },
+    {
+      "shot_id": 7,
+      "duration": 5.0,
+      "beat": "ending",
+      "script": "对不起了好大儿只能委屈你了",
+      "joke_point": "老爸不敢帮忙的现实",
+      "background": "同现代卧室",
+      "cats": "白胖猫蹲床上，无奈表情",
+      "audio": "BGM放缓，无奈配音",
+      "subtitle": "猫上方白字",
+      "seedream_prompt": "现代浅灰色大床卧室带挂画",
+      "local_cat_asset_keywords": "白胖猫蹲床",
+      "local_background_keywords": "居家卧室素材"
+    }
+  ]
+}

@@ -19,8 +19,12 @@ output/
 backend/outputs/
 backend/uploads/
 assets/archives/
+assets/processed/
 assets/generated/backgrounds/seedream-smoke/
 data/runs/*.json
+samples/viral-structure/**/raw/
+data/viral-structures/**/audio.m4a
+data/viral-structures/**/raw_doubao_response.json
 
 # HyperFrames generated artifacts
 hyperframes/node_modules/

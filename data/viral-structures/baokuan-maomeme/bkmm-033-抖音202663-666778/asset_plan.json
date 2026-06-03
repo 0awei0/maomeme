@@ -1,0 +1,88 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 2.5,
+      "beat": "hook",
+      "script": "三天前发生活费了，买两件像样的衣服穿，下单",
+      "joke_point": "大学生刚发生活费的豪爽状态",
+      "background": "大学单人宿舍床，格子床单，玩偶摆件",
+      "cats": "开心张嘴伸臂蹦跶的仓鼠meme",
+      "audio": "轻快BGM开头，萌系女声开心念台词",
+      "subtitle": "顶部黄标题，中间粉字对话，右侧*下单标注",
+      "seedream_prompt": "大学单人宿舍床 格子床单 毛绒玩偶 暖光",
+      "local_cat_asset_keywords": "开心蹦跶仓鼠meme",
+      "local_background_keywords": "大学宿舍床"
+    },
+    {
+      "shot_id": 2,
+      "duration": 3.0,
+      "beat": "setup",
+      "script": "三天后：都三天了怎么还没到啊，算了先去上课吧",
+      "joke_point": "等快递的普遍焦虑心态",
+      "background": "ins风大学书桌，洞洞板，收纳盒",
+      "cats": "皱眉盯手机的焦虑橘猫大头meme",
+      "audio": "BGM继续，女声焦虑配音",
+      "subtitle": "中间粉字，右侧*焦急标注",
+      "seedream_prompt": "ins风大学书桌 洞洞板 收纳盒 台灯",
+      "local_cat_asset_keywords": "焦虑皱眉橘猫meme",
+      "local_background_keywords": "大学书桌"
+    },
+    {
+      "shot_id": 3,
+      "duration": 2.0,
+      "beat": "escalation",
+      "script": "上完课后：在配送了，吃完饭后再去拿",
+      "joke_point": "看到物流更新的期待感",
+      "background": "明亮大学教学楼走廊，落地窗",
+      "cats": "咧嘴开心的狸花奶猫meme",
+      "audio": "女声雀跃配音",
+      "subtitle": "中间粉字，右侧*期待标注",
+      "seedream_prompt": "明亮大学教学楼走廊 落地窗 浅色墙面",
+      "local_cat_asset_keywords": "开心狸花奶猫meme",
+      "local_background_keywords": "大学教学楼走廊"
+    },
+    {
+      "shot_id": 4,
+      "duration": 4.5,
+      "beat": "escalation",
+      "script": "吃完饭后：怎么还在派送中啊，算了先回寝室吧",
+      "joke_point": "等待超时的烦躁情绪",
+      "background": "空旷大学食堂，浅色长桌椅",
+      "cats": "蹦跶怒吼的暴躁奶猫meme",
+      "audio": "女声烦躁配音，搭配叹气音效",
+      "subtitle": "中间粉字，右侧*不耐烦标注",
+      "seedream_prompt": "空旷大学食堂 浅色长桌椅 自然光",
+      "local_cat_asset_keywords": "暴躁蹦跶奶猫meme",
+      "local_background_keywords": "大学食堂"
+    },
+    {
+      "shot_id": 5,
+      "duration": 3.5,
+      "beat": "setup",
+      "script": "刚回寝室：累死我了，今天应该不能到了",
+      "joke_point": "放弃等待的摆烂心态",
+      "background": "ins风大学书桌，洞洞板收纳",
+      "cats": "仰头叹气的疲惫橘猫meme",
+      "audio": "女声疲惫配音",
+      "subtitle": "中间粉字",
+      "seedream_prompt": "ins风大学书桌 洞洞板收纳 桌面整洁",
+      "local_cat_asset_keywords": "疲惫叹气橘猫meme",
+      "local_background_keywords": "大学书桌"
+    },
+    {
+      "shot_id": 6,
+      "duration": 2.3,
+      "beat": "punchline",
+      "script": "刚回寝就收到快递取件通知",
+      "joke_point": "快递卡着回寝时间送达的崩溃暴击",
+      "background": "ins风大学书桌，放有笔记本电脑",
+      "cats": "震惊转头跑走的橘猫meme",
+      "audio": "手机通知音效，搞笑暴击音效",
+      "subtitle": "右下角快递通知弹窗",
+      "seedream_prompt": "ins风大学书桌 放笔记本电脑 桌面整洁",
+      "local_cat_asset_keywords": "震惊转头橘猫meme",
+      "local_background_keywords": "大学书桌"
+    }
+  ]
+}

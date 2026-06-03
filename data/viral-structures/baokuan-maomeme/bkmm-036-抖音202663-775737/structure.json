@@ -1,0 +1,458 @@
+{
+  "video_summary": {
+    "title": "男生的那些出厂设置",
+    "one_sentence": "用猫meme演绎男生普遍共性日常行为，精准戳共鸣引发笑点",
+    "primary_topic": "男生日常共性梗",
+    "meme_type": "生活共鸣类猫meme",
+    "overall_tone": "搞笑接地气 玩梗调侃"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "男生的那些出厂设置 空瓶子",
+      "speaker": "旁白",
+      "tone": "调侃",
+      "emotion": "活泼",
+      "function": "hook",
+      "confidence": 1
+    },
+    {
+      "start_time": 2,
+      "end_time": 6,
+      "text": "剩一口可乐也要喝光 嗝~",
+      "speaker": "旁白",
+      "tone": "搞笑",
+      "emotion": "戏谑",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 6,
+      "end_time": 15,
+      "text": "空瓶子直接当哑铃甩",
+      "speaker": "旁白",
+      "tone": "搞怪",
+      "emotion": "搞笑",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 15,
+      "end_time": 22,
+      "text": "树叶：你走前面 摸到那片树叶算你厉害",
+      "speaker": "角色对话",
+      "tone": "幼稚",
+      "emotion": "搞笑",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 22,
+      "end_time": 35,
+      "text": "食物：老板来份猪脚饭 天天吃老板把我当NPC",
+      "speaker": "角色对话",
+      "tone": "调侃",
+      "emotion": "好笑",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 35,
+      "end_time": 45,
+      "text": "睡眠：11点说困 11点01直接秒睡雷打不动",
+      "speaker": "旁白",
+      "tone": "戏谑",
+      "emotion": "共鸣",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 45,
+      "end_time": 48,
+      "text": "搜索：男生出厂设置",
+      "speaker": "引导",
+      "tone": "友好",
+      "emotion": "平静",
+      "function": "cta",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "hook",
+      "script": "标题+空瓶子主题",
+      "joke_point": "点题戳男生共性",
+      "visual_description": "橘猫嫌弃脸看剩一口的可乐",
+      "pacing_note": "快切入题"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2,
+      "end_time": 6,
+      "duration": 4,
+      "beat": "setup",
+      "script": "男生喝光剩可乐打嗝",
+      "joke_point": "男生剩一口都要喝完的习惯",
+      "visual_description": "cheems猫仰头喝可乐 打嗝",
+      "pacing_note": "卡鼓点"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 6,
+      "end_time": 15,
+      "duration": 9,
+      "beat": "escalation",
+      "script": "空瓶当哑铃玩",
+      "joke_point": "男生总能把废品当玩具",
+      "visual_description": "狗meme甩空可乐瓶当健身",
+      "pacing_note": "节奏轻快"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 15,
+      "end_time": 22,
+      "duration": 7,
+      "beat": "setup",
+      "script": "比谁能摸到高处树叶",
+      "joke_point": "男生走路幼稚打赌习惯",
+      "visual_description": "双猫人行道对话 跳起来摸树叶",
+      "pacing_note": "快切对话"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 22,
+      "end_time": 35,
+      "duration": 13,
+      "beat": "punchline",
+      "script": "男生吃饭固定点固定菜",
+      "joke_point": "男生吃饭专一到被老板当NPC",
+      "visual_description": "橘猫饭馆天天点猪脚饭 老板狂喜",
+      "pacing_note": "笑点密集"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 35,
+      "end_time": 45,
+      "duration": 10,
+      "beat": "punchline",
+      "script": "男生秒睡技能",
+      "joke_point": "男生沾床就秒睡的共性",
+      "visual_description": "橘猫打哈欠 下一秒直接睡熟",
+      "pacing_note": "反差笑点"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 45,
+      "end_time": 48,
+      "duration": 3,
+      "beat": "cta",
+      "script": "引导搜索关键词",
+      "joke_point": "",
+      "visual_description": "抖音搜索框引导",
+      "pacing_note": "收尾引导"
+    }
+  ],
+  "cat_track": [
+    {
+      "shot_id": 1,
+      "count": 1,
+      "role": "男生",
+      "position": "画面左侧",
+      "action": "站着",
+      "expression": "嫌弃",
+      "emotion": "不屑",
+      "layout": "左猫右瓶",
+      "asset_keywords": "橘猫嫌弃脸 meme"
+    },
+    {
+      "shot_id": 2,
+      "count": 1,
+      "role": "男生",
+      "position": "画面中间",
+      "action": "仰头喝可乐",
+      "expression": "享受",
+      "emotion": "满足",
+      "layout": "中置",
+      "asset_keywords": "cheems猫 张嘴 meme"
+    },
+    {
+      "shot_id": 3,
+      "count": 1,
+      "role": "男生",
+      "position": "画面中间",
+      "action": "甩空瓶",
+      "expression": "嘚瑟",
+      "emotion": "开心",
+      "layout": "中置",
+      "asset_keywords": "开心狗meme 晃东西"
+    },
+    {
+      "shot_id": 4,
+      "count": 2,
+      "role": "男生甲乙",
+      "position": "左右各一",
+      "action": "对话 跳",
+      "expression": "调皮 认真",
+      "emotion": "幼稚 好胜",
+      "layout": "双猫左右分布",
+      "asset_keywords": "笑脸狗meme 跳高高猫meme"
+    },
+    {
+      "shot_id": 5,
+      "count": 2,
+      "role": "男生/老板",
+      "position": "左/右",
+      "action": "点单/上菜",
+      "expression": "淡定/惊喜",
+      "emotion": "平静/开心",
+      "layout": "左顾客右老板",
+      "asset_keywords": "橘猫淡定脸 厨师猫大眼meme 羊meme"
+    },
+    {
+      "shot_id": 6,
+      "count": 2,
+      "role": "男生",
+      "position": "中置",
+      "action": "打哈欠/睡觉",
+      "expression": "困/安详",
+      "emotion": "困倦/放松",
+      "layout": "中置",
+      "asset_keywords": "橘猫打哈欠 香蕉猫睡觉 meme"
+    }
+  ],
+  "background_track": [
+    {
+      "shot_id": 1,
+      "setting": "ins风客厅",
+      "props": "米白沙发 绿植 挂画",
+      "composition": "中景 沙发居中",
+      "mood": "温馨日常",
+      "existing_asset_keywords": "ins风客厅 米白沙发",
+      "seedream_prompt": "浅色墙面 米白沙发 简约客厅",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 4,
+      "setting": "城市林荫步道",
+      "props": "行道树 围栏 砖石路",
+      "composition": "远景路延伸",
+      "mood": "夏日户外",
+      "existing_asset_keywords": "林荫人行道 城市步道",
+      "seedream_prompt": "夏日林荫路 砖石人行道",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 5,
+      "setting": "家常小餐馆",
+      "props": "简易桌椅 菜单 冰箱",
+      "composition": "中景 桌椅居中",
+      "mood": "接地气",
+      "existing_asset_keywords": "小饭馆内景 平价餐馆",
+      "seedream_prompt": "家常小餐馆 简易餐桌",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 6,
+      "setting": "卧室睡前场景",
+      "props": "床 被子 百叶窗",
+      "composition": "中景 床居中",
+      "mood": "放松居家",
+      "existing_asset_keywords": "卧室床 睡前场景",
+      "seedream_prompt": "卧室床 灰色被子 百叶窗",
+      "need_generated_background": false
+    }
+  ],
+  "audio_track": {
+    "bgm_style": "抖音热门轻快搞怪BGM",
+    "bgm_mood": "活泼搞笑 节奏感强",
+    "voice_style": "接地气男生旁白 搞怪角色配音",
+    "voice_presence": "突出 清晰",
+    "sfx": [
+      "喝可乐咕噜声",
+      "打嗝声",
+      "晃瓶子声",
+      "吃饭吧唧声",
+      "打哈欠声"
+    ],
+    "rhythm_sync": "每个笑点卡BGM鼓点 节奏明快"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "粗黑边白/黄字 字体醒目",
+    "subtitle_density": "中等 每句不超10字",
+    "emphasis_words": [
+      "空瓶子",
+      "树叶",
+      "食物",
+      "睡眠",
+      "秒睡"
+    ],
+    "bubble_or_dialogue_style": "黄色卡通对话框 对应角色下方显示",
+    "stickers_or_overlays": [
+      "手势贴纸",
+      "闪光特效",
+      "顶部固定标题条"
+    ],
+    "transition_notes": [
+      "硬切 无花哨转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "[群体]的那些[共性特征]：分场景演绎多个日常共鸣梗"
+    ],
+    "shot_templates": [
+      "hook点题→小场景setup→escalation→punchline→多场景循环→cta引导"
+    ],
+    "cat_action_templates": [
+      "嫌弃脸→吃东西→玩物品→对话打赌→干饭→秒睡"
+    ],
+    "background_templates": [
+      "日常场景：家/户外路/饭馆/卧室 都是大众熟悉的生活化场景"
+    ],
+    "audio_templates": [
+      "轻快搞怪BGM+接地气旁白+对应动作拟声音效"
+    ],
+    "suitable_topics": [
+      "女生共性梗",
+      "打工人共性梗",
+      "学生党共性梗",
+      "不同职业共性梗"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.0,
+        "beat": "hook",
+        "script": "男生的那些出厂设置 空瓶子",
+        "joke_point": "点题戳男生共性",
+        "background": "ins风浅色客厅 米白沙发",
+        "cats": "单橘猫 嫌弃脸 站可乐左侧",
+        "audio": "BGM起 旁白念标题",
+        "subtitle": "顶部白字标题+黄字「空瓶子」",
+        "seedream_prompt": "简约ins风客厅 米白沙发 浅色墙",
+        "local_cat_asset_keywords": "橘猫嫌弃脸 meme",
+        "local_background_keywords": "ins客厅 沙发"
+      },
+      {
+        "shot_id": 2,
+        "duration": 4.0,
+        "beat": "setup",
+        "script": "喝光剩可乐 打嗝",
+        "joke_point": "男生剩一口也要喝完的习惯",
+        "background": "同shot1客厅",
+        "cats": "cheems猫 仰头张嘴喝可乐",
+        "audio": "喝可乐咕噜声+打嗝音效",
+        "subtitle": "「嗝~」黄色气泡",
+        "seedream_prompt": "同shot1",
+        "local_cat_asset_keywords": "cheems猫 张嘴 meme",
+        "local_background_keywords": "ins客厅 沙发"
+      },
+      {
+        "shot_id": 3,
+        "duration": 9.0,
+        "beat": "escalation",
+        "script": "空瓶当哑铃甩",
+        "joke_point": "男生把废品当玩具",
+        "background": "同shot1客厅",
+        "cats": "开心狗meme 晃空可乐瓶",
+        "audio": "晃瓶子音效 BGM鼓点",
+        "subtitle": "无额外字幕",
+        "seedream_prompt": "同shot1",
+        "local_cat_asset_keywords": "开心狗meme 晃东西",
+        "local_background_keywords": "ins客厅 沙发"
+      },
+      {
+        "shot_id": 4,
+        "duration": 7.0,
+        "beat": "setup",
+        "script": "打赌摸高处树叶",
+        "joke_point": "男生走路幼稚打赌",
+        "background": "夏日林荫人行道",
+        "cats": "双猫左右分布 对话 跳着摸树叶",
+        "audio": "对话配音 跳起来音效",
+        "subtitle": "角色下方对应对话白字",
+        "seedream_prompt": "夏日林荫路 砖石人行道",
+        "local_cat_asset_keywords": "笑脸狗meme 跳高高猫meme",
+        "local_background_keywords": "林荫人行道 城市步道"
+      },
+      {
+        "shot_id": 5,
+        "duration": 13.0,
+        "beat": "punchline",
+        "script": "天天点猪脚饭被当NPC",
+        "joke_point": "男生吃饭专一一模一样",
+        "background": "家常小餐馆内景",
+        "cats": "左橘猫点单 右厨师猫惊喜脸",
+        "audio": "吃饭吧唧声 对话配音",
+        "subtitle": "「猪脚饭」「我店有救了」对应字幕",
+        "seedream_prompt": "家常小餐馆 简易餐桌",
+        "local_cat_asset_keywords": "橘猫淡定脸 厨师猫大眼meme",
+        "local_background_keywords": "小饭馆内景 平价餐馆"
+      },
+      {
+        "shot_id": 6,
+        "duration": 10.0,
+        "beat": "punchline",
+        "script": "11点说困11点01秒睡",
+        "joke_point": "男生秒睡技能共鸣",
+        "background": "卧室床 睡前场景",
+        "cats": "橘猫打哈欠 香蕉猫秒睡",
+        "audio": "打哈欠声 BGM变缓",
+        "subtitle": "「困了」「秒睡」「雷打不动」黄字",
+        "seedream_prompt": "卧室床 灰色被子 百叶窗",
+        "local_cat_asset_keywords": "橘猫打哈欠 香蕉猫睡觉meme",
+        "local_background_keywords": "卧室床 睡前场景"
+      },
+      {
+        "shot_id": 7,
+        "duration": 3.0,
+        "beat": "cta",
+        "script": "引导搜索男生出厂设置",
+        "joke_point": "结尾引流/作者页收束",
+        "background": "抖音搜索框深色背景",
+        "cats": "无猫镜头/平台作者信息页",
+        "audio": "BGM渐弱",
+        "subtitle": "搜索框文字「男生出厂设置」",
+        "seedream_prompt": "深色背景 抖音搜索框",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "抖音搜索界面"
+      }
+    ]
+  },
+  "quality_notes": [
+    "梗点高度贴合男生日常共性 共鸣强",
+    "节奏快 每个场景3-10秒 信息密度高",
+    "猫meme和对应行为匹配度高 笑点自然",
+    "normalized_storyboard_fields: filled 2 blank or inconsistent fields"
+  ],
+  "_raw_content_sha256": "aa2f70cdd93bd55011e4e247441140956c55ad0b6ee8c7c676678fa21ef1fa79",
+  "video_id": "bkmm-036-抖音202663-775737",
+  "filename": "抖音202663-775737.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 48.205,
+    "size_bytes": 3142045,
+    "width": 720,
+    "height": 960,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "ae123eba47aede6bf247282a8d741a659d9226ed61c5825f92a176764d6166ee"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-036-抖音202663-775737/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-036-抖音202663-775737/audio.m4a",
+    "analyzed_at": "2026-06-03T03:07:42.621136+00:00",
+    "normalized_at": "2026-06-03T03:19:12.610651+00:00"
+  }
+}

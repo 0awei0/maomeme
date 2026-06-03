@@ -1,0 +1,350 @@
+{
+  "video_summary": {
+    "title": "亡牌销冠马路玩命卖机油",
+    "one_sentence": "香蕉猫扮销冠冒被车撞风险推销机油，联动现实同款玩命销冠梗",
+    "primary_topic": "离谱玩命销售内卷梗",
+    "meme_type": "香蕉猫整活+现实梗联动",
+    "overall_tone": "荒诞搞笑无厘头"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "亡牌销冠这一块",
+      "speaker": "旁白",
+      "tone": "夸张戏谑",
+      "emotion": "搞笑",
+      "function": "hook",
+      "confidence": 1
+    },
+    {
+      "start_time": 1,
+      "end_time": 3,
+      "text": "卧槽！？",
+      "speaker": "车主猫",
+      "tone": "震惊",
+      "emotion": "错愕",
+      "function": "reaction",
+      "confidence": 1
+    },
+    {
+      "start_time": 4,
+      "end_time": 6,
+      "text": "不是哥们？这还不阴吗？",
+      "speaker": "车主猫",
+      "tone": "疑惑吐槽",
+      "emotion": "无语",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 6,
+      "end_time": 8,
+      "text": "兄弟要不要试试我们家公司新推出的机油",
+      "speaker": "销冠猫",
+      "tone": "热情谄媚",
+      "emotion": "讨好",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 8,
+      "end_time": 10,
+      "text": "就冲你没被撞死我买了！",
+      "speaker": "车主猫",
+      "tone": "爽快",
+      "emotion": "佩服",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 9,
+      "end_time": 11,
+      "text": "爽快！",
+      "speaker": "销冠猫",
+      "tone": "开心",
+      "emotion": "兴奋",
+      "function": "punchline",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "hook",
+      "script": "亡牌销冠这一块",
+      "joke_point": "铺垫销冠玩命人设",
+      "visual_description": "红卡车冲向路中间拿机油的香蕉猫",
+      "pacing_note": "快节奏切入"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2,
+      "end_time": 4,
+      "duration": 2,
+      "beat": "twist",
+      "script": "卧槽！？",
+      "joke_point": "卡车真撞过来反差感",
+      "visual_description": "香蕉猫被撞飞，KO特效弹出，车主猫震惊",
+      "pacing_note": "撞击点卡重音"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 4,
+      "end_time": 6,
+      "duration": 2,
+      "beat": "escalation",
+      "script": "不是哥们？这还不阴吗？",
+      "joke_point": "被撞还不忘推销的离谱",
+      "visual_description": "香蕉猫毫发无损爬起来继续举机油",
+      "pacing_note": "节奏稍缓放笑点"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 6,
+      "end_time": 9,
+      "duration": 3,
+      "beat": "punchline",
+      "script": "推销机油+冲你没被撞死我买了",
+      "joke_point": "购买理由离谱荒诞",
+      "visual_description": "销冠猫热情推销，两只猫大笑",
+      "pacing_note": "笑点释放"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 9,
+      "end_time": 15,
+      "duration": 6,
+      "beat": "setup",
+      "script": "无台词",
+      "joke_point": "现实复刻meme场景",
+      "visual_description": "第一视角开车，路人被撞砸到挡风玻璃",
+      "pacing_note": "硬切转场到现实"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 15,
+      "end_time": 19,
+      "duration": 4,
+      "beat": "escalation",
+      "script": "无台词",
+      "joke_point": "现实真·亡牌销冠",
+      "visual_description": "被撞路人爬起来走到车窗边举机油",
+      "pacing_note": "呼应meme桥段"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 19,
+      "end_time": 26,
+      "duration": 7,
+      "beat": "ending",
+      "script": "无台词",
+      "joke_point": "梗照进现实的反差",
+      "visual_description": "男子趴车窗举机油笑推销",
+      "pacing_note": "留余味"
+    }
+  ],
+  "cat_track": [
+    "2只香蕉猫：1只站路中拿机油，1只坐白车",
+    "2只猫：香蕉猫躺地懵逼，车主猫瞪大眼震惊",
+    "2只猫：黑脸香蕉猫爬起举机油，车主猫吐槽",
+    "2只橘猫：销冠笑推销，车主笑答应购买",
+    "无猫，现实真人素材",
+    "无猫，现实真人素材",
+    "无猫，现实真人素材"
+  ],
+  "background_track": [
+    "乡间柏油路，两侧绿树红白路桩，有红卡车白轿车，明亮",
+    "同前，加红色泼墨KO特效",
+    "同前，香蕉猫站立在路中间",
+    "同前，猫换为橘猫表情包",
+    "汽车驾驶舱内视角，前挡风玻璃，郊区马路",
+    "同前，挡风玻璃有裂纹，外站举机油男子",
+    "同前，男子趴车窗举机油"
+  ],
+  "audio_track": {
+    "bgm_style": "搞怪快节奏土嗨电子乐",
+    "bgm_mood": "荒诞搞笑",
+    "voice_style": "贱兮兮卡通配音，带东北口语感",
+    "voice_presence": "前景突出",
+    "sfx": [
+      "卡车呼啸声",
+      "撞击音效",
+      "KO特效音",
+      "玻璃碎裂声",
+      "大笑音效"
+    ],
+    "rhythm_sync": "台词、撞击点全卡BGM鼓点"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "粗黑体白字带黑描边",
+    "subtitle_density": "每镜头1-2句，字数少",
+    "emphasis_words": [
+      "亡牌销冠",
+      "没被撞死我买了"
+    ],
+    "bubble_or_dialogue_style": "无气泡，文字直接放角色头顶",
+    "stickers_or_overlays": [
+      "红色泼墨KO特效",
+      "蓝机油桶贴图"
+    ],
+    "transition_notes": [
+      "meme转现实硬切，无花哨转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "玩命推销→遭遇意外→毫发无损继续推→顾客折服→现实联动"
+    ],
+    "shot_templates": [
+      "路中间推销镜头→被撞镜头→爬起推销镜头→成交镜头→现实同款镜头"
+    ],
+    "cat_action_templates": [
+      "香蕉猫站路中递东西→被撞躺地→爬起继续递→大笑"
+    ],
+    "background_templates": [
+      "乡间开阔马路",
+      "车内第一视角"
+    ],
+    "audio_templates": [
+      "搞怪土嗨BGM+贱萌卡通音+撞击/特效音卡点"
+    ],
+    "suitable_topics": [
+      "离谱销售内卷",
+      "玩命打工梗",
+      "奇葩推销",
+      "服务业整活"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.0,
+        "beat": "hook",
+        "script": "亡牌销冠这一块",
+        "joke_point": "铺垫玩命销冠人设",
+        "background": "乡间柏油路两侧绿树红白路桩",
+        "cats": "2只香蕉猫，一只站路中拿机油，一只坐车里",
+        "audio": "土嗨BGM起，卡车呼啸音效",
+        "subtitle": "顶部黑边白字：亡牌销冠这一块",
+        "seedream_prompt": "乡间柏油路两侧绿树路边红白路桩",
+        "local_cat_asset_keywords": "香蕉猫 拿机油 香蕉猫 坐车",
+        "local_background_keywords": "乡间马路 红卡车 白轿车"
+      },
+      {
+        "shot_id": 2,
+        "duration": 2.0,
+        "beat": "twist",
+        "script": "卧槽！？",
+        "joke_point": "真撞的反差感",
+        "background": "同前，加KO特效",
+        "cats": "香蕉猫躺地懵逼，车主猫瞪大眼睛",
+        "audio": "撞击音效+KO特效音",
+        "subtitle": "车主头顶：卧槽！？",
+        "seedream_prompt": "乡间马路加红色泼墨KO特效",
+        "local_cat_asset_keywords": "香蕉猫 倒地 震惊猫表情包",
+        "local_background_keywords": "KO特效素材"
+      },
+      {
+        "shot_id": 3,
+        "duration": 2.0,
+        "beat": "escalation",
+        "script": "不是哥们？这还不阴吗？",
+        "joke_point": "被撞还推销的离谱",
+        "background": "同前，无特效",
+        "cats": "黑脸香蕉猫站起举机油，车主猫张嘴",
+        "audio": "BGM继续",
+        "subtitle": "车主头顶：不是哥们？这还不阴吗？",
+        "seedream_prompt": "乡间柏油路白天",
+        "local_cat_asset_keywords": "黑脸香蕉猫 举机油 吐槽猫表情包",
+        "local_background_keywords": "乡间马路"
+      },
+      {
+        "shot_id": 4,
+        "duration": 3.0,
+        "beat": "punchline",
+        "script": "推销机油+冲你没被撞死我买了+爽快",
+        "joke_point": "购买理由离谱",
+        "background": "同前",
+        "cats": "两只大笑橘猫，一只举机油",
+        "audio": "大笑音效",
+        "subtitle": "对应台词放角色头顶",
+        "seedream_prompt": "乡间柏油路白天",
+        "local_cat_asset_keywords": "大笑橘猫表情包 举机油",
+        "local_background_keywords": "乡间马路"
+      },
+      {
+        "shot_id": 5,
+        "duration": 6.0,
+        "beat": "setup",
+        "script": "无台词",
+        "joke_point": "现实复刻meme场景",
+        "background": "车内第一视角，郊区马路",
+        "cats": "无猫，真人素材",
+        "audio": "撞击音效+玻璃碎裂音效",
+        "subtitle": "无",
+        "seedream_prompt": "汽车驾驶舱内第一视角郊区马路",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "车内第一视角 撞车素材"
+      },
+      {
+        "shot_id": 6,
+        "duration": 4.0,
+        "beat": "escalation",
+        "script": "无台词",
+        "joke_point": "现实真亡牌销冠",
+        "background": "车内视角，挡风玻璃有裂纹",
+        "cats": "无猫，真人素材",
+        "audio": "BGM继续",
+        "subtitle": "无",
+        "seedream_prompt": "车内视角挡风玻璃裂站举机油男子",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "车内视角 举机油男子"
+      },
+      {
+        "shot_id": 7,
+        "duration": 7.0,
+        "beat": "ending",
+        "script": "无台词",
+        "joke_point": "梗照进现实的反差",
+        "background": "车内视角，男子趴车窗",
+        "cats": "无猫，真人素材",
+        "audio": "BGM渐停",
+        "subtitle": "无",
+        "seedream_prompt": "男子趴车窗举机油笑",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "车内视角 男子趴车窗"
+      }
+    ]
+  },
+  "quality_notes": [
+    "meme与现实联动性极强，笑点层层递进，适合改编各类推销类整活视频"
+  ],
+  "_raw_content_sha256": "da869df6bf94b92cd65660b42119179902540e2c37580a93df1f41c725101e24",
+  "video_id": "bkmm-003-抖音202663-009401",
+  "filename": "抖音202663-009401.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 26.26,
+    "size_bytes": 2867226,
+    "width": 960,
+    "height": 720,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "6e25f6b1294affb44dd4a2d3065ab1cf3d5013203c462a78bbfa6c9295edcde7"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 3.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-003-抖音202663-009401/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-003-抖音202663-009401/audio.m4a",
+    "analyzed_at": "2026-06-03T02:55:12.779338+00:00",
+    "normalized_at": "2026-06-03T03:19:12.592042+00:00"
+  }
+}

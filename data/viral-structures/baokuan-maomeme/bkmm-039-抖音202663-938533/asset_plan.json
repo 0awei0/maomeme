@@ -1,0 +1,102 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 2.0,
+      "beat": "hook",
+      "script": "四点熬夜刷手机，太好笑了",
+      "joke_point": "熬夜刷手机的代入感",
+      "background": "昏暗卧室，软包床，黑被子",
+      "cats": "贱笑狗头躺床，手持手机",
+      "audio": "刷手机音效+亢奋配音",
+      "subtitle": "*四点 太好笑了",
+      "seedream_prompt": "昏暗年轻人卧室，软包床头，黑色被子",
+      "local_cat_asset_keywords": "贱笑狗头 躺 拿手机",
+      "local_background_keywords": "年轻人卧室 昏暗 床"
+    },
+    {
+      "shot_id": 2,
+      "duration": 4.0,
+      "beat": "setup",
+      "script": "天都快亮了，睡了起不来要被骂",
+      "joke_point": "熬夜人同款两难",
+      "background": "同昏暗卧室",
+      "cats": "橘猫抬头慌，切换纠结猫脸",
+      "audio": "慌张纠结配音",
+      "subtitle": "不好 天都快亮了 睡了要被骂",
+      "seedream_prompt": "同前卧室背景",
+      "local_cat_asset_keywords": "橘猫 慌张 香蕉猫 纠结脸",
+      "local_background_keywords": "卧室 昏暗"
+    },
+    {
+      "shot_id": 3,
+      "duration": 3.0,
+      "beat": "twist",
+      "script": "怎么办...有了",
+      "joke_point": "鬼点子上线的共鸣",
+      "background": "同昏暗卧室",
+      "cats": "比耶猫，表情得意",
+      "audio": "灵机一动的配音+叮音效",
+      "subtitle": "怎么办呢...有了",
+      "seedream_prompt": "同前卧室背景",
+      "local_cat_asset_keywords": "比耶猫 得意",
+      "local_background_keywords": "卧室 昏暗"
+    },
+    {
+      "shot_id": 4,
+      "duration": 4.0,
+      "beat": "escalation",
+      "script": "去厨房做早餐",
+      "joke_point": "猫炒菜的反差感",
+      "background": "简约白色厨房，有灶台",
+      "cats": "香蕉猫拿食材，白猫握锅铲炒菜",
+      "audio": "炒菜滋滋声",
+      "subtitle": "去厨房做早餐",
+      "seedream_prompt": "现代简约厨房，白色橱柜，灶台",
+      "local_cat_asset_keywords": "香蕉猫 拿菜 大白猫 炒菜",
+      "local_background_keywords": "厨房 简约 白色"
+    },
+    {
+      "shot_id": 5,
+      "duration": 5.0,
+      "beat": "punchline",
+      "script": "五点了！还不起床，早餐做好了",
+      "joke_point": "反向叫爸妈起床的反套路",
+      "background": "长辈卧室，木床灰色床单",
+      "cats": "两只狸花躺床当爸妈，香蕉猫站床边",
+      "audio": "理直气壮喊话配音",
+      "subtitle": "*五点 几点了还不起床！早餐做好了",
+      "seedream_prompt": "长辈卧室，木床，灰色床单，暖光",
+      "local_cat_asset_keywords": "狸花猫 躺床 香蕉猫 站着 喊话",
+      "local_background_keywords": "长辈卧室 木床 暖光"
+    },
+    {
+      "shot_id": 6,
+      "duration": 5.0,
+      "beat": "punchline",
+      "script": "吃完自己洗碗，我去睡回笼觉",
+      "joke_point": "角色互换的搞笑感",
+      "background": "餐厅，浅色餐桌摆早餐牛奶",
+      "cats": "两只香蕉猫坐桌边，奶猫说话后离开",
+      "audio": "理所当然的嚣张配音",
+      "subtitle": "吃完自己洗碗 我去睡回笼觉",
+      "seedream_prompt": "家居餐厅，浅色餐桌，摆早餐牛奶",
+      "local_cat_asset_keywords": "香蕉猫 坐 奶猫 说话 离开",
+      "local_background_keywords": "餐厅 餐桌 早餐"
+    },
+    {
+      "shot_id": 7,
+      "duration": 5.0,
+      "beat": "ending",
+      "script": "我们在做梦吗？倒反天罡",
+      "joke_point": "爸妈视角的离谱感",
+      "background": "同餐厅背景",
+      "cats": "cheems脸爸妈，表情震惊",
+      "audio": "震惊配音+放大强调音效",
+      "subtitle": "我们在做梦吗 倒反天罡",
+      "seedream_prompt": "同前餐厅背景",
+      "local_cat_asset_keywords": "cheems 震惊脸",
+      "local_background_keywords": "餐厅 餐桌"
+    }
+  ]
+}

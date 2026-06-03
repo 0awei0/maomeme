@@ -1,0 +1,32 @@
+{
+  "video_id": "bkmm-040-抖音202663-960265",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "整体拆解与视频内容高度匹配，剧情、分镜、背景、猫素材描述均准确，仅个别镜头台词存在小遗漏",
+  "confirmed_points": [
+    "故事线完整对应视频内容：小孩爱笑被爸爸带去看医生，笑点传染全员破防的逻辑正确",
+    "分镜顺序、反转点和视频画面一致，转场符合硬切的特点",
+    "背景描述准确，分别对应居家客厅、医院大厅、医院诊室、抖音搜索页场景",
+    "猫素材的数量、位置、动作表情描述贴合视频，比如大头狂笑橘猫、香蕉猫医生和爸爸、奶猫动作都符合画面",
+    "字幕、主要台词和视频内容基本一致，笑点标注准确",
+    "音频风格、配音特点、音效的描述符合视频实际表现"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "2",
+      "field": "script",
+      "observed": "视频该镜头顶部字幕为“爸爸觉得我有病带我来看医生”",
+      "extracted": "shot_track中该镜头script写为“爸爸带我来看医生”",
+      "suggestion": "补充完整台词为“爸爸觉得我有病带我来看医生”"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "6c7bae01ed6bce5cc362e6fd7155ead8948c4bf6b5e93d8009bda3a498c98c93",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:36:51.920553+00:00",
+  "structure_sha256": "7adc5428d7296644e7da0c5511a1d3755bbc5c7667e88b5e2a9a97345dd64af0",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-040-抖音202663-960265/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

@@ -1,0 +1,39 @@
+{
+  "video_id": "bkmm-010-抖音202663-115078",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "整体拆解与视频内容高度匹配，仅字幕出现时机、动作时间拆分存在细微偏差",
+  "confirmed_points": [
+    "核心梗解读正确，蓝猫对应女生在男友面前的疯癫真实状态、白猫对应男友无语状态的情侣反差梗符合视频内容",
+    "分镜顺序正确，正片内容后接抖音搜索引导页的结构与视频一致",
+    "背景描述准确，正片为公主风暖光卧室，结尾为抖音深色搜索引导页",
+    "猫素材描述准确，左侧蓝猫标注「我」做咬袜子晃头动作，右侧白猫标注「男友」全程面无表情带省略号",
+    "字幕包装描述正确，顶部黄底黑字标题、黄字补充标题、猫下方角色标注均符合视频实际样式"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "1、2",
+      "field": "subtitle|timing",
+      "observed": "视频正片全程同时显示「没人见过我的真面目」「*除了我的男友」两行字幕，并非分阶段先后出现",
+      "extracted": "拆解将两句字幕分别归到0-3s、3-6s两个分镜作为单独脚本内容",
+      "suggestion": "调整分镜脚本描述，说明两行字幕从正片开始即同时存在"
+    },
+    {
+      "severity": "minor",
+      "shot_id": "1、2",
+      "field": "cats|timing",
+      "observed": "视频0秒开始蓝猫就已经抱着袜子啃咬，并非3s后才开始咬袜子",
+      "extracted": "拆解描述3s后蓝猫才开始咬袜子",
+      "suggestion": "调整动作时间描述，说明蓝猫从正片开始就持续做咬袜子晃头的动作"
+    }
+  ],
+  "audio_confidence": "low",
+  "needs_human_review": false,
+  "_raw_content_sha256": "2756fa10121d879b674e4bf405e6e266024be0276fc2dbf4fb7f66f5f3e1304b",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:33:38.699178+00:00",
+  "structure_sha256": "a6c0503c0a487f53a4830ab34decbac44f96bf59b1c08331045859feea0b93ec",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-010-抖音202663-115078/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

@@ -1,0 +1,22 @@
+{
+  "video_id": "bkmm-007-抖音202663-083115",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "拆解整体与视频内容高度匹配，剧情、分镜、背景、猫素材、字幕包装描述均准确，仅音频内容无法验证",
+  "confirmed_points": [
+    "主文案、角色标注等字幕内容与视频完全一致",
+    "分镜顺序准确，前9s为双猫卧室正片，后2s为抖音创作者引导收尾页",
+    "背景描述贴合画面，暖光公主风卧室、软包床头印花床单、深蓝色抖音引导页均正确",
+    "猫素材描述准确，双橘猫左为睁眼呆萌的女友角色、右为蹭脸张嘴的“我”角色",
+    "字幕包装描述符合，顶部黄色圆角条放主标题、粗黑黄边字体、猫下方标注角色的设置均正确"
+  ],
+  "issues": [],
+  "audio_confidence": "low",
+  "needs_human_review": false,
+  "_raw_content_sha256": "b5453183be6027488b49af6b48f4305c253bf7eacc295adc97e615da934b71db",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:32:46.479222+00:00",
+  "structure_sha256": "0f3109be6827ad3a47f7465bbb961d014e75f1a19d38cc21124936da31d56804",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-007-抖音202663-083115/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

@@ -1,0 +1,482 @@
+{
+  "video_summary": {
+    "title": "从别家店出来被常去餐馆老板抓包",
+    "one_sentence": "香蕉猫拎别家外卖被常光顾的餐馆老板撞见，双方社死心碎的搞笑社死场景",
+    "primary_topic": "日常社死互动梗",
+    "meme_type": "香蕉猫真人场景合成梗",
+    "overall_tone": "搞笑、尴尬、有共鸣感"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 3,
+      "text": "当你从别的店出来被经常光顾的老板看到时",
+      "speaker": "旁白",
+      "tone": "调侃",
+      "emotion": "轻松",
+      "function": "hook",
+      "confidence": 1
+    },
+    {
+      "start_time": 3,
+      "end_time": 6,
+      "text": "你… 手里…",
+      "speaker": "老板猫",
+      "tone": "错愕迟疑",
+      "emotion": "惊讶",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 6,
+      "end_time": 9,
+      "text": "我…",
+      "speaker": "顾客猫",
+      "tone": "慌乱尴尬",
+      "emotion": "无措",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 9,
+      "end_time": 12,
+      "text": "原来如此吗… *无声哭泣",
+      "speaker": "老板猫",
+      "tone": "失落心碎",
+      "emotion": "难过",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 12,
+      "end_time": 15,
+      "text": "对不起…",
+      "speaker": "顾客猫",
+      "tone": "愧疚",
+      "emotion": "不好意思",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 15,
+      "end_time": 19,
+      "text": "为什么要这么对我！*锤地",
+      "speaker": "老板猫",
+      "tone": "崩溃",
+      "emotion": "大哭",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 19,
+      "end_time": 22,
+      "text": "抖音搜索 猫猫me呀",
+      "speaker": "旁白",
+      "tone": "平缓",
+      "emotion": "无",
+      "function": "cta",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 3,
+      "duration": 3,
+      "beat": "hook",
+      "script": "场景引入",
+      "joke_point": "强代入感的社死设定",
+      "visual": "香蕉猫拎外卖站在餐馆门口",
+      "pacing_note": "快切入题"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 3,
+      "end_time": 6,
+      "duration": 3,
+      "beat": "setup",
+      "script": "老板错愕发言",
+      "joke_point": "欲言又止的抓包反应",
+      "visual": "橘猫老板站店门口瞪着镜头",
+      "pacing_note": "慢放放大表情"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 6,
+      "end_time": 9,
+      "duration": 3,
+      "beat": "escalation",
+      "script": "顾客慌乱语塞",
+      "joke_point": "被抓包的尴尬状态",
+      "visual": "香蕉猫呆站原地欲言又止",
+      "pacing_note": "停留突出尴尬"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 9,
+      "end_time": 12,
+      "duration": 3,
+      "beat": "twist",
+      "script": "老板心碎失落",
+      "joke_point": "情绪反转的反差感",
+      "visual": "黑脸老板流汗无语",
+      "pacing_note": "情绪转折卡点"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 12,
+      "end_time": 15,
+      "duration": 3,
+      "beat": "escalation",
+      "script": "顾客愧疚道歉",
+      "joke_point": "想逃的社死感",
+      "visual": "黑脸香蕉猫捂脸挪步",
+      "pacing_note": "慢动作强化愧疚感"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 15,
+      "end_time": 19,
+      "duration": 4,
+      "beat": "punchline",
+      "script": "老板崩溃锤地",
+      "joke_point": "夸张反应的笑点",
+      "visual": "香蕉猫老板大哭锤地",
+      "pacing_note": "动态放大笑点"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 19,
+      "end_time": 22,
+      "duration": 3,
+      "beat": "cta",
+      "script": "引流信息",
+      "joke_point": "无",
+      "visual": "抖音作者信息页",
+      "pacing_note": "静态停留"
+    }
+  ],
+  "cat_track": [
+    {
+      "shot_id": 1,
+      "count": 1,
+      "role": "顾客",
+      "position": "画面中间",
+      "action": "拎外卖站着",
+      "expression": "慌张",
+      "emotion": "尴尬",
+      "layout": "居中",
+      "asset_keywords": "香蕉猫 慌张 拎东西"
+    },
+    {
+      "shot_id": 2,
+      "count": 1,
+      "role": "老板",
+      "position": "画面中间",
+      "action": "站在店门口",
+      "expression": "瞪大眼睛错愕",
+      "emotion": "惊讶",
+      "layout": "居中大头",
+      "asset_keywords": "橘猫 瞪眼 错愕"
+    },
+    {
+      "shot_id": 3,
+      "count": 1,
+      "role": "顾客",
+      "position": "画面中间",
+      "action": "呆站",
+      "expression": "呆滞张嘴",
+      "emotion": "慌乱",
+      "layout": "居中",
+      "asset_keywords": "香蕉猫 呆滞 欲言又止"
+    },
+    {
+      "shot_id": 4,
+      "count": 1,
+      "role": "老板",
+      "position": "画面中间",
+      "action": "抬手",
+      "expression": "黑脸流汗",
+      "emotion": "心碎",
+      "layout": "居中大头",
+      "asset_keywords": "黑脸猫 流汗 无语"
+    },
+    {
+      "shot_id": 5,
+      "count": 1,
+      "role": "顾客",
+      "position": "画面中间",
+      "action": "捂脸挪步",
+      "expression": "愧疚",
+      "emotion": "不好意思",
+      "layout": "居中",
+      "asset_keywords": "黑脸香蕉猫 捂脸 道歉"
+    },
+    {
+      "shot_id": 6,
+      "count": 1,
+      "role": "老板",
+      "position": "画面中间",
+      "action": "大哭锤地",
+      "expression": "痛哭",
+      "emotion": "崩溃",
+      "layout": "居中",
+      "asset_keywords": "香蕉猫 大哭 锤地"
+    },
+    {
+      "shot_id": 7,
+      "count": 0
+    }
+  ],
+  "background_track": [
+    {
+      "shot_id": 1,
+      "setting": "街边餐馆门口",
+      "props": "玻璃门、菜单灯箱、大麦花篮、电动车",
+      "composition": "对称构图",
+      "mood": "生活化",
+      "existing_asset_keywords": "餐馆门口 街边",
+      "seedream_prompt": "街边餐馆门口 玻璃门 菜单灯箱 大麦花篮",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 2,
+      "setting": "小餐馆入口",
+      "props": "敞开的店门、面食菜单贴纸、店内桌椅价目表",
+      "composition": "对称构图",
+      "mood": "接地气",
+      "existing_asset_keywords": "小餐馆入口",
+      "seedream_prompt": "小餐馆门口 贴面食菜单 店内桌椅",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 3,
+      "setting": "同shot1",
+      "existing_asset_keywords": "餐馆门口 街边",
+      "seedream_prompt": "街边餐馆门口 玻璃门 菜单灯箱",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 4,
+      "setting": "同shot2",
+      "existing_asset_keywords": "小餐馆入口",
+      "seedream_prompt": "小餐馆门口 贴面食菜单 店内桌椅",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 5,
+      "setting": "同shot1",
+      "existing_asset_keywords": "餐馆门口 街边",
+      "seedream_prompt": "街边餐馆门口 玻璃门 菜单灯箱",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 6,
+      "setting": "同shot2",
+      "existing_asset_keywords": "小餐馆入口",
+      "seedream_prompt": "小餐馆门口 贴面食菜单 店内桌椅",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 7,
+      "setting": "抖音账号页",
+      "props": "搜索框、账号头像",
+      "composition": "居中",
+      "mood": "简洁",
+      "existing_asset_keywords": "抖音引流页",
+      "seedream_prompt": "深色背景 抖音搜索框界面",
+      "need_generated_background": false
+    }
+  ],
+  "audio_track": {
+    "bgm_style": "抖音常用搞怪轻快BGM",
+    "bgm_mood": "戏谑轻松",
+    "voice_style": "夸张搞笑配音，男女分饰两角",
+    "voice_presence": "清晰贴脸",
+    "sfx": [
+      "惊讶音效",
+      "尴尬音效",
+      "心碎音效",
+      "大哭音效",
+      "捶地音效"
+    ],
+    "rhythm_sync": "每句台词对应镜头切换，音效卡表情变化节点"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "顶部黄色粗体大标题，对话分蓝/粉气泡，底部标角色名",
+    "subtitle_density": "每屏1-2句，密度低",
+    "emphasis_words": [
+      "别的店",
+      "老板看到",
+      "对不起",
+      "为什么"
+    ],
+    "bubble_or_dialogue_style": "圆角彩色气泡，加粗字体",
+    "stickers_or_overlays": [
+      "手部emoji",
+      "流汗特效",
+      "流泪特效",
+      "锤地特效"
+    ],
+    "transition_notes": [
+      "硬切，无多余转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "A做了愧对熟人的事被当场抓包，双方欲言又止→熟人情绪崩溃→A愧疚道歉"
+    ],
+    "shot_templates": [
+      "场景引入→抓包方表情→被抓包方反应→抓包方情绪转折→被抓包方愧疚→抓包方爆发"
+    ],
+    "cat_action_templates": [
+      "香蕉猫拎东西呆滞",
+      "橘猫瞪眼错愕",
+      "黑脸猫流汗无语",
+      "香蕉猫大哭锤地"
+    ],
+    "background_templates": [
+      "街边实体店门口",
+      "小餐馆店内入口"
+    ],
+    "audio_templates": [
+      "搞怪轻快BGM+夸张角色配音+情绪音效卡点"
+    ],
+    "suitable_topics": [
+      "日常社死",
+      "商家和老顾客互动",
+      "背叛感搞笑场景",
+      "日常愧疚瞬间"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 3.0,
+        "beat": "hook",
+        "script": "当你从别的店出来被经常光顾的老板看到时",
+        "joke_point": "强共鸣的社死场景代入",
+        "background": "街边餐馆玻璃门，两侧菜单灯箱、大麦花篮，旁停电动车",
+        "cats": "香蕉猫站中间，拎外卖，表情慌张",
+        "audio": "搞怪BGM起，旁白调侃配音",
+        "subtitle": "顶部黄色粗体大标题，底部标“你”",
+        "seedream_prompt": "街边餐馆门口 玻璃门 菜单灯箱 大麦花篮",
+        "local_cat_asset_keywords": "香蕉猫 慌张 拎东西",
+        "local_background_keywords": "餐馆门口 街边"
+      },
+      {
+        "shot_id": 2,
+        "duration": 3.0,
+        "beat": "setup",
+        "script": "老板：你… 手里…",
+        "joke_point": "老板错愕欲言又止的反应",
+        "background": "小餐馆敞开门，两侧贴面食菜单，店内有桌椅",
+        "cats": "橘猫大头站门口，瞪眼错愕",
+        "audio": "惊讶音效，老板迟疑配音",
+        "subtitle": "蓝色对话气泡“你…”“手里…”，底部标“老板”",
+        "seedream_prompt": "小餐馆门口 贴面食菜单 店内桌椅",
+        "local_cat_asset_keywords": "橘猫 瞪眼 错愕",
+        "local_background_keywords": "小餐馆入口"
+      },
+      {
+        "shot_id": 3,
+        "duration": 3.0,
+        "beat": "escalation",
+        "script": "你：我…",
+        "joke_point": "被抓包的慌乱尴尬",
+        "background": "同shot1的餐馆门口",
+        "cats": "香蕉猫站原地，呆滞张嘴",
+        "audio": "尴尬音效，你迟疑配音",
+        "subtitle": "粉色对话气泡“我…”，底部标“你”",
+        "seedream_prompt": "街边餐馆门口 玻璃门 菜单灯箱",
+        "local_cat_asset_keywords": "香蕉猫 呆滞 欲言又止",
+        "local_background_keywords": "餐馆门口 街边"
+      },
+      {
+        "shot_id": 4,
+        "duration": 3.0,
+        "beat": "twist",
+        "script": "老板：原来如此吗… *无声哭泣",
+        "joke_point": "老板瞬间心碎的反差感",
+        "background": "同shot2的餐馆门口",
+        "cats": "黑脸阴影猫，抬手，流汗失落",
+        "audio": "心碎音效，老板失落配音",
+        "subtitle": "蓝色对话气泡“原来如此吗…”，旁注*无声哭泣，底部标“老板”",
+        "seedream_prompt": "小餐馆门口 贴面食菜单 店内桌椅",
+        "local_cat_asset_keywords": "黑脸猫 流汗 无语",
+        "local_background_keywords": "小餐馆入口"
+      },
+      {
+        "shot_id": 5,
+        "duration": 3.0,
+        "beat": "escalation",
+        "script": "你：对不起…",
+        "joke_point": "愧疚想逃的社死感",
+        "background": "同shot1的餐馆门口",
+        "cats": "黑脸香蕉猫，捂脸，往旁边挪",
+        "audio": "愧疚音效，你道歉配音",
+        "subtitle": "粉色对话气泡“对不起…”，底部标“你”",
+        "seedream_prompt": "街边餐馆门口 玻璃门 菜单灯箱",
+        "local_cat_asset_keywords": "黑脸香蕉猫 捂脸 道歉",
+        "local_background_keywords": "餐馆门口 街边"
+      },
+      {
+        "shot_id": 6,
+        "duration": 4.0,
+        "beat": "punchline",
+        "script": "老板：为什么要这么对我！*锤地",
+        "joke_point": "老板崩溃夸张反应的笑点",
+        "background": "同shot2的餐馆门口",
+        "cats": "香蕉猫，大哭，双手挥舞锤地",
+        "audio": "大哭音效、捶地音效，老板崩溃配音",
+        "subtitle": "蓝色对话气泡“为什么要这么对我！”，旁注*锤地，底部标“老板”",
+        "seedream_prompt": "小餐馆门口 贴面食菜单 店内桌椅",
+        "local_cat_asset_keywords": "香蕉猫 大哭 锤地",
+        "local_background_keywords": "小餐馆入口"
+      },
+      {
+        "shot_id": 7,
+        "duration": 3.0,
+        "beat": "cta",
+        "script": "抖音搜索 猫猫me呀",
+        "joke_point": "结尾引流/作者页收束",
+        "background": "深色背景，抖音账号搜索界面",
+        "cats": "无猫镜头/平台作者信息页",
+        "audio": "BGM渐停",
+        "subtitle": "抖音账号信息文字",
+        "seedream_prompt": "深色背景 抖音搜索框界面",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "抖音账号页"
+      }
+    ]
+  },
+  "quality_notes": [
+    "猫表情和情绪匹配度高，场景真实代入感强，台词贴合大众日常心理，笑点密集不拖沓",
+    "normalized_storyboard_fields: filled 2 blank or inconsistent fields"
+  ],
+  "_raw_content_sha256": "fe63986193c89bd5a752a6ebb3538cf130a4383613cfa16df400b69c84b4eeb5",
+  "video_id": "bkmm-029-抖音202663-574311",
+  "filename": "抖音202663-574311.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 21.918,
+    "size_bytes": 3023581,
+    "width": 960,
+    "height": 720,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "c6ba12a9abd1f72c598a9c69599008c4bd138363254e8d133c26c2bd83313623"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 3.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-029-抖音202663-574311/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-029-抖音202663-574311/audio.m4a",
+    "analyzed_at": "2026-06-03T03:06:31.794391+00:00",
+    "normalized_at": "2026-06-03T03:19:12.606816+00:00"
+  }
+}

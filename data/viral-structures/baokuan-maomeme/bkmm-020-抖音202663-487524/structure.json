@@ -1,0 +1,833 @@
+{
+  "video_summary": {
+    "title": "当我在做手术时医生突然表白",
+    "one_sentence": "手术室里医生借手术掏戒指/车/房表白，患者掏出三岁孩子反转，最终小丑反杀",
+    "primary_topic": "沙雕恋爱反转整活",
+    "meme_type": "香蕉猫搞怪反转梗",
+    "overall_tone": "跳脱搞怪、沙雕反转"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "当我在做手术时医生突然表白",
+      "speaker": "旁白",
+      "tone": "夸张",
+      "emotion": "猎奇",
+      "function": "hook",
+      "confidence": 1
+    },
+    {
+      "start_time": 2,
+      "end_time": 3,
+      "text": "腹部里面怎么有硬硬的东西",
+      "speaker": "护士",
+      "tone": "疑惑",
+      "emotion": "好奇",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 3,
+      "end_time": 4,
+      "text": "你拿出来看看",
+      "speaker": "医生",
+      "tone": "淡定",
+      "emotion": "平静",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 6,
+      "end_time": 8,
+      "text": "今天是我们认识的两周年",
+      "speaker": "医生",
+      "tone": "温柔",
+      "emotion": "开心",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 8,
+      "end_time": 10,
+      "text": "我想在今天向你表白",
+      "speaker": "医生",
+      "tone": "认真",
+      "emotion": "期待",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 10,
+      "end_time": 12,
+      "text": "你好浪漫啊",
+      "speaker": "我",
+      "tone": "惊喜",
+      "emotion": "感动",
+      "function": "twist_pre",
+      "confidence": 1
+    },
+    {
+      "start_time": 14,
+      "end_time": 16,
+      "text": "你再看看还有惊喜哦",
+      "speaker": "医生",
+      "tone": "得意",
+      "emotion": "开心",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 18,
+      "end_time": 19,
+      "text": "奔驰钥匙？！",
+      "speaker": "护士",
+      "tone": "震惊",
+      "emotion": "惊讶",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 22,
+      "end_time": 23,
+      "text": "你还买了两套房",
+      "speaker": "护士",
+      "tone": "震惊",
+      "emotion": "诧异",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 23,
+      "end_time": 25,
+      "text": "我也给你准备了惊喜",
+      "speaker": "护士",
+      "tone": "神秘",
+      "emotion": "偷笑",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 31,
+      "end_time": 33,
+      "text": "这是我给你生的三岁大的宝宝",
+      "speaker": "我",
+      "tone": "开心",
+      "emotion": "得意",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 33,
+      "end_time": 35,
+      "text": "我是哆啦A梦吗什么都能掏出来",
+      "speaker": "我",
+      "tone": "吐槽",
+      "emotion": "无语",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 35,
+      "end_time": 40,
+      "text": "其实世上从来都没有哆啦A梦的口袋，有的只是双向奔赴的爱情",
+      "speaker": "旁白",
+      "tone": "煽情",
+      "emotion": "装深情",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 42,
+      "end_time": 44,
+      "text": "搜索手术表白后续",
+      "speaker": "旁白",
+      "tone": "引导",
+      "emotion": "平静",
+      "function": "cta",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "hook",
+      "script": "标题展示手术室三人站位",
+      "joke_point": "离谱手术表白设定",
+      "visual_description": "手术室里左护士、中躺患者、右医生三只香蕉猫站位",
+      "pacing_note": "快切，直接抛出设定"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2,
+      "end_time": 6,
+      "duration": 4,
+      "beat": "setup",
+      "script": "护士发现硬物，医生让掏出来，掏出戒指",
+      "joke_point": "手术掏戒指的离谱操作",
+      "visual_description": "护士掏手拿出闪光戒指特写",
+      "pacing_note": "节奏稍快，卡点掏物音效"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 6,
+      "end_time": 14,
+      "duration": 8,
+      "beat": "escalation",
+      "script": "医生表白，患者感动后变小丑",
+      "joke_point": "感动后小丑脸反杀的反套路",
+      "visual_description": "医生说话，患者脸红后脸变小丑表情包",
+      "pacing_note": "节奏放缓，突出反转反差"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 14,
+      "end_time": 22,
+      "duration": 8,
+      "beat": "escalation",
+      "script": "医生依次掏出奔驰钥匙、两本房产证",
+      "joke_point": "礼物逐层升级的离谱感",
+      "visual_description": "护士依次拿钥匙、房产证的特写，表情逐渐震惊",
+      "pacing_note": "节奏加快，每3秒一个礼物卡点"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 22,
+      "end_time": 29,
+      "duration": 7,
+      "beat": "twist",
+      "script": "护士说有惊喜，患者喊爸爸",
+      "joke_point": "反向惊喜的伏笔",
+      "visual_description": "护士捂嘴笑，患者张嘴喊爸爸特写",
+      "pacing_note": "节奏放缓，铺垫反转"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 29,
+      "end_time": 35,
+      "duration": 6,
+      "beat": "punchline",
+      "script": "掏出三岁宝宝，患者吐槽是哆啦A梦",
+      "joke_point": "反向惊喜比医生更离谱",
+      "visual_description": "抱出小香蕉猫宝宝，患者吐槽特写",
+      "pacing_note": "节奏突然加快，突出笑点冲击"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 35,
+      "end_time": 41,
+      "duration": 6,
+      "beat": "punchline",
+      "script": "煽情配文后患者再变小丑",
+      "joke_point": "煽情后突然沙雕的反差",
+      "visual_description": "爱心飘动，患者脸再次变成小丑表情包",
+      "pacing_note": "先慢后快，突出最终反转"
+    },
+    {
+      "shot_id": 8,
+      "start_time": 41,
+      "end_time": 44,
+      "duration": 3,
+      "beat": "cta",
+      "script": "引导搜索后续",
+      "joke_point": "无",
+      "visual_description": "抖音搜索弹窗展示",
+      "pacing_note": "收尾引导"
+    }
+  ],
+  "cat_track": [
+    {
+      "shot_id": 1,
+      "count": 3,
+      "roles": [
+        "护士",
+        "患者",
+        "医生"
+      ],
+      "positions": [
+        "左",
+        "中",
+        "右"
+      ],
+      "actions": [
+        "站",
+        "躺手术台",
+        "站"
+      ],
+      "expressions": [
+        "呆滞",
+        "呆滞",
+        "淡定"
+      ],
+      "layout": "左中右三等分布局",
+      "asset_keywords": [
+        "香蕉猫",
+        "香蕉猫躺卧",
+        "橘猫医生"
+      ]
+    },
+    {
+      "shot_id": 2,
+      "count": 3,
+      "roles": [
+        "护士",
+        "患者",
+        "医生"
+      ],
+      "positions": [
+        "左",
+        "中",
+        "右"
+      ],
+      "actions": [
+        "伸手掏",
+        "躺",
+        "看"
+      ],
+      "expressions": [
+        "疑惑",
+        "呆滞",
+        "淡定"
+      ],
+      "layout": "左中右布局",
+      "asset_keywords": [
+        "香蕉猫伸手",
+        "香蕉猫躺卧",
+        "橘猫淡定"
+      ]
+    },
+    {
+      "shot_id": 3,
+      "count": 3,
+      "roles": [
+        "护士",
+        "患者",
+        "医生"
+      ],
+      "positions": [
+        "左",
+        "中",
+        "右"
+      ],
+      "actions": [
+        "站",
+        "躺",
+        "说话"
+      ],
+      "expressions": [
+        "惊讶",
+        "脸红→小丑脸",
+        "开心"
+      ],
+      "layout": "左中右布局",
+      "asset_keywords": [
+        "香蕉猫脸红",
+        "小丑脸表情包",
+        "白猫笑"
+      ]
+    },
+    {
+      "shot_id": 4,
+      "count": 3,
+      "roles": [
+        "护士",
+        "患者",
+        "医生"
+      ],
+      "positions": [
+        "左",
+        "中",
+        "右"
+      ],
+      "actions": [
+        "拿物品",
+        "躺",
+        "说话"
+      ],
+      "expressions": [
+        "逐渐震惊",
+        "呆",
+        "得意"
+      ],
+      "layout": "左中右布局",
+      "asset_keywords": [
+        "香蕉猫震惊脸",
+        "虎斑猫淡定",
+        "香蕉猫躺卧"
+      ]
+    },
+    {
+      "shot_id": 5,
+      "count": 3,
+      "roles": [
+        "护士",
+        "患者",
+        "医生"
+      ],
+      "positions": [
+        "左",
+        "中",
+        "右"
+      ],
+      "actions": [
+        "捂嘴笑",
+        "喊",
+        "疑惑"
+      ],
+      "expressions": [
+        "偷笑",
+        "软萌",
+        "疑惑"
+      ],
+      "layout": "左中右布局",
+      "asset_keywords": [
+        "美短猫",
+        "香蕉猫张嘴",
+        "虎斑猫疑惑"
+      ]
+    },
+    {
+      "shot_id": 6,
+      "count": 4,
+      "roles": [
+        "护士",
+        "患者",
+        "医生",
+        "宝宝"
+      ],
+      "positions": [
+        "左",
+        "中",
+        "右",
+        "护士手"
+      ],
+      "actions": [
+        "抱宝宝",
+        "吐槽",
+        "震惊",
+        "被抱"
+      ],
+      "expressions": [
+        "得意",
+        "无语",
+        "震惊",
+        "呆"
+      ],
+      "layout": "左中右布局",
+      "asset_keywords": [
+        "小香蕉猫",
+        "香蕉猫无语脸",
+        "虎斑猫震惊"
+      ]
+    },
+    {
+      "shot_id": 7,
+      "count": 2,
+      "roles": [
+        "患者",
+        "医生"
+      ],
+      "positions": [
+        "左",
+        "右"
+      ],
+      "actions": [
+        "躺",
+        "靠近"
+      ],
+      "expressions": [
+        "小丑脸",
+        "笑"
+      ],
+      "layout": "左右对半布局",
+      "asset_keywords": [
+        "小丑脸表情包",
+        "粉色爱心贴纸"
+      ]
+    },
+    {
+      "shot_id": 8,
+      "count": 0,
+      "roles": [],
+      "positions": [],
+      "actions": [],
+      "expressions": [],
+      "layout": "全屏弹窗",
+      "asset_keywords": []
+    }
+  ],
+  "background_track": [
+    {
+      "shot_id": 1,
+      "setting": "现代化医院手术室",
+      "props": [
+        "手术灯",
+        "手术床",
+        "监护仪",
+        "手术刀"
+      ],
+      "composition": "居中对称",
+      "mood": "干净明亮",
+      "existing_asset_keywords": [
+        "手术室实景"
+      ],
+      "seedream_prompt": "明亮浅蓝色手术室，带手术灯手术床",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 2,
+      "setting": "现代化医院手术室",
+      "props": [
+        "手术灯",
+        "手术床",
+        "监护仪"
+      ],
+      "composition": "居中对称",
+      "mood": "干净明亮",
+      "existing_asset_keywords": [
+        "手术室实景"
+      ],
+      "seedream_prompt": "明亮浅蓝色手术室",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 3,
+      "setting": "现代化医院手术室",
+      "props": [
+        "手术灯",
+        "手术床",
+        "监护仪"
+      ],
+      "composition": "居中对称",
+      "mood": "干净明亮",
+      "existing_asset_keywords": [
+        "手术室实景"
+      ],
+      "seedream_prompt": "明亮浅蓝色手术室",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 4,
+      "setting": "现代化医院手术室",
+      "props": [
+        "手术灯",
+        "手术床",
+        "监护仪"
+      ],
+      "composition": "居中对称",
+      "mood": "干净明亮",
+      "existing_asset_keywords": [
+        "手术室实景"
+      ],
+      "seedream_prompt": "明亮浅蓝色手术室",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 5,
+      "setting": "现代化医院手术室",
+      "props": [
+        "手术灯",
+        "手术床",
+        "监护仪"
+      ],
+      "composition": "居中对称",
+      "mood": "干净明亮",
+      "existing_asset_keywords": [
+        "手术室实景"
+      ],
+      "seedream_prompt": "明亮浅蓝色手术室",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 6,
+      "setting": "现代化医院手术室",
+      "props": [
+        "手术灯",
+        "手术床",
+        "监护仪"
+      ],
+      "composition": "居中对称",
+      "mood": "干净明亮",
+      "existing_asset_keywords": [
+        "手术室实景"
+      ],
+      "seedream_prompt": "明亮浅蓝色手术室",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 7,
+      "setting": "现代化医院手术室",
+      "props": [
+        "手术灯",
+        "手术床",
+        "监护仪"
+      ],
+      "composition": "居中对称",
+      "mood": "浪漫搞怪",
+      "existing_asset_keywords": [
+        "手术室实景"
+      ],
+      "seedream_prompt": "明亮浅蓝色手术室加粉色爱心",
+      "need_generated_background": false
+    },
+    {
+      "shot_id": 8,
+      "setting": "抖音深色引导页",
+      "props": [
+        "搜索框"
+      ],
+      "composition": "居中",
+      "mood": "平静",
+      "existing_asset_keywords": [
+        "抖音搜索弹窗"
+      ],
+      "seedream_prompt": "深色背景抖音搜索弹窗",
+      "need_generated_background": false
+    }
+  ],
+  "audio_track": {
+    "bgm_style": "抖音流行沙雕轻快电子BGM",
+    "bgm_mood": "搞怪跳脱",
+    "voice_style": "贱兮兮男女分角色配音，略带夸张",
+    "voice_presence": "清晰靠前",
+    "sfx": [
+      "掏物品闪光叮声",
+      "惊讶吸气声",
+      "爱心飘动音效",
+      "小丑出场音效"
+    ],
+    "rhythm_sync": "每句台词、掏物品动作卡点BGM鼓点"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "粗黑边白色方正字体，角色头顶显示",
+    "subtitle_density": "每镜头1-2句，密度低",
+    "emphasis_words": [
+      "表白",
+      "戒指",
+      "奔驰钥匙",
+      "房产证",
+      "三岁宝宝"
+    ],
+    "bubble_or_dialogue_style": "无气泡，文字直接贴角色头顶",
+    "stickers_or_overlays": [
+      "小丑脸表情包",
+      "闪光戒指",
+      "奔驰钥匙",
+      "房产证",
+      "粉色爱心"
+    ],
+    "transition_notes": [
+      "无复杂转场，直接切镜头"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "特定场景下一方逐层送惊喜→另一方反向送出更离谱惊喜反转"
+    ],
+    "shot_templates": [
+      "固定场景三角色站位→近景掏礼物特写→反应镜头→再掏礼物→终极反转"
+    ],
+    "cat_action_templates": [
+      "香蕉猫呆滞脸、震惊睁大眼睛、害羞脸红、小丑脸替换"
+    ],
+    "background_templates": [
+      "固定室内场景三角色固定左中右站位"
+    ],
+    "audio_templates": [
+      "轻快沙雕BGM+对话配音+掏礼物叮音效+惊讶音效"
+    ],
+    "suitable_topics": [
+      "恋爱整活",
+      "反转段子",
+      "情侣套路",
+      "沙雕日常",
+      "送礼整活"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.0,
+        "beat": "hook",
+        "script": "当我在做手术时医生突然表白",
+        "joke_point": "离谱手术表白设定抓眼球",
+        "background": "明亮浅蓝色手术室，带手术灯手术床",
+        "cats": "三只香蕉猫，左护士右医生中间躺患者",
+        "audio": "BGM起，旁白念标题",
+        "subtitle": "顶部黄色粗字标题",
+        "seedream_prompt": "明亮浅蓝色手术室，手术灯手术床监护仪",
+        "local_cat_asset_keywords": [
+          "香蕉猫站立",
+          "香蕉猫躺卧",
+          "橘猫医生"
+        ],
+        "local_background_keywords": [
+          "手术室实景"
+        ]
+      },
+      {
+        "shot_id": 2,
+        "duration": 4.0,
+        "beat": "setup",
+        "script": "护士：腹部有硬硬的东西 医生：拿出来看看→掏出戒指",
+        "joke_point": "手术掏戒指的离谱操作",
+        "background": "明亮浅蓝色手术室",
+        "cats": "左护士伸手掏，中患者躺，右医生淡定站",
+        "audio": "对话配音+掏戒指叮音效",
+        "subtitle": "护士、医生头顶白字，戒指旁标*戒指",
+        "seedream_prompt": "明亮浅蓝色手术室",
+        "local_cat_asset_keywords": [
+          "香蕉猫伸手",
+          "橘猫淡定"
+        ],
+        "local_background_keywords": [
+          "手术室实景"
+        ]
+      },
+      {
+        "shot_id": 3,
+        "duration": 8.0,
+        "beat": "escalation",
+        "script": "医生：两周年我要表白 患者：你好浪漫→变小丑脸",
+        "joke_point": "感动后突然小丑脸的反差",
+        "background": "明亮浅蓝色手术室",
+        "cats": "医生笑，患者脸红后脸换小丑表情包",
+        "audio": "对话配音+小丑出场音效",
+        "subtitle": "医生、患者头顶白字，表白标粉色",
+        "seedream_prompt": "明亮浅蓝色手术室",
+        "local_cat_asset_keywords": [
+          "白猫笑",
+          "香蕉猫脸红",
+          "小丑脸表情包"
+        ],
+        "local_background_keywords": [
+          "手术室实景"
+        ]
+      },
+      {
+        "shot_id": 4,
+        "duration": 8.0,
+        "beat": "escalation",
+        "script": "医生：还有惊喜→掏奔驰钥匙→掏两本房产证",
+        "joke_point": "礼物逐层升级的离谱感",
+        "background": "明亮浅蓝色手术室",
+        "cats": "护士表情逐渐震惊，医生得意",
+        "audio": "对话配音+两次掏物品叮音效",
+        "subtitle": "护士头顶白字，奔驰钥匙、房产证标粗",
+        "seedream_prompt": "明亮浅蓝色手术室",
+        "local_cat_asset_keywords": [
+          "香蕉猫震惊脸",
+          "虎斑猫淡定"
+        ],
+        "local_background_keywords": [
+          "手术室实景"
+        ]
+      },
+      {
+        "shot_id": 5,
+        "duration": 7.0,
+        "beat": "twist",
+        "script": "护士：我也有惊喜 患者：爸爸~",
+        "joke_point": "反向惊喜的伏笔",
+        "background": "明亮浅蓝色手术室",
+        "cats": "护士捂嘴笑，患者张嘴喊爸爸",
+        "audio": "对话配音+软萌小孩喊爸爸音效",
+        "subtitle": "护士头顶白字，爸爸标蓝色",
+        "seedream_prompt": "明亮浅蓝色手术室",
+        "local_cat_asset_keywords": [
+          "美短猫捂嘴",
+          "香蕉猫张嘴"
+        ],
+        "local_background_keywords": [
+          "手术室实景"
+        ]
+      },
+      {
+        "shot_id": 6,
+        "duration": 6.0,
+        "beat": "punchline",
+        "script": "护士：这是我给你生的三岁宝宝 患者：我是哆啦A梦吗",
+        "joke_point": "反向惊喜比医生更离谱",
+        "background": "明亮浅蓝色手术室",
+        "cats": "护士抱小香蕉猫，患者无语，医生震惊",
+        "audio": "对话配音+惊讶吸气音效",
+        "subtitle": "护士、患者头顶白字，三岁宝宝标粗",
+        "seedream_prompt": "明亮浅蓝色手术室",
+        "local_cat_asset_keywords": [
+          "小香蕉猫",
+          "香蕉猫无语脸",
+          "虎斑猫震惊"
+        ],
+        "local_background_keywords": [
+          "手术室实景"
+        ]
+      },
+      {
+        "shot_id": 7,
+        "duration": 6.0,
+        "beat": "punchline",
+        "script": "旁白：没有哆啦A梦，只有双向奔赴的爱情→患者变小丑",
+        "joke_point": "煽情后突然沙雕的反差",
+        "background": "明亮浅蓝色手术室加粉色爱心",
+        "cats": "患者脸换成小丑表情包，医生笑",
+        "audio": "煽情旁白+爱心音效+小丑音效",
+        "subtitle": "橙色煽情配文，无角色字幕",
+        "seedream_prompt": "手术室加飘动粉色爱心",
+        "local_cat_asset_keywords": [
+          "小丑脸表情包",
+          "粉色爱心贴纸"
+        ],
+        "local_background_keywords": [
+          "手术室实景"
+        ]
+      },
+      {
+        "shot_id": 8,
+        "duration": 3.0,
+        "beat": "cta",
+        "script": "搜索手术表白后续",
+        "joke_point": "结尾引流/作者页收束",
+        "background": "深色抖音搜索弹窗页",
+        "cats": "无猫镜头/平台作者信息页",
+        "audio": "引导旁白",
+        "subtitle": "搜索框内白字",
+        "seedream_prompt": "深色背景抖音搜索弹窗",
+        "local_cat_asset_keywords": [],
+        "local_background_keywords": [
+          "抖音搜索弹窗"
+        ]
+      }
+    ]
+  },
+  "quality_notes": [
+    "反转密度高，笑点密集，香蕉猫形象国民度高，适合二次改编不同反转剧情",
+    "normalized_storyboard_fields: filled 2 blank or inconsistent fields"
+  ],
+  "_raw_content_sha256": "ecdd97da3deb9241085dea4c90a3bca2b0783df71424af4a6de98e70b064724a",
+  "video_id": "bkmm-020-抖音202663-487524",
+  "filename": "抖音202663-487524.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 44.373,
+    "size_bytes": 4111112,
+    "width": 960,
+    "height": 720,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "e19e32e98285ae8f111aedb9dd3f47abd940245e94441613a2c2235241700dda"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-020-抖音202663-487524/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-020-抖音202663-487524/audio.m4a",
+    "analyzed_at": "2026-06-03T03:04:37.204395+00:00",
+    "normalized_at": "2026-06-03T03:19:12.601641+00:00"
+  }
+}

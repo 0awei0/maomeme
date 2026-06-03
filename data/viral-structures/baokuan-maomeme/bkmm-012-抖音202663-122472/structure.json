@@ -1,0 +1,356 @@
+{
+  "video_summary": {
+    "title": "2025年3月底猫meme考试",
+    "one_sentence": "以答题形式考核网友对热门猫meme的认知，互动性强",
+    "primary_topic": "猫meme知识互动答题",
+    "meme_type": "互动答题类",
+    "overall_tone": "轻松搞怪、有参与感"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 4,
+      "text": "1.哪只猫经常扮演坏人",
+      "speaker": "旁白",
+      "tone": "清晰",
+      "emotion": "中性",
+      "function": "出题",
+      "confidence": 1
+    },
+    {
+      "start_time": 4,
+      "end_time": 8,
+      "text": "2.哭声是下面哪只猫的",
+      "speaker": "旁白",
+      "tone": "清晰",
+      "emotion": "中性",
+      "function": "出题",
+      "confidence": 1
+    },
+    {
+      "start_time": 8,
+      "end_time": 12,
+      "text": "3.说话声是下面哪只猫的",
+      "speaker": "旁白",
+      "tone": "清晰",
+      "emotion": "中性",
+      "function": "出题",
+      "confidence": 1
+    },
+    {
+      "start_time": 12,
+      "end_time": 16,
+      "text": "4.笑声是下面哪只猫的",
+      "speaker": "旁白",
+      "tone": "清晰",
+      "emotion": "中性",
+      "function": "出题",
+      "confidence": 1
+    },
+    {
+      "start_time": 16,
+      "end_time": 29,
+      "text": "1.哪个选项是痞老板的声音",
+      "speaker": "旁白",
+      "tone": "清晰",
+      "emotion": "中性",
+      "function": "出题",
+      "confidence": 1
+    },
+    {
+      "start_time": 29,
+      "end_time": 42,
+      "text": "2.哪个选项是妲己猫的声音",
+      "speaker": "旁白",
+      "tone": "清晰",
+      "emotion": "中性",
+      "function": "出题",
+      "confidence": 1
+    },
+    {
+      "start_time": 42,
+      "end_time": 55,
+      "text": "3.哪个选项是傻笑猫的声音",
+      "speaker": "旁白",
+      "tone": "清晰",
+      "emotion": "中性",
+      "function": "出题",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 4,
+      "duration": 4,
+      "beat": "setup",
+      "script": "第一题选择题",
+      "joke_point": "坏人猫meme认知考核",
+      "visual_description": "3只猫选项+倒计时+绿对勾",
+      "pacing_note": "4秒，倒计时3秒"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 4,
+      "end_time": 8,
+      "duration": 4,
+      "beat": "setup",
+      "script": "第二题选择题",
+      "joke_point": "香蕉猫哭声meme考核",
+      "visual_description": "3只猫选项+倒计时+绿对勾",
+      "pacing_note": "4秒，倒计时3秒"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 8,
+      "end_time": 12,
+      "duration": 4,
+      "beat": "setup",
+      "script": "第三题选择题",
+      "joke_point": "说话猫meme认知考核",
+      "visual_description": "3只猫选项+倒计时+绿对勾",
+      "pacing_note": "4秒，倒计时3秒"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 12,
+      "end_time": 16,
+      "duration": 4,
+      "beat": "escalation",
+      "script": "第四题选择题",
+      "joke_point": "混狗选项混淆考生",
+      "visual_description": "2狗1猫选项+倒计时+绿对勾",
+      "pacing_note": "4秒，倒计时3秒"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 16,
+      "end_time": 29,
+      "duration": 13,
+      "beat": "escalation",
+      "script": "第一题听力题",
+      "joke_point": "痞老板声音考核",
+      "visual_description": "3个音频选项+倒计时+绿对勾",
+      "pacing_note": "13秒，含音频播放时间"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 29,
+      "end_time": 42,
+      "duration": 13,
+      "beat": "escalation",
+      "script": "第二题听力题",
+      "joke_point": "妲己猫声音考核",
+      "visual_description": "3个音频选项+倒计时+绿对勾",
+      "pacing_note": "13秒，含音频播放时间"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 42,
+      "end_time": 55,
+      "duration": 13,
+      "beat": "punchline",
+      "script": "第三题听力题",
+      "joke_point": "傻笑猫声音考核",
+      "visual_description": "3个音频选项+倒计时+绿对勾",
+      "pacing_note": "13秒，含音频播放时间"
+    }
+  ],
+  "cat_track": [
+    "3只猫：左呆狸花、中红光灰猫、右无辜橘白",
+    "3只猫：左哭香蕉猫、中指脸橘猫、右泪眼奶猫",
+    "3只猫：左张嘴猫、中金渐层、右歪脸奶猫",
+    "2狗1猫：A假发狗、B笑橘猫、C吐舌狗",
+    "1只痞老板表情包",
+    "1只捂嘴笑橘色妲己猫",
+    "1只张嘴傻笑奶猫"
+  ],
+  "background_track": [
+    "纯白背景，顶部黄色粗黑字标题栏",
+    "纯白背景，顶部黄色粗黑字标题栏",
+    "纯白背景，顶部黄色粗黑字标题栏",
+    "纯白背景，顶部黄色粗黑字标题栏",
+    "纯白背景，顶部黄色粗黑字标题栏",
+    "纯白背景，顶部黄色粗黑字标题栏",
+    "纯白背景，顶部黄色粗黑字标题栏"
+  ],
+  "audio_track": {
+    "bgm_style": "轻快搞怪短视频BGM",
+    "bgm_mood": "活泼有节奏感",
+    "voice_style": "清晰普通话读题",
+    "voice_presence": "中等，盖过BGM不刺耳",
+    "sfx": [
+      "倒计时滴答声",
+      "答对提示音",
+      "各选项对应meme音效"
+    ],
+    "rhythm_sync": "倒计时、对勾出现与BGM鼓点同步"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "无衬线黑体，黑色正文，黄色标题",
+    "subtitle_density": "低，每屏不超过20字",
+    "emphasis_words": [
+      "正确选项绿对勾",
+      "灰色大号倒计时数字"
+    ],
+    "bubble_or_dialogue_style": "无对话气泡",
+    "stickers_or_overlays": [
+      "绿色对勾贴纸",
+      "灰色倒计时数字"
+    ],
+    "transition_notes": [
+      "每道题直接切屏，无花哨转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "meme知识答题模板，分选择/听力两部分，每道题3选项+倒计时+公布答案"
+    ],
+    "shot_templates": [
+      "顶部固定标题栏+中间题目+底部3选项+中央倒计时+正确答案标记"
+    ],
+    "cat_action_templates": [
+      "热门meme猫当选项，可替换为任意热门梗图"
+    ],
+    "background_templates": [
+      "纯白背景+顶部黄色标题栏，干净突出内容"
+    ],
+    "audio_templates": [
+      "轻快BGM+读题+倒计时音效+答对提示音"
+    ],
+    "suitable_topics": [
+      "网络热梗考核",
+      "明星/影视知识答题",
+      "职场/生活常识趣味考核"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 4.0,
+        "beat": "setup",
+        "script": "1.哪只猫经常扮演坏人？",
+        "joke_point": "考经典坏人猫meme认知",
+        "background": "纯白+顶部黄色标题栏",
+        "cats": "左呆狸花、中红光灰猫、右橘白",
+        "audio": "读题+3秒滴答倒计时+答对提示音",
+        "subtitle": "黑字题目+灰321倒计时+B标绿对勾",
+        "seedream_prompt": "纯白背景试卷，顶部黄色粗字标题栏",
+        "local_cat_asset_keywords": "呆脸狸花猫,红光灰猫,无辜橘白猫",
+        "local_background_keywords": "纯白背景,黄色标题栏"
+      },
+      {
+        "shot_id": 2,
+        "duration": 4.0,
+        "beat": "setup",
+        "script": "2.哭声是下面哪只猫的？",
+        "joke_point": "考香蕉猫哭声meme认知",
+        "background": "纯白+顶部黄色标题栏",
+        "cats": "左哭香蕉猫、中指脸橘猫、右泪眼奶猫",
+        "audio": "读题+3秒滴答倒计时+答对提示音",
+        "subtitle": "黑字题目+灰321倒计时+A标绿对勾",
+        "seedream_prompt": "纯白背景试卷，顶部黄色粗字标题栏",
+        "local_cat_asset_keywords": "香蕉哭猫,指脸橘猫,泪眼奶猫",
+        "local_background_keywords": "纯白背景,黄色标题栏"
+      },
+      {
+        "shot_id": 3,
+        "duration": 4.0,
+        "beat": "setup",
+        "script": "3.说话声是下面哪只猫的？",
+        "joke_point": "考说话猫meme认知",
+        "background": "纯白+顶部黄色标题栏",
+        "cats": "左张嘴猫、中金渐层、右歪脸奶猫",
+        "audio": "读题+3秒滴答倒计时+答对提示音",
+        "subtitle": "黑字题目+灰321倒计时+C标绿对勾",
+        "seedream_prompt": "纯白背景试卷，顶部黄色粗字标题栏",
+        "local_cat_asset_keywords": "张嘴猫,金渐层,歪脸奶猫",
+        "local_background_keywords": "纯白背景,黄色标题栏"
+      },
+      {
+        "shot_id": 4,
+        "duration": 4.0,
+        "beat": "escalation",
+        "script": "4.笑声是下面哪只猫的？",
+        "joke_point": "混狗选项混淆考生",
+        "background": "纯白+顶部黄色标题栏",
+        "cats": "A假发狗、B笑橘猫、C吐舌狗",
+        "audio": "读题+3秒滴答倒计时+答对提示音",
+        "subtitle": "黑字题目+灰321倒计时+B标绿对勾",
+        "seedream_prompt": "纯白背景试卷，顶部黄色粗字标题栏",
+        "local_cat_asset_keywords": "笑橘猫,假发狗,吐舌狗",
+        "local_background_keywords": "纯白背景,黄色标题栏"
+      },
+      {
+        "shot_id": 5,
+        "duration": 13.0,
+        "beat": "escalation",
+        "script": "1.哪个选项是痞老板的声音？",
+        "joke_point": "听力题增加难度",
+        "background": "纯白+顶部黄色标题栏",
+        "cats": "痞老板表情包在右侧",
+        "audio": "读题+ABC音效播放+3秒倒计时+答对提示音",
+        "subtitle": "黑字题目+灰321倒计时+B标绿对勾",
+        "seedream_prompt": "纯白背景试卷，顶部黄色粗字标题栏",
+        "local_cat_asset_keywords": "痞老板表情包",
+        "local_background_keywords": "纯白背景,黄色标题栏"
+      },
+      {
+        "shot_id": 6,
+        "duration": 13.0,
+        "beat": "escalation",
+        "script": "2.哪个选项是妲己猫的声音？",
+        "joke_point": "考妲己猫经典音效",
+        "background": "纯白+顶部黄色标题栏",
+        "cats": "捂嘴笑妲己猫在右侧",
+        "audio": "读题+ABC音效播放+3秒倒计时+答对提示音",
+        "subtitle": "黑字题目+灰321倒计时+C标绿对勾",
+        "seedream_prompt": "纯白背景试卷，顶部黄色粗字标题栏",
+        "local_cat_asset_keywords": "捂嘴笑妲己猫",
+        "local_background_keywords": "纯白背景,黄色标题栏"
+      },
+      {
+        "shot_id": 7,
+        "duration": 13.0,
+        "beat": "punchline",
+        "script": "3.哪个选项是傻笑猫的声音？",
+        "joke_point": "考傻笑猫经典音效",
+        "background": "纯白+顶部黄色标题栏",
+        "cats": "张嘴傻笑奶猫在右侧",
+        "audio": "读题+ABC音效播放+3秒倒计时+答对提示音",
+        "subtitle": "黑字题目+灰321倒计时+B标绿对勾",
+        "seedream_prompt": "纯白背景试卷，顶部黄色粗字标题栏",
+        "local_cat_asset_keywords": "张嘴傻笑奶猫",
+        "local_background_keywords": "纯白背景,黄色标题栏"
+      }
+    ]
+  },
+  "quality_notes": [
+    "结构清晰互动性强，可批量复制同类型答题meme，制作成本低"
+  ],
+  "_raw_content_sha256": "9dcf54923be5da0f80ee78846255bae4cf0e07f762e43ae1daa9c40491b9a544",
+  "video_id": "bkmm-012-抖音202663-122472",
+  "filename": "抖音202663-122472.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 55.008,
+    "size_bytes": 2137730,
+    "width": 960,
+    "height": 720,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "f009eefd3f0b6e38843f0972e0a07967ed9d63e60728d2288828870f272d60d2"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-012-抖音202663-122472/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-012-抖音202663-122472/audio.m4a",
+    "analyzed_at": "2026-06-03T03:02:24.714949+00:00",
+    "normalized_at": "2026-06-03T03:19:12.597107+00:00"
+  }
+}

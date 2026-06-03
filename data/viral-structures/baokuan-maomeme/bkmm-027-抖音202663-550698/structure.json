@@ -1,0 +1,363 @@
+{
+  "video_summary": {
+    "title": "情侣日常之女友灵魂拷问",
+    "one_sentence": "男生举证多种爱女友的行为，全被女友抬杠反驳，最后被绝杀提问哑口无言",
+    "primary_topic": "情侣搞笑日常",
+    "meme_type": "猫脸拟人对话梗",
+    "overall_tone": "诙谐调侃、沙雕搞笑"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "(刷手机中)",
+      "speaker": "旁白",
+      "tone": "轻松",
+      "emotion": "平淡",
+      "function": "场景铺垫",
+      "confidence": 1
+    },
+    {
+      "start_time": 2,
+      "end_time": 4,
+      "text": "我觉得你不爱我",
+      "speaker": "女朋友",
+      "tone": "委屈",
+      "emotion": "撒娇",
+      "function": "抛出核心矛盾",
+      "confidence": 1
+    },
+    {
+      "start_time": 4,
+      "end_time": 7,
+      "text": "测体温...也没发烧啊",
+      "speaker": "我",
+      "tone": "疑惑",
+      "emotion": "懵",
+      "function": "直男转移话题",
+      "confidence": 1
+    },
+    {
+      "start_time": 7,
+      "end_time": 11,
+      "text": "别转移话题，老实回答是不是不爱我",
+      "speaker": "女朋友",
+      "tone": "严肃",
+      "emotion": "较真",
+      "function": "拉回核心问题",
+      "confidence": 1
+    },
+    {
+      "start_time": 11,
+      "end_time": 13,
+      "text": "把我买奶茶吐出来给我",
+      "speaker": "我",
+      "tone": "气急",
+      "emotion": "无语",
+      "function": "直男反呛",
+      "confidence": 1
+    },
+    {
+      "start_time": 13,
+      "end_time": 15,
+      "text": "笑死人，说的好像跟别人谈不用买一样",
+      "speaker": "女朋友",
+      "tone": "嘲讽",
+      "emotion": "好笑",
+      "function": "逻辑碾压反驳",
+      "confidence": 1
+    },
+    {
+      "start_time": 15,
+      "end_time": 17,
+      "text": "送你花和礼物不是爱你？",
+      "speaker": "我",
+      "tone": "无奈",
+      "emotion": "委屈",
+      "function": "举证示爱行为",
+      "confidence": 1
+    },
+    {
+      "start_time": 17,
+      "end_time": 20,
+      "text": "笑死人，说的好像跟别人谈不用送一样",
+      "speaker": "女朋友",
+      "tone": "嘲讽",
+      "emotion": "好笑",
+      "function": "重复逻辑反驳",
+      "confidence": 1
+    },
+    {
+      "start_time": 20,
+      "end_time": 22,
+      "text": "我钱全交给你管还不爱？",
+      "speaker": "我",
+      "tone": "无奈",
+      "emotion": "崩溃",
+      "function": "终极举证",
+      "confidence": 1
+    },
+    {
+      "start_time": 22,
+      "end_time": 26,
+      "text": "谁知道你有没有藏私房钱偷偷请别的小姐姐喝奶茶",
+      "speaker": "女朋友",
+      "tone": "调侃",
+      "emotion": "较真",
+      "function": "脑洞式反驳",
+      "confidence": 1
+    },
+    {
+      "start_time": 26,
+      "end_time": 30,
+      "text": "好喝吗",
+      "speaker": "女朋友",
+      "tone": "质问",
+      "emotion": "戏谑",
+      "function": "绝杀提问",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "setup",
+      "script": "情侣床上一起刷手机",
+      "joke_point": "日常场景强代入",
+      "visual_description": "两只猫脸贴在卧室床场景，右猫举手机",
+      "pacing_note": "舒缓"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2,
+      "end_time": 7,
+      "duration": 5,
+      "beat": "hook",
+      "script": "女友质疑不爱自己，男生伸手摸她额头测体温",
+      "joke_point": "直男迷惑操作",
+      "visual_description": "左猫伸手表情懵，右猫切换成严肃脸",
+      "pacing_note": "稍快"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 7,
+      "end_time": 13,
+      "duration": 6,
+      "beat": "escalation",
+      "script": "女友要求正面回答，男生让她把喝的奶茶吐出来",
+      "joke_point": "直男奇葩反呛",
+      "visual_description": "左猫切换成气急脸，右猫保持严肃",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 13,
+      "end_time": 20,
+      "duration": 7,
+      "beat": "escalation",
+      "script": "男生连续举证买奶茶、送花礼物，全被女友反驳和谁谈都要做",
+      "joke_point": "万能抬杠逻辑碾压",
+      "visual_description": "左猫切换成委屈无语脸，右猫切换成嘲讽脸",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 20,
+      "end_time": 26,
+      "duration": 6,
+      "beat": "twist",
+      "script": "男生说钱全交了，女友质疑他藏私房钱请别的女生喝奶茶",
+      "joke_point": "清奇脑洞反向定罪",
+      "visual_description": "左猫切换成呆滞脸，右猫保持理直气壮",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 26,
+      "end_time": 31,
+      "duration": 5,
+      "beat": "punchline",
+      "script": "女友灵魂拷问：好喝吗",
+      "joke_point": "绝杀提问让男生无话可说",
+      "visual_description": "左猫保持呆滞，右猫表情戏谑",
+      "pacing_note": "慢停留余韵"
+    }
+  ],
+  "cat_track": [
+    "双猫左右站位：左为男性角色，右为女性角色，表情随台词切换（懵/气急/委屈/严肃/嘲讽/呆滞）",
+    "左猫表情变化：放松→懵→气急→委屈→呆滞，右猫表情变化：放松→严肃→嘲讽→理直气壮→戏谑"
+  ],
+  "background_track": [
+    "全程静态现代简约卧室场景：蓝色床品大床，墙上置物架放书和小摆件，右侧配书桌椅子，暖光氛围",
+    "无需生成，可直接找现成居家卧室素材"
+  ],
+  "audio_track": {
+    "bgm_style": "沙雕轻快搞怪BGM",
+    "bgm_mood": "诙谐轻松",
+    "voice_style": "男女搞怪配音，贴近日常情侣对话语气",
+    "voice_presence": "清晰突出，盖过BGM",
+    "sfx": [
+      "摸额头啪声",
+      "反问时的哦豁搞怪音效"
+    ],
+    "rhythm_sync": "每句台词卡BGM鼓点切换"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "粗黑体，居中显示，顶部固定黄色粗体「情侣日常」标题，猫下方黄色小字标注「*我」「*女朋友」",
+    "subtitle_density": "每屏1-2行，每行不超10字",
+    "emphasis_words": [
+      "不爱我",
+      "吐奶茶",
+      "藏私房钱",
+      "好喝吗"
+    ],
+    "bubble_or_dialogue_style": "无对话气泡，纯文字居中",
+    "stickers_or_overlays": [
+      "摸额头黄色小手emoji"
+    ],
+    "transition_notes": [
+      "硬切，无特效转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "情侣灵魂拷问模板：一方不断质疑感情，另一方所有举证都被用「你和别人谈也会这么做」反驳，最后抛出绝杀提问"
+    ],
+    "shot_templates": [
+      "固定静态背景+左右双角色表情包切换+字幕更新，零运镜低成本制作模板"
+    ],
+    "cat_action_templates": [
+      "双猫左右固定站位，左方弱势方表情从懵→气急→委屈→呆滞，右方强势方表情从严肃→嘲讽→理直气壮"
+    ],
+    "background_templates": [
+      "居家静态背景（卧室/客厅/沙发），无需动态变化"
+    ],
+    "audio_templates": [
+      "沙雕轻快BGM+搞怪男女配音+少量吐槽音效"
+    ],
+    "suitable_topics": [
+      "情侣日常搞笑",
+      "男女思维差异",
+      "直男迷惑行为",
+      "情侣抬杠",
+      "感情灵魂拷问"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.0,
+        "beat": "setup",
+        "script": "情侣床上刷手机",
+        "joke_point": "日常场景代入",
+        "background": "现代简约卧室，大床带蓝色床品",
+        "cats": "左猫凑看右猫，右猫举手机表情放松",
+        "audio": "轻快BGM起，无台词",
+        "subtitle": "（刷手机中）",
+        "seedream_prompt": "现代简约卧室暖光大床",
+        "local_cat_asset_keywords": "奶猫看手机,橘猫举手机",
+        "local_background_keywords": "现代卧室,大床,暖光"
+      },
+      {
+        "shot_id": 2,
+        "duration": 5.0,
+        "beat": "hook",
+        "script": "女友说你不爱我，男生测体温",
+        "joke_point": "直男迷惑操作",
+        "background": "同前卧室场景",
+        "cats": "左猫伸手摸右猫额头表情懵，右猫严肃",
+        "audio": "BGM继续，男女配音，啪音效",
+        "subtitle": "我觉得你不爱我\n测体温...也没发烧啊",
+        "seedream_prompt": "同前卧室",
+        "local_cat_asset_keywords": "懵逼猫,严肃橘猫",
+        "local_background_keywords": "同前卧室"
+      },
+      {
+        "shot_id": 3,
+        "duration": 6.0,
+        "beat": "escalation",
+        "script": "女友追问，男生让吐奶茶",
+        "joke_point": "直男奇葩反呛",
+        "background": "同前卧室场景",
+        "cats": "左猫气急脸，右猫严肃脸",
+        "audio": "BGM鼓点加快，男女配音",
+        "subtitle": "别转移话题，是不是不爱我\n把我买奶茶吐出来",
+        "seedream_prompt": "同前卧室",
+        "local_cat_asset_keywords": "气急奶猫,严肃橘猫",
+        "local_background_keywords": "同前卧室"
+      },
+      {
+        "shot_id": 4,
+        "duration": 7.0,
+        "beat": "escalation",
+        "script": "男生举证被反驳",
+        "joke_point": "万能抬杠逻辑",
+        "background": "同前卧室场景",
+        "cats": "左猫委屈无语脸，右猫嘲讽脸",
+        "audio": "BGM继续，男女配音",
+        "subtitle": "笑死人和谁谈都要买\n送你花不是爱你？\n和谁谈都要送",
+        "seedream_prompt": "同前卧室",
+        "local_cat_asset_keywords": "委屈猫,嘲讽橘猫",
+        "local_background_keywords": "同前卧室"
+      },
+      {
+        "shot_id": 5,
+        "duration": 6.0,
+        "beat": "twist",
+        "script": "男生说钱全交，女友质疑藏私房钱",
+        "joke_point": "清奇脑洞反向定罪",
+        "background": "同前卧室场景",
+        "cats": "左猫呆滞脸，右猫理直气壮",
+        "audio": "BGM继续，男女配音，哦豁音效",
+        "subtitle": "我钱全交了还不爱？\n你是不是藏钱请别的女生喝奶茶",
+        "seedream_prompt": "同前卧室",
+        "local_cat_asset_keywords": "呆滞猫,理直气壮橘猫",
+        "local_background_keywords": "同前卧室"
+      },
+      {
+        "shot_id": 6,
+        "duration": 5.0,
+        "beat": "punchline",
+        "script": "女友问好喝吗",
+        "joke_point": "绝杀提问",
+        "background": "同前卧室场景",
+        "cats": "左猫呆滞，右猫戏谑",
+        "audio": "BGM降音，女声配音，留空白",
+        "subtitle": "好喝吗",
+        "seedream_prompt": "同前卧室",
+        "local_cat_asset_keywords": "呆滞猫,戏谑橘猫",
+        "local_background_keywords": "同前卧室"
+      }
+    ]
+  },
+  "quality_notes": [
+    "固定静态背景+猫表情包切换，制作成本极低，笑点密集符合情侣内容传播属性，可快速批量复刻同类话题"
+  ],
+  "_raw_content_sha256": "10397d28fa50ff1333f0935107bc971b5f672778becc87ed5719ddbb2b1dfe55",
+  "video_id": "bkmm-027-抖音202663-550698",
+  "filename": "抖音202663-550698.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 32.113,
+    "size_bytes": 1724888,
+    "width": 720,
+    "height": 960,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "9881adce8d423b14b5912f470c1d07e6261308ced65593df386c6b07e07f68ee"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-027-抖音202663-550698/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-027-抖音202663-550698/audio.m4a",
+    "analyzed_at": "2026-06-03T03:04:48.789515+00:00",
+    "normalized_at": "2026-06-03T03:19:12.605444+00:00"
+  }
+}

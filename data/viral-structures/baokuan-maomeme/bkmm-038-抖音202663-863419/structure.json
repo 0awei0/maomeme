@@ -1,0 +1,398 @@
+{
+  "video_summary": {
+    "title": "记忆中的童年生日声音",
+    "one_sentence": "香蕉猫生日收到音乐贺卡和莲花蜡烛，半夜被持续播放的音乐逼疯的怀旧搞笑meme",
+    "primary_topic": "90后童年生日怀旧共鸣",
+    "meme_type": "猫meme怀旧小剧场",
+    "overall_tone": "搞笑、怀旧、有共鸣"
+  },
+  "script_track": [
+    {
+      "start_time": "0.0",
+      "end_time": "1.8",
+      "text": "奶奶你在煮什么",
+      "speaker": "我",
+      "tone": "好奇",
+      "emotion": "开心",
+      "function": "提问",
+      "confidence": 1
+    },
+    {
+      "start_time": "1.9",
+      "end_time": "3.7",
+      "text": "小寿星起床啦 奶奶煮了长寿面",
+      "speaker": "奶奶",
+      "tone": "慈祥",
+      "emotion": "温和",
+      "function": "回应",
+      "confidence": 1
+    },
+    {
+      "start_time": "3.8",
+      "end_time": "5.5",
+      "text": "小咪你在不在家",
+      "speaker": "小伙伴",
+      "tone": "活泼",
+      "emotion": "开心",
+      "function": "呼叫",
+      "confidence": 1
+    },
+    {
+      "start_time": "5.6",
+      "end_time": "7.2",
+      "text": "这个给你 生日快乐",
+      "speaker": "小伙伴",
+      "tone": "欢快",
+      "emotion": "友好",
+      "function": "送礼物",
+      "confidence": 1
+    },
+    {
+      "start_time": "7.3",
+      "end_time": "9.1",
+      "text": "好香呀 还会唱歌",
+      "speaker": "我",
+      "tone": "惊喜",
+      "emotion": "开心",
+      "function": "表达感受",
+      "confidence": 1
+    },
+    {
+      "start_time": "9.2",
+      "end_time": "15.6",
+      "text": "等她生日把这个送给她 她肯定很喜欢",
+      "speaker": "我",
+      "tone": "期待",
+      "emotion": "憧憬",
+      "function": "内心活动",
+      "confidence": 1
+    },
+    {
+      "start_time": "15.7",
+      "end_time": "19.8",
+      "text": "点蜡烛咯 哇好漂亮 真好听",
+      "speaker": "我/奶奶",
+      "tone": "开心",
+      "emotion": "兴奋",
+      "function": "生日互动",
+      "confidence": 1
+    },
+    {
+      "start_time": "19.9",
+      "end_time": "35.8",
+      "text": "怎么还在响 终于安静了 这也太能唱了",
+      "speaker": "我",
+      "tone": "崩溃",
+      "emotion": "无奈",
+      "function": "反转笑点",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": "1",
+      "start_time": "0.0",
+      "end_time": "3.7",
+      "duration": "3.7s",
+      "beat": "setup",
+      "script": "厨房和奶奶对话",
+      "joke_point": "长寿面唤起童年生日共鸣",
+      "visual_description": "老厨房双猫左右对话",
+      "pacing_note": "节奏平缓"
+    },
+    {
+      "shot_id": "2",
+      "start_time": "3.8",
+      "end_time": "8.5",
+      "duration": "4.7s",
+      "beat": "setup",
+      "script": "小伙伴送生日贺卡",
+      "joke_point": "童年音乐贺卡回忆杀",
+      "visual_description": "老院子双猫对话",
+      "pacing_note": "节奏轻松"
+    },
+    {
+      "shot_id": "3",
+      "start_time": "8.6",
+      "end_time": "15.6",
+      "duration": "7s",
+      "beat": "setup",
+      "script": "收到贺卡开心，准备回礼音乐盒",
+      "joke_point": "童年攒钱送朋友礼物共鸣",
+      "visual_description": "卧室单猫+书桌单猫",
+      "pacing_note": "节奏平缓"
+    },
+    {
+      "shot_id": "4",
+      "start_time": "15.7",
+      "end_time": "19.8",
+      "duration": "4.1s",
+      "beat": "escalation",
+      "script": "点生日莲花蜡烛",
+      "joke_point": "莲花蜡烛是童年生日标配",
+      "visual_description": "庭院石桌双猫看蛋糕",
+      "pacing_note": "节奏欢快"
+    },
+    {
+      "shot_id": "5",
+      "start_time": "19.9",
+      "end_time": "23.7",
+      "duration": "3.8s",
+      "beat": "twist",
+      "joke_point": "半夜被蜡烛音乐吵醒的痛点",
+      "visual_description": "昏暗卧室猫裹被子懵",
+      "pacing_note": "节奏突变"
+    },
+    {
+      "shot_id": "6",
+      "start_time": "23.8",
+      "end_time": "31.5",
+      "duration": "7.7s",
+      "beat": "punchline",
+      "joke_point": "拆完电池回来音乐还在响",
+      "visual_description": "猫跑出去又回来，一脸懵",
+      "pacing_note": "笑点递进"
+    },
+    {
+      "shot_id": "7",
+      "start_time": "31.6",
+      "end_time": "35.8",
+      "duration": "4.2s",
+      "beat": "punchline",
+      "joke_point": "被蜡烛持久续航逼疯",
+      "visual_description": "猫变成咸鱼脸崩溃",
+      "pacing_note": "笑点爆发"
+    },
+    {
+      "shot_id": "8",
+      "start_time": "35.9",
+      "end_time": "39.0",
+      "duration": "3.1s",
+      "beat": "cta",
+      "script": "引导搜索莲花蜡烛相关内容",
+      "joke_point": "关联热点话题引流",
+      "visual_description": "抖音搜索框界面",
+      "pacing_note": "收尾导流"
+    }
+  ],
+  "cat_track": [
+    "双猫：右狸花猫（奶奶），左香蕉猫/仓鼠脸（我）",
+    "双猫：右粉蝴蝶结猫（小伙伴），左香蕉猫（我）",
+    "单猫：香蕉猫开心听歌，白橘猫看音乐盒",
+    "双猫：右银渐层（奶奶），左香蕉猫（我）",
+    "单猫：狸花猫裹被子一脸懵",
+    "单猫：橘猫打哈欠，狸花猫再次懵",
+    "单猫：咸鱼脸猫崩溃",
+    "无猫"
+  ],
+  "background_track": [
+    "90年代老厨房，贴福字，红橱柜，木质圆桌",
+    "农村老院子，石槽，白鹅，绿植",
+    "老卧室格子床单，木桌配音乐盒",
+    "农村庭院石桌，摆满家常菜",
+    "昏暗老卧室，格子床单，木窗",
+    "同昏暗老卧室",
+    "同昏暗老卧室",
+    "抖音搜索界面深色背景"
+  ],
+  "audio_track": {
+    "bgm_style": "怀旧童年向轻BGM",
+    "bgm_mood": "温暖、怀旧、轻松",
+    "voice_style": "幼态配音+生活化方言感配音",
+    "voice_presence": "角色区分明显，代入感强",
+    "sfx": [
+      "音乐贺卡叮咚声",
+      "音乐盒八音盒声",
+      "莲花蜡烛生日歌",
+      "脚步声"
+    ],
+    "rhythm_sync": "台词、音效均卡BGM鼓点，节奏舒适"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "白色粗黑边大字，底部黄色小字标角色",
+    "subtitle_density": "每屏1-2句，密度低",
+    "emphasis_words": [
+      "生日",
+      "怎么还在响",
+      "太能唱了"
+    ],
+    "bubble_or_dialogue_style": "无气泡，文字直接放角色上方",
+    "stickers_or_overlays": [
+      "顶部白色标题条「记忆中的那些声音」",
+      "音乐符特效贴纸"
+    ],
+    "transition_notes": [
+      "全片硬切，无花哨转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "童年日常片段+怀旧物品+集体痛点反转的叙事模板"
+    ],
+    "shot_templates": [
+      "双猫左右对话分镜",
+      "单猫内心活动分镜",
+      "场景切换叙事模板"
+    ],
+    "cat_action_templates": [
+      "香蕉猫张嘴开心脸",
+      "猫裹被子懵脸",
+      "猫崩溃咸鱼脸"
+    ],
+    "background_templates": [
+      "90年代怀旧场景套组（厨房/院子/老卧室）"
+    ],
+    "audio_templates": [
+      "怀旧BGM+童年物品音效+生活化配音模板"
+    ],
+    "suitable_topics": [
+      "90后怀旧",
+      "童年生日社死",
+      "沙雕日常吐槽",
+      "集体痛点共鸣"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": "1",
+        "duration": 3.7,
+        "beat": "setup",
+        "script": "我：奶奶你在煮什么？奶奶：小寿星煮了长寿面",
+        "joke_point": "童年生日奶奶做长寿面共鸣",
+        "background": "90年代老厨房，贴福字，红橱柜圆桌",
+        "cats": "右：狸花（奶奶）闭眼，左：香蕉猫（我）张嘴",
+        "audio": "暖怀旧BGM，幼态提问音，奶奶慈祥音",
+        "subtitle": "对应台词，底部黄字标角色",
+        "seedream_prompt": "90年代中式老厨房，贴福字，红橱柜木圆桌",
+        "local_cat_asset_keywords": "狸花猫奶奶脸，香蕉猫开心脸",
+        "local_background_keywords": "90年代老厨房"
+      },
+      {
+        "shot_id": "2",
+        "duration": 4.7,
+        "beat": "setup",
+        "script": "小伙伴：小咪在家吗？给你贺卡，生日快乐",
+        "joke_point": "童年送音乐贺卡回忆杀",
+        "background": "农村老院子，石槽，白鹅，绿植",
+        "cats": "右：粉猫（小伙伴）喊人，左：香蕉猫（我）疑惑",
+        "audio": "BGM延续，小伙伴活泼音，贺卡拆开音效",
+        "subtitle": "对应台词，底部黄字标角色",
+        "seedream_prompt": "农村老式院子，石槽，白鹅，阳光充足",
+        "local_cat_asset_keywords": "粉蝴蝶结猫，香蕉猫疑惑脸",
+        "local_background_keywords": "农村老院子"
+      },
+      {
+        "shot_id": "3",
+        "duration": 7.0,
+        "beat": "setup",
+        "script": "我：好香还会唱歌，下回送她音乐盒她肯定喜欢",
+        "joke_point": "童年攒钱送朋友礼物共鸣",
+        "background": "老卧室格子床单，木桌放音乐盒",
+        "cats": "香蕉猫开心听歌，白橘猫摸音乐盒",
+        "audio": "音乐盒八音盒音效，内心活动配音",
+        "subtitle": "对应台词，底部黄字标角色",
+        "seedream_prompt": "90年代老卧室，格子床单，木书桌",
+        "local_cat_asset_keywords": "香蕉猫开心脸，白橘猫期待脸",
+        "local_background_keywords": "90年代老卧室"
+      },
+      {
+        "shot_id": "4",
+        "duration": 4.1,
+        "beat": "escalation",
+        "script": "点蜡烛咯，哇好漂亮，真好听",
+        "joke_point": "莲花蜡烛是童年生日标配",
+        "background": "庭院石桌，摆满家常菜，放生日蛋糕",
+        "cats": "右：银渐层（奶奶）点蜡烛，左：香蕉猫兴奋",
+        "audio": "莲花蜡烛生日歌起，开心配音",
+        "subtitle": "对应台词，底部黄字标角色",
+        "seedream_prompt": "农村庭院石桌，摆满家常菜，生日蛋糕",
+        "local_cat_asset_keywords": "银渐层奶奶脸，香蕉猫兴奋脸",
+        "local_background_keywords": "农村庭院生日宴"
+      },
+      {
+        "shot_id": "5",
+        "duration": 3.8,
+        "beat": "twist",
+        "script": "我：怎么还在响？",
+        "joke_point": "半夜被蜡烛音乐吵醒痛点",
+        "background": "昏暗老卧室，格子床单",
+        "cats": "狸花猫裹被子，一脸懵",
+        "audio": "生日歌持续，疑惑配音，背景变暗音效",
+        "subtitle": "对应台词，底部黄字标角色",
+        "seedream_prompt": "昏暗老卧室，格子床单，夜晚氛围",
+        "local_cat_asset_keywords": "狸花猫懵脸，裹被子素材",
+        "local_background_keywords": "昏暗老卧室"
+      },
+      {
+        "shot_id": "6",
+        "duration": 7.7,
+        "beat": "punchline",
+        "script": "我：终于安静了，怎么又响了？",
+        "joke_point": "拆完电池回来音乐还在响",
+        "background": "同昏暗老卧室",
+        "cats": "香蕉猫跑出去又回来，橘猫打哈欠又懵",
+        "audio": "生日歌停了又响，脚步声，打哈欠音效",
+        "subtitle": "对应台词，底部黄字标角色",
+        "seedream_prompt": "昏暗老卧室，格子床单，夜晚氛围",
+        "local_cat_asset_keywords": "香蕉猫跑走素材，橘猫打哈欠脸",
+        "local_background_keywords": "昏暗老卧室"
+      },
+      {
+        "shot_id": "7",
+        "duration": 4.2,
+        "beat": "punchline",
+        "script": "我：这也太能唱了",
+        "joke_point": "被蜡烛持久续航逼疯",
+        "background": "同昏暗老卧室",
+        "cats": "咸鱼脸猫崩溃",
+        "audio": "生日歌持续，崩溃配音",
+        "subtitle": "对应台词，底部黄字标角色",
+        "seedream_prompt": "昏暗老卧室，格子床单，夜晚氛围",
+        "local_cat_asset_keywords": "咸鱼脸崩溃猫",
+        "local_background_keywords": "昏暗老卧室"
+      },
+      {
+        "shot_id": "8",
+        "duration": 3.1,
+        "beat": "cta",
+        "script": "搜索莲花蜡烛逼疯相关内容",
+        "joke_point": "关联热点引流",
+        "background": "抖音搜索框深色界面",
+        "cats": "无猫镜头/平台作者信息页",
+        "audio": "BGM渐停",
+        "subtitle": "抖音搜索栏文字",
+        "seedream_prompt": "抖音搜索界面深色背景",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "抖音搜索界面"
+      }
+    ]
+  },
+  "quality_notes": [
+    "怀旧场景还原度高，童年物品共鸣强，节奏卡点舒适，痛点反转精准",
+    "normalized_storyboard_fields: filled 1 blank or inconsistent fields"
+  ],
+  "_raw_content_sha256": "7bd2af05d899adbd8b838b66df4b5f232de85a30b4e788d9aac8b20be1979d33",
+  "video_id": "bkmm-038-抖音202663-863419",
+  "filename": "抖音202663-863419.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 38.986,
+    "size_bytes": 2662818,
+    "width": 720,
+    "height": 960,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "970359303f723dd01699d4ca5ad47def08ef747fe14a949843be81ff3dfed03e"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-038-抖音202663-863419/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-038-抖音202663-863419/audio.m4a",
+    "analyzed_at": "2026-06-03T03:08:10.786793+00:00",
+    "normalized_at": "2026-06-03T03:19:12.611699+00:00"
+  }
+}

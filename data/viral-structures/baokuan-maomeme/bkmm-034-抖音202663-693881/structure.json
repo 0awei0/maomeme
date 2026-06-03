@@ -1,0 +1,403 @@
+{
+  "video_summary": {
+    "title": "香蕉猫烤鸡腿摊暖心反转整活",
+    "one_sentence": "顾客误以为吃烤鸡腿拉肚子找摊主理论，反转是自身作息问题，摊主暖心送衣送食",
+    "primary_topic": "打工人日常暖心整活",
+    "meme_type": "猫meme剧情反转类",
+    "overall_tone": "搞笑治愈带沙雕感"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 1,
+      "text": "白薯秘制烤鸡腿",
+      "speaker": "旁白",
+      "tone": "洪亮",
+      "emotion": "欢快",
+      "function": "开场",
+      "confidence": 1
+    },
+    {
+      "start_time": 1,
+      "end_time": 3,
+      "text": "两块钱你买不了吃亏，买不了上当",
+      "speaker": "摊主猫",
+      "tone": "吆喝",
+      "emotion": "热情",
+      "function": "招揽",
+      "confidence": 1
+    },
+    {
+      "start_time": 3,
+      "end_time": 6,
+      "text": "你啥都买不了，你个穷b",
+      "speaker": "摊主猫",
+      "tone": "欠揍",
+      "emotion": "戏谑",
+      "function": "反套路笑点",
+      "confidence": 1
+    },
+    {
+      "start_time": 6,
+      "end_time": 9,
+      "text": "来十个鸡腿！哥有钱，就这么有实力",
+      "speaker": "顾客猫",
+      "tone": "嚣张",
+      "emotion": "生气",
+      "function": "冲突升级",
+      "confidence": 1
+    },
+    {
+      "start_time": 14,
+      "end_time": 18,
+      "text": "窜死我了",
+      "speaker": "顾客猫",
+      "tone": "嘶吼",
+      "emotion": "痛苦",
+      "function": "剧情转折",
+      "confidence": 1
+    },
+    {
+      "start_time": 25,
+      "end_time": 32,
+      "text": "你是不是拉肚子了？最近是不是老加班没好好吃饭？",
+      "speaker": "摊主猫",
+      "tone": "温柔",
+      "emotion": "关心",
+      "function": "反转铺垫",
+      "confidence": 1
+    },
+    {
+      "start_time": 32,
+      "end_time": 42,
+      "text": "最近转凉要照顾好自己，这衣服鸡腿你拿着",
+      "speaker": "摊主猫",
+      "tone": "暖心",
+      "emotion": "善意",
+      "function": "情感高点",
+      "confidence": 1
+    },
+    {
+      "start_time": 54,
+      "end_time": 58,
+      "text": "白薯提醒您无论如何要好好吃饭哦",
+      "speaker": "旁白",
+      "tone": "温柔",
+      "emotion": "温暖",
+      "function": "引导共鸣",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "hook",
+      "script": "烤鸡腿摊开场吆喝",
+      "joke_point": "猫当摊主吆喝接地气",
+      "visual_description": "夜市烤鸡腿三轮车全景",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2,
+      "end_time": 6,
+      "duration": 4,
+      "beat": "setup",
+      "script": "摊主反套路怼顾客穷",
+      "joke_point": "打破常规卖货话术",
+      "visual_description": "香蕉猫顾客走向摊位",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 6,
+      "end_time": 15,
+      "duration": 9,
+      "beat": "escalation",
+      "script": "顾客怒买十个鸡腿后窜稀",
+      "joke_point": "炫完秒拉肚子的反差",
+      "visual_description": "切马桶窜稀镜头",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 15,
+      "end_time": 25,
+      "duration": 10,
+      "beat": "twist",
+      "script": "顾客拿棒球棒找摊主理论",
+      "joke_point": "以为要打架的冲突感",
+      "visual_description": "顾客举棒对峙摊主",
+      "pacing_note": "中"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 25,
+      "end_time": 43,
+      "duration": 18,
+      "beat": "punchline",
+      "script": "摊主关心顾客送衣送鸡腿",
+      "joke_point": "暖心反转打破预期",
+      "visual_description": "摊主递衣服鸡腿，顾客哭",
+      "pacing_note": "慢"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 43,
+      "end_time": 50,
+      "duration": 7,
+      "beat": "ending",
+      "script": "顾客吃完又窜稀",
+      "joke_point": "回到沙雕搞笑调性",
+      "visual_description": "切马桶窜稀镜头",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 50,
+      "end_time": 54,
+      "duration": 4,
+      "beat": "ending",
+      "script": "摊主震惊：你居然还活着",
+      "joke_point": "无厘头收尾",
+      "visual_description": "摊主睁大眼睛看虚弱顾客",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 8,
+      "start_time": 54,
+      "end_time": 58,
+      "duration": 4,
+      "beat": "cta",
+      "script": "提醒大家好好吃饭",
+      "joke_point": "共鸣引导",
+      "visual_description": "黑底白字提示",
+      "pacing_note": "慢"
+    }
+  ],
+  "cat_track": [
+    "镜头1：2只，橘猫摊主在车后冷漠，香蕉猫顾客在左侧走路",
+    "镜头2：2只，橘猫摊主怼人，香蕉猫顾客委屈",
+    "镜头3：1只，cheems猫在马桶上嘶吼窜稀",
+    "镜头4：2只，香蕉猫顾客举棒，摊主猫歪头疑惑",
+    "镜头5：2只，摊主猫递东西温柔，顾客猫哭唧唧",
+    "镜头6：1只，cheems猫在马桶上虚弱",
+    "镜头7：2只，香蕉猫摊主震惊，cheems顾客虚浮",
+    "镜头8：无猫"
+  ],
+  "background_track": [
+    "镜头1：夜晚夜市石板路，烤鸡腿黄三轮车，暖光，有现成素材",
+    "镜头2：同上，烤鸡腿车占画面中，有现成素材",
+    "镜头3：家用卫生间白马桶，灰瓷砖，有现成素材",
+    "镜头4：同夜市背景，车在左，有现成素材",
+    "镜头5：同夜市背景，暖光，有现成素材",
+    "镜头6：同卫生间背景，有现成素材",
+    "镜头7：同夜市背景，有现成素材",
+    "镜头8：纯黑背景，无需生成"
+  ],
+  "audio_track": {
+    "bgm_style": "抖音土味搞怪轻快BGM",
+    "bgm_mood": "搞笑跳脱",
+    "voice_style": "方言+搞怪变音混合",
+    "voice_presence": "清晰突出盖过BGM",
+    "sfx": [
+      "吆喝声",
+      "窜稀噗噗声",
+      "棒球棒挥动声",
+      "哭唧唧音效",
+      "震惊吸气声"
+    ],
+    "rhythm_sync": "每句台词卡BGM鼓点，转场卡重音"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "粗体黄边黑字，字号大",
+    "subtitle_density": "每镜头1-2句，无密集文字",
+    "emphasis_words": [
+      "穷b",
+      "窜死我了",
+      "好好吃饭",
+      "别冻着"
+    ],
+    "bubble_or_dialogue_style": "无气泡，直接悬浮字幕",
+    "stickers_or_overlays": [
+      "问号贴纸",
+      "哭脸水滴贴纸",
+      "棒球棒贴纸",
+      "鸡腿贴纸",
+      "衣服贴纸"
+    ],
+    "transition_notes": [
+      "海绵宝宝TOMORROW花字转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "市井摊主+顾客 反套路冲突→暖心反转→搞笑收尾"
+    ],
+    "shot_templates": [
+      "快节奏开场吆喝→冲突升级→切搞笑反应镜头→反转抒情→回归沙雕收尾"
+    ],
+    "cat_action_templates": [
+      "冷漠摊主猫/委屈香蕉猫/窜稀cheems猫/嚣张炫富猫"
+    ],
+    "background_templates": [
+      "夜晚夜市流动小吃摊/家用普通卫生间"
+    ],
+    "audio_templates": [
+      "土味搞怪BGM+卡鼓点台词+沙雕音效"
+    ],
+    "suitable_topics": [
+      "打工人日常共鸣",
+      "市井暖心小事",
+      "反套路整活",
+      "健康饮食提醒"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.0,
+        "beat": "hook",
+        "script": "白薯秘制烤鸡腿，两块钱买不了吃亏",
+        "joke_point": "猫当摊主吆喝接地气",
+        "background": "夜晚夜市石板路 黄色烤鸡腿三轮车",
+        "cats": "橘猫头摊主在车后 表情冷漠",
+        "audio": "搞怪BGM起+吆喝音效",
+        "subtitle": "顶部黄边黑粗字",
+        "seedream_prompt": "夜晚夜市流动烤鸡腿三轮车 暖黄灯光",
+        "local_cat_asset_keywords": "橘猫冷漠脸",
+        "local_background_keywords": "夜市烤鸡腿三轮车"
+      },
+      {
+        "shot_id": 2,
+        "duration": 4.0,
+        "beat": "setup",
+        "script": "你啥都买不了 你个穷b",
+        "joke_point": "反套路卖货笑点",
+        "background": "同夜市烤鸡腿车背景",
+        "cats": "香蕉猫顾客从左走到右 委屈",
+        "audio": "欠揍配音+鼓点",
+        "subtitle": "右上角白字",
+        "seedream_prompt": "夜晚夜市石板路 近景烤鸡腿车",
+        "local_cat_asset_keywords": "香蕉猫委屈脸",
+        "local_background_keywords": "夜市烤鸡腿三轮车"
+      },
+      {
+        "shot_id": 3,
+        "duration": 9.0,
+        "beat": "escalation",
+        "script": "来十个鸡腿！哥有钱 窜死我了",
+        "joke_point": "炫完秒窜稀反差",
+        "background": "切家用卫生间白马桶",
+        "cats": "cheems猫站马桶上 嘶吼痛苦",
+        "audio": "嚣张配音+窜稀噗噗音效",
+        "subtitle": "中部白字",
+        "seedream_prompt": "家用卫生间 白色马桶 灰瓷砖",
+        "local_cat_asset_keywords": "cheems猫痛苦嘶吼脸",
+        "local_background_keywords": "卫生间马桶"
+      },
+      {
+        "shot_id": 4,
+        "duration": 10.0,
+        "beat": "twist",
+        "script": "你是不是拉肚子了？",
+        "joke_point": "以为要打架的冲突感",
+        "background": "同夜市烤鸡腿车背景",
+        "cats": "顾客举棒球棒 摊主歪头疑惑",
+        "audio": "疑惑温柔配音",
+        "subtitle": "中部白字",
+        "seedream_prompt": "夜晚夜市烤鸡腿车 近景",
+        "local_cat_asset_keywords": "香蕉猫举棒/橘猫疑惑脸",
+        "local_background_keywords": "夜市烤鸡腿三轮车"
+      },
+      {
+        "shot_id": 5,
+        "duration": 18.0,
+        "beat": "punchline",
+        "script": "最近加班没好好吃饭吧 给你衣服鸡腿",
+        "joke_point": "暖心反转打破预期",
+        "background": "同夜市背景 暖光",
+        "cats": "摊主递衣服鸡腿 顾客哭唧唧",
+        "audio": "温柔配音+哭唧唧音效",
+        "subtitle": "中部白字 哭脸贴纸",
+        "seedream_prompt": "夜晚夜市 暖黄灯光 烤鸡腿车",
+        "local_cat_asset_keywords": "橘猫温柔脸/猫哭脸",
+        "local_background_keywords": "夜市烤鸡腿三轮车"
+      },
+      {
+        "shot_id": 6,
+        "duration": 7.0,
+        "beat": "ending",
+        "script": "窜死我了 喊不动了",
+        "joke_point": "回到沙雕调性",
+        "background": "同卫生间马桶背景",
+        "cats": "cheems猫虚弱趴在马桶边",
+        "audio": "虚弱配音+噗噗音效",
+        "subtitle": "中部白字",
+        "seedream_prompt": "家用卫生间 白色马桶",
+        "local_cat_asset_keywords": "cheems猫虚弱脸",
+        "local_background_keywords": "卫生间马桶"
+      },
+      {
+        "shot_id": 7,
+        "duration": 4.0,
+        "beat": "ending",
+        "script": "你居然还活着",
+        "joke_point": "无厘头收尾笑点",
+        "background": "同夜市背景",
+        "cats": "香蕉猫摊主睁大眼睛震惊",
+        "audio": "震惊吸气音效",
+        "subtitle": "顶部白字",
+        "seedream_prompt": "夜晚夜市烤鸡腿车",
+        "local_cat_asset_keywords": "香蕉猫震惊脸",
+        "local_background_keywords": "夜市烤鸡腿三轮车"
+      },
+      {
+        "shot_id": 8,
+        "duration": 4.0,
+        "beat": "cta",
+        "script": "白薯提醒您 无论如何要好好吃饭哦",
+        "joke_point": "引导观众共鸣",
+        "background": "纯黑背景",
+        "cats": "无",
+        "audio": "温柔旁白+BGM渐弱",
+        "subtitle": "中部白字",
+        "seedream_prompt": "纯黑背景",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "黑底"
+      }
+    ]
+  },
+  "quality_notes": [
+    "猫meme素材辨识度高适配性强",
+    "剧情反转戳打工人共鸣点传播性好",
+    "节奏张弛有度笑点密集符合短视频逻辑"
+  ],
+  "_raw_content_sha256": "a8d6cb722eef226f31d2f8361f3cedc55bba2612cbb1f788b44aa9bd3fc0aea7",
+  "video_id": "bkmm-034-抖音202663-693881",
+  "filename": "抖音202663-693881.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 57.767,
+    "size_bytes": 3954368,
+    "width": 960,
+    "height": 720,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "c0d88eeebde837d6c9a9a708bb611d916f4094e93a9d7b3965274b6b559bd571"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-034-抖音202663-693881/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-034-抖音202663-693881/audio.m4a",
+    "analyzed_at": "2026-06-03T03:06:43.876714+00:00",
+    "normalized_at": "2026-06-03T03:19:12.609627+00:00"
+  }
+}

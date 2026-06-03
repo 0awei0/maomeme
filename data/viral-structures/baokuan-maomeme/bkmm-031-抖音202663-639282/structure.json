@@ -1,0 +1,301 @@
+{
+  "video_summary": {
+    "title": "放假后在家挨骂的你",
+    "one_sentence": "用猫狗meme演绎家长数落放假在家孩子的常见罪状，最终挨打引发共鸣的搞笑内容",
+    "primary_topic": "放假在家被家长吐槽的大众共鸣场景",
+    "meme_type": "角色代入吐槽类",
+    "overall_tone": "搞笑、戏谑、有共鸣"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 1,
+      "text": "晚上不睡觉",
+      "speaker": "家长",
+      "tone": "严厉",
+      "emotion": "不满",
+      "function": "指责",
+      "confidence": 1
+    },
+    {
+      "start_time": 1,
+      "end_time": 2,
+      "text": "白天不起床",
+      "speaker": "家长",
+      "tone": "严厉",
+      "emotion": "不满",
+      "function": "指责",
+      "confidence": 1
+    },
+    {
+      "start_time": 2,
+      "end_time": 3,
+      "text": "家务也不做",
+      "speaker": "家长",
+      "tone": "严厉",
+      "emotion": "不满",
+      "function": "指责",
+      "confidence": 1
+    },
+    {
+      "start_time": 3,
+      "end_time": 4,
+      "text": "头发也不洗",
+      "speaker": "家长",
+      "tone": "严厉",
+      "emotion": "不满",
+      "function": "指责",
+      "confidence": 1
+    },
+    {
+      "start_time": 5,
+      "end_time": 6,
+      "text": "天天就知道呆在家",
+      "speaker": "家长",
+      "tone": "严厉",
+      "emotion": "不满",
+      "function": "指责",
+      "confidence": 1
+    },
+    {
+      "start_time": 6,
+      "end_time": 7,
+      "text": "天天就知道出去玩",
+      "speaker": "家长",
+      "tone": "严厉",
+      "emotion": "不满",
+      "function": "指责",
+      "confidence": 1
+    },
+    {
+      "start_time": 18,
+      "end_time": 20,
+      "text": "男女混合双打",
+      "speaker": "旁白",
+      "tone": "搞笑",
+      "emotion": "戏谑",
+      "function": "punchline",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 1,
+      "duration": 1,
+      "beat": "setup",
+      "script": "晚上不睡觉",
+      "joke_point": "对应放假熬夜的普遍状态",
+      "visual_description": "深夜卧室橘猫对cheems家长",
+      "pacing_note": "快切卡点"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 1,
+      "end_time": 7,
+      "duration": 6,
+      "beat": "escalation",
+      "script": "罗列6条常见被骂罪状",
+      "joke_point": "双标吐槽+大众共鸣点堆叠",
+      "visual_description": "每句吐槽切对应家庭场景+对应状态的孩子meme",
+      "pacing_note": "每1秒切1个镜头，卡点紧密"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 7,
+      "end_time": 18,
+      "duration": 11,
+      "beat": "escalation",
+      "script": "罗列剩余6条罪状",
+      "joke_point": "覆盖生活细节槽点拉满",
+      "visual_description": "客厅场景换不同表情的猫对应罪状",
+      "pacing_note": "快切保持节奏"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 18,
+      "end_time": 20,
+      "duration": 2,
+      "beat": "punchline",
+      "script": "男女混合双打",
+      "joke_point": "吐槽完挨打的经典结局",
+      "visual_description": "两只香蕉猫打中间哭的香蕉猫",
+      "pacing_note": "笑点爆发"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 20,
+      "end_time": 23,
+      "duration": 3,
+      "beat": "cta",
+      "script": "引导搜索香蕉猫meme剧场",
+      "joke_point": "",
+      "visual_description": "抖音搜索引导页",
+      "pacing_note": "平稳收尾"
+    }
+  ],
+  "cat_track": [
+    "双角色：右cheems（家长）皱眉指人，左不同状态猫/狗（孩子）对应罪状",
+    "结局：3只香蕉猫，左右2只举拳打，中间1只哭着躲"
+  ],
+  "background_track": [
+    "快速切换家庭常见场景：深夜卧室、白天卧室、厨房、书桌、玄关、沙发、餐桌、客厅",
+    "收尾用抖音官方引导深色背景"
+  ],
+  "audio_track": {
+    "bgm_style": "搞怪快节奏卡点电子BGM",
+    "bgm_mood": "戏谑搞笑",
+    "voice_style": "网络魔性吐槽男配音，语气夸张",
+    "voice_presence": "旁白式逐句念吐槽语",
+    "sfx": [
+      "鼓点点音",
+      "挨打的哭喊音效"
+    ],
+    "rhythm_sync": "每句台词卡一个鼓点，同步切镜头"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "顶部粗黑边黄字大标题，中间白字黑边吐槽语，右下角黄字标「家长」",
+    "subtitle_density": "每屏1行中间字幕，密度高",
+    "emphasis_words": [
+      "晚上不睡觉",
+      "白天不起床",
+      "家务也不做",
+      "男女混合双打"
+    ],
+    "bubble_or_dialogue_style": "无对话气泡，直接悬浮字幕",
+    "stickers_or_overlays": [
+      "手指指向贴纸",
+      "角色身份标注贴纸"
+    ],
+    "transition_notes": [
+      "全片硬切转场，无多余特效"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "固定指责方罗列被指责方N条大众共鸣罪状，最后出反转惩罚结局"
+    ],
+    "shot_templates": [
+      "双角色左右站位，指责方在右手指左，每句吐槽切对应场景+对应状态的被指责方形象"
+    ],
+    "cat_action_templates": [
+      "cheems皱眉指人模板",
+      "不同状态猫meme（躺平/懵/顶嘴/哭）模板"
+    ],
+    "background_templates": [
+      "家庭多场景（卧室/厨房/玄关/客厅）快速切换模板"
+    ],
+    "audio_templates": [
+      "快节奏卡点BGM+逐句吐槽配音，卡鼓点切镜头"
+    ],
+    "suitable_topics": [
+      "放假被家长骂",
+      "上班被领导吐槽",
+      "上学被老师批评",
+      "情侣互相吐槽"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 1.0,
+        "beat": "setup",
+        "script": "家长：晚上不睡觉",
+        "joke_point": "放假熬夜被抓共鸣",
+        "background": "深夜暗色卧室，灰床深棕窗帘",
+        "cats": "左橘猫懵，右cheems皱眉指人",
+        "audio": "鼓点+吐槽配音",
+        "subtitle": "顶部黄字标题，中间白字「晚上不睡觉」",
+        "seedream_prompt": "深夜现代卧室，带床和深色窗帘",
+        "local_cat_asset_keywords": "橘猫meme, cheems狗meme, 手指贴纸",
+        "local_background_keywords": "深夜卧室素材"
+      },
+      {
+        "shot_id": 2,
+        "duration": 6.0,
+        "beat": "escalation",
+        "script": "家长依次吐槽6条罪状",
+        "joke_point": "双标吐槽+共鸣点堆叠",
+        "background": "依次切白天卧室、厨房、书桌、玄关等场景",
+        "cats": "左依次换香蕉猫/胖橘等对应状态，右cheems指人",
+        "audio": "每句卡鼓点+配音",
+        "subtitle": "每屏对应1条吐槽白字",
+        "seedream_prompt": "明亮家庭不同场景，真实感",
+        "local_cat_asset_keywords": "香蕉猫meme, 胖橘meme, cheems",
+        "local_background_keywords": "白天卧室, 厨房, 书桌, 玄关素材"
+      },
+      {
+        "shot_id": 3,
+        "duration": 11.0,
+        "beat": "escalation",
+        "script": "家长继续吐槽剩余6条罪状",
+        "joke_point": "细节槽点拉满",
+        "background": "客厅、沙发、餐桌、中式客厅",
+        "cats": "左换不同表情猫/狗，右cheems指人",
+        "audio": "保持快节奏卡点",
+        "subtitle": "每屏对应1条吐槽白字",
+        "seedream_prompt": "明亮中式家庭客厅，温馨感",
+        "local_cat_asset_keywords": "各种表情猫meme, 张嘴狗meme, cheems",
+        "local_background_keywords": "客厅, 沙发, 餐桌素材"
+      },
+      {
+        "shot_id": 4,
+        "duration": 2.0,
+        "beat": "punchline",
+        "script": "男女混合双打",
+        "joke_point": "吐槽完挨打的经典结局",
+        "background": "同中式客厅",
+        "cats": "左右香蕉猫举拳，中间香蕉猫哭着躲",
+        "audio": "加哭喊音效",
+        "subtitle": "中间白字「男女混合双打」",
+        "seedream_prompt": "明亮中式家庭客厅",
+        "local_cat_asset_keywords": "生气香蕉猫, 哭脸香蕉猫",
+        "local_background_keywords": "中式客厅素材"
+      },
+      {
+        "shot_id": 5,
+        "duration": 3.0,
+        "beat": "cta",
+        "script": "抖音搜索香蕉猫meme剧场",
+        "joke_point": "结尾引流/作者页收束",
+        "background": "抖音深色引导背景",
+        "cats": "香蕉猫头像",
+        "audio": "BGM渐停",
+        "subtitle": "抖音搜索引导文字",
+        "seedream_prompt": "深色简洁背景",
+        "local_cat_asset_keywords": "香蕉猫头像",
+        "local_background_keywords": "抖音结束页素材"
+      }
+    ]
+  },
+  "quality_notes": [
+    "全片节奏快，槽点都是大众高度共鸣的放假被骂场景，代入感强",
+    "双角色站位统一，记忆点清晰，容易复刻",
+    "normalized_storyboard_fields: filled 1 blank or inconsistent fields"
+  ],
+  "_raw_content_sha256": "ff90b9aebc081bf9f822cbb1ce324afe525c655bfd9e71767dbcffbfc70bc690",
+  "video_id": "bkmm-031-抖音202663-639282",
+  "filename": "抖音202663-639282.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 23.127,
+    "size_bytes": 1729314,
+    "width": 960,
+    "height": 720,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "8d0fee53f7e28e2ebda7476734eaeed252b5e6bcc3ff7da23985496bed34241d"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 3.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-031-抖音202663-639282/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-031-抖音202663-639282/audio.m4a",
+    "analyzed_at": "2026-06-03T03:06:21.537701+00:00",
+    "normalized_at": "2026-06-03T03:19:12.608080+00:00"
+  }
+}

@@ -1,0 +1,336 @@
+{
+  "video_summary": {
+    "title": "情侣猫过马路遇卡车上演狗血殉情戏",
+    "one_sentence": "扮演情侣的两只猫在斑马线遇大运卡车，互推对方走的浮夸狗血虐恋搞笑meme",
+    "primary_topic": "情侣狗血剧情玩梗",
+    "meme_type": "荒诞虐恋玩梗meme",
+    "overall_tone": "沙雕搞笑、浮夸悲情反差"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "要抱抱~",
+      "speaker": "女友猫",
+      "tone": "撒娇",
+      "emotion": "开心",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 2,
+      "end_time": 5,
+      "text": "完了！要撞大运了！",
+      "speaker": "情侣猫",
+      "tone": "慌张",
+      "emotion": "惊恐",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 5,
+      "end_time": 8,
+      "text": "你快走！",
+      "speaker": "双方",
+      "tone": "急切",
+      "emotion": "焦急",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 8,
+      "end_time": 12,
+      "text": "不要离开我！！",
+      "speaker": "女友",
+      "tone": "哭喊",
+      "emotion": "崩溃",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 12,
+      "end_time": 15,
+      "text": "你一定要好好活着！",
+      "speaker": "男友",
+      "tone": "嘶吼",
+      "emotion": "悲痛",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 15,
+      "end_time": 18,
+      "text": "不要想我！",
+      "speaker": "男友",
+      "tone": "不舍",
+      "emotion": "悲伤",
+      "function": "punchline",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "setup",
+      "script": "要抱抱~",
+      "joke_point": "情侣腻歪铺垫后续反差",
+      "visual_description": "两只撒娇猫在斑马线，卡车远处驶来",
+      "pacing_note": "节奏舒缓"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2,
+      "end_time": 5,
+      "duration": 3,
+      "beat": "escalation",
+      "script": "完了！要撞大运了！",
+      "joke_point": "谐音大运卡车梗",
+      "visual_description": "两只猫变震惊脸，卡车快速逼近",
+      "pacing_note": "节奏加快"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 5,
+      "end_time": 8,
+      "duration": 3,
+      "beat": "twist",
+      "script": "你快走！",
+      "joke_point": "突然跳转狗血苦情戏",
+      "visual_description": "两只变香蕉猫流泪互推",
+      "pacing_note": "节奏骤变，苦情感拉满"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 8,
+      "end_time": 12,
+      "duration": 4,
+      "beat": "punchline",
+      "script": "不要离开我！！",
+      "joke_point": "浮夸哭戏反差搞笑",
+      "visual_description": "女友香蕉猫飞在空中爆哭",
+      "pacing_note": "慢镜头放大情绪"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 12,
+      "end_time": 18,
+      "duration": 6,
+      "beat": "punchline",
+      "script": "你一定要好好活着！不要想我！",
+      "joke_point": "苦情台词荒诞感",
+      "visual_description": "卡车驶过，两人在马路两边伸手",
+      "pacing_note": "慢镜头烘托悲情"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 18,
+      "end_time": 26,
+      "duration": 8,
+      "beat": "ending",
+      "script": "",
+      "joke_point": "两人分别被车撞的离谱结局",
+      "visual_description": "两只猫躺平在斑马线，落叶飘落",
+      "pacing_note": "慢镜头悲情收尾"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 26,
+      "end_time": 27.7,
+      "duration": 1.7,
+      "beat": "cta",
+      "script": "",
+      "joke_point": "",
+      "visual_description": "抖音账号引导页",
+      "pacing_note": "快切"
+    }
+  ],
+  "cat_track": [
+    "2只：左撒娇橘白女友猫，右张嘴橘猫男友猫",
+    "2只：左绑额头震惊猫，右黑猫震惊脸",
+    "2只：流泪伸手互推的香蕉猫",
+    "1只：飞在空中爆哭的女友香蕉猫",
+    "2只：嘶吼橘猫男友+伸手香蕉猫",
+    "2只：躺平伸手的香蕉猫"
+  ],
+  "background_track": [
+    "城市林荫道斑马线，红色大运卡车远处驶来",
+    "同上，卡车更近",
+    "同上，卡车到跟前",
+    "晴朗蓝天白云背景",
+    "城市十字路口斑马线，路边钟楼建筑",
+    "同上，加落叶飘落特效",
+    "深色抖音账号引导背景"
+  ],
+  "audio_track": {
+    "bgm_style": "狗血苦情剧BGM",
+    "bgm_mood": "悲伤浮夸，前后反差大",
+    "voice_style": "沙雕夸张配音，哭喊嘶吼感强",
+    "voice_presence": "音量大，贴近耳边",
+    "sfx": [
+      "卡车鸣笛声",
+      "风声",
+      "落叶声"
+    ],
+    "rhythm_sync": "台词卡BGM点，卡车逼近时节奏加快"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "粗黑边白字，居中/底部显示",
+    "subtitle_density": "每屏1-4字，短句为主",
+    "emphasis_words": [
+      "要抱抱",
+      "完了",
+      "你快走",
+      "不要离开我",
+      "好好活着"
+    ],
+    "bubble_or_dialogue_style": "无气泡，猫下方配黄色粗字标「女友/男友」",
+    "stickers_or_overlays": [
+      "蓝色流泪特效",
+      "落叶飘落特效"
+    ],
+    "transition_notes": [
+      "硬切为主，无特殊转场"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "情侣腻歪→突发危机→跳转狗血苦情→浮夸离别台词→离谱结局"
+    ],
+    "shot_templates": [
+      "固定场景→角色表情突变→情绪特写放大→惨状收尾"
+    ],
+    "cat_action_templates": [
+      "撒娇猫→震惊猫→互推流泪猫→哭飞猫→嘶吼猫→躺平猫"
+    ],
+    "background_templates": [
+      "城市斑马线+驶来的卡车"
+    ],
+    "audio_templates": [
+      "舒缓BGM→突然紧张→苦情BGM放大"
+    ],
+    "suitable_topics": [
+      "情侣玩梗",
+      "狗血剧吐槽",
+      "荒诞搞笑剧情",
+      "谐音梗玩梗"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.0,
+        "beat": "setup",
+        "script": "要抱抱~",
+        "joke_point": "情侣腻歪铺垫反差",
+        "background": "城市林荫道斑马线，红色卡车远处驶来",
+        "cats": "左撒娇橘白猫，右张嘴橘猫",
+        "audio": "甜蜜BGM，撒娇配音",
+        "subtitle": "要抱抱~ 下方黄字标女友/男友",
+        "seedream_prompt": "城市马路斑马线 林荫道 红色卡车",
+        "local_cat_asset_keywords": "撒娇橘白猫 张嘴橘猫",
+        "local_background_keywords": "城市斑马线 大运卡车"
+      },
+      {
+        "shot_id": 2,
+        "duration": 3.0,
+        "beat": "escalation",
+        "script": "完了！要撞大运了！",
+        "joke_point": "谐音大运卡车梗",
+        "background": "同上，卡车逼近",
+        "cats": "左绑额头震惊猫，右黑猫震惊脸",
+        "audio": "节奏加快，卡车鸣笛，慌张配音",
+        "subtitle": "完了！要撞大运了！",
+        "seedream_prompt": "城市斑马线 红色大运卡车逼近",
+        "local_cat_asset_keywords": "绑额头震惊猫 黑猫震惊脸",
+        "local_background_keywords": "城市斑马线 大运卡车"
+      },
+      {
+        "shot_id": 3,
+        "duration": 3.0,
+        "beat": "twist",
+        "script": "你快走！",
+        "joke_point": "跳转狗血苦情戏",
+        "background": "同上，卡车到跟前",
+        "cats": "两只流泪互推的香蕉猫",
+        "audio": "苦情BGM起，急切配音",
+        "subtitle": "你快走！",
+        "seedream_prompt": "城市斑马线 红色卡车到跟前",
+        "local_cat_asset_keywords": "流泪香蕉猫 伸手香蕉猫",
+        "local_background_keywords": "城市斑马线 大运卡车"
+      },
+      {
+        "shot_id": 4,
+        "duration": 4.0,
+        "beat": "punchline",
+        "script": "不要离开我！！",
+        "joke_point": "浮夸哭戏反差搞笑",
+        "background": "晴朗蓝天白云",
+        "cats": "飞在空中爆哭的香蕉猫",
+        "audio": "苦情BGM放大，哭喊配音",
+        "subtitle": "不要离开我！！",
+        "seedream_prompt": "晴朗蓝天白云背景",
+        "local_cat_asset_keywords": "哭飞的香蕉猫",
+        "local_background_keywords": "蓝天白云素材"
+      },
+      {
+        "shot_id": 5,
+        "duration": 6.0,
+        "beat": "punchline",
+        "script": "你一定要好好活着！不要想我！",
+        "joke_point": "苦情台词荒诞感",
+        "background": "十字路口斑马线 钟楼建筑",
+        "cats": "嘶吼橘猫+伸手香蕉猫",
+        "audio": "苦情BGM，嘶吼配音",
+        "subtitle": "你一定要好好活着！不要想我！",
+        "seedream_prompt": "十字路口斑马线 钟楼建筑",
+        "local_cat_asset_keywords": "嘶吼橘猫 伸手香蕉猫",
+        "local_background_keywords": "十字路口斑马线 钟楼"
+      },
+      {
+        "shot_id": 6,
+        "duration": 8.0,
+        "beat": "ending",
+        "script": "收尾：两人分别被撞的离谱结局",
+        "joke_point": "两人分别被撞的离谱结局",
+        "background": "同上，加落叶特效",
+        "cats": "两只躺平伸手的香蕉猫",
+        "audio": "苦情BGM，风声落叶声",
+        "subtitle": "收尾：两人分别被撞的离谱结局",
+        "seedream_prompt": "十字路口斑马线 落叶飘落",
+        "local_cat_asset_keywords": "躺平香蕉猫",
+        "local_background_keywords": "十字路口斑马线 落叶特效"
+      }
+    ]
+  },
+  "quality_notes": [
+    "核心梗是「大运」卡车谐音+狗血殉情剧情的反差，情绪跳转快，荒诞感拉满",
+    "normalized_storyboard_fields: filled 2 blank or inconsistent fields"
+  ],
+  "_raw_content_sha256": "6c3e11736accd767e00098ce49589b84cba43cc078c4a57a2898036842dfa23d",
+  "video_id": "bkmm-028-抖音202663-572122",
+  "filename": "抖音202663-572122.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 27.701,
+    "size_bytes": 2752905,
+    "width": 720,
+    "height": 960,
+    "fps": 60.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "42c271dba80bf827c430d77e05aefdcfcc92931709ba9786fd2fe55a6f4875a9"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 3.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-028-抖音202663-572122/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-028-抖音202663-572122/audio.m4a",
+    "analyzed_at": "2026-06-03T03:06:02.122109+00:00",
+    "normalized_at": "2026-06-03T03:19:12.605906+00:00"
+  }
+}

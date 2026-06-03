@@ -1,0 +1,31 @@
+{
+  "video_id": "bkmm-012-抖音202663-122472",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "整体拆解和视频高度一致，仅存在个别猫素材的描述措辞小误差",
+  "confirmed_points": [
+    "整体为4道选择题+3道听力题的猫meme考试形式，和视频内容一致",
+    "每道题的题目内容、正确选项绿对勾位置、倒计时设计均和视频匹配",
+    "背景描述为纯白底色+顶部黄色标题栏，完全符合视频画面",
+    "分镜顺序、时长划分、起承转合的节奏设计和视频一致",
+    "音频风格、字幕样式、转场方式的描述均和视频呈现相符"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "2",
+      "field": "cats",
+      "observed": "第二题B选项是两只手指对戳的橘猫",
+      "extracted": "中指脸橘猫",
+      "suggestion": "修正为双指对戳的橘猫"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "7f084fb2693dec52b3c7136d8dd91821c50cdd393ed470612b9946490844475f",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:33:44.595972+00:00",
+  "structure_sha256": "a446e009229f6588acbb0553635248570f59b1d177e07db463e5ce8b94e4d689",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-012-抖音202663-122472/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

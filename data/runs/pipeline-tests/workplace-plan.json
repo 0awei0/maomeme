@@ -1,0 +1,634 @@
+{
+  "id": "maomeme-1780459522",
+  "theme": "上班内卷，会议越来越多，下班后还要在线待命。",
+  "source_structure": {
+    "sample_status": "local_fallback",
+    "id": "d1c14814",
+    "meta": {
+      "duration": 46.439909,
+      "resolution": "936x720",
+      "fps": 60.0,
+      "cover_frame": null
+    },
+    "script_count": 4,
+    "shot_count": 4,
+    "transferable_features": {
+      "hook_strategy": "2秒内用强表情或强字幕抓住注意力",
+      "narrative_pattern": "hook→冲突铺垫→情绪升级→反转收束",
+      "pacing_pattern": "短 hook，2-3 秒一切，中后段加速",
+      "spatial_pattern": "",
+      "subject_trajectory": "",
+      "composition_pattern": "",
+      "engagement_techniques": [
+        "反差",
+        "拟人",
+        "重复",
+        "情绪夸张"
+      ],
+      "suitable_categories": [
+        "猫meme",
+        "搞笑",
+        "打工人",
+        "校园生活"
+      ]
+    }
+  },
+  "script": [
+    {
+      "type": "hook",
+      "text": "会议弹窗又亮了",
+      "purpose": "迁移自《亡牌销冠马路玩命卖机油》的职场冲突节奏",
+      "duration": 6.5
+    },
+    {
+      "type": "setup",
+      "text": "9点同步10点复盘",
+      "purpose": "具体化上班内卷",
+      "duration": 7.0
+    },
+    {
+      "type": "pressure",
+      "text": "午饭也在会里吃",
+      "purpose": "重复升级压力",
+      "duration": 7.5
+    },
+    {
+      "type": "twist",
+      "text": "老板说简单聊两句",
+      "purpose": "反差转折",
+      "duration": 7.0
+    },
+    {
+      "type": "echo",
+      "text": "同事头像全灰了",
+      "purpose": "群体共鸣",
+      "duration": 7.5
+    },
+    {
+      "type": "pressure",
+      "text": "下班不是下班 是换个地方...",
+      "purpose": "把社会压力具体化",
+      "duration": 7.0
+    },
+    {
+      "type": "proof",
+      "text": "2025年全国企业就业人...",
+      "purpose": "补充现实证据",
+      "duration": 8.0
+    },
+    {
+      "type": "punchline",
+      "text": "猫把在吗设免打扰",
+      "purpose": "边界感收束",
+      "duration": 7.5
+    }
+  ],
+  "timeline": [
+    {
+      "id": "01-hook",
+      "start": 0.0,
+      "end": 6.5,
+      "role": "hook",
+      "intent": "迁移自《亡牌销冠马路玩命卖机油》的职场冲突节奏",
+      "copy": "会议弹窗又亮了",
+      "motion": {
+        "id": "15",
+        "file": "assets/cat-motions/15.mp4",
+        "description": ""
+      },
+      "motion_clip": {
+        "start": 0.0,
+        "duration": 3.0,
+        "speed": null,
+        "loop": false
+      },
+      "secondary_motion": null,
+      "secondary_motion_clip": null,
+      "background": {
+        "id": "generated/preset-meeting-room-involution/1780412964.png",
+        "file": "assets/generated/backgrounds/preset-meeting-room-involution/1780412964.png",
+        "description": "Seedream 生成的真实会议室内卷背景，长桌、白板、投影和咖啡杯，适合会议、复盘、同步、老板在吗、隐形加班。"
+      },
+      "background_source": "matched",
+      "background_prompt": "",
+      "transition": {
+        "type": "cut",
+        "duration": 0.0
+      },
+      "layout": "single",
+      "dialogue": [],
+      "overlay_actions": [
+        {
+          "type": "stamp_reject",
+          "start": 0.7,
+          "duration": 1.0,
+          "text": "压力+1"
+        },
+        {
+          "type": "impact_burst",
+          "start": 0.55,
+          "duration": 1.1,
+          "text": "离谱"
+        }
+      ],
+      "gap": {
+        "status": "supplemented",
+        "strategy": "subtitle_card",
+        "reason": "猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。"
+      },
+      "packaging": [
+        "large_caption",
+        "quick_cut"
+      ],
+      "source_pattern": "爆款参考《亡牌销冠马路玩命卖机油》：hook / 铺垫玩命销冠人设"
+    },
+    {
+      "id": "02-setup",
+      "start": 6.5,
+      "end": 13.5,
+      "role": "setup",
+      "intent": "具体化上班内卷",
+      "copy": "9点同步10点复盘",
+      "motion": {
+        "id": "1",
+        "file": "assets/cat-motions/1.mp4",
+        "description": ""
+      },
+      "motion_clip": {
+        "start": 1.73,
+        "duration": 5.0,
+        "speed": null,
+        "loop": false
+      },
+      "secondary_motion": {
+        "id": "2",
+        "file": "assets/cat-motions/2.mp4",
+        "description": ""
+      },
+      "secondary_motion_clip": {
+        "start": 0.49,
+        "duration": 5.0,
+        "speed": null,
+        "loop": false
+      },
+      "background": {
+        "id": "real_office/3",
+        "file": "assets/backgrounds/real_office/3.jpg",
+        "description": "真实明亮会议室，白色座椅围绕长桌。关键词：会议、复盘、同步、老板、内卷。优先用于上班内卷。"
+      },
+      "background_source": "matched",
+      "background_prompt": "",
+      "transition": {
+        "type": "fade",
+        "duration": 0.25
+      },
+      "layout": "dialogue",
+      "dialogue": [
+        {
+          "speaker": "left",
+          "text": "猫：今天几场会"
+        },
+        {
+          "speaker": "right",
+          "text": "老板：简单聊八场"
+        }
+      ],
+      "overlay_actions": [],
+      "gap": {
+        "status": "supplemented",
+        "strategy": "subtitle_card",
+        "reason": "猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "爆款参考《亡牌销冠马路玩命卖机油》：twist / 真撞的反差感"
+    },
+    {
+      "id": "03-pressure",
+      "start": 13.5,
+      "end": 21.0,
+      "role": "pressure",
+      "intent": "重复升级压力",
+      "copy": "午饭也在会里吃",
+      "motion": {
+        "id": "1",
+        "file": "assets/cat-motions/1.mp4",
+        "description": ""
+      },
+      "motion_clip": {
+        "start": 4.83,
+        "duration": 4.0,
+        "speed": null,
+        "loop": false
+      },
+      "secondary_motion": {
+        "id": "3",
+        "file": "assets/cat-motions/3.mp4",
+        "description": ""
+      },
+      "secondary_motion_clip": {
+        "start": 1.08,
+        "duration": 4.0,
+        "speed": null,
+        "loop": false
+      },
+      "background": {
+        "id": "real_office/3",
+        "file": "assets/backgrounds/real_office/3.jpg",
+        "description": "真实明亮会议室，白色座椅围绕长桌。关键词：会议、复盘、同步、老板、内卷。优先用于上班内卷。"
+      },
+      "background_source": "matched",
+      "background_prompt": "",
+      "transition": {
+        "type": "zoom",
+        "duration": 0.22
+      },
+      "layout": "dialogue",
+      "dialogue": [
+        {
+          "speaker": "left",
+          "text": "猫：进展是啥"
+        },
+        {
+          "speaker": "right",
+          "text": "同事：还在同步"
+        }
+      ],
+      "overlay_actions": [
+        {
+          "type": "stamp_reject",
+          "start": 0.7,
+          "duration": 1.0,
+          "text": "压力+1"
+        }
+      ],
+      "gap": {
+        "status": "supplemented",
+        "strategy": "subtitle_card",
+        "reason": "猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "爆款参考《亡牌销冠马路玩命卖机油》：escalation / 被撞还推销的离谱"
+    },
+    {
+      "id": "04-twist",
+      "start": 21.0,
+      "end": 28.0,
+      "role": "twist",
+      "intent": "反差转折",
+      "copy": "老板说简单聊两句",
+      "motion": {
+        "id": "15",
+        "file": "assets/cat-motions/15.mp4",
+        "description": ""
+      },
+      "motion_clip": {
+        "start": 0.5,
+        "duration": 4.0,
+        "speed": null,
+        "loop": false
+      },
+      "secondary_motion": {
+        "id": "4",
+        "file": "assets/cat-motions/4.mp4",
+        "description": ""
+      },
+      "secondary_motion_clip": {
+        "start": 1.23,
+        "duration": 4.0,
+        "speed": null,
+        "loop": false
+      },
+      "background": {
+        "id": "real_office/3",
+        "file": "assets/backgrounds/real_office/3.jpg",
+        "description": "真实明亮会议室，白色座椅围绕长桌。关键词：会议、复盘、同步、老板、内卷。优先用于上班内卷。"
+      },
+      "background_source": "matched",
+      "background_prompt": "",
+      "transition": {
+        "type": "flash",
+        "duration": 0.18
+      },
+      "layout": "dialogue",
+      "dialogue": [
+        {
+          "speaker": "left",
+          "text": "猫：下班了吗"
+        },
+        {
+          "speaker": "right",
+          "text": "老板：在吗"
+        }
+      ],
+      "overlay_actions": [
+        {
+          "type": "popup",
+          "start": 0.45,
+          "duration": 1.8,
+          "text": "规则更新"
+        }
+      ],
+      "gap": {
+        "status": "supplemented",
+        "strategy": "subtitle_card",
+        "reason": "猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "爆款参考《亡牌销冠马路玩命卖机油》：punchline / 购买理由离谱"
+    },
+    {
+      "id": "05-echo",
+      "start": 28.0,
+      "end": 35.5,
+      "role": "echo",
+      "intent": "群体共鸣",
+      "copy": "同事头像全灰了",
+      "motion": {
+        "id": "9",
+        "file": "assets/cat-motions/9.mp4",
+        "description": ""
+      },
+      "motion_clip": {
+        "start": 0.0,
+        "duration": 5.0,
+        "speed": null,
+        "loop": true
+      },
+      "secondary_motion": null,
+      "secondary_motion_clip": null,
+      "background": {
+        "id": "real_office/3",
+        "file": "assets/backgrounds/real_office/3.jpg",
+        "description": "真实明亮会议室，白色座椅围绕长桌。关键词：会议、复盘、同步、老板、内卷。优先用于上班内卷。"
+      },
+      "background_source": "matched",
+      "background_prompt": "",
+      "transition": {
+        "type": "cut",
+        "duration": 0.0
+      },
+      "layout": "single",
+      "dialogue": [],
+      "overlay_actions": [
+        {
+          "type": "popup",
+          "start": 0.45,
+          "duration": 1.8,
+          "text": "规则更新"
+        }
+      ],
+      "gap": {
+        "status": "supplemented",
+        "strategy": "subtitle_card",
+        "reason": "猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "爆款参考《亡牌销冠马路玩命卖机油》：setup / 现实复刻meme场景"
+    },
+    {
+      "id": "06-pressure",
+      "start": 35.5,
+      "end": 42.5,
+      "role": "pressure",
+      "intent": "把社会压力具体化",
+      "copy": "下班不是下班 是换个地方...",
+      "motion": {
+        "id": "1",
+        "file": "assets/cat-motions/1.mp4",
+        "description": ""
+      },
+      "motion_clip": {
+        "start": 1.52,
+        "duration": 4.0,
+        "speed": null,
+        "loop": false
+      },
+      "secondary_motion": {
+        "id": "5",
+        "file": "assets/cat-motions/5.mp4",
+        "description": ""
+      },
+      "secondary_motion_clip": {
+        "start": 2.36,
+        "duration": 4.0,
+        "speed": null,
+        "loop": false
+      },
+      "background": {
+        "id": "real_office/3",
+        "file": "assets/backgrounds/real_office/3.jpg",
+        "description": "真实明亮会议室，白色座椅围绕长桌。关键词：会议、复盘、同步、老板、内卷。优先用于上班内卷。"
+      },
+      "background_source": "matched",
+      "background_prompt": "",
+      "transition": {
+        "type": "zoom",
+        "duration": 0.22
+      },
+      "layout": "dialogue",
+      "dialogue": [
+        {
+          "speaker": "left",
+          "text": "猫：进展是啥"
+        },
+        {
+          "speaker": "right",
+          "text": "同事：还在同步"
+        }
+      ],
+      "overlay_actions": [
+        {
+          "type": "stamp_reject",
+          "start": 0.7,
+          "duration": 1.0,
+          "text": "压力+1"
+        }
+      ],
+      "gap": {
+        "status": "supplemented",
+        "strategy": "subtitle_card",
+        "reason": "猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "爆款参考《亡牌销冠马路玩命卖机油》：escalation / 现实真亡牌销冠"
+    },
+    {
+      "id": "07-proof",
+      "start": 42.5,
+      "end": 50.5,
+      "role": "proof",
+      "intent": "补充现实证据",
+      "copy": "2025年全国企业就业人...",
+      "motion": {
+        "id": "16",
+        "file": "assets/cat-motions/16.mp4",
+        "description": ""
+      },
+      "motion_clip": {
+        "start": 5.14,
+        "duration": 5.0,
+        "speed": null,
+        "loop": false
+      },
+      "secondary_motion": null,
+      "secondary_motion_clip": null,
+      "background": {
+        "id": "generated/preset-job-fair-waiting-area/1780413290.png",
+        "file": "assets/generated/backgrounds/preset-job-fair-waiting-area/1780413290.png",
+        "description": "Seedream 生成的校园招聘会/面试等待区背景，简历夹、招聘展架和等候区氛围明显，无可读文字，适合求职、HR 对话、岗位要求离谱。关键词：招聘会、面试等待区、简历、HR、校招。"
+      },
+      "background_source": "matched",
+      "background_prompt": "",
+      "transition": {
+        "type": "fade",
+        "duration": 0.25
+      },
+      "layout": "single",
+      "dialogue": [],
+      "overlay_actions": [
+        {
+          "type": "throw_object",
+          "object": "resume_stack",
+          "from": "left_cat",
+          "to": "right_cat",
+          "start": 0.65,
+          "duration": 1.2,
+          "text": "简历 x100"
+        },
+        {
+          "type": "stamp_reject",
+          "start": 0.7,
+          "duration": 1.0,
+          "text": "已读不回"
+        }
+      ],
+      "gap": {
+        "status": "supplemented",
+        "strategy": "subtitle_card",
+        "reason": "猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "quick_cut"
+      ],
+      "source_pattern": "爆款参考《亡牌销冠马路玩命卖机油》：ending / 梗照进现实的反差"
+    },
+    {
+      "id": "08-punchline",
+      "start": 50.5,
+      "end": 58.0,
+      "role": "punchline",
+      "intent": "边界感收束",
+      "copy": "猫把在吗设免打扰",
+      "motion": {
+        "id": "13",
+        "file": "assets/cat-motions/13.mp4",
+        "description": ""
+      },
+      "motion_clip": {
+        "start": 7.71,
+        "duration": 5.0,
+        "speed": null,
+        "loop": false
+      },
+      "secondary_motion": {
+        "id": "6",
+        "file": "assets/cat-motions/6.mp4",
+        "description": ""
+      },
+      "secondary_motion_clip": {
+        "start": 0.0,
+        "duration": 5.0,
+        "speed": null,
+        "loop": true
+      },
+      "background": {
+        "id": "real_office/3",
+        "file": "assets/backgrounds/real_office/3.jpg",
+        "description": "真实明亮会议室，白色座椅围绕长桌。关键词：会议、复盘、同步、老板、内卷。优先用于上班内卷。"
+      },
+      "background_source": "matched",
+      "background_prompt": "",
+      "transition": {
+        "type": "flash",
+        "duration": 0.18
+      },
+      "layout": "dialogue",
+      "dialogue": [
+        {
+          "speaker": "left",
+          "text": "猫：明天再同步"
+        },
+        {
+          "speaker": "right",
+          "text": "同事：先关电脑"
+        }
+      ],
+      "overlay_actions": [
+        {
+          "type": "impact_burst",
+          "start": 0.55,
+          "duration": 1.1,
+          "text": "离谱"
+        }
+      ],
+      "gap": {
+        "status": "supplemented",
+        "strategy": "subtitle_card",
+        "reason": "猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。"
+      },
+      "packaging": [
+        "bottom_subtitle",
+        "freeze_end"
+      ],
+      "source_pattern": "爆款参考《亡牌销冠马路玩命卖机油》：ending / 梗照进现实的反差"
+    }
+  ],
+  "material_needs": {
+    "covered": [],
+    "missing": [
+      "hook:猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。",
+      "setup:猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。",
+      "pressure:猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。",
+      "twist:猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。",
+      "echo:猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。",
+      "pressure:猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。",
+      "proof:猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。",
+      "punchline:猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。"
+    ],
+    "supplement_strategy": [
+      "subtitle_card"
+    ]
+  },
+  "agent_notes": [
+    "用户选择剧本：爆款迁移·亡牌销冠马路玩命卖机油",
+    "素材覆盖评分：12.8",
+    "目标时长模式：minute，预计 58.0s。",
+    "爆款结构参考：亡牌销冠马路玩命卖机油(bkmm-003-抖音202663-009401)；00后有自己的请假方式(bkmm-001-抖音202662-534438)；从别家店出来被常去餐馆老板抓包(bkmm-029-抖音202663-574311)",
+    "文本素材库命中主题：上班内卷与隐形加班。",
+    "剧本参考现实事实：2025年全国企业就业人员周平均工作时间为48.6小时。",
+    "hook 使用 subtitle_card：猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。",
+    "setup 使用 subtitle_card：猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。",
+    "pressure 使用 subtitle_card：猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。",
+    "twist 使用 subtitle_card：猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。",
+    "echo 使用 subtitle_card：猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。",
+    "pressure 使用 subtitle_card：猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。",
+    "proof 使用 subtitle_card：猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。",
+    "punchline 使用 subtitle_card：猫动作情绪可用，但没有直接命中文案里的硬动作，需要字幕补语义。"
+  ]
+}

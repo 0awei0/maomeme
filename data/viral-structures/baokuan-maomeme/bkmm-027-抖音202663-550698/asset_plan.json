@@ -1,0 +1,88 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 2.0,
+      "beat": "setup",
+      "script": "情侣床上刷手机",
+      "joke_point": "日常场景代入",
+      "background": "现代简约卧室，大床带蓝色床品",
+      "cats": "左猫凑看右猫，右猫举手机表情放松",
+      "audio": "轻快BGM起，无台词",
+      "subtitle": "（刷手机中）",
+      "seedream_prompt": "现代简约卧室暖光大床",
+      "local_cat_asset_keywords": "奶猫看手机,橘猫举手机",
+      "local_background_keywords": "现代卧室,大床,暖光"
+    },
+    {
+      "shot_id": 2,
+      "duration": 5.0,
+      "beat": "hook",
+      "script": "女友说你不爱我，男生测体温",
+      "joke_point": "直男迷惑操作",
+      "background": "同前卧室场景",
+      "cats": "左猫伸手摸右猫额头表情懵，右猫严肃",
+      "audio": "BGM继续，男女配音，啪音效",
+      "subtitle": "我觉得你不爱我\n测体温...也没发烧啊",
+      "seedream_prompt": "同前卧室",
+      "local_cat_asset_keywords": "懵逼猫,严肃橘猫",
+      "local_background_keywords": "同前卧室"
+    },
+    {
+      "shot_id": 3,
+      "duration": 6.0,
+      "beat": "escalation",
+      "script": "女友追问，男生让吐奶茶",
+      "joke_point": "直男奇葩反呛",
+      "background": "同前卧室场景",
+      "cats": "左猫气急脸，右猫严肃脸",
+      "audio": "BGM鼓点加快，男女配音",
+      "subtitle": "别转移话题，是不是不爱我\n把我买奶茶吐出来",
+      "seedream_prompt": "同前卧室",
+      "local_cat_asset_keywords": "气急奶猫,严肃橘猫",
+      "local_background_keywords": "同前卧室"
+    },
+    {
+      "shot_id": 4,
+      "duration": 7.0,
+      "beat": "escalation",
+      "script": "男生举证被反驳",
+      "joke_point": "万能抬杠逻辑",
+      "background": "同前卧室场景",
+      "cats": "左猫委屈无语脸，右猫嘲讽脸",
+      "audio": "BGM继续，男女配音",
+      "subtitle": "笑死人和谁谈都要买\n送你花不是爱你？\n和谁谈都要送",
+      "seedream_prompt": "同前卧室",
+      "local_cat_asset_keywords": "委屈猫,嘲讽橘猫",
+      "local_background_keywords": "同前卧室"
+    },
+    {
+      "shot_id": 5,
+      "duration": 6.0,
+      "beat": "twist",
+      "script": "男生说钱全交，女友质疑藏私房钱",
+      "joke_point": "清奇脑洞反向定罪",
+      "background": "同前卧室场景",
+      "cats": "左猫呆滞脸，右猫理直气壮",
+      "audio": "BGM继续，男女配音，哦豁音效",
+      "subtitle": "我钱全交了还不爱？\n你是不是藏钱请别的女生喝奶茶",
+      "seedream_prompt": "同前卧室",
+      "local_cat_asset_keywords": "呆滞猫,理直气壮橘猫",
+      "local_background_keywords": "同前卧室"
+    },
+    {
+      "shot_id": 6,
+      "duration": 5.0,
+      "beat": "punchline",
+      "script": "女友问好喝吗",
+      "joke_point": "绝杀提问",
+      "background": "同前卧室场景",
+      "cats": "左猫呆滞，右猫戏谑",
+      "audio": "BGM降音，女声配音，留空白",
+      "subtitle": "好喝吗",
+      "seedream_prompt": "同前卧室",
+      "local_cat_asset_keywords": "呆滞猫,戏谑橘猫",
+      "local_background_keywords": "同前卧室"
+    }
+  ]
+}

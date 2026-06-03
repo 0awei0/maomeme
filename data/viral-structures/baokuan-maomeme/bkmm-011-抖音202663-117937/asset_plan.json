@@ -1,0 +1,88 @@
+{
+  "storyboard": [
+    {
+      "shot_id": "1",
+      "duration": 2.0,
+      "beat": "setup",
+      "script": "班主任 裤子崩开了",
+      "joke_point": "老师社死伏笔，快速入题",
+      "background": "中小学讲台、黑板、粉笔盒",
+      "cats": "无",
+      "audio": "沙雕BGM开场，惊讶拟声音效",
+      "subtitle": "底部黄字标注*班主任 *裤子崩开了",
+      "seedream_prompt": "中小学教室讲台，配黑板粉笔盒",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "教室讲台 黑板"
+    },
+    {
+      "shot_id": "2",
+      "duration": 2.0,
+      "beat": "setup",
+      "script": "我看到后捂嘴憋笑",
+      "joke_point": "学生第一视角代入感强",
+      "background": "大教室后排，多排课桌椅",
+      "cats": "粉cheems居中捂嘴憋笑，左侧灰猫惊讶，右侧猴头表情包，后方还有一只灰猫",
+      "audio": "BGM继续，加憋笑气音",
+      "subtitle": "粉cheems下方标*我",
+      "seedream_prompt": "空大学教室，多排棕色课桌椅",
+      "local_cat_asset_keywords": "粉cheems 捂嘴 灰猫 惊讶",
+      "local_background_keywords": "教室后排 课桌椅"
+    },
+    {
+      "shot_id": "3",
+      "duration": 5.0,
+      "beat": "escalation",
+      "script": "全班同学都看到了",
+      "joke_point": "集体心照不宣的共鸣感",
+      "background": "同上述大教室场景",
+      "cats": "橘猫张嘴着急提醒，镜头中依次出现红色人脸同桌、后排多个非猫表情包角色和其他同学反应",
+      "audio": "BGM鼓点加快，切镜头卡鼓点",
+      "subtitle": "依次标*同桌 *后面的同学 *别笑了",
+      "seedream_prompt": "同上述空教室场景",
+      "local_cat_asset_keywords": "橘猫 张嘴 着急",
+      "local_background_keywords": "教室后排 课桌椅"
+    },
+    {
+      "shot_id": "4",
+      "duration": 10.0,
+      "beat": "twist",
+      "script": "老师慢慢转头",
+      "joke_point": "紧张悬念拉满，反差感铺垫",
+      "background": "教室讲台，老师背影",
+      "cats": "无",
+      "audio": "BGM放慢，加重低音制造悬念",
+      "subtitle": "讲台下方标*班主任",
+      "seedream_prompt": "教室讲台，老师背对着学生",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "教室讲台 老师背影"
+    },
+    {
+      "shot_id": "5",
+      "duration": 9.0,
+      "beat": "punchline",
+      "script": "从憋笑到绷不住大笑",
+      "joke_point": "憋笑破防的普遍共鸣",
+      "background": "同上述大教室场景",
+      "cats": "粉cheems居中，从憋笑到仰头大笑",
+      "audio": "BGM突然加快，加爆笑声",
+      "subtitle": "依次标*努力憋笑中 *绷不住了",
+      "seedream_prompt": "同上述空教室场景",
+      "local_cat_asset_keywords": "粉cheems 憋笑 大笑",
+      "local_background_keywords": "教室后排 课桌椅"
+    },
+    {
+      "shot_id": "6",
+      "duration": 10.0,
+      "beat": "ending+cta",
+      "script": "课后想起刚才发生的事忍不住笑，最后被黑板擦哄睡",
+      "joke_point": "余韵搞笑，引导搜索",
+      "background": "学校走廊，阳光洒入",
+      "cats": "粉cheems在走廊，大笑变形",
+      "audio": "BGM轻松收尾，加黑板擦音效",
+      "subtitle": "*想起刚才发生的 *被黑板擦哄睡了",
+      "seedream_prompt": "学校空走廊，阳光从窗户照入",
+      "local_cat_asset_keywords": "粉cheems 大笑 变形",
+      "local_background_keywords": "学校走廊 阳光"
+    }
+  ]
+}

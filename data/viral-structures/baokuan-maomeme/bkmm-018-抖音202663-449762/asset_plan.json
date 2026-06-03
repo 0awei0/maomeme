@@ -1,0 +1,88 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 3.0,
+      "beat": "hook",
+      "script": "主角排队抱怨吃饭太慢",
+      "joke_point": "戳中排队人共同烦躁点",
+      "background": "商场餐饮店门口，暖黄灯光，木餐椅，餐品海报",
+      "cats": "1只灰猫举235号在前，多只香蕉猫排队举号",
+      "audio": "搞怪BGM起，吐槽旁白",
+      "subtitle": "人生最恶毒的时刻 里面的人吃个饭怎么这么久",
+      "seedream_prompt": "商场餐饮店门口排队区，暖色调，木质餐椅",
+      "local_cat_asset_keywords": "香蕉猫, 灰猫meme, 举号码牌",
+      "local_background_keywords": "餐饮店门口, 排队区, 暖光"
+    },
+    {
+      "shot_id": 2,
+      "duration": 2.0,
+      "beat": "setup",
+      "script": "店员叫232号",
+      "joke_point": "开启祈祷循环",
+      "background": "同前，餐饮店门口",
+      "cats": "橘白脸猫站右侧，店员角色，表情平淡",
+      "audio": "叫号叮咚声，店员平淡配音",
+      "subtitle": "232号在吗 排到您了",
+      "seedream_prompt": "餐饮店门口叫号场景，暖光",
+      "local_cat_asset_keywords": "橘白猫猫meme, 店员表情",
+      "local_background_keywords": "餐饮店门口, 排队区"
+    },
+    {
+      "shot_id": 3,
+      "duration": 13.0,
+      "beat": "escalation",
+      "script": "主角连续祈祷前面的号都不在",
+      "joke_point": "复刻排队人真实内心OS",
+      "background": "暗调，周围模糊，仅聚焦主角位置",
+      "cats": "主角依次变cheems、皱眉橘猫，祈祷表情",
+      "audio": "默念配音，BGM节奏加快",
+      "subtitle": "内心：不在不在不在/没来没来没来/别来别来别来",
+      "seedream_prompt": "暗调聚焦场景，背景虚化",
+      "local_cat_asset_keywords": "cheems脸, 皱眉橘猫, 祈祷表情",
+      "local_background_keywords": "暗调, 虚化背景, 聚焦"
+    },
+    {
+      "shot_id": 4,
+      "duration": 4.0,
+      "beat": "twist",
+      "script": "店员说叫号不在顺延3个号",
+      "joke_point": "增加祈祷的必要性",
+      "background": "同前，餐饮店门口",
+      "cats": "胖橘猫站右侧，表情正经",
+      "audio": "店员正经配音",
+      "subtitle": "叫到号不在的待会都要顺延3个号哦",
+      "seedream_prompt": "餐饮店门口叫号场景，暖光",
+      "local_cat_asset_keywords": "胖橘猫meme, 正经表情",
+      "local_background_keywords": "餐饮店门口, 排队区"
+    },
+    {
+      "shot_id": 5,
+      "duration": 7.0,
+      "beat": "punchline",
+      "script": "叫到235号，主角狂喜应答",
+      "joke_point": "祈祷成真的爽感",
+      "background": "同前，餐饮店门口",
+      "cats": "主角跳起来大喊，表情狂喜",
+      "audio": "狂喜欢呼声，激动配音",
+      "subtitle": "235号... 我在我在！我不着急菜可以慢慢上",
+      "seedream_prompt": "餐饮店门口叫号场景，暖光",
+      "local_cat_asset_keywords": "猫狂喜表情, 大喊动作",
+      "local_background_keywords": "餐饮店门口, 排队区"
+    },
+    {
+      "shot_id": 6,
+      "duration": 5.0,
+      "beat": "ending",
+      "script": "236号破防吐槽咒语不够毒",
+      "joke_point": "共情下一个排队的人",
+      "background": "暗调，聚焦236号位置",
+      "cats": "绿猫举236号，崩溃表情",
+      "audio": "崩溃叹气声，吐槽配音",
+      "subtitle": "内心：就差一个...！我的咒语还是不够恶毒",
+      "seedream_prompt": "暗调聚焦场景，背景虚化",
+      "local_cat_asset_keywords": "绿猫meme, 崩溃表情, 举号码牌",
+      "local_background_keywords": "暗调, 虚化背景, 聚焦"
+    }
+  ]
+}

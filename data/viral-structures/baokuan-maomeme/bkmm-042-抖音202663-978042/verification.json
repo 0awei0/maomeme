@@ -1,0 +1,39 @@
+{
+  "video_id": "bkmm-042-抖音202663-978042",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "整体拆解和视频内容高度一致，仅存在少量台词遗漏、细节描述不全的微小瑕疵",
+  "confirmed_points": [
+    "核心剧情逻辑完全匹配，从主角上厕所腿麻拽坏卫生间门到被妈妈骂、爸爸不敢帮忙的情节和视频对应",
+    "分镜顺序、时间节点、起承转合的节奏设置和视频画面吻合",
+    "背景描述准确，卫生间、卧室、过道场景均符合画面内容",
+    "各镜头猫素材的角色定位、动作、表情描述基本贴近画面，角色对应关系正确",
+    "字幕风格、特效、转场的描述和视频呈现一致"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "4",
+      "field": "script",
+      "observed": "视频中爸妈对话除了\"什么动静！？\"\"是不是那小子又闯祸了\"外，还有\"你快去看看！\"的台词",
+      "extracted": "拆解shot4的script仅写了\"什么动静？是不是那小子又闯祸了\"",
+      "suggestion": "在shot4的script中补充\"你快去看看！\"的台词内容"
+    },
+    {
+      "severity": "minor",
+      "shot_id": "8",
+      "field": "other",
+      "observed": "视频末尾有抖音搜索框的cta引导镜头",
+      "extracted": "asset_plan的storyboard未包含该cta镜头的相关描述",
+      "suggestion": "在asset_plan的storyboard中补充cta镜头的对应描述"
+    }
+  ],
+  "audio_confidence": "medium",
+  "needs_human_review": false,
+  "_raw_content_sha256": "0a2a60ed844b2196ffc9f46ef970b47e9ef22f1f12278923f81b46615f686699",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:37:17.659691+00:00",
+  "structure_sha256": "18e38340bcbdda967ba701a8aee06d64bcab5d945a6464b1c1cae16769f7176e",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-042-抖音202663-978042/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

@@ -1,0 +1,48 @@
+{
+  "video_id": "bkmm-020-抖音202663-487524",
+  "verdict": "pass",
+  "score": 90.0,
+  "summary": "整体拆解和视频内容高度一致，仅存在少量台词角色归属、猫描述的细节偏差",
+  "confirmed_points": [
+    "标题、核心剧情（手术室表白、逐层掏礼物、反向掏孩子、小丑反转、引流收尾）和视频完全一致",
+    "分镜顺序、起承转合、反转点位置和视频匹配",
+    "背景描述（手术室、最终抖音搜索页）符合画面",
+    "猫的位置、主要动作、表情描述基本正确",
+    "BGM、配音、音效的风格描述符合视频特征",
+    "字幕包装、贴纸、转场的描述和视频一致"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "1",
+      "field": "cats",
+      "observed": "左护士、中患者是香蕉猫，右医生是未穿香蕉套装的橘猫，共2只香蕉猫",
+      "extracted": "三只香蕉猫，左护士右医生中间躺患者",
+      "suggestion": "修正猫的描述为“左护士、中患者为香蕉猫，右医生为橘猫，共3只猫”"
+    },
+    {
+      "severity": "minor",
+      "shot_id": "3",
+      "field": "script",
+      "observed": "“你好浪漫啊”是左侧护士的台词",
+      "extracted": "患者：你好浪漫",
+      "suggestion": "修正为“护士：你好浪漫啊”"
+    },
+    {
+      "severity": "minor",
+      "shot_id": "4",
+      "field": "script",
+      "observed": "奔驰钥匙、房产证由护士从患者腹部掏出，医生仅负责提示有惊喜",
+      "extracted": "医生依次掏出奔驰钥匙、两本房产证",
+      "suggestion": "修正为“医生提示还有惊喜，护士依次掏出奔驰钥匙、两本房产证”"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "b7244128697738b7328359ad2f5fe0fbb9348285a4cc953bd35d172641c37583",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:34:55.338862+00:00",
+  "structure_sha256": "09ca4f92abf49e8493b0e9e908fed9b57ac3b25776dbcf252dfc63b161d9ad76",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-020-抖音202663-487524/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

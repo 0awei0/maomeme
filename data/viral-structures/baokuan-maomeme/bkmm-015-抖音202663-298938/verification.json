@@ -1,0 +1,21 @@
+{
+  "video_id": "bkmm-015-抖音202663-298938",
+  "verdict": "pass",
+  "score": 95.0,
+  "summary": "拆解内容与原视频的剧情、分镜、角色、背景、包装风格整体高度一致，细节匹配准确",
+  "confirmed_points": [
+    "核心剧情逻辑（多次撞班主任→班主任发火蹲点→被撞进医院→一年后新生再撞形成循环）完全对应",
+    "各分镜的时长、节奏节点、笑点设置与原视频一致",
+    "背景描述（校园主干道、高中教室）、猫及meme角色（香蕉猫、黑脸猫、大橘猫、山羊头）的数量、动作、身份标注贴合画面",
+    "BGM风格、音效类型、字幕包装样式的描述符合原视频特征"
+  ],
+  "issues": [],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "7eb189ce06506bc050bdb567af6f5147fce37cf45aed2813b8470a66b509bf72",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:33:55.186456+00:00",
+  "structure_sha256": "27be5c0581b95114d87edaa9d7195b47602d0be18b14e5a8e95844dfd194b268",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-015-抖音202663-298938/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

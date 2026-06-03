@@ -1,0 +1,102 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 4.0,
+      "beat": "setup",
+      "script": "1.哪只猫经常扮演坏人？",
+      "joke_point": "考经典坏人猫meme认知",
+      "background": "纯白+顶部黄色标题栏",
+      "cats": "左呆狸花、中红光灰猫、右橘白",
+      "audio": "读题+3秒滴答倒计时+答对提示音",
+      "subtitle": "黑字题目+灰321倒计时+B标绿对勾",
+      "seedream_prompt": "纯白背景试卷，顶部黄色粗字标题栏",
+      "local_cat_asset_keywords": "呆脸狸花猫,红光灰猫,无辜橘白猫",
+      "local_background_keywords": "纯白背景,黄色标题栏"
+    },
+    {
+      "shot_id": 2,
+      "duration": 4.0,
+      "beat": "setup",
+      "script": "2.哭声是下面哪只猫的？",
+      "joke_point": "考香蕉猫哭声meme认知",
+      "background": "纯白+顶部黄色标题栏",
+      "cats": "左哭香蕉猫、中指脸橘猫、右泪眼奶猫",
+      "audio": "读题+3秒滴答倒计时+答对提示音",
+      "subtitle": "黑字题目+灰321倒计时+A标绿对勾",
+      "seedream_prompt": "纯白背景试卷，顶部黄色粗字标题栏",
+      "local_cat_asset_keywords": "香蕉哭猫,指脸橘猫,泪眼奶猫",
+      "local_background_keywords": "纯白背景,黄色标题栏"
+    },
+    {
+      "shot_id": 3,
+      "duration": 4.0,
+      "beat": "setup",
+      "script": "3.说话声是下面哪只猫的？",
+      "joke_point": "考说话猫meme认知",
+      "background": "纯白+顶部黄色标题栏",
+      "cats": "左张嘴猫、中金渐层、右歪脸奶猫",
+      "audio": "读题+3秒滴答倒计时+答对提示音",
+      "subtitle": "黑字题目+灰321倒计时+C标绿对勾",
+      "seedream_prompt": "纯白背景试卷，顶部黄色粗字标题栏",
+      "local_cat_asset_keywords": "张嘴猫,金渐层,歪脸奶猫",
+      "local_background_keywords": "纯白背景,黄色标题栏"
+    },
+    {
+      "shot_id": 4,
+      "duration": 4.0,
+      "beat": "escalation",
+      "script": "4.笑声是下面哪只猫的？",
+      "joke_point": "混狗选项混淆考生",
+      "background": "纯白+顶部黄色标题栏",
+      "cats": "A假发狗、B笑橘猫、C吐舌狗",
+      "audio": "读题+3秒滴答倒计时+答对提示音",
+      "subtitle": "黑字题目+灰321倒计时+B标绿对勾",
+      "seedream_prompt": "纯白背景试卷，顶部黄色粗字标题栏",
+      "local_cat_asset_keywords": "笑橘猫,假发狗,吐舌狗",
+      "local_background_keywords": "纯白背景,黄色标题栏"
+    },
+    {
+      "shot_id": 5,
+      "duration": 13.0,
+      "beat": "escalation",
+      "script": "1.哪个选项是痞老板的声音？",
+      "joke_point": "听力题增加难度",
+      "background": "纯白+顶部黄色标题栏",
+      "cats": "痞老板表情包在右侧",
+      "audio": "读题+ABC音效播放+3秒倒计时+答对提示音",
+      "subtitle": "黑字题目+灰321倒计时+B标绿对勾",
+      "seedream_prompt": "纯白背景试卷，顶部黄色粗字标题栏",
+      "local_cat_asset_keywords": "痞老板表情包",
+      "local_background_keywords": "纯白背景,黄色标题栏"
+    },
+    {
+      "shot_id": 6,
+      "duration": 13.0,
+      "beat": "escalation",
+      "script": "2.哪个选项是妲己猫的声音？",
+      "joke_point": "考妲己猫经典音效",
+      "background": "纯白+顶部黄色标题栏",
+      "cats": "捂嘴笑妲己猫在右侧",
+      "audio": "读题+ABC音效播放+3秒倒计时+答对提示音",
+      "subtitle": "黑字题目+灰321倒计时+C标绿对勾",
+      "seedream_prompt": "纯白背景试卷，顶部黄色粗字标题栏",
+      "local_cat_asset_keywords": "捂嘴笑妲己猫",
+      "local_background_keywords": "纯白背景,黄色标题栏"
+    },
+    {
+      "shot_id": 7,
+      "duration": 13.0,
+      "beat": "punchline",
+      "script": "3.哪个选项是傻笑猫的声音？",
+      "joke_point": "考傻笑猫经典音效",
+      "background": "纯白+顶部黄色标题栏",
+      "cats": "张嘴傻笑奶猫在右侧",
+      "audio": "读题+ABC音效播放+3秒倒计时+答对提示音",
+      "subtitle": "黑字题目+灰321倒计时+B标绿对勾",
+      "seedream_prompt": "纯白背景试卷，顶部黄色粗字标题栏",
+      "local_cat_asset_keywords": "张嘴傻笑奶猫",
+      "local_background_keywords": "纯白背景,黄色标题栏"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "video_id": "bkmm-014-抖音202663-221817",
+  "verdict": "pass",
+  "score": 95.0,
+  "summary": "整体拆解和原视频高度一致，仅个别字幕存在微小措辞差异，核心剧情、素材、风格信息完全匹配",
+  "confirmed_points": [
+    "整体剧情逻辑与原视频一致，从开场抛观点到摆烂口号再到终极punchline的起承转合完全对应",
+    "分镜时间节点、角色素材描述（左侧代表“我”的表情素材切换、右侧代表爸妈的两只蟑螂猫）、背景（中式客厅场景）均和原视频匹配",
+    "字幕风格、音频风格、收尾抖音引流引导的描述均符合原视频内容"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "3",
+      "field": "subtitle|script",
+      "observed": "原视频台词/字幕为“所以啊！活到现在已经很不错了”",
+      "extracted": "拆解写的是“所以啊活到现在很不错”",
+      "suggestion": "补充“已经”二字，和原视频内容完全一致"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "615d4a9de64a847d316133a7f7063b452353f0ab9315e56b4fae22a66b322406",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:33:46.607798+00:00",
+  "structure_sha256": "1b6a84370ee39b1a6d22cae5bbed4f9cdfda854e9ea3e74c0d31364412a4ae4c",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-014-抖音202663-221817/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

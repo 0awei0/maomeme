@@ -1,0 +1,38 @@
+{
+  "video_id": "bkmm-038-抖音202663-863419",
+  "verdict": "pass",
+  "score": 90.0,
+  "summary": "整体剧情、分镜顺序、背景、猫素材和字幕包装描述基本匹配，仅存在个别细节小误差，音频描述因无法听音为低置信",
+  "confirmed_points": [
+    "整体叙事逻辑与镜头顺序完全匹配，涵盖奶奶煮长寿面、小伙伴送贺卡、准备回礼音乐盒、点莲花蜡烛、半夜被音乐吵醒逼疯的完整剧情",
+    "各场景背景描述准确，对应老厨房、农村老院子、老式卧室、庭院石桌、抖音搜索界面等场景均符合画面",
+    "各镜头猫的数量、位置、角色对应正确，角色标识符合视频底部黄色标注",
+    "字幕样式、顶部「记忆中的那些声音」标题条等包装元素描述与画面一致"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "3",
+      "field": "cats",
+      "observed": "画面中床上听歌的是浅橘色普通猫，摸音乐盒的是纯白色猫",
+      "extracted": "香蕉猫开心听歌，白橘猫摸音乐盒",
+      "suggestion": "修正为「浅橘猫开心听歌，白色猫摸音乐盒」"
+    },
+    {
+      "severity": "minor",
+      "shot_id": "6",
+      "field": "script",
+      "observed": "该时间段画面仅出现「终于安静了」台词字幕，无「怎么又响了」内容",
+      "extracted": "我：终于安静了，怎么又响了？",
+      "suggestion": "删除多余的「怎么又响了」，保留「终于安静了」即可"
+    }
+  ],
+  "audio_confidence": "low",
+  "needs_human_review": false,
+  "_raw_content_sha256": "58cc6d27bb0aefbda7798a7ea0038f31419e14a3e93947c17730eee285396770",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:37:01.536554+00:00",
+  "structure_sha256": "a620ae3ec0e3e614c40dc1ef4e939ee913f36d2cd77c425b6443f4809e2ef63d",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-038-抖音202663-863419/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

@@ -1,0 +1,102 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 3.0,
+      "beat": "hook",
+      "script": "当你从别的店出来被经常光顾的老板看到时",
+      "joke_point": "强共鸣的社死场景代入",
+      "background": "街边餐馆玻璃门，两侧菜单灯箱、大麦花篮，旁停电动车",
+      "cats": "香蕉猫站中间，拎外卖，表情慌张",
+      "audio": "搞怪BGM起，旁白调侃配音",
+      "subtitle": "顶部黄色粗体大标题，底部标“你”",
+      "seedream_prompt": "街边餐馆门口 玻璃门 菜单灯箱 大麦花篮",
+      "local_cat_asset_keywords": "香蕉猫 慌张 拎东西",
+      "local_background_keywords": "餐馆门口 街边"
+    },
+    {
+      "shot_id": 2,
+      "duration": 3.0,
+      "beat": "setup",
+      "script": "老板：你… 手里…",
+      "joke_point": "老板错愕欲言又止的反应",
+      "background": "小餐馆敞开门，两侧贴面食菜单，店内有桌椅",
+      "cats": "橘猫大头站门口，瞪眼错愕",
+      "audio": "惊讶音效，老板迟疑配音",
+      "subtitle": "蓝色对话气泡“你…”“手里…”，底部标“老板”",
+      "seedream_prompt": "小餐馆门口 贴面食菜单 店内桌椅",
+      "local_cat_asset_keywords": "橘猫 瞪眼 错愕",
+      "local_background_keywords": "小餐馆入口"
+    },
+    {
+      "shot_id": 3,
+      "duration": 3.0,
+      "beat": "escalation",
+      "script": "你：我…",
+      "joke_point": "被抓包的慌乱尴尬",
+      "background": "同shot1的餐馆门口",
+      "cats": "香蕉猫站原地，呆滞张嘴",
+      "audio": "尴尬音效，你迟疑配音",
+      "subtitle": "粉色对话气泡“我…”，底部标“你”",
+      "seedream_prompt": "街边餐馆门口 玻璃门 菜单灯箱",
+      "local_cat_asset_keywords": "香蕉猫 呆滞 欲言又止",
+      "local_background_keywords": "餐馆门口 街边"
+    },
+    {
+      "shot_id": 4,
+      "duration": 3.0,
+      "beat": "twist",
+      "script": "老板：原来如此吗… *无声哭泣",
+      "joke_point": "老板瞬间心碎的反差感",
+      "background": "同shot2的餐馆门口",
+      "cats": "黑脸阴影猫，抬手，流汗失落",
+      "audio": "心碎音效，老板失落配音",
+      "subtitle": "蓝色对话气泡“原来如此吗…”，旁注*无声哭泣，底部标“老板”",
+      "seedream_prompt": "小餐馆门口 贴面食菜单 店内桌椅",
+      "local_cat_asset_keywords": "黑脸猫 流汗 无语",
+      "local_background_keywords": "小餐馆入口"
+    },
+    {
+      "shot_id": 5,
+      "duration": 3.0,
+      "beat": "escalation",
+      "script": "你：对不起…",
+      "joke_point": "愧疚想逃的社死感",
+      "background": "同shot1的餐馆门口",
+      "cats": "黑脸香蕉猫，捂脸，往旁边挪",
+      "audio": "愧疚音效，你道歉配音",
+      "subtitle": "粉色对话气泡“对不起…”，底部标“你”",
+      "seedream_prompt": "街边餐馆门口 玻璃门 菜单灯箱",
+      "local_cat_asset_keywords": "黑脸香蕉猫 捂脸 道歉",
+      "local_background_keywords": "餐馆门口 街边"
+    },
+    {
+      "shot_id": 6,
+      "duration": 4.0,
+      "beat": "punchline",
+      "script": "老板：为什么要这么对我！*锤地",
+      "joke_point": "老板崩溃夸张反应的笑点",
+      "background": "同shot2的餐馆门口",
+      "cats": "香蕉猫，大哭，双手挥舞锤地",
+      "audio": "大哭音效、捶地音效，老板崩溃配音",
+      "subtitle": "蓝色对话气泡“为什么要这么对我！”，旁注*锤地，底部标“老板”",
+      "seedream_prompt": "小餐馆门口 贴面食菜单 店内桌椅",
+      "local_cat_asset_keywords": "香蕉猫 大哭 锤地",
+      "local_background_keywords": "小餐馆入口"
+    },
+    {
+      "shot_id": 7,
+      "duration": 3.0,
+      "beat": "cta",
+      "script": "抖音搜索 猫猫me呀",
+      "joke_point": "结尾引流/作者页收束",
+      "background": "深色背景，抖音账号搜索界面",
+      "cats": "无猫镜头/平台作者信息页",
+      "audio": "BGM渐停",
+      "subtitle": "抖音账号信息文字",
+      "seedream_prompt": "深色背景 抖音搜索框界面",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "抖音账号页"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 9.0,
+      "beat": "hook+punchline",
+      "script": "没人见过我的真面目 *除了我的女友",
+      "joke_point": "对外完美对内放飞的亲密关系反差",
+      "background": "暖光公主风卧室，软包床头印花床单",
+      "cats": "左橘猫呆萌睁眼饰女友，右橘猫崩脸蹭对方饰我",
+      "audio": "欢快搞怪BGM+猫哼唧拟声音效",
+      "subtitle": "顶部黄条大字+猫下方角色标注",
+      "seedream_prompt": "暖光欧式软包床头公主风卧室床景",
+      "local_cat_asset_keywords": "橘猫呆萌脸 橘猫崩坏歪脸",
+      "local_background_keywords": "公主风卧室床"
+    },
+    {
+      "shot_id": 2,
+      "duration": 2.0,
+      "beat": "cta",
+      "script": "抖音搜索天门meme猫看更多内容",
+      "joke_point": "结尾引流/作者页收束",
+      "background": "深蓝色抖音创作者引导页",
+      "cats": "无",
+      "audio": "收尾轻音效",
+      "subtitle": "白色账号引导文字",
+      "seedream_prompt": "深蓝色纯色背景抖音账号引导页",
+      "local_cat_asset_keywords": "",
+      "local_background_keywords": "抖音引导页"
+    }
+  ]
+}

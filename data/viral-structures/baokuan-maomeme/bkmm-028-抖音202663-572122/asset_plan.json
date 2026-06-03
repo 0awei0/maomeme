@@ -1,0 +1,88 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 2.0,
+      "beat": "setup",
+      "script": "要抱抱~",
+      "joke_point": "情侣腻歪铺垫反差",
+      "background": "城市林荫道斑马线，红色卡车远处驶来",
+      "cats": "左撒娇橘白猫，右张嘴橘猫",
+      "audio": "甜蜜BGM，撒娇配音",
+      "subtitle": "要抱抱~ 下方黄字标女友/男友",
+      "seedream_prompt": "城市马路斑马线 林荫道 红色卡车",
+      "local_cat_asset_keywords": "撒娇橘白猫 张嘴橘猫",
+      "local_background_keywords": "城市斑马线 大运卡车"
+    },
+    {
+      "shot_id": 2,
+      "duration": 3.0,
+      "beat": "escalation",
+      "script": "完了！要撞大运了！",
+      "joke_point": "谐音大运卡车梗",
+      "background": "同上，卡车逼近",
+      "cats": "左绑额头震惊猫，右黑猫震惊脸",
+      "audio": "节奏加快，卡车鸣笛，慌张配音",
+      "subtitle": "完了！要撞大运了！",
+      "seedream_prompt": "城市斑马线 红色大运卡车逼近",
+      "local_cat_asset_keywords": "绑额头震惊猫 黑猫震惊脸",
+      "local_background_keywords": "城市斑马线 大运卡车"
+    },
+    {
+      "shot_id": 3,
+      "duration": 3.0,
+      "beat": "twist",
+      "script": "你快走！",
+      "joke_point": "跳转狗血苦情戏",
+      "background": "同上，卡车到跟前",
+      "cats": "两只流泪互推的香蕉猫",
+      "audio": "苦情BGM起，急切配音",
+      "subtitle": "你快走！",
+      "seedream_prompt": "城市斑马线 红色卡车到跟前",
+      "local_cat_asset_keywords": "流泪香蕉猫 伸手香蕉猫",
+      "local_background_keywords": "城市斑马线 大运卡车"
+    },
+    {
+      "shot_id": 4,
+      "duration": 4.0,
+      "beat": "punchline",
+      "script": "不要离开我！！",
+      "joke_point": "浮夸哭戏反差搞笑",
+      "background": "晴朗蓝天白云",
+      "cats": "飞在空中爆哭的香蕉猫",
+      "audio": "苦情BGM放大，哭喊配音",
+      "subtitle": "不要离开我！！",
+      "seedream_prompt": "晴朗蓝天白云背景",
+      "local_cat_asset_keywords": "哭飞的香蕉猫",
+      "local_background_keywords": "蓝天白云素材"
+    },
+    {
+      "shot_id": 5,
+      "duration": 6.0,
+      "beat": "punchline",
+      "script": "你一定要好好活着！不要想我！",
+      "joke_point": "苦情台词荒诞感",
+      "background": "十字路口斑马线 钟楼建筑",
+      "cats": "嘶吼橘猫+伸手香蕉猫",
+      "audio": "苦情BGM，嘶吼配音",
+      "subtitle": "你一定要好好活着！不要想我！",
+      "seedream_prompt": "十字路口斑马线 钟楼建筑",
+      "local_cat_asset_keywords": "嘶吼橘猫 伸手香蕉猫",
+      "local_background_keywords": "十字路口斑马线 钟楼"
+    },
+    {
+      "shot_id": 6,
+      "duration": 8.0,
+      "beat": "ending",
+      "script": "收尾：两人分别被撞的离谱结局",
+      "joke_point": "两人分别被撞的离谱结局",
+      "background": "同上，加落叶特效",
+      "cats": "两只躺平伸手的香蕉猫",
+      "audio": "苦情BGM，风声落叶声",
+      "subtitle": "收尾：两人分别被撞的离谱结局",
+      "seedream_prompt": "十字路口斑马线 落叶飘落",
+      "local_cat_asset_keywords": "躺平香蕉猫",
+      "local_background_keywords": "十字路口斑马线 落叶特效"
+    }
+  ]
+}

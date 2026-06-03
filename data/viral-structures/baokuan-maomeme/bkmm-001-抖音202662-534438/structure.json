@@ -1,0 +1,423 @@
+{
+  "video_summary": {
+    "title": "00后有自己的请假方式",
+    "one_sentence": "00后请假被老板拒，直接打120把自己拉走的荒诞职场整活",
+    "primary_topic": "00后整顿职场/请假梗",
+    "meme_type": "猫meme职场整活",
+    "overall_tone": "搞笑、荒诞、职场共鸣"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 3,
+      "text": "老板，我身体不舒服，请个假去趟医院",
+      "speaker": "00后",
+      "tone": "虚弱",
+      "emotion": "装可怜",
+      "function": "setup",
+      "confidence": 1
+    },
+    {
+      "start_time": 3,
+      "end_time": 5,
+      "text": "不批，工作那么多，哪有空给你请假？",
+      "speaker": "老板",
+      "tone": "强硬",
+      "emotion": "不耐烦",
+      "function": "conflict",
+      "confidence": 1
+    },
+    {
+      "start_time": 5,
+      "end_time": 8,
+      "text": "OS：坏东西！你等着！",
+      "speaker": "00后",
+      "tone": "凶狠",
+      "emotion": "腹诽",
+      "function": "twist",
+      "confidence": 1
+    },
+    {
+      "start_time": 8,
+      "end_time": 13,
+      "text": "不行了，感觉我要鼠了！喂120吗？我需要急救",
+      "speaker": "00后",
+      "tone": "虚弱夸张",
+      "emotion": "装病搞事",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 13,
+      "end_time": 15,
+      "text": "好的！马上到！",
+      "speaker": "120",
+      "tone": "干练",
+      "emotion": "正经",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 15,
+      "end_time": 18,
+      "text": "工伤！难受！",
+      "speaker": "00后",
+      "tone": "痛苦",
+      "emotion": "装病",
+      "function": "punchline",
+      "confidence": 1
+    },
+    {
+      "start_time": 18,
+      "end_time": 22,
+      "text": "老板！我觉得我们也该请假了！",
+      "speaker": "同事",
+      "tone": "严肃",
+      "emotion": "效仿",
+      "function": "escalation",
+      "confidence": 1
+    },
+    {
+      "start_time": 22,
+      "end_time": 25,
+      "text": "单位新来的00后感冒请假被拒，打120把自己拉走了",
+      "speaker": "旁白",
+      "tone": "正经",
+      "emotion": "事实陈述",
+      "function": "ending",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 3,
+      "duration": 3,
+      "beat": "setup",
+      "script": "00后找老板请假装不舒服",
+      "joke_point": "符合常规请假场景铺垫",
+      "visual_description": "老板坐左办公椅，00后站右桌前",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 3,
+      "end_time": 5,
+      "duration": 2,
+      "beat": "escalation",
+      "script": "老板拒绝请假",
+      "joke_point": "职场常见老板抠门冲突",
+      "visual_description": "老板换凶猫脸，00后变丧脸",
+      "pacing_note": "正常"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 5,
+      "end_time": 8,
+      "duration": 3,
+      "beat": "twist",
+      "script": "00后内心吐槽要搞事",
+      "joke_point": "铺垫反套路操作",
+      "visual_description": "00后眼神变凶",
+      "pacing_note": "慢"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 8,
+      "end_time": 15,
+      "duration": 7,
+      "beat": "punchline",
+      "script": "00后工位装死打120",
+      "joke_point": "反套路操作超出预期",
+      "visual_description": "00后坐工位前拿手机，同事背影在旁",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 15,
+      "end_time": 19,
+      "duration": 4,
+      "beat": "punchline",
+      "script": "120抬走00后喊工伤",
+      "joke_point": "离谱操作落地笑点",
+      "visual_description": "香蕉猫抬担架，老板懵在旁",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 19,
+      "end_time": 22,
+      "duration": 3,
+      "beat": "escalation",
+      "script": "同事效仿要请假",
+      "joke_point": "放大梗的传播性",
+      "visual_description": "两个同事面向老板提请假",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 22,
+      "end_time": 25,
+      "duration": 3,
+      "beat": "ending",
+      "script": "真实事件字幕加救护车实拍",
+      "joke_point": "真实事件呼应强化笑点",
+      "visual_description": "路边救护车实拍配文字",
+      "pacing_note": "慢"
+    },
+    {
+      "shot_id": 8,
+      "start_time": 25,
+      "end_time": 27.4,
+      "duration": 2.4,
+      "beat": "cta",
+      "script": "引导搜索梗",
+      "joke_point": "",
+      "visual_description": "抖音搜索页",
+      "pacing_note": "正常"
+    }
+  ],
+  "cat_track": [
+    "2只：橘猫老板（左皱眉），橘猫00后（右装难受）",
+    "2只：奶牛猫老板（左凶），银渐层00后（右丧）",
+    "2只：金渐层老板（左无辜），银渐层00后（右凶狠）",
+    "3只：橘猫00后（前装病），虎斑同事2只（后背影）",
+    "5只：香蕉猫医生2只抬担架，橘猫00后躺担架，虎斑老板懵，虎斑同事流汗",
+    "3只：金渐层老板（左慌），橘猫同事2只（右要请假）",
+    "无猫",
+    "无猫"
+  ],
+  "background_track": [
+    "高层落地窗老板办公室，有办公桌办公椅，明亮",
+    "同上",
+    "同上",
+    "大开间开放办公室，多工位，明亮",
+    "同上",
+    "同上",
+    "路边人行道，停救护车，白天",
+    "深色抖音搜索页背景"
+  ],
+  "audio_track": {
+    "bgm_style": "沙雕搞怪电子BGM",
+    "bgm_mood": "跳脱搞笑",
+    "voice_style": "夸张搞怪配音，带口音",
+    "voice_presence": "清晰突出",
+    "sfx": [
+      "打电话音效",
+      "救护车音效",
+      "抬担架音效"
+    ],
+    "rhythm_sync": "每句台词卡BGM鼓点切换镜头"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "粗体无衬线，顶部标题黄色，对话白色，OS红色",
+    "subtitle_density": "低，每屏最多15字",
+    "emphasis_words": [
+      "120",
+      "工伤",
+      "请假"
+    ],
+    "bubble_or_dialogue_style": "无气泡，直接悬浮显示",
+    "stickers_or_overlays": [
+      "角色名黄色标注在猫下方",
+      "手机贴纸",
+      "担架贴纸"
+    ],
+    "transition_notes": [
+      "闪切转场，无复杂特效"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "职场申请被拒→不走常规路走极端操作→倒逼对方妥协"
+    ],
+    "shot_templates": [
+      "双猫对话铺垫→多猫群像反转→真实事件呼应落地"
+    ],
+    "cat_action_templates": [
+      "装病猫脸",
+      "凶老板猫脸",
+      "香蕉猫抬担架",
+      "懵脸老板猫"
+    ],
+    "background_templates": [
+      "高层老板办公室",
+      "开放员工工位"
+    ],
+    "audio_templates": [
+      "沙雕电子BGM+夸张配音+音效卡点"
+    ],
+    "suitable_topics": [
+      "00后整顿职场",
+      "职场请假",
+      "怼老板",
+      "摸鱼梗"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 3.0,
+        "beat": "setup",
+        "script": "00后：老板我不舒服要请假去医院",
+        "joke_point": "常规请假场景铺垫",
+        "background": "高层落地窗办公室，带办公桌",
+        "cats": "左橘猫皱眉老板，右橘猫张嘴装病00后",
+        "audio": "BGM起，00后虚弱配音",
+        "subtitle": "老板，我身体不舒服，请个假去趟医院",
+        "seedream_prompt": "明亮高层落地窗老板办公室，办公桌办公椅",
+        "local_cat_asset_keywords": [
+          "皱眉橘猫",
+          "张嘴难受橘猫"
+        ],
+        "local_background_keywords": [
+          "高层老板办公室",
+          "落地窗办公室"
+        ]
+      },
+      {
+        "shot_id": 2,
+        "duration": 2.0,
+        "beat": "escalation",
+        "script": "老板：不批，工作多没空给你请假",
+        "joke_point": "职场常见冲突",
+        "background": "同上办公室",
+        "cats": "左凶奶牛猫老板，右丧脸银渐层00后",
+        "audio": "老板强硬配音",
+        "subtitle": "不批，工作那么多，哪有空给你请假？",
+        "seedream_prompt": "同上高层办公室",
+        "local_cat_asset_keywords": [
+          "凶奶牛猫",
+          "丧脸银渐层"
+        ],
+        "local_background_keywords": [
+          "高层老板办公室"
+        ]
+      },
+      {
+        "shot_id": 3,
+        "duration": 3.0,
+        "beat": "twist",
+        "script": "00后OS：坏东西你等着",
+        "joke_point": "铺垫反套路操作",
+        "background": "同上办公室",
+        "cats": "左无辜金渐层老板，右凶脸银渐层00后",
+        "audio": "00后凶狠腹诽配音",
+        "subtitle": "OS：坏东西！你等着！",
+        "seedream_prompt": "同上高层办公室",
+        "local_cat_asset_keywords": [
+          "无辜金渐层",
+          "凶脸银渐层"
+        ],
+        "local_background_keywords": [
+          "高层老板办公室"
+        ]
+      },
+      {
+        "shot_id": 4,
+        "duration": 7.0,
+        "beat": "punchline",
+        "script": "00后工位装死打120",
+        "joke_point": "反套路操作超出预期",
+        "background": "大开间开放办公室多工位",
+        "cats": "前橘猫00后装病，后两只虎斑同事背影",
+        "audio": "00后虚弱夸张配音，打电话音效",
+        "subtitle": "不行了，感觉我要鼠了！喂120吗？我需要急救",
+        "seedream_prompt": "明亮大开间开放办公室，多工位",
+        "local_cat_asset_keywords": [
+          "装病橘猫",
+          "虎斑猫背影"
+        ],
+        "local_background_keywords": [
+          "开放办公室",
+          "员工工位"
+        ]
+      },
+      {
+        "shot_id": 5,
+        "duration": 4.0,
+        "beat": "punchline",
+        "script": "120抬走00后喊工伤",
+        "joke_point": "离谱操作落地笑点",
+        "background": "同上开放办公室",
+        "cats": "两只香蕉猫抬担架，橘猫00后躺担架，虎斑老板懵",
+        "audio": "120配音，救护车音效，00后痛苦配音",
+        "subtitle": "好的！马上到！/工伤！难受！",
+        "seedream_prompt": "同上开放办公室",
+        "local_cat_asset_keywords": [
+          "香蕉猫",
+          "懵脸虎斑猫",
+          "难受橘猫"
+        ],
+        "local_background_keywords": [
+          "开放办公室"
+        ]
+      },
+      {
+        "shot_id": 6,
+        "duration": 3.0,
+        "beat": "escalation",
+        "script": "同事：我们也该请假了",
+        "joke_point": "放大梗传播性",
+        "background": "同上开放办公室",
+        "cats": "两只橘猫同事面向慌脸金渐层老板",
+        "audio": "同事严肃配音，速度线音效",
+        "subtitle": "老板！我觉得我们也该请假了！",
+        "seedream_prompt": "同上开放办公室",
+        "local_cat_asset_keywords": [
+          "凶橘猫",
+          "慌脸金渐层"
+        ],
+        "local_background_keywords": [
+          "开放办公室"
+        ]
+      },
+      {
+        "shot_id": 7,
+        "duration": 3.0,
+        "beat": "ending",
+        "script": "真实事件字幕加救护车实拍",
+        "joke_point": "真实事件呼应强化笑点",
+        "background": "路边停救护车实拍",
+        "cats": "无猫镜头/真实素材收尾",
+        "audio": "正经旁白配音",
+        "subtitle": "单位新来的00后感冒请假被拒，打120把自己拉走了",
+        "seedream_prompt": "路边停救护车，白天人行道",
+        "local_cat_asset_keywords": [],
+        "local_background_keywords": [
+          "救护车实拍",
+          "路边街景"
+        ]
+      }
+    ]
+  },
+  "quality_notes": [
+    "梗贴合00后职场情绪，笑点密集，真实事件背书传播性强",
+    "normalized_storyboard_fields: filled 1 blank or inconsistent fields"
+  ],
+  "_raw_content_sha256": "ed89671739300d614231f3036018175679971a98d3f24296abc060e20bd7c0d8",
+  "video_id": "bkmm-001-抖音202662-534438",
+  "filename": "抖音202662-534438.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 27.469,
+    "size_bytes": 2598845,
+    "width": 960,
+    "height": 720,
+    "fps": 30.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "909d27fe83346828970617d724f3521cd3c001f4a00d4aa85dde37ae86348bcf"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 3.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-001-抖音202662-534438/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-001-抖音202662-534438/audio.m4a",
+    "analyzed_at": "2026-06-03T02:55:16.144807+00:00",
+    "normalized_at": "2026-06-03T03:19:12.590431+00:00"
+  }
+}

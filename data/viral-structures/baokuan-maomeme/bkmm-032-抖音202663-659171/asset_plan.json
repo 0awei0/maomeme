@@ -1,0 +1,74 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 3.0,
+      "beat": "setup",
+      "script": "朋友问你喝啥，你说太甜要矿泉水",
+      "joke_point": "以前爱喝甜饮现在只喝矿泉水",
+      "background": "超市饮料区 冷柜货架带彩色气球",
+      "cats": "左橘猫张嘴问 右橘猫呆想后换白猫喝水",
+      "audio": "轻快BGM 对话配音 喝水声",
+      "subtitle": "顶部大标题+黄字“甜度下降”+对话文字",
+      "seedream_prompt": "明亮超市饮料区 冷柜 彩色气球",
+      "local_cat_asset_keywords": "橘猫说话meme 白猫喝水meme",
+      "local_background_keywords": "超市冷柜 超市货架"
+    },
+    {
+      "shot_id": 2,
+      "duration": 7.0,
+      "beat": "escalation",
+      "script": "你攒各种袋子留着用，以前都丢",
+      "joke_point": "以前嫌袋子占地方现在主动攒",
+      "background": "家居客厅 木质书架堆收纳盒",
+      "cats": "奶白灰奶猫蹲袋子前整理 橘猫震惊脸",
+      "audio": "BGM持续 配音 翻袋子声",
+      "subtitle": "黄字“收集袋子”+对话文字",
+      "seedream_prompt": "温馨客厅 木质书架 桌面堆袋子",
+      "local_cat_asset_keywords": "奶猫说话meme 橘猫震惊脸",
+      "local_background_keywords": "家居客厅 书架"
+    },
+    {
+      "shot_id": 3,
+      "duration": 6.0,
+      "beat": "escalation",
+      "script": "路过零食区直奔水果区，以前买一堆零食",
+      "joke_point": "以前爱囤零食现在只买水果养生",
+      "background": "超市零食区 后切新鲜水果区",
+      "cats": "香蕉猫拎篮走零食区 奶牛猫看水果 橘猫震惊脸",
+      "audio": "BGM持续 走路声 配音",
+      "subtitle": "黄字“不爱零食”+对话文字",
+      "seedream_prompt": "超市零食货架 新鲜水果陈列区",
+      "local_cat_asset_keywords": "香蕉猫走路meme 奶牛猫仰头meme",
+      "local_background_keywords": "超市零食区 超市水果区"
+    },
+    {
+      "shot_id": 4,
+      "duration": 4.0,
+      "beat": "escalation",
+      "script": "出门爱拍花拍日落，觉得好看",
+      "joke_point": "以前觉得拍花土现在自己也爱拍",
+      "background": "公园花丛 后切湖边暖黄日落",
+      "cats": "橘猫大脸举手机拍照",
+      "audio": "BGM持续 拍照音效 配音",
+      "subtitle": "黄字“拍花”“拍天空落日”+对话文字",
+      "seedream_prompt": "白色花丛 湖边日落 步道",
+      "local_cat_asset_keywords": "橘猫大脸拍照meme",
+      "local_background_keywords": "公园花丛 湖边日落"
+    },
+    {
+      "shot_id": 5,
+      "duration": 6.7,
+      "beat": "twist+punchline",
+      "script": "买花被小孩叫阿姨，当场震惊",
+      "joke_point": "所有铺垫后被叫阿姨直接破防",
+      "background": "黄昏湖边步道",
+      "cats": "美短买花 三花卖花 香蕉猫瞪眼睛震惊",
+      "audio": "BGM骤停 震惊音效 配音",
+      "subtitle": "对话文字 最后“阿姨！？”放大",
+      "seedream_prompt": "黄昏湖边步道 树影",
+      "local_cat_asset_keywords": "美短蹲坐meme 三花小猫meme 香蕉猫震惊脸",
+      "local_background_keywords": "湖边步道 黄昏公园"
+    }
+  ]
+}

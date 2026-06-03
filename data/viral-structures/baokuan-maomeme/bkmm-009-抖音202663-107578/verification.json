@@ -1,0 +1,39 @@
+{
+  "video_id": "bkmm-009-抖音202663-107578",
+  "verdict": "pass",
+  "score": 91.0,
+  "summary": "整体拆解与视频高度一致，剧情逻辑、分镜顺序、背景、核心素材描述均匹配，仅存在个别角色形象细节的小偏差",
+  "confirmed_points": [
+    "整体剧情与视频完全吻合，喂饭扔娃的家族篮球基因传承梗的起承转合、反转点全部匹配",
+    "分镜时间节点、台词脚本与画面字幕、剧情顺序一致",
+    "背景描述均为中式客厅不同角度，符合视频实际画面",
+    "核心猫素材（香蕉猫系列角色、橘猫妈等）的数量、位置、动作描述正确，无错位",
+    "BGM、音效的风格级描述符合视频沙雕搞怪的特点，字幕包装样式与视频匹配"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "2",
+      "field": "cats",
+      "observed": "该镜头段哥的形象依次为山羊头、橘猫、cheems狗",
+      "extracted": "仅描述为山羊头哥",
+      "suggestion": "补充该镜头段哥的不同形象变化说明"
+    },
+    {
+      "severity": "minor",
+      "shot_id": "3",
+      "field": "cats",
+      "observed": "哥的形象为棕白花纹猫",
+      "extracted": "描述为橘猫哥",
+      "suggestion": "修正哥的形象描述为棕白花纹猫"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "e4d3b93121b96ad653945324015a23c2a97a25e8248709fa70a7b632d032b62b",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:33:42.699466+00:00",
+  "structure_sha256": "74e32b49eccd793e2412afad9a2e3b8887ea2bae533b345d69a8787d9af76e1a",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-009-抖音202663-107578/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

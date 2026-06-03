@@ -1,0 +1,39 @@
+{
+  "video_id": "bkmm-025-抖音202663-534479",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "拆解整体与视频高度匹配，核心剧情、角色、背景、台词均一致，仅存在两处细微细节偏差",
+  "confirmed_points": [
+    "整体剧情顺序正确，从开头放狠话、接传单砸骑车大哥、第二天遇大哥发传单、拿光全部传单、扔纸团报复到收尾的逻辑完全匹配",
+    "背景描述符合画面，分别对应小区门口、城市步行街、小区马路边等场景",
+    "猫素材描述基本准确，主角为香蕉套橘猫，发单角色和骑车大哥的形象对应正确",
+    "核心台词字幕与视频内容完全一致，所有关键梗点均覆盖",
+    "音频风格描述符合视频搞怪沙雕的调性，音效列举与实际内容匹配"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "s2",
+      "field": "cats",
+      "observed": "发传单的香蕉猫为多只（数量大于3）",
+      "extracted": "3只香蕉猫递传单",
+      "suggestion": "将发单猫数量修正为多只香蕉猫"
+    },
+    {
+      "severity": "minor",
+      "shot_id": "s7",
+      "field": "cats",
+      "observed": "骑车大哥张嘴要爆发后，突然切换为带问号的无辜小猫脸",
+      "extracted": "最后车胎爆气并张嘴怒吼",
+      "suggestion": "补充大哥怒吼后切换问号脸的反转细节"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "31b83578b01c7331c8cf201fb27ff12d251f5f5ad334ccba6db277d60af60ef6",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:42:54.193893+00:00",
+  "structure_sha256": "b04c66d6523b9a84fad510395e2ad8be71c31395a0d38c168fa4477ed3b9d1a9",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-025-抖音202663-534479/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

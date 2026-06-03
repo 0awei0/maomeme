@@ -183,13 +183,14 @@ async def generate_candidates_with_doubao_context(
     text_context: dict,
     duration_mode: str = "short",
     angle: str | None = None,
+    viral_reference_text: str = "",
 ) -> dict:
     settings = get_settings()
     client = get_async_ark_client()
     try:
         response = await client.chat.completions.create(
             model=settings.chat_model(),
-            messages=candidate_messages(theme, assets_summary, text_context, duration_mode, angle=angle),
+            messages=candidate_messages(theme, assets_summary, text_context, duration_mode, angle=angle, viral_reference_text=viral_reference_text),
             temperature=0.72,
         )
     finally:
@@ -203,6 +204,7 @@ async def stream_candidates_with_doubao_context(
     text_context: dict,
     duration_mode: str = "short",
     angle: str | None = None,
+    viral_reference_text: str = "",
 ) -> AsyncIterator[dict[str, Any]]:
     settings = get_settings()
     client = get_async_ark_client()
@@ -210,7 +212,7 @@ async def stream_candidates_with_doubao_context(
     try:
         stream = await client.chat.completions.create(
             model=settings.chat_model(),
-            messages=candidate_messages(theme, assets_summary, text_context, duration_mode, angle=angle),
+            messages=candidate_messages(theme, assets_summary, text_context, duration_mode, angle=angle, viral_reference_text=viral_reference_text),
             temperature=0.72,
             stream=True,
         )
@@ -236,6 +238,7 @@ def candidate_messages(
     text_context: dict,
     duration_mode: str = "short",
     angle: str | None = None,
+    viral_reference_text: str = "",
 ) -> list[dict[str, Any]]:
     duration_hint = {
         "short": "4个镜头，12秒左右",
@@ -267,6 +270,9 @@ def candidate_messages(
 ## 社会现实文本素材
 {json.dumps(text_context, ensure_ascii=False, indent=2)}
 
+## 已验证爆款猫 meme 结构参考
+{viral_reference_text or "暂无。"}
+
 ## 本地素材库摘要
 {assets_summary}
 
@@ -288,6 +294,7 @@ def candidate_messages(
 要求：
 - {count_hint}
 - 每个候选都必须贴合主题，不要写“最后被猫解决”这类无逻辑结尾。
+- 必须借鉴上面的爆款结构参考：迁移它们的节奏、冲突推进、字幕包装、背景/猫动作类型，但不要照抄原视频台词或情节。
 - 结尾可以荒诞，但要合理：比如先缓一口气、换策略、互相抱团、识别规则问题。
 - 每条字幕不超过 18 个汉字，尽量用具体动作承载现实压力。
 - 如果主题是彩礼/买房/婚恋，重点是双方和家庭如何面对现实账单，不要写成单纯攻击某一方。

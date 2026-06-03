@@ -1,0 +1,31 @@
+{
+  "video_id": "bkmm-016-抖音202663-377146",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "拆解内容和视频整体高度匹配，剧情、分镜、背景、猫素材、台词核心信息均符合实际内容，仅存在微小时间标注偏差不影响准确性",
+  "confirmed_points": [
+    "剧情逻辑与视频完全一致，涵盖农村邀约、坐班车晕车、县城逛广场、买奶茶、看电影、吃小吃、赶末班车、返程约下次全流程",
+    "各分镜背景描述准确，匹配乡村老房、老旧中巴、县城广场、蜜雪冰城门店、影院大厅、老街小吃摊等实际场景",
+    "猫素材的数量、品种、位置、状态描述均贴合画面，无错配漏配",
+    "剧本台词、笑点提炼符合视频内容，核心共鸣点抓取准确",
+    "音频风格、字幕包装的描述均和视频呈现一致"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "1",
+      "field": "timing",
+      "observed": "村口邀约镜头实际持续到5秒",
+      "extracted": "拆解标注该镜头end_time为3秒",
+      "suggestion": "修正该镜头end_time为5秒"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "8fdecd2699d0ad83a5c120ef44927387b2372b61e2c76332d4d263b851d9db7a",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:33:54.375393+00:00",
+  "structure_sha256": "e27e39a88c27dcd2a37692ff9df556dfa1a48402209dd9caf0a867471f241755",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-016-抖音202663-377146/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

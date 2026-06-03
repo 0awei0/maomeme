@@ -1,0 +1,74 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 1.0,
+      "beat": "setup",
+      "script": "家长：晚上不睡觉",
+      "joke_point": "放假熬夜被抓共鸣",
+      "background": "深夜暗色卧室，灰床深棕窗帘",
+      "cats": "左橘猫懵，右cheems皱眉指人",
+      "audio": "鼓点+吐槽配音",
+      "subtitle": "顶部黄字标题，中间白字「晚上不睡觉」",
+      "seedream_prompt": "深夜现代卧室，带床和深色窗帘",
+      "local_cat_asset_keywords": "橘猫meme, cheems狗meme, 手指贴纸",
+      "local_background_keywords": "深夜卧室素材"
+    },
+    {
+      "shot_id": 2,
+      "duration": 6.0,
+      "beat": "escalation",
+      "script": "家长依次吐槽6条罪状",
+      "joke_point": "双标吐槽+共鸣点堆叠",
+      "background": "依次切白天卧室、厨房、书桌、玄关等场景",
+      "cats": "左依次换香蕉猫/胖橘等对应状态，右cheems指人",
+      "audio": "每句卡鼓点+配音",
+      "subtitle": "每屏对应1条吐槽白字",
+      "seedream_prompt": "明亮家庭不同场景，真实感",
+      "local_cat_asset_keywords": "香蕉猫meme, 胖橘meme, cheems",
+      "local_background_keywords": "白天卧室, 厨房, 书桌, 玄关素材"
+    },
+    {
+      "shot_id": 3,
+      "duration": 11.0,
+      "beat": "escalation",
+      "script": "家长继续吐槽剩余6条罪状",
+      "joke_point": "细节槽点拉满",
+      "background": "客厅、沙发、餐桌、中式客厅",
+      "cats": "左换不同表情猫/狗，右cheems指人",
+      "audio": "保持快节奏卡点",
+      "subtitle": "每屏对应1条吐槽白字",
+      "seedream_prompt": "明亮中式家庭客厅，温馨感",
+      "local_cat_asset_keywords": "各种表情猫meme, 张嘴狗meme, cheems",
+      "local_background_keywords": "客厅, 沙发, 餐桌素材"
+    },
+    {
+      "shot_id": 4,
+      "duration": 2.0,
+      "beat": "punchline",
+      "script": "男女混合双打",
+      "joke_point": "吐槽完挨打的经典结局",
+      "background": "同中式客厅",
+      "cats": "左右香蕉猫举拳，中间香蕉猫哭着躲",
+      "audio": "加哭喊音效",
+      "subtitle": "中间白字「男女混合双打」",
+      "seedream_prompt": "明亮中式家庭客厅",
+      "local_cat_asset_keywords": "生气香蕉猫, 哭脸香蕉猫",
+      "local_background_keywords": "中式客厅素材"
+    },
+    {
+      "shot_id": 5,
+      "duration": 3.0,
+      "beat": "cta",
+      "script": "抖音搜索香蕉猫meme剧场",
+      "joke_point": "结尾引流/作者页收束",
+      "background": "抖音深色引导背景",
+      "cats": "香蕉猫头像",
+      "audio": "BGM渐停",
+      "subtitle": "抖音搜索引导文字",
+      "seedream_prompt": "深色简洁背景",
+      "local_cat_asset_keywords": "香蕉猫头像",
+      "local_background_keywords": "抖音结束页素材"
+    }
+  ]
+}

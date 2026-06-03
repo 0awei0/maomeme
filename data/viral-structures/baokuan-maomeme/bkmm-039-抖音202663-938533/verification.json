@@ -1,0 +1,38 @@
+{
+  "video_id": "bkmm-039-抖音202663-938533",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "整体拆解与原视频高度匹配，仅存在少量字幕描述的细微偏差",
+  "confirmed_points": [
+    "剧情逻辑与原视频一致：熬夜到四点纠结是否睡觉→决定做早餐反向叫父母起床→父母震惊的反转流程正确",
+    "各镜头背景描述、猫/狗meme素材的动作、位置、表情均符合原视频画面",
+    "分镜顺序、起承转合、反转点与原视频完全匹配",
+    "BGM、配音风格、字幕包装描述与原视频风格一致"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "2",
+      "field": "subtitle",
+      "observed": "原视频该镜头字幕为「不好 天都快亮了 快睡快睡 不行！睡了起不来又要被骂」",
+      "extracted": "「不好 天都快亮了 睡了要被骂」",
+      "suggestion": "补充完整该镜头的字幕内容"
+    },
+    {
+      "severity": "minor",
+      "shot_id": "4",
+      "field": "subtitle",
+      "observed": "原视频厨房炒菜镜头无对应字幕",
+      "extracted": "「去厨房做早餐」",
+      "suggestion": "删除该条不存在的字幕描述"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "5780ef2ab07978a4c69c0547870ed8452914d4901fb4ba0245d2859c74df2919",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:36:41.733069+00:00",
+  "structure_sha256": "6cbdffbb2e67290ced7000f07ae66c3cc3db45da7a9aa97a21dbe57278fe91ce",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-039-抖音202663-938533/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

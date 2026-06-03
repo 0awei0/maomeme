@@ -1,0 +1,386 @@
+{
+  "video_summary": {
+    "title": "当修空调被错当以为跳楼",
+    "one_sentence": "猫演绎的空调师傅高空修空调被路人误报跳楼，消防到场铺救生垫，师傅哭笑不得的搞笑社死meme",
+    "primary_topic": "打工人离谱误会社死日常",
+    "meme_type": "真人热点事件改编猫meme",
+    "overall_tone": "荒诞搞笑、接地气"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 2,
+      "text": "怎么会有消防车来了？哪里着火了吗这是？",
+      "speaker": "空调师傅猫",
+      "tone": "疑惑",
+      "emotion": "懵",
+      "function": "铺梗",
+      "confidence": 1
+    },
+    {
+      "start_time": 2,
+      "end_time": 5,
+      "text": "这充气囊怎么放在我正下方",
+      "speaker": "空调师傅猫",
+      "tone": "诧异",
+      "emotion": "疑惑",
+      "function": "递进",
+      "confidence": 1
+    },
+    {
+      "start_time": 5,
+      "end_time": 8,
+      "text": "该不会是冲我来的吧!!不好是冲着我来的!!",
+      "speaker": "空调师傅猫",
+      "tone": "恐慌",
+      "emotion": "震惊",
+      "function": "升级",
+      "confidence": 1
+    },
+    {
+      "start_time": 8,
+      "end_time": 13,
+      "text": "这是哪个活爹报的警？我是在修空调！",
+      "speaker": "空调师傅猫",
+      "tone": "愤怒",
+      "emotion": "暴怒",
+      "function": "转折",
+      "confidence": 1
+    },
+    {
+      "start_time": 13,
+      "end_time": 17,
+      "text": "不是跳楼啊!!",
+      "speaker": "空调师傅猫",
+      "tone": "崩溃",
+      "emotion": "着急",
+      "function": "爆梗",
+      "confidence": 1
+    },
+    {
+      "start_time": 17,
+      "end_time": 25,
+      "text": "这特么谁报滴警呃我搁上面修空调，充气囊都给我摆上了",
+      "speaker": "真人空调师傅",
+      "tone": "无奈",
+      "emotion": "哭笑不得",
+      "function": "呼应现实",
+      "confidence": 1
+    },
+    {
+      "start_time": 25,
+      "end_time": 30,
+      "text": "我跳还是不跳呢？",
+      "speaker": "旁白",
+      "tone": "戏谑",
+      "emotion": "荒诞",
+      "function": "收尾",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 2,
+      "duration": 2,
+      "beat": "setup",
+      "script": "怎么会有消防车来了？哪里着火了吗这是？",
+      "joke_point": "修空调遇消防车的反差疑惑",
+      "visual_description": "高层外墙猫趴在空调外机上，消防车入画",
+      "pacing_note": "慢"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 2,
+      "end_time": 5,
+      "duration": 3,
+      "beat": "escalation",
+      "script": "这充气囊怎么放在我正下方",
+      "joke_point": "发现救生垫正对自己的诧异",
+      "visual_description": "两只戴安全帽的猫抬气囊出现在下方",
+      "pacing_note": "稍快"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 5,
+      "end_time": 8,
+      "duration": 3,
+      "beat": "escalation",
+      "script": "该不会是冲我来的吧!!不好是冲着我来的!!",
+      "joke_point": "意识到被误会跳楼的恐慌",
+      "visual_description": "空调师傅猫表情逐渐惊恐",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 8,
+      "end_time": 13,
+      "duration": 5,
+      "beat": "twist",
+      "script": "这是哪个活爹报的警？我是在修空调！",
+      "joke_point": "误会实锤后的暴怒",
+      "visual_description": "猫愤怒嘶吼",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 13,
+      "end_time": 17,
+      "duration": 4,
+      "beat": "punchline",
+      "script": "不是跳楼啊!!",
+      "joke_point": "崩溃澄清的反差搞笑",
+      "visual_description": "穿雨衣的猫崩溃大喊",
+      "pacing_note": "快"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 17,
+      "end_time": 25,
+      "duration": 8,
+      "beat": "punchline",
+      "script": "这特么谁报滴警呃我搁上面修空调，充气囊都给我摆上了",
+      "joke_point": "切真人第一视角呼应现实事件",
+      "visual_description": "高空第一视角拍楼下救生垫、消防车",
+      "pacing_note": "稍慢"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 25,
+      "end_time": 31,
+      "duration": 6,
+      "beat": "ending",
+      "script": "我跳还是不跳呢？",
+      "joke_point": "荒诞灵魂拷问收尾",
+      "visual_description": "第一视角看救生垫配灵魂拷问",
+      "pacing_note": "慢"
+    },
+    {
+      "shot_id": 8,
+      "start_time": 31,
+      "end_time": 32.5,
+      "duration": 1.5,
+      "beat": "cta",
+      "script": "搜索“装空调误以为跳楼”",
+      "joke_point": "引流引导",
+      "visual_description": "抖音搜索框界面",
+      "pacing_note": "快"
+    }
+  ],
+  "cat_track": [
+    "1只橘白猫，空调师傅，趴空调外机，表情疑惑",
+    "3只猫：1只奶牛猫（师傅，懵），2只狸花戴安全帽（抬气囊）",
+    "1只奶牛猫，空调师傅，表情震惊",
+    "1只橘猫，空调师傅，表情愤怒嘶吼",
+    "1只穿黄雨衣的猫，空调师傅，表情崩溃大喊",
+    "无猫，真人视角",
+    "无猫，真人视角",
+    "无猫"
+  ],
+  "background_track": [
+    "高层住宅外墙冬季俯视，有积雪，可直接用实拍素材",
+    "同上，加消防车、黄色救生垫元素",
+    "高层外墙，红色消防车在左侧",
+    "高层外墙空调机位旁",
+    "高层外墙",
+    "高空第一视角楼下街道，有救生垫、消防车、人群",
+    "高空俯视楼下救生垫视角",
+    "抖音搜索页界面"
+  ],
+  "audio_track": {
+    "bgm_style": "短视频常用搞怪轻快BGM",
+    "bgm_mood": "搞笑戏谑",
+    "voice_style": "东北大碴子味口语化配音",
+    "voice_presence": "清晰突出，盖过BGM",
+    "sfx": [
+      "消防车警笛声",
+      "猫嘶吼音效",
+      "嘈杂人群背景音"
+    ],
+    "rhythm_sync": "每换猫表情/剧情节点切对应台词，节奏对齐"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "角色台词用黄粗黑边字，真人台词用白粗黑边字",
+    "subtitle_density": "每屏1-2句，字数少",
+    "emphasis_words": [
+      "活爹",
+      "修空调",
+      "跳还是不跳"
+    ],
+    "bubble_or_dialogue_style": "无气泡，直接悬浮在角色上方/画面下方",
+    "stickers_or_overlays": [
+      "顶部白色标题条",
+      "结尾抖音搜索框贴纸"
+    ],
+    "transition_notes": [
+      "猫meme切真人视角用硬切"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "打工人正常工作→路人误会→官方到场→当事人哭笑不得的社死剧本"
+    ],
+    "shot_templates": [
+      "猫meme演绎情绪递进→切真人事件实拍呼应→灵魂拷问收尾"
+    ],
+    "cat_action_templates": [
+      "表情从疑惑→震惊→愤怒→崩溃的递进表演模板"
+    ],
+    "background_templates": [
+      "高空场景+事件相关道具（消防车/救生垫）"
+    ],
+    "audio_templates": [
+      "搞怪BGM+接地气方言配音+对应场景音效"
+    ],
+    "suitable_topics": [
+      "打工人社死",
+      "离谱误会",
+      "日常荒诞事件",
+      "民生热点改编"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 2.0,
+        "beat": "setup",
+        "script": "怎么会有消防车来了？哪里着火了吗这是？",
+        "joke_point": "修空调偶遇消防车的反差疑惑",
+        "background": "高层住宅外墙冬季俯视，有积雪",
+        "cats": "橘白猫趴在空调外机上，表情疑惑",
+        "audio": "搞怪BGM+疑惑男配音+消防车警笛声",
+        "subtitle": "黄粗黑边字悬浮角色上方",
+        "seedream_prompt": "高层住宅外墙冬季俯视，有空调外机",
+        "local_cat_asset_keywords": "橘白呆猫",
+        "local_background_keywords": "高层住宅俯视"
+      },
+      {
+        "shot_id": 2,
+        "duration": 3.0,
+        "beat": "escalation",
+        "script": "这充气囊怎么放在我正下方",
+        "joke_point": "发现救生垫正对自己的诧异",
+        "background": "高层外墙，下方有黄色救生垫",
+        "cats": "奶牛猫表情懵，2只狸花戴安全帽抬气囊",
+        "audio": "BGM稍快+诧异男配音",
+        "subtitle": "黄粗黑边字悬浮上方",
+        "seedream_prompt": "高层外墙下方出现黄色救生垫",
+        "local_cat_asset_keywords": "奶牛猫懵脸,狸花戴安全帽",
+        "local_background_keywords": "高层外墙,黄色救生垫"
+      },
+      {
+        "shot_id": 3,
+        "duration": 3.0,
+        "beat": "escalation",
+        "script": "该不会是冲我来的吧!!不好是冲着我来的!!",
+        "joke_point": "意识到被误会跳楼的恐慌",
+        "background": "高层外墙旁停红色消防车",
+        "cats": "奶牛猫瞪眼睛，表情震惊",
+        "audio": "BGM加快+恐慌男配音",
+        "subtitle": "黄粗黑边字悬浮上方",
+        "seedream_prompt": "高层外墙旁停红色消防车",
+        "local_cat_asset_keywords": "奶牛猫震惊脸",
+        "local_background_keywords": "红色消防车"
+      },
+      {
+        "shot_id": 4,
+        "duration": 5.0,
+        "beat": "twist",
+        "script": "这是哪个活爹报的警？我是在修空调！",
+        "joke_point": "误会实锤后的暴怒",
+        "background": "高层外墙空调机位旁",
+        "cats": "橘猫张嘴嘶吼，表情愤怒",
+        "audio": "BGM峰值+愤怒男配音",
+        "subtitle": "黄粗黑边字悬浮上方",
+        "seedream_prompt": "猫趴在空调外机旁愤怒嘶吼",
+        "local_cat_asset_keywords": "橘猫生气脸",
+        "local_background_keywords": "空调外机"
+      },
+      {
+        "shot_id": 5,
+        "duration": 4.0,
+        "beat": "punchline",
+        "script": "不是跳楼啊!!",
+        "joke_point": "崩溃澄清的反差搞笑",
+        "background": "高层外墙",
+        "cats": "穿黄雨衣的猫张嘴大喊，表情崩溃",
+        "audio": "BGM继续+崩溃男配音",
+        "subtitle": "黄粗黑边字悬浮上方",
+        "seedream_prompt": "穿黄雨衣的猫在高空嘶吼",
+        "local_cat_asset_keywords": "穿黄雨衣的猫",
+        "local_background_keywords": "高层外墙"
+      },
+      {
+        "shot_id": 6,
+        "duration": 8.0,
+        "beat": "punchline",
+        "script": "这特么谁报滴警呃我搁上面修空调，充气囊都给我摆上了",
+        "joke_point": "切真人第一视角呼应现实事件",
+        "background": "高空第一视角拍楼下，有救生垫、消防车、人群",
+        "cats": "无猫镜头/真实素材收尾",
+        "audio": "真人吐槽配音+嘈杂背景音",
+        "subtitle": "白粗黑边字悬浮下方",
+        "seedream_prompt": "高空修空调第一视角拍楼下",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "修空调第一视角,黄色救生垫"
+      },
+      {
+        "shot_id": 7,
+        "duration": 6.0,
+        "beat": "ending",
+        "script": "我跳还是不跳呢？",
+        "joke_point": "荒诞灵魂拷问收尾",
+        "background": "高空俯视楼下救生垫视角",
+        "cats": "无猫镜头/真实素材收尾",
+        "audio": "搞怪BGM+无奈男配音",
+        "subtitle": "白粗黑边艺术字悬浮中间",
+        "seedream_prompt": "高空看楼下救生垫视角",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "高空俯视救生垫"
+      },
+      {
+        "shot_id": 8,
+        "duration": 1.5,
+        "beat": "cta",
+        "script": "搜索“装空调误以为跳楼”",
+        "joke_point": "引流引导",
+        "background": "抖音搜索页界面",
+        "cats": "无猫镜头/平台作者信息页",
+        "audio": "结束音效",
+        "subtitle": "搜索框内文字",
+        "seedream_prompt": "抖音搜索界面",
+        "local_cat_asset_keywords": "",
+        "local_background_keywords": "抖音搜索框"
+      }
+    ]
+  },
+  "quality_notes": [
+    "猫meme情绪递进和现实事件呼应紧密，笑点密集接地气，适配短视频用户喜好，可复制性强",
+    "normalized_storyboard_fields: filled 3 blank or inconsistent fields"
+  ],
+  "_raw_content_sha256": "317882f594683edd363f337419ff41b35566a05eb244348e49054a009066adb7",
+  "video_id": "bkmm-024-抖音202663-525083",
+  "filename": "抖音202663-525083.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 32.522,
+    "size_bytes": 5268091,
+    "width": 720,
+    "height": 960,
+    "fps": 60.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "d822f50ff90cffcfa4fde7414e07098c1bee5e01cd6aec393bbac5807aeb08f5"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-024-抖音202663-525083/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-024-抖音202663-525083/audio.m4a",
+    "analyzed_at": "2026-06-03T03:05:05.982578+00:00",
+    "normalized_at": "2026-06-03T03:19:12.603937+00:00"
+  }
+}

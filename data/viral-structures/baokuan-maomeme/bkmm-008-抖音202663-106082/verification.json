@@ -1,0 +1,39 @@
+{
+  "video_id": "bkmm-008-抖音202663-106082",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "整体拆解和视频内容高度匹配，仅存在个别细微的措辞和细节偏差",
+  "confirmed_points": [
+    "整体剧情逻辑与视频完全一致，从铺垫称呼逻辑、推导神逻辑到实践挨揍的流程正确",
+    "分镜顺序、时间节点、起承转合节奏和视频匹配",
+    "背景描述（客厅、餐厅、海绵宝宝转场页）符合画面内容",
+    "各镜头猫素材的数量、类型、动作、表情描述基本准确",
+    "BGM、配音风格、字幕样式、转场设计的描述和视频一致"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "4",
+      "field": "cats",
+      "observed": "三橘猫横排，左为妈、中间为爸、右侧为我，爸妈低头吃饭",
+      "extracted": "三橘猫横排，左右爸妈吃饭，右我拽脸",
+      "suggestion": "修正为三橘猫横排，左为妈、中间为爸、右侧为我，爸妈低头吃饭，我表情嚣张"
+    },
+    {
+      "severity": "minor",
+      "shot_id": "unknown",
+      "field": "audio",
+      "observed": "视频中未出现明确的挨打闷响音效",
+      "extracted": "sfx包含挨打闷响音效",
+      "suggestion": "删除挨打闷响音效的描述，或标记为低置信"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "cac5c1728b5306a6f8c494938249829ed0399a2f0274d5adfe96e462f0b39bfa",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:32:58.509918+00:00",
+  "structure_sha256": "f6357aef4aa7569e24b1dc0eea4d8cf25ca226e42534460880833507d7face9a",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-008-抖音202663-106082/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

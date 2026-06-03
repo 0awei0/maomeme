@@ -1,0 +1,22 @@
+{
+  "video_id": "bkmm-032-抖音202663-659171",
+  "verdict": "pass",
+  "score": 95.0,
+  "summary": "拆解内容与原视频的剧情脉络、分镜顺序、背景设定、猫素材特征、包装风格等各维度高度匹配，无明显偏差",
+  "confirmed_points": [
+    "整体五个“上年纪征兆”场景（选矿泉水、攒袋子、买水果、拍风景、被叫阿姨）的内容和顺序完全符合原视频",
+    "各镜头的背景描述（超市冷柜、家居书架、超市零食/水果区、公园花丛、湖边步道）均贴近原画面",
+    "猫素材的数量、种类、位置、动作、角色设定（如对话的橘猫、整理袋子的奶猫、震惊的香蕉猫等）均匹配原视频",
+    "反转笑点“被小孩叫阿姨破防”的设计和画面呈现完全对应",
+    "字幕风格、BGM风格、贴纸元素的描述均和原视频一致"
+  ],
+  "issues": [],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "0affe8cefde05ef896fc5e8350b0487e38bb84ec200de782dcb3185217cf9f95",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:35:40.399742+00:00",
+  "structure_sha256": "9cd16c28b0097d9b4eb230e20cef24170c244f903f46ea4633addfb97933ecde",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-032-抖音202663-659171/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

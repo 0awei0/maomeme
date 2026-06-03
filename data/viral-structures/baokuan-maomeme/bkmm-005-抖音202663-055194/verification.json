@@ -1,0 +1,39 @@
+{
+  "video_id": "bkmm-005-抖音202663-055194",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "整体拆解与原视频高度一致，仅存在两处微小细节偏差，核心内容完全匹配",
+  "confirmed_points": [
+    "剧情逻辑匹配，为新手按人头放米煮出溢出天际米饭的翻车故事",
+    "分镜顺序、起承转合、反转点均和视频画面一致",
+    "背景描述（厨房、玄关、实拍厨房场景）完全贴合画面",
+    "大部分动物（猫/狗）素材描述、动作、位置符合画面",
+    "BGM、音效风格判断符合视频实际内容"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "6",
+      "field": "cats",
+      "observed": "该镜头前期是开心小狗在中间、浅紫色英短猫在右侧，后期切换为狸花震惊猫在中、橘猫震惊猫在右",
+      "extracted": "中：震惊狗 右：震惊橘猫",
+      "suggestion": "修正动物描述，补充该镜头先后出现的两组动物信息"
+    },
+    {
+      "severity": "minor",
+      "shot_id": "7",
+      "field": "subtitle",
+      "observed": "实拍溢出米饭的收尾镜头无额外字幕",
+      "extracted": "subtitle标注为“收尾：现实真有这种翻车”",
+      "suggestion": "删除该字幕描述，实拍收尾镜头无对应字幕"
+    }
+  ],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "2b09cb92b4008010c7e0fdab04ce2ae2e4217d673e254f48ab4048749fd55a0d",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:32:46.416194+00:00",
+  "structure_sha256": "2731f58783d473ca3afb3468822ece3b719c56ccc1b580129a8348af2d69527d",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-005-抖音202663-055194/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

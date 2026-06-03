@@ -1,0 +1,1440 @@
+{
+  "library": "baokuan-maomeme",
+  "generated_at": "2026-06-03T03:41:40.419851+00:00",
+  "total": 43,
+  "entries": [
+    {
+      "id": "bkmm-001-抖音202662-534438",
+      "filename": "抖音202662-534438.mp4",
+      "duration": 27.469,
+      "status": "done",
+      "title": "00后有自己的请假方式",
+      "primary_topic": "00后整顿职场/请假梗",
+      "meme_type": "猫meme职场整活",
+      "overall_tone": "搞笑、荒诞、职场共鸣",
+      "shot_count": 7,
+      "script_templates": [
+        "职场申请被拒→不走常规路走极端操作→倒逼对方妥协"
+      ],
+      "shot_templates": [
+        "双猫对话铺垫→多猫群像反转→真实事件呼应落地"
+      ],
+      "cat_action_templates": [
+        "装病猫脸",
+        "凶老板猫脸",
+        "香蕉猫抬担架",
+        "懵脸老板猫"
+      ],
+      "background_templates": [
+        "高层老板办公室",
+        "开放员工工位"
+      ],
+      "audio_templates": [
+        "沙雕电子BGM+夸张配音+音效卡点"
+      ],
+      "suitable_topics": [
+        "00后整顿职场",
+        "职场请假",
+        "怼老板",
+        "摸鱼梗"
+      ]
+    },
+    {
+      "id": "bkmm-002-抖音202663-000805",
+      "filename": "抖音202663-000805.mp4",
+      "duration": 62.206,
+      "status": "done",
+      "title": "室友偷用光我半个月的老干妈辣酱",
+      "primary_topic": "大学生宿舍日常、生活费拮据梗、室友整活",
+      "meme_type": "香蕉猫宿舍整活meme",
+      "overall_tone": "搞怪、接地气、沙雕搞笑",
+      "shot_count": 10,
+      "script_templates": [
+        "宿舍贫穷主角的专属物资被偷→主角崩溃→室友道歉画饼→饼是整活的反转套路"
+      ],
+      "shot_templates": [
+        "固定宿舍背景+猫meme贴图对话→反转特写→笑点镜头的三段式"
+      ],
+      "cat_action_templates": [
+        "香蕉猫哭、暴走、被按住、懵的表情动作"
+      ],
+      "background_templates": [
+        "大学上下铺宿舍蓝白格床单通用场景"
+      ],
+      "audio_templates": [
+        "搞怪沙雕BGM+年轻男生多角色配音+卡点音效"
+      ],
+      "suitable_topics": [
+        "大学生宿舍日常",
+        "室友整活",
+        "生活费拮据梗",
+        "穷学生日常",
+        "朋友互坑"
+      ]
+    },
+    {
+      "id": "bkmm-003-抖音202663-009401",
+      "filename": "抖音202663-009401.mp4",
+      "duration": 26.26,
+      "status": "done",
+      "title": "亡牌销冠马路玩命卖机油",
+      "primary_topic": "离谱玩命销售内卷梗",
+      "meme_type": "香蕉猫整活+现实梗联动",
+      "overall_tone": "荒诞搞笑无厘头",
+      "shot_count": 7,
+      "script_templates": [
+        "玩命推销→遭遇意外→毫发无损继续推→顾客折服→现实联动"
+      ],
+      "shot_templates": [
+        "路中间推销镜头→被撞镜头→爬起推销镜头→成交镜头→现实同款镜头"
+      ],
+      "cat_action_templates": [
+        "香蕉猫站路中递东西→被撞躺地→爬起继续递→大笑"
+      ],
+      "background_templates": [
+        "乡间开阔马路",
+        "车内第一视角"
+      ],
+      "audio_templates": [
+        "搞怪土嗨BGM+贱萌卡通音+撞击/特效音卡点"
+      ],
+      "suitable_topics": [
+        "离谱销售内卷",
+        "玩命打工梗",
+        "奇葩推销",
+        "服务业整活"
+      ]
+    },
+    {
+      "id": "bkmm-004-抖音202663-045888",
+      "filename": "抖音202663-045888.mp4",
+      "duration": 44.931,
+      "status": "done",
+      "title": "男大学生裸贷反套路搞笑梗",
+      "primary_topic": "反套路反诈、大学生生活梗、摆烂文化",
+      "meme_type": "剧情反转类猫meme",
+      "overall_tone": "荒诞搞笑、玩梗吐槽",
+      "shot_count": 7,
+      "script_templates": [
+        "遇到困境→出现离谱解决方法→对方提不合理要求→主角摆烂反杀反转"
+      ],
+      "shot_templates": [
+        "固定场景背景+猫meme头贴纸+上下字幕+顶部剧情标签"
+      ],
+      "cat_action_templates": [
+        "橘猫无奈脸",
+        "大眼震惊猫",
+        "歪嘴白猫老板",
+        "香蕉猫跳舞",
+        "香蕉猫摆烂"
+      ],
+      "background_templates": [
+        "傍晚天台",
+        "昏暗小巷",
+        "现代办公室",
+        "大学宿舍"
+      ],
+      "audio_templates": [
+        "沙雕BGM+消息提示音+到账音效+夸张配音"
+      ],
+      "suitable_topics": [
+        "反诈宣传",
+        "大学生生活梗",
+        "摆烂文化",
+        "反套路梗",
+        "月光族共鸣"
+      ]
+    },
+    {
+      "id": "bkmm-005-抖音202663-055194",
+      "filename": "抖音202663-055194.mp4",
+      "duration": 24.451,
+      "status": "done",
+      "title": "当我第一次在家煮米饭",
+      "primary_topic": "新手做饭翻车日常",
+      "meme_type": "生活沙雕吐槽类猫meme",
+      "overall_tone": "搞怪沙雕 共鸣感强",
+      "shot_count": 7,
+      "script_templates": [
+        "新手做某事按份算量→自我满意→实际过量翻车→他人震惊"
+      ],
+      "shot_templates": [
+        "重复加量卡点→自我得意→反转翻车→实拍佐证"
+      ],
+      "cat_action_templates": [
+        "点头递东西动作",
+        "震惊瞪大眼表情",
+        "歪嘴得意表情"
+      ],
+      "background_templates": [
+        "日常厨房台面",
+        "家居玄关"
+      ],
+      "audio_templates": [
+        "轻快沙雕BGM+动作卡点音效+萌系配音"
+      ],
+      "suitable_topics": [
+        "做饭翻车",
+        "新手做事没概念过量",
+        "购物买多了",
+        "做饭量估错"
+      ]
+    },
+    {
+      "id": "bkmm-006-抖音202663-081273",
+      "filename": "抖音202663-081273.mp4",
+      "duration": 79.271,
+      "status": "done",
+      "title": "小时候笑点低课上笑到全班破防社死现场",
+      "primary_topic": "学生时代沙雕社死日常",
+      "meme_type": "真实经历共鸣型猫meme",
+      "overall_tone": "搞怪搞笑 戳共鸣",
+      "shot_count": 8,
+      "script_templates": [
+        "日常场景铺垫笑点低人设→多场景重复触发→严肃场景触发冲突→社死升级→全员破防爆点"
+      ],
+      "shot_templates": [
+        "固定场景背景+猫头贴纸+对应台词 低成本制作"
+      ],
+      "cat_action_templates": [
+        "大笑橘猫",
+        "憋笑猪猫",
+        "疑惑猫",
+        "生气老师猫",
+        "哭哭罚站猫"
+      ],
+      "background_templates": [
+        "学生日常场景：家/卧室/餐厅/中小学教室"
+      ],
+      "audio_templates": [
+        "搞怪轻快BGM+多种笑声音效+反差配音"
+      ],
+      "suitable_topics": [
+        "学生社死日常",
+        "笑点低沙雕经历",
+        "和朋友的共鸣向内容",
+        "校园沙雕事"
+      ]
+    },
+    {
+      "id": "bkmm-007-抖音202663-083115",
+      "filename": "抖音202663-083115.mp4",
+      "duration": 10.983,
+      "status": "done",
+      "title": "没人见过我的真面目除了我女友",
+      "primary_topic": "情侣日常反差梗",
+      "meme_type": "双猫角色扮演情感搞笑梗",
+      "overall_tone": "搞怪、甜宠、接地气",
+      "shot_count": 2,
+      "script_templates": [
+        "【没人见过我的X 除了我的X】反差句式"
+      ],
+      "shot_templates": [
+        "静态居家背景+双猫大头贴+上下文字固定排版"
+      ],
+      "cat_action_templates": [
+        "呆萌猫+崩坏蹭脸猫的情侣反差动作组合"
+      ],
+      "background_templates": [
+        "低制作成本真实居家场景+猫贴纸模板"
+      ],
+      "audio_templates": [
+        "搞怪短BGM+匹配猫表情的拟声音效"
+      ],
+      "suitable_topics": [
+        "情侣日常反差",
+        "社畜公私状态反差",
+        "好友真实相处状态"
+      ]
+    },
+    {
+      "id": "bkmm-008-抖音202663-106082",
+      "filename": "抖音202663-106082.mp4",
+      "duration": 26.146,
+      "status": "done",
+      "title": "当儿时的我逻辑不符合逻辑",
+      "primary_topic": "儿时迷惑逻辑搞笑吐槽",
+      "meme_type": "家庭向猫meme梗",
+      "overall_tone": "沙雕搞笑、共鸣感强",
+      "shot_count": 8,
+      "script_templates": [
+        "儿时迷惑逻辑推导→现实应用→触发家长反应→挨揍收尾"
+      ],
+      "shot_templates": [
+        "单猫逻辑铺垫→多猫家庭场景互动→转场→结局反应"
+      ],
+      "cat_action_templates": [
+        "呆滞疑惑→得意嚣张→震惊→害怕→委屈"
+      ],
+      "background_templates": [
+        "现代简约家庭客厅/餐厅通用场景"
+      ],
+      "audio_templates": [
+        "轻快搞怪BGM+分角色反差配音"
+      ],
+      "suitable_topics": [
+        "儿时迷惑行为",
+        "家庭搞笑日常",
+        "神逻辑吐槽",
+        "亲子梗"
+      ]
+    },
+    {
+      "id": "bkmm-009-抖音202663-107578",
+      "filename": "抖音202663-107578.mp4",
+      "duration": 68.29,
+      "status": "done",
+      "title": "家族篮球基因喂饭传承梗",
+      "primary_topic": "家庭兄弟姐妹带娃日常搞笑",
+      "meme_type": "香蕉猫家庭沙雕梗",
+      "overall_tone": "搞怪无厘头、接地气搞笑",
+      "shot_count": 7,
+      "script_templates": [
+        "长辈甩锅任务→晚辈搞砸用奇葩方式解决→多年后任务传承→晚辈复刻操作→长辈揭晓是祖传技能"
+      ],
+      "shot_templates": [
+        "居家场景逐句台词切镜头→动作镜头卡鼓点→反转收尾"
+      ],
+      "cat_action_templates": [
+        "香蕉猫晃头抗拒动作、持小香蕉猫抛投动作、得意大笑表情"
+      ],
+      "background_templates": [
+        "普通中式居家客厅，无需复杂场景"
+      ],
+      "audio_templates": [
+        "沙雕快节奏BGM+投篮扔物音效+搞怪配音"
+      ],
+      "suitable_topics": [
+        "家庭带娃日常、兄弟姐妹相处、甩锅梗、家族传承、搞笑反差"
+      ]
+    },
+    {
+      "id": "bkmm-010-抖音202663-115078",
+      "filename": "抖音202663-115078.mp4",
+      "duration": 13.862,
+      "status": "done",
+      "title": "没人见过我的真面目除了男友",
+      "primary_topic": "情侣日常反差",
+      "meme_type": "角色代入反差梗",
+      "overall_tone": "沙雕搞笑",
+      "shot_count": 4,
+      "script_templates": [
+        "立完美人设+亲近的人见过真实疯癫面的反差模板"
+      ],
+      "shot_templates": [
+        "双猫左右分饰两角，一动一静反差分镜"
+      ],
+      "cat_action_templates": [
+        "蓝猫疯狂咬脚晃头疯癫动作",
+        "白猫面无表情冷漠脸动作"
+      ],
+      "background_templates": [
+        "居家私密场景（卧室/客厅）模板"
+      ],
+      "audio_templates": [
+        "快节奏搞怪BGM+对应动作同步音效"
+      ],
+      "suitable_topics": [
+        "情侣日常反差",
+        "人前vs人后反差",
+        "闺蜜相处日常",
+        "社畜私下状态"
+      ]
+    },
+    {
+      "id": "bkmm-011-抖音202663-117937",
+      "filename": "抖音202663-117937.mp4",
+      "duration": 38.22,
+      "status": "done",
+      "title": "当上课发现老师裤子坏了",
+      "primary_topic": "校园社死日常",
+      "meme_type": "猫meme情景整活",
+      "overall_tone": "沙雕搞怪、共鸣感强",
+      "shot_count": 6,
+      "script_templates": [
+        "公共场合撞见他人社死→全员心照不宣→当事人即将发现→集体憋笑→破防大笑→事后余韵"
+      ],
+      "shot_templates": [
+        "社死事件镜头→主角反应→周围人反应→悬念镜头→憋笑破防→事后收尾"
+      ],
+      "cat_action_templates": [
+        "cheems捂嘴憋笑→cheems着急提醒→cheems憋笑抖动→cheems仰头大笑"
+      ],
+      "background_templates": [
+        "教室讲台场景→教室后排场景→学校走廊场景"
+      ],
+      "audio_templates": [
+        "沙雕BGM+夸张旁白+笑点卡鼓点+憋笑/大笑音效"
+      ],
+      "suitable_topics": [
+        "校园社死",
+        "公共场合憋笑",
+        "打工人撞见老板社死",
+        "上课摸鱼系列"
+      ]
+    },
+    {
+      "id": "bkmm-012-抖音202663-122472",
+      "filename": "抖音202663-122472.mp4",
+      "duration": 55.008,
+      "status": "done",
+      "title": "2025年3月底猫meme考试",
+      "primary_topic": "猫meme知识互动答题",
+      "meme_type": "互动答题类",
+      "overall_tone": "轻松搞怪、有参与感",
+      "shot_count": 7,
+      "script_templates": [
+        "meme知识答题模板，分选择/听力两部分，每道题3选项+倒计时+公布答案"
+      ],
+      "shot_templates": [
+        "顶部固定标题栏+中间题目+底部3选项+中央倒计时+正确答案标记"
+      ],
+      "cat_action_templates": [
+        "热门meme猫当选项，可替换为任意热门梗图"
+      ],
+      "background_templates": [
+        "纯白背景+顶部黄色标题栏，干净突出内容"
+      ],
+      "audio_templates": [
+        "轻快BGM+读题+倒计时音效+答对提示音"
+      ],
+      "suitable_topics": [
+        "网络热梗考核",
+        "明星/影视知识答题",
+        "职场/生活常识趣味考核"
+      ]
+    },
+    {
+      "id": "bkmm-013-抖音202663-202934",
+      "filename": "抖音202663-202934.mp4",
+      "duration": 29.209,
+      "status": "done",
+      "title": "暑假在家现状",
+      "primary_topic": "学生暑假生活",
+      "meme_type": "生活共鸣类猫meme",
+      "overall_tone": "搞笑、接地气、共鸣感强",
+      "shot_count": 6,
+      "script_templates": [
+        "[群体]现状：1、[状态1] 2、[状态2] … n、[核心梗状态]"
+      ],
+      "shot_templates": [
+        "顶部标题条+居中猫meme+下方状态小字+台词气泡固定模板"
+      ],
+      "cat_action_templates": [
+        "香蕉猫生活化动作：睡觉、玩手机、晕倒、撒娇"
+      ],
+      "background_templates": [
+        "家庭场景：卧室、客厅、厨房写实生活化背景"
+      ],
+      "audio_templates": [
+        "欢快搞怪BGM+卡鼓点切状态+搞怪角色配音"
+      ],
+      "suitable_topics": [
+        "学生生活",
+        "打工人放假",
+        "亲子互动",
+        "当代年轻人日常",
+        "假期状态"
+      ]
+    },
+    {
+      "id": "bkmm-014-抖音202663-221817",
+      "filename": "抖音202663-221817.mp4",
+      "duration": 23.94,
+      "status": "done",
+      "title": "当爸妈问我对生活的态度",
+      "primary_topic": "当代年轻人生活态度",
+      "meme_type": "蟑螂猫对话玩梗",
+      "overall_tone": "搞怪、贱萌、反鸡汤",
+      "shot_count": 6,
+      "script_templates": [
+        "【长辈提问场景】+【歪理前提】+【押韵排比口号】+【反常识终极punchline】"
+      ],
+      "shot_templates": [
+        "固定场景：发言角色在左，2个听众在右，只换发言者表情包"
+      ],
+      "cat_action_templates": [
+        "发言者表情对应台词情绪，听众全程呆滞最后做震惊反差表情"
+      ],
+      "background_templates": [
+        "固定普通生活场景（客厅/办公室）无需切换，降低制作成本"
+      ],
+      "audio_templates": [
+        "快节奏土味BGM+贱声配音+每句台词卡鼓点加咚音效"
+      ],
+      "suitable_topics": [
+        "年轻人生活态度、职场摸鱼、亲属对话反套路、反鸡汤吐槽"
+      ]
+    },
+    {
+      "id": "bkmm-015-抖音202663-298938",
+      "filename": "抖音202663-298938.mp4",
+      "duration": 52.547,
+      "status": "done",
+      "title": "冲食堂撞倒班主任的爆笑连锁反应",
+      "primary_topic": "校园干饭社死趣事",
+      "meme_type": "香蕉猫+山羊鬼畜校园梗",
+      "overall_tone": "沙雕搞笑 共鸣感强",
+      "shot_count": 7,
+      "script_templates": [
+        "小事触发连锁反应 最终宿命循环模板",
+        "社死事件升级到离谱程度模板"
+      ],
+      "shot_templates": [
+        "事件引入-连续升级-反转爆点-循环收尾分镜模板"
+      ],
+      "cat_action_templates": [
+        "香蕉猫跑步/相撞/倒地",
+        "大眼猫震惊脸",
+        "大橘严肃脸",
+        "山羊鬼畜晃头"
+      ],
+      "background_templates": [
+        "校园主干道",
+        "高中教室讲台",
+        "堆满书的高中课桌"
+      ],
+      "audio_templates": [
+        "搞怪快节奏BGM+碰撞音效+山羊叫通用模板"
+      ],
+      "suitable_topics": [
+        "校园趣事",
+        "打工人干饭社死",
+        "日常离谱小事",
+        "宿命循环梗"
+      ]
+    },
+    {
+      "id": "bkmm-016-抖音202663-377146",
+      "filename": "抖音202663-377146.mp4",
+      "duration": 38.777,
+      "status": "done",
+      "title": "在村里的假期日常",
+      "primary_topic": "乡村假期县城游玩日常",
+      "meme_type": "猫meme写实vlog",
+      "overall_tone": "轻松搞笑 接地气有共鸣",
+      "shot_count": 8,
+      "script_templates": [
+        "乡村约玩流程：邀约-赶路-游玩-赶车返程-约下次"
+      ],
+      "shot_templates": [
+        "典型场景跳切+双猫对话 每场景3-5秒"
+      ],
+      "cat_action_templates": [
+        "橘猫丧脸=状态差 金渐层活泼=开心 香蕉猫=惊讶"
+      ],
+      "background_templates": [
+        "乡村+县城典型场景组合 写实接地气"
+      ],
+      "audio_templates": [
+        "轻快搞笑BGM+搞笑女配音+生活化音效"
+      ],
+      "suitable_topics": [
+        "放假日常",
+        "闺蜜出行",
+        "县城生活共鸣",
+        "返乡vlog"
+      ]
+    },
+    {
+      "id": "bkmm-017-抖音202663-378934",
+      "filename": "抖音202663-378934.mp4",
+      "duration": 12.769,
+      "status": "done",
+      "title": "当医生嘱咐你不要喝饮料",
+      "primary_topic": "吐槽权威角色双标言行",
+      "meme_type": "对话反差梗",
+      "overall_tone": "搞笑反讽 扎心共鸣",
+      "shot_count": 6,
+      "script_templates": [
+        "权威角色劝你别做XX，转头自己做还嘴硬双标"
+      ],
+      "shot_templates": [
+        "双人对话分镜：对方劝→你答应→发现对方做→对方嘴硬→说真话"
+      ],
+      "cat_action_templates": [
+        "严肃劝人→偷偷做事→被发现理直气壮→爽到眯眼"
+      ],
+      "background_templates": [
+        "办公/诊室等权威场景双人对话背景"
+      ],
+      "audio_templates": [
+        "轻快搞怪BGM+反差配音+动作音效"
+      ],
+      "suitable_topics": [
+        "领导双标",
+        "父母双标",
+        "朋友双标",
+        "权威角色言行不一吐槽"
+      ]
+    },
+    {
+      "id": "bkmm-018-抖音202663-449762",
+      "filename": "抖音202663-449762.mp4",
+      "duration": 37.493,
+      "status": "done",
+      "title": "吃饭排队祈祷前面人都不在的恶毒时刻",
+      "primary_topic": "日常排队等号的共鸣梗",
+      "meme_type": "香蕉猫搞怪meme",
+      "overall_tone": "搞笑、扎心、共鸣",
+      "shot_count": 6,
+      "script_templates": [
+        "排队等号/办事，主角祈祷前面的号都跳过，自己顺利排到，下一位破防"
+      ],
+      "shot_templates": [
+        "公共排队场景+暗调聚焦内心戏切镜，循环递进"
+      ],
+      "cat_action_templates": [
+        "香蕉猫举号码牌排队",
+        "cheems脸祈祷",
+        "夸张表情的破防猫"
+      ],
+      "background_templates": [
+        "餐饮店/医院/银行排队等候区，暖黄灯光"
+      ],
+      "audio_templates": [
+        "轻快搞怪BGM+交替叫号声+内心吐槽配音"
+      ],
+      "suitable_topics": [
+        "排队吃饭、挂号、办业务、抢号等日常共鸣场景"
+      ]
+    },
+    {
+      "id": "bkmm-019-抖音202663-474570",
+      "filename": "抖音202663-474570.mp4",
+      "duration": 20.571,
+      "status": "done",
+      "title": "当你很漂亮却一直单身",
+      "primary_topic": "单身情感反差梗",
+      "meme_type": "剧情反转类猫meme",
+      "overall_tone": "搞怪扎心又好笑",
+      "shot_count": 6,
+      "script_templates": [
+        "当事人自我疑惑→反转到第三方视角揭秘原因"
+      ],
+      "shot_templates": [
+        "日常场景铺垫情绪→黑底转场切换视角→反差笑点抛出"
+      ],
+      "cat_action_templates": [
+        "流泪委屈猫",
+        "wink得意猫",
+        "道士做法柴犬猫"
+      ],
+      "background_templates": [
+        "明亮走廊",
+        "男生上下铺宿舍"
+      ],
+      "audio_templates": [
+        "轻快搞怪BGM+台词卡点+对应情绪音效"
+      ],
+      "suitable_topics": [
+        "单身梗",
+        "男女思维差异",
+        "情感反差",
+        "搞笑日常"
+      ]
+    },
+    {
+      "id": "bkmm-020-抖音202663-487524",
+      "filename": "抖音202663-487524.mp4",
+      "duration": 44.373,
+      "status": "done",
+      "title": "当我在做手术时医生突然表白",
+      "primary_topic": "沙雕恋爱反转整活",
+      "meme_type": "香蕉猫搞怪反转梗",
+      "overall_tone": "跳脱搞怪、沙雕反转",
+      "shot_count": 8,
+      "script_templates": [
+        "特定场景下一方逐层送惊喜→另一方反向送出更离谱惊喜反转"
+      ],
+      "shot_templates": [
+        "固定场景三角色站位→近景掏礼物特写→反应镜头→再掏礼物→终极反转"
+      ],
+      "cat_action_templates": [
+        "香蕉猫呆滞脸、震惊睁大眼睛、害羞脸红、小丑脸替换"
+      ],
+      "background_templates": [
+        "固定室内场景三角色固定左中右站位"
+      ],
+      "audio_templates": [
+        "轻快沙雕BGM+对话配音+掏礼物叮音效+惊讶音效"
+      ],
+      "suitable_topics": [
+        "恋爱整活",
+        "反转段子",
+        "情侣套路",
+        "沙雕日常",
+        "送礼整活"
+      ]
+    },
+    {
+      "id": "bkmm-021-抖音202663-494793",
+      "filename": "抖音202663-494793.mp4",
+      "duration": 56.378,
+      "status": "done",
+      "title": "凌晨两点不小心回复妈妈微信社死现场",
+      "primary_topic": "亲子互动、熬夜社死、撒谎被戳穿",
+      "meme_type": "真人日常猫meme演绎",
+      "overall_tone": "搞笑接地气、共鸣感强",
+      "shot_count": 8,
+      "script_templates": [
+        "撒谎应付长辈/领导→偷偷放飞自我→意外露马脚→社死被抓"
+      ],
+      "shot_templates": [
+        "固定统一背景+时间跳转+换猫表情对应情绪变化"
+      ],
+      "cat_action_templates": [
+        "臭脸玩手机",
+        "端正坐装乖",
+        "揉眼刷手机",
+        "震惊脸",
+        "求饶脸"
+      ],
+      "background_templates": [
+        "统一居家卧室场景，仅调整灯光亮度区分时间"
+      ],
+      "audio_templates": [
+        "搞怪轻快BGM+戏精分角色配音+踩点音效"
+      ],
+      "suitable_topics": [
+        "熬夜被抓",
+        "摸鱼被领导抓",
+        "撒谎被戳穿",
+        "日常社死瞬间"
+      ]
+    },
+    {
+      "id": "bkmm-022-抖音202663-502975",
+      "filename": "抖音202663-502975.mp4",
+      "duration": 33.158,
+      "status": "done",
+      "title": "男孩子低配的一生",
+      "primary_topic": "男性消费观念、情侣温情、原生家庭影响",
+      "meme_type": "猫meme剧情反差类",
+      "overall_tone": "前期心酸无奈，后期温暖戳泪",
+      "shot_count": 8,
+      "script_templates": [
+        "【主角各人生阶段相同消费习惯+他人劝说+主角拒绝+最后他人心疼的反差结构】"
+      ],
+      "shot_templates": [
+        "【双角色左右站位对话+不同消费场景切换+结尾黑底文字升华】"
+      ],
+      "cat_action_templates": [
+        "【双猫左右对话，左主动右被动，表情形成反差】"
+      ],
+      "background_templates": [
+        "【不同消费场景：家/手机店/游戏场景/电脑城/4S店】"
+      ],
+      "audio_templates": [
+        "【抒情BGM+多角色配音+卡点转场音效】"
+      ],
+      "suitable_topics": [
+        "男性消费观念、情侣温情、原生家庭、节俭话题、性别差异"
+      ]
+    },
+    {
+      "id": "bkmm-023-抖音202663-504011",
+      "filename": "抖音202663-504011.mp4",
+      "duration": 49.412,
+      "status": "done",
+      "title": "外婆的边角地",
+      "primary_topic": "隔代亲情、原生家庭矛盾、基层利益纠纷",
+      "meme_type": "猫meme真人事件改编",
+      "overall_tone": "共情催泪，带现实讽刺感",
+      "shot_count": 8,
+      "script_templates": [
+        "【原生家庭抛弃→隔代亲人养大→利益被侵占→成年后拒绝原生家庭吸血】"
+      ],
+      "shot_templates": [
+        "【对话左右分镜+猫贴角色+名字标下方+结尾升维放真实原型】"
+      ],
+      "cat_action_templates": [
+        "嫌弃脸猫=自私角色",
+        "摸头/温柔脸猫=长辈角色",
+        "炸毛/愤怒脸猫=反抗角色"
+      ],
+      "background_templates": [
+        "乡村土坯房",
+        "农村荒地/耕地",
+        "乡村老屋内堂"
+      ],
+      "audio_templates": [
+        "抒情BGM+多角色差异化配音+动作对应轻音效"
+      ],
+      "suitable_topics": [
+        "隔代亲情",
+        "原生家庭矛盾",
+        "重男轻女",
+        "老实人权益被侵害",
+        "反吸血"
+      ]
+    },
+    {
+      "id": "bkmm-024-抖音202663-525083",
+      "filename": "抖音202663-525083.mp4",
+      "duration": 32.522,
+      "status": "done",
+      "title": "当修空调被错当以为跳楼",
+      "primary_topic": "打工人离谱误会社死日常",
+      "meme_type": "真人热点事件改编猫meme",
+      "overall_tone": "荒诞搞笑、接地气",
+      "shot_count": 8,
+      "script_templates": [
+        "打工人正常工作→路人误会→官方到场→当事人哭笑不得的社死剧本"
+      ],
+      "shot_templates": [
+        "猫meme演绎情绪递进→切真人事件实拍呼应→灵魂拷问收尾"
+      ],
+      "cat_action_templates": [
+        "表情从疑惑→震惊→愤怒→崩溃的递进表演模板"
+      ],
+      "background_templates": [
+        "高空场景+事件相关道具（消防车/救生垫）"
+      ],
+      "audio_templates": [
+        "搞怪BGM+接地气方言配音+对应场景音效"
+      ],
+      "suitable_topics": [
+        "打工人社死",
+        "离谱误会",
+        "日常荒诞事件",
+        "民生热点改编"
+      ]
+    },
+    {
+      "id": "bkmm-025-抖音202663-534479",
+      "filename": "抖音202663-534479.mp4",
+      "duration": 95.736,
+      "status": "done",
+      "title": "香蕉猫扔传单误砸骑车大哥反被整蛊爆笑反转",
+      "primary_topic": "街头日常社死搞笑反转",
+      "meme_type": "香蕉猫沙雕搞笑meme",
+      "overall_tone": "搞怪贱萌 反转搞笑",
+      "shot_count": 8,
+      "script_templates": [
+        "日常小失误→冤家路窄遇对方→反向报复反转搞笑"
+      ],
+      "shot_templates": [
+        "现实场景合成卡通猫角色 简单特效配合笑点"
+      ],
+      "cat_action_templates": [
+        "香蕉猫走路递东西 扔东西 骑车 懵/拽表情"
+      ],
+      "background_templates": [
+        "城市步行街 小区门口马路 现实街景素材"
+      ],
+      "audio_templates": [
+        "魔性搞怪BGM+贱萌角色配音+卡点音效"
+      ],
+      "suitable_topics": [
+        "社死日常",
+        "街头搞笑",
+        "冤种朋友互动",
+        "日常小报复爽梗"
+      ]
+    },
+    {
+      "id": "bkmm-026-抖音202663-535907",
+      "filename": "抖音202663-535907.mp4",
+      "duration": 61.928,
+      "status": "done",
+      "title": "小时候玩充气城堡以为是来打自由搏击",
+      "primary_topic": "童年趣事沙雕二创",
+      "meme_type": "香蕉猫+真人梗二创",
+      "overall_tone": "搞笑沙雕无厘头",
+      "shot_count": 8,
+      "script_templates": [
+        "童年回忆+离谱误解+反向整活的滚雪球模板",
+        "固定场景多次重复升级笑点模板"
+      ],
+      "shot_templates": [
+        "多人站固定场景对话模板",
+        "黑底白字转场跳时间模板"
+      ],
+      "cat_action_templates": [
+        "香蕉猫站着不动表情平淡",
+        "香蕉猫哭着跑",
+        "香蕉猫抱头震惊",
+        "香蕉猫举拳头亢奋"
+      ],
+      "background_templates": [
+        "户外游乐设施场景",
+        "充气城堡内部场景",
+        "纯黑转场背景"
+      ],
+      "audio_templates": [
+        "卡迪那搞怪BGM+萌系配音+笑点卡点音效模板"
+      ],
+      "suitable_topics": [
+        "童年离谱回忆",
+        "打工人误解老板意思",
+        "奇葩消费场景",
+        "反向整活日常"
+      ]
+    },
+    {
+      "id": "bkmm-027-抖音202663-550698",
+      "filename": "抖音202663-550698.mp4",
+      "duration": 32.113,
+      "status": "done",
+      "title": "情侣日常之女友灵魂拷问",
+      "primary_topic": "情侣搞笑日常",
+      "meme_type": "猫脸拟人对话梗",
+      "overall_tone": "诙谐调侃、沙雕搞笑",
+      "shot_count": 6,
+      "script_templates": [
+        "情侣灵魂拷问模板：一方不断质疑感情，另一方所有举证都被用「你和别人谈也会这么做」反驳，最后抛出绝杀提问"
+      ],
+      "shot_templates": [
+        "固定静态背景+左右双角色表情包切换+字幕更新，零运镜低成本制作模板"
+      ],
+      "cat_action_templates": [
+        "双猫左右固定站位，左方弱势方表情从懵→气急→委屈→呆滞，右方强势方表情从严肃→嘲讽→理直气壮"
+      ],
+      "background_templates": [
+        "居家静态背景（卧室/客厅/沙发），无需动态变化"
+      ],
+      "audio_templates": [
+        "沙雕轻快BGM+搞怪男女配音+少量吐槽音效"
+      ],
+      "suitable_topics": [
+        "情侣日常搞笑",
+        "男女思维差异",
+        "直男迷惑行为",
+        "情侣抬杠",
+        "感情灵魂拷问"
+      ]
+    },
+    {
+      "id": "bkmm-028-抖音202663-572122",
+      "filename": "抖音202663-572122.mp4",
+      "duration": 27.701,
+      "status": "done",
+      "title": "情侣猫过马路遇卡车上演狗血殉情戏",
+      "primary_topic": "情侣狗血剧情玩梗",
+      "meme_type": "荒诞虐恋玩梗meme",
+      "overall_tone": "沙雕搞笑、浮夸悲情反差",
+      "shot_count": 6,
+      "script_templates": [
+        "情侣腻歪→突发危机→跳转狗血苦情→浮夸离别台词→离谱结局"
+      ],
+      "shot_templates": [
+        "固定场景→角色表情突变→情绪特写放大→惨状收尾"
+      ],
+      "cat_action_templates": [
+        "撒娇猫→震惊猫→互推流泪猫→哭飞猫→嘶吼猫→躺平猫"
+      ],
+      "background_templates": [
+        "城市斑马线+驶来的卡车"
+      ],
+      "audio_templates": [
+        "舒缓BGM→突然紧张→苦情BGM放大"
+      ],
+      "suitable_topics": [
+        "情侣玩梗",
+        "狗血剧吐槽",
+        "荒诞搞笑剧情",
+        "谐音梗玩梗"
+      ]
+    },
+    {
+      "id": "bkmm-029-抖音202663-574311",
+      "filename": "抖音202663-574311.mp4",
+      "duration": 21.918,
+      "status": "done",
+      "title": "从别家店出来被常去餐馆老板抓包",
+      "primary_topic": "日常社死互动梗",
+      "meme_type": "香蕉猫真人场景合成梗",
+      "overall_tone": "搞笑、尴尬、有共鸣感",
+      "shot_count": 7,
+      "script_templates": [
+        "A做了愧对熟人的事被当场抓包，双方欲言又止→熟人情绪崩溃→A愧疚道歉"
+      ],
+      "shot_templates": [
+        "场景引入→抓包方表情→被抓包方反应→抓包方情绪转折→被抓包方愧疚→抓包方爆发"
+      ],
+      "cat_action_templates": [
+        "香蕉猫拎东西呆滞",
+        "橘猫瞪眼错愕",
+        "黑脸猫流汗无语",
+        "香蕉猫大哭锤地"
+      ],
+      "background_templates": [
+        "街边实体店门口",
+        "小餐馆店内入口"
+      ],
+      "audio_templates": [
+        "搞怪轻快BGM+夸张角色配音+情绪音效卡点"
+      ],
+      "suitable_topics": [
+        "日常社死",
+        "商家和老顾客互动",
+        "背叛感搞笑场景",
+        "日常愧疚瞬间"
+      ]
+    },
+    {
+      "id": "bkmm-030-抖音202663-628799",
+      "filename": "抖音202663-628799.mp4",
+      "duration": 46.393,
+      "status": "done",
+      "title": "情侣吵架女生放狠话转头秒睡",
+      "primary_topic": "情侣日常搞笑反差",
+      "meme_type": "炸炸猪/cheems猫情侣梗",
+      "overall_tone": "沙雕、搞笑、共鸣感强",
+      "shot_count": 7,
+      "script_templates": [
+        "冲突场景→一方放嘴硬狠话→行为和台词强反差→另一方安抚→神反转和解"
+      ],
+      "shot_templates": [
+        "固定场景+猫meme替换角色+逐句弹出反差台词"
+      ],
+      "cat_action_templates": [
+        "对吵橘猫",
+        "蹦跶吵架灰猫",
+        "疑惑猫",
+        "香蕉熟睡猫",
+        "讨好cheems狗"
+      ],
+      "background_templates": [
+        "固定卧室场景，切换亮灯/暖光两种状态"
+      ],
+      "audio_templates": [
+        "emo BGM配沙雕反差剧情，台词卡点弹出"
+      ],
+      "suitable_topics": [
+        "情侣日常反差",
+        "男女思维差异",
+        "嘴硬人设",
+        "搞笑生活日常"
+      ]
+    },
+    {
+      "id": "bkmm-031-抖音202663-639282",
+      "filename": "抖音202663-639282.mp4",
+      "duration": 23.127,
+      "status": "done",
+      "title": "放假后在家挨骂的你",
+      "primary_topic": "放假在家被家长吐槽的大众共鸣场景",
+      "meme_type": "角色代入吐槽类",
+      "overall_tone": "搞笑、戏谑、有共鸣",
+      "shot_count": 5,
+      "script_templates": [
+        "固定指责方罗列被指责方N条大众共鸣罪状，最后出反转惩罚结局"
+      ],
+      "shot_templates": [
+        "双角色左右站位，指责方在右手指左，每句吐槽切对应场景+对应状态的被指责方形象"
+      ],
+      "cat_action_templates": [
+        "cheems皱眉指人模板",
+        "不同状态猫meme（躺平/懵/顶嘴/哭）模板"
+      ],
+      "background_templates": [
+        "家庭多场景（卧室/厨房/玄关/客厅）快速切换模板"
+      ],
+      "audio_templates": [
+        "快节奏卡点BGM+逐句吐槽配音，卡鼓点切镜头"
+      ],
+      "suitable_topics": [
+        "放假被家长骂",
+        "上班被领导吐槽",
+        "上学被老师批评",
+        "情侣互相吐槽"
+      ]
+    },
+    {
+      "id": "bkmm-032-抖音202663-659171",
+      "filename": "抖音202663-659171.mp4",
+      "duration": 26.703,
+      "status": "done",
+      "title": "让你意识到已经上年纪的瞬间",
+      "primary_topic": "当代年轻人变老的日常征兆/年龄共鸣",
+      "meme_type": "日常扎心共鸣向猫meme",
+      "overall_tone": "搞笑又扎心，强共鸣感",
+      "shot_count": 5,
+      "script_templates": [
+        "上年纪征兆模板：[当前行为1]+[以前相反行为1]→[当前行为2]+[以前相反行为2]→最后暴击反转事件"
+      ],
+      "shot_templates": [
+        "场景展示+猫拟人演绎行为+回忆反差+最终反转punchline"
+      ],
+      "cat_action_templates": [
+        "橘猫疑问脸、白猫喝水脸、奶猫整理东西脸、香蕉猫走路脸、橘猫震惊脸、香蕉猫震惊脸"
+      ],
+      "background_templates": [
+        "超市、家居客厅、公园、湖边等日常场景"
+      ],
+      "audio_templates": [
+        "轻快搞怪BGM+网络梗配音+笑点处加对应音效+punchline处BGM骤停"
+      ],
+      "suitable_topics": [
+        "年轻人变老日常、年龄焦虑、日常共鸣梗、扎心搞笑生活片段"
+      ]
+    },
+    {
+      "id": "bkmm-033-抖音202663-666778",
+      "filename": "抖音202663-666778.mp4",
+      "duration": 17.878,
+      "status": "done",
+      "title": "大学生最不能接受的事",
+      "primary_topic": "大学生快递等待痛点",
+      "meme_type": "日常吐槽类",
+      "overall_tone": "搞笑共鸣",
+      "shot_count": 6,
+      "script_templates": [
+        "时间线递进式日常吐槽模板：过去-现在-不同时间节点情绪变化-反转暴击"
+      ],
+      "shot_templates": [
+        "相同主角不同场景切换，每镜头对应一个情绪节点的短平快分镜"
+      ],
+      "cat_action_templates": [
+        "不同情绪匹配对应网红猫meme脸模板：开心/焦虑/期待/暴躁/疲惫/震惊"
+      ],
+      "background_templates": [
+        "大学生常见场景模板：宿舍/书桌/教学楼/食堂"
+      ],
+      "audio_templates": [
+        "搞怪轻快BGM+萌系配音+对应情绪音效的搭配"
+      ],
+      "suitable_topics": [
+        "大学生日常吐槽",
+        "快递等待痛点",
+        "消费相关吐槽",
+        "当代年轻人生活状态"
+      ]
+    },
+    {
+      "id": "bkmm-034-抖音202663-693881",
+      "filename": "抖音202663-693881.mp4",
+      "duration": 57.767,
+      "status": "done",
+      "title": "香蕉猫烤鸡腿摊暖心反转整活",
+      "primary_topic": "打工人日常暖心整活",
+      "meme_type": "猫meme剧情反转类",
+      "overall_tone": "搞笑治愈带沙雕感",
+      "shot_count": 8,
+      "script_templates": [
+        "市井摊主+顾客 反套路冲突→暖心反转→搞笑收尾"
+      ],
+      "shot_templates": [
+        "快节奏开场吆喝→冲突升级→切搞笑反应镜头→反转抒情→回归沙雕收尾"
+      ],
+      "cat_action_templates": [
+        "冷漠摊主猫/委屈香蕉猫/窜稀cheems猫/嚣张炫富猫"
+      ],
+      "background_templates": [
+        "夜晚夜市流动小吃摊/家用普通卫生间"
+      ],
+      "audio_templates": [
+        "土味搞怪BGM+卡鼓点台词+沙雕音效"
+      ],
+      "suitable_topics": [
+        "打工人日常共鸣",
+        "市井暖心小事",
+        "反套路整活",
+        "健康饮食提醒"
+      ]
+    },
+    {
+      "id": "bkmm-035-抖音202663-761191",
+      "filename": "抖音202663-761191.mp4",
+      "duration": 33.483,
+      "status": "done",
+      "title": "女朋友的心里话",
+      "primary_topic": "情侣日常反差沙雕梗",
+      "meme_type": "香蕉猫/表情猫情侣meme",
+      "overall_tone": "搞笑沙雕、甜中带欠",
+      "shot_count": 6,
+      "script_templates": [
+        "A以为B睡着疯狂吐槽→中途反转温情→最后补刀吐槽→B全程没睡当场回怼"
+      ],
+      "shot_templates": [
+        "固定日常场景，双角色一边不动一边切换表情对应情绪"
+      ],
+      "cat_action_templates": [
+        "香蕉猫躺平代表睡觉，切换不同表情猫脸代表情绪变化"
+      ],
+      "background_templates": [
+        "固定不变的日常场景（卧室/客厅/办公室）降低制作成本"
+      ],
+      "audio_templates": [
+        "轻节奏搞怪BGM+梦话音效+最后怼人爆发音效"
+      ],
+      "suitable_topics": [
+        "情侣日常、闺蜜吐槽、室友沙雕事、职场摸鱼吐槽"
+      ]
+    },
+    {
+      "id": "bkmm-036-抖音202663-775737",
+      "filename": "抖音202663-775737.mp4",
+      "duration": 48.205,
+      "status": "done",
+      "title": "男生的那些出厂设置",
+      "primary_topic": "男生日常共性梗",
+      "meme_type": "生活共鸣类猫meme",
+      "overall_tone": "搞笑接地气 玩梗调侃",
+      "shot_count": 7,
+      "script_templates": [
+        "[群体]的那些[共性特征]：分场景演绎多个日常共鸣梗"
+      ],
+      "shot_templates": [
+        "hook点题→小场景setup→escalation→punchline→多场景循环→cta引导"
+      ],
+      "cat_action_templates": [
+        "嫌弃脸→吃东西→玩物品→对话打赌→干饭→秒睡"
+      ],
+      "background_templates": [
+        "日常场景：家/户外路/饭馆/卧室 都是大众熟悉的生活化场景"
+      ],
+      "audio_templates": [
+        "轻快搞怪BGM+接地气旁白+对应动作拟声音效"
+      ],
+      "suitable_topics": [
+        "女生共性梗",
+        "打工人共性梗",
+        "学生党共性梗",
+        "不同职业共性梗"
+      ]
+    },
+    {
+      "id": "bkmm-037-抖音202663-803466",
+      "filename": "抖音202663-803466.mp4",
+      "duration": 60.233,
+      "status": "done",
+      "title": "猫抓老鼠全家送主人当全家桶",
+      "primary_topic": "养猫日常离谱反差",
+      "meme_type": "剧情反转类猫meme",
+      "overall_tone": "搞怪无厘头 反差搞笑",
+      "shot_count": 7,
+      "script_templates": [
+        "固有认知反向铺垫→当场打脸→正向奖励铺垫→反转送离谱礼物→升级重复送→最终终极暴击"
+      ],
+      "shot_templates": [
+        "三个相同角色重复相同台词强化认知→反差镜头打脸→分阶段升级离谱事件→结尾定格暴击"
+      ],
+      "cat_action_templates": [
+        "橘猫香炉不屑脸递东西",
+        "香蕉猫震惊/疑惑脸",
+        "灰仓鼠meme晃头说话"
+      ],
+      "background_templates": [
+        "纯色简单背景/普通居家场景/夜晚昏暗场景"
+      ],
+      "audio_templates": [
+        "快节奏搞怪BGM+反差配音+动作卡点音效"
+      ],
+      "suitable_topics": [
+        "养猫离谱日常",
+        "反向送礼搞笑剧情",
+        "装逼被打脸剧情",
+        "日常反向暴击事件"
+      ]
+    },
+    {
+      "id": "bkmm-038-抖音202663-863419",
+      "filename": "抖音202663-863419.mp4",
+      "duration": 38.986,
+      "status": "done",
+      "title": "记忆中的童年生日声音",
+      "primary_topic": "90后童年生日怀旧共鸣",
+      "meme_type": "猫meme怀旧小剧场",
+      "overall_tone": "搞笑、怀旧、有共鸣",
+      "shot_count": 8,
+      "script_templates": [
+        "童年日常片段+怀旧物品+集体痛点反转的叙事模板"
+      ],
+      "shot_templates": [
+        "双猫左右对话分镜",
+        "单猫内心活动分镜",
+        "场景切换叙事模板"
+      ],
+      "cat_action_templates": [
+        "香蕉猫张嘴开心脸",
+        "猫裹被子懵脸",
+        "猫崩溃咸鱼脸"
+      ],
+      "background_templates": [
+        "90年代怀旧场景套组（厨房/院子/老卧室）"
+      ],
+      "audio_templates": [
+        "怀旧BGM+童年物品音效+生活化配音模板"
+      ],
+      "suitable_topics": [
+        "90后怀旧",
+        "童年生日社死",
+        "沙雕日常吐槽",
+        "集体痛点共鸣"
+      ]
+    },
+    {
+      "id": "bkmm-039-抖音202663-938533",
+      "filename": "抖音202663-938533.mp4",
+      "duration": 31.092,
+      "status": "done",
+      "title": "当我不小心熬穿了夜",
+      "primary_topic": "年轻人熬夜日常/家庭反向整活",
+      "meme_type": "沙雕猫meme/日常反转梗",
+      "overall_tone": "搞怪沙雕、共鸣感强",
+      "shot_count": 7,
+      "script_templates": [
+        "熬夜怕挨骂→反向操作反转身份→对方震惊"
+      ],
+      "shot_templates": [
+        "个人场景纠结→灵机一动→执行操作→反向输出→对方反应"
+      ],
+      "cat_action_templates": [
+        "猫躺床刷手机、猫炒菜、猫站床边喊话、双猫并排懵"
+      ],
+      "background_templates": [
+        "普通家居卧室、厨房、餐厅，不需要特效"
+      ],
+      "audio_templates": [
+        "轻快沙雕BGM+搞笑方言配音+卡点音效"
+      ],
+      "suitable_topics": [
+        "年轻人熬夜、家庭整活、反向孝顺、日常离谱操作"
+      ]
+    },
+    {
+      "id": "bkmm-040-抖音202663-960265",
+      "filename": "抖音202663-960265.mp4",
+      "duration": 30.372,
+      "status": "done",
+      "title": "爱笑小孩被带去看医生结果全员破防",
+      "primary_topic": "家庭搞笑日常反转梗",
+      "meme_type": "鬼畜猫meme小剧场",
+      "overall_tone": "沙雕无厘头、轻松搞笑",
+      "shot_count": 8,
+      "script_templates": [
+        "主角因奇怪小习惯被带去看医生→医生也被传染→全员破防反转模板"
+      ],
+      "shot_templates": [
+        "左主角+中右两配角的三人对话站位分镜"
+      ],
+      "cat_action_templates": [
+        "大头狂笑猫+憋笑猫+香蕉呆滞猫的表情组合模板"
+      ],
+      "background_templates": [
+        "居家→医院大厅→诊室的场景切换模板"
+      ],
+      "audio_templates": [
+        "轻快鬼畜BGM+角色反差配音的组合模板"
+      ],
+      "suitable_topics": [
+        "家庭日常搞笑",
+        "社死现场",
+        "笑点传染",
+        "反差感梗"
+      ]
+    },
+    {
+      "id": "bkmm-041-抖音202663-963163",
+      "filename": "抖音202663-963163.mp4",
+      "duration": 49.923,
+      "status": "done",
+      "title": "压岁钱卡BUG反杀爽文反转",
+      "primary_topic": "春节压岁钱搞笑脑洞剧情",
+      "meme_type": "香蕉猫沙雕反转meme",
+      "overall_tone": "搞笑沙雕反转戏谑",
+      "shot_count": 8,
+      "script_templates": [
+        "集体利益分配提议→提议人先占好处→时间拉长后规则破局反转"
+      ],
+      "shot_templates": [
+        "群像开会→爽点展示→时间快转→反转爆梗"
+      ],
+      "cat_action_templates": [
+        "香蕉猫站立说话",
+        "cheems猫算计表情",
+        "猫震惊大表情"
+      ],
+      "background_templates": [
+        "轻奢别墅群像场景",
+        "线下消费场景"
+      ],
+      "audio_templates": [
+        "沙雕BGM+夹子音配音+反转处重击音效"
+      ],
+      "suitable_topics": [
+        "压岁钱分配",
+        "团建福利",
+        "开学班费",
+        "情侣AA"
+      ]
+    },
+    {
+      "id": "bkmm-042-抖音202663-978042",
+      "filename": "抖音202663-978042.mp4",
+      "duration": 39.358,
+      "status": "done",
+      "title": "当最没用的我在家时",
+      "primary_topic": "家庭倒霉日常、有理说不清的废柴人设",
+      "meme_type": "真人情景猫meme",
+      "overall_tone": "搞笑、接地气、强共鸣",
+      "shot_count": 7,
+      "script_templates": [
+        "废柴孩子在家闯祸→爸妈嫌弃→越描越黑→被骂爸不敢救"
+      ],
+      "shot_templates": [
+        "固定场景+换对应情绪猫素材+字幕"
+      ],
+      "cat_action_templates": [
+        "怼脸难受",
+        "扒门",
+        "发力",
+        "生气",
+        "哭",
+        "无奈"
+      ],
+      "background_templates": [
+        "家庭卫生间",
+        "居家卧室",
+        "家门口过道"
+      ],
+      "audio_templates": [
+        "搞怪BGM+搞笑配音+对应场景音效"
+      ],
+      "suitable_topics": [
+        "家庭日常",
+        "倒霉孩子",
+        "有理说不清",
+        "亲子代沟"
+      ]
+    },
+    {
+      "id": "bkmm-043-抖音202663-981681",
+      "filename": "抖音202663-981681.mp4",
+      "duration": 11.401,
+      "status": "done",
+      "title": "教你如何整蛊朋友",
+      "primary_topic": "趣味整蛊梗",
+      "meme_type": "香蕉猫搞怪meme",
+      "overall_tone": "沙雕搞怪",
+      "shot_count": 6,
+      "script_templates": [
+        "【整蛊教程设定】→【角色出门】→【整蛊者躲门后】→【反向出现形成循环】→【引导搜索教程】"
+      ],
+      "shot_templates": [
+        "固定场景双角色动线→门后探头反差→双向懵逼循环→引流cta"
+      ],
+      "cat_action_templates": [
+        "香蕉猫走路",
+        "香蕉猫端碗",
+        "香蕉猫探头坏笑",
+        "香蕉猫懵圈冒问号"
+      ],
+      "background_templates": [
+        "简约居家客厅带单扇门场景"
+      ],
+      "audio_templates": [
+        "沙雕搞怪BGM+奶声猫配音+敲门声音效"
+      ],
+      "suitable_topics": [
+        "整蛊朋友",
+        "沙雕日常",
+        "循环梗",
+        "搞笑整活教程"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "video_id": "bkmm-019-抖音202663-474570",
+  "verdict": "pass",
+  "score": 92.0,
+  "summary": "拆解与视频内容整体高度匹配，剧情、分镜、背景、字幕、核心梗等信息均准确，仅存在个别措辞小错误",
+  "confirmed_points": [
+    "核心剧情符合：女主偶遇他人向闺蜜表白后自我怀疑没人爱，反转是未来男友在宿舍祈祷她远离所有异性，梗点一致",
+    "分镜顺序、起承转合、反转点与视频画面完全匹配",
+    "背景描述准确：明亮带护栏的暖光走廊、大学男生上下铺宿舍、黑底转场均符合画面",
+    "多数猫素材描述贴合画面：猫的数量、左右位置、动作表情均与视频一致",
+    "剧本、字幕内容与视频主要台词、字幕完全匹配",
+    "BGM风格判断为搞怪轻快，符合视频实际风格"
+  ],
+  "issues": [
+    {
+      "severity": "minor",
+      "shot_id": "6",
+      "field": "cats",
+      "observed": "视频中该镜头的meme是柴犬（狗）形象，不属于猫",
+      "extracted": "1只：柴犬猫（戴道士帽摇拂尘）",
+      "suggestion": "修正为1只：柴犬meme（戴道士帽摇拂尘）"
+    }
+  ],
+  "audio_confidence": "medium",
+  "needs_human_review": false,
+  "_raw_content_sha256": "2cd10c794e5670a5882b3b2ee596887262adb4da97c51f95e76496c06bdbd2e7",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:34:39.243491+00:00",
+  "structure_sha256": "71b40334d511f451acf83f1a4e1974d3799eef19e4d8aa4d88a513b75073c4dc",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-019-抖音202663-474570/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}

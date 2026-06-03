@@ -1,0 +1,362 @@
+{
+  "video_summary": {
+    "title": "猫抓老鼠全家送主人当全家桶",
+    "one_sentence": "猫咪接连抓老鼠送给主人，最后端了老鼠全家放在主人床头的搞笑反转猫meme",
+    "primary_topic": "养猫日常离谱反差",
+    "meme_type": "剧情反转类猫meme",
+    "overall_tone": "搞怪无厘头 反差搞笑"
+  },
+  "script_track": [
+    {
+      "start_time": 0,
+      "end_time": 1,
+      "text": "小时候家里猫特别能抓老鼠",
+      "speaker": "旁白",
+      "tone": "平淡",
+      "emotion": "中性",
+      "function": "背景铺垫",
+      "confidence": 1
+    },
+    {
+      "start_time": 1,
+      "end_time": 7,
+      "text": "老鼠怕猫？这是谣传！壮起鼠胆，把猫打翻！",
+      "speaker": "三只老鼠",
+      "tone": "嚣张",
+      "emotion": "得意",
+      "function": "反向铺垫",
+      "confidence": 1
+    },
+    {
+      "start_time": 12,
+      "end_time": 14,
+      "text": "太厉害了！我奖励你买鱼吃",
+      "speaker": "我",
+      "tone": "开心",
+      "emotion": "赞赏",
+      "function": "正向铺垫",
+      "confidence": 1
+    },
+    {
+      "start_time": 22,
+      "end_time": 24,
+      "text": "我不吃，你吃吧",
+      "speaker": "猫",
+      "tone": "冷漠",
+      "emotion": "平淡",
+      "function": "第一次反转",
+      "confidence": 1
+    },
+    {
+      "start_time": 37,
+      "end_time": 41,
+      "text": "现鲨的？你吃吧我不吃",
+      "speaker": "我/猫",
+      "tone": "震惊/平淡",
+      "emotion": "无语/淡定",
+      "function": "第二次升级反转",
+      "confidence": 1
+    },
+    {
+      "start_time": 44,
+      "end_time": 48,
+      "text": "猫抓了老鼠全家，全都去死吧",
+      "speaker": "猫/旁白",
+      "tone": "凶狠",
+      "emotion": "霸气",
+      "function": "终极铺垫",
+      "confidence": 1
+    },
+    {
+      "start_time": 56,
+      "end_time": 58,
+      "text": "我：全家桶？",
+      "speaker": "我",
+      "tone": "震惊",
+      "emotion": "错愕",
+      "function": "最终punchline",
+      "confidence": 1
+    }
+  ],
+  "shot_track": [
+    {
+      "shot_id": 1,
+      "start_time": 0,
+      "end_time": 7,
+      "duration": 7,
+      "beat": "hook",
+      "script": "三只老鼠嚣张放话要打猫",
+      "joke_point": "打破老鼠怕猫的固有认知",
+      "visual_description": "三只灰仓鼠meme并排晃头说话",
+      "pacing_note": "快节奏 每2秒换一句台词"
+    },
+    {
+      "shot_id": 2,
+      "start_time": 8,
+      "end_time": 10,
+      "duration": 3,
+      "beat": "punchline",
+      "script": "猫一巴掌拍晕三只老鼠",
+      "joke_point": "老鼠装逼当场被打脸",
+      "visual_description": "橘猫站鸟巢上，老鼠全部变叉眼",
+      "pacing_note": "快速切镜 音效卡点"
+    },
+    {
+      "shot_id": 3,
+      "start_time": 11,
+      "end_time": 15,
+      "duration": 5,
+      "beat": "setup",
+      "script": "我震惊要奖励猫吃鱼",
+      "joke_point": "正向奖励铺垫后续反转",
+      "visual_description": "香蕉猫震惊脸站左侧，橘猫在右侧鸟巢",
+      "pacing_note": "节奏放缓 铺垫情绪"
+    },
+    {
+      "shot_id": 4,
+      "start_time": 16,
+      "end_time": 25,
+      "duration": 10,
+      "beat": "twist",
+      "script": "猫不吃鱼，把死老鼠送给我",
+      "joke_point": "猫不领情反向送主人死老鼠",
+      "visual_description": "橘猫推走鱼，递死老鼠给香蕉猫",
+      "pacing_note": "反转卡点 出疑惑音效"
+    },
+    {
+      "shot_id": 5,
+      "start_time": 26,
+      "end_time": 42,
+      "duration": 17,
+      "beat": "escalation",
+      "script": "我玩游戏时猫又送来一只现杀老鼠",
+      "joke_point": "送老鼠行为升级 离谱程度加深",
+      "visual_description": "主人玩三国杀，橘猫叼活老鼠出现",
+      "pacing_note": "插入广告引导 节奏平稳"
+    },
+    {
+      "shot_id": 6,
+      "start_time": 43,
+      "end_time": 52,
+      "duration": 10,
+      "beat": "punchline",
+      "script": "晚上猫端了老鼠全家放红桶里",
+      "joke_point": "猫直接团灭老鼠全家",
+      "visual_description": "家门口橘猫旁摆四只死老鼠和红桶",
+      "pacing_note": "节奏加快 出凶狠音效"
+    },
+    {
+      "shot_id": 7,
+      "start_time": 53,
+      "end_time": 58,
+      "duration": 6,
+      "beat": "ending",
+      "script": "我醒来看见床头的老鼠全家桶",
+      "joke_point": "终极暴击 主人收到老鼠全家桶",
+      "visual_description": "香蕉猫睡醒瞪大眼睛，旁边红桶装死老鼠",
+      "pacing_note": "结尾定格 留搞笑余韵"
+    }
+  ],
+  "cat_track": [
+    "shot1：3只灰仓鼠meme，并排站位，晃头说话，表情得意",
+    "shot2：1只橘猫香炉meme，站鸟巢上，表情不屑，3只叉眼死老鼠在下方",
+    "shot3：1只香蕉猫（我）震惊脸站左，1只橘猫站右鸟巢旁",
+    "shot4：橘猫递死老鼠，香蕉猫头顶问号，表情疑惑",
+    "shot5：橘猫叼活老鼠，主人橘猫脸震惊",
+    "shot6：橘猫站左侧，4只死老鼠在右侧",
+    "shot7：香蕉猫睡醒震惊，旁边红桶放满死老鼠"
+  ],
+  "background_track": [
+    "shot1：浅米色纯色墙面，无杂物，干净明亮",
+    "shot2：米色墙面+干草鸟巢，无其他装饰",
+    "shot3：普通居家客厅，木质电视柜，瓷砖地面",
+    "shot4：同客厅场景，无变化",
+    "shot5：深红色红木长椅，地面浅色瓷砖",
+    "shot6：夜晚家门口，贴红色春联，光线昏暗",
+    "shot7：卧室沙发床，棕色格子被子，光线昏暗"
+  ],
+  "audio_track": {
+    "bgm_style": "抖音快节奏搞怪洗脑BGM",
+    "bgm_mood": "搞笑跳脱",
+    "voice_style": "贱兮兮/冷漠/震惊的反差配音",
+    "voice_presence": "大，盖过BGM",
+    "sfx": [
+      "打脸啪声",
+      "疑惑音效",
+      "游戏音效",
+      "震惊音效",
+      "死亡音效"
+    ],
+    "rhythm_sync": "每句台词卡BGM鼓点，音效卡动作节点"
+  },
+  "subtitle_packaging": {
+    "subtitle_style": "粗黑体白字加黑边，醒目",
+    "subtitle_density": "高，每2-3秒出现1行字幕",
+    "emphasis_words": [
+      "把猫打翻",
+      "我不吃你吃吧",
+      "全家桶？"
+    ],
+    "bubble_or_dialogue_style": "无气泡，直接打在角色上方/顶部",
+    "stickers_or_overlays": [
+      "头顶问号贴纸",
+      "角色下方标注我/猫的黄色字"
+    ],
+    "transition_notes": [
+      "黑屏白字转场：过了一会/晚上/半夜"
+    ]
+  },
+  "reusable_patterns": {
+    "script_templates": [
+      "固有认知反向铺垫→当场打脸→正向奖励铺垫→反转送离谱礼物→升级重复送→最终终极暴击"
+    ],
+    "shot_templates": [
+      "三个相同角色重复相同台词强化认知→反差镜头打脸→分阶段升级离谱事件→结尾定格暴击"
+    ],
+    "cat_action_templates": [
+      "橘猫香炉不屑脸递东西",
+      "香蕉猫震惊/疑惑脸",
+      "灰仓鼠meme晃头说话"
+    ],
+    "background_templates": [
+      "纯色简单背景/普通居家场景/夜晚昏暗场景"
+    ],
+    "audio_templates": [
+      "快节奏搞怪BGM+反差配音+动作卡点音效"
+    ],
+    "suitable_topics": [
+      "养猫离谱日常",
+      "反向送礼搞笑剧情",
+      "装逼被打脸剧情",
+      "日常反向暴击事件"
+    ]
+  },
+  "asset_plan": {
+    "storyboard": [
+      {
+        "shot_id": 1,
+        "duration": 7.0,
+        "beat": "hook",
+        "script": "旁白说猫能抓老鼠，三只老鼠嚣张说要打猫",
+        "joke_point": "打破老鼠怕猫的固有认知",
+        "background": "浅米色纯色墙面",
+        "cats": "三只灰仓鼠meme，并排晃头，表情得意",
+        "audio": "搞怪BGM起，老鼠贱兮兮配音",
+        "subtitle": "顶部大字幕+每只老鼠上方台词",
+        "seedream_prompt": "浅米色干净墙面无杂物",
+        "local_cat_asset_keywords": "灰色仓鼠meme 摇头",
+        "local_background_keywords": "纯色浅米色背景"
+      },
+      {
+        "shot_id": 2,
+        "duration": 3.0,
+        "beat": "punchline",
+        "script": "猫一巴掌拍晕三只老鼠",
+        "joke_point": "老鼠装逼当场被打脸",
+        "background": "米色墙面加干草鸟巢",
+        "cats": "橘猫香炉meme站鸟巢，表情不屑",
+        "audio": "啪的打脸音效",
+        "subtitle": "无",
+        "seedream_prompt": "米色墙面前放干草鸟巢",
+        "local_cat_asset_keywords": "橘猫香炉meme 不屑脸",
+        "local_background_keywords": "干草鸟巢 米色背景"
+      },
+      {
+        "shot_id": 3,
+        "duration": 5.0,
+        "beat": "setup",
+        "script": "我震惊，说要奖励猫吃鱼",
+        "joke_point": "正向奖励铺垫后续反转",
+        "background": "居家客厅，木质电视柜",
+        "cats": "香蕉猫震惊脸站左，橘猫站鸟巢旁",
+        "audio": "主人开心配音",
+        "subtitle": "顶部字幕+角色下方标注我/猫",
+        "seedream_prompt": "普通客厅 木质电视柜 瓷砖地",
+        "local_cat_asset_keywords": "香蕉猫meme 震惊脸",
+        "local_background_keywords": "普通客厅 电视柜"
+      },
+      {
+        "shot_id": 4,
+        "duration": 10.0,
+        "beat": "twist",
+        "script": "猫推走鱼，把死老鼠递我，说你吃吧",
+        "joke_point": "猫反向送主人死老鼠的反差",
+        "background": "同客厅场景",
+        "cats": "橘猫递死老鼠，香蕉猫头顶问号",
+        "audio": "橘猫冷漠配音 疑惑音效",
+        "subtitle": "角色上方台词字幕",
+        "seedream_prompt": "同客厅场景",
+        "local_cat_asset_keywords": "橘猫递东西 香蕉猫问号脸",
+        "local_background_keywords": "客厅场景"
+      },
+      {
+        "shot_id": 5,
+        "duration": 17.0,
+        "beat": "escalation",
+        "script": "我玩三国杀，猫又叼来现杀老鼠",
+        "joke_point": "送老鼠行为升级，离谱程度加深",
+        "background": "深红色红木长椅",
+        "cats": "橘猫叼活老鼠，主人橘猫脸震惊",
+        "audio": "游戏音效 惊讶配音",
+        "subtitle": "游戏引导字幕+角色台词",
+        "seedream_prompt": "深红色红木长椅 浅色地面",
+        "local_cat_asset_keywords": "橘猫叼老鼠 惊讶猫meme",
+        "local_background_keywords": "红木长椅 三国杀界面"
+      },
+      {
+        "shot_id": 6,
+        "duration": 10.0,
+        "beat": "punchline",
+        "script": "晚上猫抓了老鼠全家放红桶里",
+        "joke_point": "猫直接团灭老鼠全家",
+        "background": "夜晚家门口 贴红春联",
+        "cats": "橘猫站左侧，四只死老鼠在右侧",
+        "audio": "凶狠配音 死亡音效",
+        "subtitle": "顶部字幕 台词",
+        "seedream_prompt": "夜晚家门口 红对联 昏暗",
+        "local_cat_asset_keywords": "橘猫香炉meme 死老鼠meme 红桶",
+        "local_background_keywords": "夜晚家门口 春联"
+      },
+      {
+        "shot_id": 7,
+        "duration": 6.0,
+        "beat": "ending",
+        "script": "我醒来看见床头的老鼠全家桶，震惊",
+        "joke_point": "终极暴击，主人收到老鼠全家桶",
+        "background": "卧室沙发床 棕色格子被子",
+        "cats": "香蕉猫睡醒瞪大眼睛，旁侧红桶装死老鼠",
+        "audio": "震惊音效",
+        "subtitle": "台词：全家桶？",
+        "seedream_prompt": "卧室沙发 棕色格子被子",
+        "local_cat_asset_keywords": "香蕉猫睡醒震惊脸 红桶 死老鼠",
+        "local_background_keywords": "卧室床 格子被子"
+      }
+    ]
+  },
+  "quality_notes": [
+    "节奏快反转密集，meme角色辨识度高，广告植入自然，适合复刻同类型养猫反转剧情"
+  ],
+  "_raw_content_sha256": "55a2150905b8d7f11aab2643720d6a216b71a0335b141c72e92fa902ea260596",
+  "video_id": "bkmm-037-抖音202663-803466",
+  "filename": "抖音202663-803466.mp4",
+  "analysis_status": "done",
+  "meta": {
+    "duration": 60.233,
+    "size_bytes": 6354196,
+    "width": 1280,
+    "height": 720,
+    "fps": 60.0,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "sha256": "3e741ae7eaa9fdf5565163a2d8f76b039ae8ba975ef36a3029a3461c69a13d5c"
+  },
+  "analysis_evidence": {
+    "provider": "doubao",
+    "video_input": "base64_data_url",
+    "fps": 2.0,
+    "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-037-抖音202663-803466/contact_sheet.jpg",
+    "audio_reference": "data/viral-structures/baokuan-maomeme/bkmm-037-抖音202663-803466/audio.m4a",
+    "analyzed_at": "2026-06-03T03:08:12.478902+00:00",
+    "normalized_at": "2026-06-03T03:19:12.611182+00:00"
+  }
+}

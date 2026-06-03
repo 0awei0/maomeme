@@ -1,0 +1,138 @@
+{
+  "storyboard": [
+    {
+      "shot_id": 1,
+      "duration": 3.0,
+      "beat": "setup",
+      "script": "00后：老板我不舒服要请假去医院",
+      "joke_point": "常规请假场景铺垫",
+      "background": "高层落地窗办公室，带办公桌",
+      "cats": "左橘猫皱眉老板，右橘猫张嘴装病00后",
+      "audio": "BGM起，00后虚弱配音",
+      "subtitle": "老板，我身体不舒服，请个假去趟医院",
+      "seedream_prompt": "明亮高层落地窗老板办公室，办公桌办公椅",
+      "local_cat_asset_keywords": [
+        "皱眉橘猫",
+        "张嘴难受橘猫"
+      ],
+      "local_background_keywords": [
+        "高层老板办公室",
+        "落地窗办公室"
+      ]
+    },
+    {
+      "shot_id": 2,
+      "duration": 2.0,
+      "beat": "escalation",
+      "script": "老板：不批，工作多没空给你请假",
+      "joke_point": "职场常见冲突",
+      "background": "同上办公室",
+      "cats": "左凶奶牛猫老板，右丧脸银渐层00后",
+      "audio": "老板强硬配音",
+      "subtitle": "不批，工作那么多，哪有空给你请假？",
+      "seedream_prompt": "同上高层办公室",
+      "local_cat_asset_keywords": [
+        "凶奶牛猫",
+        "丧脸银渐层"
+      ],
+      "local_background_keywords": [
+        "高层老板办公室"
+      ]
+    },
+    {
+      "shot_id": 3,
+      "duration": 3.0,
+      "beat": "twist",
+      "script": "00后OS：坏东西你等着",
+      "joke_point": "铺垫反套路操作",
+      "background": "同上办公室",
+      "cats": "左无辜金渐层老板，右凶脸银渐层00后",
+      "audio": "00后凶狠腹诽配音",
+      "subtitle": "OS：坏东西！你等着！",
+      "seedream_prompt": "同上高层办公室",
+      "local_cat_asset_keywords": [
+        "无辜金渐层",
+        "凶脸银渐层"
+      ],
+      "local_background_keywords": [
+        "高层老板办公室"
+      ]
+    },
+    {
+      "shot_id": 4,
+      "duration": 7.0,
+      "beat": "punchline",
+      "script": "00后工位装死打120",
+      "joke_point": "反套路操作超出预期",
+      "background": "大开间开放办公室多工位",
+      "cats": "前橘猫00后装病，后两只虎斑同事背影",
+      "audio": "00后虚弱夸张配音，打电话音效",
+      "subtitle": "不行了，感觉我要鼠了！喂120吗？我需要急救",
+      "seedream_prompt": "明亮大开间开放办公室，多工位",
+      "local_cat_asset_keywords": [
+        "装病橘猫",
+        "虎斑猫背影"
+      ],
+      "local_background_keywords": [
+        "开放办公室",
+        "员工工位"
+      ]
+    },
+    {
+      "shot_id": 5,
+      "duration": 4.0,
+      "beat": "punchline",
+      "script": "120抬走00后喊工伤",
+      "joke_point": "离谱操作落地笑点",
+      "background": "同上开放办公室",
+      "cats": "两只香蕉猫抬担架，橘猫00后躺担架，虎斑老板懵",
+      "audio": "120配音，救护车音效，00后痛苦配音",
+      "subtitle": "好的！马上到！/工伤！难受！",
+      "seedream_prompt": "同上开放办公室",
+      "local_cat_asset_keywords": [
+        "香蕉猫",
+        "懵脸虎斑猫",
+        "难受橘猫"
+      ],
+      "local_background_keywords": [
+        "开放办公室"
+      ]
+    },
+    {
+      "shot_id": 6,
+      "duration": 3.0,
+      "beat": "escalation",
+      "script": "同事：我们也该请假了",
+      "joke_point": "放大梗传播性",
+      "background": "同上开放办公室",
+      "cats": "两只橘猫同事面向慌脸金渐层老板",
+      "audio": "同事严肃配音，速度线音效",
+      "subtitle": "老板！我觉得我们也该请假了！",
+      "seedream_prompt": "同上开放办公室",
+      "local_cat_asset_keywords": [
+        "凶橘猫",
+        "慌脸金渐层"
+      ],
+      "local_background_keywords": [
+        "开放办公室"
+      ]
+    },
+    {
+      "shot_id": 7,
+      "duration": 3.0,
+      "beat": "ending",
+      "script": "真实事件字幕加救护车实拍",
+      "joke_point": "真实事件呼应强化笑点",
+      "background": "路边停救护车实拍",
+      "cats": "无猫镜头/真实素材收尾",
+      "audio": "正经旁白配音",
+      "subtitle": "单位新来的00后感冒请假被拒，打120把自己拉走了",
+      "seedream_prompt": "路边停救护车，白天人行道",
+      "local_cat_asset_keywords": [],
+      "local_background_keywords": [
+        "救护车实拍",
+        "路边街景"
+      ]
+    }
+  ]
+}

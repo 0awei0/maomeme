@@ -1,0 +1,21 @@
+{
+  "video_id": "bkmm-035-抖音202663-761191",
+  "verdict": "pass",
+  "score": 95.0,
+  "summary": "拆解整体和原视频高度一致，剧情、分镜、背景、猫素材描述均准确匹配",
+  "confirmed_points": [
+    "剧情顺序完全吻合：从情侣睡觉铺垫、女友梦话吐槽、温情反转、补刀骂男友水货、男友当场回怼到彩条收尾的逻辑和原视频一致",
+    "背景描述准确，为暖光卧室大床场景",
+    "猫素材描述正确：双猫左男右女，左猫表情依次为躺平香蕉猫→问号→震惊脸→愧疚灰猫→震惊脸→炸毛橘猫，右香蕉猫全程保持躺平不动",
+    "字幕风格、节奏和原视频匹配，分镜的起承转合、反转点均对应正确"
+  ],
+  "issues": [],
+  "audio_confidence": "high",
+  "needs_human_review": false,
+  "_raw_content_sha256": "f5e3a7034abe9dfbb319a8283921a87d4f684934ddf3532ab6084bfd57f8e5da",
+  "verification_provider": "doubao",
+  "verified_at": "2026-06-03T03:36:13.408309+00:00",
+  "structure_sha256": "b3682e7f99f6fab7df0c2c62db7a50b1a76c808eb812614befd8a12c7b2b65d9",
+  "contact_sheet": "data/viral-structures/baokuan-maomeme/bkmm-035-抖音202663-761191/contact_sheet.jpg",
+  "verification_input_mode": "video"
+}
