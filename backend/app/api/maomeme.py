@@ -14,6 +14,7 @@ from ..models.maomeme import (
     RevisePlanRequest,
     SelectPlanRequest,
     SuggestRevisionRequest,
+    ScriptCandidate,
 )
 from ..services.asset_index import load_assets
 from ..services.maomeme_agent import (
@@ -69,7 +70,7 @@ async def candidates(request: CandidateRequest):
         return JSONResponse({
             "status": "success",
             "theme": request.theme,
-            "candidates": [item.model_dump() for item in result],
+            "candidates": [public_candidate_dump(item) for item in result[:3]],
         })
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"候选生成失败: {exc}") from exc
@@ -113,10 +114,10 @@ async def candidates_stream(request: CandidateRequest):
                                 "type": "draft_candidate",
                                 "message": event.get("message", "草稿方向已生成"),
                                 "progress": event.get("progress", 0.5),
-                                "candidate": event["candidate"].model_dump(),
+                                "candidate": public_candidate_dump(event["candidate"]),
                             })
                         elif event["type"] == "final":
-                            result = event["candidates"]
+                            result = event["candidates"][:3]
             except TimeoutError:
                 yield sse({"type": "stage", "message": "真实 Agent 超时，回退本地测试候选", "progress": 0.86})
                 result = await generate_script_candidates(
@@ -125,13 +126,15 @@ async def candidates_stream(request: CandidateRequest):
                     use_doubao=False,
                     duration_mode=request.duration_mode,
                 )
+                result = result[:3]
 
+            result = result[:3]
             for index, item in enumerate(result):
                 yield sse({
                     "type": "candidate",
                     "message": f"候选 {index + 1}/3：{item.title}",
                     "progress": 0.88 + (index + 1) * 0.03,
-                    "candidate": item.model_dump(),
+                    "candidate": public_candidate_dump(item),
                 })
                 await asyncio.sleep(0.08)
             yield sse({
@@ -139,7 +142,7 @@ async def candidates_stream(request: CandidateRequest):
                 "message": "候选剧本生成完成",
                 "progress": 1.0,
                 "theme": request.theme,
-                "candidates": [item.model_dump() for item in result],
+                "candidates": [public_candidate_dump(item) for item in result],
             })
         except Exception as exc:
             yield sse({"type": "error", "message": f"候选生成失败: {exc}", "progress": 1.0})
@@ -259,3 +262,29 @@ async def render_job_status(job_id: str):
 
 def sse(payload: dict) -> str:
     return f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
+
+
+def public_candidate_dump(candidate: ScriptCandidate) -> dict:
+    data = candidate.model_dump()
+    data["notes"] = [
+        note for note in data.get("notes", [])
+        if is_public_candidate_note(str(note))
+    ]
+    return data
+
+
+def is_public_candidate_note(note: str) -> bool:
+    if not note.strip():
+        return False
+    hidden_keywords = [
+        "生成来源",
+        "doubao",
+        "Doubao",
+        "Agent",
+        "文本素材库",
+        "爆款",
+        "viral",
+        "等待真实",
+        "草稿预览",
+    ]
+    return not any(keyword in note for keyword in hidden_keywords)

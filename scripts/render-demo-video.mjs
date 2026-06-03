@@ -18,6 +18,7 @@ const overlayDir = path.join(runtimeDir, 'overlays');
 const segmentConcurrency = clampInt(process.env.RENDER_SEGMENT_CONCURRENCY, 1, Math.min(4, os.cpus().length || 2), 2);
 const ffmpegPreset = process.env.RENDER_FFMPEG_PRESET || 'veryfast';
 const pythonRunner = resolvePythonRunner();
+let fallbackAudioSourcePromise;
 
 async function renderSegment(slot, index) {
   const duration = Math.max(1, slot.end - slot.start);
@@ -25,6 +26,12 @@ async function renderSegment(slot, index) {
   const background = path.join(root, slot.background.file);
   const motionSource = await resolveMotionSource(slot.motion.file);
   const secondaryMotionSource = slot.secondary_motion?.file ? await resolveMotionSource(slot.secondary_motion.file) : motionSource;
+  const primaryAudio = await inspectAudio(motionSource.file, slot.motion_clip, duration);
+  const secondaryAudio = slot.secondary_motion?.file
+    ? await inspectAudio(secondaryMotionSource.file, slot.secondary_motion_clip || slot.motion_clip, duration)
+    : null;
+  const needsFallbackAudio = dialogueNeedsFallback(slot, primaryAudio, secondaryAudio);
+  const fallbackAudioSource = needsFallbackAudio ? await getFallbackAudioSource() : null;
   const caption = path.join(captionDir, `${String(index).padStart(2, '0')}-${slot.id}.png`);
   const overlayFrameDir = path.join(overlayDir, `${String(index).padStart(2, '0')}-${slot.id}`);
   const hasOverlay = Array.isArray(slot.overlay_actions) && slot.overlay_actions.length > 0;
@@ -57,9 +64,13 @@ async function renderSegment(slot, index) {
   const preOutput = hasOverlay
     ? `${baseFilter};[${overlayInputIndex}:v]format=rgba[ov];[captioned][ov]overlay=0:0:shortest=1[vpre]`
     : `${baseFilter};[captioned]copy[vpre]`;
-  const audioFilter = dialogue
-    ? `;[1:a]atrim=0:${duration},asetpts=PTS-STARTPTS,volume=0.78[a1];[2:a]atrim=0:${duration},asetpts=PTS-STARTPTS,volume=0.78[a2];[a1][a2]amix=inputs=2:duration=longest:normalize=1[a]`
-    : `;[1:a]atrim=0:${duration},asetpts=PTS-STARTPTS[a]`;
+  const audioFilter = buildAudioFilter({
+    dialogue,
+    duration,
+    primaryAudible: primaryAudio.audible,
+    secondaryAudible: secondaryAudio?.audible ?? false,
+    fallbackInputIndex: needsFallbackAudio && fallbackAudioSource ? (hasOverlay ? overlayInputIndex + 1 : overlayInputIndex) : null,
+  });
   const filter = `${preOutput};${transitionFilter(slot.transition, duration)}${audioFilter}`;
 
   const inputs = dialogue ? [
@@ -88,6 +99,13 @@ async function renderSegment(slot, index) {
       '-i', path.join(overlayFrameDir, '%04d.png')
     );
   }
+  if (needsFallbackAudio && fallbackAudioSource) {
+    inputs.push(
+      '-stream_loop', '-1',
+      '-t', String(duration),
+      '-i', fallbackAudioSource.file
+    );
+  }
 
   await execFileAsync('ffmpeg', [
     ...inputs,
@@ -103,7 +121,7 @@ async function renderSegment(slot, index) {
     '-ar', '44100',
     '-ac', '2',
     '-pix_fmt', 'yuv420p',
-    '-shortest',
+    '-t', String(duration),
     out
   ], { maxBuffer: 1024 * 1024 * 10 });
 
@@ -119,6 +137,100 @@ function motionInputArgs(source, clipSpec = {}, slotDuration) {
     '-t', String(Math.max(slotDuration, clipDuration)),
     '-i', source.file,
   ];
+}
+
+function dialogueNeedsFallback(slot, primaryAudio, secondaryAudio) {
+  if (slot.layout === 'dialogue' && slot.secondary_motion?.file) {
+    return !primaryAudio.audible && !secondaryAudio?.audible;
+  }
+  return !primaryAudio.audible;
+}
+
+function buildAudioFilter({ dialogue, duration, primaryAudible, secondaryAudible, fallbackInputIndex }) {
+  const tracks = [];
+  if (primaryAudible) {
+    tracks.push({ input: 1, volume: dialogue ? 0.78 : 1.0, label: 'a1' });
+  }
+  if (dialogue && secondaryAudible) {
+    tracks.push({ input: 2, volume: 0.78, label: 'a2' });
+  }
+  if (fallbackInputIndex !== null) {
+    tracks.push({ input: fallbackInputIndex, volume: 0.22, label: 'abed' });
+  }
+  if (!tracks.length) {
+    return `;anullsrc=channel_layout=stereo:sample_rate=44100,atrim=0:${duration},asetpts=PTS-STARTPTS[a]`;
+  }
+  const filters = tracks.map((track) => (
+    `[${track.input}:a]atrim=0:${duration},asetpts=PTS-STARTPTS,volume=${track.volume}[${track.label}]`
+  ));
+  if (tracks.length === 1) {
+    filters.push(`[${tracks[0].label}]aformat=channel_layouts=stereo:sample_rates=44100[a]`);
+  } else {
+    filters.push(`${tracks.map((track) => `[${track.label}]`).join('')}amix=inputs=${tracks.length}:duration=longest:normalize=0,aformat=channel_layouts=stereo:sample_rates=44100[a]`);
+  }
+  return `;${filters.join(';')}`;
+}
+
+async function inspectAudio(file, clipSpec = {}, slotDuration = 4) {
+  try {
+    const probe = await execFileAsync('ffprobe', [
+      '-v', 'error',
+      '-select_streams', 'a:0',
+      '-show_entries', 'stream=codec_type',
+      '-of', 'json',
+      file
+    ], { maxBuffer: 1024 * 256 });
+    const parsed = JSON.parse(probe.stdout || '{}');
+    if (!Array.isArray(parsed.streams) || !parsed.streams.length) {
+      return { hasAudio: false, audible: false, maxVolume: -Infinity };
+    }
+    const start = Math.max(0, Number(clipSpec?.start || 0));
+    const duration = clamp(Number(clipSpec?.duration || slotDuration || 4), 1, Math.max(1, slotDuration || 4));
+    const volume = await execFileAsync('ffmpeg', [
+      '-hide_banner',
+      '-nostats',
+      '-ss', String(start),
+      '-t', String(duration),
+      '-i', file,
+      '-af', 'volumedetect',
+      '-f', 'null',
+      '-'
+    ], { maxBuffer: 1024 * 512 }).catch((error) => error);
+    const text = `${volume.stderr || ''}`;
+    const match = text.match(/max_volume:\s*(-?\d+(?:\.\d+)?)\s*dB/);
+    const maxVolume = match ? Number(match[1]) : -Infinity;
+    return { hasAudio: true, audible: Number.isFinite(maxVolume) && maxVolume > -45, maxVolume };
+  } catch {
+    return { hasAudio: false, audible: false, maxVolume: -Infinity };
+  }
+}
+
+async function getFallbackAudioSource() {
+  if (!fallbackAudioSourcePromise) {
+    fallbackAudioSourcePromise = findFallbackAudioSource();
+  }
+  return fallbackAudioSourcePromise;
+}
+
+async function findFallbackAudioSource() {
+  const preferred = [
+    'assets/cat-motions/13.mp4',
+    'assets/cat-motions/2.mp4',
+    'assets/cat-motions/4.mp4',
+    'assets/cat-motions/9.mp4',
+  ].map((file) => path.join(root, file));
+  const candidates = [
+    ...preferred,
+    ...((await fs.readdir(path.join(root, 'assets/cat-motions')).catch(() => []))
+      .filter((file) => file.endsWith('.mp4'))
+      .map((file) => path.join(root, 'assets/cat-motions', file))),
+  ];
+  for (const file of candidates) {
+    if (!await exists(file)) continue;
+    const audio = await inspectAudio(file, { start: 0, duration: 4 }, 4);
+    if (audio.audible) return { file };
+  }
+  return null;
 }
 
 async function resolveMotionSource(file) {
@@ -247,7 +359,8 @@ async function main() {
 
   const output = args.output ? path.resolve(args.output) : path.join(outputDir, 'maomeme-demo.mp4');
   await fs.mkdir(path.dirname(output), { recursive: true });
-  await concatSegments(concatFile, output);
+  const totalDuration = slots.reduce((total, slot) => total + Math.max(1, Number(slot.end || 0) - Number(slot.start || 0)), 0);
+  await concatSegments(concatFile, output, totalDuration);
 
   console.log(`Rendered demo video: ${path.relative(root, output)}`);
 }
@@ -261,34 +374,52 @@ function parseArgs(argv) {
   return parsed;
 }
 
-async function concatSegments(concatFile, output) {
-  try {
-    await execFileAsync('ffmpeg', [
-      '-y',
-      '-f', 'concat',
-      '-safe', '0',
-      '-i', concatFile,
-      '-c', 'copy',
-      '-movflags', '+faststart',
-      output
-    ], { maxBuffer: 1024 * 1024 * 10 });
-  } catch {
-    await execFileAsync('ffmpeg', [
-      '-y',
-      '-f', 'concat',
-      '-safe', '0',
-      '-i', concatFile,
-      '-c:v', 'libx264',
-      '-preset', ffmpegPreset,
-      '-crf', '23',
-      '-c:a', 'aac',
-      '-b:a', '128k',
-      '-ar', '44100',
-      '-ac', '2',
-      '-pix_fmt', 'yuv420p',
-      output
-    ], { maxBuffer: 1024 * 1024 * 10 });
+async function concatSegments(concatFile, output, totalDuration) {
+  const tempOutput = output.replace(/\.mp4$/i, '.concat-tmp.mp4');
+  await execFileAsync('ffmpeg', [
+    '-y',
+    '-f', 'concat',
+    '-safe', '0',
+    '-i', concatFile,
+    '-c:v', 'libx264',
+    '-preset', ffmpegPreset,
+    '-crf', '23',
+    '-c:a', 'aac',
+    '-b:a', '128k',
+    '-ar', '44100',
+    '-ac', '2',
+    '-pix_fmt', 'yuv420p',
+    tempOutput
+  ], { maxBuffer: 1024 * 1024 * 10 });
+  const trimArgs = [
+    '-y',
+    '-i', tempOutput,
+  ];
+  const hasFiniteDuration = Number.isFinite(totalDuration) && totalDuration > 0;
+  if (hasFiniteDuration) {
+    trimArgs.push(
+      '-filter_complex',
+      `[0:v]setpts=PTS-STARTPTS,fps=30,tpad=stop_mode=clone:stop_duration=1,trim=0:${totalDuration},setpts=PTS-STARTPTS[v];[0:a]asetpts=PTS-STARTPTS,atrim=0:${totalDuration},apad=whole_dur=${totalDuration}[a]`,
+      '-map',
+      '[v]',
+      '-map',
+      '[a]',
+    );
   }
+  trimArgs.push(
+    '-c:v', 'libx264',
+    '-preset', ffmpegPreset,
+    '-crf', '23',
+    '-c:a', 'aac',
+    '-b:a', '128k',
+    '-ar', '44100',
+    '-ac', '2',
+    '-pix_fmt', 'yuv420p',
+    '-movflags', '+faststart',
+    output
+  );
+  await execFileAsync('ffmpeg', trimArgs, { maxBuffer: 1024 * 1024 * 10 });
+  await fs.rm(tempOutput, { force: true });
 }
 
 async function mapLimit(items, limit, mapper) {

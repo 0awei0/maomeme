@@ -96,6 +96,13 @@ cd frontend
 npm run assets:preprocess-cats
 ```
 
+绿幕处理分两类：
+
+- 背景图如果有明显绿色底条，`assets:clean-backgrounds` 会只裁掉底部疑似绿幕色块，不改主体画面。
+- 猫动画默认在渲染时用 FFmpeg `colorkey + despill` 实时抠绿；如果已经运行过 `assets:preprocess-cats`，渲染器会优先使用 `assets/processed/cat-motions-keyed/*.mov` 的透明缓存，速度更稳、边缘更干净。
+
+这些 `.mov` 是带透明通道的中间缓存，主要给 FFmpeg 叠背景使用，不是最终预览文件；VS Code 或部分播放器可能显示黑底、无法打开或看起来很怪。要检查效果，请看 `output/jobs/*.mp4` 的最终成片。
+
 ## 素材上传策略
 
 当前仓库尽量直接上传可复现主流程所需素材：`assets/cat-motions/` 的猫动作 mp4、`assets/backgrounds/` 的背景图、`assets/generated/backgrounds/` 的预制 Seedream 背景，以及所有 `descriptions.json` 和 `data/assets-index.json`。

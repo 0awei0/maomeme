@@ -27,6 +27,10 @@ function App() {
   const videoUrl = job?.video_url ? `${API_BASE}${job.video_url}` : '';
   const videoName = job?.output_path?.split('/').pop() || 'maomeme-video.mp4';
   const canRender = plan && job?.status !== 'running' && loading !== 'render';
+  const candidateDisplayList = useMemo(
+    () => displayCandidates({ loading, candidates, draftCandidates }),
+    [loading, candidates, draftCandidates]
+  );
 
   async function request(path, body) {
     const response = await fetch(`${API_BASE}${path}`, {
@@ -59,17 +63,17 @@ function App() {
       }, (event) => {
         if (event.type === 'agent_delta' && event.text) {
           rawAgentText += event.text;
-          setDraftCandidates((items) => mergeDraftCandidates(items, extractCandidateDrafts(rawAgentText)));
+          setDraftCandidates((items) => normalizeCandidateList(mergeDraftCandidates(items, extractCandidateDrafts(rawAgentText)), { fillPlaceholders: true }));
         }
         if (event.type === 'draft_candidate' && event.candidate) {
-          setDraftCandidates((items) => upsertById(items, { ...event.candidate, streaming: true }));
+          setDraftCandidates((items) => replaceCandidateByPosition(items, { ...event.candidate, streaming: true }));
         }
         if (event.type === 'candidate' && event.candidate) {
-          setCandidates((items) => upsertById(items, event.candidate));
-          setDraftCandidates((items) => upsertById(items, { ...event.candidate, streaming: false }));
+          setCandidates((items) => normalizeCandidateList(upsertById(items, event.candidate)));
+          setDraftCandidates((items) => replaceCandidateByPosition(items, { ...event.candidate, streaming: false }));
         }
       });
-      setCandidates(data.candidates || []);
+      setCandidates(normalizeCandidateList(data.candidates || []));
       setSelectedCandidate(null);
       setPlan(null);
       loadSuggestions({ candidate: data.candidates?.[0] || null, plan: null });
@@ -318,7 +322,7 @@ function App() {
         <section className="panel center">
           <div className="sectionTitle"><Film size={20} /><h2>候选剧本</h2></div>
           <div className="candidateGrid">
-            {(loading === 'candidates' && !candidates.length ? draftCandidates : candidates).map((candidate) => (
+            {candidateDisplayList.map((candidate) => (
               <article className={`candidate ${selectedCandidate?.id === candidate.id ? 'selected' : ''}`} key={candidate.id}>
                 <div className="candidateHead">
                   <h3>{candidate.title}</h3>
@@ -326,7 +330,7 @@ function App() {
                 </div>
                 <p>{candidate.tension || candidate.social_topic || '猫 meme 反差剧本'}</p>
                 <small>预计 {expectedDuration(candidate.script)} 秒 · {candidate.script.length} 个镜头</small>
-                {candidate.notes?.[0] && <small>{candidate.notes[0]}</small>}
+                {publicCandidateNote(candidate.notes) && <small>{publicCandidateNote(candidate.notes)}</small>}
                 <ul>
                   {candidate.script.map((item, index) => <li key={`${candidate.id}-${index}`}>{item.text}</li>)}
                 </ul>
@@ -336,7 +340,7 @@ function App() {
                 </button>
               </article>
             ))}
-            {loading === 'candidates' && candidates.length === 0 && (
+            {loading === 'candidates' && candidateDisplayList.length === 0 && (
               <div className="streamingSkeleton">
                 <Loader2 className="spin" size={18} />
                 <span>编剧 Agent 正在组织第一个候选...</span>
@@ -490,6 +494,90 @@ function upsertById(items = [], item) {
   return [...items, item];
 }
 
+function displayCandidates({ loading, candidates = [], draftCandidates = [] }) {
+  if (loading === 'candidates') {
+    let merged = normalizeCandidateList(draftCandidates, { fillPlaceholders: true });
+    for (const candidate of normalizeCandidateList(candidates)) {
+      const index = candidatePosition(candidate);
+      if (index >= 0 && index < 3) {
+        merged[index] = candidate;
+      }
+    }
+    return normalizeCandidateList(merged, { fillPlaceholders: true });
+  }
+  return normalizeCandidateList(candidates);
+}
+
+function normalizeCandidateList(items = [], options = {}) {
+  const placeholders = options.fillPlaceholders ? streamingCandidatePlaceholders() : [];
+  const next = options.fillPlaceholders ? [...placeholders] : [];
+  const seen = new Set();
+  for (const item of items) {
+    if (!item?.id) continue;
+    const index = candidatePosition(item);
+    const normalized = sanitizeCandidate(item);
+    if (index >= 0 && index < 3) {
+      next[index] = { ...(next[index] || placeholders[index]), ...normalized };
+      seen.add(next[index].id);
+      continue;
+    }
+    if (next.length < 3 && !seen.has(normalized.id)) {
+      next.push(normalized);
+      seen.add(normalized.id);
+    }
+  }
+  return next.slice(0, 3).map(sanitizeCandidate);
+}
+
+function replaceCandidateByPosition(items = [], item) {
+  const base = normalizeCandidateList(items, { fillPlaceholders: true });
+  const index = candidatePosition(item);
+  if (index >= 0 && index < 3) {
+    base[index] = { ...base[index], ...item };
+    return normalizeCandidateList(base, { fillPlaceholders: true });
+  }
+  return normalizeCandidateList(upsertById(base, item), { fillPlaceholders: true });
+}
+
+function candidatePosition(candidate = {}) {
+  const id = String(candidate.id || '');
+  const match = id.match(/(?:candidate|draft)-(\d+)$/);
+  if (match) return Number(match[1]) - 1;
+  const titleMatch = String(candidate.title || '').match(/候选\s*(\d+)/);
+  if (titleMatch) return Number(titleMatch[1]) - 1;
+  return -1;
+}
+
+function sanitizeCandidate(candidate = {}) {
+  return {
+    ...candidate,
+    script: Array.isArray(candidate.script) ? candidate.script : [],
+    notes: publicCandidateNotes(candidate.notes || [])
+  };
+}
+
+function publicCandidateNotes(notes = []) {
+  return notes.filter((note) => {
+    const text = String(note || '');
+    if (!text.trim()) return false;
+    return ![
+      '生成来源',
+      'doubao',
+      'Doubao',
+      'Agent',
+      '文本素材库',
+      '爆款',
+      'viral',
+      '等待真实',
+      '草稿预览'
+    ].some((keyword) => text.includes(keyword));
+  });
+}
+
+function publicCandidateNote(notes = []) {
+  return publicCandidateNotes(notes)[0] || '';
+}
+
 function normalizeSlot(slot) {
   return {
     ...slot,
@@ -509,11 +597,11 @@ function streamingCandidatePlaceholders() {
   return [1, 2, 3].map((index) => ({
     id: `draft-${index}`,
     title: `候选 ${index} 正在生成`,
-    social_topic: 'Doubao Agent 正在组织现实矛盾和猫 meme 反差',
+    social_topic: '正在组织现实矛盾和猫 meme 反差',
     tension: '',
     score: '',
     script: [{ text: '等待第一段字幕...' }],
-    notes: ['生成来源：doubao_agent_stream'],
+    notes: [],
     streaming: true
   }));
 }

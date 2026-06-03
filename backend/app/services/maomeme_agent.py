@@ -136,24 +136,7 @@ async def stream_script_candidates(
         yield {"type": "final", "candidates": candidates, "provider_note": "local_fallback_no_ark"}
         return
 
-    preview_candidates = build_script_candidates(
-        scripts=screenwriter_agent(theme, text_context, viral_refs),
-        theme=theme,
-        index=index,
-        text_context=text_context,
-        duration_mode=mode,
-        provider_note="doubao_waiting_preview",
-        viral_refs=viral_refs,
-    )
-    yield {"type": "stage", "message": "已匹配已验证爆款结构，先展示草稿方向", "progress": 0.42}
-    for index_num, candidate in enumerate(preview_candidates):
-        candidate.notes.insert(0, "等待真实 Agent 中：这是文本素材库草稿预览")
-        yield {
-            "type": "draft_candidate",
-            "message": f"草稿方向 {index_num + 1}/3：{candidate.title}",
-            "progress": 0.44 + index_num * 0.02,
-            "candidate": candidate,
-        }
+    yield {"type": "stage", "message": "正在组织剧本结构，约束冲突走向", "progress": 0.42}
 
     raw_result: dict[str, Any] | None = None
     content_size = 0
