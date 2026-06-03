@@ -45,6 +45,24 @@ def overlay_planner_tool(beat: dict[str, Any], motion: dict[str, Any], backgroun
     joined = f"{caption} {intent} {motion.get('description', '')} {background.get('description', '')}"
     actions: list[dict[str, Any]] = []
 
+    if any(word in joined for word in ("要求", "经验", "全链路", "全栈", "团队", "门槛")):
+        actions.append({
+            "type": "job_requirement_card",
+            "start": 0.35,
+            "duration": 2.2,
+            "title": "岗位要求",
+            "items": requirement_items_for_text(joined),
+        })
+    elif any(word in joined for word in ("刷", "招聘软件", "招聘APP", "薪资", "工资", "心仪岗位")):
+        actions.append({
+            "type": "phone_job_feed",
+            "start": 0.25,
+            "duration": 2.2,
+            "title": caption or "刷到薪资还行的岗位",
+            "salary": "薪资还行",
+            "company": "校招热岗",
+            "tags": ["应届可投", "双休", "立即沟通"],
+        })
     if any(word in joined for word in ("简历", "招聘", "岗位", "投递", "面试")):
         actions.append({
             "type": "throw_object",
@@ -69,6 +87,30 @@ def overlay_planner_tool(beat: dict[str, Any], motion: dict[str, Any], backgroun
             "duration": 1.8,
             "text": "规则更新",
         })
+    if any(word in joined for word in ("会议", "加班", "复盘", "同步", "老板", "KPI")):
+        actions.append({
+            "type": "work_chat_stack",
+            "start": 0.3,
+            "duration": 2.2,
+            "title": "工作群",
+            "messages": ["老板：在吗", "再同步一次", "今晚辛苦下"],
+        })
+    if any(word in joined for word in ("考研", "考公", "上岸", "考试", "就业")) and "招聘" not in joined:
+        actions.append({
+            "type": "choice_panel",
+            "start": 0.3,
+            "duration": 2.1,
+            "title": "请选择今天焦虑",
+            "options": ["考研", "考公", "就业"],
+        })
+    if any(word in joined for word in ("烤肠", "香肠", "摆摊", "小吃摊", "夜市", "摊位")):
+        actions.append({
+            "type": "stall_sign",
+            "start": 0.3,
+            "duration": 2.2,
+            "title": "校门口小摊",
+            "items": ["烤肠 3元", "加料 +1", "今日也内卷"],
+        })
     if role in {"hook", "punchline", "cta"}:
         actions.append({
             "type": "impact_burst",
@@ -78,6 +120,19 @@ def overlay_planner_tool(beat: dict[str, Any], motion: dict[str, Any], backgroun
         })
 
     return actions[:2]
+
+
+def requirement_items_for_text(text: str) -> list[str]:
+    items: list[str] = []
+    if any(word in text for word in ("3年", "三年", "5年", "五年", "经验")):
+        items.append("3年以上经验")
+    if any(word in text for word in ("全链路", "全栈", "运营")):
+        items.append("会全链路运营")
+    if any(word in text for word in ("团队", "管理")):
+        items.append("带过团队")
+    if any(word in text for word in ("应届", "校招", "毕业")):
+        items.append("欢迎应届生")
+    return items[:4] or ["经验不限但要满级", "能抗压", "会很多"]
 
 
 def transition_planner_tool(beat: dict[str, Any], previous: dict[str, Any] | None, background_changed: bool) -> dict[str, Any]:

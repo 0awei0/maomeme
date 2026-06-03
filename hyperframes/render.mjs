@@ -50,21 +50,29 @@ function buildManifest(plan) {
       visuals,
       recommended_transitions,
     })),
-    timeline: (plan.timeline || []).map((slot, index) => ({
-      index,
-      id: slot.id,
-      time: { start: slot.start, end: slot.end },
-      caption: slot.copy || slot.caption || '',
-      packaging_preset: choosePreset(plan.theme, slot, presets),
-      layout: slot.layout || 'single',
-      transition: slot.transition || { type: 'cut', duration: 0 },
-      dialogue: slot.dialogue || [],
-      overlay_actions: slot.overlay_actions || [],
-      packaging: slot.packaging || [],
-      motion_clip: slot.motion_clip || {},
-      secondary_motion_clip: slot.secondary_motion_clip || null,
-      background_source: slot.background_source || 'matched',
-    })),
+    timeline: (plan.timeline || []).map((slot, index) => {
+      const preset = choosePreset(plan.theme, slot, presets);
+      return {
+        index,
+        id: slot.id,
+        time: { start: slot.start, end: slot.end },
+        caption: slot.copy || slot.caption || '',
+        packaging_preset: preset?.id || 'default-cat-meme',
+        layout: slot.layout || 'single',
+        transition: slot.transition || { type: 'cut', duration: 0 },
+        dialogue: slot.dialogue || [],
+        overlay_actions: mergeOverlayActions([
+          ...semanticOverlayActions(plan.theme, slot, preset),
+          ...(slot.overlay_actions || []),
+          ...(preset?.default_overlay_actions || []),
+        ]),
+        packaging: slot.packaging || [],
+        motion_clip: slot.motion_clip || {},
+        secondary_motion_clip: slot.secondary_motion_clip || null,
+        background_source: slot.background_source || 'matched',
+        hyperframe_role: semanticRole(plan.theme, slot),
+      };
+    }),
   };
 }
 
@@ -79,7 +87,112 @@ function loadPackagingPresetsSync() {
 }
 
 function choosePreset(theme, slot, presets) {
-  const text = [
+  const primaryText = [
+    theme,
+    slot.copy || slot.caption || '',
+    slot.intent || '',
+    ...(slot.dialogue || []).map((line) => line.text || ''),
+  ].join(' ');
+  const secondaryText = [
+    slot.background?.description || '',
+    slot.motion?.description || '',
+  ].join(' ');
+  let best = null;
+  for (const preset of presets) {
+    const score = (preset.triggers || []).reduce((total, trigger) => {
+      if (!trigger) return total;
+      return total + (primaryText.includes(trigger) ? 3 : 0) + (secondaryText.includes(trigger) ? 1 : 0);
+    }, 0);
+    if (score && (!best || score > best.score)) best = { score, preset };
+  }
+  return best ? best.preset : null;
+}
+
+function semanticOverlayActions(theme, slot, preset) {
+  const slotText = primarySlotText(slot);
+  const categoryText = `${theme} ${slotText}`;
+  const text = `${categoryText} ${slot.background?.description || ''} ${slot.motion?.description || ''}`;
+  const caption = slot.copy || slot.caption || '';
+  const duration = Math.max(1, Number(slot.end || 0) - Number(slot.start || 0));
+  const longEnough = Math.max(1.2, Math.min(duration - 0.25, 2.6));
+
+  if (isJobHunt(categoryText, preset)) {
+    if (/(要求|经验|全栈|团队|三年|3年|5年|门槛|简章|应届生要|要有)/.test(slotText)) {
+      return [{
+        type: 'job_requirement_card',
+        start: 0.35,
+        duration: longEnough,
+        title: '岗位要求',
+        items: requirementItems(text),
+      }];
+    }
+    if (/(已读|不回|投递|黑洞|HR|面邀|拒)/i.test(slotText)) {
+      return [{
+        type: 'chat_stack',
+        start: 0.35,
+        duration: longEnough,
+        title: '招聘消息',
+        messages: ['已读', '暂不合适', '要求再加一条'],
+      }];
+    }
+    if (/(刷|看到|招聘软件|招聘APP|薪资|工资|岗位|心仪|软件|APP|招聘|应届生可投|可投)/.test(slotText)) {
+      return [{
+        type: 'phone_job_feed',
+        start: 0.22,
+        duration: longEnough,
+        title: shortText(caption || '刷到薪资还行的岗位', 15),
+        salary: salaryText(text),
+        company: '校招热岗',
+        tags: requirementTags(text),
+      }];
+    }
+  }
+
+  if (/(会议|加班|复盘|同步|老板|KPI|PPT|周会|下班)/.test(slotText)) {
+    return [{
+      type: 'work_chat_stack',
+      start: 0.28,
+      duration: longEnough,
+      title: '工作群',
+      messages: ['老板：在吗', '再同步一次', '今晚辛苦下'],
+    }];
+  }
+
+  if (/(考研|考公|上岸|自习|考试|二战|三战|选择)/.test(slotText)) {
+    return [{
+      type: 'choice_panel',
+      start: 0.3,
+      duration: longEnough,
+      title: '请选择今天焦虑',
+      options: ['考研', '考公', '就业'],
+    }];
+  }
+
+  if (/(房租|押金|房贷|彩礼|账单|预算|结婚|买房|中介)/.test(slotText)) {
+    return [{
+      type: 'bill_card',
+      start: 0.32,
+      duration: longEnough,
+      title: '现实账单',
+      items: ['房租', '通勤', '押金'],
+    }];
+  }
+
+  if (/(烤肠|香肠|摆摊|小吃摊|夜市|地摊|摊位|冰粉)/.test(slotText)) {
+    return [{
+      type: 'stall_sign',
+      start: 0.3,
+      duration: longEnough,
+      title: '校门口小摊',
+      items: ['烤肠 3元', '加料 +1', '今日也内卷'],
+    }];
+  }
+
+  return [];
+}
+
+function searchableText(theme, slot) {
+  return [
     theme,
     slot.copy || slot.caption || '',
     slot.intent || '',
@@ -87,12 +200,91 @@ function choosePreset(theme, slot, presets) {
     slot.motion?.description || '',
     ...(slot.dialogue || []).map((line) => line.text || ''),
   ].join(' ');
-  let best = null;
-  for (const preset of presets) {
-    const score = (preset.triggers || []).reduce((total, trigger) => total + (trigger && text.includes(trigger) ? 1 : 0), 0);
-    if (score && (!best || score > best.score)) best = { score, preset };
+}
+
+function primarySlotText(slot) {
+  return [
+    slot.copy || slot.caption || '',
+    slot.intent || '',
+    ...(slot.dialogue || []).map((line) => line.text || ''),
+  ].join(' ');
+}
+
+function semanticRole(theme, slot) {
+  const text = searchableText(theme, slot);
+  if (isJobHunt(text)) return 'job_hunt';
+  if (/(会议|加班|复盘|同步|老板|KPI|PPT)/.test(text)) return 'workplace';
+  if (/(考研|考公|上岸|自习|考试)/.test(text)) return 'exam';
+  if (/(房租|押金|房贷|彩礼|账单|预算)/.test(text)) return 'bill';
+  if (/(烤肠|香肠|摆摊|小吃摊|夜市|地摊)/.test(text)) return 'street_food';
+  return 'cat_meme';
+}
+
+function isJobHunt(text, preset) {
+  return preset?.id === 'job-hunt-black-hole' || /(简历|求职|岗位|面试|HR|offer|校招|招聘|薪资|工资)/i.test(text);
+}
+
+function salaryText(text) {
+  const match = text.match(/(\d{1,2}\s*[kK千万wW][-~到至]?\s*\d{0,2}\s*[kK千万wW]?|\d{3,5}\s*元?)/);
+  if (match) return match[1].replace(/\s+/g, '');
+  if (/(四千|4000|4k|4K)/.test(text)) return '4K';
+  return '薪资还行';
+}
+
+function requirementTags(text) {
+  if (/(应届|校招|毕业)/.test(text)) return ['应届可投', '经验优先', '立即沟通'];
+  if (/(全栈|运营|团队)/.test(text)) return ['全链路', '带团队', '抗压'];
+  return ['不加班', '双休', '经验不限'];
+}
+
+function requirementItems(text) {
+  const items = [];
+  if (/(三年|3年|5年|五年|经验)/.test(text)) items.push('3年以上经验');
+  if (/(全栈|运营|链路)/.test(text)) items.push('会全链路运营');
+  if (/(团队|管理|老板)/.test(text)) items.push('带过团队');
+  if (/(应届|校招|毕业)/.test(text)) items.push('欢迎应届生');
+  return items.length ? items.slice(0, 4) : ['经验不限但要满级', '能抗压', '会很多'];
+}
+
+function shortText(text, maxLength) {
+  const compact = String(text || '').replace(/\s+/g, '');
+  return compact.length > maxLength ? `${compact.slice(0, maxLength - 1)}…` : compact;
+}
+
+function mergeOverlayActions(actions) {
+  const primaryTypes = new Set([
+    'phone_job_feed',
+    'job_requirement_card',
+    'work_chat_stack',
+    'chat_stack',
+    'choice_panel',
+    'bill_card',
+    'stall_sign',
+  ]);
+  const primary = actions.find((action) => primaryTypes.has(action?.type));
+  if (primary) {
+    const emphasis = actions.find((action) => action?.type === 'impact_burst');
+    return emphasis ? [primary, emphasis] : [primary];
   }
-  return best ? best.preset.id : 'default-cat-meme';
+
+  const seen = new Set();
+  const merged = [];
+  const priority = {
+    impact_burst: 0,
+    stamp_reject: 1,
+    popup: 2,
+    throw_object: 3,
+  };
+  actions = [...actions].sort((left, right) => (priority[left?.type] ?? 9) - (priority[right?.type] ?? 9));
+  for (const action of actions) {
+    if (!action?.type) continue;
+    const key = `${action.type}|${action.text || action.title || action.object || ''}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    merged.push(action);
+    if (merged.length >= 2) break;
+  }
+  return merged;
 }
 
 function parseArgs(argv) {

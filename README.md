@@ -238,7 +238,15 @@ conda run -n cv python backend/scripts/analyze_viral_maomeme.py --limit 2 --use-
 
 分析结果位于 `data/viral-structures/baokuan-maomeme/`。每条视频会生成 `structure.json`、`asset_plan.json`、`storyboard.md`、`contact_sheet.jpg` 和抽帧；本地参考音频 `audio.m4a` 与原始 Doubao 响应 `raw_doubao_response.json` 默认忽略不提交。`asset_plan.storyboard` 是后续 Agent 最重要的输入，每个分镜包含具体剧本、梗点、背景、猫素材关键词、BGM/配音/音效和 Seedream prompt。
 
-HyperFrames 包装模板位于 `hyperframes/templates/packaging-presets.json`。当前主渲染仍由稳定 FFmpeg/Pillow 执行，HyperFrames 会生成 manifest，记录每个镜头命中的包装 preset，后续可以把这些 preset 接管为更复杂的 HTML/CSS 字幕、气泡、贴纸和转场动画。
+HyperFrames 包装模板位于 `hyperframes/templates/packaging-presets.json`。当前主视频合成仍由稳定 FFmpeg/Pillow 执行，HyperFrames 负责在合成前生成每个分镜的包装 manifest，并补齐更具体的镜头内道具和动作，例如：
+
+- 求职分镜：手机招聘信息流、岗位要求卡、招聘消息栈。
+- 上班分镜：工作群弹窗、会议同步提示。
+- 考研考公分镜：三选一焦虑面板。
+- 生活成本分镜：账单卡、预算表。
+- 摆摊/烤肠分镜：小摊价签和摊位提示。
+
+渲染器会读取 HyperFrames manifest，把这些结构化 `overlay_actions` 交给 Pillow 生成透明帧，再由 FFmpeg 叠到猫动画和背景上。这样可以提高单个分镜的可读性和爆款感，同时不让 Agent 自由写渲染代码。
 
 ## 主要接口
 

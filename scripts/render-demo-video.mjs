@@ -10,6 +10,7 @@ const execFileAsync = promisify(execFile);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outputDir = path.join(root, 'output');
 const args = parseArgs(process.argv.slice(2));
+const hyperframesManifestPromise = loadHyperframesManifest(args.hyperframesManifest);
 const renderId = args.output ? path.basename(args.output, path.extname(args.output)) : `render-${Date.now()}`;
 const runtimeDir = path.join(outputDir, 'runtime', renderId);
 const workDir = path.join(runtimeDir, 'segments');
@@ -21,6 +22,8 @@ const pythonRunner = resolvePythonRunner();
 let fallbackAudioSourcePromise;
 
 async function renderSegment(slot, index) {
+  const hyperframeSlot = await hyperframeSlotFor(slot, index);
+  slot = applyHyperframeSlot(slot, hyperframeSlot);
   const duration = Math.max(1, slot.end - slot.start);
   const out = path.join(workDir, `${String(index).padStart(2, '0')}-${slot.id}.mp4`);
   const background = path.join(root, slot.background.file);
@@ -301,6 +304,31 @@ async function makeOverlayFrames(slot, outDir, duration) {
   ], { maxBuffer: 1024 * 1024 * 4 });
 }
 
+async function loadHyperframesManifest(file) {
+  if (!file) return null;
+  try {
+    return JSON.parse(await fs.readFile(path.resolve(file), 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+async function hyperframeSlotFor(slot, index) {
+  const manifest = await hyperframesManifestPromise;
+  if (!manifest || !Array.isArray(manifest.timeline)) return null;
+  return manifest.timeline.find((item) => item.id === slot.id) || manifest.timeline[index - 1] || null;
+}
+
+function applyHyperframeSlot(slot, hyperframeSlot) {
+  if (!hyperframeSlot) return slot;
+  return {
+    ...slot,
+    overlay_actions: Array.isArray(hyperframeSlot.overlay_actions) ? hyperframeSlot.overlay_actions : slot.overlay_actions,
+    packaging_preset: hyperframeSlot.packaging_preset || slot.packaging_preset,
+    hyperframe_role: hyperframeSlot.hyperframe_role || slot.hyperframe_role,
+  };
+}
+
 async function makeCaption(slot, out) {
   const title = slot.copy || slot.caption || slot.intent || slot.role;
   const subtitle = subtitleForSlot(slot);
@@ -370,6 +398,7 @@ function parseArgs(argv) {
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === '--plan') parsed.plan = path.resolve(root, argv[++i]);
     else if (argv[i] === '--output') parsed.output = argv[++i];
+    else if (argv[i] === '--hyperframes-manifest') parsed.hyperframesManifest = path.resolve(root, argv[++i]);
   }
   return parsed;
 }
