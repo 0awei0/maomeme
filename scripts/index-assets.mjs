@@ -8,6 +8,10 @@ const execFileAsync = promisify(execFile);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ignoredBackgroundDirs = new Set(['seedream-smoke']);
 
+function isLocalDuplicate(name) {
+  return / 2(?:\.[^.]+)?$/.test(name);
+}
+
 async function readJson(file, fallback) {
   try {
     return JSON.parse(await fs.readFile(file, 'utf8'));
@@ -35,7 +39,7 @@ async function listFiles(dir, ext) {
   const entries = await fs.readdir(dir, { withFileTypes: true });
   const exts = Array.isArray(ext) ? ext : [ext];
   return entries
-    .filter((entry) => entry.isFile() && exts.some((item) => entry.name.toLowerCase().endsWith(item)))
+    .filter((entry) => entry.isFile() && !isLocalDuplicate(entry.name) && exts.some((item) => entry.name.toLowerCase().endsWith(item)))
     .map((entry) => path.join(dir, entry.name))
     .sort((a, b) => a.localeCompare(b, 'zh-CN', { numeric: true }));
 }
@@ -70,7 +74,7 @@ async function listBackgrounds() {
 
     const entries = await fs.readdir(groupDir, { withFileTypes: true });
     for (const entry of entries) {
-      if (entry.isDirectory()) {
+      if (entry.isDirectory() && !isLocalDuplicate(entry.name)) {
         await visit(path.join(groupDir, entry.name), pictureRoot, prefix);
       }
     }

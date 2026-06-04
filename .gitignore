@@ -4,6 +4,10 @@
 frontend/node_modules/
 frontend/dist/
 
+# Local duplicate/conflict files, for example "README 2.md" or "structure 2.json"
+* 2.*
+* 2
+
 # Python
 __pycache__/
 *.py[cod]

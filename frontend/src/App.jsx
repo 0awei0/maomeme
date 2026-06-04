@@ -485,116 +485,188 @@ function App() {
             ))}
           </div>
           <div className="promptBox">
-            <label>主题</label>
-            <textarea value={theme} onChange={(event) => setTheme(event.target.value)} />
-            <BriefSuggestionPanel
-              suggestions={briefSuggestions}
-              provider={briefSuggestionProvider}
-              onPick={(field, value) => setCreativeBrief((current) => ({ ...current, [field]: value }))}
-            />
-            <label>爆款视频主题 / 原视频想表达什么</label>
-            <input
-              value={creativeBrief.viral_topic}
-              onChange={(event) => setCreativeBrief((value) => ({ ...value, viral_topic: event.target.value }))}
-              placeholder="例如：请假被拒后反套路整顿职场"
-            />
-            <div className="briefGrid">
-              <input
-                value={creativeBrief.target_audience}
-                onChange={(event) => setCreativeBrief((value) => ({ ...value, target_audience: event.target.value }))}
-                placeholder="目标受众"
-              />
-              <input
-                value={creativeBrief.protagonist}
-                onChange={(event) => setCreativeBrief((value) => ({ ...value, protagonist: event.target.value }))}
-                placeholder="主角猫设定"
-              />
-              <input
-                value={creativeBrief.core_conflict}
-                onChange={(event) => setCreativeBrief((value) => ({ ...value, core_conflict: event.target.value }))}
-                placeholder="核心冲突"
-              />
-              <input
-                value={creativeBrief.ending_tone}
-                onChange={(event) => setCreativeBrief((value) => ({ ...value, ending_tone: event.target.value }))}
-                placeholder="结尾倾向"
+            <div className="formNotice">先填第 1 步就能生成；上传爆款视频后，系统会优先迁移它的剧本结构和节奏。</div>
+
+            <div className="formSection">
+              <StepHeader index="1" title="新视频主题" note="告诉 Agent 这条猫 meme 要讲什么。" />
+              <FormField label="主题描述" badge="必填" hint="建议 20-60 字，写清社会矛盾、主角处境和反转方向。">
+                <textarea
+                  aria-label="主题描述"
+                  value={theme}
+                  onChange={(event) => setTheme(event.target.value)}
+                  placeholder="例如：大学生投简历像进黑洞，岗位要求越来越离谱，最后转去校门口卖烤肠也要被内卷"
+                />
+              </FormField>
+              <BriefSuggestionPanel
+                suggestions={briefSuggestions}
+                provider={briefSuggestionProvider}
+                onPick={(field, value) => setCreativeBrief((current) => ({ ...current, [field]: value }))}
               />
             </div>
+
+            <div className="formSection">
+              <StepHeader index="2" title="迁移目标" note="这些信息会帮助剧本更像人类社会处境，猫只是表现层。" />
+              <FormField label="爆款参考想表达什么" badge="选填" hint="上传爆款视频时建议填写一句，方便 Doubao 分析后做改写。">
+                <input
+                  aria-label="爆款参考想表达什么"
+                  value={creativeBrief.viral_topic}
+                  onChange={(event) => setCreativeBrief((value) => ({ ...value, viral_topic: event.target.value }))}
+                  placeholder="例如：请假被拒后用荒诞方式反套路整顿职场"
+                />
+              </FormField>
+              <div className="briefGrid">
+                <FormField label="目标受众" hint="这会影响台词口吻和梗的密度。">
+                  <input
+                    aria-label="目标受众"
+                    value={creativeBrief.target_audience}
+                    onChange={(event) => setCreativeBrief((value) => ({ ...value, target_audience: event.target.value }))}
+                    placeholder="例如：应届生、打工人、考研党"
+                  />
+                </FormField>
+                <FormField label="主角设定" hint="写人类角色也可以，渲染时会映射为猫。">
+                  <input
+                    aria-label="主角设定"
+                    value={creativeBrief.protagonist}
+                    onChange={(event) => setCreativeBrief((value) => ({ ...value, protagonist: event.target.value }))}
+                    placeholder="例如：嘴硬但破防的应届生"
+                  />
+                </FormField>
+                <FormField label="核心冲突" hint="一句话写清主角被什么现实问题卡住。">
+                  <input
+                    aria-label="核心冲突"
+                    value={creativeBrief.core_conflict}
+                    onChange={(event) => setCreativeBrief((value) => ({ ...value, core_conflict: event.target.value }))}
+                    placeholder="例如：投了很多简历但岗位要求越来越离谱"
+                  />
+                </FormField>
+                <FormField label="结尾倾向" hint="控制最后是讽刺、温暖、荒诞还是反转。">
+                  <input
+                    aria-label="结尾倾向"
+                    value={creativeBrief.ending_tone}
+                    onChange={(event) => setCreativeBrief((value) => ({ ...value, ending_tone: event.target.value }))}
+                    placeholder="例如：讽刺但留一点温暖"
+                  />
+                </FormField>
+              </div>
+            </div>
+
             <details className="advancedBrief">
-              <summary>生成约束</summary>
-              <small>这些字段会影响剧本、背景和道具选择；补全建议不会自动覆盖。</small>
-              <input
-                value={creativeBrief.style}
-                onChange={(event) => setCreativeBrief((value) => ({ ...value, style: event.target.value }))}
-                placeholder="整体风格：讽刺 / 温暖 / 荒诞"
-              />
-              <input
-                value={creativeBrief.required_scenes}
-                onChange={(event) => setCreativeBrief((value) => ({ ...value, required_scenes: event.target.value }))}
-                placeholder="必须出现的场景"
-              />
-              <input
-                value={creativeBrief.required_props}
-                onChange={(event) => setCreativeBrief((value) => ({ ...value, required_props: event.target.value }))}
-                placeholder="必须出现的道具"
-              />
-              <input
-                value={creativeBrief.avoid_content}
-                onChange={(event) => setCreativeBrief((value) => ({ ...value, avoid_content: event.target.value }))}
-                placeholder="不要出现的内容"
-              />
-              <input
-                value={creativeBrief.main_cat_count}
-                onChange={(event) => setCreativeBrief((value) => ({ ...value, main_cat_count: event.target.value }))}
-                placeholder="主角猫数量，例如 1-2 只"
-              />
-              <label className="toggleRow">
-                <input
-                  type="checkbox"
-                  checked={creativeBrief.allow_multi_cat}
-                  onChange={(event) => setCreativeBrief((value) => ({ ...value, allow_multi_cat: event.target.checked }))}
-                />
-                允许办公室/群像场景出现多只猫
-              </label>
-              <label className="toggleRow">
-                <input
-                  type="checkbox"
-                  checked={creativeBrief.allow_ai_fill}
-                  onChange={(event) => setCreativeBrief((value) => ({ ...value, allow_ai_fill: event.target.checked }))}
-                />
-                允许缺素材时用 AI 补图
-              </label>
+              <summary>
+                <StepHeader index="3" title="生成约束" note="选填，控制场景、道具和素材补全。" />
+              </summary>
+              <div className="advancedBody">
+                <FormField label="整体风格">
+                  <input
+                    aria-label="整体风格"
+                    value={creativeBrief.style}
+                    onChange={(event) => setCreativeBrief((value) => ({ ...value, style: event.target.value }))}
+                    placeholder="例如：社会现实黑色幽默 / 温暖治愈 / 荒诞反讽"
+                  />
+                </FormField>
+                <FormField label="必须出现的场景" hint="例如办公室、招聘软件、校门口小摊、宿舍、自习室。">
+                  <input
+                    aria-label="必须出现的场景"
+                    value={creativeBrief.required_scenes}
+                    onChange={(event) => setCreativeBrief((value) => ({ ...value, required_scenes: event.target.value }))}
+                    placeholder="例如：招聘软件、校门口烤肠摊"
+                  />
+                </FormField>
+                <FormField label="必须出现的道具" hint="Agent 会优先把这些做成弹窗、贴图或字幕包装。">
+                  <input
+                    aria-label="必须出现的道具"
+                    value={creativeBrief.required_props}
+                    onChange={(event) => setCreativeBrief((value) => ({ ...value, required_props: event.target.value }))}
+                    placeholder="例如：岗位要求卡、简历、烤肠价签"
+                  />
+                </FormField>
+                <FormField label="不要出现的内容">
+                  <input
+                    aria-label="不要出现的内容"
+                    value={creativeBrief.avoid_content}
+                    onChange={(event) => setCreativeBrief((value) => ({ ...value, avoid_content: event.target.value }))}
+                    placeholder="例如：不要鸡汤、不要强行大团圆"
+                  />
+                </FormField>
+                <FormField label="主角猫数量">
+                  <input
+                    aria-label="主角猫数量"
+                    value={creativeBrief.main_cat_count}
+                    onChange={(event) => setCreativeBrief((value) => ({ ...value, main_cat_count: event.target.value }))}
+                    placeholder="例如：1-2 只主角猫"
+                  />
+                </FormField>
+                <label className="toggleRow">
+                  <input
+                    type="checkbox"
+                    checked={creativeBrief.allow_multi_cat}
+                    onChange={(event) => setCreativeBrief((value) => ({ ...value, allow_multi_cat: event.target.checked }))}
+                  />
+                  <span>
+                    允许多猫群像
+                    <small>办公室、班级、夜市等场景可以有辅助猫，但主线仍围绕 1-2 个主角。</small>
+                  </span>
+                </label>
+                <label className="toggleRow">
+                  <input
+                    type="checkbox"
+                    checked={creativeBrief.allow_ai_fill}
+                    onChange={(event) => setCreativeBrief((value) => ({ ...value, allow_ai_fill: event.target.checked }))}
+                  />
+                  <span>
+                    允许 AI 补图
+                    <small>本地背景不匹配时，才用 Seedream 生成背景或贴图。</small>
+                  </span>
+                </label>
+              </div>
             </details>
-            <div className="uploadPanel">
-              <div className="uploadHead">
-                <strong>爆款参考视频</strong>
-                {viralJob?.analysis_id && <span>已分析</span>}
-              </div>
-              <input value={viralDescription} onChange={(event) => setViralDescription(event.target.value)} placeholder="给参考视频补一句描述" />
-              <label className="fileButton">
-                {loading === 'upload-viral' || loading === 'analyze-viral' ? <Loader2 className="spin" size={16} /> : <UploadCloud size={16} />}
-                上传并分析爆款视频
-                <input type="file" accept="video/*" onChange={uploadViralVideo} />
-              </label>
-              {viralUpload && <small>{viralUpload.filename} · {formatBytes(viralUpload.size_bytes)}</small>}
-              {viralJob && <AnalysisCard job={viralJob} />}
-            </div>
-            <div className="uploadPanel">
-              <div className="uploadHead">
-                <strong>我的素材</strong>
-                <span>{materialUploads.length} 个</span>
-              </div>
-              <input value={materialDescription} onChange={(event) => setMaterialDescription(event.target.value)} placeholder="给这批素材补一句描述" />
-              <label className="fileButton">
-                {loading === 'upload-materials' ? <Loader2 className="spin" size={16} /> : <UploadCloud size={16} />}
-                上传猫视频 / 背景图 / 文案
-                <input type="file" accept="video/*,image/*,.txt,.md,.json" multiple onChange={uploadMaterials} />
-              </label>
-              {materialUploads.length > 0 && (
-                <div className="uploadList">
-                  {materialUploads.slice(0, 4).map((item) => <small key={item.upload_id}>{kindLabel(item.kind)} · {item.filename}</small>)}
+
+            <div className="formSection">
+              <StepHeader index="4" title="上传素材" note="都可以不传；不传时会使用项目内置猫动画和背景。" />
+              <div className="uploadPanel">
+                <div className="uploadHead">
+                  <strong>爆款参考视频</strong>
+                  {viralJob?.analysis_id && <span>已分析</span>}
                 </div>
-              )}
+                <FormField label="参考视频说明" hint="用于说明原视频主题、角色关系或你想迁移的点。">
+                  <input
+                    aria-label="参考视频说明"
+                    value={viralDescription}
+                    onChange={(event) => setViralDescription(event.target.value)}
+                    placeholder="例如：老板不批假，员工反套路把老板吓住"
+                  />
+                </FormField>
+                <label className="fileButton">
+                  {loading === 'upload-viral' || loading === 'analyze-viral' ? <Loader2 className="spin" size={16} /> : <UploadCloud size={16} />}
+                  上传并分析爆款视频
+                  <input type="file" accept="video/*" onChange={uploadViralVideo} />
+                </label>
+                {viralUpload && <small>{viralUpload.filename} · {formatBytes(viralUpload.size_bytes)}</small>}
+                {viralJob && <AnalysisCard job={viralJob} />}
+              </div>
+              <div className="uploadPanel">
+                <div className="uploadHead">
+                  <strong>我的猫素材 / 背景 / 文案</strong>
+                  <span>{materialUploads.length} 个</span>
+                </div>
+                <FormField label="这批素材怎么用" hint="例如“这些是办公室背景”“这只猫适合生气/震惊”。">
+                  <input
+                    aria-label="这批素材怎么用"
+                    value={materialDescription}
+                    onChange={(event) => setMaterialDescription(event.target.value)}
+                    placeholder="例如：办公室背景和几段震惊猫动作"
+                  />
+                </FormField>
+                <label className="fileButton">
+                  {loading === 'upload-materials' ? <Loader2 className="spin" size={16} /> : <UploadCloud size={16} />}
+                  上传猫视频 / 背景图 / 文案
+                  <input type="file" accept="video/*,image/*,.txt,.md,.json" multiple onChange={uploadMaterials} />
+                </label>
+                {materialUploads.length > 0 && (
+                  <div className="uploadList">
+                    {materialUploads.slice(0, 4).map((item) => <small key={item.upload_id}>{kindLabel(item.kind)} · {item.filename}</small>)}
+                  </div>
+                )}
+              </div>
             </div>
             <div className="controlRow">
               <span>时长</span>
@@ -842,6 +914,31 @@ function AnalysisCard({ job }) {
       )}
       {job.status === 'error' && <small>{job.error || '分析失败'}</small>}
     </div>
+  );
+}
+
+function StepHeader({ index, title, note }) {
+  return (
+    <div className="stepHeader">
+      <span>{index}</span>
+      <div>
+        <strong>{title}</strong>
+        {note && <small>{note}</small>}
+      </div>
+    </div>
+  );
+}
+
+function FormField({ label, badge = '', hint = '', children }) {
+  return (
+    <label className="formField">
+      <span className="fieldLabel">
+        <strong>{label}</strong>
+        {badge && <em>{badge}</em>}
+      </span>
+      {children}
+      {hint && <small>{hint}</small>}
+    </label>
   );
 }
 

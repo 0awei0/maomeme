@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-04T03:22:19.899Z",
+  "generated_at": "2026-06-04T04:50:17.943Z",
   "summary": {
     "cat_motions": 26,
-    "backgrounds": 95
+    "backgrounds": 96
   },
   "cat_motions": [
     {
@@ -902,6 +902,13 @@
       "type": "background",
       "scene": "generated/大学生工作难找-投简历像进黑洞-岗位要求越来越离谱-punchline",
       "file": "assets/generated/backgrounds/大学生工作难找-投简历像进黑洞-岗位要求越来越离谱-punchline/1780543297.png",
+      "description": "大学生工作难找，投简历像进黑洞，岗位要求越来越离谱｜摊位写熟练工优先｜竖屏猫 meme 背景，无文字，适合绿幕猫叠加"
+    },
+    {
+      "id": "generated/大学生工作难找-投简历像进黑洞-岗位要求越来越离谱-punchline/1780548460.png",
+      "type": "background",
+      "scene": "generated/大学生工作难找-投简历像进黑洞-岗位要求越来越离谱-punchline",
+      "file": "assets/generated/backgrounds/大学生工作难找-投简历像进黑洞-岗位要求越来越离谱-punchline/1780548460.png",
       "description": "大学生工作难找，投简历像进黑洞，岗位要求越来越离谱｜摊位写熟练工优先｜竖屏猫 meme 背景，无文字，适合绿幕猫叠加"
     },
     {

@@ -121,6 +121,12 @@ npm run assets:preprocess-cats
 
 当前仓库尽量直接上传可复现主流程所需素材：`assets/cat-motions/` 的猫动作 mp4、`assets/backgrounds/` 的背景图、`assets/generated/backgrounds/` 的预制 Seedream 背景，以及所有 `descriptions.json` 和 `data/assets-index.json`。
 
+为了让其他成员 clone 后能直接复现，提交范围按下面几类判断：
+
+- 必须提交：`frontend/`、`backend/`、`scripts/`、`hyperframes/` 的源码，`backend/.env.example`，`assets/` 里的可用猫动作/背景/描述，`data/assets-index.json`，`data/text-materials/`，`data/preset-scenes/`，`data/viral-structures/baokuan-maomeme/` 的结构化拆解结果，`samples/user-baokuan-test/raw/` 的 9 条用户上传测试样例，以及 README/测试报告。
+- 不提交：真实 `.env`、API key、`frontend/node_modules/`、`frontend/dist/`、`backend/uploads/`、`backend/outputs/`、`output/`、`assets/processed/`、公共爆款 raw 大视频、临时音频参考轨和原始 Doubao 响应。
+- 可再生文件：`assets/processed/cat-motions-keyed/`、`frontend/dist/`、`output/jobs/` 和 `backend/outputs/` 都由本地命令重新生成，不影响复现。
+
 `assets/processed/` 是本地预处理缓存，例如预抠绿后的透明猫素材，默认忽略不上传；团队成员可用 `npm run assets:preprocess-cats` 从原始猫素材重新生成。
 
 如果后续素材太大导致 GitHub 上传不稳定，优先保证这些信息被提交：

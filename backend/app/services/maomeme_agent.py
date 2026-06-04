@@ -2540,16 +2540,7 @@ async def casting_and_validator_agents_stream(
         local_critic = local_shot_critic(theme, beat, slot, used_motion_ids, used_background_ids)
         critic_notes = [f"{beat['role']} 本地质检 {local_critic['score']:.2f}。"]
         if provider != "workflow" and local_critic["score"] < 0.72:
-            slot, remote_notes = await maybe_critic_revise_slot(
-                theme=theme,
-                beat=beat,
-                slot=slot,
-                index=index,
-                previous_slot=previous_slot,
-                used_motion_ids=used_motion_ids,
-                used_background_ids=used_background_ids,
-            )
-            critic_notes.extend(remote_notes)
+            critic_notes.append(f"{beat['role']} 实时预览跳过远程 Critic 长尾，保留可流式预览的分镜。")
         slot_notes.extend(critic_notes)
         slot["source_pattern"] = slot.get("source_pattern") or f"Agent 自主分镜：{provider}"
         notes.extend(slot_notes)
