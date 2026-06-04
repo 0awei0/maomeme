@@ -6,8 +6,12 @@ from .core.config import get_settings
 
 from .api.analyze import router as analyze_router
 from .api.maomeme import router as maomeme_router
+from .api.uploads import router as uploads_router
 
 app = FastAPI(title="MaoMeme 爆款结构迁移引擎", version="0.1.0")
+settings = get_settings()
+settings.PUBLIC_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+settings.UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 app.add_middleware(
     CORSMiddleware,
@@ -19,7 +23,8 @@ app.add_middleware(
 
 app.include_router(analyze_router)
 app.include_router(maomeme_router)
-app.mount("/output", StaticFiles(directory=str(get_settings().PUBLIC_OUTPUT_DIR)), name="output")
+app.include_router(uploads_router)
+app.mount("/output", StaticFiles(directory=str(settings.PUBLIC_OUTPUT_DIR)), name="output")
 
 
 @app.get("/health")

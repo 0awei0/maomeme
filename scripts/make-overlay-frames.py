@@ -279,6 +279,34 @@ def draw_stall_sign(draw: ImageDraw.ImageDraw, progress: float, action: dict) ->
         draw_text_center(draw, ((box[0] + box[2]) // 2, yy + 15), fit_text(item, 12), load_font(20), (95, 42, 20, 255), stroke=1)
 
 
+def draw_leave_request(draw: ImageDraw.ImageDraw, progress: float, action: dict) -> None:
+    y = panel_progress_y(96, progress, 44)
+    box = (588, y, 900, y + 248)
+    draw_card_shadow(draw, box, 22)
+    draw.rounded_rectangle(box, radius=22, fill=(245, 249, 255, 246), outline=(44, 92, 178, 235), width=3)
+    draw.text((box[0] + 24, box[1] + 20), fit_text(action.get("title", "请假审批"), 12), font=load_font(28), fill=(30, 56, 110, 255))
+    draw.rounded_rectangle((box[0] + 24, box[1] + 70, box[2] - 24, box[1] + 124), radius=18, fill=(255, 255, 255, 248))
+    draw.text((box[0] + 42, box[1] + 84), "理由", font=load_font(19), fill=(85, 96, 116, 255))
+    draw.text((box[0] + 106, box[1] + 82), fit_text(action.get("reason", "身体报警"), 10), font=load_font(23), fill=(30, 42, 65, 255))
+    draw.rounded_rectangle((box[0] + 24, box[1] + 148, box[2] - 24, box[1] + 202), radius=18, fill=(255, 236, 232, 250), outline=(222, 74, 55, 180), width=2)
+    draw_text_center(draw, ((box[0] + box[2]) // 2, box[1] + 175), fit_text(action.get("status", "老板：不批准"), 12), load_font(25), (194, 55, 42, 255), stroke=1)
+
+
+def draw_emergency_call(draw: ImageDraw.ImageDraw, progress: float, action: dict) -> None:
+    y = panel_progress_y(84, progress, 50)
+    box = (604, y, 900, y + 240)
+    pulse = int(10 * math.sin(progress * math.pi))
+    draw.rounded_rectangle((box[0] - pulse, box[1] - pulse, box[2] + pulse, box[3] + pulse), radius=28, fill=(255, 55, 55, 60))
+    draw_card_shadow(draw, box, 24)
+    draw.rounded_rectangle(box, radius=24, fill=(255, 245, 245, 248), outline=(220, 38, 38, 245), width=4)
+    draw.ellipse((box[0] + 26, box[1] + 26, box[0] + 88, box[1] + 88), fill=(220, 38, 38, 255))
+    draw_text_center(draw, (box[0] + 57, box[1] + 57), "120", load_font(22), (255, 255, 255, 255), stroke=1)
+    draw.text((box[0] + 104, box[1] + 28), fit_text(action.get("title", "急救电话"), 10), font=load_font(29), fill=(118, 24, 24, 255))
+    draw.text((box[0] + 104, box[1] + 72), fit_text(action.get("caller", "00后猫"), 12), font=load_font(22), fill=(85, 47, 47, 255))
+    draw.rounded_rectangle((box[0] + 32, box[1] + 126, box[2] - 32, box[1] + 182), radius=22, fill=(220, 38, 38, 255))
+    draw_text_center(draw, ((box[0] + box[2]) // 2, box[1] + 154), fit_text(action.get("status", "老板已沉默"), 12), load_font(25), (255, 255, 255, 255), stroke=1)
+
+
 def draw_action(draw: ImageDraw.ImageDraw, action: dict, local_t: float) -> None:
     start = float(action.get("start", 0))
     duration = max(0.1, float(action.get("duration", 1)))
@@ -316,6 +344,10 @@ def draw_action(draw: ImageDraw.ImageDraw, action: dict, local_t: float) -> None
         draw_study_card(draw, progress, action)
     elif kind == "stall_sign":
         draw_stall_sign(draw, progress, action)
+    elif kind == "leave_request":
+        draw_leave_request(draw, progress, action)
+    elif kind == "emergency_call":
+        draw_emergency_call(draw, progress, action)
     elif kind == "generated_sticker":
         draw_generated_sticker(draw, progress, action)
 

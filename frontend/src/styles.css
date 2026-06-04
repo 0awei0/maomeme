@@ -39,15 +39,16 @@ a {
 
 .app {
   min-height: 100vh;
-  padding: 20px;
+  padding: 16px;
 }
 
 .topbar {
-  height: 56px;
+  min-height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
+  gap: 14px;
+  margin-bottom: 14px;
 }
 
 .brand,
@@ -72,24 +73,36 @@ a {
 
 .workspace {
   display: grid;
-  grid-template-columns: minmax(300px, 0.95fr) minmax(420px, 1.35fr) minmax(280px, 0.85fr);
+  grid-template-columns: minmax(300px, 340px) minmax(500px, 1fr) minmax(320px, 390px);
   gap: 16px;
-  align-items: stretch;
+  align-items: start;
 }
 
 .panel {
   background: #fffdf8;
   border: 1px solid #ddd8ce;
   border-radius: 8px;
-  padding: 20px;
-  min-height: calc(100vh - 94px);
+  padding: 16px;
+  min-height: calc(100vh - 82px);
   box-shadow: 0 12px 30px rgba(39, 34, 25, 0.06);
 }
 
+.left,
+.right {
+  position: sticky;
+  top: 14px;
+  max-height: calc(100vh - 28px);
+  overflow: auto;
+}
+
+.center {
+  min-width: 0;
+}
+
 h1 {
-  font-size: 34px;
-  line-height: 1.08;
-  margin: 8px 0 12px;
+  font-size: 28px;
+  line-height: 1.12;
+  margin: 4px 0 10px;
   letter-spacing: 0;
 }
 
@@ -105,33 +118,39 @@ p {
 
 .left > p {
   color: #5e655f;
-  line-height: 1.7;
+  line-height: 1.55;
+  font-size: 14px;
 }
 
 .assetGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin: 24px 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 16px 0;
 }
 
 .assetCard {
   border: 1px solid #e3ded4;
   border-radius: 8px;
-  padding: 14px;
-  min-height: 100px;
+  padding: 10px;
+  min-height: 74px;
   display: grid;
   align-content: start;
-  gap: 4px;
+  gap: 3px;
   background: #faf7ee;
+  min-width: 0;
 }
 
 .assetCard strong {
-  font-size: 28px;
+  font-size: 19px;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .assetCard span {
   font-weight: 750;
+  font-size: 12px;
 }
 
 .assetCard small,
@@ -141,7 +160,7 @@ p {
 
 .promptBox {
   display: grid;
-  gap: 10px;
+  gap: 9px;
 }
 
 .promptBox label {
@@ -151,7 +170,7 @@ p {
 
 textarea {
   width: 100%;
-  min-height: 132px;
+  min-height: 108px;
   resize: vertical;
   border: 1px solid #d9d3c8;
   border-radius: 8px;
@@ -159,6 +178,172 @@ textarea {
   font: inherit;
   line-height: 1.6;
   background: #fffaf0;
+}
+
+.briefSuggestions {
+  display: grid;
+  gap: 8px;
+  border: 1px solid #d9e4df;
+  border-radius: 8px;
+  padding: 10px;
+  background: #f5faf7;
+}
+
+.miniHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: #1f5f54;
+}
+
+.miniHead span {
+  min-height: 22px;
+  border-radius: 999px;
+  padding: 2px 8px;
+  background: #e4f2ed;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.suggestionGroup {
+  display: grid;
+  gap: 5px;
+}
+
+.suggestionGroup > small {
+  color: #66736c;
+  font-weight: 800;
+}
+
+.suggestionGroup > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.suggestionGroup button {
+  min-height: 30px;
+  max-width: 100%;
+  padding: 0 9px;
+  background: #fff;
+  border-color: #cfe1dc;
+  color: #244b72;
+  font-size: 12px;
+  white-space: normal;
+  text-align: left;
+}
+
+.briefGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.advancedBrief {
+  border: 1px solid #e2ddd2;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fffaf0;
+}
+
+.advancedBrief summary {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.advancedBrief[open] {
+  display: grid;
+  gap: 8px;
+}
+
+.advancedBrief[open] summary {
+  margin-bottom: 2px;
+}
+
+.toggleRow {
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #39413c;
+}
+
+.toggleRow input {
+  min-height: auto;
+}
+
+.uploadPanel,
+.analysisCard {
+  border: 1px solid #e2ddd2;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fff;
+  display: grid;
+  gap: 8px;
+}
+
+.controlRow {
+  min-height: 38px;
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  align-items: center;
+  gap: 8px;
+}
+
+.controlRow > span {
+  color: #4e5c54;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.uploadHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.uploadHead span {
+  min-height: 24px;
+  border-radius: 999px;
+  padding: 3px 8px;
+  background: #edf5f2;
+  color: #1f5f54;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.fileButton {
+  min-height: 40px;
+  border: 1px dashed #c9d5cf;
+  border-radius: 8px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #f4f7f4;
+  color: #1f5f54;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.fileButton input {
+  display: none;
+}
+
+.uploadPanel small,
+.analysisCard small,
+.uploadList small {
+  color: #74756f;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.uploadList {
+  display: grid;
+  gap: 4px;
 }
 
 .segmented {
@@ -178,6 +363,17 @@ textarea {
   padding: 0 8px;
 }
 
+.segmented.compact {
+  gap: 4px;
+  padding: 3px;
+}
+
+.segmented.compact button {
+  min-height: 30px;
+  padding: 0 6px;
+  font-size: 12px;
+}
+
 .segmented button.active {
   background: #1f6f63;
   color: #fff;
@@ -189,19 +385,19 @@ textarea {
 
 .timeline {
   display: grid;
-  gap: 14px;
-  margin-top: 18px;
+  gap: 10px;
+  margin-top: 14px;
 }
 
 .slot {
   display: grid;
-  grid-template-columns: 92px 1fr;
-  gap: 14px;
+  grid-template-columns: 72px 1fr;
+  gap: 9px;
   align-items: start;
 }
 
 .slotTime {
-  height: 52px;
+  min-height: 44px;
   border-radius: 8px;
   background: #26302f;
   color: #fff;
@@ -209,28 +405,33 @@ textarea {
   align-items: center;
   justify-content: center;
   font-weight: 750;
-  font-size: 13px;
+  font-size: 12px;
+  text-align: center;
+  padding: 0 6px;
 }
 
 .slotBody {
   border: 1px solid #e4dfd6;
   border-radius: 8px;
-  padding: 14px;
-  min-height: 108px;
+  padding: 10px;
+  min-height: 88px;
   background: #fff;
+  min-width: 0;
 }
 
 .slotHead {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
-  align-items: center;
-  margin-bottom: 8px;
+  gap: 8px;
+  align-items: flex-start;
+  margin-bottom: 6px;
 }
 
 .slotBody p {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: #39413c;
+  font-size: 13px;
+  line-height: 1.45;
 }
 
 .dialoguePreview,
@@ -243,19 +444,21 @@ textarea {
 .slotMeta {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin: 8px 0;
+  gap: 5px;
+  margin: 7px 0;
 }
 
 .dialoguePreview span,
 .overlayPreview span,
 .slotMeta span {
   border-radius: 8px;
-  padding: 7px 9px;
+  padding: 5px 7px;
   background: #f3f0e8;
   color: #39413c;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .overlayPreview span {
@@ -275,10 +478,28 @@ textarea {
 
 .pill {
   border-radius: 999px;
-  padding: 5px 9px;
-  font-size: 12px;
+  padding: 4px 7px;
+  font-size: 11px;
   font-weight: 760;
   white-space: nowrap;
+}
+
+.slotDetails {
+  margin-top: 6px;
+}
+
+.slotDetails summary {
+  cursor: pointer;
+  color: #4d6180;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.slotDetails small {
+  display: block;
+  margin-top: 5px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .pill.ok {
@@ -294,13 +515,13 @@ textarea {
 .candidateGrid {
   display: grid;
   gap: 12px;
-  margin-top: 18px;
+  margin-top: 14px;
 }
 
 .candidate {
   border: 1px solid #e2ddd2;
   border-radius: 8px;
-  padding: 14px;
+  padding: 13px;
   background: #fff;
   display: grid;
   gap: 10px;
@@ -347,11 +568,12 @@ textarea {
 .candidate ul {
   margin: 0;
   padding-left: 18px;
-  line-height: 1.7;
+  line-height: 1.62;
+  color: #303833;
 }
 
 .later {
-  margin-top: 24px;
+  margin-top: 22px;
 }
 
 .reviseRow {
@@ -419,7 +641,7 @@ input {
 }
 
 .resultPanel {
-  margin-top: 24px;
+  margin-top: 22px;
 }
 
 .videoActions {
@@ -553,11 +775,55 @@ input {
     grid-template-columns: 1fr;
   }
 
+  .topbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+  .actions button {
+    flex: 1;
+  }
+
+  .left,
+  .right {
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+
   .panel {
     min-height: auto;
   }
 
   .reviseRow {
     grid-template-columns: 1fr;
+  }
+
+  .briefGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .assetGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 1240px) and (min-width: 981px) {
+  .workspace {
+    grid-template-columns: minmax(290px, 330px) minmax(440px, 1fr);
+  }
+
+  .right {
+    grid-column: 1 / -1;
+    position: static;
+    max-height: none;
+  }
+
+  .timeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

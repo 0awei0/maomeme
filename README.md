@@ -1,6 +1,6 @@
 # MaoMeme
 
-猫 meme 垂直方向的爆款结构迁移引擎。用户输入社会现实主题后，系统生成 3 个剧本候选，用户选择后生成分镜时间线，并匹配本地猫动画、背景图、字幕和原素材声音，最后通过渲染任务输出视频。
+猫 meme 垂直方向的爆款结构迁移引擎。用户输入社会现实主题后，系统生成 3 个剧本候选，用户选择后生成分镜时间线，并匹配本地猫动画、背景图、字幕和原素材声音，最后通过渲染任务输出视频。用户也可以上传自己的爆款参考视频和猫/背景/文案素材；上传内容会作为本次 session 的优先迁移结构和优先素材。
 
 ## 方案概览
 
@@ -8,6 +8,7 @@
 
 - 前端 `frontend/`：React/Vite 工作台，负责主题输入、候选剧本展示、分镜预览、自然语言调整、渲染任务轮询和视频播放。
 - 后端 `backend/`：FastAPI 服务，负责剧本候选生成、分镜规划、素材匹配、自然语言修订和渲染 job 队列。
+- 上传 session：`backend/uploads/` 保存运行时上传的爆款视频、用户素材、分析结果和 manifest，默认被 `.gitignore` 忽略，不作为公开静态目录。
 - 素材与文本库：`assets/` 放猫动画和背景图，`data/text-materials/` 放社会现实主题素材，`data/assets-index.json` 是素材索引。
 - 预制场景：`data/preset-scenes/social-scenes.json` 维护招聘会、会议室、自习室、出租屋、家庭预算桌、通勤站台等高频社会现实背景语义。
 - 渲染：默认使用 FFmpeg + Pillow 字幕图，保留猫动画原素材声音；猫素材可先预抠绿生成本地透明缓存，HyperFrames 作为后续 Agent 友好的 HTML 包装增强。
@@ -23,15 +24,17 @@
 ## 完整 Workflow
 
 1. 用户在前端输入主题，例如“大学生工作难找，投简历像进黑洞”，并选择短版、30 秒或 1 分钟。
-2. 前端调用 `/api/maomeme/candidates-stream`，默认走 Doubao Agent 流式生成；测试时可用 `?agent=false` 或 `use_doubao=false` 走本地预设。
-3. 后端读取 `data/text-materials/social-reality.json` 的现实议题、梗角度、分镜种子，同时读取 `data/assets-index.json` 的猫动画和背景描述。
-4. 编剧 Agent 先返回 3 个预览草稿卡片，再通过三路并发流式请求生成 3 个真实候选；前端候选卡片会逐步展示标题、现实矛盾、字幕段落和素材匹配分。
-5. 用户选择一个候选后，前端调用 `/api/maomeme/select-stream`。Workflow 会先秒级返回初版 timeline；Agent 模式下 ShotPlannerAgent 会再并发精修每个镜头的猫动画、背景、裁剪时长、双猫布局、转场和 overlay 动作，并用 `slot_patch` 流式更新。
-6. 如果缺少具体背景，例如“烤肠摊”“小吃摊”，分镜会记录 `background_prompt` 和补图状态；已有 Seedream 生成素材会优先复用，分镜阶段不等待慢速补图。
-7. 用户可用自然语言调用 `/api/maomeme/revise` 调整，例如“更讽刺一点”“结尾更温暖”“增加双猫对话”。
-8. 用户点击生成视频后，前端调用 `/api/maomeme/render-jobs`，后端创建异步渲染任务，前端轮询 `/api/maomeme/render-jobs/{job_id}`。
-9. 渲染器用 FFmpeg/Pillow/HyperFrames 包装执行：裁剪猫素材、保留并混合原素材音频、优先使用预抠透明猫素材并在缺失时实时抠绿、叠背景、加字幕/气泡/飞物件/盖章/转场，最后输出 mp4。
-10. 最终视频写入 `output/jobs/`，前端可预览和下载；中间计划与运行文件写入 `backend/outputs/`。
+2. 用户可选上传爆款参考视频。前端调用 `/api/uploads/viral-video` 保存文件，再调用 `/api/analyze/viral-jobs` 异步分析；分析结果会展示剧本摘要、分镜数、可迁移结构、背景/猫/音频需求。
+3. 用户可选上传自己的猫视频、背景图、参考图或文案素材。前端调用 `/api/uploads/materials`，后端将素材转成临时 session 索引，本次生成优先匹配这些素材。
+4. 前端把主题、结构化精简 brief、`session_id`、`viral_analysis_id` 和用户素材 id 传给 `/api/maomeme/candidates-stream`。
+5. 后端读取文本素材库、内置素材库、上传爆款结构和用户素材索引。若有上传爆款，编剧 Agent 优先迁移它的 hook、节奏、角色关系、字幕密度和笑点推进，但台词与主题必须改写。
+6. 编剧 Agent 先返回 3 个预览草稿卡片，再通过三路并发流式请求生成真实候选；候选卡片展示参考的上传爆款和用户素材覆盖情况。
+7. 用户选择候选后，前端调用 `/api/maomeme/select-stream`。Workflow 先秒级返回初版 timeline；Agent 模式下 ShotPlannerAgent 并发精修每个镜头，并优先使用用户素材，不足时再用内置素材、包装或 Seedream 补足。
+8. 时间线展示每个分镜的猫/背景来源、结构来源、裁剪、转场、overlay 和缺口策略，让评审能看到“如何迁移、如何补全”。
+9. 用户可用自然语言调用 `/api/maomeme/revise` 调整，例如“更讽刺一点”“结尾更温暖”“增加双猫对话”。
+10. 用户点击生成视频后，前端调用 `/api/maomeme/render-jobs`，后端创建异步渲染任务，前端轮询 `/api/maomeme/render-jobs/{job_id}`。
+11. 渲染器用 FFmpeg/Pillow/HyperFrames 包装执行：裁剪猫素材、保留并混合原素材音频、优先使用预抠透明猫素材并在缺失时实时抠绿、叠背景、加字幕/气泡/飞物件/盖章/转场，最后输出 mp4。
+12. 最终视频写入 `output/jobs/`，前端可预览和下载；中间计划与运行文件写入 `backend/outputs/`，上传 session 写入 `backend/uploads/`。
 
 ## Agent 与固定 Workflow
 
@@ -265,6 +268,18 @@ conda run -n cv python backend/scripts/analyze_viral_maomeme.py --limit 2 --use-
 
 分析结果位于 `data/viral-structures/baokuan-maomeme/`。每条视频会生成 `structure.json`、`asset_plan.json`、`storyboard.md`、`contact_sheet.jpg` 和抽帧；本地参考音频 `audio.m4a` 与原始 Doubao 响应 `raw_doubao_response.json` 默认忽略不提交。`asset_plan.storyboard` 是后续 Agent 最重要的输入，每个分镜包含具体剧本、梗点、背景、猫素材关键词、BGM/配音/音效和 Seedream prompt。
 
+### 用户上传爆款测试样例
+
+`samples/user-baokuan-test/raw/` 保存 9 条小体积 mp4，用于模拟用户在线上传爆款参考视频。这些视频会提交到仓库，方便团队复现“上传参考视频 -> 拆解结构 -> 迁移剧本 -> 使用内置素材生成视频”的完整链路；它们不是自动复用的猫动作或背景素材。
+
+全量验收需要先启动后端，再执行：
+
+```bash
+conda run -n cv python backend/scripts/validate_user_baokuan_samples.py --generation-mode workflow
+```
+
+脚本会逐个上传 9 条样例、提交爆款分析 job、生成候选和分镜、渲染视频，并把记录写入 `docs/user-baokuan-test-report.md`。如果 Doubao 临时不可用，可追加 `--no-use-doubao` 跑 fallback 链路，但报告里需要标注。
+
 HyperFrames 包装模板位于 `hyperframes/templates/packaging-presets.json`。当前主视频合成仍由稳定 FFmpeg/Pillow 执行，HyperFrames 负责在合成前生成每个分镜的包装 manifest，并补齐更具体的镜头内道具和动作，例如：
 
 - 求职分镜：手机招聘信息流、岗位要求卡、招聘消息栈。
@@ -286,6 +301,11 @@ HyperFrames 包装模板位于 `hyperframes/templates/packaging-presets.json`。
 - `GET /api/maomeme/render-jobs/{job_id}`：轮询渲染进度。
 - `POST /api/maomeme/generate-background`：当 `allow_ai_fill=true` 时用 Seedream 生成缺失背景素材。
 - `POST /api/analyze/structure`：参考视频结构分析。
+- `POST /api/uploads/viral-video`：上传用户爆款猫 meme 参考视频。
+- `POST /api/uploads/materials`：上传用户猫视频、背景图、参考图或文案素材。
+- `POST /api/analyze/viral-jobs`：提交上传爆款视频分析任务。
+- `GET /api/analyze/viral-jobs/{job_id}`：查询上传爆款分析进度和结构结果。
+- `GET /api/analyze/viral-jobs/{job_id}/stream`：SSE 观察上传爆款分析进度。
 
 ## 目录说明
 
@@ -303,15 +323,17 @@ data/structures/           结构迁移协议
 data/runs/                 运行生成的 plan/audit JSON
 samples/viral/             爆款参考视频样例
 samples/viral-structure/   爆款猫 meme 本地 raw 视频与 manifest
+samples/user-baokuan-test/  用户上传爆款测试样例和说明
 docs/                      比赛文档和项目说明
 output/                    最终生成视频和公开产物
 backend/outputs/           后端运行中间文件
+backend/uploads/           用户上传 session、临时素材和爆款分析结果，不提交
 ```
 
 ## 备注
 
 - Python 不使用系统环境，也不创建 `backend/.venv`，统一通过 `conda run -n cv ...` 执行。
 - `backend/.env.example` 只说明变量名；真实 key 只放 `backend/.env` 或系统环境变量。
-- `.env`、`backend/.env`、`assets/archives/`、`output/`、`backend/outputs/`、`node_modules/` 不会上传 GitHub。
+- `.env`、`backend/.env`、`assets/archives/`、`output/`、`backend/outputs/`、`backend/uploads/`、`node_modules/` 不会上传 GitHub。
 - 缺素材时默认先用字幕包装、裁切复用和结构重排补足；Seedream 只作为显式开关的后续增强。
 - 建议继续补充 3-5 条完整猫 meme 爆款视频到 `samples/viral/`，用于抽取真实镜头节奏、字幕密度和转场风格。

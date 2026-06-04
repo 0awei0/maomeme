@@ -71,6 +71,9 @@ async def run_render_job(job_id: str, plan: MaoMemePlan) -> None:
         probe = ffprobe(output_path)
         if not probe.get("has_video") or not probe.get("has_audio"):
             raise RuntimeError(f"视频校验失败: {probe}")
+        duration_delta = abs(float(probe.get("video_duration") or 0) - float(probe.get("audio_duration") or 0))
+        if duration_delta > 0.25:
+            raise RuntimeError(f"音视频时长不一致: {probe}")
 
         status.status = "done"
         status.progress = 1.0
@@ -190,7 +193,7 @@ def ffprobe(path: Path) -> dict[str, Any]:
             "-v",
             "error",
             "-show_entries",
-            "stream=codec_type",
+            "stream=codec_type,duration",
             "-of",
             "json",
             str(path),
@@ -201,9 +204,13 @@ def ffprobe(path: Path) -> dict[str, Any]:
     )
     parsed = json.loads(result.stdout)
     streams = parsed.get("streams", [])
+    video_stream = next((stream for stream in streams if stream.get("codec_type") == "video"), {})
+    audio_stream = next((stream for stream in streams if stream.get("codec_type") == "audio"), {})
     return {
         "has_video": any(stream.get("codec_type") == "video" for stream in streams),
         "has_audio": any(stream.get("codec_type") == "audio" for stream in streams),
+        "video_duration": float(video_stream.get("duration") or 0),
+        "audio_duration": float(audio_stream.get("duration") or 0),
     }
 
 

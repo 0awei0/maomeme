@@ -30,6 +30,7 @@ conda run -n cv python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --relo
 - `docs/`: competition docs and project notes.
 - `output/`: public generated videos and final demo artifacts.
 - `backend/outputs/`: backend runtime plans and intermediate job files.
+- `backend/uploads/`: ignored runtime user upload sessions for viral references and user materials; do not commit or expose as static files.
 
 ## Secret Handling
 
@@ -45,14 +46,16 @@ The backend borrows ideas from `/Users/a1-6/Desktop/code/douyin/backend`, especi
 
 1. Analyze viral reference videos.
 2. Index local cat animations and backgrounds.
-3. Generate script/storyboard/timeline with Doubao when `ARK_API_KEY` is available.
-4. Fall back to deterministic local generation when API credentials are missing.
-5. Render demos with FFmpeg first; keep HyperFrames as the optional HTML packaging upgrade.
+3. Accept optional user-uploaded viral reference videos and user materials.
+4. Generate script/storyboard/timeline with Doubao when `ARK_API_KEY` is available.
+5. Fall back to deterministic local generation when API credentials are missing.
+6. Render demos with FFmpeg first; keep HyperFrames as the optional HTML packaging upgrade.
 
 ## Agent vs Workflow Boundary
 
 - Agents should decide creative structure and return structured JSON: script candidates, timeline slots, motion/background choices, clip ranges, transitions, dialogue, and overlay actions.
 - Agents should not directly read env files, execute arbitrary scripts, write FFmpeg commands, or generate free-form renderer code.
+- Agents may use sanitized upload manifests, analyzed viral structures, and derived user asset indexes; they must not read arbitrary files from `backend/uploads/`.
 - Dynamic Agent tools live as backend service functions, mainly `backend/app/services/agent_tools.py`.
 - Multi-round tool-call orchestration lives in `backend/app/services/agent_runtime.py`. Default `AGENT_RUNTIME=auto` uses Ark SDK; `AGENT_RUNTIME=workflow`/`local`/`none` is the only non-Agent fixed workflow fallback.
 - Repo scripts under `scripts/` are fixed workflow executors:

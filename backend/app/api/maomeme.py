@@ -7,6 +7,7 @@ from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse, StreamingResponse
 
 from ..models.maomeme import (
+    BriefSuggestionsRequest,
     CandidateRequest,
     GeneratePlanRequest,
     GenerateBackgroundRequest,
@@ -26,10 +27,11 @@ from ..services.maomeme_agent import (
     storyboard_stream_from_candidate,
     suggest_revisions,
 )
-from ..services.doubao_client import ark_available
+from ..services.doubao_client import ark_available, generate_brief_suggestions_with_mini
 from ..services.render_jobs import create_render_job, get_render_job
 from ..services.seedream_service import generate_background, seedream_available
 from ..core.config import get_settings
+from ..services.upload_store import migration_context
 
 router = APIRouter(prefix="/api/maomeme", tags=["maomeme"])
 
@@ -67,6 +69,10 @@ async def candidates(request: CandidateRequest):
             sample_video_path=request.sample_video_path,
             use_doubao=should_use_agent(request.use_doubao, request.generation_mode),
             duration_mode=request.duration_mode,
+            session_id=request.session_id,
+            viral_analysis_id=request.viral_analysis_id,
+            user_material_ids=request.user_material_ids,
+            creative_brief=request.creative_brief,
         )
         return JSONResponse({
             "status": "success",
@@ -100,6 +106,10 @@ async def candidates_stream(request: CandidateRequest):
                         sample_video_path=request.sample_video_path,
                         use_doubao=should_use_agent(request.use_doubao, request.generation_mode),
                         duration_mode=request.duration_mode,
+                        session_id=request.session_id,
+                        viral_analysis_id=request.viral_analysis_id,
+                        user_material_ids=request.user_material_ids,
+                        creative_brief=request.creative_brief,
                     ):
                         if event["type"] == "agent_delta":
                             yield sse({
@@ -133,6 +143,10 @@ async def candidates_stream(request: CandidateRequest):
                     sample_video_path=request.sample_video_path,
                     use_doubao=False,
                     duration_mode=request.duration_mode,
+                    session_id=request.session_id,
+                    viral_analysis_id=request.viral_analysis_id,
+                    user_material_ids=request.user_material_ids,
+                    creative_brief=request.creative_brief,
                 )
                 result = result[:3]
 
@@ -167,6 +181,10 @@ async def select_plan(request: SelectPlanRequest):
             sample_video_path=request.sample_video_path,
             use_doubao=should_use_agent(request.use_doubao, request.generation_mode),
             duration_mode=request.duration_mode,
+            session_id=request.session_id,
+            viral_analysis_id=request.viral_analysis_id,
+            user_material_ids=request.user_material_ids,
+            creative_brief=request.creative_brief,
         )
         return JSONResponse({"status": "success", "plan": result.model_dump(by_alias=True)})
     except Exception as exc:
@@ -183,6 +201,10 @@ async def select_plan_stream(request: SelectPlanRequest):
                 sample_video_path=request.sample_video_path,
                 use_doubao=should_use_agent(request.use_doubao, request.generation_mode),
                 duration_mode=request.duration_mode,
+                session_id=request.session_id,
+                viral_analysis_id=request.viral_analysis_id,
+                user_material_ids=request.user_material_ids,
+                creative_brief=request.creative_brief,
             ):
                 yield sse(event)
                 await asyncio.sleep(0.08)
@@ -200,10 +222,39 @@ async def revision_suggestions(request: SuggestRevisionRequest):
             plan=request.plan,
             candidate=request.candidate,
             duration_mode=request.duration_mode,
+            creative_brief=request.creative_brief,
         )
         return JSONResponse({"status": "success", "suggestions": suggestions})
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"调整建议生成失败: {exc}") from exc
+
+
+@router.post("/brief-suggestions")
+async def brief_suggestions(request: BriefSuggestionsRequest):
+    if not request.theme.strip():
+        return JSONResponse({"status": "success", "provider": "fallback", "suggestions": {}})
+    fallback = fallback_brief_suggestions(request.theme)
+    if not ark_available():
+        return JSONResponse({"status": "success", "provider": "fallback", "suggestions": fallback})
+    try:
+        context = migration_context(
+            session_id=request.session_id,
+            viral_analysis_id=request.viral_analysis_id,
+            creative_brief=request.creative_brief,
+            material_summary={},
+        )
+        async with asyncio.timeout(4.0):
+            raw = await generate_brief_suggestions_with_mini(
+                theme=request.theme,
+                creative_brief=request.creative_brief.model_dump(),
+                viral_context=context.get("viral_analysis", {}),
+            )
+        suggestions = sanitize_brief_suggestions(raw.get("suggestions") if isinstance(raw, dict) else {}, fallback)
+        if not brief_suggestions_fit_theme(request.theme, suggestions):
+            return JSONResponse({"status": "success", "provider": "fallback", "suggestions": fallback})
+        return JSONResponse({"status": "success", "provider": "mini", "suggestions": suggestions})
+    except Exception:
+        return JSONResponse({"status": "success", "provider": "fallback", "suggestions": fallback})
 
 
 @router.post("/revise")
@@ -218,6 +269,10 @@ async def revise(request: RevisePlanRequest):
             candidate=request.candidate,
             use_doubao=should_use_agent(request.use_doubao, request.generation_mode),
             duration_mode=request.duration_mode,
+            session_id=request.session_id,
+            viral_analysis_id=request.viral_analysis_id,
+            user_material_ids=request.user_material_ids,
+            creative_brief=request.creative_brief,
         )
         return JSONResponse({
             "status": "success",
@@ -294,9 +349,92 @@ def is_public_candidate_note(note: str) -> bool:
         "Doubao",
         "Agent",
         "文本素材库",
-        "爆款",
         "viral",
         "等待真实",
         "草稿预览",
     ]
     return not any(keyword in note for keyword in hidden_keywords)
+
+
+BRIEF_FIELDS = {
+    "target_audience",
+    "protagonist",
+    "core_conflict",
+    "ending_tone",
+    "required_scenes",
+    "required_props",
+}
+
+
+def sanitize_brief_suggestions(raw: object, fallback: dict[str, list[str]]) -> dict[str, list[str]]:
+    suggestions: dict[str, list[str]] = {key: [] for key in BRIEF_FIELDS}
+    if isinstance(raw, dict):
+        for key in BRIEF_FIELDS:
+            value = raw.get(key)
+            items = value if isinstance(value, list) else [value] if isinstance(value, str) else []
+            for item in items:
+                text = str(item or "").strip()
+                if text and text not in suggestions[key]:
+                    suggestions[key].append(text[:28])
+    for key, items in fallback.items():
+        if key not in suggestions:
+            continue
+        for item in items:
+            if len(suggestions[key]) >= 3:
+                break
+            if item not in suggestions[key]:
+                suggestions[key].append(item)
+    return {key: value[:3] for key, value in suggestions.items() if value}
+
+
+def brief_suggestions_fit_theme(theme: str, suggestions: dict[str, list[str]]) -> bool:
+    theme_text = str(theme or "")
+    suggestion_text = " ".join(item for values in suggestions.values() for item in values)
+    checks = [
+        (("请假", "老板", "120", "病假", "急救"), ("请假", "老板", "120", "病假", "急救", "审批")),
+        (("周一", "不想上班", "上班综合症", "闹钟"), ("周一", "闹钟", "上班", "通勤", "工作群", "咖啡")),
+        (("烤肠", "摆摊", "找工作", "招聘", "简历", "岗位"), ("烤肠", "摆摊", "招聘", "简历", "岗位", "薪资", "HR")),
+    ]
+    for theme_words, expected_words in checks:
+        if any(word in theme_text for word in theme_words):
+            return any(word in suggestion_text for word in expected_words)
+    return True
+
+
+def fallback_brief_suggestions(theme: str) -> dict[str, list[str]]:
+    text = str(theme or "")
+    if any(word in text for word in ("请假", "老板", "120", "病假", "00")):
+        return {
+            "target_audience": ["刚上班的年轻人", "不敢请假的打工人"],
+            "protagonist": ["会装淡定的00后猫", "被消息追着跑的猫"],
+            "core_conflict": ["请假被拒和身体报警", "老板不批假反被吓到"],
+            "ending_tone": ["荒诞但解气", "讽刺职场边界感"],
+            "required_scenes": ["工位和老板聊天框", "120急救电话弹窗"],
+            "required_props": ["请假审批", "急救电话", "老板在吗"],
+        }
+    if any(word in text for word in ("烤肠", "摆摊", "找工作", "招聘", "简历", "岗位")):
+        return {
+            "target_audience": ["应届生和毕业生", "投简历投麻的人"],
+            "protagonist": ["投简历投到怀疑猫生", "嘴硬但破防的毕业猫"],
+            "core_conflict": ["岗位要求离谱到摆摊", "求职门槛和摆摊成本都卷"],
+            "ending_tone": ["荒诞但现实", "黑色幽默收束"],
+            "required_scenes": ["招聘软件", "校门口烤肠摊"],
+            "required_props": ["岗位要求卡", "烤肠价签", "简历"],
+        }
+    if any(word in text for word in ("周一", "不想上班", "上班综合症", "上班")):
+        return {
+            "target_audience": ["周一通勤打工人", "上班综合症患者"],
+            "protagonist": ["被闹钟击穿的打工猫", "嘴上上班心里请假的猫"],
+            "core_conflict": ["身体周一心还在周末", "工作群比闹钟先醒"],
+            "ending_tone": ["丧中带一点好笑", "讽刺但不鸡汤"],
+            "required_scenes": ["卧室闹钟", "地铁通勤", "工作群"],
+            "required_props": ["闹钟", "周会通知", "咖啡"],
+        }
+    return {
+        "target_audience": ["大学生和刚上班的人"],
+        "protagonist": ["普通但嘴硬的猫"],
+        "core_conflict": ["努力和现实回报错位"],
+        "ending_tone": ["讽刺但留一点温暖"],
+        "required_scenes": ["现实生活场景"],
+        "required_props": ["手机弹窗", "压力卡片"],
+    }

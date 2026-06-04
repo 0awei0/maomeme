@@ -4,11 +4,12 @@ import json
 import asyncio
 import re
 import time
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 from ..core.config import get_settings
-from ..models.maomeme import MaoMemePlan, ScriptCandidate
+from ..models.maomeme import CreativeBrief, MaoMemePlan, ScriptCandidate
 from ..models.video_structure import VideoStructure
 from .agent_tools import (
     asset_search_tool,
@@ -31,14 +32,27 @@ from .doubao_client import (
     stream_candidates_with_doubao_context,
 )
 from .text_materials import matching_preset_scenes, topic_for_agent
+from .upload_store import merge_user_assets, migration_context
 from .viral_structure_library import (
+    build_migration_blueprint,
     infer_theme_category,
+    migration_blueprint_prompt,
     viral_reference_notes,
     viral_reference_prompt,
     viral_references_for_theme,
     viral_template_seed,
 )
 from .video_analyzer import analyze_video_structure, source_summary
+
+
+@dataclass
+class GenerationContext:
+    session_id: str | None = None
+    viral_analysis_id: str | None = None
+    user_material_ids: list[str] | None = None
+    creative_brief: CreativeBrief | None = None
+    migration: dict[str, Any] | None = None
+    material_summary: dict[str, Any] | None = None
 
 
 async def generate_maomeme_plan(
@@ -65,10 +79,16 @@ async def generate_script_candidates(
     sample_video_path: str | None = None,
     use_doubao: bool = True,
     duration_mode: str = "short",
+    session_id: str | None = None,
+    viral_analysis_id: str | None = None,
+    user_material_ids: list[str] | None = None,
+    creative_brief: CreativeBrief | None = None,
 ) -> list[ScriptCandidate]:
-    index = load_assets()
+    index, gen_context = generation_index_and_context(session_id, viral_analysis_id, user_material_ids, creative_brief)
     text_context = topic_for_agent(theme)
     viral_refs = viral_references_for_theme(theme, text_context)
+    migration_blueprint = build_migration_blueprint(theme, viral_refs, gen_context.migration or {}, text_context)
+    viral_reference_text = combined_viral_reference_text(viral_refs, gen_context, migration_blueprint)
     scripts = []
     provider_note = "local_fallback"
     if use_doubao and ark_available():
@@ -77,11 +97,12 @@ async def generate_script_candidates(
             assets_text=assets_summary(index),
             text_context=text_context,
             duration_mode=normalize_duration_mode(duration_mode),
-            viral_reference_text=viral_reference_prompt(viral_refs),
+            viral_reference_text=viral_reference_text,
+            creative_context=gen_context.migration or {},
         )
         provider_note = "doubao_agent" if scripts else "doubao_parse_failed_fallback"
     if not scripts:
-        scripts = screenwriter_agent(theme, text_context, viral_refs)
+        scripts = screenwriter_agent(theme, text_context, viral_refs, gen_context.migration or {}, migration_blueprint)
     scored = [(score_script(script, theme, index), script) for script in scripts]
     scored.sort(key=lambda item: item[0], reverse=True)
     candidates = [
@@ -90,16 +111,18 @@ async def generate_script_candidates(
     ]
     for candidate in candidates:
         candidate.notes.insert(0, f"生成来源：{provider_note}")
-        for note in reversed(viral_reference_notes(viral_refs)):
+        attach_generation_context_to_candidate(candidate, gen_context, viral_refs, migration_blueprint)
+        for note in reversed(combined_viral_reference_notes(viral_refs, gen_context)):
             candidate.notes.insert(1, note)
     while len(candidates) < 3:
-        base = scripts[0] if scripts else screenwriter_agent(theme, {}, viral_refs)[0]
+        base = scripts[0] if scripts else screenwriter_agent(theme, {}, viral_refs, gen_context.migration or {}, migration_blueprint)[0]
         variant = json.loads(json.dumps(base, ensure_ascii=False))
         variant["name"] = f"{base.get('name', '候选')}·变体{len(candidates) + 1}"
         variant["beats"] = revise_beats_for_instruction(variant.get("beats", []), "更轻松一点")
         fallback_candidate = script_to_candidate(variant, theme, score_script(variant, theme, index) - len(candidates), text_context, len(candidates) + 1, duration_mode)
         fallback_candidate.notes.insert(0, f"生成来源：{provider_note}")
-        for note in reversed(viral_reference_notes(viral_refs)):
+        attach_generation_context_to_candidate(fallback_candidate, gen_context, viral_refs, migration_blueprint)
+        for note in reversed(combined_viral_reference_notes(viral_refs, gen_context)):
             fallback_candidate.notes.insert(1, note)
         candidates.append(fallback_candidate)
     return candidates
@@ -110,22 +133,30 @@ async def stream_script_candidates(
     sample_video_path: str | None = None,
     use_doubao: bool = True,
     duration_mode: str = "short",
+    session_id: str | None = None,
+    viral_analysis_id: str | None = None,
+    user_material_ids: list[str] | None = None,
+    creative_brief: CreativeBrief | None = None,
 ):
-    index = load_assets()
+    index, gen_context = generation_index_and_context(session_id, viral_analysis_id, user_material_ids, creative_brief)
     text_context = topic_for_agent(theme)
     mode = normalize_duration_mode(duration_mode)
     viral_refs = viral_references_for_theme(theme, text_context)
+    migration_blueprint = build_migration_blueprint(theme, viral_refs, gen_context.migration or {}, text_context)
+    viral_reference_text = combined_viral_reference_text(viral_refs, gen_context, migration_blueprint)
 
     if not use_doubao:
         yield {"type": "stage", "message": "测试模式：使用本地预设候选", "progress": 0.18}
         candidates = build_script_candidates(
-            scripts=screenwriter_agent(theme, text_context, viral_refs),
+            scripts=screenwriter_agent(theme, text_context, viral_refs, gen_context.migration or {}, migration_blueprint),
             theme=theme,
             index=index,
             text_context=text_context,
             duration_mode=mode,
             provider_note="local_fallback_explicit",
             viral_refs=viral_refs,
+            gen_context=gen_context,
+            migration_blueprint=migration_blueprint,
         )
         yield {"type": "final", "candidates": candidates, "provider_note": "local_fallback_explicit"}
         return
@@ -133,13 +164,15 @@ async def stream_script_candidates(
     if not ark_available():
         yield {"type": "stage", "message": "Doubao 未配置，回退本地候选", "progress": 0.18}
         candidates = build_script_candidates(
-            scripts=screenwriter_agent(theme, text_context, viral_refs),
+            scripts=screenwriter_agent(theme, text_context, viral_refs, gen_context.migration or {}, migration_blueprint),
             theme=theme,
             index=index,
             text_context=text_context,
             duration_mode=mode,
             provider_note="local_fallback_no_ark",
             viral_refs=viral_refs,
+            gen_context=gen_context,
+            migration_blueprint=migration_blueprint,
         )
         yield {"type": "final", "candidates": candidates, "provider_note": "local_fallback_no_ark"}
         return
@@ -147,13 +180,15 @@ async def stream_script_candidates(
     yield {"type": "stage", "message": "编剧 Agent 三路并发生成候选", "progress": 0.42}
 
     preview_candidates = build_script_candidates(
-        scripts=screenwriter_agent(theme, text_context, viral_refs),
+        scripts=screenwriter_agent(theme, text_context, viral_refs, gen_context.migration or {}, migration_blueprint),
         theme=theme,
         index=index,
         text_context=text_context,
         duration_mode=mode,
         provider_note="agent_preview",
         viral_refs=viral_refs,
+        gen_context=gen_context,
+        migration_blueprint=migration_blueprint,
     )
     for idx, candidate in enumerate(preview_candidates[:3], start=1):
         yield {
@@ -165,7 +200,7 @@ async def stream_script_candidates(
         await asyncio.sleep(0)
 
     scripts: list[dict[str, Any]] = []
-    async for event in stream_doubao_candidate_scripts_parallel(theme, assets_summary(index), text_context, mode, viral_reference_prompt(viral_refs)):
+    async for event in stream_doubao_candidate_scripts_parallel(theme, assets_summary(index), text_context, mode, viral_reference_text, gen_context.migration or {}):
         if event["type"] == "script":
             script = event["script"]
             scripts.append(script)
@@ -178,7 +213,8 @@ async def stream_script_candidates(
                 mode,
             )
             draft.notes.insert(0, "生成来源：doubao_agent_parallel")
-            for note in reversed(viral_reference_notes(viral_refs)):
+            attach_generation_context_to_candidate(draft, gen_context, viral_refs, migration_blueprint)
+            for note in reversed(combined_viral_reference_notes(viral_refs, gen_context)):
                 draft.notes.insert(1, note)
             yield {
                 "type": "candidate",
@@ -193,7 +229,7 @@ async def stream_script_candidates(
     provider_note = "doubao_agent_parallel"
     if not scripts:
         provider_note = "doubao_parallel_parse_failed_fallback"
-        scripts = screenwriter_agent(theme, text_context, viral_refs)
+        scripts = screenwriter_agent(theme, text_context, viral_refs, gen_context.migration or {}, migration_blueprint)
 
     candidates = build_script_candidates(
         scripts=scripts,
@@ -203,6 +239,8 @@ async def stream_script_candidates(
         duration_mode=mode,
         provider_note=provider_note,
         viral_refs=viral_refs,
+        gen_context=gen_context,
+        migration_blueprint=migration_blueprint,
     )
     yield {"type": "final", "candidates": candidates, "provider_note": provider_note}
 
@@ -233,9 +271,10 @@ async def generate_doubao_candidate_scripts_parallel(
     text_context: dict[str, Any],
     duration_mode: str,
     viral_reference_text: str = "",
+    creative_context: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     scripts: list[dict[str, Any]] = []
-    async for event in stream_doubao_candidate_scripts_parallel(theme, assets_text, text_context, duration_mode, viral_reference_text):
+    async for event in stream_doubao_candidate_scripts_parallel(theme, assets_text, text_context, duration_mode, viral_reference_text, creative_context):
         if event["type"] == "script":
             scripts.append(event["script"])
     return dedupe_scripts(scripts)
@@ -247,6 +286,7 @@ async def stream_doubao_candidate_scripts_parallel(
     text_context: dict[str, Any],
     duration_mode: str,
     viral_reference_text: str = "",
+    creative_context: dict[str, Any] | None = None,
 ):
     settings = get_settings()
     semaphore = asyncio.Semaphore(settings.ARK_AGENT_CONCURRENCY)
@@ -264,6 +304,7 @@ async def stream_doubao_candidate_scripts_parallel(
                         duration_mode=duration_mode,
                         angle=angle,
                         viral_reference_text=viral_reference_text,
+                        creative_context=creative_context or {},
                     ):
                         if event.get("type") == "delta":
                             text = str(event.get("text", ""))
@@ -343,6 +384,224 @@ def dedupe_scripts(scripts: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return unique
 
 
+def generation_index_and_context(
+    session_id: str | None,
+    viral_analysis_id: str | None,
+    user_material_ids: list[str] | None,
+    creative_brief: CreativeBrief | None,
+) -> tuple[dict[str, Any], GenerationContext]:
+    base_index = load_assets()
+    merged_index, material_summary = merge_user_assets(base_index, session_id, user_material_ids or [])
+    migration = migration_context(
+        session_id=session_id,
+        viral_analysis_id=viral_analysis_id,
+        creative_brief=creative_brief,
+        material_summary=material_summary,
+    )
+    context = GenerationContext(
+        session_id=session_id,
+        viral_analysis_id=viral_analysis_id,
+        user_material_ids=user_material_ids or [],
+        creative_brief=creative_brief,
+        migration=migration,
+        material_summary=material_summary,
+    )
+    return merged_index, context
+
+
+def combined_viral_reference_text(
+    viral_refs: list[dict[str, Any]],
+    gen_context: GenerationContext | None,
+    migration_blueprint: dict[str, Any] | None = None,
+) -> str:
+    parts: list[str] = []
+    if migration_blueprint:
+        parts.append("## 强制迁移蓝图与 3 条 compact few-shot\n" + migration_blueprint_prompt(migration_blueprint))
+    migration = (gen_context.migration if gen_context else {}) or {}
+    viral = migration.get("viral_analysis") if isinstance(migration.get("viral_analysis"), dict) else {}
+    if viral:
+        parts.append("## 用户上传爆款结构（最高优先级）\n" + json.dumps(viral, ensure_ascii=False))
+    brief = migration.get("creative_brief") if isinstance(migration.get("creative_brief"), dict) else {}
+    if brief:
+        parts.append("## 用户创作补充\n" + json.dumps(brief, ensure_ascii=False))
+    materials = migration.get("user_materials") if isinstance(migration.get("user_materials"), dict) else {}
+    if materials and any(materials.get(key, 0) for key in ("user_motion_count", "user_background_count", "user_text_count")):
+        parts.append("## 用户素材覆盖\n" + json.dumps(materials, ensure_ascii=False))
+    public_refs = viral_reference_prompt(viral_refs)
+    if public_refs:
+        parts.append("## 项目爆款结构库（次级参考）\n" + public_refs)
+    return "\n\n".join(parts)
+
+
+def combined_viral_reference_notes(viral_refs: list[dict[str, Any]], gen_context: GenerationContext | None) -> list[str]:
+    notes = []
+    if gen_context and gen_context.viral_analysis_id:
+        notes.append("已优先迁移用户上传爆款视频结构。")
+    notes.extend(viral_reference_notes(viral_refs or []))
+    return notes
+
+
+def generation_context_notes(gen_context: GenerationContext | None) -> list[str]:
+    if not gen_context:
+        return []
+    notes = []
+    materials = gen_context.material_summary or {}
+    motion_count = int(materials.get("user_motion_count") or 0)
+    background_count = int(materials.get("user_background_count") or 0)
+    text_count = int(materials.get("user_text_count") or 0)
+    if gen_context.viral_analysis_id:
+        notes.append(f"上传爆款结构：{gen_context.viral_analysis_id}")
+    if motion_count or background_count or text_count:
+        notes.append(f"用户素材优先：猫视频 {motion_count} 个，背景/参考图 {background_count} 个，文案 {text_count} 个。")
+    brief = gen_context.creative_brief
+    if brief and (brief.target_audience or brief.protagonist or brief.core_conflict or brief.ending_tone):
+        notes.append("已读取用户补充信息：受众、主角、冲突和结尾倾向会影响剧本。")
+    return notes
+
+
+def attach_generation_context_to_candidate(
+    candidate: ScriptCandidate,
+    gen_context: GenerationContext | None,
+    viral_refs: list[dict[str, Any]] | None = None,
+    migration_blueprint: dict[str, Any] | None = None,
+) -> None:
+    blueprint = migration_blueprint or candidate.migration_blueprint or {}
+    if blueprint:
+        candidate.migration_blueprint = blueprint
+        primary = blueprint.get("primary_reference") if isinstance(blueprint.get("primary_reference"), dict) else {}
+        supporting = blueprint.get("supporting_references") if isinstance(blueprint.get("supporting_references"), list) else []
+        if primary:
+            candidate.source_reference = {
+                "type": "uploaded_viral_video" if blueprint.get("source_priority") == "uploaded_viral_first" else "viral_library",
+                "title": primary.get("title", ""),
+                "id": primary.get("id", ""),
+                "structure_tags": primary.get("structure_tags", []),
+                "supporting": [
+                    {
+                        "id": item.get("id", ""),
+                        "title": item.get("title", ""),
+                        "structure_tags": item.get("structure_tags", []),
+                    }
+                    for item in supporting
+                    if isinstance(item, dict)
+                ],
+            }
+            candidate.asset_hints["viral_reference_id"] = primary.get("id", "")
+            candidate.asset_hints["viral_reference_title"] = primary.get("title", "")
+            candidate.asset_hints["viral_structure_tags"] = primary.get("structure_tags", [])
+    elif viral_refs:
+        primary = viral_refs[0]
+        candidate.source_reference = {
+            "type": "viral_library",
+            "title": primary.get("title", ""),
+            "id": primary.get("id", ""),
+            "structure_tags": primary.get("structure_tags", []),
+        }
+    if not gen_context:
+        return
+    migration = gen_context.migration or {}
+    viral = migration.get("viral_analysis") if isinstance(migration.get("viral_analysis"), dict) else {}
+    summary = viral.get("summary") if isinstance(viral.get("summary"), dict) else {}
+    if summary:
+        candidate.asset_hints["uploaded_viral_analysis_id"] = gen_context.viral_analysis_id or ""
+        candidate.asset_hints["uploaded_viral_title"] = summary.get("title", "")
+    materials = gen_context.material_summary or {}
+    if any(materials.get(key, 0) for key in ("user_motion_count", "user_background_count", "user_text_count")):
+        candidate.user_material_coverage = {
+            "available": True,
+            "motion_count": materials.get("user_motion_count", 0),
+            "background_count": materials.get("user_background_count", 0),
+            "text_count": materials.get("user_text_count", 0),
+            "strategy": "分镜阶段优先匹配用户素材，不足时使用内置素材补足。",
+        }
+
+
+def apply_generation_context_to_beats(beats: list[dict[str, Any]], gen_context: GenerationContext | None) -> None:
+    if not gen_context:
+        return
+    migration = gen_context.migration or {}
+    viral = migration.get("viral_analysis") if isinstance(migration.get("viral_analysis"), dict) else {}
+    storyboard = viral.get("storyboard") if isinstance(viral.get("storyboard"), list) else []
+    summary = viral.get("summary") if isinstance(viral.get("summary"), dict) else {}
+    for index, beat in enumerate(beats):
+        if storyboard:
+            source = storyboard[min(index, len(storyboard) - 1)]
+            if isinstance(source, dict):
+                beat["uploaded_viral_reference"] = {
+                    "title": summary.get("title", ""),
+                    "beat": source.get("beat", ""),
+                    "script": source.get("script", ""),
+                    "background": source.get("background_requirement", ""),
+                    "cat": source.get("cat_requirement", ""),
+                    "packaging": source.get("packaging_requirement", ""),
+                }
+                background = str(source.get("background_requirement", ""))
+                cat = str(source.get("cat_requirement", ""))
+                if background and viral_background_fits_beat(background, beat):
+                    beat["scene_keywords"] = list(dict.fromkeys([*beat.get("scene_keywords", []), background]))
+                if cat:
+                    beat["emotion_keywords"] = list(dict.fromkeys([*beat.get("emotion_keywords", []), cat]))
+        brief = gen_context.creative_brief
+        if brief:
+            if brief.required_scenes:
+                beat["scene_keywords"] = list(dict.fromkeys([*beat.get("scene_keywords", []), brief.required_scenes]))
+            if brief.required_props:
+                beat["must_keywords"] = list(dict.fromkeys([*beat.get("must_keywords", []), brief.required_props]))
+            if brief.avoid_content:
+                beat["forbidden_keywords"] = list(dict.fromkeys([*beat.get("forbidden_keywords", []), brief.avoid_content]))
+            if not brief.allow_multi_cat and beat.get("layout") == "dialogue":
+                beat["layout"] = "single"
+                beat["dialogue"] = []
+
+
+def apply_migration_blueprint_to_beats(beats: list[dict[str, Any]], blueprint: dict[str, Any] | None) -> None:
+    if not blueprint:
+        return
+    shots = blueprint.get("shots") if isinstance(blueprint.get("shots"), list) else []
+    if not shots:
+        return
+    for index, beat in enumerate(beats):
+        source = shots[min(index, len(shots) - 1)]
+        if not isinstance(source, dict):
+            continue
+        beat["source_viral_shot"] = {
+            "source": "uploaded_viral" if blueprint.get("source_priority") == "uploaded_viral_first" else "viral_library",
+            "viral_id": source.get("source_viral_id", ""),
+            "viral_title": source.get("source_viral_title", ""),
+            "shot_id": source.get("source_shot_id", ""),
+            "beat": source.get("source_beat", ""),
+            "joke_point": source.get("source_joke_point", ""),
+            "transfer_role": source.get("transfer_role", ""),
+        }
+        beat["viral_reference"] = {
+            "id": source.get("source_viral_id", ""),
+            "title": source.get("source_viral_title", ""),
+            "beat": source.get("source_beat", ""),
+            "joke_point": source.get("source_joke_point", ""),
+            "background": source.get("background_requirement", ""),
+            "cats": source.get("cat_action_requirement", ""),
+            "audio": source.get("audio_requirement", ""),
+        }
+        background = str(source.get("background_requirement") or "")
+        cat = str(source.get("cat_action_requirement") or "")
+        if background and viral_background_fits_beat(background, beat):
+            beat["scene_keywords"] = list(dict.fromkeys([background, *beat.get("scene_keywords", [])]))
+        if cat:
+            beat["emotion_keywords"] = list(dict.fromkeys([cat, *beat.get("emotion_keywords", [])]))
+        packaging = str(source.get("subtitle_packaging") or "")
+        if packaging:
+            beat["packaging_requirement"] = packaging
+
+
+def migration_blueprint_note(blueprint: dict[str, Any] | None) -> str:
+    if not blueprint:
+        return ""
+    primary = blueprint.get("primary_reference") if isinstance(blueprint.get("primary_reference"), dict) else {}
+    title = primary.get("title", "")
+    tags = "、".join(str(item) for item in primary.get("structure_tags", [])[:3]) if isinstance(primary.get("structure_tags"), list) else ""
+    return f"迁移蓝图：主爆款《{title}》{f'（{tags}）' if tags else ''}。"
+
+
 def build_script_candidates(
     scripts: list[dict[str, Any]],
     theme: str,
@@ -351,9 +610,11 @@ def build_script_candidates(
     duration_mode: str,
     provider_note: str,
     viral_refs: list[dict[str, Any]] | None = None,
+    gen_context: GenerationContext | None = None,
+    migration_blueprint: dict[str, Any] | None = None,
 ) -> list[ScriptCandidate]:
     if not scripts:
-        scripts = screenwriter_agent(theme, text_context, viral_refs)
+        scripts = screenwriter_agent(theme, text_context, viral_refs, (gen_context.migration if gen_context else {}) or {}, migration_blueprint)
     scored = [(score_script(script, theme, index), script) for script in scripts]
     scored.sort(key=lambda item: item[0], reverse=True)
     candidates = [
@@ -362,10 +623,11 @@ def build_script_candidates(
     ]
     for candidate in candidates:
         candidate.notes.insert(0, f"生成来源：{provider_note}")
-        for note in reversed(viral_reference_notes(viral_refs or [])):
+        attach_generation_context_to_candidate(candidate, gen_context, viral_refs or [], migration_blueprint)
+        for note in reversed(combined_viral_reference_notes(viral_refs or [], gen_context)):
             candidate.notes.insert(1, note)
     while len(candidates) < 3:
-        base = scripts[0] if scripts else screenwriter_agent(theme, {}, viral_refs)[0]
+        base = scripts[0] if scripts else screenwriter_agent(theme, {}, viral_refs, (gen_context.migration if gen_context else {}) or {}, migration_blueprint)[0]
         variant = json.loads(json.dumps(base, ensure_ascii=False))
         variant["name"] = f"{base.get('name', '候选')}·变体{len(candidates) + 1}"
         variant["beats"] = revise_beats_for_instruction(variant.get("beats", []), "更轻松一点")
@@ -378,7 +640,8 @@ def build_script_candidates(
             duration_mode,
         )
         fallback_candidate.notes.insert(0, f"生成来源：{provider_note}")
-        for note in reversed(viral_reference_notes(viral_refs or [])):
+        attach_generation_context_to_candidate(fallback_candidate, gen_context, viral_refs or [], migration_blueprint)
+        for note in reversed(combined_viral_reference_notes(viral_refs or [], gen_context)):
             fallback_candidate.notes.insert(1, note)
         candidates.append(fallback_candidate)
     return candidates
@@ -390,20 +653,30 @@ async def plan_from_candidate(
     sample_video_path: str | None = None,
     use_doubao: bool = True,
     duration_mode: str = "short",
+    session_id: str | None = None,
+    viral_analysis_id: str | None = None,
+    user_material_ids: list[str] | None = None,
+    creative_brief: CreativeBrief | None = None,
 ) -> MaoMemePlan:
-    index = load_assets()
+    index, gen_context = generation_index_and_context(session_id, viral_analysis_id, user_material_ids, creative_brief)
     source_structure = await _source_structure(sample_video_path, use_doubao, prefer_fast=sample_video_path is None)
     text_context = topic_for_agent(theme)
     viral_refs = viral_references_for_theme(theme, text_context)
+    migration_blueprint = candidate.migration_blueprint or build_migration_blueprint(theme, viral_refs, gen_context.migration or {}, text_context)
     script = candidate_to_script(candidate)
+    script["source_blueprint"] = migration_blueprint
     mode = normalize_duration_mode(duration_mode)
     script["beats"] = select_beats_for_mode(script.get("beats", []), mode, theme, text_context)
     beats = director_agent(script, theme, mode)
+    apply_generation_context_to_beats(beats, gen_context)
+    apply_migration_blueprint_to_beats(beats, migration_blueprint)
     apply_viral_patterns_to_beats(beats, candidate, viral_refs)
     if use_doubao and enabled_runtime_order():
         timeline, notes = await casting_and_validator_agents_agentic(beats, theme, index)
     else:
         timeline, notes = casting_and_validator_agents(beats, theme, index)
+    timeline, assemble_notes = assemble_timeline_locally(timeline)
+    notes.extend(assemble_notes)
     plan = MaoMemePlan(
         id=f"maomeme-{int(time.time())}",
         theme=theme,
@@ -418,7 +691,9 @@ async def plan_from_candidate(
             f"用户选择剧本：{candidate.title}",
             f"素材覆盖评分：{candidate.score:.1f}",
             f"目标时长模式：{mode}，预计 {round(beats[-1]['end'], 1) if beats else 0}s。",
-            *viral_reference_notes(viral_refs),
+            *combined_viral_reference_notes(viral_refs, gen_context),
+            migration_blueprint_note(migration_blueprint),
+            *generation_context_notes(gen_context),
             *context_notes(text_context),
             *notes,
         ],
@@ -433,15 +708,23 @@ async def storyboard_stream_from_candidate(
     sample_video_path: str | None = None,
     use_doubao: bool = True,
     duration_mode: str = "short",
+    session_id: str | None = None,
+    viral_analysis_id: str | None = None,
+    user_material_ids: list[str] | None = None,
+    creative_brief: CreativeBrief | None = None,
 ):
-    index = load_assets()
+    index, gen_context = generation_index_and_context(session_id, viral_analysis_id, user_material_ids, creative_brief)
     yield {"type": "stage", "message": "素材索引已读取，正在拆解剧本", "progress": 0.08}
     text_context = topic_for_agent(theme)
     viral_refs = viral_references_for_theme(theme, text_context)
+    migration_blueprint = candidate.migration_blueprint or build_migration_blueprint(theme, viral_refs, gen_context.migration or {}, text_context)
     script = candidate_to_script(candidate)
+    script["source_blueprint"] = migration_blueprint
     mode = normalize_duration_mode(duration_mode)
     script["beats"] = select_beats_for_mode(script.get("beats", []), mode, theme, text_context)
     beats = director_agent(script, theme, mode)
+    apply_generation_context_to_beats(beats, gen_context)
+    apply_migration_blueprint_to_beats(beats, migration_blueprint)
     apply_viral_patterns_to_beats(beats, candidate, viral_refs)
     source_task = asyncio.create_task(_source_structure(sample_video_path, use_doubao, prefer_fast=sample_video_path is None))
     yield {
@@ -480,7 +763,9 @@ async def storyboard_stream_from_candidate(
             f"用户选择剧本：{candidate.title}",
             f"素材覆盖评分：{candidate.score:.1f}",
             f"目标时长模式：{mode}，预计 {round(beats[-1]['end'], 1) if beats else 0}s。",
-            *viral_reference_notes(viral_refs),
+            *combined_viral_reference_notes(viral_refs, gen_context),
+            migration_blueprint_note(migration_blueprint),
+            *generation_context_notes(gen_context),
             *context_notes(text_context),
             *notes,
         ],
@@ -489,7 +774,13 @@ async def storyboard_stream_from_candidate(
     yield {"type": "done", "message": "分镜时间线生成完成", "progress": 1.0, "plan": plan.model_dump(by_alias=True)}
 
 
-async def suggest_revisions(theme: str, plan: MaoMemePlan | None = None, candidate: ScriptCandidate | None = None, duration_mode: str = "short") -> list[str]:
+async def suggest_revisions(
+    theme: str,
+    plan: MaoMemePlan | None = None,
+    candidate: ScriptCandidate | None = None,
+    duration_mode: str = "short",
+    creative_brief: CreativeBrief | None = None,
+) -> list[str]:
     text = f"{theme} "
     if plan:
         text += " ".join(slot.caption for slot in plan.timeline)
@@ -520,6 +811,10 @@ async def suggest_revisions(theme: str, plan: MaoMemePlan | None = None, candida
         ]
     if duration_mode != "minute":
         suggestions.append("改成一分钟左右，增加现实证据和群体共鸣")
+    if creative_brief and creative_brief.ending_tone:
+        suggestions.insert(0, f"结尾按“{creative_brief.ending_tone}”方向重写，但不要强行圆满")
+    if creative_brief and creative_brief.allow_multi_cat:
+        suggestions.append("增加一个双猫对话分镜，主角仍控制在一两只猫")
     return suggestions[:4]
 
 
@@ -530,6 +825,10 @@ async def revise_maomeme(
     candidate: ScriptCandidate | None = None,
     use_doubao: bool = True,
     duration_mode: str = "short",
+    session_id: str | None = None,
+    viral_analysis_id: str | None = None,
+    user_material_ids: list[str] | None = None,
+    creative_brief: CreativeBrief | None = None,
 ) -> dict[str, Any]:
     if candidate:
         script = candidate_to_script(candidate)
@@ -543,7 +842,16 @@ async def revise_maomeme(
     script["beats"] = revise_beats_for_instruction(script.get("beats", []), instruction)
     script["beats"] = expand_beats_for_duration(script.get("beats", []), mode, theme, text_context)
     revised_candidate = script_to_candidate(script, theme, 0.0, text_context, 1, mode)
-    revised_plan = await plan_from_candidate(theme, revised_candidate, use_doubao=use_doubao, duration_mode=mode)
+    revised_plan = await plan_from_candidate(
+        theme,
+        revised_candidate,
+        use_doubao=use_doubao,
+        duration_mode=mode,
+        session_id=session_id,
+        viral_analysis_id=viral_analysis_id,
+        user_material_ids=user_material_ids,
+        creative_brief=creative_brief,
+    )
     revised_plan.agent_notes.insert(0, f"自然语言调整：{instruction}")
     save_plan(revised_plan)
     return {"candidate": revised_candidate, "plan": revised_plan}
@@ -615,8 +923,10 @@ def script_to_candidate(script: dict[str, Any], theme: str, score: float, text_c
             "keywords": script.get("theme_keywords", []),
             "viral_reference_id": script.get("viral_reference_id", ""),
             "viral_reference_title": script.get("viral_reference_title", ""),
+            "viral_structure_tags": script.get("viral_structure_tags", []),
         },
         notes=context_notes(text_context),
+        migration_blueprint=script.get("source_blueprint", {}) if isinstance(script.get("source_blueprint"), dict) else {},
     )
 
 
@@ -643,12 +953,16 @@ def normalize_doubao_candidate_scripts(raw: dict[str, Any]) -> list[dict[str, An
             continue
         normalized.append({
             "name": str(item.get("name") or item.get("title") or f"Agent 候选 {len(normalized) + 1}"),
-            "beats": beats,
+            "beats": [(role, humanize_caption(caption), intent) for role, caption, intent in beats],
             "scene": list_or_empty(item.get("scene")),
             "theme_keywords": list_or_empty(item.get("theme_keywords")),
             "emotion": list_or_empty(item.get("emotion")),
             "social_topic": str(item.get("social_topic") or ""),
             "tension": str(item.get("tension") or ""),
+            "viral_reference_id": str(item.get("viral_reference_id") or ""),
+            "viral_reference_title": str(item.get("viral_reference_title") or ""),
+            "viral_structure_tags": list_or_empty(item.get("viral_structure_tags")),
+            "source_blueprint": item.get("migration_blueprint") if isinstance(item.get("migration_blueprint"), dict) else {},
         })
     return normalized
 
@@ -673,6 +987,8 @@ def candidate_to_script(candidate: ScriptCandidate) -> dict[str, Any]:
         "emotion": candidate.asset_hints.get("motions", []),
         "viral_reference_id": candidate.asset_hints.get("viral_reference_id", ""),
         "viral_reference_title": candidate.asset_hints.get("viral_reference_title", ""),
+        "viral_structure_tags": candidate.asset_hints.get("viral_structure_tags", []),
+        "source_blueprint": candidate.migration_blueprint,
     }
 
 
@@ -815,12 +1131,20 @@ def select_representative_beats(beats: list[tuple[str, str, str]], target: int) 
 
 
 def select_short_arc(beats: list[tuple[str, str, str]], target: int) -> list[tuple[str, str, str]]:
-    arc_roles = [
-        {"hook", "opening", "start"},
-        {"setup"},
-        {"pressure", "proof", "escalation", "twist"},
-        {"punchline", "ending", "cta"},
-    ]
+    if target == 4 and any(beat[0] == "twist" for beat in beats):
+        arc_roles = [
+            {"hook", "opening", "start"},
+            {"setup", "pressure"},
+            {"twist"},
+            {"punchline", "ending", "cta"},
+        ]
+    else:
+        arc_roles = [
+            {"hook", "opening", "start"},
+            {"setup"},
+            {"pressure", "proof", "escalation", "twist"},
+            {"punchline", "ending", "cta"},
+        ]
     selected: list[tuple[str, str, str]] = []
     used: set[int] = set()
     for roles in arc_roles[:target]:
@@ -904,14 +1228,19 @@ def multi_agent_fallback_plan(theme: str, source_structure: VideoStructure | Non
     4. validator rejects weak matches and records gap strategies
     """
     viral_refs = viral_references_for_theme(theme, text_context)
-    candidates = screenwriter_agent(theme, text_context, viral_refs)
+    migration_blueprint = build_migration_blueprint(theme, viral_refs, {}, text_context)
+    candidates = screenwriter_agent(theme, text_context, viral_refs, {}, migration_blueprint)
     scored = [(score_script(candidate, theme, index), candidate) for candidate in candidates]
     scored.sort(key=lambda item: item[0], reverse=True)
     script = scored[0][1]
     beats = director_agent(script, theme)
     selected_candidate = script_to_candidate(script, theme, scored[0][0], text_context, 1)
+    attach_generation_context_to_candidate(selected_candidate, None, viral_refs, migration_blueprint)
+    apply_migration_blueprint_to_beats(beats, migration_blueprint)
     apply_viral_patterns_to_beats(beats, selected_candidate, viral_refs)
     timeline, notes = casting_and_validator_agents(beats, theme, index)
+    timeline, assemble_notes = assemble_timeline_locally(timeline)
+    notes.extend(assemble_notes)
     return MaoMemePlan(
         id=f"maomeme-{int(time.time())}",
         theme=theme,
@@ -927,6 +1256,7 @@ def multi_agent_fallback_plan(theme: str, source_structure: VideoStructure | Non
             "导演 agent 将剧本压成 4 个猫 meme 节奏点：hook/setup/escalation/punchline。",
             "素材导演 agent 按情绪动作和场景关键词匹配猫动画与背景。",
             *viral_reference_notes(viral_refs),
+            migration_blueprint_note(migration_blueprint),
             *context_notes(text_context),
             *notes,
         ],
@@ -1020,18 +1350,22 @@ def screenwriter_agent(
     theme: str,
     text_context: dict[str, Any] | None = None,
     viral_refs: list[dict[str, Any]] | None = None,
+    migration: dict[str, Any] | None = None,
+    migration_blueprint: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     theme_short = _setup_copy(theme)
-    viral_scripts = [viral_template_seed(ref, theme) for ref in (viral_refs or [])[:1]]
+    uploaded_scripts = uploaded_viral_script_seed(theme, migration or {})
+    blueprint_scripts = blueprint_script_seeds(theme, migration_blueprint or {}, text_context or {})
+    viral_scripts = blueprint_scripts or [viral_template_seed(ref, theme) for ref in (viral_refs or [])[:1]]
     if text_context:
         contextual = contextual_scripts(theme, text_context)
         if contextual:
-            return [*viral_scripts, *contextual][:3] if viral_scripts else contextual
+            return [*uploaded_scripts, *viral_scripts, *contextual][:3] if (uploaded_scripts or viral_scripts) else contextual
     office = _theme_has(theme, ["上班", "打工", "会议", "电脑", "老板", "加班"])
     school = _theme_has(theme, ["学校", "教室", "考试", "作业", "同学"])
     car = _theme_has(theme, ["开车", "堵车", "车里", "路上"])
     if office:
-        return [*viral_scripts, *[
+        return [*uploaded_scripts, *viral_scripts, *[
             {
                 "name": "会议排满版",
                 "beats": [
@@ -1070,7 +1404,7 @@ def screenwriter_agent(
             },
         ]][:3]
     if school:
-        return [*viral_scripts, *[
+        return [*uploaded_scripts, *viral_scripts, *[
             {
                 "name": "作业突袭版",
                 "beats": [
@@ -1085,7 +1419,7 @@ def screenwriter_agent(
             }
         ]][:3]
     if car:
-        return [*viral_scripts, *[
+        return [*uploaded_scripts, *viral_scripts, *[
             {
                 "name": "堵车路怒版",
                 "beats": [
@@ -1113,7 +1447,301 @@ def screenwriter_agent(
             "emotion": ["震惊", "冷漠", "哭", "跳舞"],
         }
     ]
-    return [*viral_scripts, *fallback][:3]
+    return [*uploaded_scripts, *viral_scripts, *fallback][:3]
+
+
+def uploaded_viral_script_seed(theme: str, migration: dict[str, Any]) -> list[dict[str, Any]]:
+    viral = migration.get("viral_analysis") if isinstance(migration.get("viral_analysis"), dict) else {}
+    summary = viral.get("summary") if isinstance(viral.get("summary"), dict) else {}
+    slots = viral.get("transfer_slots") if isinstance(viral.get("transfer_slots"), list) else []
+    brief = migration.get("creative_brief") if isinstance(migration.get("creative_brief"), dict) else {}
+    if not summary and not slots:
+        return []
+    beats = []
+    fallback_roles = ["hook", "setup", "pressure", "twist", "punchline", "cta"]
+    for index, slot in enumerate(slots[:6]):
+        if not isinstance(slot, dict):
+            continue
+        role = normalize_uploaded_role(str(slot.get("slot") or fallback_roles[min(index, len(fallback_roles) - 1)]))
+        source_script = str(slot.get("background") or slot.get("cat") or slot.get("rewrite") or "")
+        caption = uploaded_seed_caption(theme, role, source_script, brief)
+        intent = f"迁移上传爆款的{slot.get('keep', '节奏和笑点')}，按新主题改写。"
+        beats.append((role, caption, intent))
+    if len(beats) < 4:
+        beats = [
+            ("hook", f"{theme[:12]}先给猫整懵", "用上传爆款的停顿方式做开场"),
+            ("setup", brief.get("core_conflict") or _setup_copy(theme), "建立新主题现实冲突"),
+            ("pressure", "规则一层套一层", "迁移原视频情绪升级"),
+            ("punchline", ending_caption_for_brief(brief), "保留爆款反转节奏但换成新主题收束"),
+        ]
+    return [
+        {
+            "name": f"上传爆款迁移版：{summary.get('title') or '结构复刻'}",
+            "social_topic": summary.get("one_sentence") or theme,
+            "tension": brief.get("core_conflict") or "把爆款结构迁移到新主题，但台词和场景全部重写",
+            "beats": beats[:6],
+            "scene": [slot.get("background", "") for slot in slots[:4] if isinstance(slot, dict) and slot.get("background")],
+            "theme_keywords": [theme, brief.get("target_audience", ""), brief.get("protagonist", ""), brief.get("required_props", "")],
+            "emotion": [slot.get("cat", "") for slot in slots[:4] if isinstance(slot, dict) and slot.get("cat")],
+            "viral_reference_title": summary.get("title", ""),
+            "uploaded_viral_reference": True,
+        }
+    ]
+
+
+def blueprint_script_seeds(theme: str, blueprint: dict[str, Any], text_context: dict[str, Any]) -> list[dict[str, Any]]:
+    shots = blueprint.get("shots") if isinstance(blueprint.get("shots"), list) else []
+    primary = blueprint.get("primary_reference") if isinstance(blueprint.get("primary_reference"), dict) else {}
+    if not shots or not primary:
+        return []
+    base = blueprint_beats_for_theme(theme, shots, text_context)
+    if len(base) < 4:
+        return []
+    category = infer_theme_category(theme)
+    scenes = blueprint_scenes(theme, shots, category)
+    emotions = list(dict.fromkeys(str(shot.get("cat_action_requirement", "")) for shot in shots if str(shot.get("cat_action_requirement", "")).strip()))
+    keywords = list(dict.fromkeys([*tokenize_theme_local(theme), *[str(tag) for tag in blueprint.get("structure_tags", [])[:5]]]))
+    source = {
+        "viral_reference_id": primary.get("id", ""),
+        "viral_reference_title": primary.get("title", ""),
+        "source_blueprint": blueprint,
+    }
+    return [
+        {
+            "name": f"爆款迁移·{primary.get('title') or '结构'}",
+            "beats": base,
+            "scene": scenes,
+            "theme_keywords": keywords,
+            "emotion": emotions,
+            "social_topic": text_context.get("title") or theme,
+            "tension": primary.get("topic") or "把爆款结构迁移到新主题，台词全部重写",
+            **source,
+        },
+        {
+            "name": f"现实共鸣迁移·{primary.get('title') or '结构'}",
+            "beats": soften_or_sharpen_blueprint_beats(base, "realistic", theme),
+            "scene": scenes,
+            "theme_keywords": keywords,
+            "emotion": emotions,
+            "social_topic": text_context.get("title") or theme,
+            "tension": "更强调真实生活动作和社会角色冲突",
+            **source,
+        },
+        {
+            "name": f"黑色幽默迁移·{primary.get('title') or '结构'}",
+            "beats": soften_or_sharpen_blueprint_beats(base, "absurd", theme),
+            "scene": scenes,
+            "theme_keywords": keywords,
+            "emotion": emotions,
+            "social_topic": text_context.get("title") or theme,
+            "tension": "更荒诞，但仍保留合理转场和现实成本",
+            **source,
+        },
+    ]
+
+
+def blueprint_beats_for_theme(theme: str, shots: list[dict[str, Any]], text_context: dict[str, Any]) -> list[tuple[str, str, str]]:
+    roles = [str(shot.get("slot") or "setup") for shot in shots]
+    if any(word in theme for word in ("请假", "不批准", "不批假", "120", "急救")):
+        captions = {
+            "hook": "请假申请先被驳回",
+            "setup": "老板说今天必须到岗",
+            "pressure": "体温表都快冒烟了",
+            "proof": "工作群还在继续派活",
+            "twist": "120比批假先接通",
+            "echo": "同事也开始看急诊",
+            "punchline": "老板终于学会人话",
+            "cta": "先保命再谈敬业",
+        }
+    elif any(word in theme for word in ("周一", "星期一", "上班综合症", "不想上班", "闹钟")):
+        captions = {
+            "hook": "闹钟响得像开会",
+            "setup": "人坐起灵魂没到岗",
+            "pressure": "工作群已经在同步",
+            "proof": "地铁口全是低电量",
+            "twist": "咖啡也重启失败",
+            "echo": "同事头像都灰了",
+            "punchline": "今天先低电量运行",
+            "cta": "下班再恢复出厂",
+        }
+    elif any(word in theme for word in ("找工作", "工作难找", "求职", "岗位", "薪资", "招聘", "摆摊", "烤肠")):
+        captions = {
+            "hook": "刷到薪资还行的岗位",
+            "setup": "点开要求三年经验",
+            "pressure": "应届生还要带团队",
+            "proof": "同学简历也进黑洞",
+            "twist": "他转身研究烤肠摊",
+            "echo": "校门口摊位也在卷",
+            "punchline": "摊位写熟练工优先",
+            "cta": "先卖一根热乎的",
+        }
+    elif any(word in theme for word in ("考研", "考公", "上岸", "考试")):
+        captions = {
+            "hook": "毕业前弹出三条路",
+            "setup": "考研考公都在招手",
+            "pressure": "每条路都排长队",
+            "proof": "自习室一排沉默",
+            "twist": "选择也要先复习",
+            "echo": "同学也在原地加载",
+            "punchline": "今天先选一页",
+            "cta": "别把自己淹了",
+        }
+    else:
+        seed = text_context.get("beat_seed") if isinstance(text_context.get("beat_seed"), dict) else {}
+        captions = {
+            "hook": str(seed.get("hook") or "现实先弹出难题"),
+            "setup": str(seed.get("setup") or _setup_copy(theme)),
+            "pressure": str(seed.get("escalation") or "要求开始变离谱"),
+            "proof": "旁边的人也沉默了",
+            "twist": "他发现规则还会变",
+            "echo": "大家都在同一关卡",
+            "punchline": str(seed.get("punchline") or human_punchline_for_theme(theme)),
+            "cta": "先把今天过明白",
+        }
+    beats: list[tuple[str, str, str]] = []
+    for index, role in enumerate(roles):
+        caption = humanize_caption(captions.get(role, captions.get("setup", _setup_copy(theme))), theme)
+        source = shots[min(index, len(shots) - 1)]
+        purpose = str(source.get("transfer_role") or source.get("rewrite_direction") or f"迁移爆款 {role} 镜头功能")
+        beats.append((role, caption, purpose))
+    return beats
+
+
+def soften_or_sharpen_blueprint_beats(beats: list[tuple[str, str, str]], style: str, theme: str) -> list[tuple[str, str, str]]:
+    next_beats = list(beats)
+    if not next_beats:
+        return next_beats
+    if style == "realistic":
+        next_beats = [(role, humanize_caption(caption, theme), f"{intent}，增加生活细节") for role, caption, intent in next_beats]
+        for index, (role, caption, intent) in enumerate(next_beats):
+            if role in {"pressure", "proof"}:
+                next_beats[index] = (role, realistic_caption_variant(caption, theme), intent)
+                break
+    elif style == "absurd":
+        next_beats = [(role, absurd_caption_variant(caption, role, theme), f"{intent}，增强黑色幽默") for role, caption, intent in next_beats]
+    return next_beats
+
+
+def realistic_caption_variant(caption: str, theme: str) -> str:
+    if any(word in theme for word in ("找工作", "求职", "岗位", "招聘")):
+        return "投完简历没有回音"
+    if any(word in theme for word in ("请假", "120", "老板")):
+        return "病假理由又写一遍"
+    if any(word in theme for word in ("周一", "上班")):
+        return "早会链接先醒了"
+    return caption
+
+
+def absurd_caption_variant(caption: str, role: str, theme: str) -> str:
+    if role == "twist" and any(word in theme for word in ("找工作", "求职", "烤肠", "摆摊")):
+        return "烤肠摊也要全链路"
+    if role == "twist" and any(word in theme for word in ("请假", "120")):
+        return "急救电话替他请假"
+    if role == "punchline" and any(word in theme for word in ("周一", "上班")):
+        return "先上班再做人"
+    return caption
+
+
+def blueprint_scenes(theme: str, shots: list[dict[str, Any]], category: str) -> list[str]:
+    scenes = [str(shot.get("background_requirement", "")) for shot in shots if str(shot.get("background_requirement", "")).strip()]
+    if category == "career":
+        scenes.extend(["招聘软件", "面试等待区", "real_office", "office"])
+        if is_food_scene(theme):
+            scenes.extend(["street_food_stall", "烤肠摊", "夜市摊位"])
+    elif category == "office":
+        scenes.extend(["real_office", "meeting_room", "工位", "工作群"])
+    elif category == "street_food":
+        scenes.extend(["street_food_stall", "烤肠摊", "夜市摊位"])
+    elif category == "exam":
+        scenes.extend(["自习室", "图书馆", "classroom", "real_school"])
+    return list(dict.fromkeys(scenes))[:10]
+
+
+def tokenize_theme_local(theme: str) -> list[str]:
+    words = [
+        "工作", "简历", "岗位", "面试", "就业", "求职", "招聘", "HR", "应届生",
+        "上班", "老板", "会议", "加班", "周一", "请假", "120",
+        "烤肠", "摆摊", "夜市", "小吃摊", "考研", "考公", "租房", "房租",
+    ]
+    return [word for word in words if word in theme]
+
+
+def humanize_caption(text: str, theme: str = "") -> str:
+    value = str(text or "")
+    replacements = {
+        "猫猫": "他",
+        "猫先": "先",
+        "猫把": "他把",
+        "猫发现": "他发现",
+        "猫决定": "他决定",
+        "猫改": "他改",
+        "猫去": "他去",
+        "猫转身": "他转身",
+        "旁边的猫": "旁边同学",
+        "同学猫": "同学",
+        "室友猫": "室友",
+    }
+    for source, target in replacements.items():
+        value = value.replace(source, target)
+    if value.startswith("猫"):
+        value = "他" + value[1:]
+    if "解决社会问题" in value:
+        value = human_punchline_for_theme(theme)
+    return value
+
+
+def human_punchline_for_theme(theme: str) -> str:
+    if any(word in theme for word in ("烤肠", "摆摊", "小吃摊", "夜市")):
+        return "摊位也写熟练工优先"
+    if any(word in theme for word in ("请假", "老板", "120")):
+        return "老板终于学会人话"
+    if any(word in theme for word in ("周一", "上班", "会议")):
+        return "今天先低电量运行"
+    if any(word in theme for word in ("工作", "岗位", "简历", "求职")):
+        return "先把岗位黑话看懂"
+    if any(word in theme for word in ("考研", "考公", "考试")):
+        return "今天先选一页"
+    return "先把今天过明白"
+
+
+def normalize_uploaded_role(value: str) -> str:
+    text = value.lower()
+    if any(word in text for word in ("hook", "开头")):
+        return "hook"
+    if any(word in text for word in ("pressure", "冲突", "escalation", "升级")):
+        return "pressure"
+    if any(word in text for word in ("twist", "反转")):
+        return "twist"
+    if any(word in text for word in ("punchline", "ending", "结尾")):
+        return "punchline"
+    if any(word in text for word in ("echo", "共鸣")):
+        return "echo"
+    return "setup"
+
+
+def uploaded_seed_caption(theme: str, role: str, source_script: str, brief: dict[str, Any]) -> str:
+    conflict = str(brief.get("core_conflict") or "").strip()
+    protagonist = str(brief.get("protagonist") or "猫").strip()
+    if role == "hook":
+        return f"{protagonist}刷到现实暴击"[:18]
+    if role in {"setup", "pressure"}:
+        return (conflict or _setup_copy(theme))[:18]
+    if role == "twist":
+        return "猫发现规则还会变"[:18]
+    if role == "punchline":
+        return ending_caption_for_brief(brief)
+    return (source_script or theme)[:18]
+
+
+def ending_caption_for_brief(brief: dict[str, Any]) -> str:
+    tone = str(brief.get("ending_tone") or "")
+    if "温暖" in tone:
+        return "先抱团喘口气"
+    if "讽刺" in tone:
+        return "猫学会看规则"
+    if "荒诞" in tone:
+        return "猫把规则贴墙上"
+    return "先活过这一集"
 
 
 def contextual_scripts(theme: str, topic: dict[str, Any]) -> list[dict[str, Any]]:
@@ -1178,6 +1806,136 @@ def contextual_scripts(theme: str, topic: dict[str, Any]) -> list[dict[str, Any]
 
 
 def specific_contextual_scripts(theme: str) -> list[dict[str, Any]]:
+    if any(word in theme for word in ("请假", "不批准", "不批假", "120", "急救", "救护车")):
+        scene = ["office", "real_office", "meeting_room", "work_chat", "hospital_alert"]
+        return [
+            {
+                "name": "00后请假审批反转版",
+                "beats": [
+                    ("hook", "请假申请先被驳回", "请假冲突开场"),
+                    ("setup", "老板说今天必须到岗", "职场规则具体化"),
+                    ("pressure", "猫把病假理由又写一遍", "身体报警被忽视"),
+                    ("twist", "猫到工位直接拨120", "荒诞但合理反转"),
+                    ("punchline", "老板开始学审批人话", "讽刺老板被现实吓住"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["请假", "老板", "不批准", "120", "急救", "00后"],
+                "emotion": ["震惊", "委屈", "碎碎念", "冷漠", "跳舞"],
+            },
+            {
+                "name": "老板不批假急救弹窗版",
+                "beats": [
+                    ("hook", "猫发烧还在等审批", "身体和制度冲突"),
+                    ("setup", "老板回复先坚持一下", "典型职场话术"),
+                    ("pressure", "工作群继续弹任务", "压力叠加"),
+                    ("twist", "120电话比批假先接通", "反套路转折"),
+                    ("punchline", "老板把不批准撤回", "荒诞收束"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["请假", "病假", "工作群", "120", "撤回"],
+                "emotion": ["委屈", "冷漠", "电脑", "震惊", "可爱"],
+            },
+            {
+                "name": "00后整顿请假话术版",
+                "beats": [
+                    ("hook", "请假单写得很客气", "低姿态开场"),
+                    ("setup", "老板只看见不批准", "冲突落地"),
+                    ("pressure", "猫把体温贴到屏幕上", "身体证据具象化"),
+                    ("twist", "急救弹窗替猫说话", "工具反转"),
+                    ("punchline", "以后请假先保命", "现实提醒收束"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["00后", "请假", "体温", "急救", "老板"],
+                "emotion": ["探头", "委屈", "碎碎念", "震惊", "可爱"],
+            },
+        ]
+    if any(word in theme for word in ("周一", "星期一", "上班综合症", "不想上班", "起床", "闹钟")):
+        scene = ["bedroom", "real_office", "commute", "work_chat", "meeting_room"]
+        return [
+            {
+                "name": "周一上班综合症闹钟版",
+                "beats": [
+                    ("hook", "闹钟响得像开会", "周一身体抗拒开场"),
+                    ("setup", "猫坐起来又倒回去", "起床失败具体化"),
+                    ("pressure", "工作群已经开始同步", "上班压力提前到达"),
+                    ("twist", "猫发现今天才周一", "情绪反转"),
+                    ("punchline", "先把灵魂放进工位", "黑色幽默收束"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["周一", "上班综合症", "闹钟", "工作群", "会议"],
+                "emotion": ["冷漠", "委屈", "震惊", "电脑", "可爱"],
+            },
+            {
+                "name": "周一灵魂未到岗版",
+                "beats": [
+                    ("hook", "身体到了地铁口", "通勤开场"),
+                    ("setup", "灵魂还在被窝请假", "反差设定"),
+                    ("pressure", "老板发来早会链接", "工作压迫具象化"),
+                    ("twist", "猫把咖啡当重启键", "荒诞转折"),
+                    ("punchline", "今天先低电量运行", "合理收束"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["周一", "通勤", "早会", "咖啡", "低电量"],
+                "emotion": ["冷漠", "开车", "电脑", "震惊", "跳舞"],
+            },
+            {
+                "name": "周一会议预告片版",
+                "beats": [
+                    ("hook", "睁眼先看到会议提醒", "信息暴击"),
+                    ("setup", "猫还没洗脸就要同步", "荒诞职场细节"),
+                    ("pressure", "待办事项排到床边", "压力可视化"),
+                    ("twist", "猫给自己发已读不回", "自嘲转折"),
+                    ("punchline", "先上班再做人", "短促梗收束"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["周一", "会议", "同步", "待办", "已读不回"],
+                "emotion": ["震惊", "电脑", "委屈", "冷漠", "可爱"],
+            },
+        ]
+    if any(word in theme for word in ("找工作", "工作难找", "求职", "岗位", "薪资", "招聘", "摆摊", "烤肠")):
+        if any(word in theme for word in ("烤肠", "摆摊", "小吃摊", "夜市", "地摊", "餐车")):
+            scene = ["job_app", "招聘", "面试", "street_food_stall", "烤肠摊", "夜市摊位"]
+            return [
+                {
+                    "name": "离谱岗位转烤肠摊版",
+                    "beats": [
+                        ("hook", "刷到薪资还行的岗位", "手机招聘 hook"),
+                        ("setup", "点开要求写三年经验", "离谱门槛具体化"),
+                        ("pressure", "应届生还要会带团队", "荒诞升级"),
+                        ("twist", "猫转身研究烤肠摊", "脑洞但合理转场"),
+                        ("punchline", "摊位也写熟练工优先", "不把摆摊当万能解法"),
+                    ],
+                    "scene": scene,
+                    "theme_keywords": ["求职", "岗位", "薪资", "应届生", "烤肠", "摆摊"],
+                    "emotion": ["震惊", "电脑", "碎碎念", "探头", "哭"],
+                },
+                {
+                    "name": "校门口烤肠再就业版",
+                    "beats": [
+                        ("hook", "简历投进黑洞", "求职挫败开场"),
+                        ("setup", "岗位要求比论文还长", "门槛具象化"),
+                        ("pressure", "面试题做到天黑", "时间成本"),
+                        ("twist", "猫推着小摊到校门口", "场景迁移"),
+                        ("punchline", "烤肠摊也开始考核KPI", "社会现实反讽"),
+                    ],
+                    "scene": scene,
+                    "theme_keywords": ["简历", "黑洞", "面试题", "校门口", "烤肠摊", "KPI"],
+                    "emotion": ["委屈", "电脑", "哭", "跳舞", "震惊"],
+                },
+                {
+                    "name": "HR和烤肠摊双猫对话版",
+                    "beats": [
+                        ("hook", "HR说欢迎应届生", "话术反差开场"),
+                        ("setup", "下一行写三年经验", "招聘黑话"),
+                        ("pressure", "猫把要求翻译成人话", "结构识别"),
+                        ("twist", "烤肠摊主也要全链路", "转场反讽"),
+                        ("punchline", "猫先卖热乎的情绪价值", "轻收束"),
+                    ],
+                    "scene": scene,
+                    "theme_keywords": ["HR", "应届生", "三年经验", "全链路", "烤肠"],
+                    "emotion": ["探头", "震惊", "碎碎念", "委屈", "可爱"],
+                },
+            ]
     if any(word in theme for word in ("烤肠", "香肠", "摆摊", "小吃摊", "夜市", "地摊", "餐车")):
         scene = ["street_food_stall", "烤肠摊", "夜市摊位", "小吃摊", "real_street"]
         return [
@@ -1359,7 +2117,7 @@ def director_agent(script: dict[str, Any], theme: str, duration_mode: str = "sho
                 "must_keywords": role_must_keywords(role, caption, theme),
                 "forbidden_keywords": forbidden_keywords_for_context(script, theme),
                 "layout": layout_for_role(role, caption),
-                "dialogue": dialogue_for_beat(role, caption, theme),
+                "dialogue": dialogue_for_beat(role, caption, theme, intent),
             }
         )
         start = end
@@ -1379,6 +2137,8 @@ def apply_viral_patterns_to_beats(
         return
     storyboard = reference.get("storyboard", [])
     for index, beat in enumerate(beats):
+        if beat.get("source_viral_shot"):
+            continue
         source_shot = storyboard[min(index, len(storyboard) - 1)] if storyboard else {}
         if not isinstance(source_shot, dict):
             source_shot = {}
@@ -1458,17 +2218,40 @@ def is_food_scene(text: str) -> bool:
     )
 
 
-def dialogue_for_beat(role: str, caption: str, theme: str) -> list[dict[str, str]]:
+def dialogue_for_beat(role: str, caption: str, theme: str, intent: str = "") -> list[dict[str, str]]:
     if layout_for_role(role, caption) != "dialogue":
         return []
-    text = f"{caption} {theme}"
-    category = infer_theme_category(theme)
+    local_text = f"{caption} {intent}"
+    text = f"{local_text} {theme}"
+    category = infer_theme_category(local_text) or infer_theme_category(theme)
+    if any(word in local_text for word in ("烤肠", "香肠", "摆摊", "小吃摊", "夜市", "摊位")):
+        category = "street_food"
+    elif any(word in local_text for word in ("工作", "简历", "岗位", "面试", "HR", "要求", "经验", "应届", "团队", "招聘", "薪资")):
+        category = "career"
+    elif any(word in local_text for word in ("周一", "闹钟", "被窝", "灵魂", "低电量", "上班综合症", "早会", "同步", "工位", "咖啡")):
+        category = "monday"
+    elif any(word in local_text for word in ("请假", "病假", "120", "急救", "老板", "审批")):
+        category = "leave"
     if category == "street_food":
         pairs = {
             "setup": ("猫：今天卖烤肠", "隔壁：我买一送一"),
             "pressure": ("猫：摊位费先扣？", "旁边猫：煤气也要钱"),
             "twist": ("猫：还能赊账吗", "同学：先赊情绪价值"),
             "punchline": ("猫：烤肠不包上岸", "同学：但能先暖手"),
+        }
+    elif category == "leave":
+        pairs = {
+            "setup": ("猫：我想请病假", "老板：先坚持一下"),
+            "pressure": ("猫：体温在报警", "老板：工作更急"),
+            "twist": ("猫：那我打120", "老板：你等一下"),
+            "punchline": ("猫：先保命再上班", "老板：批了批了"),
+        }
+    elif category == "monday":
+        pairs = {
+            "setup": ("猫：我已经起床了", "被窝：你没有"),
+            "pressure": ("猫：群里又同步", "同事：周一先活着"),
+            "twist": ("猫：灵魂没到岗", "咖啡：我试试"),
+            "punchline": ("猫：先低电量运行", "同事：别自动关机"),
         }
     elif category == "rent":
         pairs = {
@@ -1484,14 +2267,14 @@ def dialogue_for_beat(role: str, caption: str, theme: str) -> list[dict[str, str
             "twist": ("猫：选择也要复习", "同学猫：先做一页"),
             "punchline": ("猫：今天先选一题", "同学猫：明天再上岸"),
         }
-    elif any(word in text for word in ("工作", "简历", "岗位", "面试")):
+    elif category == "career" or any(word in local_text for word in ("工作", "简历", "岗位", "面试", "要求", "经验", "应届")):
         pairs = {
             "setup": ("猫：我投了100份", "HR：先要3年经验"),
             "pressure": ("猫：岗位好多", "同学：敢投的好少"),
             "twist": ("猫：是我不行吗", "同学：是规则太绕"),
             "punchline": ("猫：先翻译规则", "同学：再换投法"),
         }
-    elif any(word in text for word in ("上班", "会议", "加班", "老板")):
+    elif any(word in local_text for word in ("上班", "会议", "加班", "老板", "同步", "工位")):
         pairs = {
             "setup": ("猫：今天几场会", "老板：简单聊八场"),
             "pressure": ("猫：进展是啥", "同事：还在同步"),
@@ -1808,6 +2591,7 @@ async def workflow_casting_and_validator_agents_stream(
     progress_span: float = 0.6,
 ):
     notes: list[str] = []
+    timeline: list[dict[str, Any]] = []
     previous_slot: dict[str, Any] | None = None
     used_motion_ids: set[str] = set()
     used_background_ids: set[str] = set()
@@ -1815,19 +2599,44 @@ async def workflow_casting_and_validator_agents_stream(
     settings = get_settings()
     semaphore = asyncio.Semaphore(settings.STORYBOARD_MATCH_CONCURRENCY)
 
-    async def prebuild(beat: dict[str, Any]) -> tuple[dict[str, Any], list[str]]:
+    async def prebuild(position: int, beat: dict[str, Any]) -> tuple[int, dict[str, Any], list[str]]:
         async with semaphore:
-            return await asyncio.to_thread(build_timeline_slot, beat, theme, index, None, set(), set())
+            slot, slot_notes = await asyncio.to_thread(build_timeline_slot, beat, theme, index, None, set(), set())
+            return position, slot, slot_notes
 
-    tasks = [asyncio.create_task(prebuild(beat)) for beat in beats]
+    tasks = [asyncio.create_task(prebuild(position, beat)) for position, beat in enumerate(beats)]
     yield {
         "type": "stage",
         "message": f"workflow 并行预匹配 {len(tasks)} 个镜头素材",
         "progress": round(progress_start, 3),
     }
 
+    quick_items: list[tuple[dict[str, Any], list[str]] | None] = [None for _ in beats]
+    completed = 0
+    for task in asyncio.as_completed(tasks):
+        position, slot, slot_notes = await task
+        quick_items[position] = (slot, slot_notes)
+        completed += 1
+        progress = progress_start + progress_span * 0.42 * (completed / total)
+        yield {
+            "type": "slot",
+            "message": f"预匹配镜头 {position + 1}/{total} 已完成：{beats[position]['caption']}",
+            "progress": round(progress, 3),
+            "slot": slot,
+        }
+
+    yield {
+        "type": "stage",
+        "message": "正在按时间线去重素材、动画和转场",
+        "progress": round(progress_start + progress_span * 0.46, 3),
+    }
+
     for index_num, beat in enumerate(beats):
-        slot, slot_notes = await tasks[index_num]
+        item = quick_items[index_num]
+        if item is None:
+            _, slot, slot_notes = await prebuild(index_num, beat)
+        else:
+            slot, slot_notes = item
         if slot_needs_repick(slot, used_motion_ids, used_background_ids):
             slot, slot_notes = await asyncio.to_thread(
                 build_timeline_slot,
@@ -1844,13 +2653,30 @@ async def workflow_casting_and_validator_agents_stream(
         notes.extend(slot_notes)
         previous_slot = slot
         remember_slot_assets(slot, used_motion_ids, used_background_ids)
-        progress = progress_start + progress_span * ((index_num + 1) / total)
+        timeline.append(slot)
+        progress = progress_start + progress_span * (0.5 + 0.35 * ((index_num + 1) / total))
         yield {
-            "type": "slot",
-            "message": f"已匹配镜头 {index_num + 1}/{total}：{beat['caption']}",
+            "type": "slot_patch",
+            "message": f"已质检镜头 {index_num + 1}/{total}：{beat['caption']}",
             "progress": round(progress, 3),
             "slot": slot,
         }
+    timeline = sort_timeline(timeline)
+    patches, assembled_notes = local_assemble_timeline(timeline)
+    for patch in patches:
+        slot_id = str(patch.get("id", ""))
+        for position, slot in enumerate(timeline):
+            if slot.get("id") == slot_id:
+                timeline[position] = apply_slot_patch(slot, patch)
+                yield {
+                    "type": "slot_patch",
+                    "message": f"workflow 已优化动画/转场：{slot_id}",
+                    "progress": round(min(0.98, progress_start + progress_span * 0.94), 3),
+                    "slot": timeline[position],
+                }
+                break
+    if assembled_notes:
+        notes.extend(assembled_notes)
     yield {"type": "notes", "message": "素材质检完成", "progress": round(progress_start + progress_span, 3), "notes": notes}
 
 
@@ -1904,7 +2730,9 @@ def build_timeline_slot(
         "gap": gap,
         "packaging": packaging_for_gap(beat["role"], gap),
         "source_pattern": pattern_for_beat(beat),
+        "source_viral_shot": beat.get("source_viral_shot", {}),
     }
+    slot["asset_sources"] = asset_sources_for_slot(slot)
     return slot, slot_notes
 
 
@@ -1932,6 +2760,8 @@ def normalize_agent_slot(
         "layout": str(raw_slot.get("layout") or beat.get("layout") or slot.get("layout") or "single"),
         "source_pattern": clean_agent_text(raw_slot.get("source_pattern") or "Agent 自主分镜", 120),
     })
+    if beat.get("source_viral_shot"):
+        slot["source_viral_shot"] = beat.get("source_viral_shot")
 
     motion = normalize_asset_ref(raw_slot.get("motion"), "motion", index) or slot.get("motion") or {}
     if str(motion.get("id", "")) in (used_motion_ids or set()) and len(used_motion_ids or set()) < 10:
@@ -1969,6 +2799,7 @@ def normalize_agent_slot(
 
     gap = raw_slot.get("gap") if isinstance(raw_slot.get("gap"), dict) else slot.get("gap", {})
     slot["gap"] = normalize_gap(gap, beat, slot)
+    slot["asset_sources"] = asset_sources_for_slot(slot)
     return slot
 
 
@@ -2084,17 +2915,38 @@ def local_assemble_timeline(timeline: list[dict[str, Any]]) -> tuple[list[dict[s
     patches: list[dict[str, Any]] = []
     notes: list[str] = []
     overlay_counts: dict[str, int] = {}
+    overlay_type_counts: dict[str, int] = {}
     previous_background = ""
+    primary_types = {
+        "phone_job_feed",
+        "job_requirement_card",
+        "work_chat_stack",
+        "chat_stack",
+        "choice_panel",
+        "study_card",
+        "bill_card",
+        "commute_card",
+        "stall_sign",
+        "leave_request",
+        "emergency_call",
+    }
     for slot in timeline:
         patch: dict[str, Any] = {"id": slot.get("id", "")}
         actions: list[dict[str, Any]] = []
         changed = False
         for action in slot.get("overlay_actions") or []:
+            action_type = str(action.get("type") or "")
             signature = f"{action.get('type')}|{action.get('text') or action.get('title') or action.get('object')}"
             overlay_counts[signature] = overlay_counts.get(signature, 0) + 1
-            if overlay_counts[signature] <= 2:
-                actions.append(action)
-            else:
+            overlay_type_counts[action_type] = overlay_type_counts.get(action_type, 0) + 1
+            type_limit = 2 if action_type in primary_types else 1 if action_type in {"throw_object", "impact_burst", "stamp_reject", "popup"} else 2
+            if overlay_counts[signature] > 2 or overlay_type_counts[action_type] > type_limit:
+                changed = True
+                continue
+            actions.append(action)
+        if actions and len(actions) > 1:
+            actions = select_distinct_overlay_actions(actions)
+            if len(actions) != len(slot.get("overlay_actions") or []):
                 changed = True
         if changed:
             patch["overlay_actions"] = actions[:2]
@@ -2108,6 +2960,33 @@ def local_assemble_timeline(timeline: list[dict[str, Any]]) -> tuple[list[dict[s
     if patches:
         notes.append(f"本地全片统筹已去重/补转场 {len(patches)} 个镜头。")
     return patches, notes
+
+
+def assemble_timeline_locally(timeline: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[str]]:
+    ordered = sort_timeline(timeline)
+    patches, notes = local_assemble_timeline(ordered)
+    if not patches:
+        return ordered, notes
+    by_id = {str(patch.get("id", "")): patch for patch in patches if patch.get("id")}
+    assembled = [
+        apply_slot_patch(slot, by_id[str(slot.get("id", ""))]) if str(slot.get("id", "")) in by_id else slot
+        for slot in ordered
+    ]
+    return assembled, notes
+
+
+def select_distinct_overlay_actions(actions: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    selected: list[dict[str, Any]] = []
+    seen_types: set[str] = set()
+    for action in actions:
+        action_type = str(action.get("type") or "")
+        if action_type in seen_types and action_type in {"throw_object", "popup", "impact_burst", "stamp_reject"}:
+            continue
+        selected.append(action)
+        seen_types.add(action_type)
+        if len(selected) >= 2:
+            break
+    return selected
 
 
 def timeline_needs_remote_assembler(timeline: list[dict[str, Any]]) -> bool:
@@ -2134,8 +3013,7 @@ def apply_slot_patch(slot: dict[str, Any], patch: dict[str, Any]) -> dict[str, A
             if key == "transition" and isinstance(patch[key], dict):
                 next_slot[key] = normalize_transition(patch[key])
             elif key == "overlay_actions" and isinstance(patch[key], list):
-                if patch[key] or not next_slot.get("overlay_actions"):
-                    next_slot[key] = patch[key][:3]
+                next_slot[key] = patch[key][:3]
             elif key in {"caption", "copy"}:
                 next_slot["caption"] = clean_caption(str(patch[key]))
             else:
@@ -2256,6 +3134,8 @@ def normalize_overlay_actions(actions: Any, theme: str, beat: dict[str, Any]) ->
             "bill_card",
             "commute_card",
             "stall_sign",
+            "leave_request",
+            "emergency_call",
             "generated_sticker",
         }:
             continue
@@ -2441,6 +3321,7 @@ def caption_motion_bonus(caption: str, desc: str) -> float:
 def category_motion_bonus(category: str, role: str, text: str, desc: str) -> float:
     positive = {
         "career": ("电脑", "投简历", "震惊", "吐槽", "委屈", "看穿规则", "求职失败"),
+        "leave": ("委屈", "电脑", "震惊", "装病", "强忍", "请假", "可怜"),
         "office": ("电脑", "冷漠", "摆烂", "装听不见", "免打扰", "生无可恋", "加班破防"),
         "exam": ("探头", "委屈", "哭", "焦虑", "查成绩", "惊叫"),
         "rent": ("委屈", "可怜", "压抑", "冷漠", "通勤", "喘口气"),
@@ -2448,6 +3329,7 @@ def category_motion_bonus(category: str, role: str, text: str, desc: str) -> flo
     }.get(category, ())
     negative = {
         "career": ("开车", "山羊", "小狗", "射击", "过激"),
+        "leave": ("开车", "山羊", "小狗", "射击", "过激", "跳舞"),
         "office": ("开车", "山羊", "小狗", "射击", "过激"),
         "exam": ("开车", "山羊", "小狗", "射击", "过激", "免打扰"),
         "rent": ("山羊", "小狗", "射击", "过激", "电脑", "笔记本"),
@@ -2569,6 +3451,7 @@ def safe_scene_keywords_for_beat(beat: dict[str, Any]) -> list[str]:
 def background_anchors_for_local_category(category: str, caption: str, role: str, theme: str) -> list[str]:
     proxy_theme = {
         "career": "求职 简历 面试 招聘 岗位",
+        "leave": "请假 病假 老板 120 工位 办公室",
         "office": "上班 会议 加班 老板",
         "exam": "考研 考公 自习 图书馆",
         "rent": "租房 房租 押金 通勤",
@@ -2589,6 +3472,7 @@ def scene_keyword_conflicts(keyword: str, local_category: str, local_text: str) 
         return True
     conflict_map = {
         "career": ("出租屋", "房租", "押金", "考研", "考公", "自习", "图书馆", "烤肠", "小吃摊", "夜市"),
+        "leave": ("出租屋", "房租", "押金", "考研", "考公", "自习", "图书馆", "烤肠", "小吃摊", "夜市", "招聘会"),
         "office": ("出租屋", "房租", "押金", "考研", "考公", "自习", "图书馆", "烤肠", "小吃摊", "夜市"),
         "exam": ("招聘", "面试", "HR", "会议室", "工位", "房租", "押金", "烤肠", "小吃摊", "夜市"),
         "rent": ("招聘", "面试", "HR", "会议室", "考研", "考公", "自习", "图书馆", "烤肠", "小吃摊", "夜市"),
@@ -2607,6 +3491,8 @@ def scene_guard_score(category: str, asset: dict[str, Any], beat: dict[str, Any]
     if category == "career" and any(word in text for word in ("烤肠", "小吃摊", "夜市", "出租屋", "自习室", "图书馆")):
         return -80.0
     if category == "office" and any(word in text for word in ("烤肠", "小吃摊", "夜市", "出租屋", "自习室", "图书馆")):
+        return -80.0
+    if category == "leave" and any(word in text for word in ("烤肠", "小吃摊", "夜市", "出租屋", "自习室", "图书馆", "招聘会")):
         return -80.0
     if category == "exam" and any(word in text for word in ("招聘", "面试", "会议室", "办公室", "烤肠", "小吃摊", "出租屋")):
         return -80.0
@@ -2710,6 +3596,16 @@ def theme_background_anchors(theme: str, caption: str, role: str) -> list[str]:
             "会议室",
             "工位",
         ]
+    if category == "leave":
+        return [
+            "real_office",
+            "office",
+            "工位",
+            "老板聊天框",
+            "请假审批",
+            "hospital_alert",
+            "120急救电话",
+        ]
     if category == "career":
         return [
             "generated/preset-job-fair-waiting-area/1780413290.png",
@@ -2734,6 +3630,7 @@ def themed_background_score(category: str, asset: dict[str, Any], beat: dict[str
         "rent": ("出租屋", "租房", "房租", "押金", "账单", "床铺", "行李箱", "building_interior", "window", "real_transit_station"),
         "exam": ("考研", "考公", "自习", "图书馆", "教室", "classroom", "real_school", "school", "study"),
         "office": ("会议", "加班", "复盘", "同步", "老板", "会议室", "real_office", "office"),
+        "leave": ("请假", "病假", "老板", "工位", "办公室", "real_office", "office", "hospital_alert", "120"),
         "career": ("招聘", "简历", "面试", "HR", "校招", "岗位", "job-fair", "real_office", "office"),
     }.get(category, ())
     negative = {
@@ -2741,6 +3638,7 @@ def themed_background_score(category: str, asset: dict[str, Any], beat: dict[str
         "rent": ("招聘", "面试", "会议", "考研", "考公", "自习", "办公室"),
         "exam": ("招聘", "面试", "HR", "会议", "办公室", "房租", "押金", "烤肠", "小吃摊"),
         "office": ("烤肠", "小吃摊", "出租屋", "考研", "考公"),
+        "leave": ("烤肠", "小吃摊", "出租屋", "考研", "考公", "招聘会"),
         "career": ("烤肠", "小吃摊", "出租屋", "考研", "考公"),
     }.get(category, ())
     for keyword in positive:
@@ -2777,7 +3675,8 @@ def scene_keywords_for_beat(theme: str, caption: str, role: str, script_scenes: 
         for scene in script_scenes
         if str(scene) not in specific_scene_terms or local_needs_specific_scene
     )
-    for preset in matching_preset_scenes(joined, limit=3):
+    preset_query = local_joined if local_joined.strip() else joined
+    for preset in matching_preset_scenes(preset_query, limit=3):
         keywords.extend(str(item) for item in preset.get("keywords", [])[:8])
         keywords.extend(str(item) for item in preset.get("recommended_backgrounds", [])[:4])
     specific_mapping = {
@@ -2788,13 +3687,14 @@ def scene_keywords_for_beat(theme: str, caption: str, role: str, script_scenes: 
             keywords.extend(values)
     mapping = {
         ("简历", "招聘", "岗位", "面试", "HR"): ["office", "real_office", "招聘会", "办公楼"],
+        ("请假", "病假", "120", "急救", "审批"): ["office", "real_office", "工位", "请假审批", "hospital_alert", "120急救电话"],
         ("上班", "加班", "会议", "老板", "KPI"): ["office", "real_office", "会议室", "工位"],
         ("考研", "考公", "自习", "图书馆", "上岸"): ["classroom", "real_school", "图书馆", "自习室"],
         ("租房", "房租", "押金", "中介"): ["building_interior", "real_city", "出租屋", "中介门店"],
         ("通勤", "地铁", "公交", "高铁"): ["real_transit_station", "地铁", "公交车", "站台"],
     }
     for triggers, values in mapping.items():
-        if any(trigger in joined for trigger in triggers):
+        if any(trigger in local_joined for trigger in triggers) or (not local_joined.strip() and any(trigger in joined for trigger in triggers)):
             keywords.extend(values)
     if not keywords:
         keywords.extend(["city", "street", "real_city"])
@@ -2919,6 +3819,23 @@ def pattern_for_role(role: str) -> str:
 
 
 def pattern_for_beat(beat: dict[str, Any]) -> str:
+    source_shot = beat.get("source_viral_shot") if isinstance(beat.get("source_viral_shot"), dict) else None
+    if source_shot and source_shot.get("viral_title"):
+        prefix = "上传爆款" if source_shot.get("source") == "uploaded_viral" else "爆款参考"
+        details = " / ".join(
+            str(item)
+            for item in [source_shot.get("beat"), source_shot.get("joke_point"), source_shot.get("transfer_role")]
+            if item
+        )
+        return f"{prefix}《{source_shot.get('viral_title')}》镜头{source_shot.get('shot_id') or ''}迁移：{details[:80]}"
+    uploaded = beat.get("uploaded_viral_reference") if isinstance(beat.get("uploaded_viral_reference"), dict) else None
+    if uploaded and uploaded.get("title"):
+        details = " / ".join(
+            str(item)
+            for item in [uploaded.get("beat"), uploaded.get("script")]
+            if item
+        )
+        return f"上传爆款《{uploaded.get('title')}》迁移：{details[:80] or pattern_for_role(beat['role'])}"
     viral = beat.get("viral_reference") if isinstance(beat.get("viral_reference"), dict) else None
     if viral and viral.get("title"):
         details = " / ".join(
@@ -2928,6 +3845,18 @@ def pattern_for_beat(beat: dict[str, Any]) -> str:
         )
         return f"爆款参考《{viral.get('title')}》：{details or pattern_for_role(beat['role'])}"
     return pattern_for_role(beat["role"])
+
+
+def asset_sources_for_slot(slot: dict[str, Any]) -> dict[str, str]:
+    motion_id = str(slot.get("motion", {}).get("id", ""))
+    secondary_id = str((slot.get("secondary_motion") or {}).get("id", ""))
+    background_id = str(slot.get("background", {}).get("id", ""))
+    return {
+        "motion": "user_upload" if motion_id.startswith("user/") else "built_in",
+        "secondary_motion": "user_upload" if secondary_id.startswith("user/") else "built_in" if secondary_id else "",
+        "background": "user_upload" if background_id.startswith("user/") else "generated" if slot.get("background_source") == "generated" else "built_in",
+        "structure": "uploaded_viral" if "上传爆款" in str(slot.get("source_pattern", "")) else "viral_library" if "爆款参考" in str(slot.get("source_pattern", "")) else "theme_workflow",
+    }
 
 
 def material_needs_from_timeline(timeline: list[dict[str, Any]]) -> dict[str, Any]:

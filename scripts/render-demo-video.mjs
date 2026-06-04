@@ -18,9 +18,9 @@ const captionDir = path.join(runtimeDir, 'captions');
 const overlayDir = path.join(runtimeDir, 'overlays');
 const segmentConcurrency = clampInt(process.env.RENDER_SEGMENT_CONCURRENCY, 1, Math.min(4, os.cpus().length || 2), 2);
 const ffmpegPreset = process.env.RENDER_FFMPEG_PRESET || 'veryfast';
-const segmentBedVolume = clamp(Number(process.env.RENDER_SEGMENT_BED_VOLUME ?? '0.18'), 0, 1);
 const actionAudioVolume = clamp(Number(process.env.RENDER_ACTION_AUDIO_VOLUME ?? '0.42'), 0, 1);
-const finalBedVolume = clamp(Number(process.env.RENDER_FINAL_BGM_VOLUME ?? '0.36'), 0, 1);
+const finalBedVolume = clamp(Number(process.env.RENDER_FINAL_BGM_VOLUME ?? '0.16'), 0, 1);
+const useFinalBed = String(process.env.RENDER_USE_FINAL_BGM ?? 'false').toLowerCase() === 'true';
 const pythonRunner = resolvePythonRunner();
 let fallbackAudioSourcePromise;
 
@@ -66,22 +66,24 @@ async function renderSegment(slot, index) {
       '[comp][cap]overlay=0:0:shortest=1[captioned]'
     ].join(';');
   const overlayInputIndex = dialogue ? 4 : 3;
-  const audioInputs = [];
-  if (primaryAudio.audible) {
-    audioInputs.push({ file: motionSource.audioFile, clip: slot.motion_clip, label: 'a1', volume: dialogue ? actionAudioVolume * 0.72 : actionAudioVolume });
-  } else if (dialogue && secondaryAudio?.audible) {
-    audioInputs.push({ file: secondaryMotionSource.audioFile, clip: slot.secondary_motion_clip || slot.motion_clip, label: 'a2', volume: actionAudioVolume * 0.6 });
-  }
+  const mainAudio = chooseMainAudioTrack({
+    primaryAudio,
+    secondaryAudio,
+    motionSource,
+    secondaryMotionSource,
+    slot,
+    dialogue,
+    fallbackAudioSource,
+  });
   const preOutput = hasOverlay
     ? `${baseFilter};[${overlayInputIndex}:v]format=rgba[ov];[captioned][ov]overlay=0:0:shortest=1[vpre]`
     : `${baseFilter};[captioned]copy[vpre]`;
   const audioStartIndex = overlayInputIndex + (hasOverlay ? 1 : 0);
-  const fallbackInputIndex = audioStartIndex + audioInputs.length;
+  const fallbackInputIndex = audioStartIndex + (mainAudio ? 1 : 0);
   const audioFilter = buildAudioFilter({
     duration,
-    audioInputs: audioInputs.map((track, offset) => ({ ...track, input: audioStartIndex + offset })),
-    fallbackInputIndex: fallbackAudioSource ? fallbackInputIndex : null,
-    bedVolume: segmentBedVolume,
+    audioInput: mainAudio ? { ...mainAudio, input: audioStartIndex } : null,
+    fallbackInputIndex: mainAudio ? null : fallbackAudioSource ? fallbackInputIndex : null,
   });
   const filter = `${preOutput};${transitionFilter(slot.transition, duration)}${audioFilter}`;
 
@@ -111,14 +113,14 @@ async function renderSegment(slot, index) {
       '-i', path.join(overlayFrameDir, '%04d.png')
     );
   }
-  for (const audioInput of audioInputs) {
+  if (mainAudio) {
     inputs.push(
-      '-ss', String(Math.max(0, Number(audioInput.clip?.start || 0))),
+      '-ss', String(Math.max(0, Number(mainAudio.clip?.start || 0))),
       '-t', String(duration),
-      '-i', audioInput.file
+      '-i', mainAudio.file
     );
   }
-  if (fallbackAudioSource) {
+  if (!mainAudio && fallbackAudioSource) {
     inputs.push(
       '-stream_loop', '-1',
       '-t', String(duration),
@@ -158,27 +160,37 @@ function motionInputArgs(source, clipSpec = {}, slotDuration) {
   ];
 }
 
-function buildAudioFilter({ duration, audioInputs = [], fallbackInputIndex, bedVolume = 0.18 }) {
-  const tracks = audioInputs.map((track, index) => ({
-    input: track.input,
-    volume: track.volume ?? 1.0,
-    label: track.label || `a${index + 1}`,
-  }));
-  if (fallbackInputIndex !== null) {
-    tracks.push({ input: fallbackInputIndex, volume: bedVolume, label: 'abed' });
+function chooseMainAudioTrack({ primaryAudio, secondaryAudio, motionSource, secondaryMotionSource, slot, dialogue, fallbackAudioSource }) {
+  if (primaryAudio.audible) {
+    return {
+      file: motionSource.audioFile,
+      clip: slot.motion_clip,
+      label: 'amain',
+      volume: dialogue ? actionAudioVolume * 0.82 : actionAudioVolume,
+    };
   }
-  if (!tracks.length) {
+  if (dialogue && secondaryAudio?.audible) {
+    return {
+      file: secondaryMotionSource.audioFile,
+      clip: slot.secondary_motion_clip || slot.motion_clip,
+      label: 'amain',
+      volume: actionAudioVolume * 0.72,
+    };
+  }
+  if (fallbackAudioSource) {
+    return null;
+  }
+  return null;
+}
+
+function buildAudioFilter({ duration, audioInput = null, fallbackInputIndex = null }) {
+  if (!audioInput && fallbackInputIndex === null) {
     return `;anullsrc=channel_layout=stereo:sample_rate=44100,atrim=0:${duration},asetpts=PTS-STARTPTS[a]`;
   }
-  const filters = tracks.map((track) => (
-    `[${track.input}:a]atrim=0:${duration},asetpts=PTS-STARTPTS,volume=${track.volume}[${track.label}]`
-  ));
-  if (tracks.length === 1) {
-    filters.push(`[${tracks[0].label}]aformat=channel_layouts=stereo:sample_rates=44100[a]`);
-  } else {
-    filters.push(`${tracks.map((track) => `[${track.label}]`).join('')}amix=inputs=${tracks.length}:duration=longest:normalize=0,aformat=channel_layouts=stereo:sample_rates=44100[a]`);
+  if (audioInput) {
+    return `;[${audioInput.input}:a]atrim=0:${duration},asetpts=PTS-STARTPTS,volume=${audioInput.volume ?? 1.0},aformat=channel_layouts=stereo:sample_rates=44100[a]`;
   }
-  return `;${filters.join(';')}`;
+  return `;[${fallbackInputIndex}:a]atrim=0:${duration},asetpts=PTS-STARTPTS,volume=${finalBedVolume},aformat=channel_layouts=stereo:sample_rates=44100[a]`;
 }
 
 async function inspectAudio(file, clipSpec = {}, slotDuration = 4) {
@@ -403,8 +415,9 @@ async function main() {
   const output = args.output ? path.resolve(args.output) : path.join(outputDir, 'maomeme-demo.mp4');
   await fs.mkdir(path.dirname(output), { recursive: true });
   const totalDuration = slots.reduce((total, slot) => total + Math.max(1, Number(slot.end || 0) - Number(slot.start || 0)), 0);
-  const finalBed = await getFallbackAudioSource();
+  const finalBed = useFinalBed ? await getFallbackAudioSource() : null;
   await concatSegments(concatFile, output, totalDuration, finalBed);
+  await assertAudioVideoAligned(output);
 
   console.log(`Rendered demo video: ${path.relative(root, output)}`);
 }
@@ -474,6 +487,26 @@ async function concatSegments(concatFile, output, totalDuration, finalBed = null
   );
   await execFileAsync('ffmpeg', trimArgs, { maxBuffer: 1024 * 1024 * 10 });
   await fs.rm(tempOutput, { force: true });
+}
+
+async function assertAudioVideoAligned(file) {
+  const result = await execFileAsync('ffprobe', [
+    '-v', 'error',
+    '-show_entries', 'stream=codec_type,duration',
+    '-of', 'json',
+    file,
+  ], { maxBuffer: 1024 * 256 });
+  const streams = JSON.parse(result.stdout || '{}').streams || [];
+  const video = streams.find((stream) => stream.codec_type === 'video');
+  const audio = streams.find((stream) => stream.codec_type === 'audio');
+  if (!video || !audio) {
+    throw new Error(`Rendered file missing video/audio stream: ${file}`);
+  }
+  const videoDuration = Number(video.duration || 0);
+  const audioDuration = Number(audio.duration || 0);
+  if (Number.isFinite(videoDuration) && Number.isFinite(audioDuration) && Math.abs(videoDuration - audioDuration) > 0.25) {
+    throw new Error(`Audio/video duration mismatch: video=${videoDuration.toFixed(3)} audio=${audioDuration.toFixed(3)}`);
+  }
 }
 
 async function mapLimit(items, limit, mapper) {

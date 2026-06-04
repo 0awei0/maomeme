@@ -243,11 +243,14 @@ def overlay_planner_tool(beat: dict[str, Any], motion: dict[str, Any], backgroun
     dialogue = " ".join(str(item.get("text", "")) for item in beat.get("dialogue", []) if isinstance(item, dict))
     scene_text = " ".join(str(item) for item in beat.get("scene_keywords", []))
     local_text = f"{caption} {intent} {dialogue}"
-    core_text = f"{theme} {caption} {intent} {dialogue} {scene_text}"
+    local_context = f"{caption} {intent} {dialogue} {scene_text}"
+    core_text = f"{theme} {local_context}"
     asset_text = f"{core_text} {motion.get('description', '')} {background.get('description', '')}"
     category = overlay_category(theme, local_text, core_text)
+    if not overlay_needed_for_beat(role, local_text, core_text, category):
+        return []
 
-    primary = primary_overlay_for_context(category, role, caption, local_text, core_text)
+    primary = primary_overlay_for_context(category, role, caption, local_text, local_context)
     actions: list[dict[str, Any]] = [primary] if primary else []
 
     for action in [
@@ -262,20 +265,32 @@ def overlay_planner_tool(beat: dict[str, Any], motion: dict[str, Any], backgroun
     return select_overlay_actions(actions)
 
 
+def overlay_needed_for_beat(role: str, local_text: str, text: str, category: str) -> bool:
+    if role in {"hook", "pressure", "twist", "escalation", "punchline"}:
+        return True
+    strong_words = (
+        "离谱", "突然", "已读", "不回", "拒", "老板", "120", "请假", "急救",
+        "要求", "岗位", "薪资", "烤肠", "摆摊", "周一", "闹钟", "会议", "加班",
+    )
+    if any(word in local_text for word in strong_words):
+        return True
+    return category in {"street_food", "career", "office"} and role in {"setup", "proof"}
+
+
 def overlay_category(theme: str, local_text: str, text: str) -> str:
     theme_category = infer_theme_category(theme)
-    theme_local = f"{theme} {local_text}"
+    if is_street_food_context(local_text):
+        return "street_food"
+    if is_exam_context(local_text):
+        return "exam"
+    if is_workplace_context(local_text):
+        return "office"
+    if is_rent_context(local_text):
+        return "rent"
+    if is_career_context(local_text):
+        return "career"
     if theme_category in {"street_food", "office", "exam", "rent", "career"}:
-        if theme_category == "office" and is_workplace_context(theme_local):
-            return "office"
-        if theme_category == "street_food" and is_street_food_context(theme_local):
-            return "street_food"
-        if theme_category == "exam" and is_exam_context(theme_local):
-            return "exam"
-        if theme_category == "rent" and is_rent_context(theme_local):
-            return "rent"
-        if theme_category == "career" and is_career_context(theme_local):
-            return "career"
+        return theme_category
     if is_street_food_context(text):
         return "street_food"
     if is_exam_context(text):
@@ -328,6 +343,24 @@ def local_background_guard_score(category: str, asset: dict[str, Any], beat: dic
 
 def primary_overlay_for_context(category: str, role: str, caption: str, local_text: str, text: str) -> dict[str, Any] | None:
     duration = 2.2 if role != "hook" else 1.85
+    if any(word in text for word in ("120", "急救", "救护车")):
+        return {
+            "type": "emergency_call",
+            "start": 0.25,
+            "duration": min(2.4, duration + 0.2),
+            "title": "急救电话",
+            "caller": "00后猫",
+            "status": "老板已沉默",
+        }
+    if any(word in text for word in ("请假", "不批准", "不批假", "病假", "审批")):
+        return {
+            "type": "leave_request",
+            "start": 0.28,
+            "duration": duration,
+            "title": "请假审批",
+            "status": "老板：不批准",
+            "reason": "身体报警",
+        }
     if category == "street_food":
         return {
             "type": "stall_sign",
@@ -426,7 +459,7 @@ def select_overlay_actions(actions: list[dict[str, Any]]) -> list[dict[str, Any]
             continue
         seen.add(key)
         unique.append(action)
-    primary_types = {"phone_job_feed", "job_requirement_card", "work_chat_stack", "chat_stack", "choice_panel", "study_card", "bill_card", "commute_card", "stall_sign"}
+    primary_types = {"phone_job_feed", "job_requirement_card", "work_chat_stack", "chat_stack", "choice_panel", "study_card", "bill_card", "commute_card", "stall_sign", "leave_request", "emergency_call"}
     primary = next((action for action in unique if action.get("type") in primary_types), None)
     if primary:
         secondary = next((action for action in unique if action is not primary and action.get("type") == "throw_object"), None)
@@ -439,6 +472,8 @@ def select_overlay_actions(actions: list[dict[str, Any]]) -> list[dict[str, Any]
 def throw_object_for_context(text: str, role: str, category: str = "") -> dict[str, Any] | None:
     if role not in {"setup", "pressure", "proof", "twist", "escalation", "echo"}:
         return None
+    if any(word in text for word in ("请假", "病假", "不批准", "不批假", "审批", "体温", "发烧", "120", "急救")):
+        return throw_object_payload("leave_form", "病假单")
     category_defaults = {
         "street_food": ("price_tag" if any(word in text for word in ("降价", "买一送一", "特价", "卷")) else "sausage_skewer", "今日特价" if any(word in text for word in ("降价", "买一送一", "特价", "卷")) else "烤肠 x3"),
         "rent": ("bill_stack", "账单 -2400"),
@@ -533,7 +568,7 @@ def is_workplace_context(text: str) -> bool:
 def is_career_context(text: str) -> bool:
     if is_street_food_context(text) or is_rent_context(text) or is_exam_context(text) or is_workplace_context(text):
         return False
-    return any(word in text for word in ("工作", "就业", "求职", "招聘", "简历", "岗位", "面试", "HR", "offer", "校招", "薪资", "工资"))
+    return any(word in text for word in ("工作", "就业", "求职", "招聘", "简历", "岗位", "面试", "HR", "offer", "校招", "薪资", "工资", "要求", "经验", "应届", "团队", "全链路", "全栈"))
 
 
 def is_job_context(text: str) -> bool:
@@ -688,6 +723,10 @@ def stamp_for_context(text: str, role: str, category: str) -> dict[str, Any] | N
         "rent": "余额不足",
         "street_food": "利润-1",
     }.get(category, "压力+1")
+    if any(word in text for word in ("请假", "不批准", "不批假")):
+        label = "不批准"
+    if "120" in text or "急救" in text:
+        label = "老板慌了"
     return {"type": "stamp_reject", "start": 0.72, "duration": 0.95, "text": label}
 
 
@@ -701,6 +740,10 @@ def popup_for_context(text: str, role: str, category: str) -> dict[str, Any] | N
         "rent": "省钱也要成本",
         "street_food": "隔壁又降价",
     }.get(category, "规则更新")
+    if any(word in text for word in ("请假", "不批准", "不批假")):
+        label = "审批被打回"
+    if "120" in text or "急救" in text:
+        label = "正在呼叫120"
     return {"type": "popup", "start": 0.45, "duration": 1.65, "text": label}
 
 

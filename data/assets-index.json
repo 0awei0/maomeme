@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-03T07:46:49.295Z",
+  "generated_at": "2026-06-04T03:22:19.899Z",
   "summary": {
     "cat_motions": 26,
-    "backgrounds": 87
+    "backgrounds": 95
   },
   "cat_motions": [
     {
@@ -847,6 +847,62 @@
       "scene": "generated/preset-rental-bill-room",
       "file": "assets/generated/backgrounds/preset-rental-bill-room/1780413047.png",
       "description": "Seedream 生成的小出租屋账单背景，床边桌、账单、行李箱和简易衣架，适合房租、押金、合租、搬家压力。"
+    },
+    {
+      "id": "generated/周一不想上班-上班综合症-pressure-工作群已经在同步/1780542405.png",
+      "type": "background",
+      "scene": "generated/周一不想上班-上班综合症-pressure-工作群已经在同步",
+      "file": "assets/generated/backgrounds/周一不想上班-上班综合症-pressure-工作群已经在同步/1780542405.png",
+      "description": "周一不想上班，上班综合症｜工作群已经在同步｜竖屏猫 meme 背景，无文字，适合绿幕猫叠加"
+    },
+    {
+      "id": "generated/周一不想上班-上班综合症-pressure-工作群已经在同步/1780542535.png",
+      "type": "background",
+      "scene": "generated/周一不想上班-上班综合症-pressure-工作群已经在同步",
+      "file": "assets/generated/backgrounds/周一不想上班-上班综合症-pressure-工作群已经在同步/1780542535.png",
+      "description": "周一不想上班，上班综合症｜工作群已经在同步｜竖屏猫 meme 背景，无文字，适合绿幕猫叠加"
+    },
+    {
+      "id": "generated/周一不想上班-上班综合症-pressure-工作群已经在同步/1780542596.png",
+      "type": "background",
+      "scene": "generated/周一不想上班-上班综合症-pressure-工作群已经在同步",
+      "file": "assets/generated/backgrounds/周一不想上班-上班综合症-pressure-工作群已经在同步/1780542596.png",
+      "description": "周一不想上班，上班综合症｜工作群已经在同步｜竖屏猫 meme 背景，无文字，适合绿幕猫叠加"
+    },
+    {
+      "id": "generated/周一不想上班-上班综合症-pressure-工作群已经在同步/1780542648.png",
+      "type": "background",
+      "scene": "generated/周一不想上班-上班综合症-pressure-工作群已经在同步",
+      "file": "assets/generated/backgrounds/周一不想上班-上班综合症-pressure-工作群已经在同步/1780542648.png",
+      "description": "周一不想上班，上班综合症｜工作群已经在同步｜竖屏猫 meme 背景，无文字，适合绿幕猫叠加"
+    },
+    {
+      "id": "generated/周一不想上班-上班综合症-pressure-工作群已经在同步/1780542883.png",
+      "type": "background",
+      "scene": "generated/周一不想上班-上班综合症-pressure-工作群已经在同步",
+      "file": "assets/generated/backgrounds/周一不想上班-上班综合症-pressure-工作群已经在同步/1780542883.png",
+      "description": "周一不想上班，上班综合症｜工作群已经在同步｜竖屏猫 meme 背景，无文字，适合绿幕猫叠加"
+    },
+    {
+      "id": "generated/周一不想上班-上班综合症-pressure-工作群已经在同步/1780542945.png",
+      "type": "background",
+      "scene": "generated/周一不想上班-上班综合症-pressure-工作群已经在同步",
+      "file": "assets/generated/backgrounds/周一不想上班-上班综合症-pressure-工作群已经在同步/1780542945.png",
+      "description": "周一不想上班，上班综合症｜工作群已经在同步｜竖屏猫 meme 背景，无文字，适合绿幕猫叠加"
+    },
+    {
+      "id": "generated/周一不想上班-上班综合症-pressure-工作群已经在同步/1780543003.png",
+      "type": "background",
+      "scene": "generated/周一不想上班-上班综合症-pressure-工作群已经在同步",
+      "file": "assets/generated/backgrounds/周一不想上班-上班综合症-pressure-工作群已经在同步/1780543003.png",
+      "description": "周一不想上班，上班综合症｜工作群已经在同步｜竖屏猫 meme 背景，无文字，适合绿幕猫叠加"
+    },
+    {
+      "id": "generated/大学生工作难找-投简历像进黑洞-岗位要求越来越离谱-punchline/1780543297.png",
+      "type": "background",
+      "scene": "generated/大学生工作难找-投简历像进黑洞-岗位要求越来越离谱-punchline",
+      "file": "assets/generated/backgrounds/大学生工作难找-投简历像进黑洞-岗位要求越来越离谱-punchline/1780543297.png",
+      "description": "大学生工作难找，投简历像进黑洞，岗位要求越来越离谱｜摊位写熟练工优先｜竖屏猫 meme 背景，无文字，适合绿幕猫叠加"
     },
     {
       "id": "generated/大学生工作难找-最后去学校门口卖烤肠也要内卷-escalation-岗位/1780404825.png",

@@ -83,10 +83,20 @@ function overlayActionInputs(theme, slot, preset) {
       ...semanticOverlayActions(theme, slot, preset),
     ];
   }
+  if (!slotShouldReceivePresetOverlay(theme, slot)) {
+    return [];
+  }
   return [
     ...semanticOverlayActions(theme, slot, preset),
     ...(preset?.default_overlay_actions || []),
   ];
+}
+
+function slotShouldReceivePresetOverlay(theme, slot) {
+  const role = slot.role || '';
+  if (['hook', 'pressure', 'twist', 'escalation', 'punchline'].includes(role)) return true;
+  const text = searchableText(theme, slot);
+  return /(离谱|突然|老板|请假|120|急救|岗位|要求|烤肠|摆摊|周一|闹钟|会议|加班|已读|不回)/.test(text);
 }
 
 function loadPackagingPresetsSync() {
@@ -128,6 +138,28 @@ function semanticOverlayActions(theme, slot, preset) {
   const caption = slot.copy || slot.caption || '';
   const duration = Math.max(1, Number(slot.end || 0) - Number(slot.start || 0));
   const longEnough = Math.max(1.2, Math.min(duration - 0.25, 2.6));
+
+  if (/(120|急救|救护车)/.test(categoryText)) {
+    return [{
+      type: 'emergency_call',
+      start: 0.25,
+      duration: longEnough,
+      title: '急救电话',
+      caller: '00后猫',
+      status: '老板已沉默',
+    }];
+  }
+
+  if (/(请假|不批准|不批假|病假|审批)/.test(categoryText)) {
+    return [{
+      type: 'leave_request',
+      start: 0.28,
+      duration: longEnough,
+      title: '请假审批',
+      reason: '身体报警',
+      status: '老板：不批准',
+    }];
+  }
 
   if (/(烤肠|香肠|摆摊|小吃摊|夜市|地摊|摊位|冰粉)/.test(categoryText)) {
     return [{
@@ -363,6 +395,8 @@ function mergeOverlayActions(actions) {
     'bill_card',
     'commute_card',
     'stall_sign',
+    'leave_request',
+    'emergency_call',
     'generated_sticker',
   ]);
   const primary = actions.find((action) => primaryTypes.has(action?.type));

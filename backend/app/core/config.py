@@ -15,6 +15,7 @@ class Settings:
         self.ARK_BASE_URL = os.environ.get("ARK_BASE_URL", "https://ark.cn-beijing.volces.com/api/v3")
         self.ARK_MODEL = os.environ.get("ARK_MODEL", "doubao-seed-2-0-pro-260215")
         self.ARK_LITE_MODEL = os.environ.get("ARK_LITE_MODEL", "")
+        self.ARK_MINI_MODEL = os.environ.get("ARK_MINI_MODEL", "doubao-seed-2-0-mini-260215")
         self.ARK_MODEL_MODE = os.environ.get("ARK_MODEL_MODE", "pro").lower()
         self.ARK_AGENT_CONCURRENCY = self._int_env("ARK_AGENT_CONCURRENCY", 3, 1, 6)
         self.CANDIDATE_AGENT_TIMEOUT_SEC = self._int_env("CANDIDATE_AGENT_TIMEOUT_SEC", 180, 60, 300)
@@ -36,6 +37,9 @@ class Settings:
         if self.ARK_MODEL_MODE in {"lite", "fast", "test"} and self.ARK_LITE_MODEL:
             return self.ARK_LITE_MODEL
         return self.ARK_MODEL
+
+    def mini_model(self) -> str:
+        return self.ARK_MINI_MODEL or self.chat_model()
 
     def _int_env(self, name: str, default: int, min_value: int, max_value: int) -> int:
         try:

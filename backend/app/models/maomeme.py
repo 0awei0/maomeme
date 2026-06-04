@@ -54,6 +54,8 @@ class TimelineSlot(BaseModel):
     gap: GapInfo = Field(default_factory=GapInfo)
     packaging: list[str] = Field(default_factory=list)
     source_pattern: str = ""
+    source_viral_shot: dict[str, Any] = Field(default_factory=dict)
+    asset_sources: dict[str, str] = Field(default_factory=dict)
 
 
 class MaoMemePlan(BaseModel):
@@ -77,11 +79,33 @@ class ScriptCandidate(BaseModel):
     beat_seed: list[dict[str, Any]] = Field(default_factory=list)
     asset_hints: dict[str, Any] = Field(default_factory=dict)
     notes: list[str] = Field(default_factory=list)
+    source_reference: dict[str, Any] = Field(default_factory=dict)
+    migration_blueprint: dict[str, Any] = Field(default_factory=dict)
+    user_material_coverage: dict[str, Any] = Field(default_factory=dict)
+
+
+class CreativeBrief(BaseModel):
+    viral_topic: str = ""
+    target_audience: str = ""
+    protagonist: str = ""
+    core_conflict: str = ""
+    ending_tone: str = ""
+    style: str = ""
+    required_scenes: str = ""
+    required_props: str = ""
+    avoid_content: str = ""
+    main_cat_count: str = ""
+    allow_multi_cat: bool = True
+    allow_ai_fill: bool = False
 
 
 class CandidateRequest(BaseModel):
     theme: str
     sample_video_path: str | None = None
+    session_id: str | None = None
+    viral_analysis_id: str | None = None
+    user_material_ids: list[str] = Field(default_factory=list)
+    creative_brief: CreativeBrief = Field(default_factory=CreativeBrief)
     use_doubao: bool = True
     generation_mode: str = "agent"
     duration_mode: str = "short"
@@ -97,6 +121,10 @@ class SelectPlanRequest(BaseModel):
     theme: str
     candidate: ScriptCandidate
     sample_video_path: str | None = None
+    session_id: str | None = None
+    viral_analysis_id: str | None = None
+    user_material_ids: list[str] = Field(default_factory=list)
+    creative_brief: CreativeBrief = Field(default_factory=CreativeBrief)
     use_doubao: bool = True
     generation_mode: str = "agent"
     allow_ai_fill: bool = False
@@ -108,6 +136,10 @@ class RevisePlanRequest(BaseModel):
     instruction: str
     plan: MaoMemePlan | None = None
     candidate: ScriptCandidate | None = None
+    session_id: str | None = None
+    viral_analysis_id: str | None = None
+    user_material_ids: list[str] = Field(default_factory=list)
+    creative_brief: CreativeBrief = Field(default_factory=CreativeBrief)
     use_doubao: bool = True
     generation_mode: str = "agent"
     duration_mode: str = "short"
@@ -117,8 +149,16 @@ class SuggestRevisionRequest(BaseModel):
     theme: str
     plan: MaoMemePlan | None = None
     candidate: ScriptCandidate | None = None
+    creative_brief: CreativeBrief = Field(default_factory=CreativeBrief)
     generation_mode: str = "agent"
     duration_mode: str = "short"
+
+
+class BriefSuggestionsRequest(BaseModel):
+    theme: str
+    creative_brief: CreativeBrief = Field(default_factory=CreativeBrief)
+    session_id: str | None = None
+    viral_analysis_id: str | None = None
 
 
 class RenderJobRequest(BaseModel):
@@ -155,3 +195,41 @@ class GeneratePlanRequest(BaseModel):
 class AnalyzeVideoRequest(BaseModel):
     video_path: str
     use_doubao: bool = True
+
+
+class UploadAsset(BaseModel):
+    upload_id: str
+    session_id: str
+    kind: str
+    filename: str
+    file_path: str
+    description: str = ""
+    size_bytes: int = 0
+    content_type: str = ""
+    metadata: dict[str, Any] = Field(default_factory=dict)
+
+
+class UploadResponse(BaseModel):
+    status: str = "success"
+    session_id: str
+    uploads: list[UploadAsset]
+
+
+class ViralAnalysisJobRequest(BaseModel):
+    session_id: str
+    upload_id: str
+    use_doubao: bool = True
+    creative_brief: CreativeBrief = Field(default_factory=CreativeBrief)
+
+
+class ViralAnalysisJobStatus(BaseModel):
+    job_id: str
+    session_id: str
+    upload_id: str
+    status: str = "queued"
+    progress: float = 0.0
+    message: str = ""
+    analysis_id: str | None = None
+    structure: dict[str, Any] | None = None
+    summary: dict[str, Any] = Field(default_factory=dict)
+    error: str | None = None

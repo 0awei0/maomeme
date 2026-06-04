@@ -1,6 +1,6 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { AlertTriangle, CheckCircle2, Clapperboard, Download, Film, Loader2, Play, RefreshCw, Wand2 } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, Clapperboard, Download, Film, Loader2, Play, RefreshCw, UploadCloud, Wand2 } from 'lucide-react';
 import './styles.css';
 
 const query = new URLSearchParams(window.location.search);
@@ -23,7 +23,17 @@ function App() {
   const [draftCandidates, setDraftCandidates] = useState([]);
   const [storyboardStatus, setStoryboardStatus] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
+  const [briefSuggestions, setBriefSuggestions] = useState({});
+  const [briefSuggestionProvider, setBriefSuggestionProvider] = useState('');
+  const [sessionId, setSessionId] = useState('');
+  const [viralUpload, setViralUpload] = useState(null);
+  const [viralJob, setViralJob] = useState(null);
+  const [materialUploads, setMaterialUploads] = useState([]);
+  const [viralDescription, setViralDescription] = useState('');
+  const [materialDescription, setMaterialDescription] = useState('');
+  const [creativeBrief, setCreativeBrief] = useState(defaultCreativeBrief());
   const candidateRunRef = useRef(0);
+  const briefSuggestRef = useRef(0);
 
   const timeline = plan?.timeline || [];
   const videoUrl = job?.video_url ? `${API_BASE}${job.video_url}` : '';
@@ -34,6 +44,32 @@ function App() {
     [loading, candidates, draftCandidates]
   );
 
+  useEffect(() => {
+    const text = theme.trim();
+    if (text.length < 4) {
+      setBriefSuggestions({});
+      return undefined;
+    }
+    const runId = briefSuggestRef.current + 1;
+    briefSuggestRef.current = runId;
+    const timer = window.setTimeout(async () => {
+      try {
+        const data = await request('/api/maomeme/brief-suggestions', {
+          theme: text,
+          creative_brief: creativeBrief,
+          session_id: sessionId || null,
+          viral_analysis_id: viralJob?.analysis_id || null
+        });
+        if (briefSuggestRef.current !== runId) return;
+        setBriefSuggestions(data.suggestions || {});
+        setBriefSuggestionProvider(data.provider || '');
+      } catch {
+        if (briefSuggestRef.current === runId) setBriefSuggestions({});
+      }
+    }, 600);
+    return () => window.clearTimeout(timer);
+  }, [theme, sessionId, viralJob?.analysis_id]);
+
   async function request(path, body) {
     const response = await fetch(`${API_BASE}${path}`, {
       method: 'POST',
@@ -43,6 +79,18 @@ function App() {
     const data = await response.json();
     if (!response.ok || data.status === 'error') {
       throw new Error(data.detail || data.message || '请求失败');
+    }
+    return data;
+  }
+
+  async function uploadForm(path, formData) {
+    const response = await fetch(`${API_BASE}${path}`, {
+      method: 'POST',
+      body: formData
+    });
+    const data = await response.json();
+    if (!response.ok || data.status === 'error') {
+      throw new Error(data.detail || data.message || '上传失败');
     }
     return data;
   }
@@ -63,7 +111,8 @@ function App() {
       const data = await streamRequest('/api/maomeme/candidates-stream', {
         theme,
         ...modePayload(generationMode),
-        duration_mode: durationMode
+        duration_mode: durationMode,
+        ...contextPayload()
       }, (event) => {
         if (candidateRunRef.current !== runId) return;
         if (event.type === 'agent_delta' && event.text) {
@@ -144,7 +193,8 @@ function App() {
         theme,
         candidate,
         ...modePayload(generationMode),
-        duration_mode: durationMode
+        duration_mode: durationMode,
+        ...contextPayload()
       }, (event) => {
         setStoryboardStatus({ message: event.message || '分镜生成中', progress: event.progress || 0 });
         if (event.type === 'stage' && event.script) {
@@ -192,7 +242,8 @@ function App() {
         plan,
         candidate: candidateForRevision,
         ...modePayload(generationMode),
-        duration_mode: durationMode
+        duration_mode: durationMode,
+        ...contextPayload()
       });
       setSelectedCandidate(data.candidate);
       setPlan(data.plan);
@@ -218,7 +269,8 @@ function App() {
         candidate,
         plan: activePlan,
         generation_mode: generationMode,
-        duration_mode: durationMode
+        duration_mode: durationMode,
+        creative_brief: creativeBrief
       });
       setSuggestions(data.suggestions || []);
     } catch {
@@ -238,7 +290,7 @@ function App() {
       const data = await request('/api/maomeme/render-jobs', {
         plan,
         packaging_engine: 'hyperframes',
-        allow_ai_fill: false
+        allow_ai_fill: Boolean(creativeBrief.allow_ai_fill)
       });
       setJob(data.job);
       pollJob(data.job.job_id);
@@ -246,6 +298,132 @@ function App() {
       setError(err.message);
       setLoading('');
     }
+  }
+
+  async function uploadViralVideo(event) {
+    const file = event.target.files?.[0];
+    event.target.value = '';
+    if (!file) return;
+    setLoading('upload-viral');
+    setError('');
+    try {
+      const form = new FormData();
+      form.append('file', file);
+      if (sessionId) form.append('session_id', sessionId);
+      form.append('description', viralDescription || creativeBrief.viral_topic || theme);
+      const data = await uploadForm('/api/uploads/viral-video', form);
+      setSessionId(data.session_id);
+      const upload = data.uploads?.[0] || null;
+      setViralUpload(upload);
+      setViralJob(null);
+      if (upload) await startViralAnalysis(data.session_id, upload.upload_id);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading('');
+    }
+  }
+
+  async function uploadMaterials(event) {
+    const files = Array.from(event.target.files || []);
+    event.target.value = '';
+    if (!files.length) return;
+    setLoading('upload-materials');
+    setError('');
+    try {
+      const form = new FormData();
+      files.forEach((file) => form.append('files', file));
+      if (sessionId) form.append('session_id', sessionId);
+      form.append('description', materialDescription || '用户上传素材');
+      const data = await uploadForm('/api/uploads/materials', form);
+      setSessionId(data.session_id);
+      setMaterialUploads((items) => mergeUploads(items, data.uploads || []));
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading('');
+    }
+  }
+
+  async function startViralAnalysis(activeSessionId = sessionId, uploadId = viralUpload?.upload_id) {
+    if (!activeSessionId || !uploadId) return;
+    setLoading('analyze-viral');
+    setError('');
+    try {
+      const data = await request('/api/analyze/viral-jobs', {
+        session_id: activeSessionId,
+        upload_id: uploadId,
+        use_doubao: true,
+        creative_brief: creativeBrief
+      });
+      setViralJob(data.job);
+      watchViralJob(data.job.job_id);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading('');
+    }
+  }
+
+  async function watchViralJob(jobId) {
+    try {
+      await streamGet(`/api/analyze/viral-jobs/${jobId}/stream`, (event) => {
+        if (event.job) setViralJob(event.job);
+        if (event.type === 'error') throw new Error(event.message || '爆款分析失败');
+      });
+    } catch {
+      pollViralJob(jobId);
+    }
+  }
+
+  async function streamGet(path, onEvent) {
+    const response = await fetch(`${API_BASE}${path}`);
+    if (!response.ok || !response.body) {
+      const data = await response.json().catch(() => ({}));
+      throw new Error(data.detail || '状态流连接失败');
+    }
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder('utf-8');
+    let buffer = '';
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const chunks = buffer.split('\n\n');
+      buffer = chunks.pop() || '';
+      for (const chunk of chunks) {
+        const line = chunk.split('\n').find((item) => item.startsWith('data: '));
+        if (!line) continue;
+        onEvent?.(JSON.parse(line.slice(6)));
+      }
+    }
+  }
+
+  async function pollViralJob(jobId) {
+    const timer = window.setInterval(async () => {
+      try {
+        const response = await fetch(`${API_BASE}/api/analyze/viral-jobs/${jobId}`);
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.detail || '爆款分析轮询失败');
+        setViralJob(data.job);
+        if (['done', 'error'].includes(data.job.status)) {
+          window.clearInterval(timer);
+          if (data.job.status === 'error') setError(data.job.error || '爆款分析失败');
+        }
+      } catch (err) {
+        window.clearInterval(timer);
+        setError(err.message);
+      }
+    }, 800);
+  }
+
+  function contextPayload() {
+    return {
+      session_id: sessionId || null,
+      viral_analysis_id: viralJob?.analysis_id || null,
+      user_material_ids: materialUploads.map((item) => item.upload_id),
+      creative_brief: creativeBrief
+    };
   }
 
   async function pollJob(jobId) {
@@ -296,8 +474,8 @@ function App() {
 
       <section className="workspace">
         <aside className="panel left">
-          <h1>猫 meme 爆款结构迁移引擎</h1>
-          <p>输入社会现实主题，Agent 生成 3 个剧本候选，选择后匹配猫动画和背景，最后合成带字幕和原声的视频。</p>
+          <h1>猫 meme 爆款结构迁移</h1>
+          <p>先写清主题、参考视频和生成约束。Workflow 稳定出片，Agent 后续做深度优化。</p>
           <div className="assetGrid">
             {stats.map((item) => (
               <div className="assetCard" key={item.label}>
@@ -309,29 +487,144 @@ function App() {
           <div className="promptBox">
             <label>主题</label>
             <textarea value={theme} onChange={(event) => setTheme(event.target.value)} />
-            <div className="segmented" aria-label="视频时长">
-              {durationOptions.map((option) => (
-                <button
-                  className={durationMode === option.value ? 'active' : ''}
-                  key={option.value}
-                  onClick={() => setDurationMode(option.value)}
-                  type="button"
-                >
-                  {option.label}
-                </button>
-              ))}
+            <BriefSuggestionPanel
+              suggestions={briefSuggestions}
+              provider={briefSuggestionProvider}
+              onPick={(field, value) => setCreativeBrief((current) => ({ ...current, [field]: value }))}
+            />
+            <label>爆款视频主题 / 原视频想表达什么</label>
+            <input
+              value={creativeBrief.viral_topic}
+              onChange={(event) => setCreativeBrief((value) => ({ ...value, viral_topic: event.target.value }))}
+              placeholder="例如：请假被拒后反套路整顿职场"
+            />
+            <div className="briefGrid">
+              <input
+                value={creativeBrief.target_audience}
+                onChange={(event) => setCreativeBrief((value) => ({ ...value, target_audience: event.target.value }))}
+                placeholder="目标受众"
+              />
+              <input
+                value={creativeBrief.protagonist}
+                onChange={(event) => setCreativeBrief((value) => ({ ...value, protagonist: event.target.value }))}
+                placeholder="主角猫设定"
+              />
+              <input
+                value={creativeBrief.core_conflict}
+                onChange={(event) => setCreativeBrief((value) => ({ ...value, core_conflict: event.target.value }))}
+                placeholder="核心冲突"
+              />
+              <input
+                value={creativeBrief.ending_tone}
+                onChange={(event) => setCreativeBrief((value) => ({ ...value, ending_tone: event.target.value }))}
+                placeholder="结尾倾向"
+              />
             </div>
-            <div className="segmented" aria-label="生成模式">
-              {generationModes.map((option) => (
-                <button
-                  className={generationMode === option.value ? 'active' : ''}
-                  key={option.value}
-                  onClick={() => setGenerationMode(option.value)}
-                  type="button"
-                >
-                  {option.label}
-                </button>
-              ))}
+            <details className="advancedBrief">
+              <summary>生成约束</summary>
+              <small>这些字段会影响剧本、背景和道具选择；补全建议不会自动覆盖。</small>
+              <input
+                value={creativeBrief.style}
+                onChange={(event) => setCreativeBrief((value) => ({ ...value, style: event.target.value }))}
+                placeholder="整体风格：讽刺 / 温暖 / 荒诞"
+              />
+              <input
+                value={creativeBrief.required_scenes}
+                onChange={(event) => setCreativeBrief((value) => ({ ...value, required_scenes: event.target.value }))}
+                placeholder="必须出现的场景"
+              />
+              <input
+                value={creativeBrief.required_props}
+                onChange={(event) => setCreativeBrief((value) => ({ ...value, required_props: event.target.value }))}
+                placeholder="必须出现的道具"
+              />
+              <input
+                value={creativeBrief.avoid_content}
+                onChange={(event) => setCreativeBrief((value) => ({ ...value, avoid_content: event.target.value }))}
+                placeholder="不要出现的内容"
+              />
+              <input
+                value={creativeBrief.main_cat_count}
+                onChange={(event) => setCreativeBrief((value) => ({ ...value, main_cat_count: event.target.value }))}
+                placeholder="主角猫数量，例如 1-2 只"
+              />
+              <label className="toggleRow">
+                <input
+                  type="checkbox"
+                  checked={creativeBrief.allow_multi_cat}
+                  onChange={(event) => setCreativeBrief((value) => ({ ...value, allow_multi_cat: event.target.checked }))}
+                />
+                允许办公室/群像场景出现多只猫
+              </label>
+              <label className="toggleRow">
+                <input
+                  type="checkbox"
+                  checked={creativeBrief.allow_ai_fill}
+                  onChange={(event) => setCreativeBrief((value) => ({ ...value, allow_ai_fill: event.target.checked }))}
+                />
+                允许缺素材时用 AI 补图
+              </label>
+            </details>
+            <div className="uploadPanel">
+              <div className="uploadHead">
+                <strong>爆款参考视频</strong>
+                {viralJob?.analysis_id && <span>已分析</span>}
+              </div>
+              <input value={viralDescription} onChange={(event) => setViralDescription(event.target.value)} placeholder="给参考视频补一句描述" />
+              <label className="fileButton">
+                {loading === 'upload-viral' || loading === 'analyze-viral' ? <Loader2 className="spin" size={16} /> : <UploadCloud size={16} />}
+                上传并分析爆款视频
+                <input type="file" accept="video/*" onChange={uploadViralVideo} />
+              </label>
+              {viralUpload && <small>{viralUpload.filename} · {formatBytes(viralUpload.size_bytes)}</small>}
+              {viralJob && <AnalysisCard job={viralJob} />}
+            </div>
+            <div className="uploadPanel">
+              <div className="uploadHead">
+                <strong>我的素材</strong>
+                <span>{materialUploads.length} 个</span>
+              </div>
+              <input value={materialDescription} onChange={(event) => setMaterialDescription(event.target.value)} placeholder="给这批素材补一句描述" />
+              <label className="fileButton">
+                {loading === 'upload-materials' ? <Loader2 className="spin" size={16} /> : <UploadCloud size={16} />}
+                上传猫视频 / 背景图 / 文案
+                <input type="file" accept="video/*,image/*,.txt,.md,.json" multiple onChange={uploadMaterials} />
+              </label>
+              {materialUploads.length > 0 && (
+                <div className="uploadList">
+                  {materialUploads.slice(0, 4).map((item) => <small key={item.upload_id}>{kindLabel(item.kind)} · {item.filename}</small>)}
+                </div>
+              )}
+            </div>
+            <div className="controlRow">
+              <span>时长</span>
+              <div className="segmented compact" aria-label="视频时长">
+                {durationOptions.map((option) => (
+                  <button
+                    className={durationMode === option.value ? 'active' : ''}
+                    key={option.value}
+                    onClick={() => setDurationMode(option.value)}
+                    type="button"
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="controlRow">
+              <span>模式</span>
+              <div className="segmented compact" aria-label="生成模式">
+                {generationModes.map((option) => (
+                  <button
+                    className={generationMode === option.value ? 'active' : ''}
+                    key={option.value}
+                    onClick={() => setGenerationMode(option.value)}
+                    type="button"
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
             </div>
             <button className="wide" onClick={generateCandidates} disabled={loading === 'candidates'}>
               {loading === 'candidates' ? <Loader2 className="spin" size={18} /> : <Wand2 size={18} />}
@@ -358,6 +651,10 @@ function App() {
                 </div>
                 <p>{candidate.tension || candidate.social_topic || '猫 meme 反差剧本'}</p>
                 <small>预计 {expectedDuration(candidate.script)} 秒 · {candidate.script.length} 个镜头</small>
+                {migrationLabel(candidate) && <small>{migrationLabel(candidate)}</small>}
+                {candidate.user_material_coverage?.available && (
+                  <small>用户素材：猫 {candidate.user_material_coverage.motion_count || 0} / 背景 {candidate.user_material_coverage.background_count || 0}</small>
+                )}
                 {publicCandidateNote(candidate.notes) && <small>{publicCandidateNote(candidate.notes)}</small>}
                 <ul>
                   {candidate.script.map((item, index) => <li key={`${candidate.id}-${index}`}>{item.text}</li>)}
@@ -433,13 +730,16 @@ function App() {
                     <h3>{slot.copy}</h3>
                     <StatusPill type={slot.gap?.status === 'matched' ? 'ok' : 'filled'} />
                   </div>
-                  <p>{slot.motion.description}</p>
+                  <p>{shortSlotText(slot.motion.description, 54)}</p>
                   <div className="slotMeta">
                     <span>裁剪 {formatClip(slot.motion_clip)}</span>
                     {slot.secondary_motion_clip && <span>右猫 {formatClip(slot.secondary_motion_clip)}</span>}
                     <span>转场 {transitionLabel(slot.transition)}</span>
+                    <span>{sourceLabel(slot.asset_sources?.motion || 'built_in')}猫</span>
+                    <span>{sourceLabel(slot.asset_sources?.structure || 'theme_workflow')}</span>
+                    {viralShotLabel(slot.source_viral_shot) && <span>{viralShotLabel(slot.source_viral_shot)}</span>}
                     <span className={slot.background_source === 'generated' ? 'generated' : ''}>
-                      背景 {slot.background_source === 'generated' ? 'Seedream' : '现有'}
+                      背景 {slot.background_source === 'generated' ? 'Seedream' : sourceLabel(slot.asset_sources?.background || 'built_in')}
                     </span>
                   </div>
                   {slot.layout === 'dialogue' && slot.dialogue?.length > 0 && (
@@ -456,7 +756,10 @@ function App() {
                       ))}
                     </div>
                   )}
-                  <small>{slot.background.description} · {slot.gap?.strategy}</small>
+                  <details className="slotDetails">
+                    <summary>背景与质检</summary>
+                    <small>{slot.background.description} · {slot.gap?.strategy}</small>
+                  </details>
                   {slot.background_source === 'generated' && slot.background_prompt && (
                     <small>补图：{slot.background_prompt}</small>
                   )}
@@ -489,11 +792,132 @@ const generationModes = [
   { value: 'workflow', label: 'Workflow 稳定' }
 ];
 
+const briefSuggestionFields = [
+  { key: 'target_audience', label: '受众' },
+  { key: 'protagonist', label: '主角' },
+  { key: 'core_conflict', label: '冲突' },
+  { key: 'ending_tone', label: '结尾' },
+  { key: 'required_scenes', label: '场景' },
+  { key: 'required_props', label: '道具' }
+];
+
 function modePayload(mode) {
   return {
     generation_mode: mode,
     use_doubao: mode === 'agent'
   };
+}
+
+function defaultCreativeBrief() {
+  return {
+    viral_topic: '',
+    target_audience: '大学生和刚上班的年轻人',
+    protagonist: '一只普通但嘴硬的打工猫',
+    core_conflict: '',
+    ending_tone: '讽刺但留一点温暖',
+    style: '社会现实黑色幽默',
+    required_scenes: '',
+    required_props: '',
+    avoid_content: '',
+    main_cat_count: '1-2只主角猫',
+    allow_multi_cat: true,
+    allow_ai_fill: false
+  };
+}
+
+function AnalysisCard({ job }) {
+  const summary = job?.summary || {};
+  return (
+    <div className="analysisCard">
+      <div className="uploadHead">
+        <strong>{job.status === 'done' ? '分析完成' : job.message}</strong>
+        <span>{Math.round((job.progress || 0) * 100)}%</span>
+      </div>
+      <div className="progress"><span style={{ width: `${Math.round((job.progress || 0) * 100)}%` }} /></div>
+      {job.status === 'done' && (
+        <>
+          <small>{summary.one_sentence || summary.title || '已抽取爆款结构'}</small>
+          <small>{summary.shot_count || 0} 个分镜 · {summary.audio_style || '声音风格待复核'}</small>
+        </>
+      )}
+      {job.status === 'error' && <small>{job.error || '分析失败'}</small>}
+    </div>
+  );
+}
+
+function BriefSuggestionPanel({ suggestions = {}, provider = '', onPick }) {
+  const entries = briefSuggestionFields
+    .map((field) => ({ ...field, values: suggestions[field.key] || [] }))
+    .filter((field) => field.values.length);
+  if (!entries.length) return null;
+  return (
+    <div className="briefSuggestions">
+      <div className="miniHead">
+        <strong>补全建议</strong>
+        <span>{provider === 'mini' ? 'mini' : 'fallback'}</span>
+      </div>
+      {entries.map((field) => (
+        <div className="suggestionGroup" key={field.key}>
+          <small>{field.label}</small>
+          <div>
+            {field.values.map((value) => (
+              <button type="button" key={`${field.key}-${value}`} onClick={() => onPick(field.key, value)}>
+                {value}
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function mergeUploads(current = [], next = []) {
+  const byId = new Map(current.map((item) => [item.upload_id, item]));
+  next.forEach((item) => byId.set(item.upload_id, item));
+  return Array.from(byId.values());
+}
+
+function formatBytes(value = 0) {
+  const bytes = Number(value || 0);
+  if (bytes < 1024 * 1024) return `${Math.max(1, Math.round(bytes / 1024))}KB`;
+  return `${(bytes / 1024 / 1024).toFixed(1)}MB`;
+}
+
+function kindLabel(kind = '') {
+  const labels = {
+    viral_video: '爆款',
+    user_cat_motion: '猫视频',
+    user_background: '背景',
+    user_text: '文案'
+  };
+  return labels[kind] || kind;
+}
+
+function sourceLabel(value = '') {
+  const labels = {
+    user_upload: '用户素材',
+    built_in: '内置素材',
+    generated: 'AI补足',
+    uploaded_viral: '上传爆款迁移',
+    viral_library: '爆款库迁移',
+    theme_workflow: '主题生成'
+  };
+  return labels[value] || value;
+}
+
+function migrationLabel(candidate = {}) {
+  const ref = candidate.source_reference || {};
+  if (!ref.title) return '';
+  const tags = Array.isArray(ref.structure_tags) ? ref.structure_tags.filter(Boolean).slice(0, 2).join(' / ') : '';
+  const support = Array.isArray(ref.supporting) && ref.supporting.length ? ` +${ref.supporting.length} 辅助结构` : '';
+  return `迁移自：${ref.title}${tags ? ` · ${tags}` : ''}${support}`;
+}
+
+function viralShotLabel(source = {}) {
+  if (!source?.viral_title) return '';
+  const shot = source.shot_id ? ` #${source.shot_id}` : '';
+  return `爆款镜头 ${source.viral_title}${shot}`;
 }
 
 function expectedDuration(script = []) {
@@ -520,9 +944,11 @@ function overlayLabel(action) {
     bill_card: '账单',
     commute_card: '通勤卡',
     stall_sign: '摊位牌',
+    leave_request: '请假审批',
+    emergency_call: '120',
     generated_sticker: '贴纸'
   };
-  return `${labels[action.type] || action.type}：${action.text || action.object || ''}`;
+  return `${labels[action.type] || action.type}：${action.text || action.title || action.object || ''}`;
 }
 
 function formatClip(clip = {}) {
@@ -534,6 +960,11 @@ function formatClip(clip = {}) {
 function transitionLabel(transition = {}) {
   const labels = { cut: '直切', fade: '淡入淡出', whip: '甩切', zoom: '推近', flash: '白闪' };
   return labels[transition.type] || transition.type || '直切';
+}
+
+function shortSlotText(text = '', limit = 58) {
+  const value = String(text || '').replace(/\s+/g, ' ').trim();
+  return value.length <= limit ? value : `${value.slice(0, limit)}...`;
 }
 
 function upsertById(items = [], item) {
@@ -555,7 +986,7 @@ function displayCandidates({ loading, candidates = [], draftCandidates = [] }) {
       if (index >= 0 && index < 3) {
         merged[index] = candidate;
       } else {
-        const emptyIndex = merged.findIndex((item) => item.streaming && String(item.id || '').startsWith('draft-'));
+        const emptyIndex = merged.findIndex((item) => item?.streaming && String(item.id || '').startsWith('draft-'));
         if (emptyIndex >= 0) {
           merged[emptyIndex] = candidate;
         }
@@ -584,7 +1015,7 @@ function normalizeCandidateList(items = [], options = {}) {
       seen.add(normalized.id);
     }
   }
-  return next.slice(0, 3).map(sanitizeCandidate);
+  return next.slice(0, 3).map((item, index) => sanitizeCandidate(item || placeholders[index] || streamingCandidatePlaceholders()[index]));
 }
 
 function replaceCandidateByPosition(items = [], item) {
