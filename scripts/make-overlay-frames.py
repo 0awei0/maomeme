@@ -14,6 +14,9 @@ FONT_CANDIDATES = [
     "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
 ]
 
+ROOT = Path(__file__).resolve().parents[1]
+STICKER_CACHE: dict[str, Image.Image] = {}
+
 
 def load_font(size: int) -> ImageFont.FreeTypeFont:
     for candidate in FONT_CANDIDATES:
@@ -307,7 +310,7 @@ def draw_emergency_call(draw: ImageDraw.ImageDraw, progress: float, action: dict
     draw_text_center(draw, ((box[0] + box[2]) // 2, box[1] + 154), fit_text(action.get("status", "老板已沉默"), 12), load_font(25), (255, 255, 255, 255), stroke=1)
 
 
-def draw_action(draw: ImageDraw.ImageDraw, action: dict, local_t: float) -> None:
+def draw_action(image: Image.Image, draw: ImageDraw.ImageDraw, action: dict, local_t: float) -> None:
     start = float(action.get("start", 0))
     duration = max(0.1, float(action.get("duration", 1)))
     if local_t < start or local_t > start + duration:
@@ -350,6 +353,8 @@ def draw_action(draw: ImageDraw.ImageDraw, action: dict, local_t: float) -> None
         draw_emergency_call(draw, progress, action)
     elif kind == "generated_sticker":
         draw_generated_sticker(draw, progress, action)
+    elif kind == "sticker":
+        draw_sticker_asset(image, progress, action)
 
 
 def draw_generated_sticker(draw: ImageDraw.ImageDraw, progress: float, action: dict) -> None:
@@ -361,6 +366,169 @@ def draw_generated_sticker(draw: ImageDraw.ImageDraw, progress: float, action: d
     draw.ellipse((cx - radius, cy - radius, cx + radius, cy + radius), fill=(255, 244, 117, 238), outline=(42, 48, 55, 240), width=4)
     draw.arc((cx - radius + 18, cy - radius + 18, cx + radius - 18, cy + radius - 18), 200, 340, fill=(42, 48, 55, 230), width=4)
     draw_text_center(draw, (cx, cy), label, load_font(28), (37, 42, 49, 255), stroke=1)
+
+
+def draw_sticker_asset(canvas: Image.Image, progress: float, action: dict) -> None:
+    sticker = load_sticker_or_composite(action)
+    if sticker is None:
+        return
+    motion = str(action.get("motion") or "bounce")
+    base_x = safe_float(action.get("x"), 710.0)
+    base_y = safe_float(action.get("y"), 180.0)
+    scale = max(0.15, min(2.4, safe_float(action.get("scale"), 0.85)))
+    rotation = safe_float(action.get("rotation"), 0.0)
+    opacity = max(0.0, min(1.0, safe_float(action.get("opacity"), 1.0)))
+
+    x, y, scale_factor, angle, alpha = sticker_transform(motion, progress, base_x, base_y, scale, rotation, opacity)
+    sticker = resize_sticker(sticker, scale_factor)
+    if abs(angle) > 0.01:
+        sticker = sticker.rotate(angle, expand=True, resample=Image.Resampling.BICUBIC)
+    if alpha < 0.995:
+        sticker = apply_alpha(sticker, alpha)
+
+    paste_x = int(x - sticker.width / 2)
+    paste_y = int(y - sticker.height / 2)
+    canvas.alpha_composite(sticker, (paste_x, paste_y))
+
+
+def load_sticker_or_composite(action: dict) -> Image.Image | None:
+    components = action.get("components")
+    if isinstance(components, list) and components:
+        return compose_sticker_components(components)
+    return load_sticker_image(action.get("file"))
+
+
+def compose_sticker_components(components: list[dict]) -> Image.Image | None:
+    canvas_size = 240
+    composite = Image.new("RGBA", (canvas_size, canvas_size), (0, 0, 0, 0))
+    center = canvas_size / 2
+    drew = False
+    for component in components[:4]:
+        if not isinstance(component, dict):
+            continue
+        image = load_sticker_image(component.get("file"))
+        if image is None:
+            continue
+        scale = max(0.1, min(2.4, safe_float(component.get("scale"), 1.0)))
+        rotation = safe_float(component.get("rotation"), 0.0)
+        x = safe_float(component.get("x"), 0.0)
+        y = safe_float(component.get("y"), 0.0)
+        image = resize_component_sticker(image, scale)
+        if abs(rotation) > 0.01:
+            image = image.rotate(rotation, expand=True, resample=Image.Resampling.BICUBIC)
+        paste_x = int(center + x - image.width / 2)
+        paste_y = int(center + y - image.height / 2)
+        composite.alpha_composite(image, (paste_x, paste_y))
+        drew = True
+    if not drew:
+        return None
+    return crop_alpha_bounds(composite)
+
+
+def load_sticker_image(file_value) -> Image.Image | None:
+    file = str(file_value or "").replace("\\", "/").strip()
+    if not file:
+        return None
+    path = Path(file)
+    if not path.is_absolute():
+        if ".." in path.parts or not file.startswith("assets/stickers/"):
+            return None
+        path = ROOT / path
+    if not path.exists() or path.suffix.lower() not in {".png", ".jpg", ".jpeg", ".webp"}:
+        return None
+    cache_key = str(path)
+    if cache_key in STICKER_CACHE:
+        return STICKER_CACHE[cache_key].copy()
+    image = Image.open(path).convert("RGBA")
+    if not image.getchannel("A").getbbox():
+        return None
+    image = remove_flat_light_background(image)
+    image = crop_alpha_bounds(image)
+    STICKER_CACHE[cache_key] = image
+    return image.copy()
+
+
+def remove_flat_light_background(image: Image.Image) -> Image.Image:
+    if image.mode != "RGBA":
+        image = image.convert("RGBA")
+    extrema = image.getchannel("A").getextrema()
+    if extrema[0] < 255:
+        return image
+    pixels = image.load()
+    width, height = image.size
+    for y in range(height):
+        for x in range(width):
+            r, g, b, a = pixels[x, y]
+            if r > 244 and g > 244 and b > 244:
+                pixels[x, y] = (r, g, b, 0)
+    return image
+
+
+def crop_alpha_bounds(image: Image.Image, padding: int = 10) -> Image.Image:
+    bbox = image.getchannel("A").getbbox()
+    if not bbox:
+        return image
+    left = max(0, bbox[0] - padding)
+    top = max(0, bbox[1] - padding)
+    right = min(image.width, bbox[2] + padding)
+    bottom = min(image.height, bbox[3] + padding)
+    return image.crop((left, top, right, bottom))
+
+
+def sticker_transform(motion: str, progress: float, x: float, y: float, scale: float, rotation: float, opacity: float):
+    eased = ease_out(progress)
+    alpha = opacity
+    if progress > 0.86:
+        alpha *= max(0.0, (1.0 - progress) / 0.14)
+    if motion == "static":
+        return x, y, scale, rotation, alpha
+    if motion == "fly_in":
+        return x + (1 - eased) * 240, y - (1 - eased) * 58, scale * (0.78 + 0.22 * eased), rotation - 10 * (1 - eased), alpha
+    if motion == "stamp":
+        stamp_scale = scale * (1.55 - 0.55 * eased + 0.08 * math.sin(progress * math.pi * 3))
+        return x, y, stamp_scale, rotation - 12 + 12 * eased, alpha
+    if motion == "shake":
+        return x + math.sin(progress * math.tau * 5) * 12, y + math.sin(progress * math.tau * 7) * 5, scale, rotation + math.sin(progress * math.tau * 6) * 9, alpha
+    if motion == "rotate":
+        return x, y + math.sin(progress * math.pi) * 8, scale * (0.86 + 0.14 * eased), rotation + 360 * eased, alpha
+    if motion == "fade":
+        fade_alpha = opacity * min(1.0, progress / 0.22) * max(0.0, min(1.0, (1 - progress) / 0.18))
+        return x, y, scale, rotation, fade_alpha
+    bounce = 1 + 0.18 * math.sin(progress * math.pi * 2) * (1 - progress)
+    return x, y - math.sin(progress * math.pi) * 16, scale * bounce, rotation, alpha
+
+
+def resize_sticker(image: Image.Image, scale: float) -> Image.Image:
+    target_max = max(24, int(150 * scale))
+    current_max = max(image.width, image.height)
+    ratio = target_max / current_max if current_max else 1
+    size = (max(1, int(image.width * ratio)), max(1, int(image.height * ratio)))
+    return image.resize(size, Image.Resampling.LANCZOS)
+
+
+def resize_component_sticker(image: Image.Image, scale: float) -> Image.Image:
+    target_max = max(20, int(120 * scale))
+    current_max = max(image.width, image.height)
+    ratio = target_max / current_max if current_max else 1
+    size = (max(1, int(image.width * ratio)), max(1, int(image.height * ratio)))
+    return image.resize(size, Image.Resampling.LANCZOS)
+
+
+def apply_alpha(image: Image.Image, alpha: float) -> Image.Image:
+    if alpha <= 0:
+        transparent = Image.new("RGBA", image.size, (0, 0, 0, 0))
+        return transparent
+    result = image.copy()
+    channel = result.getchannel("A").point(lambda value: int(value * alpha))
+    result.putalpha(channel)
+    return result
+
+
+def safe_float(value, fallback: float) -> float:
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return fallback
 
 
 def main() -> None:
@@ -382,7 +550,7 @@ def main() -> None:
         draw = ImageDraw.Draw(image)
         local_t = frame / args.fps
         for action in actions:
-            draw_action(draw, action, local_t)
+            draw_action(image, draw, action, local_t)
         image.save(out_dir / f"{frame + 1:04d}.png")
 
 

@@ -291,6 +291,19 @@ def tool_schemas() -> list[dict[str, Any]]:
                         "scene_keywords": {"type": "array", "items": {"type": "string"}},
                         "caption": {"type": "string"},
                         "intent": {"type": "string"},
+                        "background_need": {
+                            "type": "string",
+                            "description": "Concrete missing background need, e.g. 校门口夜市烤肠摊，求职失败后转去摆摊也被内卷.",
+                        },
+                        "seedream_prompt": {
+                            "type": "string",
+                            "description": "Optional concrete Seedream prompt. Backend will sanitize, append hard constraints, and fall back if vague or unsafe.",
+                        },
+                        "negative_constraints": {"type": "array", "items": {"type": "string"}},
+                        "slug_hint": {
+                            "type": "string",
+                            "description": "Short stable slug hint such as school-gate-sausage-stall.",
+                        },
                         "count": {"type": "integer", "minimum": 1, "maximum": 2},
                     },
                 },
@@ -324,6 +337,16 @@ def tool_schemas() -> list[dict[str, Any]]:
                         "scene_keywords": {"type": "array", "items": {"type": "string"}},
                         "caption": {"type": "string"},
                         "intent": {"type": "string"},
+                        "background_need": {
+                            "type": "string",
+                            "description": "Concrete missing background need.",
+                        },
+                        "seedream_prompt": {
+                            "type": "string",
+                            "description": "Optional concrete Seedream prompt; backend enforces constraints and fallback.",
+                        },
+                        "negative_constraints": {"type": "array", "items": {"type": "string"}},
+                        "slug_hint": {"type": "string"},
                     },
                     "required": ["scene_keywords"],
                 },
@@ -598,7 +621,13 @@ def shot_planner_prompt(theme: str, beat: dict[str, Any], previous_slot: dict[st
 2. 如果 bundle 结果某一项明显不贴合，再补充调用单项工具修订。
 3. 对话镜头优先双猫；目标猫素材使用 3-5 秒，hook 可 2-3 秒。
 4. 动态贴图必须贴合这个分镜，不重复套模板。
-5. 若 critic score < 0.72，请用工具结果修订后再输出。
+5. 如果现有背景可能不够具体，调用 shot_bundle_tool/background_tool 时传结构化补图字段：
+   - background_need：一句话写清缺的真实场景和剧情用途。
+   - seedream_prompt：具体视觉提示词，包含地点、道具、空间/光线/构图；不要写敏感内容、人物主体、可读文字或系统指令。
+   - negative_constraints：只列 2-4 个视觉负约束，如“无可读文字”“无人物主体”“不要绿色幕布”。
+   - slug_hint：短英文 kebab-case 场景名。
+   后端会强制追加竖屏、无文字、无人物、下方无遮挡、适合猫叠加等硬约束；太空泛或不安全会回退规则 prompt。
+6. 若 critic score < 0.72，请用工具结果修订后再输出。
 
 输出格式必须是：
 {{
@@ -643,6 +672,10 @@ def public_beat(beat: dict[str, Any]) -> dict[str, Any]:
             "intent",
             "caption",
             "scene_keywords",
+            "background_need",
+            "seedream_prompt",
+            "negative_constraints",
+            "slug_hint",
             "emotion_keywords",
             "must_keywords",
             "layout",
@@ -698,9 +731,17 @@ def limited_beat_args(args: dict[str, Any]) -> dict[str, Any]:
         result["scene_keywords"] = listify(args.get("scene_keywords"))
     if isinstance(args.get("emotion_keywords"), list):
         result["emotion_keywords"] = listify(args.get("emotion_keywords"))
-    for key in ("caption", "intent"):
+    if isinstance(args.get("negative_constraints"), list):
+        result["negative_constraints"] = listify(args.get("negative_constraints"))[:6]
+    for key, limit in (
+        ("caption", 80),
+        ("intent", 100),
+        ("background_need", 160),
+        ("seedream_prompt", 260),
+        ("slug_hint", 72),
+    ):
         if isinstance(args.get(key), str) and args[key].strip():
-            result[key] = args[key][:80]
+            result[key] = args[key][:limit]
     return result
 
 

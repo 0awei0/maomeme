@@ -4,6 +4,7 @@ import json
 import asyncio
 import re
 import time
+from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -16,6 +17,8 @@ from .agent_tools import (
     background_fill_tool,
     clip_planner_tool,
     overlay_planner_tool,
+    primary_overlay_type,
+    sticker_for_context,
     transition_planner_tool,
 )
 from .agent_runtime import (
@@ -36,6 +39,10 @@ from .upload_store import merge_user_assets, migration_context
 from .viral_structure_library import (
     build_migration_blueprint,
     infer_theme_category,
+    is_emotional_relationship_context,
+    is_family_memory_theme,
+    is_financial_relationship_context,
+    is_street_food_business_context,
     migration_blueprint_prompt,
     viral_reference_notes,
     viral_reference_prompt,
@@ -246,20 +253,12 @@ async def stream_script_candidates(
 
 
 def candidate_angles(theme: str, text_context: dict[str, Any]) -> list[str]:
-    tensions = [str(item) for item in text_context.get("tensions", []) if str(item).strip()]
-    angles = [str(item) for item in text_context.get("meme_angles", []) if str(item).strip()]
     base = [
         "现实共鸣版：从一个具体生活动作切入，重点写真实压力和普通人的应对。",
         "黑色幽默版：矛盾更荒诞，梗更尖锐，但结尾不能让猫解决社会问题。",
         "双猫对话版：用左右两只猫对话推进冲突，适合做气泡字幕和飞物件包装。",
     ]
-    if tensions:
-        base[0] += f" 参考矛盾：{tensions[0]}"
-    if len(tensions) > 1:
-        base[1] += f" 参考矛盾：{tensions[1]}"
-    if angles:
-        base[2] += f" 参考网络梗角度：{angles[0]}"
-    if any(word in theme for word in ("烤肠", "香肠", "摆摊", "小吃摊", "夜市", "地摊", "餐车")):
+    if not is_family_memory_theme(theme) and is_street_food_business_theme(theme):
         base[0] += " 必须写到真实街边摊或校门口小吃摊。"
         base[1] += " 可以写摊位也内卷，但不要把摆摊当万能解法。"
     return base
@@ -536,11 +535,8 @@ def apply_generation_context_to_beats(beats: list[dict[str, Any]], gen_context: 
                     "packaging": source.get("packaging_requirement", ""),
                 }
                 background = str(source.get("background_requirement", ""))
-                cat = str(source.get("cat_requirement", ""))
                 if background and viral_background_fits_beat(background, beat):
                     beat["scene_keywords"] = list(dict.fromkeys([*beat.get("scene_keywords", []), background]))
-                if cat:
-                    beat["emotion_keywords"] = list(dict.fromkeys([*beat.get("emotion_keywords", []), cat]))
         brief = gen_context.creative_brief
         if brief:
             if brief.required_scenes:
@@ -583,11 +579,8 @@ def apply_migration_blueprint_to_beats(beats: list[dict[str, Any]], blueprint: d
             "audio": source.get("audio_requirement", ""),
         }
         background = str(source.get("background_requirement") or "")
-        cat = str(source.get("cat_action_requirement") or "")
         if background and viral_background_fits_beat(background, beat):
             beat["scene_keywords"] = list(dict.fromkeys([background, *beat.get("scene_keywords", [])]))
-        if cat:
-            beat["emotion_keywords"] = list(dict.fromkeys([cat, *beat.get("emotion_keywords", [])]))
         packaging = str(source.get("subtitle_packaging") or "")
         if packaging:
             beat["packaging_requirement"] = packaging
@@ -909,8 +902,8 @@ def script_to_candidate(script: dict[str, Any], theme: str, score: float, text_c
         id=f"candidate-{index}",
         title=str(script.get("name") or f"候选剧本 {index}"),
         theme=theme,
-        social_topic=str(script.get("social_topic") or text_context.get("title", "")) if text_context else str(script.get("social_topic", "")),
-        tension=str(script.get("tension") or first_text(text_context.get("tensions", []))) if text_context else str(script.get("tension", "")),
+        social_topic=str(script.get("social_topic") or theme),
+        tension=str(script.get("tension") or theme),
         score=round(float(score), 2),
         script=[
             {"type": role, "text": caption, "purpose": intent, "duration": duration}
@@ -1061,19 +1054,44 @@ def expand_beats_for_duration(beats: list[Any], mode: str, theme: str, text_cont
     angles = topic.get("meme_angles") or []
     facts = topic.get("facts") or []
     theme_short = _setup_copy(theme)
-    inserts = [
-        ("pressure", tensions[1] if len(tensions) > 1 else f"{theme_short}开始变得离谱", "把社会压力具体化"),
-        ("proof", facts[0] if facts else "大家嘴上说不卷，手上都在加速", "补充现实证据"),
-        ("twist", angles[1] if len(angles) > 1 else "猫发现不是自己太菜，是规则太绕", "制造反差转折"),
-        ("echo", tensions[2] if len(tensions) > 2 else "原来旁边的猫也一样沉默", "扩大群体共鸣"),
-        ("cta", angles[-1] if angles else "猫猫先把今天过完", "轻 CTA 和情绪落点"),
-    ]
+    if is_family_memory_theme(theme):
+        seed = topic.get("beat_seed") if isinstance(topic.get("beat_seed"), dict) else {}
+        adult_pressure = str(seed.get("proof") or "")
+        if not adult_pressure and len(tensions) > 1:
+            adult_pressure = str(tensions[1])
+        inserts = [
+            ("proof", adult_pressure or "长大后压力也想自己扛", "把长大后的压力作为亲情呼应"),
+            ("echo", "家人的支持一直都在", "把童年默许扩展到当下支持"),
+            ("cta", str(seed.get("punchline") or "有些偏爱长大后才看见"), "温暖回落"),
+        ]
+    else:
+        inserts = [
+            ("pressure", tensions[1] if len(tensions) > 1 else f"{theme_short}开始变得离谱", "把主题压力具体化"),
+            ("proof", theme_evidence_caption(theme), "补充主题内证据"),
+            ("twist", angles[1] if len(angles) > 1 else "猫发现不是自己太菜，是规则太绕", "制造反差转折"),
+            ("echo", tensions[2] if len(tensions) > 2 else "原来旁边的猫也一样沉默", "扩大群体共鸣"),
+            ("cta", angles[-1] if angles else "猫猫先把今天过完", "轻 CTA 和情绪落点"),
+        ]
 
     while len(normalized) < target and inserts:
         role, caption, intent = inserts.pop(0)
         insert_at = max(1, len(normalized) - 1)
         normalized.insert(insert_at, (role, clean_caption(caption), intent))
     return normalized[:target]
+
+
+def theme_evidence_caption(theme: str) -> str:
+    if any(word in theme for word in ("请假", "病假", "120", "不批")):
+        return "申请还卡在不批准"
+    if any(word in theme for word in ("升学", "就业", "毕业")):
+        return "选择表压得人喘不过气"
+    if any(word in theme for word in ("找工作", "求职", "招聘", "岗位")):
+        return "消息列表还是静悄悄"
+    if any(word in theme for word in ("租房", "房租", "押金")):
+        return "账单又比人先到"
+    if any(word in theme for word in ("考研", "考公", "考试")):
+        return "书页翻着心里发慌"
+    return "现实又补了一刀"
 
 
 def select_beats_for_mode(beats: list[Any], mode: str, theme: str, text_context: dict[str, Any] | None = None) -> list[tuple[str, str, str]]:
@@ -1198,6 +1216,8 @@ def first_text(items: list[Any]) -> str:
 
 
 def better_punchline_for_theme(theme: str) -> str:
+    if is_family_memory_theme(theme):
+        return "猫长大后才懂那份无声的爱"
     if any(word in theme for word in ("烤肠", "香肠", "摆摊", "小吃摊", "夜市", "地摊")):
         return "猫改卖情绪价值"
     if any(word in theme for word in ("租房", "房租", "押金", "合租", "通勤", "中介")):
@@ -1477,7 +1497,7 @@ def uploaded_viral_script_seed(theme: str, migration: dict[str, Any]) -> list[di
     return [
         {
             "name": f"上传爆款迁移版：{summary.get('title') or '结构复刻'}",
-            "social_topic": summary.get("one_sentence") or theme,
+            "social_topic": theme,
             "tension": brief.get("core_conflict") or "把爆款结构迁移到新主题，但台词和场景全部重写",
             "beats": beats[:6],
             "scene": [slot.get("background", "") for slot in slots[:4] if isinstance(slot, dict) and slot.get("background")],
@@ -1499,8 +1519,8 @@ def blueprint_script_seeds(theme: str, blueprint: dict[str, Any], text_context: 
         return []
     category = infer_theme_category(theme)
     scenes = blueprint_scenes(theme, shots, category)
-    emotions = list(dict.fromkeys(str(shot.get("cat_action_requirement", "")) for shot in shots if str(shot.get("cat_action_requirement", "")).strip()))
-    keywords = list(dict.fromkeys([*tokenize_theme_local(theme), *[str(tag) for tag in blueprint.get("structure_tags", [])[:5]]]))
+    emotions: list[str] = []
+    keywords = list(dict.fromkeys([*tokenize_theme_local(theme), *structure_tags_for_theme_keywords(theme, blueprint)]))
     source = {
         "viral_reference_id": primary.get("id", ""),
         "viral_reference_title": primary.get("title", ""),
@@ -1513,8 +1533,8 @@ def blueprint_script_seeds(theme: str, blueprint: dict[str, Any], text_context: 
             "scene": scenes,
             "theme_keywords": keywords,
             "emotion": emotions,
-            "social_topic": text_context.get("title") or theme,
-            "tension": primary.get("topic") or "把爆款结构迁移到新主题，台词全部重写",
+            "social_topic": theme,
+            "tension": theme_tension_summary(theme),
             **source,
         },
         {
@@ -1523,7 +1543,7 @@ def blueprint_script_seeds(theme: str, blueprint: dict[str, Any], text_context: 
             "scene": scenes,
             "theme_keywords": keywords,
             "emotion": emotions,
-            "social_topic": text_context.get("title") or theme,
+            "social_topic": theme,
             "tension": "更强调真实生活动作和社会角色冲突",
             **source,
         },
@@ -1533,11 +1553,25 @@ def blueprint_script_seeds(theme: str, blueprint: dict[str, Any], text_context: 
             "scene": scenes,
             "theme_keywords": keywords,
             "emotion": emotions,
-            "social_topic": text_context.get("title") or theme,
+            "social_topic": theme,
             "tension": "更荒诞，但仍保留合理转场和现实成本",
             **source,
         },
     ]
+
+
+def theme_tension_summary(theme: str) -> str:
+    if is_family_memory_theme(theme):
+        return theme
+    if any(word in theme for word in ("请假", "病假", "120", "不批")):
+        return "请假审批和真实身体状况之间的冲突"
+    if any(word in theme for word in ("求职", "招聘", "岗位", "简历", "就业")):
+        return "求职期待和现实门槛之间的冲突"
+    if any(word in theme for word in ("租房", "房租", "押金")):
+        return "生活成本和普通预算之间的冲突"
+    if any(word in theme for word in ("考研", "考公", "考试", "升学")):
+        return "路径选择和自我压力之间的冲突"
+    return theme
 
 
 def blueprint_beats_for_theme(theme: str, shots: list[dict[str, Any]], text_context: dict[str, Any]) -> list[tuple[str, str, str]]:
@@ -1564,7 +1598,22 @@ def blueprint_beats_for_theme(theme: str, shots: list[dict[str, Any]], text_cont
             "punchline": "今天先低电量运行",
             "cta": "下班再恢复出厂",
         }
-    elif any(word in theme for word in ("找工作", "工作难找", "求职", "岗位", "薪资", "招聘", "摆摊", "烤肠")):
+    elif is_family_memory_theme(theme):
+        seed = text_context.get("beat_seed") if isinstance(text_context.get("beat_seed"), dict) else {}
+        captions = {
+            "hook": str(seed.get("hook") or "小时候我总偷最右边两串"),
+            "setup": str(seed.get("setup") or "父亲转身去招呼客人"),
+            "pressure": str(seed.get("escalation") or "我以为自己瞒天过海"),
+            "proof": str(seed.get("proof") or "每次最右边都刚好空着"),
+            "twist": str(seed.get("twist") or "多年后才知道那是父亲专门留的"),
+            "echo": "原来大人什么都知道",
+            "punchline": str(seed.get("punchline") or "长大后才懂那份无声的爱"),
+            "cta": "有些偏爱长大后才看见",
+        }
+    elif not is_family_memory_theme(theme) and (
+        any(word in theme for word in ("找工作", "工作难找", "求职", "岗位", "薪资", "招聘"))
+        or is_street_food_business_theme(theme)
+    ):
         captions = {
             "hook": "刷到薪资还行的岗位",
             "setup": "点开要求三年经验",
@@ -1633,7 +1682,9 @@ def realistic_caption_variant(caption: str, theme: str) -> str:
 
 
 def absurd_caption_variant(caption: str, role: str, theme: str) -> str:
-    if role == "twist" and any(word in theme for word in ("找工作", "求职", "烤肠", "摆摊")):
+    if role == "twist" and not is_family_memory_theme(theme) and (
+        any(word in theme for word in ("找工作", "求职")) or is_street_food_business_theme(theme)
+    ):
         return "烤肠摊也要全链路"
     if role == "twist" and any(word in theme for word in ("请假", "120")):
         return "急救电话替他请假"
@@ -1643,7 +1694,9 @@ def absurd_caption_variant(caption: str, role: str, theme: str) -> str:
 
 
 def blueprint_scenes(theme: str, shots: list[dict[str, Any]], category: str) -> list[str]:
-    scenes = [str(shot.get("background_requirement", "")) for shot in shots if str(shot.get("background_requirement", "")).strip()]
+    scenes = []
+    if category != "family":
+        scenes = [str(shot.get("background_requirement", "")) for shot in shots if str(shot.get("background_requirement", "")).strip()]
     if category == "career":
         scenes.extend(["招聘软件", "面试等待区", "real_office", "office"])
         if is_food_scene(theme):
@@ -1652,6 +1705,8 @@ def blueprint_scenes(theme: str, shots: list[dict[str, Any]], category: str) -> 
         scenes.extend(["real_office", "meeting_room", "工位", "工作群"])
     elif category == "street_food":
         scenes.extend(["street_food_stall", "烤肠摊", "夜市摊位"])
+    elif category == "family":
+        scenes.extend(["家庭饭桌", "父母沟通", "家里", "暖光室内", "小店", "夜晚店铺", "童年烧烤店"])
     elif category == "exam":
         scenes.extend(["自习室", "图书馆", "classroom", "real_school"])
     return list(dict.fromkeys(scenes))[:10]
@@ -1661,9 +1716,18 @@ def tokenize_theme_local(theme: str) -> list[str]:
     words = [
         "工作", "简历", "岗位", "面试", "就业", "求职", "招聘", "HR", "应届生",
         "上班", "老板", "会议", "加班", "周一", "请假", "120",
-        "烤肠", "摆摊", "夜市", "小吃摊", "考研", "考公", "租房", "房租",
+        "烤肠", "烧烤", "摆摊", "夜市", "小吃摊", "考研", "考公", "租房", "房租",
+        "父亲", "爸爸", "父母", "亲情", "父爱", "童年", "小时候", "偷吃",
     ]
     return [word for word in words if word in theme]
+
+
+def structure_tags_for_theme_keywords(theme: str, blueprint: dict[str, Any]) -> list[str]:
+    tags = [str(tag) for tag in blueprint.get("structure_tags", [])[:8] if str(tag).strip()]
+    if is_family_memory_theme(theme):
+        blocked = ("职场", "求职", "岗位", "招聘", "请假", "上班", "摊位", "考试选择")
+        tags = [tag for tag in tags if not any(word in tag for word in blocked)]
+    return tags[:5]
 
 
 def humanize_caption(text: str, theme: str = "") -> str:
@@ -1691,7 +1755,9 @@ def humanize_caption(text: str, theme: str = "") -> str:
 
 
 def human_punchline_for_theme(theme: str) -> str:
-    if any(word in theme for word in ("烤肠", "摆摊", "小吃摊", "夜市")):
+    if is_family_memory_theme(theme):
+        return "长大后才懂那份无声的爱"
+    if is_street_food_business_theme(theme):
         return "摊位也写熟练工优先"
     if any(word in theme for word in ("请假", "老板", "120")):
         return "老板终于学会人话"
@@ -1760,7 +1826,7 @@ def contextual_scripts(theme: str, topic: dict[str, Any]) -> list[dict[str, Any]
     fact_line = facts[0] if facts else ""
     tension_line = tensions[0] if tensions else title
     angle_line = angles[0] if angles else beat_seed.get("punchline", "猫选择先装可爱")
-    if any(word in theme for word in ("烤肠", "香肠", "摆摊", "小吃摊", "夜市", "地摊", "餐车")):
+    if not is_family_memory_theme(theme) and is_street_food_business_theme(theme):
         scene = list(dict.fromkeys([*scene, "street_food_stall", "烤肠摊", "夜市摊位", "real_street"]))
         angle_line = "猫去校门口卖烤肠，发现摊位也在卷"
     return [
@@ -1806,6 +1872,49 @@ def contextual_scripts(theme: str, topic: dict[str, Any]) -> list[dict[str, Any]
 
 
 def specific_contextual_scripts(theme: str) -> list[dict[str, Any]]:
+    if is_family_memory_theme(theme):
+        scene = ["家庭饭桌", "父母沟通", "家里", "暖光室内", "小店", "夜晚店铺", "童年烧烤店"]
+        return [
+            {
+                "name": "父亲预留两串版",
+                "beats": [
+                    ("hook", "小时候我总偷最右边两串", "童年偷吃开场"),
+                    ("setup", "父亲转身去招呼客人", "烧烤店亲子关系铺垫"),
+                    ("pressure", "我以为自己瞒天过海", "孩子的小得意和心虚"),
+                    ("twist", "多年后才知道那是父亲专门留的", "揭示父亲默许"),
+                    ("punchline", "长大拼搏百天才懂那份无声的爱", "温暖收束"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["童年", "父亲", "烧烤店", "最右边两串", "偷吃", "默许", "无声的爱"],
+                "emotion": ["偷看", "探头", "震惊", "委屈", "可爱", "安静"],
+            },
+            {
+                "name": "瞒天过海真相版",
+                "beats": [
+                    ("hook", "我以为那两串没人发现", "误会式 hook"),
+                    ("setup", "烧烤架最右边总空着", "把关键物件钉住"),
+                    ("pressure", "每次偷吃我都装没事", "童年小剧场"),
+                    ("twist", "父亲说那本来就是给你的", "真相揭示"),
+                    ("punchline", "原来父爱一直站在最右边", "亲情升华"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["父亲", "两串烧烤", "最右边", "偷吃", "多年后", "父爱"],
+                "emotion": ["偷看", "碎碎念", "震惊", "可爱", "安静"],
+            },
+            {
+                "name": "长大后才懂版",
+                "beats": [
+                    ("hook", "小时候的秘密被父亲记了好多年", "回忆开场"),
+                    ("setup", "我总盯着最右边两串", "童年贪吃细节"),
+                    ("pressure", "那时只觉得自己很聪明", "孩子视角"),
+                    ("twist", "父亲早把那两串留给我", "温柔反转"),
+                    ("punchline", "拼搏很久后才明白家的偏心", "长大后的情感回声"),
+                ],
+                "scene": scene,
+                "theme_keywords": ["小时候", "父亲", "两串", "烧烤", "长大后", "亲情"],
+                "emotion": ["探头", "偷看", "委屈", "安静", "可爱"],
+            },
+        ]
     if any(word in theme for word in ("请假", "不批准", "不批假", "120", "急救", "救护车")):
         scene = ["office", "real_office", "meeting_room", "work_chat", "hospital_alert"]
         return [
@@ -1892,8 +2001,8 @@ def specific_contextual_scripts(theme: str) -> list[dict[str, Any]]:
                 "emotion": ["震惊", "电脑", "委屈", "冷漠", "可爱"],
             },
         ]
-    if any(word in theme for word in ("找工作", "工作难找", "求职", "岗位", "薪资", "招聘", "摆摊", "烤肠")):
-        if any(word in theme for word in ("烤肠", "摆摊", "小吃摊", "夜市", "地摊", "餐车")):
+    if not is_family_memory_theme(theme) and any(word in theme for word in ("找工作", "工作难找", "求职", "岗位", "薪资", "招聘")):
+        if is_street_food_business_theme(theme) or any(word in theme for word in ("烤肠", "摆摊", "小吃摊", "夜市", "地摊", "餐车")):
             scene = ["job_app", "招聘", "面试", "street_food_stall", "烤肠摊", "夜市摊位"]
             return [
                 {
@@ -1936,7 +2045,7 @@ def specific_contextual_scripts(theme: str) -> list[dict[str, Any]]:
                     "emotion": ["探头", "震惊", "碎碎念", "委屈", "可爱"],
                 },
             ]
-    if any(word in theme for word in ("烤肠", "香肠", "摆摊", "小吃摊", "夜市", "地摊", "餐车")):
+    if not is_family_memory_theme(theme) and is_street_food_business_theme(theme):
         scene = ["street_food_stall", "烤肠摊", "夜市摊位", "小吃摊", "real_street"]
         return [
             {
@@ -2069,13 +2178,7 @@ def specific_contextual_scripts(theme: str) -> list[dict[str, Any]]:
 
 
 def context_notes(text_context: dict[str, Any]) -> list[str]:
-    if not text_context:
-        return []
-    notes = [f"文本素材库命中主题：{text_context.get('title', text_context.get('id', 'unknown'))}。"]
-    facts = text_context.get("facts") or []
-    if facts:
-        notes.append(f"剧本参考现实事实：{facts[0]}")
-    return notes
+    return []
 
 
 def score_script(script: dict[str, Any], theme: str, index: dict[str, Any]) -> float:
@@ -2113,7 +2216,8 @@ def director_agent(script: dict[str, Any], theme: str, duration_mode: str = "sho
                 "intent": intent,
                 "caption": polish_caption(role, caption, theme),
                 "scene_keywords": scene_keywords_for_beat(theme, caption, role, script.get("scene", [])),
-                "emotion_keywords": emotion_keywords_for_role(role, caption, script),
+                "emotion_keywords": emotion_keywords_for_role(role, caption, script, theme, intent),
+                "motion_profile": motion_profile_for_context(theme, caption, role, intent),
                 "must_keywords": role_must_keywords(role, caption, theme),
                 "forbidden_keywords": forbidden_keywords_for_context(script, theme),
                 "layout": layout_for_role(role, caption),
@@ -2218,13 +2322,29 @@ def is_food_scene(text: str) -> bool:
     )
 
 
+def is_street_food_business_theme(text: str) -> bool:
+    return is_street_food_business_context(text)
+
+
+def is_emotional_relationship_story(theme: str, local_text: str = "") -> bool:
+    text = f"{theme} {local_text}"
+    return (
+        infer_theme_category(text) == "relationship"
+        and is_emotional_relationship_context(text)
+        and not is_financial_relationship_context(text)
+    )
+
+
 def dialogue_for_beat(role: str, caption: str, theme: str, intent: str = "") -> list[dict[str, str]]:
     if layout_for_role(role, caption) != "dialogue":
         return []
     local_text = f"{caption} {intent}"
     text = f"{local_text} {theme}"
-    category = infer_theme_category(local_text) or infer_theme_category(theme)
-    if any(word in local_text for word in ("烤肠", "香肠", "摆摊", "小吃摊", "夜市", "摊位")):
+    if is_emotional_relationship_story(theme, local_text):
+        category = "relationship"
+    else:
+        category = infer_theme_category(local_text) or infer_theme_category(theme)
+    if category != "relationship" and is_street_food_business_theme(local_text):
         category = "street_food"
     elif any(word in local_text for word in ("工作", "简历", "岗位", "面试", "HR", "要求", "经验", "应届", "团队", "招聘", "薪资")):
         category = "career"
@@ -2232,7 +2352,9 @@ def dialogue_for_beat(role: str, caption: str, theme: str, intent: str = "") -> 
         category = "monday"
     elif any(word in local_text for word in ("请假", "病假", "120", "急救", "老板", "审批")):
         category = "leave"
-    if category == "street_food":
+    if category == "relationship":
+        pairs = relationship_dialogue_pairs(role, text)
+    elif category == "street_food":
         pairs = {
             "setup": ("猫：今天卖烤肠", "隔壁：我买一送一"),
             "pressure": ("猫：摊位费先扣？", "旁边猫：煤气也要钱"),
@@ -2290,6 +2412,24 @@ def dialogue_for_beat(role: str, caption: str, theme: str, intent: str = "") -> 
         }
     left, right = pairs.get(role, ("猫：有点离谱", "旁边猫：确实"))
     return [{"speaker": "left", "text": left}, {"speaker": "right", "text": right}]
+
+
+def relationship_dialogue_pairs(role: str, text: str) -> dict[str, tuple[str, str]]:
+    if any(word in text for word in ("夜市", "摊主", "烤肠", "加辣")):
+        return {
+            "hook": ("女：你刚才为啥不站我", "男：我在想办法解决"),
+            "setup": ("女：你刚才为啥不站我", "男：我在想办法解决"),
+            "pressure": ("女：我要的是你站我", "男：我怕事情更麻烦"),
+            "twist": ("女：先安慰我一下", "男：我刚才只会算对错"),
+            "punchline": ("男：那我先站你这边", "女：烤肠先放下"),
+        }
+    return {
+        "hook": ("女：你先听我说", "男：我在想办法"),
+        "setup": ("女：我需要的是态度", "男：我在解决问题"),
+        "pressure": ("女：你先站我这边", "男：我怕判断错"),
+        "twist": ("女：不是让你做题", "男：原来要先安慰"),
+        "punchline": ("男：我先抱抱再分析", "女：这才是重点"),
+    }
 
 
 def overlay_actions_for_beat(beat: dict[str, Any]) -> list[dict[str, Any]]:
@@ -2355,9 +2495,17 @@ def casting_and_validator_agents(beats: list[dict[str, Any]], theme: str, index:
     previous_slot: dict[str, Any] | None = None
     used_motion_ids: set[str] = set()
     used_background_ids: set[str] = set()
+    motion_plan = motion_allocation_plan(index, beats, theme)
+    allocated_beats = [
+        {**beat, "allocated_motion_id": motion_plan.get(str(beat.get("id", "")), "")}
+        for beat in beats
+    ]
     timeline: list[dict[str, Any]] = []
-    for beat in beats:
+    for beat in allocated_beats:
         slot, slot_notes = build_timeline_slot(beat, theme, index, previous_slot, used_motion_ids, used_background_ids)
+        if slot_needs_repick(slot, used_motion_ids, used_background_ids):
+            repick_beat = {**beat, "forbidden_motion_ids": sorted(used_motion_ids)}
+            slot, slot_notes = build_timeline_slot(repick_beat, theme, index, previous_slot, used_motion_ids, used_background_ids)
         notes.extend(slot_notes)
         timeline.append(slot)
         previous_slot = slot
@@ -2402,6 +2550,11 @@ async def casting_and_validator_agents_stream(
         return
 
     semaphore = asyncio.Semaphore(settings.SHOT_AGENT_CONCURRENCY)
+    motion_plan = motion_allocation_plan(index, beats, theme)
+    allocated_beats = [
+        {**beat, "allocated_motion_id": motion_plan.get(str(beat.get("id", "")), "")}
+        for beat in beats
+    ]
 
     async def workflow_quick(position: int, beat: dict[str, Any]) -> tuple[int, dict[str, Any], dict[str, Any], list[str]]:
         slot, slot_notes = await asyncio.to_thread(build_timeline_slot, beat, theme, index, None, set(), set())
@@ -2448,7 +2601,7 @@ async def casting_and_validator_agents_stream(
     }
 
     quick_items: list[tuple[int, dict[str, Any], dict[str, Any], list[str]] | None] = [None for _ in beats]
-    quick_tasks = [asyncio.create_task(workflow_quick(position, beat)) for position, beat in enumerate(beats)]
+    quick_tasks = [asyncio.create_task(workflow_quick(position, beat)) for position, beat in enumerate(allocated_beats)]
     quick_completed = 0
     for task in asyncio.as_completed(quick_tasks):
         position, beat, slot, slot_notes = await task
@@ -2524,9 +2677,10 @@ async def casting_and_validator_agents_stream(
         else:
             _, beat, slot, slot_notes, provider = item
         if slot_needs_repick(slot, used_motion_ids, used_background_ids):
+            repick_beat = {**beat, "forbidden_motion_ids": sorted(used_motion_ids)}
             slot, slot_notes = await asyncio.to_thread(
                 build_timeline_slot,
-                beat,
+                repick_beat,
                 theme,
                 index,
                 previous_slot,
@@ -2589,13 +2743,18 @@ async def workflow_casting_and_validator_agents_stream(
     total = max(1, len(beats))
     settings = get_settings()
     semaphore = asyncio.Semaphore(settings.STORYBOARD_MATCH_CONCURRENCY)
+    motion_plan = motion_allocation_plan(index, beats, theme)
+    allocated_beats = [
+        {**beat, "allocated_motion_id": motion_plan.get(str(beat.get("id", "")), "")}
+        for beat in beats
+    ]
 
     async def prebuild(position: int, beat: dict[str, Any]) -> tuple[int, dict[str, Any], list[str]]:
         async with semaphore:
             slot, slot_notes = await asyncio.to_thread(build_timeline_slot, beat, theme, index, None, set(), set())
             return position, slot, slot_notes
 
-    tasks = [asyncio.create_task(prebuild(position, beat)) for position, beat in enumerate(beats)]
+    tasks = [asyncio.create_task(prebuild(position, beat)) for position, beat in enumerate(allocated_beats)]
     yield {
         "type": "stage",
         "message": f"workflow 并行预匹配 {len(tasks)} 个镜头素材",
@@ -2611,7 +2770,7 @@ async def workflow_casting_and_validator_agents_stream(
         progress = progress_start + progress_span * 0.42 * (completed / total)
         yield {
             "type": "slot",
-            "message": f"预匹配镜头 {position + 1}/{total} 已完成：{beats[position]['caption']}",
+            "message": f"预匹配镜头 {position + 1}/{total} 已完成：{allocated_beats[position]['caption']}",
             "progress": round(progress, 3),
             "slot": slot,
         }
@@ -2622,16 +2781,17 @@ async def workflow_casting_and_validator_agents_stream(
         "progress": round(progress_start + progress_span * 0.46, 3),
     }
 
-    for index_num, beat in enumerate(beats):
+    for index_num, beat in enumerate(allocated_beats):
         item = quick_items[index_num]
         if item is None:
             _, slot, slot_notes = await prebuild(index_num, beat)
         else:
             slot, slot_notes = item
         if slot_needs_repick(slot, used_motion_ids, used_background_ids):
+            repick_beat = {**beat, "forbidden_motion_ids": sorted(used_motion_ids)}
             slot, slot_notes = await asyncio.to_thread(
                 build_timeline_slot,
-                beat,
+                repick_beat,
                 theme,
                 index,
                 previous_slot,
@@ -2682,7 +2842,8 @@ def build_timeline_slot(
     slot_notes: list[str] = []
     used_motion_ids = used_motion_ids or set()
     used_background_ids = used_background_ids or set()
-    motion = choose_motion_for_beat(index, beat, used_motion_ids)
+    allocated_motion = asset_from_id(index, "motion", str(beat.get("allocated_motion_id") or ""))
+    motion = allocated_motion or choose_motion_for_beat(index, beat, used_motion_ids)
     motion_quality = motion_quality_flags(motion)
     use_secondary_motion = beat["layout"] == "dialogue" and not motion_quality.get("natural_double")
     secondary_motion = choose_secondary_motion_for_beat(index, beat, motion, used_motion_ids) if use_secondary_motion else {}
@@ -2705,6 +2866,7 @@ def build_timeline_slot(
         "role": beat["role"],
         "intent": beat["intent"],
         "caption": beat["caption"],
+        "visual_summary": "",
         "motion": ref(motion),
         "motion_quality": motion_quality,
         "motion_clip": clip_planner_tool(motion, beat, beat["end"] - beat["start"]),
@@ -2723,6 +2885,7 @@ def build_timeline_slot(
         "source_pattern": pattern_for_beat(beat),
         "source_viral_shot": beat.get("source_viral_shot", {}),
     }
+    slot["visual_summary"] = visual_summary_for_slot(slot)
     slot["asset_sources"] = asset_sources_for_slot(slot)
     return slot, slot_notes
 
@@ -2787,6 +2950,7 @@ def normalize_agent_slot(
     slot["dialogue"] = normalize_dialogue(raw_slot.get("dialogue"), beat, slot["layout"])
     slot["overlay_actions"] = normalize_overlay_actions(raw_slot.get("overlay_actions") or slot.get("overlay_actions") or [], theme, beat)
     slot["packaging"] = normalize_packaging(raw_slot.get("packaging") or slot.get("packaging") or [], slot)
+    slot["visual_summary"] = clean_agent_text(raw_slot.get("visual_summary") or "", 140) or visual_summary_for_slot(slot)
 
     gap = raw_slot.get("gap") if isinstance(raw_slot.get("gap"), dict) else slot.get("gap", {})
     slot["gap"] = normalize_gap(gap, beat, slot)
@@ -2803,7 +2967,7 @@ def local_shot_critic(
 ) -> dict[str, Any]:
     score = 1.0
     issues: list[str] = []
-    motion_text = f"{slot.get('motion', {}).get('id', '')} {slot.get('motion', {}).get('description', '')}"
+    motion_text = motion_search_text(slot.get("motion", {}))
     background_text = f"{slot.get('background', {}).get('id', '')} {slot.get('background', {}).get('description', '')}"
     if beat.get("emotion_keywords") and not any(str(keyword) in motion_text for keyword in beat.get("emotion_keywords", [])[:8]):
         score -= 0.16
@@ -2814,19 +2978,37 @@ def local_shot_critic(
     if str(slot.get("motion", {}).get("id", "")) in used_motion_ids and len(used_motion_ids) < 10:
         score -= 0.1
         issues.append("motion_repeated")
+    if motion_story_mismatch(theme, beat, slot.get("motion", {})):
+        score -= 0.24
+        issues.append("motion_story_mismatch")
     if str(slot.get("background", {}).get("id", "")) in used_background_ids and len(used_background_ids) <= 2:
         score -= 0.08
         issues.append("background_repeated")
     if slot.get("layout") == "dialogue" and len(slot.get("dialogue") or []) < 2:
         score -= 0.12
         issues.append("dialogue_missing")
-    if not slot.get("overlay_actions"):
-        score -= 0.1
-        issues.append("overlay_missing")
     if "简历x100" in json.dumps(slot.get("overlay_actions", []), ensure_ascii=False) and "简历" not in f"{theme} {beat.get('caption', '')}":
         score -= 0.18
         issues.append("overlay_repetitive")
     return {"score": round(max(0.0, min(1.0, score)), 3), "issues": issues}
+
+
+def motion_story_mismatch(theme: str, beat: dict[str, Any], motion: dict[str, Any]) -> bool:
+    profile = beat.get("motion_profile") if isinstance(beat.get("motion_profile"), dict) else motion_profile_for_context(
+        theme,
+        str(beat.get("caption", "")),
+        str(beat.get("role", "")),
+        str(beat.get("intent", "")),
+    )
+    motion_text = motion_search_text(motion)
+    avoid = [str(item) for item in profile.get("avoid", []) if str(item).strip()]
+    prefer = [str(item) for item in profile.get("prefer", []) if str(item).strip()]
+    if avoid and any(keyword in motion_text for keyword in avoid):
+        clean_alternative = any(keyword in motion_text for keyword in prefer)
+        return not clean_alternative
+    if prefer and not any(keyword in motion_text for keyword in prefer):
+        return True
+    return False
 
 
 async def maybe_critic_revise_slot(
@@ -2930,7 +3112,7 @@ def local_assemble_timeline(timeline: list[dict[str, Any]]) -> tuple[list[dict[s
             signature = f"{action.get('type')}|{action.get('text') or action.get('title') or action.get('object')}"
             overlay_counts[signature] = overlay_counts.get(signature, 0) + 1
             overlay_type_counts[action_type] = overlay_type_counts.get(action_type, 0) + 1
-            type_limit = 2 if action_type in primary_types else 1 if action_type in {"throw_object", "impact_burst", "stamp_reject", "popup"} else 2
+            type_limit = 99 if action_type == "sticker" else 2 if action_type in primary_types else 1 if action_type in {"throw_object", "impact_burst", "stamp_reject", "popup"} else 2
             if overlay_counts[signature] > 2 or overlay_type_counts[action_type] > type_limit:
                 changed = True
                 continue
@@ -3009,6 +3191,7 @@ def apply_slot_patch(slot: dict[str, Any], patch: dict[str, Any]) -> dict[str, A
                 next_slot["caption"] = clean_caption(str(patch[key]))
             else:
                 next_slot[key] = patch[key]
+    next_slot["visual_summary"] = visual_summary_for_slot(next_slot)
     return next_slot
 
 
@@ -3128,10 +3311,67 @@ def normalize_overlay_actions(actions: Any, theme: str, beat: dict[str, Any]) ->
             "leave_request",
             "emergency_call",
             "generated_sticker",
+            "sticker",
         }:
             continue
-        next_action["start"] = round(max(0.0, min(5.0, safe_float(next_action.get("start"), 0.35))), 2)
-        next_action["duration"] = round(max(0.4, min(4.8, safe_float(next_action.get("duration"), 1.6))), 2)
+        story_text = f"{theme} {beat.get('caption', '')} {beat.get('intent', '')}"
+        emotional_relationship = (
+            infer_theme_category(story_text) == "relationship"
+            and is_emotional_relationship_context(story_text)
+            and not is_financial_relationship_context(story_text)
+        )
+        if emotional_relationship and kind == "bill_card":
+            continue
+        if emotional_relationship and kind == "throw_object" and str(next_action.get("object") or next_action.get("prop") or "") == "bill_stack":
+            continue
+        start = round(max(0.0, min(5.0, safe_float(next_action.get("start"), 0.35))), 2)
+        duration = round(max(0.4, min(4.8, safe_float(next_action.get("duration"), 1.6))), 2)
+        if kind == "generated_sticker":
+            planned = sticker_for_context(
+                theme,
+                beat,
+                preferred_text=str(next_action.get("text") or next_action.get("label") or next_action.get("object") or ""),
+                primary_type=primary_overlay_type(normalized),
+            )
+            if not planned:
+                continue
+            next_action = planned
+            kind = "sticker"
+        if kind == "sticker":
+            file = safe_sticker_file(next_action.get("file"))
+            if not file:
+                continue
+            planned = sticker_for_context(
+                theme,
+                beat,
+                preferred_text=str(next_action.get("text") or next_action.get("label") or next_action.get("object") or ""),
+                preferred_file=file,
+                primary_type=primary_overlay_type(normalized),
+            )
+            if not planned:
+                continue
+            planned["start"] = start
+            planned["duration"] = duration
+            if next_action.get("motion"):
+                planned["motion"] = safe_sticker_motion(next_action.get("motion"))
+            if next_action.get("anchor"):
+                planned["anchor"] = safe_sticker_anchor(next_action.get("anchor"))
+            for key, fallback, minimum, maximum in (
+                ("x", planned.get("x", 710.0), 0.0, 960.0),
+                ("y", planned.get("y", 180.0), 0.0, 544.0),
+                ("scale", planned.get("scale", 0.85), 0.2, 2.2),
+                ("rotation", planned.get("rotation", 0.0), -360.0, 360.0),
+            ):
+                if key in next_action:
+                    planned[key] = round(max(minimum, min(maximum, safe_float(next_action.get(key), fallback))), 2)
+            next_action = planned
+            next_action["motion"] = safe_sticker_motion(next_action.get("motion"))
+            next_action["anchor"] = safe_sticker_anchor(next_action.get("anchor"))
+            if next_action.get("sticker_id"):
+                next_action["sticker_id"] = clean_agent_text(next_action.get("sticker_id"), 80)
+        else:
+            next_action["start"] = start
+            next_action["duration"] = duration
         for key in ("text", "title", "salary", "company", "object"):
             if key in next_action:
                 next_action[key] = clean_agent_text(next_action[key], 18 if key != "object" else 32)
@@ -3143,9 +3383,38 @@ def normalize_overlay_actions(actions: Any, theme: str, beat: dict[str, Any]) ->
             continue
         seen.add(key)
         normalized.append(next_action)
-    if not normalized:
-        return overlay_planner_tool(beat, {}, {}, theme)
     return normalized[:3]
+
+
+def safe_sticker_file(value: Any) -> str:
+    file = str(value or "").replace("\\", "/").strip()
+    if not file or ".." in file:
+        return ""
+    if not file.startswith("assets/stickers/"):
+        return ""
+    if not re.search(r"\.(png|jpe?g|webp)$", file, flags=re.I):
+        return ""
+    return file
+
+
+def safe_sticker_motion(value: Any) -> str:
+    motion = str(value or "").strip()
+    return motion if motion in {"static", "fly_in", "bounce", "stamp", "shake", "rotate", "fade"} else "static"
+
+
+def safe_sticker_anchor(value: Any) -> str:
+    anchor = str(value or "").strip()
+    legacy = {
+        "near_cat_head": "above_cat",
+        "top_right_safe": "corner",
+        "beside_phone_card": "beside_card",
+        "beside_requirement_card": "beside_card",
+        "center_stamp": "near_cat",
+        "bottom_prop": "on_sign",
+    }
+    anchor = legacy.get(anchor, anchor)
+    allowed = {"near_cat", "above_cat", "beside_card", "on_sign", "corner"}
+    return anchor if anchor in allowed else "corner"
 
 
 def normalize_packaging(items: Any, slot: dict[str, Any]) -> list[str]:
@@ -3168,6 +3437,63 @@ def normalize_gap(gap: dict[str, Any], beat: dict[str, Any], slot: dict[str, Any
     return {"status": status, "strategy": strategy, "reason": reason}
 
 
+def visual_summary_for_slot(slot: dict[str, Any]) -> str:
+    motion = slot.get("motion") if isinstance(slot.get("motion"), dict) else {}
+    secondary = slot.get("secondary_motion") if isinstance(slot.get("secondary_motion"), dict) else None
+    background = slot.get("background") if isinstance(slot.get("background"), dict) else {}
+    dialogue = slot.get("dialogue") if isinstance(slot.get("dialogue"), list) else []
+    overlays = slot.get("overlay_actions") if isinstance(slot.get("overlay_actions"), list) else []
+    parts: list[str] = []
+    layout = str(slot.get("layout") or "single")
+
+    if layout == "dialogue":
+        if secondary and secondary.get("file"):
+            parts.append(f"左侧主猫：{clean_agent_text(motion.get('description'), 48)}")
+            parts.append(f"右侧副猫：{clean_agent_text(secondary.get('description'), 48)}")
+        else:
+            parts.append(f"内置双猫素材：{clean_agent_text(motion.get('description'), 64)}")
+        if dialogue:
+            parts.append("叠加左右对话气泡")
+    else:
+        parts.append(f"主体猫：{clean_agent_text(motion.get('description'), 64)}")
+
+    if background.get("description"):
+        parts.append(f"背景：{clean_agent_text(background.get('description'), 38)}")
+    if overlays:
+        labels = [overlay_summary(action) for action in overlays[:2]]
+        labels = [label for label in labels if label]
+        if labels:
+            parts.append(f"包装：{'、'.join(labels)}")
+    return "；".join(part for part in parts if part)[:180]
+
+
+def overlay_summary(action: dict[str, Any]) -> str:
+    if not isinstance(action, dict):
+        return ""
+    kind = str(action.get("type") or "")
+    text = clean_agent_text(action.get("text") or action.get("label") or action.get("object") or "", 20)
+    if kind == "sticker":
+        return f"贴纸{text}" if text else "贴纸"
+    if text:
+        return text
+    return {
+        "phone_job_feed": "手机卡片",
+        "job_requirement_card": "要求卡片",
+        "work_chat_stack": "聊天弹窗",
+        "chat_stack": "聊天弹窗",
+        "choice_panel": "选择卡片",
+        "study_card": "学习卡片",
+        "bill_card": "账单卡片",
+        "commute_card": "通勤卡片",
+        "stall_sign": "摊位牌",
+        "leave_request": "请假单",
+        "emergency_call": "急救弹窗",
+        "stamp_reject": "盖章",
+        "impact_burst": "爆字",
+        "popup": "弹窗",
+    }.get(kind, kind)
+
+
 def slot_duration(slot: dict[str, Any]) -> float:
     return max(1.0, safe_float(slot.get("end"), 0.0) - safe_float(slot.get("start"), 0.0))
 
@@ -3186,13 +3512,115 @@ def clean_agent_text(value: Any, limit: int = 80) -> str:
 
 
 def motion_quality_flags(asset: dict[str, Any]) -> dict[str, bool]:
-    desc = str(asset.get("description", ""))
+    desc = motion_search_text(asset)
     return {
-        "needs_crop": any(word in desc for word in ("黑边", "白底", "需要裁切", "需裁切", "低清", "模糊")),
-        "low_quality": any(word in desc for word in ("低清", "模糊")),
-        "non_cat": any(word in desc for word in ("非猫素材", "小狗", "山羊")),
-        "natural_double": any(word in desc for word in ("天然双猫", "双猫对话画面")),
+        "needs_crop": any(word in desc for word in ("黑边", "白底", "需要裁切", "需裁切", "低清", "模糊", "needs_crop")),
+        "low_quality": any(word in desc for word in ("低清", "模糊", "low_quality")),
+        "non_cat": any(word in desc for word in ("非猫素材", "小狗", "山羊", "non_cat")),
+        "natural_double": any(word in desc for word in ("天然双猫", "双猫对话画面", "双猫", "两只猫", "对话反差")),
     }
+
+
+def motion_tags_for_asset(asset: dict[str, Any]) -> dict[str, list[str]]:
+    tags = {
+        "actions": [],
+        "emotions": [],
+        "contexts": [],
+        "quality": [],
+        "avoid": [],
+    }
+
+    def add(key: str, values: Any) -> None:
+        if key not in tags:
+            return
+        items = values if isinstance(values, list) else [values]
+        for item in items:
+            value = str(item or "").strip()
+            if value and value not in tags[key]:
+                tags[key].append(value)
+
+    raw = asset.get("motion_tags") if isinstance(asset.get("motion_tags"), dict) else {}
+    aliases = {
+        "action": "actions",
+        "actions": "actions",
+        "emotion": "emotions",
+        "emotions": "emotions",
+        "tone": "emotions",
+        "tones": "emotions",
+        "context": "contexts",
+        "contexts": "contexts",
+        "scene": "contexts",
+        "quality": "quality",
+        "avoid": "avoid",
+    }
+    for key, value in raw.items():
+        add(aliases.get(str(key), ""), value)
+
+    desc = str(asset.get("description", ""))
+    rules = {
+        "actions": [
+            ("偷看", "偷看"), ("探头", "探头"), ("试探", "试探"), ("回头", "回头"),
+            ("迟疑", "迟疑"), ("发呆", "发呆"), ("抱奶茶", "抱奶茶"), ("休息", "休息"),
+            ("敲电脑", "敲电脑"), ("电脑", "电脑"), ("笔记本", "笔记本"), ("蹦跳", "蹦跳"),
+            ("跳舞", "跳舞"), ("弹琴", "弹琴"), ("演奏", "演奏"), ("哭", "哭"),
+            ("嚎啕", "嚎啕"), ("开车", "开车"), ("方向盘", "方向盘"), ("叫嚷", "叫嚷"),
+            ("吐槽", "吐槽"), ("伸爪", "伸爪"), ("摆手", "摆手"), ("双猫", "双猫"),
+        ],
+        "emotions": [
+            ("安静", "安静"), ("委屈", "委屈"), ("可爱", "可爱"), ("震惊", "震惊"),
+            ("冷漠", "冷漠"), ("崩溃", "崩溃"), ("焦虑", "焦虑"), ("欢快", "欢快"),
+            ("温暖", "温暖"), ("生无可恋", "生无可恋"), ("破防", "破防"), ("错愕", "错愕"),
+            ("可怜", "可怜"), ("压抑", "压抑"), ("强忍", "强忍"), ("忐忑", "忐忑"),
+            ("松一口气", "松一口气"), ("呆萌", "呆萌"),
+        ],
+        "contexts": [
+            ("打工", "职场"), ("投简历", "求职"), ("面试", "求职"), ("岗位", "求职"),
+            ("考试", "考试"), ("考研", "考试"), ("查成绩", "考试"), ("通勤", "通勤"),
+            ("堵车", "通勤"), ("会议", "办公"), ("上班", "办公"), ("童年", "回忆"),
+            ("亲情", "亲情"), ("家人", "亲情"), ("父亲", "亲情"),
+        ],
+        "quality": [
+            ("黑边", "needs_crop"), ("白底", "needs_crop"), ("需要裁切", "needs_crop"),
+            ("需裁切", "needs_crop"), ("低清", "low_quality"), ("模糊", "low_quality"),
+        ],
+        "avoid": [
+            ("非猫素材", "non_cat"), ("默认避用", "default_avoid"), ("过激", "over_intense"),
+            ("只用于夸张", "only_absurd"),
+        ],
+    }
+    for key, entries in rules.items():
+        for trigger, value in entries:
+            if trigger in desc:
+                add(key, value)
+    return tags
+
+
+def motion_allocation_plan(index: dict[str, Any], beats: list[dict[str, Any]], theme: str) -> dict[str, str]:
+    plan: dict[str, str] = {}
+    used_ids: set[str] = set()
+    counts: Counter[str] = Counter()
+    for beat in beats:
+        blocked = {motion_id for motion_id, count in counts.items() if count >= 2}
+        avoid_for_choice = set(used_ids) | blocked
+        beat_for_choice = {**beat, "forbidden_motion_ids": sorted(blocked)}
+        motion = choose_motion_for_beat(index, beat_for_choice, avoid_for_choice)
+        motion_id = str(motion.get("id", ""))
+        if not motion_id:
+            continue
+        plan[str(beat.get("id", ""))] = motion_id
+        counts[motion_id] += 1
+        used_ids.add(motion_id)
+    return plan
+
+
+def motion_search_text(asset: dict[str, Any]) -> str:
+    tags = motion_tags_for_asset(asset)
+    tag_text = " ".join(
+        item
+        for values in tags.values()
+        for item in values
+    )
+    return f"{asset.get('id', '')} {asset.get('scene', '')} {asset.get('file', '')} {asset.get('description', '')} {tag_text}"
 
 
 def remember_slot_assets(slot: dict[str, Any], used_motion_ids: set[str], used_background_ids: set[str]) -> None:
@@ -3219,12 +3647,21 @@ def choose_motion_for_beat(index: dict[str, Any], beat: dict[str, Any], used_ids
     ranked = asset_search_tool(index, "motion", beat["emotion_keywords"] + beat.get("must_keywords", []), limit=18)
     all_assets = index.get("cat_motions", [])
     candidates = list({str(asset.get("id", "")): asset for asset in [*ranked, *all_assets]}.values())
+    hard_blocked = {str(item) for item in beat.get("forbidden_motion_ids", []) if str(item)}
+    if hard_blocked:
+        filtered_candidates = [asset for asset in candidates if str(asset.get("id", "")) not in hard_blocked]
+        if filtered_candidates:
+            candidates = filtered_candidates
     ranked_ids = {str(asset.get("id", "")): order for order, asset in enumerate(ranked)}
     context = beat_context_text(beat)
     category = infer_theme_category(context)
+    profile = beat.get("motion_profile") if isinstance(beat.get("motion_profile"), dict) else motion_profile_for_context(context, str(beat.get("caption", "")), str(beat.get("role", "")), str(beat.get("intent", "")))
+    profile_prefer = [str(item) for item in profile.get("prefer", []) if str(item).strip()]
+    profile_avoid = [str(item) for item in profile.get("avoid", []) if str(item).strip()]
+    profile_active = bool(profile_prefer or profile_avoid)
     scored: list[tuple[float, dict[str, Any]]] = []
     for asset in candidates:
-        desc = str(asset.get("description", ""))
+        desc = motion_search_text(asset)
         score = asset_match_score(asset, beat["emotion_keywords"])
         if str(asset.get("id", "")) in ranked_ids:
             score += max(0.0, 2.5 - ranked_ids[str(asset.get("id", ""))] * 0.12)
@@ -3240,7 +3677,11 @@ def choose_motion_for_beat(index: dict[str, Any], beat: dict[str, Any], used_ids
             score -= 2.5
         if any(word in desc for word in ("近景", "强反应")) and beat["role"] in {"hook", "twist"}:
             score += 1.2
-        score += role_motion_bonus(beat["role"], desc)
+        prefer_hits = sum(1 for keyword in profile_prefer if keyword in desc)
+        avoid_hits = sum(1 for keyword in profile_avoid if keyword in desc)
+        score += prefer_hits * 2.7
+        score -= avoid_hits * 5.2
+        score += role_motion_bonus(beat["role"], desc) * (0.45 if profile_active else 1.0)
         score += caption_motion_bonus(str(beat.get("caption", "")), desc)
         score += category_motion_bonus(category, beat["role"], context, desc)
         if beat.get("layout") == "dialogue" and any(word in desc for word in ("天然双猫", "双猫对话画面")):
@@ -3249,14 +3690,26 @@ def choose_motion_for_beat(index: dict[str, Any], beat: dict[str, Any], used_ids
             score += 2.0
         if beat["role"] == "setup" and "通勤" in context and any(word in desc for word in ("方向盘", "开车")):
             score += 2.0
-        if beat["role"] == "punchline" and any(word in desc for word in ("欢快", "跳舞", "蹦跳", "可爱")):
+        if beat["role"] == "punchline" and any(word in desc for word in ("欢快", "跳舞", "蹦跳", "可爱")) and not avoid_hits:
             score += 2.0
         if str(asset.get("id", "")) in used_ids:
-            score -= 6.0 if len(used_ids) < 10 else 2.0
+            score -= 11.0 if len(used_ids) < 10 else 3.0
         scored.append((score, asset))
     scored.sort(key=lambda item: (-item[0], str(item[1].get("id", ""))))
     viable = [(score, asset) for score, asset in scored if score > 0]
     if viable:
+        if profile_avoid:
+            no_avoid_viable = [
+                (score, asset)
+                for score, asset in viable
+                if not any(keyword in motion_search_text(asset) for keyword in profile_avoid)
+            ]
+            if no_avoid_viable and no_avoid_viable[0][0] >= viable[0][0] - 6.0:
+                viable = no_avoid_viable
+        if used_ids:
+            fresh_viable = [(score, asset) for score, asset in viable if str(asset.get("id", "")) not in used_ids]
+            if fresh_viable and fresh_viable[0][0] >= viable[0][0] - (1.0 if profile_active else 3.0):
+                viable = fresh_viable
         top_score = viable[0][0]
         pool = [asset for score, asset in viable if score >= top_score - 1.5][:5]
         return pool[selection_offset(beat) % len(pool)]
@@ -3421,7 +3874,9 @@ def choose_background_for_beat(index: dict[str, Any], beat: dict[str, Any], them
 def safe_scene_keywords_for_beat(beat: dict[str, Any]) -> list[str]:
     local_text = f"{beat.get('caption', '')} {beat.get('intent', '')}"
     local_category = infer_theme_category(local_text)
-    if is_food_scene(local_text):
+    if is_emotional_relationship_story(str(beat.get("theme", "")), local_text):
+        local_category = "relationship"
+    elif is_food_scene(local_text):
         local_category = "street_food"
     if not local_category:
         local_category = infer_theme_category(str(beat.get("theme", "")))
@@ -3447,12 +3902,16 @@ def background_anchors_for_local_category(category: str, caption: str, role: str
         "exam": "考研 考公 自习 图书馆",
         "rent": "租房 房租 押金 通勤",
         "street_food": theme if is_food_scene(theme) else "烤肠 摆摊 小吃摊 夜市",
+        "relationship": theme or "情侣 沟通 情绪价值 室内对话",
+        "family": "童年 父亲 家庭 亲情 家里 小店 暖光 饭桌",
     }.get(category, "")
     return theme_background_anchors(proxy_theme, caption, role) if proxy_theme else []
 
 
 def local_beat_scene_category(beat: dict[str, Any], theme: str = "") -> str:
     local_text = f"{beat.get('caption', '')} {beat.get('intent', '')}"
+    if is_emotional_relationship_story(theme or str(beat.get("theme", "")), local_text):
+        return "relationship"
     if is_food_scene(local_text):
         return "street_food"
     return infer_theme_category(local_text) or infer_theme_category(theme)
@@ -3461,6 +3920,12 @@ def local_beat_scene_category(beat: dict[str, Any], theme: str = "") -> str:
 def scene_keyword_conflicts(keyword: str, local_category: str, local_text: str) -> bool:
     if is_food_scene(keyword) and local_category != "street_food":
         return True
+    if (
+        local_category == "relationship"
+        and any(word in keyword for word in ("rental-bill", "rental_bill", "出租屋", "房租", "押金", "租房", "账单", "预算", "首付", "房贷", "彩礼"))
+        and not is_financial_relationship_context(local_text)
+    ):
+        return True
     conflict_map = {
         "career": ("出租屋", "房租", "押金", "考研", "考公", "自习", "图书馆", "烤肠", "小吃摊", "夜市"),
         "leave": ("出租屋", "房租", "押金", "考研", "考公", "自习", "图书馆", "烤肠", "小吃摊", "夜市", "招聘会"),
@@ -3468,6 +3933,7 @@ def scene_keyword_conflicts(keyword: str, local_category: str, local_text: str) 
         "exam": ("招聘", "面试", "HR", "会议室", "工位", "房租", "押金", "烤肠", "小吃摊", "夜市"),
         "rent": ("招聘", "面试", "HR", "会议室", "考研", "考公", "自习", "图书馆", "烤肠", "小吃摊", "夜市"),
         "street_food": ("招聘", "面试", "HR", "会议室", "自习", "图书馆", "出租屋"),
+        "family": ("招聘", "面试", "HR", "岗位", "求职", "摊位内卷", "大学生工作难找", "预算", "账单", "彩礼", "买房", "房贷", "别墅", "苹果", "奔驰", "4S"),
     }
     if local_category in conflict_map and any(word in keyword for word in conflict_map[local_category]):
         return not any(word in local_text for word in ("转去", "想到", "改去", "摆摊", "烤肠", "夜市", "小吃摊"))
@@ -3476,7 +3942,7 @@ def scene_keyword_conflicts(keyword: str, local_category: str, local_text: str) 
 
 def scene_guard_score(category: str, asset: dict[str, Any], beat: dict[str, Any]) -> float:
     text = f"{asset.get('id', '')} {asset.get('scene', '')} {asset.get('file', '')} {asset.get('description', '')}"
-    local_text = f"{beat.get('caption', '')} {beat.get('intent', '')}"
+    local_text = f"{beat.get('theme', '')} {beat.get('caption', '')} {beat.get('intent', '')}"
     if is_food_scene(text) and not is_food_scene(local_text) and category != "street_food":
         return -120.0
     if category == "career" and any(word in text for word in ("烤肠", "小吃摊", "夜市", "出租屋", "自习室", "图书馆")):
@@ -3489,6 +3955,15 @@ def scene_guard_score(category: str, asset: dict[str, Any], beat: dict[str, Any]
         return -80.0
     if category == "rent" and any(word in text for word in ("招聘", "面试", "会议室", "办公室", "考研", "考公", "烤肠", "小吃摊")):
         return -80.0
+    if category == "family" and any(word in text for word in ("招聘", "岗位", "求职", "大学生工作难找", "摊位内卷", "预算", "账单", "彩礼", "买房", "房贷", "别墅", "苹果", "奔驰", "4S")):
+        return -120.0
+    if (
+        category == "relationship"
+        and is_emotional_relationship_context(local_text)
+        and not is_financial_relationship_context(local_text)
+        and any(word in text for word in ("rental-bill", "rental_bill", "出租屋", "房租", "押金", "租房", "账单", "预算", "首付", "房贷", "彩礼", "招聘", "面试", "公司楼下", "找工作", "通勤", "大学生工作难找", "摊位内卷", "投简历失败", "大学生就业"))
+    ):
+        return -120.0
     return 0.0
 
 
@@ -3608,6 +4083,48 @@ def theme_background_anchors(theme: str, caption: str, role: str) -> list[str]:
             "面试等待区",
             "简历",
         ]
+    if category == "family":
+        return [
+            "building_interior/2",
+            "building_interior/5",
+            "city/2",
+            "city/1",
+            "real_city/5",
+            "courtyard/5",
+            "家庭饭桌",
+            "父母沟通",
+            "家里",
+            "暖光",
+            "小店",
+            "店铺",
+            "回家",
+        ]
+    if category == "relationship":
+        story_text = f"{theme} {caption}"
+        if is_emotional_relationship_context(story_text) and not is_financial_relationship_context(story_text):
+            return [
+                "building_interior/5",
+                "city/5",
+                "real_city/5",
+                "real_city/4",
+                "building_interior/3",
+                "室内对话",
+                "客厅",
+                "卧室",
+                "餐桌",
+                "日常房间",
+                "街边停下说话",
+            ]
+        return [
+            "building_interior/2",
+            "building_interior/5",
+            "real_city/5",
+            "城市生活",
+            "室内对话",
+            "预算",
+            "账本",
+            "餐桌",
+        ]
     return []
 
 
@@ -3616,6 +4133,21 @@ def themed_background_score(category: str, asset: dict[str, Any], beat: dict[str
         return 0.0
     text = f"{asset.get('id', '')} {asset.get('scene', '')} {asset.get('file', '')} {asset.get('description', '')}"
     score = 0.0
+    story_text = f"{beat.get('theme', '')} {beat.get('caption', '')} {beat.get('intent', '')}"
+    if category == "relationship":
+        if is_emotional_relationship_context(story_text) and not is_financial_relationship_context(story_text):
+            positive = ("室内", "对话", "客厅", "卧室", "餐桌", "房间", "日常", "building_interior", "city", "real_city")
+            negative = ("rental-bill", "rental_bill", "出租屋", "房租", "押金", "租房", "账单", "预算", "首付", "房贷", "彩礼", "招聘", "面试", "公司楼下", "找工作", "通勤", "大学生工作难找", "摊位内卷", "投简历失败", "大学生就业")
+        else:
+            positive = ("室内", "餐桌", "预算", "账本", "账单", "首付", "彩礼", "building_interior", "city", "real_city")
+            negative = ("招聘", "面试", "烤肠", "小吃摊", "自习", "图书馆")
+        for keyword in positive:
+            if keyword in text:
+                score += 3.0
+        for keyword in negative:
+            if keyword in text:
+                score -= 4.0
+        return score
     positive = {
         "street_food": ("烤肠", "香肠", "小吃摊", "夜市", "摊车", "街边摊", "street_food_stall"),
         "rent": ("出租屋", "租房", "房租", "押金", "账单", "床铺", "行李箱", "building_interior", "window", "real_transit_station"),
@@ -3623,6 +4155,7 @@ def themed_background_score(category: str, asset: dict[str, Any], beat: dict[str
         "office": ("会议", "加班", "复盘", "同步", "老板", "会议室", "real_office", "office"),
         "leave": ("请假", "病假", "老板", "工位", "办公室", "real_office", "office", "hospital_alert", "120"),
         "career": ("招聘", "简历", "面试", "HR", "校招", "岗位", "job-fair", "real_office", "office"),
+        "family": ("家庭", "父母", "父亲", "妈妈", "爸爸", "家里", "温馨", "暖光", "小店", "店铺", "饭桌", "回家", "building_interior", "city", "courtyard", "real_city"),
     }.get(category, ())
     negative = {
         "street_food": ("招聘", "面试", "会议", "办公室", "自习", "图书馆", "出租屋"),
@@ -3631,6 +4164,7 @@ def themed_background_score(category: str, asset: dict[str, Any], beat: dict[str
         "office": ("烤肠", "小吃摊", "出租屋", "考研", "考公"),
         "leave": ("烤肠", "小吃摊", "出租屋", "考研", "考公", "招聘会"),
         "career": ("烤肠", "小吃摊", "出租屋", "考研", "考公"),
+        "family": ("招聘", "岗位", "求职", "大学生工作难找", "摊位内卷", "预算", "账单", "彩礼", "买房", "房贷", "别墅", "苹果", "奔驰", "4S"),
     }.get(category, ())
     for keyword in positive:
         if keyword in text:
@@ -3692,7 +4226,7 @@ def scene_keywords_for_beat(theme: str, caption: str, role: str, script_scenes: 
     return list(dict.fromkeys(str(item) for item in keywords if str(item).strip()))
 
 
-def emotion_keywords_for_role(role: str, caption: str, script: dict[str, Any]) -> list[str]:
+def emotion_keywords_for_role(role: str, caption: str, script: dict[str, Any], theme: str = "", intent: str = "") -> list[str]:
     base = {
         "hook": ["震惊", "瞪圆", "探头", "叫嚷"],
         "setup": ["电脑", "冷漠", "开车", "碎碎念"],
@@ -3704,7 +4238,111 @@ def emotion_keywords_for_role(role: str, caption: str, script: dict[str, Any]) -
         "punchline": ["蹦跳", "跳舞", "欢快", "可爱", "演奏"],
         "cta": ["蹦跳", "欢快", "可爱", "跳舞"],
     }.get(role, [])
-    return list(dict.fromkeys(base + [caption] + script.get("emotion", [])))
+    profile = motion_profile_for_context(theme, caption, role, intent)
+    avoid = [str(item) for item in profile.get("avoid", []) if str(item).strip()]
+    profile_prefer = [str(item) for item in profile.get("prefer", []) if str(item).strip()]
+    filtered_base = [item for item in base if not any(blocked in item or item in blocked for blocked in avoid)]
+    transfer_hints = [
+        str(item)
+        for item in script.get("emotion", [])
+        if str(item).strip() and not any(blocked in str(item) for blocked in avoid)
+    ]
+    return list(dict.fromkeys(profile_prefer + filtered_base + [caption] + transfer_hints))
+
+
+def motion_profile_for_context(theme: str, caption: str = "", role: str = "", intent: str = "") -> dict[str, list[str]]:
+    text = f"{theme} {caption} {intent}"
+    local_text = f"{caption} {intent}"
+    prefer: list[str] = []
+    avoid: list[str] = []
+
+    def add(prefer_values: list[str] | tuple[str, ...] = (), avoid_values: list[str] | tuple[str, ...] = ()) -> None:
+        for value in prefer_values:
+            if value and value not in prefer:
+                prefer.append(value)
+        for value in avoid_values:
+            if value and value not in avoid:
+                avoid.append(value)
+
+    quiet_avoid = ("电脑", "笔记本", "跳舞", "蹦跳", "弹琴", "演奏", "香蕉猫", "嚎啕", "疯狂", "射击", "开车", "方向盘")
+    cue_profiles = [
+        (
+            ("偷", "偷偷", "偷吃", "偷拿", "瞒天过海", "躲", "藏", "偷看", "试探", "怕被发现", "小心翼翼"),
+            ("偷看", "探头", "试探", "忐忑", "委屈", "安静"),
+            quiet_avoid,
+            {"hook", "setup", "pressure", "proof"},
+        ),
+        (
+            ("回头", "转身", "才知道", "才发现", "发现", "原来", "终于明白", "看懂", "懂那份", "真相", "多年后", "长大后"),
+            ("回头", "迟疑", "发呆", "安静", "震惊", "委屈"),
+            ("电脑", "笔记本", "跳舞", "蹦跳", "弹琴", "演奏", "香蕉猫", "嚎啕", "疯狂", "开车"),
+            None,
+        ),
+        (
+            ("父亲", "爸爸", "妈妈", "母亲", "父母", "家人", "亲情", "父爱", "默许", "支持", "温暖", "无声的爱", "留给"),
+            ("安静", "发呆", "回头", "委屈", "可爱", "抱奶茶", "休息", "松一口气"),
+            quiet_avoid,
+            None,
+        ),
+        (
+            ("喘口气", "松一口气", "休息", "缓一缓", "先坐下", "终于结束", "终于过了", "低电量"),
+            ("抱奶茶", "休息", "发呆", "可爱", "松一口气"),
+            ("嚎啕", "疯狂", "射击", "过激", "香蕉猫"),
+            None,
+        ),
+        (
+            (
+                "医院", "门诊", "病房", "检查", "报告", "等结果", "检查结果", "化验",
+                "手心冒汗", "冒汗", "求助", "开口求助", "请假", "病假", "药", "发烧",
+                "不舒服", "疼", "难受",
+            ),
+            ("求救", "求助", "叫唤", "委屈", "可怜", "强忍", "压抑", "安静", "病痛求助"),
+            ("电脑", "笔记本", "跳舞", "蹦跳", "弹琴", "演奏", "香蕉猫", "嚎啕", "喷泪", "大哭", "疯狂", "射击", "开车", "方向盘"),
+            None,
+        ),
+        (
+            (
+                "免打扰", "静音", "假装没看见", "假装没听见", "不回复", "不想回",
+                "已读不回", "拒绝", "边界", "别催", "轰炸", "消息轰炸",
+            ),
+            ("摆手", "假装没听见", "拒绝", "免打扰", "边界拒绝", "无语", "冷眼", "摆烂"),
+            ("电脑", "笔记本", "跳舞", "蹦跳", "弹琴", "演奏", "香蕉猫", "嚎啕", "疯狂", "射击", "开车", "方向盘"),
+            None,
+        ),
+        (
+            ("压力", "焦虑", "扛", "撑不住", "被拒", "失败", "租不起", "考不上", "病", "发烧"),
+            ("委屈", "可怜", "压抑", "强忍", "哭", "焦虑"),
+            ("跳舞", "蹦跳", "庆祝", "演奏", "弹琴"),
+            None,
+        ),
+        (
+            ("爆发", "崩溃", "破防", "失控", "离谱", "突然通知", "驳回"),
+            ("震惊", "破防", "叫嚷", "错愕", "强反应"),
+            (),
+            None,
+        ),
+        (
+            ("电脑", "简历", "招聘", "岗位", "会议", "复盘", "工作群", "论文"),
+            ("电脑", "笔记本", "冷漠", "碎碎念", "生无可恋"),
+            ("开车", "方向盘", "山羊", "小狗"),
+            None,
+        ),
+        (
+            ("通勤", "地铁", "公交", "堵车", "打车", "路上", "方向盘", "开车"),
+            ("开车", "方向盘", "冷漠", "通勤"),
+            ("电脑", "笔记本", "跳舞", "蹦跳"),
+            None,
+        ),
+    ]
+    for triggers, prefer_values, avoid_values, theme_roles in cue_profiles:
+        local_hit = any(trigger in local_text for trigger in triggers)
+        theme_hit = any(trigger in theme for trigger in triggers)
+        if local_hit or (theme_hit and (theme_roles is None or role in theme_roles)):
+            add(prefer_values, avoid_values)
+
+    if role in {"punchline", "cta"} and any(word in text for word in ("温暖", "亲情", "支持", "无声的爱", "懂", "终于")):
+        add(("抱奶茶", "休息", "发呆", "可爱", "安静", "松一口气"), quiet_avoid)
+    return {"prefer": prefer[:12], "avoid": avoid[:14]}
 
 
 def must_keywords_for_caption(caption: str, theme: str) -> list[str]:
@@ -3766,7 +4404,7 @@ def fallback_motion_id(role: str) -> str:
 
 
 def asset_match_score(asset: dict[str, Any], keywords: list[str]) -> float:
-    text = f"{asset.get('id', '')} {asset.get('scene', '')} {asset.get('file', '')} {asset.get('description', '')}"
+    text = motion_search_text(asset)
     return sum(1.0 for keyword in keywords if keyword and keyword in text)
 
 

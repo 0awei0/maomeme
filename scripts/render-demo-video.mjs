@@ -18,11 +18,13 @@ const captionDir = path.join(runtimeDir, 'captions');
 const overlayDir = path.join(runtimeDir, 'overlays');
 const segmentConcurrency = clampInt(process.env.RENDER_SEGMENT_CONCURRENCY, 1, Math.min(4, os.cpus().length || 2), 2);
 const ffmpegPreset = process.env.RENDER_FFMPEG_PRESET || 'veryfast';
+const videoBitrate = process.env.RENDER_VIDEO_BITRATE || '2600k';
 const actionAudioVolume = clamp(Number(process.env.RENDER_ACTION_AUDIO_VOLUME ?? '0.42'), 0, 1);
 const finalBedVolume = clamp(Number(process.env.RENDER_FINAL_BGM_VOLUME ?? '0.16'), 0, 1);
 const useFinalBed = String(process.env.RENDER_USE_FINAL_BGM ?? 'false').toLowerCase() === 'true';
 const pythonRunner = resolvePythonRunner();
 let fallbackAudioSourcePromise;
+let videoEncoderPromise;
 
 async function renderSegment(slot, index) {
   const hyperframeSlot = await hyperframeSlotFor(slot, index);
@@ -86,6 +88,7 @@ async function renderSegment(slot, index) {
     fallbackInputIndex: mainAudio ? null : fallbackAudioSource ? fallbackInputIndex : null,
   });
   const filter = `${preOutput};${transitionFilter(slot.transition, duration)}${audioFilter}`;
+  const videoEncoder = await getVideoEncoder();
 
   const inputs = dialogue ? [
     '-y',
@@ -134,9 +137,7 @@ async function renderSegment(slot, index) {
     '-map', '[v]',
     '-map', '[a]',
     '-r', '30',
-    '-c:v', 'libx264',
-    '-preset', ffmpegPreset,
-    '-crf', '23',
+    ...videoEncoderArgs(videoEncoder),
     '-c:a', 'aac',
     '-b:a', '128k',
     '-ar', '44100',
@@ -433,15 +434,14 @@ function parseArgs(argv) {
 }
 
 async function concatSegments(concatFile, output, totalDuration, finalBed = null) {
+  const videoEncoder = await getVideoEncoder();
   const tempOutput = output.replace(/\.mp4$/i, '.concat-tmp.mp4');
   await execFileAsync('ffmpeg', [
     '-y',
     '-f', 'concat',
     '-safe', '0',
     '-i', concatFile,
-    '-c:v', 'libx264',
-    '-preset', ffmpegPreset,
-    '-crf', '23',
+    ...videoEncoderArgs(videoEncoder),
     '-c:a', 'aac',
     '-b:a', '128k',
     '-ar', '44100',
@@ -473,9 +473,7 @@ async function concatSegments(concatFile, output, totalDuration, finalBed = null
     );
   }
   trimArgs.push(
-    '-c:v', 'libx264',
-    '-preset', ffmpegPreset,
-    '-crf', '23',
+    ...videoEncoderArgs(videoEncoder),
     '-c:a', 'aac',
     '-b:a', '128k',
     '-ar', '44100',
@@ -487,6 +485,39 @@ async function concatSegments(concatFile, output, totalDuration, finalBed = null
   );
   await execFileAsync('ffmpeg', trimArgs, { maxBuffer: 1024 * 1024 * 10 });
   await fs.rm(tempOutput, { force: true });
+}
+
+async function getVideoEncoder() {
+  if (!videoEncoderPromise) {
+    videoEncoderPromise = detectVideoEncoder();
+  }
+  return videoEncoderPromise;
+}
+
+async function detectVideoEncoder() {
+  const requested = process.env.RENDER_VIDEO_ENCODER || process.env.RENDER_VIDEO_CODEC || 'auto';
+  if (requested && requested !== 'auto') return requested;
+  try {
+    const result = await execFileAsync('ffmpeg', ['-hide_banner', '-encoders'], { maxBuffer: 1024 * 1024 });
+    const text = result.stdout || '';
+    if (/\blibx264\b/.test(text)) return 'libx264';
+    if (/\bh264_videotoolbox\b/.test(text)) return 'h264_videotoolbox';
+    if (/\blibopenh264\b/.test(text)) return 'libopenh264';
+    if (/\bmpeg4\b/.test(text)) return 'mpeg4';
+  } catch {
+    // Fall through to the default encoder name; ffmpeg will report a clear error.
+  }
+  return 'libx264';
+}
+
+function videoEncoderArgs(encoder) {
+  if (encoder === 'libx264') {
+    return ['-c:v', 'libx264', '-preset', ffmpegPreset, '-crf', '23'];
+  }
+  if (encoder === 'mpeg4') {
+    return ['-c:v', 'mpeg4', '-q:v', '4'];
+  }
+  return ['-c:v', encoder, '-b:v', videoBitrate];
 }
 
 async function assertAudioVideoAligned(file) {

@@ -11,6 +11,53 @@ from ..core.config import get_settings
 LIBRARY_ROOT = Path("data") / "viral-structures" / "baokuan-maomeme"
 LOW_PRIORITY_IDS = {"bkmm-007-抖音202663-083115"}
 
+RELATIONSHIP_TERMS = (
+    "情侣", "恋爱", "男友", "女友", "对象", "男生", "女生", "亲密关系", "伴侣",
+)
+EMOTIONAL_RELATIONSHIP_TERMS = (
+    "态度", "安慰", "情绪价值", "情绪", "委屈", "沟通", "频道", "脑回路", "吵架",
+    "解释", "解决问题", "先别问", "我只是想", "不安慰", "受委屈", "冷战", "哄",
+)
+FINANCIAL_RELATIONSHIP_TERMS = (
+    "彩礼", "首付", "房贷", "买房", "婚房", "共同预算", "预算", "账单", "存款",
+    "AA", "aa", "工资", "支出", "开销", "花钱", "房租", "租房", "押金", "水电",
+    "网费", "贷款", "还贷", "婚礼钱", "彩礼钱",
+)
+STREET_FOOD_BUSINESS_TERMS = (
+    "摆摊", "摊位费", "摊位", "摊车", "街边摊", "小吃摊", "地摊", "餐车",
+    "卖烤肠", "烤肠摊", "小摊", "开张", "出摊", "收摊", "成本", "利润",
+    "降价", "特价", "买一送一", "竞争", "内卷", "赊账", "顾客", "煤气",
+)
+NON_FINANCIAL_RELATIONSHIP_MARKERS = (
+    "不是金钱", "不是钱", "不为钱", "不是账单", "不是预算", "不是房租", "不是彩礼",
+    "不是买房", "不是金钱账单", "不是现实账单",
+)
+
+
+def is_relationship_context(text: str) -> bool:
+    return any(word in str(text) for word in RELATIONSHIP_TERMS)
+
+
+def is_emotional_relationship_context(text: str) -> bool:
+    value = str(text)
+    return is_relationship_context(value) and any(word in value for word in EMOTIONAL_RELATIONSHIP_TERMS)
+
+
+def is_financial_relationship_context(text: str) -> bool:
+    value = str(text)
+    if not any(word in value for word in FINANCIAL_RELATIONSHIP_TERMS):
+        return False
+    if is_emotional_relationship_context(value) and any(marker in value for marker in NON_FINANCIAL_RELATIONSHIP_MARKERS):
+        return False
+    return True
+
+
+def is_street_food_business_context(text: str) -> bool:
+    value = str(text)
+    if is_emotional_relationship_context(value) and not is_financial_relationship_context(value):
+        return False
+    return any(word in value for word in STREET_FOOD_BUSINESS_TERMS)
+
 
 @lru_cache(maxsize=1)
 def load_viral_structures() -> list[dict[str, Any]]:
@@ -188,6 +235,8 @@ def viral_references_for_theme(theme: str, text_context: dict[str, Any] | None =
         for _, entry in scored:
             if len(selected) == 0 and is_low_priority_reference(entry):
                 continue
+            if excluded_for_category(category, entry):
+                continue
             if entry not in selected:
                 selected.append(entry)
             if len(selected) >= limit:
@@ -215,6 +264,7 @@ def excluded_for_category(category: str, entry: dict[str, Any]) -> bool:
         "office": ("裸贷", "冲食堂", "班主任", "童年", "生日"),
         "exam": ("裸贷", "烤鸡腿", "销售", "压岁钱"),
         "street_food": ("请假", "打120", "裸贷", "班主任"),
+        "family": ("招聘", "求职", "岗位", "HR", "销售", "老干妈", "室友", "摊位内卷", "三年经验"),
     }.get(category, ())
     return any(word in text for word in excluded)
 
@@ -280,7 +330,7 @@ def viral_score(entry: dict[str, Any], query_terms: set[str], theme: str) -> flo
         "campus": ("大学", "宿舍", "学生", "校园", "教室", "食堂"),
         "street_food": ("摊", "夜市", "市井", "小吃", "鸡腿", "餐馆", "街头"),
         "relationship": ("情侣", "结婚", "房", "情感", "家庭"),
-        "family": ("家庭", "妈妈", "爸爸", "压岁钱", "亲子", "春节"),
+        "family": ("家庭", "妈妈", "爸爸", "父亲", "父母", "亲子", "亲情", "父爱", "童年", "春节"),
     }
     if category:
         targets = category_targets.get(category, ())
@@ -299,7 +349,7 @@ def viral_score(entry: dict[str, Any], query_terms: set[str], theme: str) -> flo
         (("考研", "考公", "考试", "上岸"), ("大学", "学生", "校园", "考试", "教室", "知识")),
         (("烤肠", "香肠", "摆摊", "小吃", "夜市", "地摊", "餐车"), ("摊", "夜市", "市井", "小吃", "鸡腿", "餐馆")),
         (("结婚", "彩礼", "买房", "房贷", "恋爱", "情侣"), ("情侣", "结婚", "房", "情感", "家庭")),
-        (("父母", "妈妈", "爸爸", "家庭", "亲戚", "压岁钱"), ("家庭", "妈妈", "爸爸", "压岁钱", "亲子", "春节")),
+        (("父母", "妈妈", "爸爸", "父亲", "母亲", "家庭", "亲情", "父爱", "童年", "小时候", "亲戚", "压岁钱"), ("家庭", "妈妈", "爸爸", "父亲", "父母", "亲子", "亲情", "春节")),
     ]
     for triggers, targets in buckets:
         if any(word in theme for word in triggers) and any(word in text for word in targets):
@@ -326,6 +376,8 @@ def viral_score(entry: dict[str, Any], query_terms: set[str], theme: str) -> flo
 
 
 def infer_theme_category(theme: str) -> str:
+    if is_family_memory_theme(theme):
+        return "family"
     if any(word in theme for word in ("请假", "病假", "老板不批", "不批准", "120", "急救")):
         return "leave"
     if any(word in theme for word in ("工作", "简历", "岗位", "面试", "就业", "招聘", "offer", "HR", "应届生", "求职")):
@@ -336,17 +388,23 @@ def infer_theme_category(theme: str) -> str:
         return "exam"
     if any(word in theme for word in ("上班", "老板", "加班", "会议", "KPI", "内卷")):
         return "office"
-    if any(word in theme for word in ("烤肠", "香肠", "摆摊", "夜市", "小吃", "地摊", "餐车")):
-        return "street_food"
     if any(word in theme for word in ("结婚", "彩礼", "买房", "恋爱", "情侣")):
         return "relationship"
-    if any(word in theme for word in ("父母", "妈妈", "爸爸", "家庭", "压岁钱", "亲戚")):
+    if any(word in theme for word in ("父母", "妈妈", "爸爸", "父亲", "母亲", "家庭", "亲情", "父爱", "压岁钱", "亲戚")):
         return "family"
+    if any(word in theme for word in ("烤肠", "香肠", "烧烤", "摆摊", "夜市", "小吃", "地摊", "餐车")):
+        return "street_food"
     if any(word in theme for word in ("工作", "简历", "岗位", "面试", "就业", "招聘", "offer")):
         return "career"
     if any(word in theme for word in ("大学", "宿舍", "食堂", "同学", "校园")):
         return "campus"
     return ""
+
+
+def is_family_memory_theme(theme: str) -> bool:
+    family_terms = ("父亲", "爸爸", "父母", "妈妈", "母亲", "家里", "家庭", "亲情", "父爱", "无声的爱")
+    memory_terms = ("小时候", "童年", "长大", "多年后", "回忆", "偷吃", "默许", "专门", "留给", "最右边")
+    return any(word in theme for word in family_terms) and any(word in theme for word in memory_terms)
 
 
 def tokenize_theme(text: str) -> set[str]:
@@ -356,7 +414,7 @@ def tokenize_theme(text: str) -> set[str]:
         "大学", "宿舍", "食堂", "同学", "校园", "考研", "考公", "考试", "焦虑",
         "烤肠", "香肠", "摆摊", "夜市", "小吃", "地摊", "餐车",
         "结婚", "彩礼", "买房", "租房", "房租", "押金", "通勤", "房贷", "恋爱", "情侣",
-        "父母", "妈妈", "爸爸", "家庭", "压岁钱", "亲戚",
+        "父母", "妈妈", "爸爸", "父亲", "母亲", "家庭", "亲情", "父爱", "童年", "小时候", "压岁钱", "亲戚",
     ]
     for word in common:
         if word in text:
@@ -382,7 +440,7 @@ def viral_reference_prompt(references: list[dict[str, Any]]) -> str:
                 f"   分镜模板：{'；'.join(ref.get('shot_templates', [])[:2])}",
                 f"   分镜节奏：{beats}",
                 f"   背景模板：{'；'.join(ref.get('background_templates', [])[:3])}",
-                f"   猫动作模板：{'；'.join(ref.get('cat_action_templates', [])[:4])}",
+                "   猫动作策略：只学习镜头功能和表演节奏，新视频猫动作按新主题重新匹配。",
                 f"   声音/字幕：{short(ref.get('audio_style', ''), 60)}｜{short(ref.get('subtitle_style', ''), 60)}",
             ]
         )
@@ -404,7 +462,7 @@ def compact_fewshot_examples(references: list[dict[str, Any]], limit: int = 3) -
                     "script": item.get("script", ""),
                     "joke_point": item.get("joke_point", ""),
                     "background_slot": item.get("background", ""),
-                    "cat_action_need": item.get("cats", ""),
+                    "cat_action_need": "按新主题和镜头功能重新选择猫动作，不继承原 cats。",
                     "audio_need": item.get("audio", ""),
                     "subtitle_packaging": item.get("subtitle", ""),
                     "rewrite_note": "迁移节奏、角色关系和笑点机制；台词、社会角色和场景必须按新主题重写。",
@@ -463,13 +521,14 @@ def build_migration_blueprint(
                 "source_beat": source.get("beat", ""),
                 "source_script": source.get("script", ""),
                 "source_joke_point": source.get("joke_point", ""),
-                "transfer_role": transfer_role_for_slot(role),
+                "source_background": source.get("background", ""),
+                "transfer_role": transfer_role_for_slot(role, theme),
                 "rewrite_direction": rewrite_direction_for_slot(theme, role, source, text_context or {}),
-                "background_requirement": source.get("background", "") or background_requirement_for_slot(theme, role),
-                "cat_action_requirement": source.get("cats", "") or cat_requirement_for_slot(role),
+                "background_requirement": background_requirement_for_slot(theme, role),
+                "cat_action_requirement": cat_requirement_for_slot(role),
                 "audio_requirement": source.get("audio", "") or "轻快 BGM，字幕卡点清楚。",
                 "subtitle_packaging": source.get("subtitle", "") or subtitle_requirement_for_slot(role),
-                "do_not_copy": "不得照抄原台词、原人物名、原视频具体事件；只复用节奏、冲突推进和包装方式。",
+                "do_not_copy": "不得复制原台词、原人物关系、剧情母题、关键物件、原始场景或原 cats；只学习脚本结构、镜头节奏、字幕样式、画面包装、转场、BGM卡点、情绪递进和反转机制。",
             }
         )
 
@@ -495,9 +554,10 @@ def migration_blueprint_prompt(blueprint: dict[str, Any]) -> str:
             "migration_blueprint": blueprint,
             "instructions": [
                 "必须先遵循 migration_blueprint 的主结构，再生成候选剧本。",
-                "每个候选都要迁移 primary_reference 的镜头功能，并吸收 supporting_references 的一个辅助梗点。",
+                "参考视频是创作方法库，不是剧情素材库；学习的是脚本结构、镜头节奏、字幕样式、画面包装、转场、BGM卡点、情绪递进和反转机制。",
+                "每个候选都要迁移 primary_reference 的镜头功能，并吸收 supporting_references 的一个辅助技法。",
                 "剧本文案写人类社会角色，不要把猫写成解决社会问题的主体。",
-                "不得照抄 few-shot 原台词。",
+                "不得复制 few-shot 的剧情母题、人物关系、关键物件、原始场景或原台词；新剧本必须服从新主题的核心人物关系、场景和情绪落点。",
             ],
         },
         ensure_ascii=False,
@@ -591,7 +651,7 @@ def structure_tags_for_text(text: str) -> list[str]:
         (("考研", "考公", "考试", "上岸", "自习"), "考试选择焦虑"),
         (("大学", "宿舍", "室友", "食堂", "校园"), "校园生活共鸣"),
         (("情侣", "女友", "男友", "结婚", "恋爱"), "关系对话反差"),
-        (("妈妈", "爸爸", "家庭", "压岁钱", "父母"), "家庭关系反转"),
+        (("妈妈", "爸爸", "父亲", "母亲", "家庭", "亲情", "父爱", "压岁钱", "父母", "童年", "小时候"), "家庭关系反转"),
     ]
     tags = [label for triggers, label in mapping if any(word in text for word in triggers)]
     if any(word in text for word in ("反转", "整活", "荒诞", "误会")):
@@ -618,7 +678,7 @@ def role_relationship_for_entry(ref: dict[str, Any]) -> str:
         return "摊主/服务者 与 顾客/路人的交易关系"
     if any(word in text for word in ("情侣", "女友", "男友")):
         return "亲密关系中的试探和反差"
-    if any(word in text for word in ("妈妈", "爸爸", "家庭")):
+    if any(word in text for word in ("妈妈", "爸爸", "父亲", "母亲", "父母", "家庭", "亲情")):
         return "家庭成员之间的误会和反转"
     return "主角与外部规则/旁观者的反差关系"
 
@@ -642,7 +702,22 @@ def blueprint_roles_for_theme(theme: str, source_count: int) -> list[str]:
     return roles[: max(4, min(target, 8))]
 
 
-def transfer_role_for_slot(role: str) -> str:
+def transfer_role_for_slot(role: str, theme: str = "") -> str:
+    if (
+        infer_theme_category(theme) == "relationship"
+        and is_emotional_relationship_context(theme)
+        and not is_financial_relationship_context(theme)
+    ):
+        return {
+            "hook": "2 秒内点出亲密关系里的沟通错位，停住观众。",
+            "setup": "把人物关系落到一句具体对话和一个可拍的室内/日常场景。",
+            "pressure": "把情绪落差、误解或沟通频道错位具体化。",
+            "proof": "补一个双方各说各话的证据或旁观者共鸣。",
+            "twist": "让角色意识到对方要的不是解决方案而是被理解。",
+            "echo": "从这一对扩到很多亲密关系里的表达错位。",
+            "punchline": "用一句反差台词收束，不把矛盾改成金钱账单冲突。",
+            "cta": "轻落点，留一个情绪回落或沟通梗。",
+        }.get(role, "迁移原镜头的节奏功能，按新主题重写情绪对话。")
     return {
         "hook": "2 秒内给出具体现实暴击，停住观众。",
         "setup": "把冲突落到一个可拍画面和一句短字幕。",
@@ -657,6 +732,32 @@ def transfer_role_for_slot(role: str) -> str:
 
 def rewrite_direction_for_slot(theme: str, role: str, source: dict[str, Any], text_context: dict[str, Any]) -> str:
     title = str(text_context.get("title") or theme)
+    if (
+        infer_theme_category(theme) == "relationship"
+        and is_emotional_relationship_context(theme)
+        and not is_financial_relationship_context(theme)
+    ):
+        if role == "hook":
+            return f"用“{title}”里的核心沟通错位开场，第一句直接点出情绪落差。"
+        if role == "setup":
+            return "写清情侣/亲密关系双方在同一件事上各说各话，不引入账单、房租或预算。"
+        if role in {"pressure", "proof"}:
+            return "把一方需要安慰、另一方只想解决问题的错频感铺具体。"
+        if role == "twist":
+            return "反转到“我要的是态度/理解，不是具体方案”，不转成财务压力。"
+        if role == "punchline":
+            return "用短促反差台词收束，让观众共鸣亲密沟通的错位。"
+    if infer_theme_category(theme) == "family":
+        if role == "hook":
+            return f"用“{title}”里的童年小动作开场，第一句落到具体物件。"
+        if role == "setup":
+            return "写清亲子关系和烧烤店/饭桌场景，冲突是孩子误以为自己在偷吃。"
+        if role in {"pressure", "proof"}:
+            return "把孩子的小心虚、父亲的默许和多年后回忆铺具体。"
+        if role == "twist":
+            return "揭示最右边两串是父亲专门留下的，不写社会规则反讽。"
+        if role == "punchline":
+            return "温暖收束到长大后才懂父亲无声的爱。"
     if role == "hook":
         return f"用“{title}”里的具体动作开场，第一句就给现实暴击。"
     if role == "setup":
@@ -672,14 +773,22 @@ def rewrite_direction_for_slot(theme: str, role: str, source: dict[str, Any], te
 
 def background_requirement_for_slot(theme: str, role: str) -> str:
     category = infer_theme_category(theme)
+    if (
+        category == "relationship"
+        and is_emotional_relationship_context(theme)
+        and not is_financial_relationship_context(theme)
+    ):
+        return "室内对话/客厅/卧室/餐桌/街边停下说话背景，突出亲密关系沟通错位，避免财务压力画面。"
     defaults = {
         "career": "招聘软件/面试等待区/办公楼背景",
         "office": "工位/会议室/工作群弹窗背景",
         "street_food": "真实街边烤肠摊/夜市小吃摊背景",
         "exam": "自习室/教室/图书馆背景",
         "rent": "出租屋/账单桌面/通勤站台背景",
+        "relationship": "室内对话/客厅/卧室/餐桌背景；如果主题明确是彩礼、首付、预算，才使用账本或预算桌面。",
+        "family": "家庭饭桌/老家小店/暖光室内/童年烧烤店回忆背景",
     }
-    if category == "career" and role in {"twist", "punchline"} and is_food_scene(theme):
+    if category == "career" and role in {"twist", "punchline"} and is_street_food_business_context(theme):
         return "校门口真实烤肠摊或夜市小吃摊背景"
     return defaults.get(category, "城市生活场景或室内对话背景")
 
@@ -747,8 +856,8 @@ def viral_template_seed(reference: dict[str, Any], theme: str) -> dict[str, Any]
         "scene": reference.get("background_templates", []),
         "theme_keywords": list(tokenize_theme(theme))[:8],
         "emotion": reference.get("cat_action_templates", []),
-        "social_topic": reference.get("topic", ""),
-        "tension": reference.get("script_templates", [""])[0] if reference.get("script_templates") else "",
+        "social_topic": theme,
+        "tension": "按新主题改写剧情内容，只迁移爆款结构方法。",
         "viral_reference_id": reference.get("id", ""),
         "viral_reference_title": reference.get("title", ""),
     }
@@ -794,6 +903,15 @@ def themed_template_beats(reference: dict[str, Any], theme: str) -> list[tuple[s
             ("echo", "三条街都在卷淀粉肠", "扩大共鸣"),
             ("punchline", "猫改卖情绪价值", "荒诞但不万能"),
         ]
+    if category == "family":
+        return [
+            ("hook", "小时候我总偷最右边两串", f"迁移自《{title}》的童年回忆开场"),
+            ("setup", "父亲转身去招呼客人", "把烧烤店和亲子关系落到具体动作"),
+            ("pressure", "我以为自己瞒天过海", "放大小孩偷吃成功的错觉"),
+            ("twist", "多年后才知道那是父亲专门留的", "揭示默许和无声照顾"),
+            ("echo", "原来大人什么都知道", "从个人回忆扩到亲情共鸣"),
+            ("punchline", "长大拼搏百天才懂那份无声的爱", "温暖收束"),
+        ]
     if category == "rent":
         return [
             ("hook", "工资刚到账", f"迁移自《{title}》的生活压力开场"),
@@ -810,7 +928,7 @@ def adapt_caption_to_theme(caption: str, theme: str) -> str:
     caption = caption.strip()
     if not caption:
         return ""
-    if any(word in theme for word in ("烤肠", "香肠", "摆摊", "小吃", "夜市")):
+    if not is_family_memory_theme(theme) and is_street_food_business_context(theme):
         replacements = {
             "烤鸡腿": "烤肠",
             "传单": "烤肠券",

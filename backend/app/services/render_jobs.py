@@ -4,6 +4,7 @@ import asyncio
 import json
 import os
 import subprocess
+import sys
 import time
 import uuid
 from pathlib import Path
@@ -11,6 +12,13 @@ from typing import Any
 
 from ..core.config import get_settings
 from ..models.maomeme import MaoMemePlan, RenderJobStatus
+from .asset_index import load_assets, ref
+from .maomeme_agent import motion_quality_flags, visual_summary_for_slot
+from .viral_structure_library import (
+    infer_theme_category,
+    is_emotional_relationship_context,
+    is_financial_relationship_context,
+)
 
 JOBS: dict[str, RenderJobStatus] = {}
 
@@ -18,6 +26,7 @@ JOBS: dict[str, RenderJobStatus] = {}
 def create_render_job(plan: MaoMemePlan, packaging_engine: str = "auto", allow_ai_fill: bool = False) -> RenderJobStatus:
     job_id = str(uuid.uuid4())[:8]
     engine = resolve_packaging_engine(packaging_engine)
+    prepared_plan = prepare_plan_for_render(plan)
     status = RenderJobStatus(
         job_id=job_id,
         status="queued",
@@ -27,7 +36,7 @@ def create_render_job(plan: MaoMemePlan, packaging_engine: str = "auto", allow_a
         fallback_reason=fallback_reason(packaging_engine, engine),
     )
     JOBS[job_id] = status
-    asyncio.create_task(run_render_job(job_id, plan))
+    asyncio.create_task(run_render_job(job_id, prepared_plan))
     return status
 
 
@@ -39,6 +48,70 @@ def get_render_job(job_id: str) -> RenderJobStatus | None:
     if recovered:
         JOBS[job_id] = recovered
     return recovered
+
+
+def prepare_plan_for_render(plan: MaoMemePlan) -> MaoMemePlan:
+    data = plan.model_dump(by_alias=True)
+    theme = str(data.get("theme", ""))
+    safe_relationship_background = None
+    timeline = []
+    for slot in data.get("timeline", []):
+        if not isinstance(slot, dict):
+            continue
+        next_slot = json.loads(json.dumps(slot, ensure_ascii=False))
+        if emotional_relationship_slot(theme, next_slot):
+            next_slot["overlay_actions"] = [
+                action
+                for action in next_slot.get("overlay_actions", [])
+                if isinstance(action, dict) and not relationship_bill_overlay(action)
+            ]
+            if relationship_bill_background(next_slot.get("background", {})):
+                if safe_relationship_background is None:
+                    safe_relationship_background = fallback_relationship_background()
+                if safe_relationship_background:
+                    next_slot["background"] = safe_relationship_background
+        motion = next_slot.get("motion") if isinstance(next_slot.get("motion"), dict) else {}
+        quality = motion_quality_flags(motion)
+        next_slot["motion_quality"] = {**next_slot.get("motion_quality", {}), **quality}
+        if next_slot.get("layout") == "dialogue" and quality.get("natural_double"):
+            next_slot["secondary_motion"] = None
+            next_slot["secondary_motion_quality"] = {}
+            next_slot["secondary_motion_clip"] = None
+        next_slot["visual_summary"] = visual_summary_for_slot(next_slot)
+        timeline.append(next_slot)
+    data["timeline"] = timeline
+    return MaoMemePlan.model_validate(data)
+
+
+def emotional_relationship_slot(theme: str, slot: dict[str, Any]) -> bool:
+    text = f"{theme} {slot.get('copy', '')} {slot.get('caption', '')} {slot.get('intent', '')}"
+    return (
+        infer_theme_category(text) == "relationship"
+        and is_emotional_relationship_context(text)
+        and not is_financial_relationship_context(text)
+    )
+
+
+def relationship_bill_overlay(action: dict[str, Any]) -> bool:
+    text = json.dumps(action, ensure_ascii=False)
+    return any(word in text for word in ("bill_card", "bill_stack", "账单", "房租", "押金", "预算", "首付", "房贷", "彩礼"))
+
+
+def relationship_bill_background(background: Any) -> bool:
+    if not isinstance(background, dict):
+        return False
+    text = f"{background.get('id', '')} {background.get('scene', '')} {background.get('file', '')} {background.get('description', '')}"
+    return any(word in text for word in ("rental-bill", "rental_bill", "出租屋", "房租", "押金", "租房", "账单", "预算", "首付", "房贷", "彩礼"))
+
+
+def fallback_relationship_background() -> dict[str, Any] | None:
+    index = load_assets()
+    preferred_ids = ("building_interior/5", "city/5", "city/2", "building_interior/3")
+    for preferred_id in preferred_ids:
+        for asset in index.get("backgrounds", []):
+            if str(asset.get("id", "")) == preferred_id:
+                return ref(asset)
+    return None
 
 
 async def run_render_job(job_id: str, plan: MaoMemePlan) -> None:
@@ -181,6 +254,8 @@ def render_env() -> dict[str, str]:
     conda_python = Path(conda_prefix) / "bin" / "python" if conda_prefix else None
     if conda_python and conda_python.exists():
         env.setdefault("MAOMEME_PYTHON", str(conda_python))
+    elif sys.executable:
+        env.setdefault("MAOMEME_PYTHON", sys.executable)
     env.setdefault("RENDER_SEGMENT_CONCURRENCY", "2")
     env.setdefault("RENDER_FFMPEG_PRESET", "veryfast")
     return env

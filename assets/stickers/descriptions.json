@@ -1,0 +1,82 @@
+[
+  {
+    "index": 1,
+    "folder": "home-daily",
+    "category": "家居日常类",
+    "english_name": "Home & Daily Life",
+    "count": 61,
+    "description": "家居日常类：包含桌椅、床、沙发、台灯、衣柜、窗户、垃圾桶、镜子、拖鞋、被子、门、枕头、毛毯。主要用途：宿舍、家里、躺平、睡觉、家庭对话、发疯前的平静铺垫。高频剧情示例：猫在床上躺平；猫坐在桌前崩溃；猫在家里收到消息。"
+  },
+  {
+    "index": 2,
+    "folder": "campus-study",
+    "category": "校园学习类",
+    "english_name": "Campus Study",
+    "count": 27,
+    "description": "校园学习类：包含书本、试卷、黑板、书包、铅笔、课桌、讲台、奖状、红笔、闹钟、作业本、毕业帽。主要用途：学生日常、考试、作业、ddl、老师点名、考研/期末崩溃。高频剧情示例：老师突然布置作业；考前一晚复习；猫看到试卷大脑宕机。"
+  },
+  {
+    "index": 3,
+    "folder": "digital-communication",
+    "category": "数码通讯类",
+    "english_name": "Digital Communication",
+    "count": 53,
+    "description": "数码通讯类：包含手机、电脑、键盘、鼠标、耳机、摄像头、聊天气泡、WiFi、充电器、相机、平板。主要用途：刷视频、聊天、网恋、消息轰炸、AI剪视频、工作办公、直播拍摄。高频剧情示例：手机弹出群通知；电脑崩溃；猫在聊天框里已读不回。"
+  },
+  {
+    "index": 4,
+    "folder": "food-drinks",
+    "category": "食物饮品类",
+    "english_name": "Food & Drinks",
+    "count": 204,
+    "description": "食物饮品类：包含面条、水果、奶茶、咖啡、蛋糕、汉堡、火锅、碗筷、零食、外卖袋、披萨、烤肠。主要用途：干饭、深夜吃播、奖励自己、馋嘴、约饭、生活搞笑。高频剧情示例：闻到烤肠味自动转头；减肥失败点外卖；猫深夜吃面。"
+  },
+  {
+    "index": 5,
+    "folder": "career-identity",
+    "category": "职业身份类",
+    "english_name": "Career & Identity",
+    "count": 88,
+    "description": "职业身份类：包含厨师帽、医生帽、警察帽、老师眼镜、工牌、王冠、围裙、西装、麦克风、记者话筒。主要用途：角色扮演、身份反转、职业梗、霸总/老师/医生/警察/厨师剧情。高频剧情示例：猫戴厨师帽做饭；猫变成老师训话；猫拿麦克风采访。"
+  },
+  {
+    "index": 6,
+    "folder": "medical-emergency",
+    "category": "医疗急救类",
+    "english_name": "Medical & Emergency",
+    "count": 27,
+    "description": "医疗急救类：包含救护车、药箱、针筒、病床、听诊器、创可贴、体温计、心电图、药片、输液架。主要用途：崩溃抢救、急诊小剧场、装病、精神状态不稳定、夸张救命桥段。高频剧情示例：猫看到ddl当场进急诊；被作业气到心电图拉直；救护车接走发疯猫。"
+  },
+  {
+    "index": 7,
+    "folder": "transport-travel",
+    "category": "交通出行类",
+    "english_name": "Transport & Travel",
+    "count": 41,
+    "description": "交通出行类：包含汽车、公交、地铁、飞机、火车、路牌、红绿灯、行李箱、自行车、电动车、车票。主要用途：迟到、逃跑、旅行、上学上班、追逐剧情、空间转场。高频剧情示例：猫上学迟到狂奔；猫拖行李箱离家出走；地铁错过站。"
+  },
+  {
+    "index": 8,
+    "folder": "emotion-effects",
+    "category": "情绪特效类",
+    "english_name": "Emotion Effects",
+    "count": 27,
+    "description": "情绪特效类：包含问号、感叹号、火焰、闪电、汗滴、爱心、黑线、裂开、爆炸、红脸、眩晕星星、怒气符号。主要用途：震惊、无语、生气、心动、害怕、尴尬、崩溃，是猫meme最高频强化贴纸。高频剧情示例：猫头顶冒问号；被气到冒火；听到坏消息画面裂开。"
+  },
+  {
+    "index": 9,
+    "folder": "plot-conflict",
+    "category": "剧情冲突类",
+    "english_name": "Plot Conflict",
+    "count": 16,
+    "description": "剧情冲突类：包含刀剑、拳头、盾牌、钱、合同、锁链、证据袋、监控、警报器、炸弹、法槌、放大镜。主要用途：打架、大乱斗、悬疑、反转、真假千金、抓马、爽文剧情、审判桥段。高频剧情示例：猫发现证据反击；猫拿合同谈判；警报响起进入追捕剧情。"
+  },
+  {
+    "index": 10,
+    "folder": "atmosphere-decor",
+    "category": "氛围装饰类",
+    "english_name": "Atmosphere & Decor",
+    "count": 9,
+    "description": "氛围装饰类：包含花、草、树、云朵、太阳、月亮、星星、彩虹、墓碑、蜡烛、魔法阵、雪花、雨滴。主要用途：梦境、浪漫、恐怖、玄学、回忆、伤感、结尾升华、画面填充。高频剧情示例：猫进入梦境；浪漫告白；恐怖故事开场；回忆杀。"
+  }
+]

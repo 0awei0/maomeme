@@ -199,14 +199,12 @@ async def generate_plan_with_doubao_context(
 
 {assets_summary}
 
-## 社会现实文本素材
-
-{json.dumps(text_context, ensure_ascii=False, indent=2)}
-
 ## 新主题
 
 {theme}
 
+请只把爆款样例结构当作 asset_plan.storyboard 的压缩结构参考，学习镜头功能、节奏、字幕包装、转场和 BGM 卡点。
+剧情内容必须从新主题中提取、扩写和改写；不要从任何外部文本素材或参考样例补剧情事实。
 请让剧本逻辑更完整，必须包含现实矛盾、具体细节、猫 meme 反差和合理收束。输出严格 JSON。""",
                 },
             ],
@@ -349,7 +347,6 @@ def candidate_messages(
     }.get(duration_mode, "4个镜头，12秒左右")
     angle_hint = f"\n## 创作角度\n{angle}\n" if angle else ""
     count_hint = "必须给 1 个候选，且只输出 candidates 数组中的 1 项。" if angle else "必须给 3 个候选。"
-    compact_context = compact_text_context(text_context)
     upload_context_text = json.dumps(compact_creative_context(creative_context or {}), ensure_ascii=False)
     return [
         {
@@ -362,6 +359,13 @@ def candidate_messages(
                 "剧本文案默认写人类社会角色，比如学生、打工人、老板、同事、HR、摊主。"
                 "猫只作为后续素材表现层，不要在字幕里反复说猫。"
                 "猫不能直接解决社会问题，只能用荒诞动作暴露矛盾、缓冲情绪或推动角色换策略。"
+                "参考视频和 few-shot 只用于学习创作方法，不是剧情素材库；"
+                "要学习脚本结构、镜头节奏、字幕样式、画面包装、转场和BGM卡点，"
+                "不得复制参考视频的剧情母题、人物关系、关键物件或原始场景。"
+                "剧情内容必须从用户填入的新视频主题和用户 brief 里提取、改写；"
+                "只能提取并改写新主题里的事实、人物关系、物件和情绪，参考视频不得提供剧情事实。"
+                "任何结构参考都不得变成剧情事实来源；"
+                "可以对新主题做适当扩写、改写，但不能引入新主题之外的具体事件、数字、人物关系或关键物件。"
             ),
         },
         {
@@ -373,10 +377,7 @@ def candidate_messages(
 {duration_hint}
 {angle_hint}
 
-## 社会现实文本素材
-{json.dumps(compact_context, ensure_ascii=False)}
-
-## 强制迁移蓝图与已验证爆款猫 meme few-shot
+## asset_plan.storyboard 压缩爆款结构参考
 {shorten_text(viral_reference_text, 4200) or "暂无。"}
 
 ## 用户上传与创作补充
@@ -406,8 +407,11 @@ def candidate_messages(
 要求：
 - {count_hint}
 - 每个候选都必须贴合主题，不要写“最后被猫解决”这类无逻辑结尾。
-- 必须遵循 migration_blueprint：主爆款每个镜头的剧情功能、冲突推进、字幕包装、背景/猫动作需求都要迁移，但不要照抄原视频台词或情节。
-- 每个候选都要能看出“主爆款结构 + 1 个辅助爆款梗点”的迁移关系。
+- 必须遵循 migration_blueprint；migration_blueprint 来自 structure.json 的 asset_plan.storyboard 压缩参考，只能迁移创作方法：脚本结构、镜头节奏、字幕样式、画面包装、转场、BGM卡点、情绪递进和反转机制。
+- 不得复制参考视频的剧情母题、人物关系、关键物件或原始场景；新剧本必须服从新主题的核心人物关系、场景和情绪落点。
+- 剧情内容必须从用户填入的新视频主题和用户 brief 中提取、改写；只能提取并改写新主题里的事实、人物关系、物件和情绪，参考视频不得提供剧情事实。
+- 任何结构参考都不得变成剧情事实来源；允许围绕新主题适当补足动作、因果和情绪，但不要引入新主题之外的具体事件、数字、人物关系或关键物件。
+- 每个候选都要能看出“主爆款方法 + 1 个辅助爆款技法”的迁移关系，而不是复用参考视频内容。
 - 如果用户上传了爆款视频，优先迁移“用户上传爆款”的结构；公共爆款库只做次级参考。
 - 如果用户上传了素材，剧本要尽量设计能用上这些素材的场景，但不要为了用素材牺牲逻辑。
 - 用户 brief 里如果写了受众、主角设定、冲突、结尾倾向、必备场景或禁忌内容，必须遵守。
@@ -419,26 +423,6 @@ def candidate_messages(
 - 分镜字幕短、具体、口语化。""",
         },
     ]
-
-
-def compact_text_context(text_context: dict) -> dict:
-    if not isinstance(text_context, dict):
-        return {}
-    beat_seed = text_context.get("beat_seed", {})
-    if isinstance(beat_seed, dict):
-        compact_beat_seed: Any = {str(key): str(value) for key, value in list(beat_seed.items())[:6]}
-    elif isinstance(beat_seed, list):
-        compact_beat_seed = [str(item) for item in beat_seed[:6]]
-    else:
-        compact_beat_seed = {}
-    return {
-        "title": text_context.get("title", ""),
-        "keywords": list(text_context.get("keywords", []) or [])[:8],
-        "facts": list(text_context.get("facts", []) or [])[:3],
-        "tensions": list(text_context.get("tensions", []) or [])[:4],
-        "meme_angles": list(text_context.get("meme_angles", []) or [])[:4],
-        "beat_seed": compact_beat_seed,
-    }
 
 
 def compact_creative_context(value: dict[str, Any]) -> dict[str, Any]:

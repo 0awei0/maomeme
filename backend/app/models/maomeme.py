@@ -9,6 +9,7 @@ class AssetRef(BaseModel):
     id: str = ""
     file: str = ""
     description: str = ""
+    motion_tags: dict[str, Any] = Field(default_factory=dict)
 
 
 class GapInfo(BaseModel):
@@ -38,6 +39,7 @@ class TimelineSlot(BaseModel):
     role: str
     intent: str
     caption: str = Field(alias="copy")
+    visual_summary: str = ""
     motion: AssetRef
     motion_quality: dict[str, bool] = Field(default_factory=dict)
     motion_clip: MotionClipSpec = Field(default_factory=MotionClipSpec)
@@ -168,9 +170,17 @@ class RenderJobRequest(BaseModel):
 
 
 class GenerateBackgroundRequest(BaseModel):
-    prompt: str
+    prompt: str = ""
     description: str = ""
     slug: str = "agent-fill"
+    theme: str = ""
+    caption: str = ""
+    scene_keywords: list[str] = Field(default_factory=list)
+    background_need: str = ""
+    seedream_prompt: str = ""
+    negative_constraints: list[str] = Field(default_factory=list)
+    slug_hint: str = ""
+    fallback_prompt: str = ""
     allow_ai_fill: bool = False
 
 

@@ -10,6 +10,8 @@
     "index:assets": "node ../scripts/index-assets.mjs",
     "assets:clean-backgrounds": "conda run -n cv python ../scripts/clean-background-green-bands.py",
     "assets:preprocess-cats": "node ../scripts/preprocess-cat-green-screen.mjs",
+    "assets:analyze-cat-layout": "conda run -n cv python ../scripts/analyze-cat-layout.py",
+    "assets:refresh-index": "npm run assets:analyze-cat-layout && npm run index:assets",
     "demo:plan": "node ../scripts/generate-demo-plan.mjs",
     "demo:render": "node ../scripts/render-demo-video.mjs",
     "demo:audit": "node ../scripts/audit-plan.mjs",

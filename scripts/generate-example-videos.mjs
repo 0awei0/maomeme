@@ -117,11 +117,15 @@ function buildPlan(example) {
 }
 
 function ref(asset) {
-  return {
+  const payload = {
     id: String(asset.id || ''),
     file: String(asset.file || ''),
     description: String(asset.description || '')
   };
+  if (asset.motion_tags) {
+    payload.motion_tags = asset.motion_tags;
+  }
+  return payload;
 }
 
 async function ffprobe(file) {

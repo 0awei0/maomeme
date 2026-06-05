@@ -6,9 +6,31 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const theme = process.argv.slice(2).join(' ') || '一只打工猫周一早上打开电脑，发现会议从 9 点排到晚上，最后靠装可爱逃过加班。';
 
 function pickMotion(index, keywords, fallbackId) {
-  return index.cat_motions.find((asset) => keywords.some((word) => asset.description.includes(word)))
+  return index.cat_motions.find((asset) => keywords.some((word) => motionText(asset).includes(word)))
     ?? index.cat_motions.find((asset) => asset.id === fallbackId)
     ?? index.cat_motions[0];
+}
+
+function flattenMetadata(value) {
+  if (Array.isArray(value)) return value.flatMap((item) => flattenMetadata(item));
+  if (value && typeof value === 'object') return Object.values(value).flatMap((item) => flattenMetadata(item));
+  const text = String(value || '').trim();
+  return text ? [text] : [];
+}
+
+function motionText(asset) {
+  return [
+    asset.id || '',
+    asset.file || '',
+    asset.description || '',
+    ...flattenMetadata(asset.motion_tags || {})
+  ].join(' ');
+}
+
+function ref(asset) {
+  const payload = { id: asset.id, file: asset.file, description: asset.description };
+  if (asset.motion_tags) payload.motion_tags = asset.motion_tags;
+  return payload;
 }
 
 function pickBackground(index, scene, fallbackScene) {
@@ -82,7 +104,7 @@ async function main() {
 
   plan.timeline = slots.map((slot) => ({
     ...slot,
-    motion: { id: slot.motion.id, file: slot.motion.file, description: slot.motion.description },
+    motion: ref(slot.motion),
     background: { id: slot.background.id, file: slot.background.file, description: slot.background.description },
     packaging: ['large_caption', 'bottom_subtitle', slot.id === 'punchline' ? 'freeze_end' : 'quick_cut']
   }));

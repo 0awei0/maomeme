@@ -802,10 +802,10 @@ function App() {
                     <h3>{slot.copy}</h3>
                     <StatusPill type={slot.gap?.status === 'matched' ? 'ok' : 'filled'} />
                   </div>
-                  <p>{shortSlotText(slot.motion.description, 54)}</p>
+                  <p>{shortSlotText(slotVisualSummary(slot), 78)}</p>
                   <div className="slotMeta">
                     <span>裁剪 {formatClip(slot.motion_clip)}</span>
-                    {slot.secondary_motion_clip && <span>右猫 {formatClip(slot.secondary_motion_clip)}</span>}
+                    {slot.secondary_motion_clip && !isNaturalDoubleMotion(slot.motion) && <span>右猫 {formatClip(slot.secondary_motion_clip)}</span>}
                     <span>转场 {transitionLabel(slot.transition)}</span>
                     <span>{sourceLabel(slot.asset_sources?.motion || 'built_in')}猫</span>
                     <span>{sourceLabel(slot.asset_sources?.structure || 'theme_workflow')}</span>
@@ -1043,9 +1043,46 @@ function overlayLabel(action) {
     stall_sign: '摊位牌',
     leave_request: '请假审批',
     emergency_call: '120',
-    generated_sticker: '贴纸'
+    generated_sticker: '贴纸',
+    sticker: '贴纸'
   };
   return `${labels[action.type] || action.type}：${action.text || action.title || action.object || ''}`;
+}
+
+function flattenTagText(value) {
+  if (Array.isArray(value)) return value.flatMap((item) => flattenTagText(item));
+  if (value && typeof value === 'object') return Object.values(value).flatMap((item) => flattenTagText(item));
+  const text = String(value || '').trim();
+  return text ? [text] : [];
+}
+
+function motionTextForUi(motion = {}) {
+  return [
+    motion.id || '',
+    motion.file || '',
+    motion.description || '',
+    ...flattenTagText(motion.motion_tags || {})
+  ].join(' ');
+}
+
+function isNaturalDoubleMotion(motion = {}) {
+  const text = motionTextForUi(motion);
+  return ['双猫', '两只猫', '对话反差'].some((word) => text.includes(word));
+}
+
+function slotVisualSummary(slot = {}) {
+  if (slot.visual_summary) return slot.visual_summary;
+  const motion = slot.motion || {};
+  const secondary = slot.secondary_motion || {};
+  if (slot.layout === 'dialogue') {
+    if (isNaturalDoubleMotion(motion)) {
+      return `内置双猫素材：${motion.description || '猫动作'}；叠加左右对话气泡`;
+    }
+    if (secondary.file) {
+      return `左侧主猫：${motion.description || '猫动作'}；右侧副猫：${secondary.description || '猫动作'}；叠加左右对话气泡`;
+    }
+  }
+  return motion.description || '';
 }
 
 function formatClip(clip = {}) {

@@ -27,7 +27,7 @@ function hits(text, words) {
 
 function auditSlot(slot) {
   const copy = slot.copy || slot.caption || '';
-  const desc = `${slot.motion?.id || ''} ${slot.motion?.file || ''} ${slot.motion?.description || ''} ${motionTags(slot.motion?.id)}`;
+  const desc = `${slot.motion?.id || ''} ${slot.motion?.file || ''} ${slot.motion?.description || ''} ${motionTags(slot.motion)}`;
   const scene = `${slot.background?.id || ''} ${slot.background?.description || ''}`;
   const issues = [];
   for (const rule of hardRules) {
@@ -46,18 +46,28 @@ function auditSlot(slot) {
   return issues;
 }
 
-function motionTags(id) {
+function flattenMetadata(value) {
+  if (Array.isArray(value)) return value.flatMap((item) => flattenMetadata(item));
+  if (value && typeof value === 'object') return Object.values(value).flatMap((item) => flattenMetadata(item));
+  const text = String(value || '').trim();
+  return text ? [text] : [];
+}
+
+function motionTags(motion) {
+  const tags = flattenMetadata(motion?.motion_tags || {});
+  if (tags.length) return tags.join(' ');
   return {
     '1': '电脑 笔记本 办公 工位',
-    '2': '可爱 蹦跳 欢快 跳舞',
-    '9': '哭 委屈 嚎啕 崩溃',
-    '10': '冷漠 沉默 生无可恋',
+    '2': '可爱 蹦跳 欢快',
+    '9': '哭 嚎啕 崩溃 高压崩溃',
+    '10': '探头 偷看 试探 隐蔽观察',
     '13': '跳舞 欢快 蹦跳 可爱',
-    '15': '震惊 瞪圆 错愕',
-    '16': '探头 电脑 冷漠',
-    '18': '冷漠 生无可恋',
-    '26': '震惊 错愕 疯狂'
-  }[String(id || '')] || '';
+    '14': '摆手 假装没听见 拒绝 免打扰 边界拒绝',
+    '15': '震惊 瞪眼 瞳孔地震',
+    '16': '双猫 对话 探头 碎碎念',
+    '18': '嫌弃 无语 冷眼',
+    '26': '委屈 可怜 强忍 病痛求助'
+  }[String(motion?.id || '')] || '';
 }
 
 async function main() {

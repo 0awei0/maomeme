@@ -29,7 +29,7 @@ from ..services.maomeme_agent import (
 )
 from ..services.doubao_client import ark_available, generate_brief_suggestions_with_mini
 from ..services.render_jobs import create_render_job, get_render_job
-from ..services.seedream_service import generate_background, seedream_available
+from ..services.seedream_service import constrain_background_prompt, generate_background, seedream_available
 from ..core.config import get_settings
 from ..services.upload_store import migration_context
 
@@ -300,17 +300,37 @@ async def render_job(request: RenderJobRequest):
 async def generate_background_asset(request: GenerateBackgroundRequest):
     if not request.allow_ai_fill:
         raise HTTPException(status_code=400, detail="allow_ai_fill 必须为 true 才能生成素材")
-    if not request.prompt.strip():
-        raise HTTPException(status_code=400, detail="prompt 不能为空")
+    if not any(
+        str(value).strip()
+        for value in (
+            request.prompt,
+            request.seedream_prompt,
+            request.background_need,
+            request.caption,
+            request.fallback_prompt,
+        )
+    ):
+        raise HTTPException(status_code=400, detail="prompt 或 background_need 不能为空")
     if not seedream_available():
         raise HTTPException(status_code=400, detail="Seedream 未配置")
     try:
-        asset = generate_background(
-            prompt=request.prompt,
-            description=request.description,
-            slug=request.slug,
+        constrained = constrain_background_prompt(
+            theme=request.theme,
+            caption=request.caption,
+            scene_keywords=request.scene_keywords,
+            background_need=request.background_need,
+            seedream_prompt=request.seedream_prompt or request.prompt,
+            negative_constraints=request.negative_constraints,
+            slug_hint=request.slug_hint or request.slug,
+            fallback_prompt=request.fallback_prompt,
+            fallback_slug=request.slug,
         )
-        return JSONResponse({"status": "success", "asset": asset})
+        asset = generate_background(
+            prompt=str(constrained["prompt"]),
+            description=request.description or str(constrained["description"]),
+            slug=str(constrained["slug"]),
+        )
+        return JSONResponse({"status": "success", "asset": asset, "prompt": constrained})
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"背景生成失败: {exc}") from exc
 
